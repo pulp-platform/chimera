@@ -1,0 +1,29 @@
+.bender
+
+# EMACS
+
+*undo-tree~
+*~
+*#
+
+# HW
+
+hw/regs/pcr.md
+
+# SW
+
+*.elf
+*.dump
+*.memh
+__pycache__
+
+
+# SIM
+
+target/sim/vsim/work
+target/sim/vsim/transcript
+target/sim/vsim/trace*
+modelsim.ini
+compile.tcl
+logs
+vsim.wlf

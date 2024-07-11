@@ -1,0 +1,37 @@
+# Copyright 2024 ETH Zurich and University of Bologna.
+# Solderpad Hardware License, Version 0.51, see LICENSE for details.
+# SPDX-License-Identifier: SHL-0.51
+
+package:
+  name: chimera
+  authors:
+    - "Moritz Scherer <scheremo@iis.ee.ethz.ch>"
+
+dependencies:
+  register_interface:       { git: "https://github.com/pulp-platform/register_interface.git", version: 0.4.3  }
+  axi:                      { git: "https://github.com/pulp-platform/axi.git",                version: 0.39.2 }
+  cheshire:                 { git: "https://github.com/pulp-platform/cheshire.git",           rev: "scheremo/convolve"}
+  snitch_cluster:           { git: "https://github.com/pulp-platform/snitch_cluster.git",     rev: "main"}
+  common_cells:             { git: "https://github.com/pulp-platform/common_cells.git",       version: 1.31.1}
+
+sources:
+  - hw/chimera_pkg.sv
+  - hw/regs/chimera_reg_pkg.sv
+  - hw/regs/chimera_reg_top.sv
+  - hw/bootrom/snitch/snitch_bootrom.sv
+  - hw/chimera_cluster_adapter.sv
+  - hw/chimera_top_wrapper.sv
+
+  - target: any(simulation, test)
+    files:
+      - target/sim/src/vip_chimera_soc.sv
+      - target/sim/src/fixture_chimera_soc.sv
+      - target/sim/src/tb_chimera_soc.sv
+      - target/sim/src/tb_chimera_pkg.sv
+
+vendor_package:
+  - name: reggen
+    target_dir: "utils"
+    upstream: { git: "https://github.com/pulp-platform/register_interface.git", rev: "19163bb5191d2669a8cbc267cdd4ce8e60f20746"}
+    mapping:
+      - { from: 'vendor/lowrisc_opentitan/util', to: 'reggen'}

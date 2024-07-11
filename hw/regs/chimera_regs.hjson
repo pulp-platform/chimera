@@ -1,0 +1,156 @@
+// Copyright 2024 ETH Zurich and University of Bologna.
+// Solderpad Hardware License, Version 0.51, see LICENSE for details.
+// SPDX-License-Identifier: SHL-0.51
+// Moritz Scherer <scheremo@iis.ee.ethz.ch>
+
+{
+    name: "chimera",
+    clock_primary: "clk_i",
+    bus_interfaces: [
+	{ protocol: "reg_iface", direction: "device" }
+    ],
+    regwidth: "32",
+    registers :[
+	{
+	    name: "SNITCH_BOOT_ADDR",
+	    desc: "Set boot address for all snitch cores",
+	    swaccess: "rw",
+	    hwaccess: "hro",
+	    resval: "0xBADCAB1E",
+	    hwqe: "0",
+	    fields: [
+		{ bits: "31:0" }
+	    ],
+	}
+	{
+	    name: "SNITCH_INTR_HANDLER_ADDR",
+	    desc: "Set interrupt handler address for all snitch cores",
+	    swaccess: "rw",
+	    hwaccess: "hro",
+	    resval: "0xBADCAB1E",
+	    hwqe: "0",
+	    fields: [
+		{ bits: "31:0" }
+	    ],
+	}
+	{
+	    name: "SNITCH_CLUSTER_1_RETURN",
+	    desc: "Register to store return value of Snitch cluster 1",
+	    swaccess: "ro",
+	    hwaccess: "hrw",
+	    resval: "0",
+	    hwqe: "0",
+	    fields: [
+		{ bits: "31:0" }
+	    ],
+	}
+	
+	{
+	    name: "SNITCH_CLUSTER_2_RETURN",
+	    desc: "Register to store return value of Snitch cluster 2",
+	    swaccess: "ro",
+	    hwaccess: "hrw",
+	    resval: "0",
+	    hwqe: "0",
+	    fields: [
+		{ bits: "31:0" }
+	    ],
+	}
+	
+	{
+	    name: "SNITCH_CLUSTER_3_RETURN",
+	    desc: "Register to store return value of Snitch cluster 3",
+	    swaccess: "ro",
+	    hwaccess: "hrw",
+	    resval: "0",
+	    hwqe: "0",
+	    fields: [
+		{ bits: "31:0" }
+	    ],
+	}
+	
+	{
+	    name: "SNITCH_CLUSTER_4_RETURN",
+	    desc: "Register to store return value of Snitch cluster 4",
+	    swaccess: "ro",
+	    hwaccess: "hrw",
+	    resval: "0",
+	    hwqe: "0",
+	    fields: [
+		{ bits: "31:0" }
+	    ],
+	}
+	
+	{
+	    name: "SNITCH_CLUSTER_5_RETURN",
+	    desc: "Register to store return value of Snitch cluster 5",
+	    swaccess: "ro",
+	    hwaccess: "hrw",
+	    resval: "0",
+	    hwqe: "0",
+	    fields: [
+		{ bits: "31:0" }
+	    ],
+	}
+	
+	{
+	    name: "CLUSTER_1_CLK_GATE_EN",
+	    desc: "Enable clock gate for cluster 1",
+	    swaccess: "rw",
+	    hwaccess: "hro",
+	    resval: "0",
+	    hwqe: "0",
+	    fields: [
+		{ bits: "0:0" }
+	    ],
+	}
+	
+	{
+	    name: "CLUSTER_2_CLK_GATE_EN",
+	    desc: "Enable clock gate for cluster 2",
+	    swaccess: "rw",
+	    hwaccess: "hro",
+	    resval: "0",
+	    hwqe: "0",
+	    fields: [
+		{ bits: "0:0" }
+	    ],
+	}
+	
+	{
+	    name: "CLUSTER_3_CLK_GATE_EN",
+	    desc: "Enable clock gate for cluster 3",
+	    swaccess: "rw",
+	    hwaccess: "hro",
+	    resval: "0",
+	    hwqe: "0",
+	    fields: [
+		{ bits: "0:0" }
+	    ],
+	}
+	
+	{
+	    name: "CLUSTER_4_CLK_GATE_EN",
+	    desc: "Enable clock gate for cluster 4",
+	    swaccess: "rw",
+	    hwaccess: "hro",
+	    resval: "0",
+	    hwqe: "0",
+	    fields: [
+		{ bits: "0:0" }
+	    ],
+	}
+	
+	{
+	    name: "CLUSTER_5_CLK_GATE_EN",
+	    desc: "Enable clock gate for cluster 5",
+	    swaccess: "rw",
+	    hwaccess: "hro",
+	    resval: "0",
+	    hwqe: "0",
+	    fields: [
+		{ bits: "0:0" }
+	    ],
+	}
+    ] 
+}
