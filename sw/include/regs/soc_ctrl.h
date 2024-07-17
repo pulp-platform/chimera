@@ -57,6 +57,10 @@ extern "C" {
 #define CHIMERA_CLUSTER_5_CLK_GATE_EN_REG_OFFSET 0x2c
 #define CHIMERA_CLUSTER_5_CLK_GATE_EN_CLUSTER_5_CLK_GATE_EN_BIT 0
 
+// Bypass cluster to mem wide connection
+#define CHIMERA_WIDE_MEM_CLUSTER_BYPASS_REG_OFFSET 0x30
+#define CHIMERA_WIDE_MEM_CLUSTER_BYPASS_WIDE_MEM_CLUSTER_BYPASS_BIT 0
+
 #ifdef __cplusplus
 } // extern "C"
 #endif

@@ -110,19 +110,19 @@ module chimera_top_wrapper
    logic [iomsb(Cfg.NumExtDbgHarts):0]                                  dbg_ext_unavail;
 
    cheshire_soc #(
-                  .Cfg(Cfg),
-                  .ExtHartinfo('0),
-                  .axi_ext_llc_req_t(axi_mst_req_t),
-                  .axi_ext_llc_rsp_t(axi_mst_rsp_t),
-                  .axi_ext_mst_req_t(axi_mst_req_t),
-                  .axi_ext_mst_rsp_t(axi_mst_rsp_t),
-                  .axi_ext_wide_mst_req_t(axi_wide_mst_req_t),
-                  .axi_ext_wide_mst_rsp_t(axi_wide_mst_rsp_t),
-                  .axi_ext_slv_req_t(axi_slv_req_t),
-                  .axi_ext_slv_rsp_t(axi_slv_rsp_t),
-                  .reg_ext_req_t(reg_req_t),
-                  .reg_ext_rsp_t(reg_rsp_t)
-                  ) i_cheshire
+		  .Cfg(Cfg),
+		  .ExtHartinfo('0),
+		  .axi_ext_llc_req_t(axi_mst_req_t),
+		  .axi_ext_llc_rsp_t(axi_mst_rsp_t),
+		  .axi_ext_mst_req_t(axi_mst_req_t),
+		  .axi_ext_mst_rsp_t(axi_mst_rsp_t),
+		  .axi_ext_wide_mst_req_t(axi_wide_mst_req_t),
+		  .axi_ext_wide_mst_rsp_t(axi_wide_mst_rsp_t),
+		  .axi_ext_slv_req_t(axi_slv_req_t),
+		  .axi_ext_slv_rsp_t(axi_slv_rsp_t),
+		  .reg_ext_req_t(reg_req_t),
+		  .reg_ext_rsp_t(reg_rsp_t)
+		  ) i_cheshire
      (
       .clk_i(soc_clk_i),
       .rst_ni,
@@ -205,17 +205,17 @@ module chimera_top_wrapper
    // TOP-LEVEL REG
 
    chimera_reg_top #(
-                     .reg_req_t(reg_req_t),
-                     .reg_rsp_t(reg_rsp_t)
-                     )
+		     .reg_req_t(reg_req_t),
+		     .reg_rsp_t(reg_rsp_t)
+		     )
    i_reg_top (
-              .clk_i(soc_clk_i),
-              .rst_ni,
-              .reg_req_i(reg_slv_req[TopLevelIdx]),
-              .reg_rsp_o(reg_slv_rsp[TopLevelIdx]),
-              .reg2hw(reg2hw),
-              .devmode_i('1)
-              );
+	      .clk_i(soc_clk_i),
+	      .rst_ni,
+	      .reg_req_i(reg_slv_req[TopLevelIdx]),
+	      .reg_rsp_o(reg_slv_rsp[TopLevelIdx]),
+	      .reg2hw(reg2hw),
+	      .devmode_i('1)
+	      );
 
 
    // SNITCH BOOTROM
@@ -232,56 +232,56 @@ module chimera_top_wrapper
    `FF(snitch_bootrom_we_q,   snitch_bootrom_we,   '0, soc_clk_i, rst_ni)
 
    reg_to_mem #(
-                .AW     ( 32 ),
-                .DW     ( 32 ),
-                .req_t  ( reg_req_t ),
-                .rsp_t  ( reg_rsp_t )
-                ) i_reg_to_snitch_bootrom (
-                                           .clk_i(soc_clk_i),
-                                           .rst_ni,
-                                           .reg_req_i  ( reg_slv_req[SnitchBootROMIdx] ),
-                                           .reg_rsp_o  ( reg_slv_rsp[SnitchBootROMIdx] ),
-                                           .req_o      ( snitch_bootrom_req  ),
-                                           .gnt_i      ( snitch_bootrom_req  ),
-                                           .we_o       ( snitch_bootrom_we   ),
-                                           .addr_o     ( snitch_bootrom_addr ),
-                                           .wdata_o    ( ),
-                                           .wstrb_o    ( ),
-                                           .rdata_i    ( snitch_bootrom_data_q ),
-                                           .rvalid_i   ( snitch_bootrom_req_q  ),
-                                           .rerror_i   ( snitch_bootrom_we_q   )
-                                           );
+		.AW     ( 32 ),
+		.DW     ( 32 ),
+		.req_t  ( reg_req_t ),
+		.rsp_t  ( reg_rsp_t )
+		) i_reg_to_snitch_bootrom (
+					   .clk_i(soc_clk_i),
+					   .rst_ni,
+					   .reg_req_i  ( reg_slv_req[SnitchBootROMIdx] ),
+					   .reg_rsp_o  ( reg_slv_rsp[SnitchBootROMIdx] ),
+					   .req_o      ( snitch_bootrom_req  ),
+					   .gnt_i      ( snitch_bootrom_req  ),
+					   .we_o       ( snitch_bootrom_we   ),
+					   .addr_o     ( snitch_bootrom_addr ),
+					   .wdata_o    ( ),
+					   .wstrb_o    ( ),
+					   .rdata_i    ( snitch_bootrom_data_q ),
+					   .rvalid_i   ( snitch_bootrom_req_q  ),
+					   .rerror_i   ( snitch_bootrom_we_q   )
+					   );
 
    snitch_bootrom #(
-                    .AddrWidth  ( 32 ),
-                    .DataWidth  ( 32 )
-                    ) i_snitch_bootrom (
-                                        .clk_i(soc_clk_i),
-                                        .rst_ni,
-                                        .req_i    ( snitch_bootrom_req  ),
-                                        .addr_i   ( snitch_bootrom_addr ),
-                                        .data_o   ( snitch_bootrom_data )
-                                        );
+		    .AddrWidth  ( 32 ),
+		    .DataWidth  ( 32 )
+		    ) i_snitch_bootrom (
+					.clk_i(soc_clk_i),
+					.rst_ni,
+					.req_i    ( snitch_bootrom_req  ),
+					.addr_i   ( snitch_bootrom_addr ),
+					.data_o   ( snitch_bootrom_data )
+					);
 
    // Cluster clock gates
 
    logic [ExtClusters-1:0] cluster_clock_gate_en;
    logic [ExtClusters-1:0] clu_clk_gated;
    assign cluster_clock_gate_en = {reg2hw.cluster_5_clk_gate_en,
-                                   reg2hw.cluster_4_clk_gate_en,
-                                   reg2hw.cluster_3_clk_gate_en,
-                                   reg2hw.cluster_2_clk_gate_en,
-                                   reg2hw.cluster_1_clk_gate_en};
+				   reg2hw.cluster_4_clk_gate_en,
+				   reg2hw.cluster_3_clk_gate_en,
+				   reg2hw.cluster_2_clk_gate_en,
+				   reg2hw.cluster_1_clk_gate_en};
 
    genvar extClusterIdx;
    generate
       for(extClusterIdx=0; extClusterIdx<ExtClusters; extClusterIdx++) begin : gen_clk_gates
-         tc_clk_gating i_cluster_clk_gate (
-                                           .clk_i(clu_clk_i),
-                                           .en_i(~cluster_clock_gate_en[extClusterIdx]),
-                                           .test_en_i(1'b0),
-                                           .clk_o(clu_clk_gated[extClusterIdx])
-                                           );
+	 tc_clk_gating i_cluster_clk_gate (
+					   .clk_i(clu_clk_i),
+					   .en_i(~cluster_clock_gate_en[extClusterIdx]),
+					   .test_en_i(1'b0),
+					   .clk_o(clu_clk_gated[extClusterIdx])
+					   );
       end
    endgenerate
 
@@ -317,11 +317,11 @@ module chimera_top_wrapper
    typedef logic [WideSlaveIdWidth +2 -1:0]   axi_cluster_slv_id_width_wide_t;
 
    `AXI_TYPEDEF_ALL(axi_cluster_out_wide, axi_cluster_addr_t,
-                    axi_cluster_slv_id_width_wide_t, axi_cluster_data_wide_t,
-                    axi_cluster_strb_wide_t, axi_cluster_user_t)
+		    axi_cluster_slv_id_width_wide_t, axi_cluster_data_wide_t,
+		    axi_cluster_strb_wide_t, axi_cluster_user_t)
    `AXI_TYPEDEF_ALL(axi_cluster_out_narrow, axi_cluster_addr_t,
-                    axi_cluster_slv_id_width_narrow_t, axi_cluster_data_narrow_t,
-                    axi_cluster_strb_narrow_t, axi_cluster_user_t)
+		    axi_cluster_slv_id_width_narrow_t, axi_cluster_data_narrow_t,
+		    axi_cluster_strb_narrow_t, axi_cluster_user_t)
 
    axi_slv_req_t [iomsb(ExtClusters):0] clu_axi_slv_req;
    axi_slv_rsp_t [iomsb(ExtClusters):0] clu_axi_slv_resp;
@@ -335,45 +335,47 @@ module chimera_top_wrapper
    generate
       for(extClusterIdx=0; extClusterIdx<ExtClusters; extClusterIdx++) begin : gen_clusters_adapters
 
-         chimera_cluster_adapter #(
-                                   .WideSlaveIdWidth(WideSlaveIdWidth),
+	 chimera_cluster_adapter #(
+				   .WideSlaveIdWidth(WideSlaveIdWidth),
 
-                                   .WidePassThroughRegionStart(Cfg.MemIslRegionStart),
-                                   .WidePassThroughRegionEnd(Cfg.MemIslRegionEnd),
+				   .WidePassThroughRegionStart(Cfg.MemIslRegionStart),
+				   .WidePassThroughRegionEnd(Cfg.MemIslRegionEnd),
 
-                                   .narrow_in_req_t(axi_slv_req_t),
-                                   .narrow_in_resp_t(axi_slv_rsp_t),
-                                   .wide_in_req_t(axi_wide_slv_req_t),
-                                   .wide_in_resp_t(axi_wide_slv_rsp_t),
-                                   .narrow_out_req_t(axi_mst_req_t),
-                                   .narrow_out_resp_t(axi_mst_rsp_t),
-                                   .wide_out_req_t(axi_wide_mst_req_t),
-                                   .wide_out_resp_t(axi_wide_mst_rsp_t),
+				   .narrow_in_req_t(axi_slv_req_t),
+				   .narrow_in_resp_t(axi_slv_rsp_t),
+				   .wide_in_req_t(axi_wide_slv_req_t),
+				   .wide_in_resp_t(axi_wide_slv_rsp_t),
+				   .narrow_out_req_t(axi_mst_req_t),
+				   .narrow_out_resp_t(axi_mst_rsp_t),
+				   .wide_out_req_t(axi_wide_mst_req_t),
+				   .wide_out_resp_t(axi_wide_mst_rsp_t),
 
-                                   .clu_narrow_out_req_t(axi_cluster_out_narrow_req_t),
-                                   .clu_narrow_out_resp_t(axi_cluster_out_narrow_resp_t),
-                                   .clu_wide_out_req_t(axi_cluster_out_wide_req_t),
-                                   .clu_wide_out_resp_t(axi_cluster_out_wide_resp_t)
-                                   )
-         i_cluster_axi_adapter (
-                                .soc_clk_i(soc_clk_i),
-                                .clu_clk_i(clu_clk_gated[extClusterIdx]),
-                                .rst_ni,
+				   .clu_narrow_out_req_t(axi_cluster_out_narrow_req_t),
+				   .clu_narrow_out_resp_t(axi_cluster_out_narrow_resp_t),
+				   .clu_wide_out_req_t(axi_cluster_out_wide_req_t),
+				   .clu_wide_out_resp_t(axi_cluster_out_wide_resp_t)
+				   )
+	 i_cluster_axi_adapter (
+				.soc_clk_i(soc_clk_i),
+				.clu_clk_i(clu_clk_gated[extClusterIdx]),
+				.rst_ni,
 
-                                .narrow_in_req_i(axi_slv_req[extClusterIdx]),
-                                .narrow_in_resp_o(axi_slv_rsp[extClusterIdx]),
-                                .narrow_out_req_o(axi_mst_req[2*extClusterIdx+:2]),
-                                .narrow_out_resp_i(axi_mst_rsp[2*extClusterIdx+:2]),
-                                .wide_out_req_o(axi_wide_mst_req[extClusterIdx]),
-                                .wide_out_resp_i(axi_wide_mst_rsp[extClusterIdx]),
+				.narrow_in_req_i(axi_slv_req[extClusterIdx]),
+				.narrow_in_resp_o(axi_slv_rsp[extClusterIdx]),
+				.narrow_out_req_o(axi_mst_req[2*extClusterIdx+:2]),
+				.narrow_out_resp_i(axi_mst_rsp[2*extClusterIdx+:2]),
+				.wide_out_req_o(axi_wide_mst_req[extClusterIdx]),
+				.wide_out_resp_i(axi_wide_mst_rsp[extClusterIdx]),
 
-                                .clu_narrow_in_req_o(clu_axi_slv_req[extClusterIdx]),
-                                .clu_narrow_in_resp_i(clu_axi_slv_resp[extClusterIdx]),
-                                .clu_narrow_out_req_i(clu_axi_mst_req[extClusterIdx]),
-                                .clu_narrow_out_resp_o(clu_axi_mst_resp[extClusterIdx]),
-                                .clu_wide_out_req_i(clu_axi_wide_mst_req[extClusterIdx]),
-                                .clu_wide_out_resp_o(clu_axi_wide_mst_resp[extClusterIdx])
-                                );
+			      .clu_narrow_in_req_o(clu_axi_slv_req[extClusterIdx]),
+			      .clu_narrow_in_resp_i(clu_axi_slv_resp[extClusterIdx]),
+			      .clu_narrow_out_req_i(clu_axi_mst_req[extClusterIdx]),
+			      .clu_narrow_out_resp_o(clu_axi_mst_resp[extClusterIdx]),
+			      .clu_wide_out_req_i(clu_axi_wide_mst_req[extClusterIdx]),
+			      .clu_wide_out_resp_o(clu_axi_wide_mst_resp[extClusterIdx]),
+
+			      .wide_mem_bypass_mode(reg2hw.wide_mem_cluster_bypass.q)
+			      );
 
       end // block: gen_cluster_adapters
    endgenerate
@@ -397,83 +399,83 @@ module chimera_top_wrapper
 
    generate
       for(extClusterIdx=0; extClusterIdx<ExtClusters; extClusterIdx++) begin : gen_clusters
-         snitch_cluster #(
-                          .PhysicalAddrWidth(Cfg.AddrWidth),
-                          .NarrowDataWidth(Cfg.AxiDataWidth),
-                          .WideDataWidth(WideDataWidth),
-                          .NarrowIdWidthIn(NarrowSlaveIdWidth),
-                          .WideIdWidthIn(WideSlaveIdWidth),
-                          .NarrowUserWidth(Cfg.AxiUserWidth),
-                          .WideUserWidth(Cfg.AxiUserWidth),
+	 snitch_cluster #(
+			  .PhysicalAddrWidth(Cfg.AddrWidth),
+			  .NarrowDataWidth(Cfg.AxiDataWidth),
+			  .WideDataWidth(WideDataWidth),
+			  .NarrowIdWidthIn(NarrowSlaveIdWidth),
+			  .WideIdWidthIn(WideSlaveIdWidth),
+			  .NarrowUserWidth(Cfg.AxiUserWidth),
+			  .WideUserWidth(Cfg.AxiUserWidth),
 
-                          .BootAddr(SnitchBootROMRegionStart),
+			  .BootAddr(SnitchBootROMRegionStart),
 
-                          .NrHives(1),
-                          .NrCores(9),
-                          .TCDMDepth(1024),
-                          .ZeroMemorySize(64),
-                          .ClusterPeriphSize(64),
-                          .NrBanks(16),
+			  .NrHives(1),
+			  .NrCores(9),
+			  .TCDMDepth(1024),
+			  .ZeroMemorySize(64),
+			  .ClusterPeriphSize(64),
+			  .NrBanks(16),
 
-                          .DMANumAxInFlight(3),
-                          .DMAReqFifoDepth(3),
+			  .DMANumAxInFlight(3),
+			  .DMAReqFifoDepth(3),
 
-                          .ICacheLineWidth('{256}),
-                          .ICacheLineCount('{16}),
-                          .ICacheSets('{2}),
+			  .ICacheLineWidth('{256}),
+			  .ICacheLineCount('{16}),
+			  .ICacheSets('{2}),
 
-                          .VMSupport(0),
-                          .Xdma(9'b100000000),
+			  .VMSupport(0),
+			  .Xdma(9'b100000000),
 
-                          .NumIntOutstandingLoads (NumIntOutstandingLoads),
-                          .NumIntOutstandingMem (NumIntOutstandingMem),
-                          .RegisterOffloadReq (1),
-                          .RegisterOffloadRsp (1),
-                          .RegisterCoreReq (1),
-                          .RegisterCoreRsp (1),
+			  .NumIntOutstandingLoads (NumIntOutstandingLoads),
+			  .NumIntOutstandingMem (NumIntOutstandingMem),
+			  .RegisterOffloadReq (1),
+			  .RegisterOffloadRsp (1),
+			  .RegisterCoreReq (1),
+			  .RegisterCoreRsp (1),
 
-                          .narrow_in_req_t(axi_slv_req_t),
-                          .narrow_in_resp_t(axi_slv_rsp_t),
-                          .wide_in_req_t(axi_wide_slv_req_t),
-                          .wide_in_resp_t(axi_wide_slv_rsp_t),
+			  .narrow_in_req_t(axi_slv_req_t),
+			  .narrow_in_resp_t(axi_slv_rsp_t),
+			  .wide_in_req_t(axi_wide_slv_req_t),
+			  .wide_in_resp_t(axi_wide_slv_rsp_t),
 
-                          .narrow_out_req_t(axi_cluster_out_narrow_req_t),
-                          .narrow_out_resp_t(axi_cluster_out_narrow_resp_t),
-                          .wide_out_req_t(axi_cluster_out_wide_req_t),
-                          .wide_out_resp_t(axi_cluster_out_wide_resp_t),
+			  .narrow_out_req_t(axi_cluster_out_narrow_req_t),
+			  .narrow_out_resp_t(axi_cluster_out_narrow_resp_t),
+			  .wide_out_req_t(axi_cluster_out_wide_req_t),
+			  .wide_out_resp_t(axi_cluster_out_wide_resp_t),
 
-                          .sram_cfg_t(sram_cfg_t),
-                          .sram_cfgs_t(sram_cfgs_t),
+			  .sram_cfg_t(sram_cfg_t),
+			  .sram_cfgs_t(sram_cfgs_t),
 
-                          .RegisterExtWide('0),
-                          .RegisterExtNarrow('0)
-                          )
-         i_test_cluster (
+			  .RegisterExtWide('0),
+			  .RegisterExtNarrow('0)
+			  )
+	 i_test_cluster (
 
-                         .clk_i(clu_clk_i),
-                         .clk_d2_bypass_i('0),
-                         .rst_ni,
+			 .clk_i(clu_clk_i),
+			 .clk_d2_bypass_i('0),
+			 .rst_ni,
 
-                         .debug_req_i(clu_dbg_ext_req[extClusterIdx*9+:9]),
-                         .meip_i(clu_xeip_ext[extClusterIdx*9+:9]),
-                         .mtip_i(clu_mtip_ext[extClusterIdx*9+:9]),
-                         .msip_i(clu_msip_ext[extClusterIdx*9+:9]),
+			 .debug_req_i(clu_dbg_ext_req[extClusterIdx*9+:9]),
+			 .meip_i(clu_xeip_ext[extClusterIdx*9+:9]),
+			 .mtip_i(clu_mtip_ext[extClusterIdx*9+:9]),
+			 .msip_i(clu_msip_ext[extClusterIdx*9+:9]),
 
-                         .hart_base_id_i(10'(extClusterIdx*9+1)),
-                         .cluster_base_addr_i(Cfg.AxiExtRegionStart[extClusterIdx]
-                                              [Cfg.AddrWidth-1:0]),
-                         .sram_cfgs_i('0),
+			 .hart_base_id_i(10'(extClusterIdx*9+1)),
+			 .cluster_base_addr_i(Cfg.AxiExtRegionStart[extClusterIdx]
+					      [Cfg.AddrWidth-1:0]),
+			 .sram_cfgs_i('0),
 
-                         .narrow_in_req_i(clu_axi_slv_req[extClusterIdx]),
-                         .narrow_in_resp_o(clu_axi_slv_resp[extClusterIdx]),
-                         .narrow_out_req_o(clu_axi_mst_req[extClusterIdx]),
-                         .narrow_out_resp_i(clu_axi_mst_resp[extClusterIdx]),
-                         .wide_in_req_i('0),
-                         .wide_in_resp_o(),
-                         .wide_out_req_o(clu_axi_wide_mst_req[extClusterIdx]),
-                         .wide_out_resp_i(clu_axi_wide_mst_resp[extClusterIdx])
+			 .narrow_in_req_i(clu_axi_slv_req[extClusterIdx]),
+			 .narrow_in_resp_o(clu_axi_slv_resp[extClusterIdx]),
+			 .narrow_out_req_o(clu_axi_mst_req[extClusterIdx]),
+			 .narrow_out_resp_i(clu_axi_mst_resp[extClusterIdx]),
+			 .wide_in_req_i('0),
+			 .wide_in_resp_o(),
+			 .wide_out_req_o(clu_axi_wide_mst_req[extClusterIdx]),
+			 .wide_out_resp_i(clu_axi_wide_mst_resp[extClusterIdx])
 
-                         );
+			 );
 
       end // block: gen_clusters
    endgenerate

@@ -51,7 +51,10 @@ module chimera_cluster_adapter
        input  clu_narrow_out_req_t clu_narrow_out_req_i,
        output clu_narrow_out_resp_t clu_narrow_out_resp_o,
        input  clu_wide_out_req_t clu_wide_out_req_i,
-       output clu_wide_out_resp_t clu_wide_out_resp_o
+       output clu_wide_out_resp_t clu_wide_out_resp_o,
+
+      // Testing
+       input logic wide_mem_bypass_mode
       );
 
 `include "axi/typedef.svh"
@@ -84,14 +87,14 @@ module chimera_cluster_adapter
    typedef logic [SocWideMasterIdWidth-1:0]   axi_soc_wide_mst_id_width_y;
 
    `AXI_TYPEDEF_ALL(axi_clu_wide_out, axi_addr_width_t, axi_soc_wide_mst_id_width_y,
-                    axi_wide_data_width_t, axi_wide_strb_width_t, axi_user_width_t)
+		    axi_wide_data_width_t, axi_wide_strb_width_t, axi_user_width_t)
    `AXI_TYPEDEF_ALL(axi_narrow_in, axi_addr_width_t, axi_soc_narrow_slv_id_width_t,
-                    axi_narrow_data_width_t, axi_narrow_strb_width_t, axi_user_width_t)
+		    axi_narrow_data_width_t, axi_narrow_strb_width_t, axi_user_width_t)
    `AXI_TYPEDEF_ALL(axi_narrow_out, axi_addr_width_t, axi_soc_narrow_mst_id_width_t,
-                    axi_narrow_data_width_t, axi_narrow_strb_width_t, axi_user_width_t)
+		    axi_narrow_data_width_t, axi_narrow_strb_width_t, axi_user_width_t)
    `AXI_TYPEDEF_ALL(axi_chimera_cluster_wrapper_out_wide_to_narrow, axi_addr_width_t,
-                    axi_soc_narrow_mst_id_width_t, axi_wide_data_width_t,
-                    axi_wide_strb_width_t, axi_user_width_t)
+		    axi_soc_narrow_mst_id_width_t, axi_wide_data_width_t,
+		    axi_wide_strb_width_t, axi_user_width_t)
 
    // Direct mst outputs of cluster -> has extra id bits on mst, gets iw converted
 
@@ -134,92 +137,93 @@ module chimera_cluster_adapter
    assign clu_wide_out_resp_o = axi_from_cluster_wide_iwc_resp;
 
    // WIDE-TO-NARROW CONVERSION
-   // Catch requests over the wide port which do not go to the memory island;
-   // reroute them over the narrow AXI bus.
+   // Catch requests over the wide port which do not go to the memory island; reroute them over the narrow AXI bus.
+   // For testing purposes, when bypass_mode is asserted, wide requests must be routed over the narrow AXI bus
 
    logic ar_wide_sel, aw_wide_sel;
 
    // assign ar_wide_sel = (axi_from_cluster_wide_premux_req.ar.addr >= WidePassThroughRegionStart) && (axi_from_cluster_wide_premux_req.ar.addr < WidePassThroughRegionEnd);
    // assign aw_wide_sel = (axi_from_cluster_wide_premux_req.aw.addr >= WidePassThroughRegionStart) && (axi_from_cluster_wide_premux_req.aw.addr < WidePassThroughRegionEnd);
 
-   assign ar_wide_sel = '0;
-   assign aw_wide_sel = '0;
+   assign ar_wide_sel = (wide_mem_bypass_mode) ? '1 : '0;
+   assign aw_wide_sel = (wide_mem_bypass_mode) ? '1 : '0;
 
+   
    axi_demux_simple #(
-                      .AxiIdWidth(WideSlaveIdWidth),
-                      .AtopSupport(0),
-                      .axi_req_t(wide_out_req_t),
-                      .axi_resp_t(wide_out_resp_t),
-                      .NoMstPorts(2),
-                      .MaxTrans(2),
-                      .AxiLookBits(WideSlaveIdWidth),
-                      .UniqueIds('1)
-                      )
+		      .AxiIdWidth(WideSlaveIdWidth),
+		      .AtopSupport(0),
+		      .axi_req_t(wide_out_req_t),
+		      .axi_resp_t(wide_out_resp_t),
+		      .NoMstPorts(2),
+		      .MaxTrans(2),
+		      .AxiLookBits(WideSlaveIdWidth),
+		      .UniqueIds('1)
+		      )
    i_wide_demux (
-                 .clk_i(soc_clk_i),
-                 .rst_ni,
-                 .test_i('0),
-                 .slv_req_i(axi_from_cluster_wide_premux_req),
-                 .slv_aw_select_i(aw_wide_sel),
-                 .slv_ar_select_i(ar_wide_sel),
-                 .slv_resp_o(axi_from_cluster_wide_premux_resp),
-                 .mst_reqs_o({axi_from_cluster_wide_memisl_req,
-                              axi_from_cluster_wide_to_narrow_req}),
-                 .mst_resps_i({axi_from_cluster_wide_memisl_resp,
-                               axi_from_cluster_wide_to_narrow_resp})
-                 );
-
+		 .clk_i(soc_clk_i),
+		 .rst_ni,
+		 .test_i('0),
+		 .slv_req_i(axi_from_cluster_wide_premux_req),
+		 .slv_aw_select_i(aw_wide_sel),
+		 .slv_ar_select_i(ar_wide_sel),
+		 .slv_resp_o(axi_from_cluster_wide_premux_resp),
+		 .mst_reqs_o({axi_from_cluster_wide_memisl_req,
+			      axi_from_cluster_wide_to_narrow_req}),
+		 .mst_resps_i({axi_from_cluster_wide_memisl_resp,
+			       axi_from_cluster_wide_to_narrow_resp})
+		 );
+   
    assign wide_out_req_o = axi_from_cluster_wide_memisl_req;
    assign axi_from_cluster_wide_memisl_resp = wide_out_resp_i;
 
    axi_iw_converter #(
-                      .AxiSlvPortIdWidth      ( WideSlaveIdWidth ),
-                      .AxiMstPortIdWidth      ( SocNarrowMasterIdWidth ),
-                      .AxiSlvPortMaxUniqIds   ( 1                  ),
-                      .AxiSlvPortMaxTxnsPerId ( 1                  ),
-                      .AxiSlvPortMaxTxns      ( 2                  ),
-                      .AxiMstPortMaxUniqIds   ( 2                  ),
-                      .AxiMstPortMaxTxnsPerId ( 2                  ),
-                      .AxiAddrWidth           ( AddrWidth       ),
-                      .AxiDataWidth           ( WideDataWidth       ),
-                      .AxiUserWidth           ( UserWidth       ),
+		      .AxiSlvPortIdWidth      ( WideSlaveIdWidth ),
+		      .AxiMstPortIdWidth      ( SocNarrowMasterIdWidth ),
+		      .AxiSlvPortMaxUniqIds   ( 1                  ),
+		      .AxiSlvPortMaxTxnsPerId ( 1                  ),
+		      .AxiSlvPortMaxTxns      ( 2                  ),
+		      .AxiMstPortMaxUniqIds   ( 2                  ),
+		      .AxiMstPortMaxTxnsPerId ( 2                  ),
+		      .AxiAddrWidth           ( AddrWidth       ),
+		      .AxiDataWidth           ( WideDataWidth       ),
+		      .AxiUserWidth           ( UserWidth       ),
 
-                      .slv_req_t   ( wide_out_req_t  ),
-                      .slv_resp_t  ( wide_out_resp_t ),
-                      .mst_req_t   (axi_chimera_cluster_wrapper_out_wide_to_narrow_req_t),
-                      .mst_resp_t  (axi_chimera_cluster_wrapper_out_wide_to_narrow_resp_t)
-                      )
+		      .slv_req_t   ( wide_out_req_t  ),
+		      .slv_resp_t  ( wide_out_resp_t ),
+		      .mst_req_t   (axi_chimera_cluster_wrapper_out_wide_to_narrow_req_t),
+		      .mst_resp_t  (axi_chimera_cluster_wrapper_out_wide_to_narrow_resp_t)
+		      )
    wide_to_narrow_mst_iw_converter(
-                                   .clk_i      ( soc_clk_i                     ),
-                                   .rst_ni     ( rst_ni                        ),
-                                   .slv_req_i  ( axi_from_cluster_wide_to_narrow_req  ),
-                                   .slv_resp_o ( axi_from_cluster_wide_to_narrow_resp ),
-                                   .mst_req_o  ( axi_from_cluster_wide_to_narrow_iwc_req  ),
-                                   .mst_resp_i ( axi_from_cluster_wide_to_narrow_iwc_resp )
-                                   );
+				   .clk_i      ( soc_clk_i                     ),
+				   .rst_ni     ( rst_ni                        ),
+				   .slv_req_i  ( axi_from_cluster_wide_to_narrow_req  ),
+				   .slv_resp_o ( axi_from_cluster_wide_to_narrow_resp ),
+				   .mst_req_o  ( axi_from_cluster_wide_to_narrow_iwc_req  ),
+				   .mst_resp_i ( axi_from_cluster_wide_to_narrow_iwc_resp )
+				   );
 
    axi_dw_converter #(
-                      .AxiMaxReads(2),
+		      .AxiMaxReads(2),
 
-                      .AxiSlvPortDataWidth( WideDataWidth ),
-                      .AxiMstPortDataWidth( NarrowDataWidth ),
-                      .AxiAddrWidth( AddrWidth ),
-                      .AxiIdWidth( SocNarrowMasterIdWidth ),
+		      .AxiSlvPortDataWidth( WideDataWidth ),
+		      .AxiMstPortDataWidth( NarrowDataWidth ),
+		      .AxiAddrWidth( AddrWidth ),
+		      .AxiIdWidth( SocNarrowMasterIdWidth ),
 
-                      .aw_chan_t(axi_narrow_out_aw_chan_t),
-                      .b_chan_t(axi_narrow_out_b_chan_t),
-                      .ar_chan_t(axi_narrow_out_ar_chan_t),
+		      .aw_chan_t(axi_narrow_out_aw_chan_t),
+		      .b_chan_t(axi_narrow_out_b_chan_t),
+		      .ar_chan_t(axi_narrow_out_ar_chan_t),
 
-                      .slv_r_chan_t(axi_chimera_cluster_wrapper_out_wide_to_narrow_r_chan_t),
-                      .slv_w_chan_t(axi_chimera_cluster_wrapper_out_wide_to_narrow_w_chan_t),
-                      .mst_r_chan_t(axi_narrow_out_r_chan_t),
-                      .mst_w_chan_t(axi_narrow_out_w_chan_t),
+		      .slv_r_chan_t(axi_chimera_cluster_wrapper_out_wide_to_narrow_r_chan_t),
+		      .slv_w_chan_t(axi_chimera_cluster_wrapper_out_wide_to_narrow_w_chan_t),
+		      .mst_r_chan_t(axi_narrow_out_r_chan_t),
+		      .mst_w_chan_t(axi_narrow_out_w_chan_t),
 
-                      .axi_mst_req_t( narrow_out_req_t      ),
-                      .axi_mst_resp_t( narrow_out_resp_t     ),
-                      .axi_slv_req_t( axi_chimera_cluster_wrapper_out_wide_to_narrow_req_t ),
-                      .axi_slv_resp_t( axi_chimera_cluster_wrapper_out_wide_to_narrow_resp_t )
-                      )
+		      .axi_mst_req_t( narrow_out_req_t      ),
+		      .axi_mst_resp_t( narrow_out_resp_t     ),
+		      .axi_slv_req_t( axi_chimera_cluster_wrapper_out_wide_to_narrow_req_t ),
+		      .axi_slv_resp_t( axi_chimera_cluster_wrapper_out_wide_to_narrow_resp_t )
+		      )
    i_wide_to_narrow_dw_converter
      (
       .clk_i(soc_clk_i),
@@ -233,127 +237,145 @@ module chimera_cluster_adapter
    // NARROW MASTER PORT ID WIDTH CONVERSION
 
    axi_iw_converter #(
-                      .AxiSlvPortIdWidth      ( ClusterNarrowMasterIdWidth),
-                      .AxiMstPortIdWidth      ( SocNarrowMasterIdWidth ),
+		      .AxiSlvPortIdWidth      ( ClusterNarrowMasterIdWidth),
+		      .AxiMstPortIdWidth      ( SocNarrowMasterIdWidth ),
 
-                      .AxiSlvPortMaxUniqIds   ( 2                  ),
-                      .AxiSlvPortMaxTxnsPerId ( 2                  ),
-                      .AxiSlvPortMaxTxns      ( 4                  ),
+		      .AxiSlvPortMaxUniqIds   ( 2                  ),
+		      .AxiSlvPortMaxTxnsPerId ( 2                  ),
+		      .AxiSlvPortMaxTxns      ( 4                  ),
 
-                      .AxiMstPortMaxUniqIds   ( 2                  ),
-                      .AxiMstPortMaxTxnsPerId ( 4                  ),
+		      .AxiMstPortMaxUniqIds   ( 2                  ),
+		      .AxiMstPortMaxTxnsPerId ( 4                  ),
 
-                      .AxiAddrWidth           ( AddrWidth       ),
-                      .AxiDataWidth           ( NarrowDataWidth       ),
-                      .AxiUserWidth           ( UserWidth       ),
-                      .slv_req_t              ( clu_narrow_out_req_t  ),
-                      .slv_resp_t             ( clu_narrow_out_resp_t ),
-                      .mst_req_t              ( narrow_out_req_t      ),
-                      .mst_resp_t             ( narrow_out_resp_t     )
-                      )
+		      .AxiAddrWidth           ( AddrWidth       ),
+		      .AxiDataWidth           ( NarrowDataWidth       ),
+		      .AxiUserWidth           ( UserWidth       ),
+		      .slv_req_t              ( clu_narrow_out_req_t  ),
+		      .slv_resp_t             ( clu_narrow_out_resp_t ),
+		      .mst_req_t              ( narrow_out_req_t      ),
+		      .mst_resp_t             ( narrow_out_resp_t     )
+		      )
    narrow_mst_iw_converter (
-                            .clk_i      ( clu_clk_i                     ),
-                            .rst_ni     ( rst_ni                    ),
-                            .slv_req_i  ( axi_from_cluster_iwc_req  ),
-                            .slv_resp_o ( axi_from_cluster_iwc_resp ),
-                            .mst_req_o  ( axi_from_cluster_req      ),
-                            .mst_resp_i ( axi_from_cluster_resp     )
-                            );
+			    .clk_i      ( clu_clk_i                     ),
+			    .rst_ni     ( rst_ni                    ),
+			    .slv_req_i  ( axi_from_cluster_iwc_req  ),
+			    .slv_resp_o ( axi_from_cluster_iwc_resp ),
+			    .mst_req_o  ( axi_from_cluster_req      ),
+			    .mst_resp_i ( axi_from_cluster_resp     )
+			    );
 
    // WIDE MASTER PORT ID WIDTH CONVERSION
 
    axi_iw_converter #(
-                      .AxiSlvPortIdWidth      ( ClusterWideMasterIdWidth),
-                      .AxiMstPortIdWidth      ( WideSlaveIdWidth),
+		      .AxiSlvPortIdWidth      ( ClusterWideMasterIdWidth),
+		      .AxiMstPortIdWidth      ( WideSlaveIdWidth),
 
-                      .AxiSlvPortMaxUniqIds   ( 2                  ),
-                      .AxiSlvPortMaxTxnsPerId ( 2                  ),
-                      .AxiSlvPortMaxTxns      ( 4                  ),
+		      .AxiSlvPortMaxUniqIds   ( 2                  ),
+		      .AxiSlvPortMaxTxnsPerId ( 2                  ),
+		      .AxiSlvPortMaxTxns      ( 4                  ),
 
-                      .AxiMstPortMaxUniqIds   ( 2                  ),
-                      .AxiMstPortMaxTxnsPerId ( 4                  ),
+		      .AxiMstPortMaxUniqIds   ( 2                  ),
+		      .AxiMstPortMaxTxnsPerId ( 4                  ),
 
-                      .AxiAddrWidth           ( AddrWidth       ),
-                      .AxiDataWidth           ( WideDataWidth       ),
-                      .AxiUserWidth           ( UserWidth       ),
-                      .slv_req_t              ( clu_wide_out_req_t  ),
-                      .slv_resp_t             ( clu_wide_out_resp_t ),
-                      .mst_req_t              ( wide_out_req_t      ),
-                      .mst_resp_t             ( wide_out_resp_t     )
-                      )
+		      .AxiAddrWidth           ( AddrWidth       ),
+		      .AxiDataWidth           ( WideDataWidth       ),
+		      .AxiUserWidth           ( UserWidth       ),
+		      .slv_req_t              ( clu_wide_out_req_t  ),
+		      .slv_resp_t             ( clu_wide_out_resp_t ),
+		      .mst_req_t              ( wide_out_req_t      ),
+		      .mst_resp_t             ( wide_out_resp_t     )
+		      )
    wide_mst_iw_converter (
-                          .clk_i      ( clu_clk_i                     ),
-                          .rst_ni     ( rst_ni                    ),
-                          .slv_req_i  ( axi_from_cluster_wide_iwc_req  ),
-                          .slv_resp_o ( axi_from_cluster_wide_iwc_resp ),
-                          .mst_req_o  ( axi_from_cluster_wide_req      ),
-                          .mst_resp_i ( axi_from_cluster_wide_resp     )
-                          );
+			  .clk_i      ( clu_clk_i                     ),
+			  .rst_ni     ( rst_ni                    ),
+			  .slv_req_i  ( axi_from_cluster_wide_iwc_req  ),
+			  .slv_resp_o ( axi_from_cluster_wide_iwc_resp ),
+			  .mst_req_o  ( axi_from_cluster_wide_req      ),
+			  .mst_resp_i ( axi_from_cluster_wide_resp     )
+			  );
 
    // AXI CDCS
 
    axi_cdc #(
-             .aw_chan_t(axi_narrow_in_aw_chan_t),
-             .w_chan_t(axi_narrow_in_w_chan_t),
-             .b_chan_t(axi_narrow_in_b_chan_t),
-             .ar_chan_t(axi_narrow_in_ar_chan_t),
-             .r_chan_t(axi_narrow_in_r_chan_t),
-             .axi_req_t(narrow_in_req_t),
-             .axi_resp_t(narrow_in_resp_t)
-             )
+	     .aw_chan_t(axi_narrow_in_aw_chan_t),
+	     .w_chan_t(axi_narrow_in_w_chan_t),
+	     .b_chan_t(axi_narrow_in_b_chan_t),
+	     .ar_chan_t(axi_narrow_in_ar_chan_t),
+	     .r_chan_t(axi_narrow_in_r_chan_t),
+	     .axi_req_t(narrow_in_req_t),
+	     .axi_resp_t(narrow_in_resp_t)
+	     )
    narrow_slv_cdc (
-                   .src_clk_i(soc_clk_i),
-                   .src_rst_ni(rst_ni),
-                   .src_req_i(narrow_in_req_i),
-                   .src_resp_o(narrow_in_resp_o),
+		   .src_clk_i(soc_clk_i),
+		   .src_rst_ni(rst_ni),
+		   .src_req_i(narrow_in_req_i),
+		   .src_resp_o(narrow_in_resp_o),
 
-                   .dst_clk_i(clu_clk_i),
-                   .dst_rst_ni(rst_ni),
-                   .dst_req_o(axi_to_cluster_req),
-                   .dst_resp_i(axi_to_cluster_resp)
-                   );
+		   .dst_clk_i(clu_clk_i),
+		   .dst_rst_ni(rst_ni),
+		   .dst_req_o(axi_to_cluster_req),
+		   .dst_resp_i(axi_to_cluster_resp)
+		   );
 
 
    axi_cdc #(
-             .aw_chan_t(axi_narrow_out_aw_chan_t),
-             .w_chan_t(axi_narrow_out_w_chan_t),
-             .b_chan_t(axi_narrow_out_b_chan_t),
-             .ar_chan_t(axi_narrow_out_ar_chan_t),
-             .r_chan_t(axi_narrow_out_r_chan_t),
-             .axi_req_t(narrow_out_req_t),
-             .axi_resp_t(narrow_out_resp_t)
-             )
+	     .aw_chan_t(axi_narrow_out_aw_chan_t),
+	     .w_chan_t(axi_narrow_out_w_chan_t),
+	     .b_chan_t(axi_narrow_out_b_chan_t),
+	     .ar_chan_t(axi_narrow_out_ar_chan_t),
+	     .r_chan_t(axi_narrow_out_r_chan_t),
+	     .axi_req_t(narrow_out_req_t),
+	     .axi_resp_t(narrow_out_resp_t)
+	     )
    narrow_mst_cdc (
-                   .src_clk_i(clu_clk_i),
-                   .src_rst_ni(rst_ni),
-                   .src_req_i(axi_from_cluster_req),
-                   .src_resp_o(axi_from_cluster_resp),
+		   .src_clk_i(clu_clk_i),
+		   .src_rst_ni(rst_ni),
+		   .src_req_i(axi_from_cluster_req),
+		   .src_resp_o(axi_from_cluster_resp),
 
-                   .dst_clk_i(soc_clk_i),
-                   .dst_rst_ni(rst_ni),
-                   .dst_req_o(narrow_out_req_o[0]),
-                   .dst_resp_i(narrow_out_resp_i[0])
-                   );
+		   .dst_clk_i(soc_clk_i),
+		   .dst_rst_ni(rst_ni),
+		   .dst_req_o(narrow_out_req_o[0]),
+		   .dst_resp_i(narrow_out_resp_i[0])
+		   );
 
    axi_cdc #(
-             .aw_chan_t(axi_clu_wide_out_aw_chan_t),
-             .w_chan_t(axi_clu_wide_out_w_chan_t),
-             .b_chan_t(axi_clu_wide_out_b_chan_t),
-             .ar_chan_t(axi_clu_wide_out_ar_chan_t),
-             .r_chan_t(axi_clu_wide_out_r_chan_t),
-             .axi_req_t(wide_out_req_t),
-             .axi_resp_t(wide_out_resp_t)
-             )
+	     .aw_chan_t(axi_clu_wide_out_aw_chan_t),
+	     .w_chan_t(axi_clu_wide_out_w_chan_t),
+	     .b_chan_t(axi_clu_wide_out_b_chan_t),
+	     .ar_chan_t(axi_clu_wide_out_ar_chan_t),
+	     .r_chan_t(axi_clu_wide_out_r_chan_t),
+	     .axi_req_t(wide_out_req_t),
+	     .axi_resp_t(wide_out_resp_t)
+	     )
    wide_mst_cdc (
-                 .src_clk_i(clu_clk_i),
-                 .src_rst_ni(rst_ni),
-                 .src_req_i(axi_from_cluster_wide_req),
-                 .src_resp_o(axi_from_cluster_wide_resp),
+		 .src_clk_i(clu_clk_i),
+		 .src_rst_ni(rst_ni),
+		 .src_req_i(axi_from_cluster_wide_req),
+		 .src_resp_o(axi_from_cluster_wide_resp),
 
-                 .dst_clk_i(soc_clk_i),
-                 .dst_rst_ni(rst_ni),
-                 .dst_req_o(axi_from_cluster_wide_premux_req),
-                 .dst_resp_i(axi_from_cluster_wide_premux_resp)
-                 );
+		 .dst_clk_i(soc_clk_i),
+		 .dst_rst_ni(rst_ni),
+		 .dst_req_o(axi_from_cluster_wide_premux_req),
+		 .dst_resp_i(axi_from_cluster_wide_premux_resp)
+		 );
 
+// Validate parameters
+`ifndef VERILATOR
+`ifndef XSIM
+
+   write_wide_bypass: assert property (
+     @(posedge clu_clk_i) (axi_from_cluster_wide_premux_req.aw_valid & wide_mem_bypass_mode) |->
+                      (axi_from_cluster_wide_to_narrow_req.aw_valid & ~axi_from_cluster_wide_memisl_req.aw_valid)) else 
+       $fatal(1, "Bypass Mode ON, but write request routed toward the Memisl");
+
+   read_wide_bypass: assert property (
+     @(posedge clu_clk_i) (axi_from_cluster_wide_premux_req.ar_valid & wide_mem_bypass_mode) |->
+                      (axi_from_cluster_wide_to_narrow_req.ar_valid & ~axi_from_cluster_wide_memisl_req.ar_valid)) else 
+       $fatal(1, "Bypass Mode ON, but read request routed toward the Memisl");
+
+ 
+`endif
+`endif				       
+   
 endmodule: chimera_cluster_adapter

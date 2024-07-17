@@ -103,6 +103,9 @@ module chimera_reg_top #(
   logic cluster_5_clk_gate_en_qs;
   logic cluster_5_clk_gate_en_wd;
   logic cluster_5_clk_gate_en_we;
+  logic wide_mem_cluster_bypass_qs;
+  logic wide_mem_cluster_bypass_wd;
+  logic wide_mem_cluster_bypass_we;
 
   // Register instances
   // R[snitch_boot_addr]: V(False)
@@ -429,9 +432,36 @@ module chimera_reg_top #(
   );
 
 
+  // R[wide_mem_cluster_bypass]: V(False)
+
+  prim_subreg #(
+    .DW      (1),
+    .SWACCESS("RW"),
+    .RESVAL  (1'h0)
+  ) u_wide_mem_cluster_bypass (
+    .clk_i   (clk_i    ),
+    .rst_ni  (rst_ni  ),
+
+    // from register interface
+    .we     (wide_mem_cluster_bypass_we),
+    .wd     (wide_mem_cluster_bypass_wd),
+
+    // from internal hardware
+    .de     (1'b0),
+    .d      ('0  ),
+
+    // to internal hardware
+    .qe     (),
+    .q      (reg2hw.wide_mem_cluster_bypass.q ),
+
+    // to register interface (read)
+    .qs     (wide_mem_cluster_bypass_qs)
+  );
 
 
-  logic [11:0] addr_hit;
+
+
+  logic [12:0] addr_hit;
   always_comb begin
     addr_hit = '0;
     addr_hit[ 0] = (reg_addr == CHIMERA_SNITCH_BOOT_ADDR_OFFSET);
@@ -446,6 +476,7 @@ module chimera_reg_top #(
     addr_hit[ 9] = (reg_addr == CHIMERA_CLUSTER_3_CLK_GATE_EN_OFFSET);
     addr_hit[10] = (reg_addr == CHIMERA_CLUSTER_4_CLK_GATE_EN_OFFSET);
     addr_hit[11] = (reg_addr == CHIMERA_CLUSTER_5_CLK_GATE_EN_OFFSET);
+    addr_hit[12] = (reg_addr == CHIMERA_WIDE_MEM_CLUSTER_BYPASS_OFFSET);
   end
 
   assign addrmiss = (reg_re || reg_we) ? ~|addr_hit : 1'b0 ;
@@ -464,7 +495,8 @@ module chimera_reg_top #(
                (addr_hit[ 8] & (|(CHIMERA_PERMIT[ 8] & ~reg_be))) |
                (addr_hit[ 9] & (|(CHIMERA_PERMIT[ 9] & ~reg_be))) |
                (addr_hit[10] & (|(CHIMERA_PERMIT[10] & ~reg_be))) |
-               (addr_hit[11] & (|(CHIMERA_PERMIT[11] & ~reg_be)))));
+               (addr_hit[11] & (|(CHIMERA_PERMIT[11] & ~reg_be))) |
+               (addr_hit[12] & (|(CHIMERA_PERMIT[12] & ~reg_be)))));
   end
 
   assign snitch_boot_addr_we = addr_hit[0] & reg_we & !reg_error;
@@ -502,6 +534,9 @@ module chimera_reg_top #(
 
   assign cluster_5_clk_gate_en_we = addr_hit[11] & reg_we & !reg_error;
   assign cluster_5_clk_gate_en_wd = reg_wdata[0];
+
+  assign wide_mem_cluster_bypass_we = addr_hit[12] & reg_we & !reg_error;
+  assign wide_mem_cluster_bypass_wd = reg_wdata[0];
 
   // Read data return
   always_comb begin
@@ -553,6 +588,10 @@ module chimera_reg_top #(
 
       addr_hit[11]: begin
         reg_rdata_next[0] = cluster_5_clk_gate_en_qs;
+      end
+
+      addr_hit[12]: begin
+        reg_rdata_next[0] = wide_mem_cluster_bypass_qs;
       end
 
       default: begin
