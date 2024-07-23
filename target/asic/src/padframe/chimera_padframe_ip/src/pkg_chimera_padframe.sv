@@ -10,7 +10,15 @@ package pkg_chimera_padframe;
 
   //Static connections signals
    typedef struct packed {
+      logic        st_jtag_tdo;
+     } pad_domain_aop_static_static_connection_signals_soc2pad_t;
+
+   typedef struct packed {
       logic        st_ext_clk;
+      logic        st_jtag_tck;
+      logic        st_jtag_tdi;
+      logic        st_jtag_tms;
+      logic        st_jtag_trstn;
       logic        st_ref_clk;
       logic        st_rstn;
      } pad_domain_aop_static_static_connection_signals_pad2soc_t;
@@ -24,30 +32,41 @@ package pkg_chimera_padframe;
 
   // Port Group signals
    typedef struct packed {
-      logic        csn_o;
-      logic        mosi;
-      logic        oe_n;
-      logic        sck_o;
-      logic        spi_en;
-     } pad_domain_aon_gpioa_port_group_spi_soc2pad_t;
+      logic        csb0_o;
+      logic        csb_en0_o;
+      logic        sck0_o;
+      logic        sck_en0_o;
+      logic        sd0_o;
+      logic        sd_en0_o;
+     } pad_domain_aon_gpioa_port_group_qspi0_soc2pad_t;
 
    typedef struct packed {
-      logic        miso;
-     } pad_domain_aon_gpioa_port_group_spi_pad2soc_t;
+      logic        sd0_i;
+     } pad_domain_aon_gpioa_port_group_qspi0_pad2soc_t;
 
    typedef struct packed {
-      logic        out_en0;
-      logic        scl0;
+      logic        scl0_o;
+      logic        scl_en0_o;
       logic        sda0_o;
-     } pad_domain_aon_gpioa_port_group_i2c_0_soc2pad_t;
+      logic        sda_en0_o;
+     } pad_domain_aon_gpioa_port_group_i2c0_soc2pad_t;
 
    typedef struct packed {
+      logic        scl0_i;
       logic        sda0_i;
-     } pad_domain_aon_gpioa_port_group_i2c_0_pad2soc_t;
+     } pad_domain_aon_gpioa_port_group_i2c0_pad2soc_t;
+
+   typedef struct packed {
+      logic        tx0_o;
+     } pad_domain_aon_gpioa_port_group_uart0_soc2pad_t;
+
+   typedef struct packed {
+      logic        rx0_i;
+     } pad_domain_aon_gpioa_port_group_uart0_pad2soc_t;
 
    typedef struct packed {
       logic        gpio0_o;
-      logic        gpio_dir0_o;
+      logic        gpio_en0_o;
      } pad_domain_aon_gpioa_port_group_GPIOA0_soc2pad_t;
 
    typedef struct packed {
@@ -56,7 +75,7 @@ package pkg_chimera_padframe;
 
    typedef struct packed {
       logic        gpio0_o;
-      logic        gpio_dir0_o;
+      logic        gpio_en0_o;
      } pad_domain_aon_gpioa_port_group_GPIOA1_soc2pad_t;
 
    typedef struct packed {
@@ -65,7 +84,7 @@ package pkg_chimera_padframe;
 
    typedef struct packed {
       logic        gpio0_o;
-      logic        gpio_dir0_o;
+      logic        gpio_en0_o;
      } pad_domain_aon_gpioa_port_group_GPIOA2_soc2pad_t;
 
    typedef struct packed {
@@ -74,7 +93,7 @@ package pkg_chimera_padframe;
 
    typedef struct packed {
       logic        gpio0_o;
-      logic        gpio_dir0_o;
+      logic        gpio_en0_o;
      } pad_domain_aon_gpioa_port_group_GPIOA3_soc2pad_t;
 
    typedef struct packed {
@@ -83,7 +102,7 @@ package pkg_chimera_padframe;
 
    typedef struct packed {
       logic        gpio0_o;
-      logic        gpio_dir0_o;
+      logic        gpio_en0_o;
      } pad_domain_aon_gpioa_port_group_GPIOA4_soc2pad_t;
 
    typedef struct packed {
@@ -92,7 +111,7 @@ package pkg_chimera_padframe;
 
    typedef struct packed {
       logic        gpio0_o;
-      logic        gpio_dir0_o;
+      logic        gpio_en0_o;
      } pad_domain_aon_gpioa_port_group_GPIOA5_soc2pad_t;
 
    typedef struct packed {
@@ -101,7 +120,7 @@ package pkg_chimera_padframe;
 
    typedef struct packed {
       logic        gpio0_o;
-      logic        gpio_dir0_o;
+      logic        gpio_en0_o;
      } pad_domain_aon_gpioa_port_group_GPIOA6_soc2pad_t;
 
    typedef struct packed {
@@ -110,7 +129,7 @@ package pkg_chimera_padframe;
 
    typedef struct packed {
       logic        gpio0_o;
-      logic        gpio_dir0_o;
+      logic        gpio_en0_o;
      } pad_domain_aon_gpioa_port_group_GPIOA7_soc2pad_t;
 
    typedef struct packed {
@@ -119,7 +138,7 @@ package pkg_chimera_padframe;
 
    typedef struct packed {
       logic        gpio0_o;
-      logic        gpio_dir0_o;
+      logic        gpio_en0_o;
      } pad_domain_aon_gpioa_port_group_GPIOA8_soc2pad_t;
 
    typedef struct packed {
@@ -128,7 +147,7 @@ package pkg_chimera_padframe;
 
    typedef struct packed {
       logic        gpio0_o;
-      logic        gpio_dir0_o;
+      logic        gpio_en0_o;
      } pad_domain_aon_gpioa_port_group_GPIOA9_soc2pad_t;
 
    typedef struct packed {
@@ -137,7 +156,7 @@ package pkg_chimera_padframe;
 
    typedef struct packed {
       logic        gpio0_o;
-      logic        gpio_dir0_o;
+      logic        gpio_en0_o;
      } pad_domain_aon_gpioa_port_group_GPIOA10_soc2pad_t;
 
    typedef struct packed {
@@ -146,7 +165,7 @@ package pkg_chimera_padframe;
 
    typedef struct packed {
       logic        gpio0_o;
-      logic        gpio_dir0_o;
+      logic        gpio_en0_o;
      } pad_domain_aon_gpioa_port_group_GPIOA11_soc2pad_t;
 
    typedef struct packed {
@@ -155,7 +174,7 @@ package pkg_chimera_padframe;
 
    typedef struct packed {
       logic        gpio0_o;
-      logic        gpio_dir0_o;
+      logic        gpio_en0_o;
      } pad_domain_aon_gpioa_port_group_GPIOA12_soc2pad_t;
 
    typedef struct packed {
@@ -164,7 +183,7 @@ package pkg_chimera_padframe;
 
    typedef struct packed {
       logic        gpio0_o;
-      logic        gpio_dir0_o;
+      logic        gpio_en0_o;
      } pad_domain_aon_gpioa_port_group_GPIOA13_soc2pad_t;
 
    typedef struct packed {
@@ -173,7 +192,7 @@ package pkg_chimera_padframe;
 
    typedef struct packed {
       logic        gpio0_o;
-      logic        gpio_dir0_o;
+      logic        gpio_en0_o;
      } pad_domain_aon_gpioa_port_group_GPIOA14_soc2pad_t;
 
    typedef struct packed {
@@ -182,7 +201,7 @@ package pkg_chimera_padframe;
 
    typedef struct packed {
       logic        gpio0_o;
-      logic        gpio_dir0_o;
+      logic        gpio_en0_o;
      } pad_domain_aon_gpioa_port_group_GPIOA15_soc2pad_t;
 
    typedef struct packed {
@@ -191,7 +210,7 @@ package pkg_chimera_padframe;
 
    typedef struct packed {
       logic        gpio0_o;
-      logic        gpio_dir0_o;
+      logic        gpio_en0_o;
      } pad_domain_aon_gpioa_port_group_GPIOA16_soc2pad_t;
 
    typedef struct packed {
@@ -200,7 +219,7 @@ package pkg_chimera_padframe;
 
    typedef struct packed {
       logic        gpio0_o;
-      logic        gpio_dir0_o;
+      logic        gpio_en0_o;
      } pad_domain_aon_gpioa_port_group_GPIOA17_soc2pad_t;
 
    typedef struct packed {
@@ -209,7 +228,7 @@ package pkg_chimera_padframe;
 
    typedef struct packed {
       logic        gpio0_o;
-      logic        gpio_dir0_o;
+      logic        gpio_en0_o;
      } pad_domain_aon_gpioa_port_group_GPIOA18_soc2pad_t;
 
    typedef struct packed {
@@ -218,7 +237,7 @@ package pkg_chimera_padframe;
 
    typedef struct packed {
       logic        gpio0_o;
-      logic        gpio_dir0_o;
+      logic        gpio_en0_o;
      } pad_domain_aon_gpioa_port_group_GPIOA19_soc2pad_t;
 
    typedef struct packed {
@@ -227,7 +246,7 @@ package pkg_chimera_padframe;
 
    typedef struct packed {
       logic        gpio0_o;
-      logic        gpio_dir0_o;
+      logic        gpio_en0_o;
      } pad_domain_aon_gpioa_port_group_GPIOA20_soc2pad_t;
 
    typedef struct packed {
@@ -236,7 +255,7 @@ package pkg_chimera_padframe;
 
    typedef struct packed {
       logic        gpio0_o;
-      logic        gpio_dir0_o;
+      logic        gpio_en0_o;
      } pad_domain_aon_gpioa_port_group_GPIOA21_soc2pad_t;
 
    typedef struct packed {
@@ -245,7 +264,7 @@ package pkg_chimera_padframe;
 
    typedef struct packed {
       logic        gpio0_o;
-      logic        gpio_dir0_o;
+      logic        gpio_en0_o;
      } pad_domain_aon_gpioa_port_group_GPIOA22_soc2pad_t;
 
    typedef struct packed {
@@ -254,7 +273,7 @@ package pkg_chimera_padframe;
 
    typedef struct packed {
       logic        gpio0_o;
-      logic        gpio_dir0_o;
+      logic        gpio_en0_o;
      } pad_domain_aon_gpioa_port_group_GPIOA23_soc2pad_t;
 
    typedef struct packed {
@@ -263,7 +282,7 @@ package pkg_chimera_padframe;
 
    typedef struct packed {
       logic        gpio0_o;
-      logic        gpio_dir0_o;
+      logic        gpio_en0_o;
      } pad_domain_aon_gpioa_port_group_GPIOA24_soc2pad_t;
 
    typedef struct packed {
@@ -272,7 +291,7 @@ package pkg_chimera_padframe;
 
    typedef struct packed {
       logic        gpio0_o;
-      logic        gpio_dir0_o;
+      logic        gpio_en0_o;
      } pad_domain_aon_gpioa_port_group_GPIOA25_soc2pad_t;
 
    typedef struct packed {
@@ -281,7 +300,7 @@ package pkg_chimera_padframe;
 
    typedef struct packed {
       logic        gpio0_o;
-      logic        gpio_dir0_o;
+      logic        gpio_en0_o;
      } pad_domain_aon_gpioa_port_group_GPIOA26_soc2pad_t;
 
    typedef struct packed {
@@ -290,7 +309,7 @@ package pkg_chimera_padframe;
 
    typedef struct packed {
       logic        gpio0_o;
-      logic        gpio_dir0_o;
+      logic        gpio_en0_o;
      } pad_domain_aon_gpioa_port_group_GPIOA27_soc2pad_t;
 
    typedef struct packed {
@@ -299,7 +318,7 @@ package pkg_chimera_padframe;
 
    typedef struct packed {
       logic        gpio0_o;
-      logic        gpio_dir0_o;
+      logic        gpio_en0_o;
      } pad_domain_aon_gpioa_port_group_GPIOA28_soc2pad_t;
 
    typedef struct packed {
@@ -308,7 +327,7 @@ package pkg_chimera_padframe;
 
    typedef struct packed {
       logic        gpio0_o;
-      logic        gpio_dir0_o;
+      logic        gpio_en0_o;
      } pad_domain_aon_gpioa_port_group_GPIOA29_soc2pad_t;
 
    typedef struct packed {
@@ -317,7 +336,7 @@ package pkg_chimera_padframe;
 
    typedef struct packed {
       logic        gpio0_o;
-      logic        gpio_dir0_o;
+      logic        gpio_en0_o;
      } pad_domain_aon_gpioa_port_group_GPIOA30_soc2pad_t;
 
    typedef struct packed {
@@ -326,7 +345,7 @@ package pkg_chimera_padframe;
 
    typedef struct packed {
       logic        gpio0_o;
-      logic        gpio_dir0_o;
+      logic        gpio_en0_o;
      } pad_domain_aon_gpioa_port_group_GPIOA31_soc2pad_t;
 
    typedef struct packed {
@@ -334,8 +353,9 @@ package pkg_chimera_padframe;
      } pad_domain_aon_gpioa_port_group_GPIOA31_pad2soc_t;
 
    typedef struct packed {
-     pad_domain_aon_gpioa_port_group_spi_soc2pad_t spi;
-     pad_domain_aon_gpioa_port_group_i2c_0_soc2pad_t i2c_0;
+     pad_domain_aon_gpioa_port_group_qspi0_soc2pad_t qspi0;
+     pad_domain_aon_gpioa_port_group_i2c0_soc2pad_t i2c0;
+     pad_domain_aon_gpioa_port_group_uart0_soc2pad_t uart0;
      pad_domain_aon_gpioa_port_group_GPIOA0_soc2pad_t GPIOA0;
      pad_domain_aon_gpioa_port_group_GPIOA1_soc2pad_t GPIOA1;
      pad_domain_aon_gpioa_port_group_GPIOA2_soc2pad_t GPIOA2;
@@ -371,8 +391,9 @@ package pkg_chimera_padframe;
      } pad_domain_aon_gpioa_ports_soc2pad_t;
 
    typedef struct packed {
-     pad_domain_aon_gpioa_port_group_spi_pad2soc_t spi;
-     pad_domain_aon_gpioa_port_group_i2c_0_pad2soc_t i2c_0;
+     pad_domain_aon_gpioa_port_group_qspi0_pad2soc_t qspi0;
+     pad_domain_aon_gpioa_port_group_i2c0_pad2soc_t i2c0;
+     pad_domain_aon_gpioa_port_group_uart0_pad2soc_t uart0;
      pad_domain_aon_gpioa_port_group_GPIOA0_pad2soc_t GPIOA0;
      pad_domain_aon_gpioa_port_group_GPIOA1_pad2soc_t GPIOA1;
      pad_domain_aon_gpioa_port_group_GPIOA2_pad2soc_t GPIOA2;
@@ -407,229 +428,12 @@ package pkg_chimera_padframe;
      pad_domain_aon_gpioa_port_group_GPIOA31_pad2soc_t GPIOA31;
      } pad_domain_aon_gpioa_ports_pad2soc_t;
 
-  //Structs for aon_gpiob
-
-  //Override signals
-  typedef struct packed {
-     logic  s_enable_all_outputs;
-  } pad_domain_aon_gpiob_override_signals_t;
-
-  // Port Group signals
-   typedef struct packed {
-      logic        csn_o;
-      logic        mosi;
-      logic        oe_n;
-      logic        sck_o;
-      logic        spi_en;
-     } pad_domain_aon_gpiob_port_group_spi_soc2pad_t;
-
-   typedef struct packed {
-      logic        miso;
-     } pad_domain_aon_gpiob_port_group_spi_pad2soc_t;
-
-   typedef struct packed {
-      logic        out_en0;
-      logic        scl0;
-      logic        sda0_o;
-     } pad_domain_aon_gpiob_port_group_i2c_0_soc2pad_t;
-
-   typedef struct packed {
-      logic        sda0_i;
-     } pad_domain_aon_gpiob_port_group_i2c_0_pad2soc_t;
-
-   typedef struct packed {
-      logic        gpio0_o;
-      logic        gpio_dir0_o;
-     } pad_domain_aon_gpiob_port_group_GPIOB0_soc2pad_t;
-
-   typedef struct packed {
-      logic        gpio0_i;
-     } pad_domain_aon_gpiob_port_group_GPIOB0_pad2soc_t;
-
-   typedef struct packed {
-      logic        gpio0_o;
-      logic        gpio_dir0_o;
-     } pad_domain_aon_gpiob_port_group_GPIOB1_soc2pad_t;
-
-   typedef struct packed {
-      logic        gpio0_i;
-     } pad_domain_aon_gpiob_port_group_GPIOB1_pad2soc_t;
-
-   typedef struct packed {
-      logic        gpio0_o;
-      logic        gpio_dir0_o;
-     } pad_domain_aon_gpiob_port_group_GPIOB2_soc2pad_t;
-
-   typedef struct packed {
-      logic        gpio0_i;
-     } pad_domain_aon_gpiob_port_group_GPIOB2_pad2soc_t;
-
-   typedef struct packed {
-      logic        gpio0_o;
-      logic        gpio_dir0_o;
-     } pad_domain_aon_gpiob_port_group_GPIOB3_soc2pad_t;
-
-   typedef struct packed {
-      logic        gpio0_i;
-     } pad_domain_aon_gpiob_port_group_GPIOB3_pad2soc_t;
-
-   typedef struct packed {
-      logic        gpio0_o;
-      logic        gpio_dir0_o;
-     } pad_domain_aon_gpiob_port_group_GPIOB4_soc2pad_t;
-
-   typedef struct packed {
-      logic        gpio0_i;
-     } pad_domain_aon_gpiob_port_group_GPIOB4_pad2soc_t;
-
-   typedef struct packed {
-      logic        gpio0_o;
-      logic        gpio_dir0_o;
-     } pad_domain_aon_gpiob_port_group_GPIOB5_soc2pad_t;
-
-   typedef struct packed {
-      logic        gpio0_i;
-     } pad_domain_aon_gpiob_port_group_GPIOB5_pad2soc_t;
-
-   typedef struct packed {
-      logic        gpio0_o;
-      logic        gpio_dir0_o;
-     } pad_domain_aon_gpiob_port_group_GPIOB6_soc2pad_t;
-
-   typedef struct packed {
-      logic        gpio0_i;
-     } pad_domain_aon_gpiob_port_group_GPIOB6_pad2soc_t;
-
-   typedef struct packed {
-      logic        gpio0_o;
-      logic        gpio_dir0_o;
-     } pad_domain_aon_gpiob_port_group_GPIOB7_soc2pad_t;
-
-   typedef struct packed {
-      logic        gpio0_i;
-     } pad_domain_aon_gpiob_port_group_GPIOB7_pad2soc_t;
-
-   typedef struct packed {
-      logic        gpio0_o;
-      logic        gpio_dir0_o;
-     } pad_domain_aon_gpiob_port_group_GPIOB8_soc2pad_t;
-
-   typedef struct packed {
-      logic        gpio0_i;
-     } pad_domain_aon_gpiob_port_group_GPIOB8_pad2soc_t;
-
-   typedef struct packed {
-      logic        gpio0_o;
-      logic        gpio_dir0_o;
-     } pad_domain_aon_gpiob_port_group_GPIOB9_soc2pad_t;
-
-   typedef struct packed {
-      logic        gpio0_i;
-     } pad_domain_aon_gpiob_port_group_GPIOB9_pad2soc_t;
-
-   typedef struct packed {
-      logic        gpio0_o;
-      logic        gpio_dir0_o;
-     } pad_domain_aon_gpiob_port_group_GPIOB10_soc2pad_t;
-
-   typedef struct packed {
-      logic        gpio0_i;
-     } pad_domain_aon_gpiob_port_group_GPIOB10_pad2soc_t;
-
-   typedef struct packed {
-      logic        gpio0_o;
-      logic        gpio_dir0_o;
-     } pad_domain_aon_gpiob_port_group_GPIOB11_soc2pad_t;
-
-   typedef struct packed {
-      logic        gpio0_i;
-     } pad_domain_aon_gpiob_port_group_GPIOB11_pad2soc_t;
-
-   typedef struct packed {
-      logic        gpio0_o;
-      logic        gpio_dir0_o;
-     } pad_domain_aon_gpiob_port_group_GPIOB12_soc2pad_t;
-
-   typedef struct packed {
-      logic        gpio0_i;
-     } pad_domain_aon_gpiob_port_group_GPIOB12_pad2soc_t;
-
-   typedef struct packed {
-      logic        gpio0_o;
-      logic        gpio_dir0_o;
-     } pad_domain_aon_gpiob_port_group_GPIOB13_soc2pad_t;
-
-   typedef struct packed {
-      logic        gpio0_i;
-     } pad_domain_aon_gpiob_port_group_GPIOB13_pad2soc_t;
-
-   typedef struct packed {
-      logic        gpio0_o;
-      logic        gpio_dir0_o;
-     } pad_domain_aon_gpiob_port_group_GPIOB14_soc2pad_t;
-
-   typedef struct packed {
-      logic        gpio0_i;
-     } pad_domain_aon_gpiob_port_group_GPIOB14_pad2soc_t;
-
-   typedef struct packed {
-      logic        gpio0_o;
-      logic        gpio_dir0_o;
-     } pad_domain_aon_gpiob_port_group_GPIOB15_soc2pad_t;
-
-   typedef struct packed {
-      logic        gpio0_i;
-     } pad_domain_aon_gpiob_port_group_GPIOB15_pad2soc_t;
-
-   typedef struct packed {
-     pad_domain_aon_gpiob_port_group_spi_soc2pad_t spi;
-     pad_domain_aon_gpiob_port_group_i2c_0_soc2pad_t i2c_0;
-     pad_domain_aon_gpiob_port_group_GPIOB0_soc2pad_t GPIOB0;
-     pad_domain_aon_gpiob_port_group_GPIOB1_soc2pad_t GPIOB1;
-     pad_domain_aon_gpiob_port_group_GPIOB2_soc2pad_t GPIOB2;
-     pad_domain_aon_gpiob_port_group_GPIOB3_soc2pad_t GPIOB3;
-     pad_domain_aon_gpiob_port_group_GPIOB4_soc2pad_t GPIOB4;
-     pad_domain_aon_gpiob_port_group_GPIOB5_soc2pad_t GPIOB5;
-     pad_domain_aon_gpiob_port_group_GPIOB6_soc2pad_t GPIOB6;
-     pad_domain_aon_gpiob_port_group_GPIOB7_soc2pad_t GPIOB7;
-     pad_domain_aon_gpiob_port_group_GPIOB8_soc2pad_t GPIOB8;
-     pad_domain_aon_gpiob_port_group_GPIOB9_soc2pad_t GPIOB9;
-     pad_domain_aon_gpiob_port_group_GPIOB10_soc2pad_t GPIOB10;
-     pad_domain_aon_gpiob_port_group_GPIOB11_soc2pad_t GPIOB11;
-     pad_domain_aon_gpiob_port_group_GPIOB12_soc2pad_t GPIOB12;
-     pad_domain_aon_gpiob_port_group_GPIOB13_soc2pad_t GPIOB13;
-     pad_domain_aon_gpiob_port_group_GPIOB14_soc2pad_t GPIOB14;
-     pad_domain_aon_gpiob_port_group_GPIOB15_soc2pad_t GPIOB15;
-     } pad_domain_aon_gpiob_ports_soc2pad_t;
-
-   typedef struct packed {
-     pad_domain_aon_gpiob_port_group_spi_pad2soc_t spi;
-     pad_domain_aon_gpiob_port_group_i2c_0_pad2soc_t i2c_0;
-     pad_domain_aon_gpiob_port_group_GPIOB0_pad2soc_t GPIOB0;
-     pad_domain_aon_gpiob_port_group_GPIOB1_pad2soc_t GPIOB1;
-     pad_domain_aon_gpiob_port_group_GPIOB2_pad2soc_t GPIOB2;
-     pad_domain_aon_gpiob_port_group_GPIOB3_pad2soc_t GPIOB3;
-     pad_domain_aon_gpiob_port_group_GPIOB4_pad2soc_t GPIOB4;
-     pad_domain_aon_gpiob_port_group_GPIOB5_pad2soc_t GPIOB5;
-     pad_domain_aon_gpiob_port_group_GPIOB6_pad2soc_t GPIOB6;
-     pad_domain_aon_gpiob_port_group_GPIOB7_pad2soc_t GPIOB7;
-     pad_domain_aon_gpiob_port_group_GPIOB8_pad2soc_t GPIOB8;
-     pad_domain_aon_gpiob_port_group_GPIOB9_pad2soc_t GPIOB9;
-     pad_domain_aon_gpiob_port_group_GPIOB10_pad2soc_t GPIOB10;
-     pad_domain_aon_gpiob_port_group_GPIOB11_pad2soc_t GPIOB11;
-     pad_domain_aon_gpiob_port_group_GPIOB12_pad2soc_t GPIOB12;
-     pad_domain_aon_gpiob_port_group_GPIOB13_pad2soc_t GPIOB13;
-     pad_domain_aon_gpiob_port_group_GPIOB14_pad2soc_t GPIOB14;
-     pad_domain_aon_gpiob_port_group_GPIOB15_pad2soc_t GPIOB15;
-     } pad_domain_aon_gpiob_ports_pad2soc_t;
-
 
   //Toplevel structs
 
   typedef struct packed{
     pad_domain_aop_static_override_signals_t aop_static;
     pad_domain_aon_gpioa_override_signals_t aon_gpioa;
-    pad_domain_aon_gpiob_override_signals_t aon_gpiob;
   } override_signals_t;
 
   typedef struct packed {
@@ -637,13 +441,15 @@ package pkg_chimera_padframe;
   } static_connection_signals_pad2soc_t;
 
   typedef struct packed {
+    pad_domain_aop_static_static_connection_signals_soc2pad_t aop_static;
+  } static_connection_signals_soc2pad_t;
+
+  typedef struct packed {
     pad_domain_aon_gpioa_ports_pad2soc_t aon_gpioa;
-    pad_domain_aon_gpiob_ports_pad2soc_t aon_gpiob;
   } port_signals_pad2soc_t;
 
   typedef struct packed {
     pad_domain_aon_gpioa_ports_soc2pad_t aon_gpioa;
-    pad_domain_aon_gpiob_ports_soc2pad_t aon_gpiob;
   } port_signals_soc2pad_t;
 
 

@@ -12,12 +12,18 @@ module chimera_padframe
   input logic                                rst_ni,
   input override_signals_t                   override_signals,
   output static_connection_signals_pad2soc_t static_connection_signals_pad2soc,
+  input  static_connection_signals_soc2pad_t static_connection_signals_soc2pad,
   output port_signals_pad2soc_t              port_signals_pad2soc,
   input port_signals_soc2pad_t               port_signals_soc2pad,
   // Landing Pads
   inout wire logic                           pad_aop_static_ref_clk_pad,
   inout wire logic                           pad_aop_static_ext_clk_pad,
   inout wire logic                           pad_aop_static_rstn_pad,
+  inout wire logic                           pad_aop_static_jtag_tck_pad,
+  inout wire logic                           pad_aop_static_jtag_trstn_pad,
+  inout wire logic                           pad_aop_static_jtag_tms_pad,
+  inout wire logic                           pad_aop_static_jtag_tdi_pad,
+  inout wire logic                           pad_aop_static_jtag_tdo_pad,
   inout wire logic                           pad_aon_gpioa_gpio_0_pad,
   inout wire logic                           pad_aon_gpioa_gpio_1_pad,
   inout wire logic                           pad_aon_gpioa_gpio_2_pad,
@@ -50,22 +56,6 @@ module chimera_padframe
   inout wire logic                           pad_aon_gpioa_gpio_29_pad,
   inout wire logic                           pad_aon_gpioa_gpio_30_pad,
   inout wire logic                           pad_aon_gpioa_gpio_31_pad,
-  inout wire logic                           pad_aon_gpiob_gpio_0_pad,
-  inout wire logic                           pad_aon_gpiob_gpio_1_pad,
-  inout wire logic                           pad_aon_gpiob_gpio_2_pad,
-  inout wire logic                           pad_aon_gpiob_gpio_3_pad,
-  inout wire logic                           pad_aon_gpiob_gpio_4_pad,
-  inout wire logic                           pad_aon_gpiob_gpio_5_pad,
-  inout wire logic                           pad_aon_gpiob_gpio_6_pad,
-  inout wire logic                           pad_aon_gpiob_gpio_7_pad,
-  inout wire logic                           pad_aon_gpiob_gpio_8_pad,
-  inout wire logic                           pad_aon_gpiob_gpio_9_pad,
-  inout wire logic                           pad_aon_gpiob_gpio_10_pad,
-  inout wire logic                           pad_aon_gpiob_gpio_11_pad,
-  inout wire logic                           pad_aon_gpiob_gpio_12_pad,
-  inout wire logic                           pad_aon_gpiob_gpio_13_pad,
-  inout wire logic                           pad_aon_gpiob_gpio_14_pad,
-  inout wire logic                           pad_aon_gpiob_gpio_15_pad,
   // Config Interface
   input req_t                                config_req_i,
   output resp_t                              config_rsp_o
@@ -82,9 +72,15 @@ module chimera_padframe
    .rst_ni,
    .override_signals_i(override_signals.aop_static),
    .static_connection_signals_pad2soc(static_connection_signals_pad2soc.aop_static),
+   .static_connection_signals_soc2pad(static_connection_signals_soc2pad.aop_static),
    .pad_ref_clk_pad(pad_aop_static_ref_clk_pad),
    .pad_ext_clk_pad(pad_aop_static_ext_clk_pad),
    .pad_rstn_pad(pad_aop_static_rstn_pad),
+   .pad_jtag_tck_pad(pad_aop_static_jtag_tck_pad),
+   .pad_jtag_trstn_pad(pad_aop_static_jtag_trstn_pad),
+   .pad_jtag_tms_pad(pad_aop_static_jtag_tms_pad),
+   .pad_jtag_tdi_pad(pad_aop_static_jtag_tdi_pad),
+   .pad_jtag_tdo_pad(pad_aop_static_jtag_tdo_pad),
    .config_req_i(aop_static_config_req),
    .config_rsp_o(aop_static_config_resp)
   );
@@ -136,39 +132,8 @@ module chimera_padframe
    .config_rsp_o(aon_gpioa_config_resp)
   );
 
-  req_t aon_gpiob_config_req;
-  resp_t aon_gpiob_config_resp;
-  chimera_padframe_aon_gpiob #(
-    .req_t(req_t),
-    .resp_t(resp_t)
-  ) i_aon_gpiob (
-   .clk_i,
-   .rst_ni,
-   .override_signals_i(override_signals.aon_gpiob),
-   .port_signals_pad2soc_o(port_signals_pad2soc.aon_gpiob),
-   .port_signals_soc2pad_i(port_signals_soc2pad.aon_gpiob),
-   .pad_gpio_0_pad(pad_aon_gpiob_gpio_0_pad),
-   .pad_gpio_1_pad(pad_aon_gpiob_gpio_1_pad),
-   .pad_gpio_2_pad(pad_aon_gpiob_gpio_2_pad),
-   .pad_gpio_3_pad(pad_aon_gpiob_gpio_3_pad),
-   .pad_gpio_4_pad(pad_aon_gpiob_gpio_4_pad),
-   .pad_gpio_5_pad(pad_aon_gpiob_gpio_5_pad),
-   .pad_gpio_6_pad(pad_aon_gpiob_gpio_6_pad),
-   .pad_gpio_7_pad(pad_aon_gpiob_gpio_7_pad),
-   .pad_gpio_8_pad(pad_aon_gpiob_gpio_8_pad),
-   .pad_gpio_9_pad(pad_aon_gpiob_gpio_9_pad),
-   .pad_gpio_10_pad(pad_aon_gpiob_gpio_10_pad),
-   .pad_gpio_11_pad(pad_aon_gpiob_gpio_11_pad),
-   .pad_gpio_12_pad(pad_aon_gpiob_gpio_12_pad),
-   .pad_gpio_13_pad(pad_aon_gpiob_gpio_13_pad),
-   .pad_gpio_14_pad(pad_aon_gpiob_gpio_14_pad),
-   .pad_gpio_15_pad(pad_aon_gpiob_gpio_15_pad),
-   .config_req_i(aon_gpiob_config_req),
-   .config_rsp_o(aon_gpiob_config_resp)
-  );
 
-
-   localparam int unsigned NUM_PAD_DOMAINS = 3;
+   localparam int unsigned NUM_PAD_DOMAINS = 2;
    localparam int unsigned REG_ADDR_WIDTH = 9;
    typedef struct packed {
       int unsigned idx;
@@ -178,8 +143,7 @@ module chimera_padframe
 
    localparam addr_rule_t[NUM_PAD_DOMAINS-1:0] ADDR_DEMUX_RULES = '{
      '{ idx: 0, start_addr: 9'd0,  end_addr: 9'd4},
-     '{ idx: 1, start_addr: 9'd4,  end_addr: 9'd264},
-     '{ idx: 2, start_addr: 9'd264,  end_addr: 9'd396}
+     '{ idx: 1, start_addr: 9'd4,  end_addr: 9'd264}
      };
    logic[$clog2(NUM_PAD_DOMAINS+1)-1:0] pad_domain_sel; // +1 since there is an additional error slave
    addr_decode #(
@@ -194,7 +158,7 @@ module chimera_padframe
        .dec_error_o(),
        .idx_o(pad_domain_sel),
        .en_default_idx_i(1'b1),
-       .default_idx_i(2'd3) // The last entry is the error slave
+       .default_idx_i(2'd2) // The last entry is the error slave
      );
 
      req_t error_slave_req;
@@ -211,8 +175,8 @@ module chimera_padframe
        .in_select_i(pad_domain_sel),
        .in_req_i(config_req_i),
        .in_rsp_o(config_rsp_o),
-       .out_req_o({error_slave_req, aon_gpiob_config_req, aon_gpioa_config_req, aop_static_config_req}),
-       .out_rsp_i({error_slave_rsp, aon_gpiob_config_resp, aon_gpioa_config_resp, aop_static_config_resp})
+       .out_req_o({error_slave_req, aon_gpioa_config_req, aop_static_config_req}),
+       .out_rsp_i({error_slave_rsp, aon_gpioa_config_resp, aop_static_config_resp})
      );
 
      assign error_slave_rsp.error = 1'b1;

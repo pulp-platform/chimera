@@ -6,11 +6,17 @@ module chimera_padframe_aop_static_pads
   //Override signals
   input  pad_domain_aop_static_override_signals_t override_signals_i,
   output pad_domain_aop_static_static_connection_signals_pad2soc_t static_connection_signals_pad2soc,
+  input  pad_domain_aop_static_static_connection_signals_soc2pad_t static_connection_signals_soc2pad,
  // Dynamic Pad control signals, these signals are controlled by the multiplexer in the correpsongin pad_controller module
   // Landing Pads
   inout wire logic pad_ref_clk_pad,
   inout wire logic pad_ext_clk_pad,
-  inout wire logic pad_rstn_pad
+  inout wire logic pad_rstn_pad,
+  inout wire logic pad_jtag_tck_pad,
+  inout wire logic pad_jtag_trstn_pad,
+  inout wire logic pad_jtag_tms_pad,
+  inout wire logic pad_jtag_tdi_pad,
+  inout wire logic pad_jtag_tdo_pad
   );
 
    // Pad instantiations
@@ -37,6 +43,46 @@ module chimera_padframe_aop_static_pads
     .DS(1'b0),
     .I(1'b0),
     .O(static_connection_signals_pad2soc.st_rstn)
+  );
+   PDDW04808 i_jtag_tck (
+    .PAD(pad_jtag_tck_pad),
+    .IE(1'b1),
+    .OE((1'b0)|(override_signals_i.s_enable_all_outputs)),
+    .DS(1'b0),
+    .I(1'b0),
+    .O(static_connection_signals_pad2soc.st_jtag_tck)
+  );
+   PDDW04808 i_jtag_trstn (
+    .PAD(pad_jtag_trstn_pad),
+    .IE(1'b1),
+    .OE((1'b0)|(override_signals_i.s_enable_all_outputs)),
+    .DS(1'b0),
+    .I(1'b0),
+    .O(static_connection_signals_pad2soc.st_jtag_trstn)
+  );
+   PDDW04808 i_jtag_tms (
+    .PAD(pad_jtag_tms_pad),
+    .IE(1'b1),
+    .OE((1'b0)|(override_signals_i.s_enable_all_outputs)),
+    .DS(1'b0),
+    .I(1'b0),
+    .O(static_connection_signals_pad2soc.st_jtag_tms)
+  );
+   PDDW04808 i_jtag_tdi (
+    .PAD(pad_jtag_tdi_pad),
+    .IE(1'b1),
+    .OE((1'b0)|(override_signals_i.s_enable_all_outputs)),
+    .DS(1'b0),
+    .I(1'b0),
+    .O(static_connection_signals_pad2soc.st_jtag_tdi)
+  );
+   PDDW04808 i_jtag_tdo (
+    .PAD(pad_jtag_tdo_pad),
+    .IE(1'b0),
+    .OE((1'b0)|(override_signals_i.s_enable_all_outputs)),
+    .DS(1'b0),
+    .I(static_connection_signals_soc2pad.st_jtag_tdo),
+    .O()
   );
 
 endmodule : chimera_padframe_aop_static_pads

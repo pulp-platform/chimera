@@ -25,11 +25,5 @@ sources:
   - src/chimera_padframe_aon_gpioa_pads.sv
   - src/chimera_padframe_aon_gpioa_muxer.sv
   - src/chimera_padframe_aon_gpioa.sv
-  - src/pkg_internal_chimera_padframe_aon_gpiob.sv
-  - src/chimera_padframe_aon_gpiob_config_reg_pkg.sv
-  - src/chimera_padframe_aon_gpiob_config_reg_top.sv
-  - src/chimera_padframe_aon_gpiob_pads.sv
-  - src/chimera_padframe_aon_gpiob_muxer.sv
-  - src/chimera_padframe_aon_gpiob.sv
   - src/chimera_padframe.sv
 

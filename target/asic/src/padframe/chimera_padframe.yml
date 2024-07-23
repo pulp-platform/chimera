@@ -8,14 +8,14 @@ user_attr:
   # Dynamic group A parameters
   gpioa_count: &gpioa_count 32
   i2ca_count: &i2ca_count 1
-  spia_count: &spia_count 2
+  spia_count: &spia_count 1
   uarta_count: &uarta_count 1
 
-  # Dynamic group B parameters
-  gpiob_count: &gpiob_count 16
-  i2cb_count: &i2cb_count 1
-  spib_count: &spib_count 2
-  uartb_count: &uartb_count 1
+  # # Dynamic group B parameters
+  # gpiob_count: &gpiob_count 0
+  # i2cb_count: &i2cb_count 0
+  # spib_count: &spib_count 0
+  # uartb_count: &uartb_count 0
 
 pad_domains:
   - name: aop_static # Domains containing only static signals, i.e. non muxed signals
@@ -151,7 +151,49 @@ pad_domains:
           pad2chip: st_rstn
           rx_en: 1'b1
 
-      # TODO: Add all JTAGs pads
+      - name: jtag_tck
+        description: "JTAG clock pad signal"
+        pad_type: pull_down_pad
+        is_static: true
+        connections:
+          pad2chip: st_jtag_tck
+          chip2pad: 1'b0
+          rx_en: 1'b1
+
+      - name: jtag_trstn
+        description: "JTAG negative reset pad signal"
+        pad_type: pull_down_pad
+        is_static: true
+        connections:
+          pad2chip: st_jtag_trstn
+          chip2pad: 1'b0
+          rx_en: 1'b1
+
+      - name: jtag_tms
+        description: "JTAG TMS pad signal"
+        pad_type: pull_down_pad
+        is_static: true
+        connections:
+          pad2chip: st_jtag_tms
+          chip2pad: 1'b0
+          rx_en: 1'b1
+
+      - name: jtag_tdi
+        description: "JTAG TDI pad signal"
+        pad_type: pull_down_pad
+        is_static: true
+        connections:
+          pad2chip: st_jtag_tdi
+          chip2pad: 1'b0
+          rx_en: 1'b1
+
+      - name: jtag_tdo
+        description: "JTAG TDO pad signal"
+        pad_type: pull_down_pad
+        is_static: true
+        connections:
+          chip2pad: st_jtag_tdo
+          output_en: 1'b0
 
   - name: aon_gpioa
     pad_types:
@@ -189,41 +231,42 @@ pad_domains:
         #default_port:
 
     port_groups:
-      - name: spi
-        description: "Set of SPI ports"
+      - name: qspi{i}
+        description: "Set of QSPI ports"
         output_defaults: 1'b0
         mux_groups: [gpio_seta]
-        ###        multiple: *spia_count
+        multiple: *spia_count
         ports:
-          - name: mosi
-            description: "MOSI port of the SPI manager peripheral"
+          - name: sd{i} 
+            description: "Serial Data port of the QSPI manager peripheral"
             connections:
-              chip2pad: mosi & spi_en
-              output_en: ~oe_n
-              rx_en: oe_n
+              chip2pad: sd{i}_o 
+              sd{i}_i: pad2chip
+              output_en: sd_en{i}_o
+              rx_en: ~sd_en{i}_o
 
-          - name: miso
-            description: "MISO port of the SPI subordinate peripheral"
-            connections:
-              miso: pad2chip
-              rx_en: 1'b1
-              output_en: 1'b0
+          # - name: miso
+          #   description: "MISO port of the SPI subordinate peripheral"
+          #   connections:
+          #     miso: pad2chip
+          #     rx_en: 1'b1
+          #     output_en: 1'b0
 
-          - name: sck
+          - name: sck{i}
             description: "Clock signal of the manager module"
             connections:
-              chip2pad: sck_o
-              output_en: 1'b1
-              rx_en: 1'b0
+              chip2pad: sck{i}_o
+              output_en: sck_en{i}_o
+              #rx_en: 1'b0         # Undefined signal are connected to Reg that can be changed later
 
-          - name: csn
+          - name: csb{i}
             description: "Chip Select signal active Low"
             connections:
-              chip2pad: csn_o
-              output_en: 1'b1
-              rx_en: 1'b0
+              chip2pad: csb{i}_o
+              output_en: csb_en{i}_o
+              #rx_en: 1'b0
 
-      - name: i2c_{i}
+      - name: i2c{i}
         description: "Set of I2C ports"
         output_defaults: 1'b0
         multiple: *i2ca_count
@@ -234,15 +277,37 @@ pad_domains:
             connections:
               chip2pad: sda{i}_o
               sda{i}_i: pad2chip
-              output_en: out_en{i}
+              output_en: sda_en{i}_o
+              rx_en: ~sda_en{i}_o
 
           - name: scl{i}
             description: "Manager clock signal"
             connections:
-              chip2pad: scl{i}
-              output_en: 1'b1
-              rx_en: 1'b0
+              chip2pad: scl{i}_o
+              scl{i}_i: pad2chip
+              output_en: scl_en{i}_o
+              rx_en: ~scl_en{i}_o
 
+      - name: uart{i}
+        description: "Tx and RX ports for the UART peripheral"
+        output_defaults: 1'b0
+        multiple: *uarta_count
+        mux_groups: [gpio_seta]
+        ports:
+          - name: rx{i}
+            description: "RX port"
+            connections:
+              rx{i}_i: pad2chip
+              #output_en: 1'b0
+              rx_en: 1'b1
+
+          - name: tx{i}
+            description: "TX port"
+            connections:
+              chip2pad: tx{i}_o
+              output_en: 1'b0
+              # rx_en: 1'b1
+              
       - name: GPIOA{i}
         multiple: *gpioa_count
         mux_groups: ["gpioa_{i}"]
@@ -253,106 +318,106 @@ pad_domains:
             connections:
               chip2pad: gpio{i}_o
               gpio{i}_i: pad2chip
-              rx_en: gpio_dir{i}_o
-              output_en: gpio_dir{i}_o
+              output_en: gpio_en{i}_o
+              rx_en: ~gpio_en{i}_o
 
-  - name: aon_gpiob
-    pad_types:
-      - name: pull_down_pad
-        # user defined name of the pad. Used to reference it
-                              # in the pad_list
-        description: TSCM65 pad with controllable integrated 1kOhm pull down resistor
-        # The template value is a Mako template (https://www.makotemplates.org/)
-        # that specifies how to instantiate this partuclar pad. The '|' in the
-        # beginning is YAML syntax to allow multiline strings without the need
-        # for manual character escaping
-        template: |
-          PDDW04808 ${instance_name} (
-            .PAD(${conn["pad"]}),
-            .IE(${conn["rx_en"]}),
-            .OE(${conn["output_en"]}),
-            .DS(${conn["driving_strength"]}),
-            .I(${conn["chip2pad"]}),
-            .O(${conn["pad2chip"]})
-          );
+  # - name: aon_gpiob
+  #   pad_types:
+  #     - name: pull_down_pad
+  #       # user defined name of the pad. Used to reference it
+  #                             # in the pad_list
+  #       description: TSCM65 pad with controllable integrated 1kOhm pull down resistor
+  #       # The template value is a Mako template (https://www.makotemplates.org/)
+  #       # that specifies how to instantiate this partuclar pad. The '|' in the
+  #       # beginning is YAML syntax to allow multiline strings without the need
+  #       # for manual character escaping
+  #       template: |
+  #         PDDW04808 ${instance_name} (
+  #           .PAD(${conn["pad"]}),
+  #           .IE(${conn["rx_en"]}),
+  #           .OE(${conn["output_en"]}),
+  #           .DS(${conn["driving_strength"]}),
+  #           .I(${conn["chip2pad"]}),
+  #           .O(${conn["pad2chip"]})
+  #         );
 
-        pad_signals: *default_pad_signals
+  #       pad_signals: *default_pad_signals
 
-    pad_list:      
-      #|------------------------------------|
-      #|            GROUP B PADS            |
-      #|------------------------------------|
+  #   pad_list:      
+  #     #|------------------------------------|
+  #     #|            GROUP B PADS            |
+  #     #|------------------------------------|
       
-      - name: gpio_{i}
-        mux_groups: [gpio_setb]
-        description: "General purpose GPIO B."
-        multiple: *gpiob_count
-        pad_type: pull_down_pad
-        is_static: false
+  #     - name: gpio_{i}
+  #       mux_groups: [gpio_setb]
+  #       description: "General purpose GPIO B."
+  #       multiple: *gpiob_count
+  #       pad_type: pull_down_pad
+  #       is_static: false
 
-    port_groups:
-      - name: spi
-        description: "Set of SPI ports"
-        output_defaults: 1'b0
-        mux_groups: [gpio_setb]
-        ports:
-          - name: mosi
-            description: "MOSI port of the SPI manager peripheral"
-            connections:
-              chip2pad: mosi & spi_en
-              output_en: ~oe_n
-              rx_en: oe_n
+  #   port_groups:
+  #     - name: spi
+  #       description: "Set of SPI ports"
+  #       output_defaults: 1'b0
+  #       mux_groups: [gpio_setb]
+  #       ports:
+  #         - name: mosi
+  #           description: "MOSI port of the SPI manager peripheral"
+  #           connections:
+  #             chip2pad: mosi & spi_en
+  #             output_en: ~oe_n
+  #             rx_en: oe_n
 
-          - name: miso
-            description: "MISO port of the SPI subordinate peripheral"
-            connections:
-              miso: pad2chip
-              rx_en: 1'b1
-              output_en: 1'b0
+  #         - name: miso
+  #           description: "MISO port of the SPI subordinate peripheral"
+  #           connections:
+  #             miso: pad2chip
+  #             rx_en: 1'b1
+  #             output_en: 1'b0
 
-          - name: sck
-            description: "Clock signal of the manager module"
-            connections:
-              chip2pad: sck_o
-              output_en: 1'b1
-              rx_en: 1'b0
+  #         - name: sck
+  #           description: "Clock signal of the manager module"
+  #           connections:
+  #             chip2pad: sck_o
+  #             output_en: 1'b1
+  #             rx_en: 1'b0
 
-          - name: csn
-            description: "Chip Select signal active Low"
-            connections:
-              chip2pad: csn_o
-              output_en: 1'b1
-              rx_en: 1'b0
+  #         - name: csn
+  #           description: "Chip Select signal active Low"
+  #           connections:
+  #             chip2pad: csn_o
+  #             output_en: 1'b1
+  #             rx_en: 1'b0
 
-      - name: i2c_{i}
-        description: "Set of I2C ports"
-        output_defaults: 1'b0
-        multiple: *i2cb_count
-        mux_groups: [gpio_setb]
-        ports:
-          - name: sda{i}
-            description: "SDA port of the I2C peripheral"
-            connections:
-              chip2pad: sda{i}_o
-              sda{i}_i: pad2chip
-              output_en: out_en{i}
+  #     - name: i2c_{i}
+  #       description: "Set of I2C ports"
+  #       output_defaults: 1'b0
+  #       multiple: *i2cb_count
+  #       mux_groups: [gpio_setb]
+  #       ports:
+  #         - name: sda{i}
+  #           description: "SDA port of the I2C peripheral"
+  #           connections:
+  #             chip2pad: sda{i}_o
+  #             sda{i}_i: pad2chip
+  #             output_en: out_en{i}
 
-          - name: scl{i}
-            description: "Manager clock signal"
-            connections:
-              chip2pad: scl{i}
-              output_en: 1'b1
-              rx_en: 1'b0
+  #         - name: scl{i}
+  #           description: "Manager clock signal"
+  #           connections:
+  #             chip2pad: scl{i}
+  #             output_en: 1'b1
+  #             rx_en: 1'b0
 
-      - name: GPIOB{i}
-        multiple: *gpiob_count
-        output_defaults: 1'b0
-        mux_groups: [gpio_setb]
-        ports:
-          - name: gpio{i}
-            description: "{i}th GPIO B port"
-            connections:
-              chip2pad: gpio{i}_o
-              gpio{i}_i: pad2chip
-              rx_en: gpio_dir{i}_o
-              output_en: gpio_dir{i}_o
+  #     - name: GPIOB{i}
+  #       multiple: *gpiob_count
+  #       output_defaults: 1'b0
+  #       mux_groups: [gpio_setb]
+  #       ports:
+  #         - name: gpio{i}
+  #           description: "{i}th GPIO B port"
+  #           connections:
+  #             chip2pad: gpio{i}_o
+  #             gpio{i}_i: pad2chip
+  #             rx_en: gpio_dir{i}_o
+  #             output_en: gpio_dir{i}_o

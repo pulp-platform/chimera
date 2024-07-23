@@ -10,9 +10,15 @@ module chimera_padframe_aop_static
   input logic rst_ni,
   input pad_domain_aop_static_override_signals_t override_signals_i,
   output pad_domain_aop_static_static_connection_signals_pad2soc_t static_connection_signals_pad2soc,
+  input pad_domain_aop_static_static_connection_signals_soc2pad_t static_connection_signals_soc2pad,
   inout wire logic pad_ref_clk_pad,
   inout wire logic pad_ext_clk_pad,
   inout wire logic pad_rstn_pad,
+  inout wire logic pad_jtag_tck_pad,
+  inout wire logic pad_jtag_trstn_pad,
+  inout wire logic pad_jtag_tms_pad,
+  inout wire logic pad_jtag_tdi_pad,
+  inout wire logic pad_jtag_tdo_pad,
   input req_t config_req_i,
   output resp_t config_rsp_o
 );
@@ -20,9 +26,15 @@ module chimera_padframe_aop_static
    chimera_padframe_aop_static_pads i_aop_static_pads (
      .override_signals_i,
      .static_connection_signals_pad2soc,
+     .static_connection_signals_soc2pad,
      .pad_ref_clk_pad,
      .pad_ext_clk_pad,
-     .pad_rstn_pad
+     .pad_rstn_pad,
+     .pad_jtag_tck_pad,
+     .pad_jtag_trstn_pad,
+     .pad_jtag_tms_pad,
+     .pad_jtag_tdi_pad,
+     .pad_jtag_tdo_pad
 
   );
 
