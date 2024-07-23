@@ -1,8 +1,8 @@
 /* =====================================================================
- * Title:        testClusterGating.c
+ * Title:        addr_map.h
  * Description:  
  *
- * $Date:        27.06.2024        
+ * $Date:        23.07.2024        
  *
  * ===================================================================== */
 /*
@@ -25,19 +25,12 @@
  * limitations under the License.
  */
 
-#include <stdint.h>
-#include "regs/soc_ctrl.h"
-#include "soc_addr_map.h"
+#define CLINT_CTRL_BASE 0x020400000
 
-int main(){
-  volatile uint8_t* regPtr = (volatile uint8_t*) SOC_CTRL_BASE;
+#define SOC_CTRL_BASE 0x30001000
 
-  *(regPtr + CHIMERA_CLUSTER_1_CLK_GATE_EN_REG_OFFSET) = 1;
-  *(regPtr + CHIMERA_CLUSTER_4_CLK_GATE_EN_REG_OFFSET) = 1;
-  *(regPtr + CHIMERA_CLUSTER_5_CLK_GATE_EN_REG_OFFSET) = 1;
-
-  while(1){}
-  
-  return 0;
-  
-}
+#define CLUSTER_1_BASE 0x40000000
+#define CLUSTER_2_BASE 0x40200000
+#define CLUSTER_3_BASE 0x40400000
+#define CLUSTER_4_BASE 0x40600000
+#define CLUSTER_5_BASE 0x40800000
