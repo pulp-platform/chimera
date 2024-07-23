@@ -24,7 +24,9 @@ if {[info exists PRELMODE]} { append pargs "+PRELMODE=${PRELMODE} " }
 if {[info exists BINARY]}   { append pargs "+BINARY=${BINARY} " }
 if {[info exists IMAGE]}    { append pargs "+IMAGE=${IMAGE} " }
 
-eval "vsim -c ${TESTBENCH} -t 1ps -vopt -voptargs=\"${VOPTARGS}\"" ${pargs} ${flags}
+if {[catch {
+    eval "vsim -c ${TESTBENCH} -t 1ps -vopt -voptargs=\"${VOPTARGS}\"" ${pargs} ${flags}
+}]} {return 1}
 
 set StdArithNoWarnings 1
 set NumericStdNoWarnings 1
