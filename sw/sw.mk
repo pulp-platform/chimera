@@ -41,13 +41,14 @@ $(CHIM_SW_DIR)/lib/libchimera.a: $(CHIM_SW_LIB_SRCS_O)
 CHIM_SW_TEST_SRCS_S 	 	= $(wildcard $(CHIM_SW_DIR)/tests/*.S)
 CHIM_SW_TEST_SRCS_C     	= $(wildcard $(CHIM_SW_DIR)/tests/*.c)
 
-CHIM_SW_TEST_DRAM_DUMP  	= $(CHIM_SW_TEST_SRCS_S:.S=.dram.dump) $(CHIM_SW_TEST_SRCS_C:.c=.dram.dump)
-CHIM_SW_TEST_SPM_DUMP   	= $(CHIM_SW_TEST_SRCS_S:.S=.spm.dump)  $(CHIM_SW_TEST_SRCS_C:.c=.spm.dump)
 CHIM_SW_TEST_MEMISL_DUMP = $(CHIM_SW_TEST_SRCS_S:.S=.memisl.dump)  $(CHIM_SW_TEST_SRCS_C:.c=.memisl.dump)
-CHIM_SW_TEST_SPM_ROMH   	= $(CHIM_SW_TEST_SRCS_S:.S=.rom.memh)  $(CHIM_SW_TEST_SRCS_C:.c=.rom.memh)
-CHIM_SW_TEST_SPM_GPTH   	= $(CHIM_SW_TEST_SRCS_S:.S=.gpt.memh)  $(CHIM_SW_TEST_SRCS_C:.c=.gpt.memh)
 
 CHIM_SW_TESTS += $(CHIM_SW_TEST_DRAM_DUMP) $(CHIM_SW_TEST_SPM_DUMP) $(CHIM_SW_TEST_MEMISL_DUMP) $(CHIM_SW_TEST_SPM_ROMH) $(CHIM_SW_TEST_SPM_GPTH)
 
 chim-sw: $(CHIM_SW_LIB) $(CHIM_SW_TESTS)
 
+chim-sw-clean:
+	@find sw/tests | grep ".*\.elf" | xargs -I ! rm !
+	@find sw/tests | grep ".*\.dump" | xargs -I ! rm !
+	@find sw/tests | grep ".*\.memh" | xargs -I ! rm !
+	@find sw/lib | grep ".*\.a" | xargs -I ! rm !
