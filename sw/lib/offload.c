@@ -35,16 +35,21 @@ void setupInterruptHandler(void* handler){
   *snitchTrapHandlerAddr = handler;
 }
 
-void offloadToCluster(void* function, uint8_t hartId){
+
+/* Offloads a void function pointer to the specified cluster's core 0 */
+void offloadToCluster(void* function, uint8_t clusterId){
 
   volatile void** snitchBootAddr = (volatile void**) (SOC_CTRL_BASE + CHIMERA_SNITCH_BOOT_ADDR_REG_OFFSET);
-
-  *snitchBootAddr = function;
   
-  volatile uint32_t* interruptTarget = ((uint32_t*)CLINT_CTRL_BASE) + hartId;
+  *snitchBootAddr = function;
+
+  uint32_t hartId = clusterId * 9 + 1;
+  
+  volatile uint32_t* interruptTarget = ((uint32_t*) CLINT_CTRL_BASE) + hartId;
   *interruptTarget = 1;
 }
 
+/* Busy waits for the return of a cluster, clears the return register, and returns the return value */
 uint32_t waitForCluster(uint8_t clusterId){
   volatile int32_t* snitchReturnAddr;
   if (clusterId == 0){

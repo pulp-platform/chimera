@@ -57,19 +57,19 @@ void cluster_return(uint32_t ret){
   switch(hartId){
 
   case 1:
-    *((volatile uint32_t*)(SOC_CTRL_BASEADDR + CHIMERA_SNITCH_CLUSTER_1_RETURN_REG_OFFSET)) = retVal;
+    *((volatile uint32_t*)(SOC_CTRL_BASE + CHIMERA_SNITCH_CLUSTER_1_RETURN_REG_OFFSET)) = retVal;
     break;
   case 10:
-    *((volatile uint32_t*)(SOC_CTRL_BASEADDR + CHIMERA_SNITCH_CLUSTER_2_RETURN_REG_OFFSET)) = retVal;
+    *((volatile uint32_t*)(SOC_CTRL_BASE + CHIMERA_SNITCH_CLUSTER_2_RETURN_REG_OFFSET)) = retVal;
     break;
   case 19:
-    *((volatile uint32_t*)(SOC_CTRL_BASEADDR + CHIMERA_SNITCH_CLUSTER_3_RETURN_REG_OFFSET)) = retVal;
+    *((volatile uint32_t*)(SOC_CTRL_BASE + CHIMERA_SNITCH_CLUSTER_3_RETURN_REG_OFFSET)) = retVal;
     break;
   case 28:
-    *((volatile uint32_t*)(SOC_CTRL_BASEADDR + CHIMERA_SNITCH_CLUSTER_4_RETURN_REG_OFFSET)) = retVal;
+    *((volatile uint32_t*)(SOC_CTRL_BASE + CHIMERA_SNITCH_CLUSTER_4_RETURN_REG_OFFSET)) = retVal;
     break;
   case 37:
-    *((volatile uint32_t*)(SOC_CTRL_BASEADDR + CHIMERA_SNITCH_CLUSTER_5_RETURN_REG_OFFSET)) = retVal;
+    *((volatile uint32_t*)(SOC_CTRL_BASE + CHIMERA_SNITCH_CLUSTER_5_RETURN_REG_OFFSET)) = retVal;
     break;
   }
 

@@ -25,7 +25,7 @@
  * limitations under the License.
  */
 
-#define CLINT_CTRL_BASE 0x020400000
+#define CLINT_CTRL_BASE 0x02040000
 
 #define SOC_CTRL_BASE 0x30001000
 

@@ -16,6 +16,8 @@ hw/regs/pcr.md
 *.dump
 *.memh
 __pycache__
+*.o
+*.a
 
 
 # SIM
