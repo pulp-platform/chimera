@@ -61,31 +61,6 @@ package chimera_reg_pkg;
     logic        q;
   } chimera_reg2hw_cluster_5_clk_gate_en_reg_t;
 
-  typedef struct packed {
-    logic [31:0] d;
-    logic        de;
-  } chimera_hw2reg_snitch_cluster_1_return_reg_t;
-
-  typedef struct packed {
-    logic [31:0] d;
-    logic        de;
-  } chimera_hw2reg_snitch_cluster_2_return_reg_t;
-
-  typedef struct packed {
-    logic [31:0] d;
-    logic        de;
-  } chimera_hw2reg_snitch_cluster_3_return_reg_t;
-
-  typedef struct packed {
-    logic [31:0] d;
-    logic        de;
-  } chimera_hw2reg_snitch_cluster_4_return_reg_t;
-
-  typedef struct packed {
-    logic [31:0] d;
-    logic        de;
-  } chimera_hw2reg_snitch_cluster_5_return_reg_t;
-
   // Register -> HW type
   typedef struct packed {
     chimera_reg2hw_snitch_boot_addr_reg_t snitch_boot_addr; // [228:197]
@@ -101,15 +76,6 @@ package chimera_reg_pkg;
     chimera_reg2hw_cluster_4_clk_gate_en_reg_t cluster_4_clk_gate_en; // [1:1]
     chimera_reg2hw_cluster_5_clk_gate_en_reg_t cluster_5_clk_gate_en; // [0:0]
   } chimera_reg2hw_t;
-
-  // HW -> register type
-  typedef struct packed {
-    chimera_hw2reg_snitch_cluster_1_return_reg_t snitch_cluster_1_return; // [164:132]
-    chimera_hw2reg_snitch_cluster_2_return_reg_t snitch_cluster_2_return; // [131:99]
-    chimera_hw2reg_snitch_cluster_3_return_reg_t snitch_cluster_3_return; // [98:66]
-    chimera_hw2reg_snitch_cluster_4_return_reg_t snitch_cluster_4_return; // [65:33]
-    chimera_hw2reg_snitch_cluster_5_return_reg_t snitch_cluster_5_return; // [32:0]
-  } chimera_hw2reg_t;
 
   // Register offsets
   parameter logic [BlockAw-1:0] CHIMERA_SNITCH_BOOT_ADDR_OFFSET = 6'h 0;

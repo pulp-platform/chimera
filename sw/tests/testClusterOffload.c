@@ -25,38 +25,34 @@
  * limitations under the License.
  */
 
+// Simple offload test. Set the trap handler first, offload a function, retrieve return value from cluster. Does not currently take care of stack initialization and bss initialization on cluster.
+
 #include <stdint.h>
 #include <regs/soc_ctrl.h>
+#include "soc_addr_map.h"
+#include "offload.h"
 
-#define SOC_CTRL_BASEADDR 0x30001000
-#define TESTVAL 0x50CCE55
-#define FAILVAL 0xBADCAB1E
+#define TESTVAL 0x050CCE55
 
-#define TARGETHARTID 1
-#define IRQID 1
+static uint32_t* clintPointer = (uint32_t*) CLINT_CTRL_BASE;
 
-#define CLINTADDR 0x02040000
-#define CLINTMSIP1OFFSET 0x28
+void clusterTrapHandler(){
+  uint8_t hartId;
+  asm ("csrr %0, mhartid" : "=r" (hartId) ::);
 
-static int32_t* clintPointer = (int32_t*) CLINTADDR;
+  volatile uint32_t* interruptTarget = clintPointer + hartId;
+  *interruptTarget = 0;
+  return;
+}
 
-int32_t testReturn(int32_t hartid){
-  
+int32_t testReturn(){
   return TESTVAL;
 }
 
 int main(){
-  
-  volatile int32_t* snitchBootAddr = (volatile int32_t*) (SOC_CTRL_BASEADDR + CHIMERA_SNITCH_BOOT_ADDR_REG_OFFSET);
-  volatile int32_t* snitchReturnAddr = (volatile int32_t*) (SOC_CTRL_BASEADDR + CHIMERA_SNITCH_CLUSTER_1_RETURN_REG_OFFSET);
-  
-  *snitchBootAddr = testReturn;
-
-  *(clintPointer + CLINTMSIP1OFFSET/4) = 1;
-
-  while(!*snitchReturnAddr){
+  setupInterruptHandler(clusterTrapHandler);
+  offloadToCluster(testReturn, 10);
+  uint32_t retVal = waitForCluster(1);
     
-  }
-    
-  return *snitchReturnAddr;
+  return (retVal != (TESTVAL | 0x000000001));
 }

@@ -69,6 +69,9 @@ package chimera_pkg;
 
       // Global CFG
 
+      // Set all Chimera addresses as uncached
+      cfg.Cva6ExtCieLength = 'h0;
+
       cfg.Vga = 0;
       cfg.SerialLink = 0;
       cfg.MemoryIsland = 1;

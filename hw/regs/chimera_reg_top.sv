@@ -18,7 +18,6 @@ module chimera_reg_top #(
   output reg_rsp_t reg_rsp_o,
   // To HW
   output chimera_reg_pkg::chimera_reg2hw_t reg2hw, // Write
-  input  chimera_reg_pkg::chimera_hw2reg_t hw2reg, // Read
 
 
   // Config
@@ -75,10 +74,20 @@ module chimera_reg_top #(
   logic [31:0] snitch_intr_handler_addr_wd;
   logic snitch_intr_handler_addr_we;
   logic [31:0] snitch_cluster_1_return_qs;
+  logic [31:0] snitch_cluster_1_return_wd;
+  logic snitch_cluster_1_return_we;
   logic [31:0] snitch_cluster_2_return_qs;
+  logic [31:0] snitch_cluster_2_return_wd;
+  logic snitch_cluster_2_return_we;
   logic [31:0] snitch_cluster_3_return_qs;
+  logic [31:0] snitch_cluster_3_return_wd;
+  logic snitch_cluster_3_return_we;
   logic [31:0] snitch_cluster_4_return_qs;
+  logic [31:0] snitch_cluster_4_return_wd;
+  logic snitch_cluster_4_return_we;
   logic [31:0] snitch_cluster_5_return_qs;
+  logic [31:0] snitch_cluster_5_return_wd;
+  logic snitch_cluster_5_return_we;
   logic cluster_1_clk_gate_en_qs;
   logic cluster_1_clk_gate_en_wd;
   logic cluster_1_clk_gate_en_we;
@@ -154,18 +163,19 @@ module chimera_reg_top #(
 
   prim_subreg #(
     .DW      (32),
-    .SWACCESS("RO"),
+    .SWACCESS("RW"),
     .RESVAL  (32'h0)
   ) u_snitch_cluster_1_return (
     .clk_i   (clk_i    ),
     .rst_ni  (rst_ni  ),
 
-    .we     (1'b0),
-    .wd     ('0  ),
+    // from register interface
+    .we     (snitch_cluster_1_return_we),
+    .wd     (snitch_cluster_1_return_wd),
 
     // from internal hardware
-    .de     (hw2reg.snitch_cluster_1_return.de),
-    .d      (hw2reg.snitch_cluster_1_return.d ),
+    .de     (1'b0),
+    .d      ('0  ),
 
     // to internal hardware
     .qe     (),
@@ -180,18 +190,19 @@ module chimera_reg_top #(
 
   prim_subreg #(
     .DW      (32),
-    .SWACCESS("RO"),
+    .SWACCESS("RW"),
     .RESVAL  (32'h0)
   ) u_snitch_cluster_2_return (
     .clk_i   (clk_i    ),
     .rst_ni  (rst_ni  ),
 
-    .we     (1'b0),
-    .wd     ('0  ),
+    // from register interface
+    .we     (snitch_cluster_2_return_we),
+    .wd     (snitch_cluster_2_return_wd),
 
     // from internal hardware
-    .de     (hw2reg.snitch_cluster_2_return.de),
-    .d      (hw2reg.snitch_cluster_2_return.d ),
+    .de     (1'b0),
+    .d      ('0  ),
 
     // to internal hardware
     .qe     (),
@@ -206,18 +217,19 @@ module chimera_reg_top #(
 
   prim_subreg #(
     .DW      (32),
-    .SWACCESS("RO"),
+    .SWACCESS("RW"),
     .RESVAL  (32'h0)
   ) u_snitch_cluster_3_return (
     .clk_i   (clk_i    ),
     .rst_ni  (rst_ni  ),
 
-    .we     (1'b0),
-    .wd     ('0  ),
+    // from register interface
+    .we     (snitch_cluster_3_return_we),
+    .wd     (snitch_cluster_3_return_wd),
 
     // from internal hardware
-    .de     (hw2reg.snitch_cluster_3_return.de),
-    .d      (hw2reg.snitch_cluster_3_return.d ),
+    .de     (1'b0),
+    .d      ('0  ),
 
     // to internal hardware
     .qe     (),
@@ -232,18 +244,19 @@ module chimera_reg_top #(
 
   prim_subreg #(
     .DW      (32),
-    .SWACCESS("RO"),
+    .SWACCESS("RW"),
     .RESVAL  (32'h0)
   ) u_snitch_cluster_4_return (
     .clk_i   (clk_i    ),
     .rst_ni  (rst_ni  ),
 
-    .we     (1'b0),
-    .wd     ('0  ),
+    // from register interface
+    .we     (snitch_cluster_4_return_we),
+    .wd     (snitch_cluster_4_return_wd),
 
     // from internal hardware
-    .de     (hw2reg.snitch_cluster_4_return.de),
-    .d      (hw2reg.snitch_cluster_4_return.d ),
+    .de     (1'b0),
+    .d      ('0  ),
 
     // to internal hardware
     .qe     (),
@@ -258,18 +271,19 @@ module chimera_reg_top #(
 
   prim_subreg #(
     .DW      (32),
-    .SWACCESS("RO"),
+    .SWACCESS("RW"),
     .RESVAL  (32'h0)
   ) u_snitch_cluster_5_return (
     .clk_i   (clk_i    ),
     .rst_ni  (rst_ni  ),
 
-    .we     (1'b0),
-    .wd     ('0  ),
+    // from register interface
+    .we     (snitch_cluster_5_return_we),
+    .wd     (snitch_cluster_5_return_wd),
 
     // from internal hardware
-    .de     (hw2reg.snitch_cluster_5_return.de),
-    .d      (hw2reg.snitch_cluster_5_return.d ),
+    .de     (1'b0),
+    .d      ('0  ),
 
     // to internal hardware
     .qe     (),
@@ -459,6 +473,21 @@ module chimera_reg_top #(
   assign snitch_intr_handler_addr_we = addr_hit[1] & reg_we & !reg_error;
   assign snitch_intr_handler_addr_wd = reg_wdata[31:0];
 
+  assign snitch_cluster_1_return_we = addr_hit[2] & reg_we & !reg_error;
+  assign snitch_cluster_1_return_wd = reg_wdata[31:0];
+
+  assign snitch_cluster_2_return_we = addr_hit[3] & reg_we & !reg_error;
+  assign snitch_cluster_2_return_wd = reg_wdata[31:0];
+
+  assign snitch_cluster_3_return_we = addr_hit[4] & reg_we & !reg_error;
+  assign snitch_cluster_3_return_wd = reg_wdata[31:0];
+
+  assign snitch_cluster_4_return_we = addr_hit[5] & reg_we & !reg_error;
+  assign snitch_cluster_4_return_wd = reg_wdata[31:0];
+
+  assign snitch_cluster_5_return_we = addr_hit[6] & reg_we & !reg_error;
+  assign snitch_cluster_5_return_wd = reg_wdata[31:0];
+
   assign cluster_1_clk_gate_en_we = addr_hit[7] & reg_we & !reg_error;
   assign cluster_1_clk_gate_en_wd = reg_wdata[0];
 
@@ -556,7 +585,6 @@ module chimera_reg_top_intf
   REG_BUS.in  regbus_slave,
   // To HW
   output chimera_reg_pkg::chimera_reg2hw_t reg2hw, // Write
-  input  chimera_reg_pkg::chimera_hw2reg_t hw2reg, // Read
   // Config
   input devmode_i // If 1, explicit error return for unmapped register access
 );
@@ -590,7 +618,6 @@ module chimera_reg_top_intf
     .reg_req_i(s_reg_req),
     .reg_rsp_o(s_reg_rsp),
     .reg2hw, // Write
-    .hw2reg, // Read
     .devmode_i
   );
   

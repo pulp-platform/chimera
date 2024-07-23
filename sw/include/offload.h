@@ -1,8 +1,8 @@
 /* =====================================================================
- * Title:        testClusterGating.c
+ * Title:        offload.h
  * Description:  
  *
- * $Date:        27.06.2024        
+ * $Date:        23.07.2024        
  *
  * ===================================================================== */
 /*
@@ -26,18 +26,7 @@
  */
 
 #include <stdint.h>
-#include "regs/soc_ctrl.h"
-#include "soc_addr_map.h"
 
-int main(){
-  volatile uint8_t* regPtr = (volatile uint8_t*) SOC_CTRL_BASE;
-
-  *(regPtr + CHIMERA_CLUSTER_1_CLK_GATE_EN_REG_OFFSET) = 1;
-  *(regPtr + CHIMERA_CLUSTER_4_CLK_GATE_EN_REG_OFFSET) = 1;
-  *(regPtr + CHIMERA_CLUSTER_5_CLK_GATE_EN_REG_OFFSET) = 1;
-
-  while(1){}
-  
-  return 0;
-  
-}
+void setupInterruptHandler(void* handler);
+void offloadToCluster(void* function, uint8_t hartId);
+uint32_t waitForCluster(uint8_t clusterId);
