@@ -16,14 +16,16 @@ module chimera_padframe
   output port_signals_pad2soc_t              port_signals_pad2soc,
   input port_signals_soc2pad_t               port_signals_soc2pad,
   // Landing Pads
-  inout wire logic                           pad_aop_static_ref_clk_pad,
-  inout wire logic                           pad_aop_static_ext_clk_pad,
-  inout wire logic                           pad_aop_static_rstn_pad,
-  inout wire logic                           pad_aop_static_jtag_tck_pad,
-  inout wire logic                           pad_aop_static_jtag_trstn_pad,
-  inout wire logic                           pad_aop_static_jtag_tms_pad,
-  inout wire logic                           pad_aop_static_jtag_tdi_pad,
-  inout wire logic                           pad_aop_static_jtag_tdo_pad,
+  inout wire logic                           pad_aon_static_lse_clk_pad,
+  inout wire logic                           pad_aon_static_hse_clk_pad,
+  inout wire logic                           pad_aon_static_byp_sel_clk_pad,
+  inout wire logic                           pad_aon_static_rstn_pad,
+  inout wire logic                           pad_aon_static_jtag_tck_pad,
+  inout wire logic                           pad_aon_static_jtag_trstn_pad,
+  inout wire logic                           pad_aon_static_jtag_tms_pad,
+  inout wire logic                           pad_aon_static_jtag_tdi_pad,
+  inout wire logic                           pad_aon_static_jtag_tdo_pad,
+  inout wire logic                           pad_aon_static_bootsel_pad,
   inout wire logic                           pad_aon_gpioa_gpio_0_pad,
   inout wire logic                           pad_aon_gpioa_gpio_1_pad,
   inout wire logic                           pad_aon_gpioa_gpio_2_pad,
@@ -62,27 +64,29 @@ module chimera_padframe
   );
 
 
-  req_t aop_static_config_req;
-  resp_t aop_static_config_resp;
-  chimera_padframe_aop_static #(
+  req_t aon_static_config_req;
+  resp_t aon_static_config_resp;
+  chimera_padframe_aon_static #(
     .req_t(req_t),
     .resp_t(resp_t)
-  ) i_aop_static (
+  ) i_aon_static (
    .clk_i,
    .rst_ni,
-   .override_signals_i(override_signals.aop_static),
-   .static_connection_signals_pad2soc(static_connection_signals_pad2soc.aop_static),
-   .static_connection_signals_soc2pad(static_connection_signals_soc2pad.aop_static),
-   .pad_ref_clk_pad(pad_aop_static_ref_clk_pad),
-   .pad_ext_clk_pad(pad_aop_static_ext_clk_pad),
-   .pad_rstn_pad(pad_aop_static_rstn_pad),
-   .pad_jtag_tck_pad(pad_aop_static_jtag_tck_pad),
-   .pad_jtag_trstn_pad(pad_aop_static_jtag_trstn_pad),
-   .pad_jtag_tms_pad(pad_aop_static_jtag_tms_pad),
-   .pad_jtag_tdi_pad(pad_aop_static_jtag_tdi_pad),
-   .pad_jtag_tdo_pad(pad_aop_static_jtag_tdo_pad),
-   .config_req_i(aop_static_config_req),
-   .config_rsp_o(aop_static_config_resp)
+   .override_signals_i(override_signals.aon_static),
+   .static_connection_signals_pad2soc(static_connection_signals_pad2soc.aon_static),
+   .static_connection_signals_soc2pad(static_connection_signals_soc2pad.aon_static),
+   .pad_lse_clk_pad(pad_aon_static_lse_clk_pad),
+   .pad_hse_clk_pad(pad_aon_static_hse_clk_pad),
+   .pad_byp_sel_clk_pad(pad_aon_static_byp_sel_clk_pad),
+   .pad_rstn_pad(pad_aon_static_rstn_pad),
+   .pad_jtag_tck_pad(pad_aon_static_jtag_tck_pad),
+   .pad_jtag_trstn_pad(pad_aon_static_jtag_trstn_pad),
+   .pad_jtag_tms_pad(pad_aon_static_jtag_tms_pad),
+   .pad_jtag_tdi_pad(pad_aon_static_jtag_tdi_pad),
+   .pad_jtag_tdo_pad(pad_aon_static_jtag_tdo_pad),
+   .pad_bootsel_pad(pad_aon_static_bootsel_pad),
+   .config_req_i(aon_static_config_req),
+   .config_rsp_o(aon_static_config_resp)
   );
 
   req_t aon_gpioa_config_req;
@@ -175,8 +179,8 @@ module chimera_padframe
        .in_select_i(pad_domain_sel),
        .in_req_i(config_req_i),
        .in_rsp_o(config_rsp_o),
-       .out_req_o({error_slave_req, aon_gpioa_config_req, aop_static_config_req}),
-       .out_rsp_i({error_slave_rsp, aon_gpioa_config_resp, aop_static_config_resp})
+       .out_req_o({error_slave_req, aon_gpioa_config_req, aon_static_config_req}),
+       .out_rsp_i({error_slave_rsp, aon_gpioa_config_resp, aon_static_config_resp})
      );
 
      assign error_slave_rsp.error = 1'b1;

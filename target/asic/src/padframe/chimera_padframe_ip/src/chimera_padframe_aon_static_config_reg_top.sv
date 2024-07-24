@@ -7,7 +7,7 @@
 
 `include "common_cells/assertions.svh"
 
-module chimera_padframe_aop_static_config_reg_top #(
+module chimera_padframe_aon_static_config_reg_top #(
     parameter type reg_req_t = logic,
     parameter type reg_rsp_t = logic,
     parameter int AW = 2
@@ -17,14 +17,14 @@ module chimera_padframe_aop_static_config_reg_top #(
   input  reg_req_t reg_req_i,
   output reg_rsp_t reg_rsp_o,
   // To HW
-  output chimera_padframe_aop_static_config_reg_pkg::chimera_padframe_aop_static_config_reg2hw_t reg2hw, // Write
+  output chimera_padframe_aon_static_config_reg_pkg::chimera_padframe_aon_static_config_reg2hw_t reg2hw, // Write
 
 
   // Config
   input devmode_i // If 1, explicit error return for unmapped register access
 );
 
-  import chimera_padframe_aop_static_config_reg_pkg::* ;
+  import chimera_padframe_aon_static_config_reg_pkg::* ;
 
   localparam int DW = 32;
   localparam int DBW = DW/8;                    // Byte Width
@@ -128,7 +128,7 @@ module chimera_padframe_aop_static_config_reg_top #(
   logic [0:0] addr_hit;
   always_comb begin
     addr_hit = '0;
-    addr_hit[0] = (reg_addr == CHIMERA_PADFRAME_AOP_STATIC_CONFIG_INFO_OFFSET);
+    addr_hit[0] = (reg_addr == CHIMERA_PADFRAME_AON_STATIC_CONFIG_INFO_OFFSET);
   end
 
   assign addrmiss = (reg_re || reg_we) ? ~|addr_hit : 1'b0 ;
@@ -136,7 +136,7 @@ module chimera_padframe_aop_static_config_reg_top #(
   // Check sub-word write is permitted
   always_comb begin
     wr_err = (reg_we &
-              ((addr_hit[0] & (|(CHIMERA_PADFRAME_AOP_STATIC_CONFIG_PERMIT[0] & ~reg_be)))));
+              ((addr_hit[0] & (|(CHIMERA_PADFRAME_AON_STATIC_CONFIG_PERMIT[0] & ~reg_be)))));
   end
 
   // Read data return

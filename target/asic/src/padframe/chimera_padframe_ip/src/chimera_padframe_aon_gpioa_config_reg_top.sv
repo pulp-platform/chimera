@@ -78,8 +78,8 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   logic gpio_0_cfg_rx_en_qs;
   logic gpio_0_cfg_rx_en_wd;
   logic gpio_0_cfg_rx_en_we;
-  logic [2:0] gpio_0_mux_sel_qs;
-  logic [2:0] gpio_0_mux_sel_wd;
+  logic [3:0] gpio_0_mux_sel_qs;
+  logic [3:0] gpio_0_mux_sel_wd;
   logic gpio_0_mux_sel_we;
   logic gpio_1_cfg_chip2pad_qs;
   logic gpio_1_cfg_chip2pad_wd;
@@ -90,8 +90,8 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   logic gpio_1_cfg_rx_en_qs;
   logic gpio_1_cfg_rx_en_wd;
   logic gpio_1_cfg_rx_en_we;
-  logic [2:0] gpio_1_mux_sel_qs;
-  logic [2:0] gpio_1_mux_sel_wd;
+  logic [3:0] gpio_1_mux_sel_qs;
+  logic [3:0] gpio_1_mux_sel_wd;
   logic gpio_1_mux_sel_we;
   logic gpio_2_cfg_chip2pad_qs;
   logic gpio_2_cfg_chip2pad_wd;
@@ -102,8 +102,8 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   logic gpio_2_cfg_rx_en_qs;
   logic gpio_2_cfg_rx_en_wd;
   logic gpio_2_cfg_rx_en_we;
-  logic [2:0] gpio_2_mux_sel_qs;
-  logic [2:0] gpio_2_mux_sel_wd;
+  logic [3:0] gpio_2_mux_sel_qs;
+  logic [3:0] gpio_2_mux_sel_wd;
   logic gpio_2_mux_sel_we;
   logic gpio_3_cfg_chip2pad_qs;
   logic gpio_3_cfg_chip2pad_wd;
@@ -114,8 +114,8 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   logic gpio_3_cfg_rx_en_qs;
   logic gpio_3_cfg_rx_en_wd;
   logic gpio_3_cfg_rx_en_we;
-  logic [2:0] gpio_3_mux_sel_qs;
-  logic [2:0] gpio_3_mux_sel_wd;
+  logic [3:0] gpio_3_mux_sel_qs;
+  logic [3:0] gpio_3_mux_sel_wd;
   logic gpio_3_mux_sel_we;
   logic gpio_4_cfg_chip2pad_qs;
   logic gpio_4_cfg_chip2pad_wd;
@@ -126,8 +126,8 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   logic gpio_4_cfg_rx_en_qs;
   logic gpio_4_cfg_rx_en_wd;
   logic gpio_4_cfg_rx_en_we;
-  logic [2:0] gpio_4_mux_sel_qs;
-  logic [2:0] gpio_4_mux_sel_wd;
+  logic [3:0] gpio_4_mux_sel_qs;
+  logic [3:0] gpio_4_mux_sel_wd;
   logic gpio_4_mux_sel_we;
   logic gpio_5_cfg_chip2pad_qs;
   logic gpio_5_cfg_chip2pad_wd;
@@ -138,8 +138,8 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   logic gpio_5_cfg_rx_en_qs;
   logic gpio_5_cfg_rx_en_wd;
   logic gpio_5_cfg_rx_en_we;
-  logic [2:0] gpio_5_mux_sel_qs;
-  logic [2:0] gpio_5_mux_sel_wd;
+  logic [3:0] gpio_5_mux_sel_qs;
+  logic [3:0] gpio_5_mux_sel_wd;
   logic gpio_5_mux_sel_we;
   logic gpio_6_cfg_chip2pad_qs;
   logic gpio_6_cfg_chip2pad_wd;
@@ -150,8 +150,8 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   logic gpio_6_cfg_rx_en_qs;
   logic gpio_6_cfg_rx_en_wd;
   logic gpio_6_cfg_rx_en_we;
-  logic [2:0] gpio_6_mux_sel_qs;
-  logic [2:0] gpio_6_mux_sel_wd;
+  logic [3:0] gpio_6_mux_sel_qs;
+  logic [3:0] gpio_6_mux_sel_wd;
   logic gpio_6_mux_sel_we;
   logic gpio_7_cfg_chip2pad_qs;
   logic gpio_7_cfg_chip2pad_wd;
@@ -162,8 +162,8 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   logic gpio_7_cfg_rx_en_qs;
   logic gpio_7_cfg_rx_en_wd;
   logic gpio_7_cfg_rx_en_we;
-  logic [2:0] gpio_7_mux_sel_qs;
-  logic [2:0] gpio_7_mux_sel_wd;
+  logic [3:0] gpio_7_mux_sel_qs;
+  logic [3:0] gpio_7_mux_sel_wd;
   logic gpio_7_mux_sel_we;
   logic gpio_8_cfg_chip2pad_qs;
   logic gpio_8_cfg_chip2pad_wd;
@@ -174,8 +174,8 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   logic gpio_8_cfg_rx_en_qs;
   logic gpio_8_cfg_rx_en_wd;
   logic gpio_8_cfg_rx_en_we;
-  logic [2:0] gpio_8_mux_sel_qs;
-  logic [2:0] gpio_8_mux_sel_wd;
+  logic [3:0] gpio_8_mux_sel_qs;
+  logic [3:0] gpio_8_mux_sel_wd;
   logic gpio_8_mux_sel_we;
   logic gpio_9_cfg_chip2pad_qs;
   logic gpio_9_cfg_chip2pad_wd;
@@ -186,8 +186,8 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   logic gpio_9_cfg_rx_en_qs;
   logic gpio_9_cfg_rx_en_wd;
   logic gpio_9_cfg_rx_en_we;
-  logic [2:0] gpio_9_mux_sel_qs;
-  logic [2:0] gpio_9_mux_sel_wd;
+  logic [3:0] gpio_9_mux_sel_qs;
+  logic [3:0] gpio_9_mux_sel_wd;
   logic gpio_9_mux_sel_we;
   logic gpio_10_cfg_chip2pad_qs;
   logic gpio_10_cfg_chip2pad_wd;
@@ -198,8 +198,8 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   logic gpio_10_cfg_rx_en_qs;
   logic gpio_10_cfg_rx_en_wd;
   logic gpio_10_cfg_rx_en_we;
-  logic [2:0] gpio_10_mux_sel_qs;
-  logic [2:0] gpio_10_mux_sel_wd;
+  logic [3:0] gpio_10_mux_sel_qs;
+  logic [3:0] gpio_10_mux_sel_wd;
   logic gpio_10_mux_sel_we;
   logic gpio_11_cfg_chip2pad_qs;
   logic gpio_11_cfg_chip2pad_wd;
@@ -210,8 +210,8 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   logic gpio_11_cfg_rx_en_qs;
   logic gpio_11_cfg_rx_en_wd;
   logic gpio_11_cfg_rx_en_we;
-  logic [2:0] gpio_11_mux_sel_qs;
-  logic [2:0] gpio_11_mux_sel_wd;
+  logic [3:0] gpio_11_mux_sel_qs;
+  logic [3:0] gpio_11_mux_sel_wd;
   logic gpio_11_mux_sel_we;
   logic gpio_12_cfg_chip2pad_qs;
   logic gpio_12_cfg_chip2pad_wd;
@@ -222,8 +222,8 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   logic gpio_12_cfg_rx_en_qs;
   logic gpio_12_cfg_rx_en_wd;
   logic gpio_12_cfg_rx_en_we;
-  logic [2:0] gpio_12_mux_sel_qs;
-  logic [2:0] gpio_12_mux_sel_wd;
+  logic [3:0] gpio_12_mux_sel_qs;
+  logic [3:0] gpio_12_mux_sel_wd;
   logic gpio_12_mux_sel_we;
   logic gpio_13_cfg_chip2pad_qs;
   logic gpio_13_cfg_chip2pad_wd;
@@ -234,8 +234,8 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   logic gpio_13_cfg_rx_en_qs;
   logic gpio_13_cfg_rx_en_wd;
   logic gpio_13_cfg_rx_en_we;
-  logic [2:0] gpio_13_mux_sel_qs;
-  logic [2:0] gpio_13_mux_sel_wd;
+  logic [3:0] gpio_13_mux_sel_qs;
+  logic [3:0] gpio_13_mux_sel_wd;
   logic gpio_13_mux_sel_we;
   logic gpio_14_cfg_chip2pad_qs;
   logic gpio_14_cfg_chip2pad_wd;
@@ -246,8 +246,8 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   logic gpio_14_cfg_rx_en_qs;
   logic gpio_14_cfg_rx_en_wd;
   logic gpio_14_cfg_rx_en_we;
-  logic [2:0] gpio_14_mux_sel_qs;
-  logic [2:0] gpio_14_mux_sel_wd;
+  logic [3:0] gpio_14_mux_sel_qs;
+  logic [3:0] gpio_14_mux_sel_wd;
   logic gpio_14_mux_sel_we;
   logic gpio_15_cfg_chip2pad_qs;
   logic gpio_15_cfg_chip2pad_wd;
@@ -258,8 +258,8 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   logic gpio_15_cfg_rx_en_qs;
   logic gpio_15_cfg_rx_en_wd;
   logic gpio_15_cfg_rx_en_we;
-  logic [2:0] gpio_15_mux_sel_qs;
-  logic [2:0] gpio_15_mux_sel_wd;
+  logic [3:0] gpio_15_mux_sel_qs;
+  logic [3:0] gpio_15_mux_sel_wd;
   logic gpio_15_mux_sel_we;
   logic gpio_16_cfg_chip2pad_qs;
   logic gpio_16_cfg_chip2pad_wd;
@@ -270,8 +270,8 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   logic gpio_16_cfg_rx_en_qs;
   logic gpio_16_cfg_rx_en_wd;
   logic gpio_16_cfg_rx_en_we;
-  logic [2:0] gpio_16_mux_sel_qs;
-  logic [2:0] gpio_16_mux_sel_wd;
+  logic [3:0] gpio_16_mux_sel_qs;
+  logic [3:0] gpio_16_mux_sel_wd;
   logic gpio_16_mux_sel_we;
   logic gpio_17_cfg_chip2pad_qs;
   logic gpio_17_cfg_chip2pad_wd;
@@ -282,8 +282,8 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   logic gpio_17_cfg_rx_en_qs;
   logic gpio_17_cfg_rx_en_wd;
   logic gpio_17_cfg_rx_en_we;
-  logic [2:0] gpio_17_mux_sel_qs;
-  logic [2:0] gpio_17_mux_sel_wd;
+  logic [3:0] gpio_17_mux_sel_qs;
+  logic [3:0] gpio_17_mux_sel_wd;
   logic gpio_17_mux_sel_we;
   logic gpio_18_cfg_chip2pad_qs;
   logic gpio_18_cfg_chip2pad_wd;
@@ -294,8 +294,8 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   logic gpio_18_cfg_rx_en_qs;
   logic gpio_18_cfg_rx_en_wd;
   logic gpio_18_cfg_rx_en_we;
-  logic [2:0] gpio_18_mux_sel_qs;
-  logic [2:0] gpio_18_mux_sel_wd;
+  logic [3:0] gpio_18_mux_sel_qs;
+  logic [3:0] gpio_18_mux_sel_wd;
   logic gpio_18_mux_sel_we;
   logic gpio_19_cfg_chip2pad_qs;
   logic gpio_19_cfg_chip2pad_wd;
@@ -306,8 +306,8 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   logic gpio_19_cfg_rx_en_qs;
   logic gpio_19_cfg_rx_en_wd;
   logic gpio_19_cfg_rx_en_we;
-  logic [2:0] gpio_19_mux_sel_qs;
-  logic [2:0] gpio_19_mux_sel_wd;
+  logic [3:0] gpio_19_mux_sel_qs;
+  logic [3:0] gpio_19_mux_sel_wd;
   logic gpio_19_mux_sel_we;
   logic gpio_20_cfg_chip2pad_qs;
   logic gpio_20_cfg_chip2pad_wd;
@@ -318,8 +318,8 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   logic gpio_20_cfg_rx_en_qs;
   logic gpio_20_cfg_rx_en_wd;
   logic gpio_20_cfg_rx_en_we;
-  logic [2:0] gpio_20_mux_sel_qs;
-  logic [2:0] gpio_20_mux_sel_wd;
+  logic [3:0] gpio_20_mux_sel_qs;
+  logic [3:0] gpio_20_mux_sel_wd;
   logic gpio_20_mux_sel_we;
   logic gpio_21_cfg_chip2pad_qs;
   logic gpio_21_cfg_chip2pad_wd;
@@ -330,8 +330,8 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   logic gpio_21_cfg_rx_en_qs;
   logic gpio_21_cfg_rx_en_wd;
   logic gpio_21_cfg_rx_en_we;
-  logic [2:0] gpio_21_mux_sel_qs;
-  logic [2:0] gpio_21_mux_sel_wd;
+  logic [3:0] gpio_21_mux_sel_qs;
+  logic [3:0] gpio_21_mux_sel_wd;
   logic gpio_21_mux_sel_we;
   logic gpio_22_cfg_chip2pad_qs;
   logic gpio_22_cfg_chip2pad_wd;
@@ -342,8 +342,8 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   logic gpio_22_cfg_rx_en_qs;
   logic gpio_22_cfg_rx_en_wd;
   logic gpio_22_cfg_rx_en_we;
-  logic [2:0] gpio_22_mux_sel_qs;
-  logic [2:0] gpio_22_mux_sel_wd;
+  logic [3:0] gpio_22_mux_sel_qs;
+  logic [3:0] gpio_22_mux_sel_wd;
   logic gpio_22_mux_sel_we;
   logic gpio_23_cfg_chip2pad_qs;
   logic gpio_23_cfg_chip2pad_wd;
@@ -354,8 +354,8 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   logic gpio_23_cfg_rx_en_qs;
   logic gpio_23_cfg_rx_en_wd;
   logic gpio_23_cfg_rx_en_we;
-  logic [2:0] gpio_23_mux_sel_qs;
-  logic [2:0] gpio_23_mux_sel_wd;
+  logic [3:0] gpio_23_mux_sel_qs;
+  logic [3:0] gpio_23_mux_sel_wd;
   logic gpio_23_mux_sel_we;
   logic gpio_24_cfg_chip2pad_qs;
   logic gpio_24_cfg_chip2pad_wd;
@@ -366,8 +366,8 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   logic gpio_24_cfg_rx_en_qs;
   logic gpio_24_cfg_rx_en_wd;
   logic gpio_24_cfg_rx_en_we;
-  logic [2:0] gpio_24_mux_sel_qs;
-  logic [2:0] gpio_24_mux_sel_wd;
+  logic [3:0] gpio_24_mux_sel_qs;
+  logic [3:0] gpio_24_mux_sel_wd;
   logic gpio_24_mux_sel_we;
   logic gpio_25_cfg_chip2pad_qs;
   logic gpio_25_cfg_chip2pad_wd;
@@ -378,8 +378,8 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   logic gpio_25_cfg_rx_en_qs;
   logic gpio_25_cfg_rx_en_wd;
   logic gpio_25_cfg_rx_en_we;
-  logic [2:0] gpio_25_mux_sel_qs;
-  logic [2:0] gpio_25_mux_sel_wd;
+  logic [3:0] gpio_25_mux_sel_qs;
+  logic [3:0] gpio_25_mux_sel_wd;
   logic gpio_25_mux_sel_we;
   logic gpio_26_cfg_chip2pad_qs;
   logic gpio_26_cfg_chip2pad_wd;
@@ -390,8 +390,8 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   logic gpio_26_cfg_rx_en_qs;
   logic gpio_26_cfg_rx_en_wd;
   logic gpio_26_cfg_rx_en_we;
-  logic [2:0] gpio_26_mux_sel_qs;
-  logic [2:0] gpio_26_mux_sel_wd;
+  logic [3:0] gpio_26_mux_sel_qs;
+  logic [3:0] gpio_26_mux_sel_wd;
   logic gpio_26_mux_sel_we;
   logic gpio_27_cfg_chip2pad_qs;
   logic gpio_27_cfg_chip2pad_wd;
@@ -402,8 +402,8 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   logic gpio_27_cfg_rx_en_qs;
   logic gpio_27_cfg_rx_en_wd;
   logic gpio_27_cfg_rx_en_we;
-  logic [2:0] gpio_27_mux_sel_qs;
-  logic [2:0] gpio_27_mux_sel_wd;
+  logic [3:0] gpio_27_mux_sel_qs;
+  logic [3:0] gpio_27_mux_sel_wd;
   logic gpio_27_mux_sel_we;
   logic gpio_28_cfg_chip2pad_qs;
   logic gpio_28_cfg_chip2pad_wd;
@@ -414,8 +414,8 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   logic gpio_28_cfg_rx_en_qs;
   logic gpio_28_cfg_rx_en_wd;
   logic gpio_28_cfg_rx_en_we;
-  logic [2:0] gpio_28_mux_sel_qs;
-  logic [2:0] gpio_28_mux_sel_wd;
+  logic [3:0] gpio_28_mux_sel_qs;
+  logic [3:0] gpio_28_mux_sel_wd;
   logic gpio_28_mux_sel_we;
   logic gpio_29_cfg_chip2pad_qs;
   logic gpio_29_cfg_chip2pad_wd;
@@ -426,8 +426,8 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   logic gpio_29_cfg_rx_en_qs;
   logic gpio_29_cfg_rx_en_wd;
   logic gpio_29_cfg_rx_en_we;
-  logic [2:0] gpio_29_mux_sel_qs;
-  logic [2:0] gpio_29_mux_sel_wd;
+  logic [3:0] gpio_29_mux_sel_qs;
+  logic [3:0] gpio_29_mux_sel_wd;
   logic gpio_29_mux_sel_we;
   logic gpio_30_cfg_chip2pad_qs;
   logic gpio_30_cfg_chip2pad_wd;
@@ -438,8 +438,8 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   logic gpio_30_cfg_rx_en_qs;
   logic gpio_30_cfg_rx_en_wd;
   logic gpio_30_cfg_rx_en_we;
-  logic [2:0] gpio_30_mux_sel_qs;
-  logic [2:0] gpio_30_mux_sel_wd;
+  logic [3:0] gpio_30_mux_sel_qs;
+  logic [3:0] gpio_30_mux_sel_wd;
   logic gpio_30_mux_sel_we;
   logic gpio_31_cfg_chip2pad_qs;
   logic gpio_31_cfg_chip2pad_wd;
@@ -590,9 +590,9 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   // R[gpio_0_mux_sel]: V(False)
 
   prim_subreg #(
-    .DW      (3),
+    .DW      (4),
     .SWACCESS("RW"),
-    .RESVAL  (3'h0)
+    .RESVAL  (4'h0)
   ) u_gpio_0_mux_sel (
     .clk_i   (clk_i    ),
     .rst_ni  (rst_ni  ),
@@ -697,9 +697,9 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   // R[gpio_1_mux_sel]: V(False)
 
   prim_subreg #(
-    .DW      (3),
+    .DW      (4),
     .SWACCESS("RW"),
-    .RESVAL  (3'h0)
+    .RESVAL  (4'h0)
   ) u_gpio_1_mux_sel (
     .clk_i   (clk_i    ),
     .rst_ni  (rst_ni  ),
@@ -804,9 +804,9 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   // R[gpio_2_mux_sel]: V(False)
 
   prim_subreg #(
-    .DW      (3),
+    .DW      (4),
     .SWACCESS("RW"),
-    .RESVAL  (3'h0)
+    .RESVAL  (4'h0)
   ) u_gpio_2_mux_sel (
     .clk_i   (clk_i    ),
     .rst_ni  (rst_ni  ),
@@ -911,9 +911,9 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   // R[gpio_3_mux_sel]: V(False)
 
   prim_subreg #(
-    .DW      (3),
+    .DW      (4),
     .SWACCESS("RW"),
-    .RESVAL  (3'h0)
+    .RESVAL  (4'h0)
   ) u_gpio_3_mux_sel (
     .clk_i   (clk_i    ),
     .rst_ni  (rst_ni  ),
@@ -1018,9 +1018,9 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   // R[gpio_4_mux_sel]: V(False)
 
   prim_subreg #(
-    .DW      (3),
+    .DW      (4),
     .SWACCESS("RW"),
-    .RESVAL  (3'h0)
+    .RESVAL  (4'h0)
   ) u_gpio_4_mux_sel (
     .clk_i   (clk_i    ),
     .rst_ni  (rst_ni  ),
@@ -1125,9 +1125,9 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   // R[gpio_5_mux_sel]: V(False)
 
   prim_subreg #(
-    .DW      (3),
+    .DW      (4),
     .SWACCESS("RW"),
-    .RESVAL  (3'h0)
+    .RESVAL  (4'h0)
   ) u_gpio_5_mux_sel (
     .clk_i   (clk_i    ),
     .rst_ni  (rst_ni  ),
@@ -1232,9 +1232,9 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   // R[gpio_6_mux_sel]: V(False)
 
   prim_subreg #(
-    .DW      (3),
+    .DW      (4),
     .SWACCESS("RW"),
-    .RESVAL  (3'h0)
+    .RESVAL  (4'h0)
   ) u_gpio_6_mux_sel (
     .clk_i   (clk_i    ),
     .rst_ni  (rst_ni  ),
@@ -1339,9 +1339,9 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   // R[gpio_7_mux_sel]: V(False)
 
   prim_subreg #(
-    .DW      (3),
+    .DW      (4),
     .SWACCESS("RW"),
-    .RESVAL  (3'h0)
+    .RESVAL  (4'h0)
   ) u_gpio_7_mux_sel (
     .clk_i   (clk_i    ),
     .rst_ni  (rst_ni  ),
@@ -1446,9 +1446,9 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   // R[gpio_8_mux_sel]: V(False)
 
   prim_subreg #(
-    .DW      (3),
+    .DW      (4),
     .SWACCESS("RW"),
-    .RESVAL  (3'h0)
+    .RESVAL  (4'h0)
   ) u_gpio_8_mux_sel (
     .clk_i   (clk_i    ),
     .rst_ni  (rst_ni  ),
@@ -1553,9 +1553,9 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   // R[gpio_9_mux_sel]: V(False)
 
   prim_subreg #(
-    .DW      (3),
+    .DW      (4),
     .SWACCESS("RW"),
-    .RESVAL  (3'h0)
+    .RESVAL  (4'h0)
   ) u_gpio_9_mux_sel (
     .clk_i   (clk_i    ),
     .rst_ni  (rst_ni  ),
@@ -1660,9 +1660,9 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   // R[gpio_10_mux_sel]: V(False)
 
   prim_subreg #(
-    .DW      (3),
+    .DW      (4),
     .SWACCESS("RW"),
-    .RESVAL  (3'h0)
+    .RESVAL  (4'h0)
   ) u_gpio_10_mux_sel (
     .clk_i   (clk_i    ),
     .rst_ni  (rst_ni  ),
@@ -1767,9 +1767,9 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   // R[gpio_11_mux_sel]: V(False)
 
   prim_subreg #(
-    .DW      (3),
+    .DW      (4),
     .SWACCESS("RW"),
-    .RESVAL  (3'h0)
+    .RESVAL  (4'h0)
   ) u_gpio_11_mux_sel (
     .clk_i   (clk_i    ),
     .rst_ni  (rst_ni  ),
@@ -1874,9 +1874,9 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   // R[gpio_12_mux_sel]: V(False)
 
   prim_subreg #(
-    .DW      (3),
+    .DW      (4),
     .SWACCESS("RW"),
-    .RESVAL  (3'h0)
+    .RESVAL  (4'h0)
   ) u_gpio_12_mux_sel (
     .clk_i   (clk_i    ),
     .rst_ni  (rst_ni  ),
@@ -1981,9 +1981,9 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   // R[gpio_13_mux_sel]: V(False)
 
   prim_subreg #(
-    .DW      (3),
+    .DW      (4),
     .SWACCESS("RW"),
-    .RESVAL  (3'h0)
+    .RESVAL  (4'h0)
   ) u_gpio_13_mux_sel (
     .clk_i   (clk_i    ),
     .rst_ni  (rst_ni  ),
@@ -2088,9 +2088,9 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   // R[gpio_14_mux_sel]: V(False)
 
   prim_subreg #(
-    .DW      (3),
+    .DW      (4),
     .SWACCESS("RW"),
-    .RESVAL  (3'h0)
+    .RESVAL  (4'h0)
   ) u_gpio_14_mux_sel (
     .clk_i   (clk_i    ),
     .rst_ni  (rst_ni  ),
@@ -2195,9 +2195,9 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   // R[gpio_15_mux_sel]: V(False)
 
   prim_subreg #(
-    .DW      (3),
+    .DW      (4),
     .SWACCESS("RW"),
-    .RESVAL  (3'h0)
+    .RESVAL  (4'h0)
   ) u_gpio_15_mux_sel (
     .clk_i   (clk_i    ),
     .rst_ni  (rst_ni  ),
@@ -2302,9 +2302,9 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   // R[gpio_16_mux_sel]: V(False)
 
   prim_subreg #(
-    .DW      (3),
+    .DW      (4),
     .SWACCESS("RW"),
-    .RESVAL  (3'h0)
+    .RESVAL  (4'h0)
   ) u_gpio_16_mux_sel (
     .clk_i   (clk_i    ),
     .rst_ni  (rst_ni  ),
@@ -2409,9 +2409,9 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   // R[gpio_17_mux_sel]: V(False)
 
   prim_subreg #(
-    .DW      (3),
+    .DW      (4),
     .SWACCESS("RW"),
-    .RESVAL  (3'h0)
+    .RESVAL  (4'h0)
   ) u_gpio_17_mux_sel (
     .clk_i   (clk_i    ),
     .rst_ni  (rst_ni  ),
@@ -2516,9 +2516,9 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   // R[gpio_18_mux_sel]: V(False)
 
   prim_subreg #(
-    .DW      (3),
+    .DW      (4),
     .SWACCESS("RW"),
-    .RESVAL  (3'h0)
+    .RESVAL  (4'h0)
   ) u_gpio_18_mux_sel (
     .clk_i   (clk_i    ),
     .rst_ni  (rst_ni  ),
@@ -2623,9 +2623,9 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   // R[gpio_19_mux_sel]: V(False)
 
   prim_subreg #(
-    .DW      (3),
+    .DW      (4),
     .SWACCESS("RW"),
-    .RESVAL  (3'h0)
+    .RESVAL  (4'h0)
   ) u_gpio_19_mux_sel (
     .clk_i   (clk_i    ),
     .rst_ni  (rst_ni  ),
@@ -2730,9 +2730,9 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   // R[gpio_20_mux_sel]: V(False)
 
   prim_subreg #(
-    .DW      (3),
+    .DW      (4),
     .SWACCESS("RW"),
-    .RESVAL  (3'h0)
+    .RESVAL  (4'h0)
   ) u_gpio_20_mux_sel (
     .clk_i   (clk_i    ),
     .rst_ni  (rst_ni  ),
@@ -2837,9 +2837,9 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   // R[gpio_21_mux_sel]: V(False)
 
   prim_subreg #(
-    .DW      (3),
+    .DW      (4),
     .SWACCESS("RW"),
-    .RESVAL  (3'h0)
+    .RESVAL  (4'h0)
   ) u_gpio_21_mux_sel (
     .clk_i   (clk_i    ),
     .rst_ni  (rst_ni  ),
@@ -2944,9 +2944,9 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   // R[gpio_22_mux_sel]: V(False)
 
   prim_subreg #(
-    .DW      (3),
+    .DW      (4),
     .SWACCESS("RW"),
-    .RESVAL  (3'h0)
+    .RESVAL  (4'h0)
   ) u_gpio_22_mux_sel (
     .clk_i   (clk_i    ),
     .rst_ni  (rst_ni  ),
@@ -3051,9 +3051,9 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   // R[gpio_23_mux_sel]: V(False)
 
   prim_subreg #(
-    .DW      (3),
+    .DW      (4),
     .SWACCESS("RW"),
-    .RESVAL  (3'h0)
+    .RESVAL  (4'h0)
   ) u_gpio_23_mux_sel (
     .clk_i   (clk_i    ),
     .rst_ni  (rst_ni  ),
@@ -3158,9 +3158,9 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   // R[gpio_24_mux_sel]: V(False)
 
   prim_subreg #(
-    .DW      (3),
+    .DW      (4),
     .SWACCESS("RW"),
-    .RESVAL  (3'h0)
+    .RESVAL  (4'h0)
   ) u_gpio_24_mux_sel (
     .clk_i   (clk_i    ),
     .rst_ni  (rst_ni  ),
@@ -3265,9 +3265,9 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   // R[gpio_25_mux_sel]: V(False)
 
   prim_subreg #(
-    .DW      (3),
+    .DW      (4),
     .SWACCESS("RW"),
-    .RESVAL  (3'h0)
+    .RESVAL  (4'h0)
   ) u_gpio_25_mux_sel (
     .clk_i   (clk_i    ),
     .rst_ni  (rst_ni  ),
@@ -3372,9 +3372,9 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   // R[gpio_26_mux_sel]: V(False)
 
   prim_subreg #(
-    .DW      (3),
+    .DW      (4),
     .SWACCESS("RW"),
-    .RESVAL  (3'h0)
+    .RESVAL  (4'h0)
   ) u_gpio_26_mux_sel (
     .clk_i   (clk_i    ),
     .rst_ni  (rst_ni  ),
@@ -3479,9 +3479,9 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   // R[gpio_27_mux_sel]: V(False)
 
   prim_subreg #(
-    .DW      (3),
+    .DW      (4),
     .SWACCESS("RW"),
-    .RESVAL  (3'h0)
+    .RESVAL  (4'h0)
   ) u_gpio_27_mux_sel (
     .clk_i   (clk_i    ),
     .rst_ni  (rst_ni  ),
@@ -3586,9 +3586,9 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   // R[gpio_28_mux_sel]: V(False)
 
   prim_subreg #(
-    .DW      (3),
+    .DW      (4),
     .SWACCESS("RW"),
-    .RESVAL  (3'h0)
+    .RESVAL  (4'h0)
   ) u_gpio_28_mux_sel (
     .clk_i   (clk_i    ),
     .rst_ni  (rst_ni  ),
@@ -3693,9 +3693,9 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   // R[gpio_29_mux_sel]: V(False)
 
   prim_subreg #(
-    .DW      (3),
+    .DW      (4),
     .SWACCESS("RW"),
-    .RESVAL  (3'h0)
+    .RESVAL  (4'h0)
   ) u_gpio_29_mux_sel (
     .clk_i   (clk_i    ),
     .rst_ni  (rst_ni  ),
@@ -3800,9 +3800,9 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   // R[gpio_30_mux_sel]: V(False)
 
   prim_subreg #(
-    .DW      (3),
+    .DW      (4),
     .SWACCESS("RW"),
-    .RESVAL  (3'h0)
+    .RESVAL  (4'h0)
   ) u_gpio_30_mux_sel (
     .clk_i   (clk_i    ),
     .rst_ni  (rst_ni  ),
@@ -4085,7 +4085,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   assign gpio_0_cfg_rx_en_wd = reg_wdata[2];
 
   assign gpio_0_mux_sel_we = addr_hit[2] & reg_we & !reg_error;
-  assign gpio_0_mux_sel_wd = reg_wdata[2:0];
+  assign gpio_0_mux_sel_wd = reg_wdata[3:0];
 
   assign gpio_1_cfg_chip2pad_we = addr_hit[3] & reg_we & !reg_error;
   assign gpio_1_cfg_chip2pad_wd = reg_wdata[0];
@@ -4097,7 +4097,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   assign gpio_1_cfg_rx_en_wd = reg_wdata[2];
 
   assign gpio_1_mux_sel_we = addr_hit[4] & reg_we & !reg_error;
-  assign gpio_1_mux_sel_wd = reg_wdata[2:0];
+  assign gpio_1_mux_sel_wd = reg_wdata[3:0];
 
   assign gpio_2_cfg_chip2pad_we = addr_hit[5] & reg_we & !reg_error;
   assign gpio_2_cfg_chip2pad_wd = reg_wdata[0];
@@ -4109,7 +4109,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   assign gpio_2_cfg_rx_en_wd = reg_wdata[2];
 
   assign gpio_2_mux_sel_we = addr_hit[6] & reg_we & !reg_error;
-  assign gpio_2_mux_sel_wd = reg_wdata[2:0];
+  assign gpio_2_mux_sel_wd = reg_wdata[3:0];
 
   assign gpio_3_cfg_chip2pad_we = addr_hit[7] & reg_we & !reg_error;
   assign gpio_3_cfg_chip2pad_wd = reg_wdata[0];
@@ -4121,7 +4121,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   assign gpio_3_cfg_rx_en_wd = reg_wdata[2];
 
   assign gpio_3_mux_sel_we = addr_hit[8] & reg_we & !reg_error;
-  assign gpio_3_mux_sel_wd = reg_wdata[2:0];
+  assign gpio_3_mux_sel_wd = reg_wdata[3:0];
 
   assign gpio_4_cfg_chip2pad_we = addr_hit[9] & reg_we & !reg_error;
   assign gpio_4_cfg_chip2pad_wd = reg_wdata[0];
@@ -4133,7 +4133,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   assign gpio_4_cfg_rx_en_wd = reg_wdata[2];
 
   assign gpio_4_mux_sel_we = addr_hit[10] & reg_we & !reg_error;
-  assign gpio_4_mux_sel_wd = reg_wdata[2:0];
+  assign gpio_4_mux_sel_wd = reg_wdata[3:0];
 
   assign gpio_5_cfg_chip2pad_we = addr_hit[11] & reg_we & !reg_error;
   assign gpio_5_cfg_chip2pad_wd = reg_wdata[0];
@@ -4145,7 +4145,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   assign gpio_5_cfg_rx_en_wd = reg_wdata[2];
 
   assign gpio_5_mux_sel_we = addr_hit[12] & reg_we & !reg_error;
-  assign gpio_5_mux_sel_wd = reg_wdata[2:0];
+  assign gpio_5_mux_sel_wd = reg_wdata[3:0];
 
   assign gpio_6_cfg_chip2pad_we = addr_hit[13] & reg_we & !reg_error;
   assign gpio_6_cfg_chip2pad_wd = reg_wdata[0];
@@ -4157,7 +4157,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   assign gpio_6_cfg_rx_en_wd = reg_wdata[2];
 
   assign gpio_6_mux_sel_we = addr_hit[14] & reg_we & !reg_error;
-  assign gpio_6_mux_sel_wd = reg_wdata[2:0];
+  assign gpio_6_mux_sel_wd = reg_wdata[3:0];
 
   assign gpio_7_cfg_chip2pad_we = addr_hit[15] & reg_we & !reg_error;
   assign gpio_7_cfg_chip2pad_wd = reg_wdata[0];
@@ -4169,7 +4169,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   assign gpio_7_cfg_rx_en_wd = reg_wdata[2];
 
   assign gpio_7_mux_sel_we = addr_hit[16] & reg_we & !reg_error;
-  assign gpio_7_mux_sel_wd = reg_wdata[2:0];
+  assign gpio_7_mux_sel_wd = reg_wdata[3:0];
 
   assign gpio_8_cfg_chip2pad_we = addr_hit[17] & reg_we & !reg_error;
   assign gpio_8_cfg_chip2pad_wd = reg_wdata[0];
@@ -4181,7 +4181,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   assign gpio_8_cfg_rx_en_wd = reg_wdata[2];
 
   assign gpio_8_mux_sel_we = addr_hit[18] & reg_we & !reg_error;
-  assign gpio_8_mux_sel_wd = reg_wdata[2:0];
+  assign gpio_8_mux_sel_wd = reg_wdata[3:0];
 
   assign gpio_9_cfg_chip2pad_we = addr_hit[19] & reg_we & !reg_error;
   assign gpio_9_cfg_chip2pad_wd = reg_wdata[0];
@@ -4193,7 +4193,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   assign gpio_9_cfg_rx_en_wd = reg_wdata[2];
 
   assign gpio_9_mux_sel_we = addr_hit[20] & reg_we & !reg_error;
-  assign gpio_9_mux_sel_wd = reg_wdata[2:0];
+  assign gpio_9_mux_sel_wd = reg_wdata[3:0];
 
   assign gpio_10_cfg_chip2pad_we = addr_hit[21] & reg_we & !reg_error;
   assign gpio_10_cfg_chip2pad_wd = reg_wdata[0];
@@ -4205,7 +4205,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   assign gpio_10_cfg_rx_en_wd = reg_wdata[2];
 
   assign gpio_10_mux_sel_we = addr_hit[22] & reg_we & !reg_error;
-  assign gpio_10_mux_sel_wd = reg_wdata[2:0];
+  assign gpio_10_mux_sel_wd = reg_wdata[3:0];
 
   assign gpio_11_cfg_chip2pad_we = addr_hit[23] & reg_we & !reg_error;
   assign gpio_11_cfg_chip2pad_wd = reg_wdata[0];
@@ -4217,7 +4217,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   assign gpio_11_cfg_rx_en_wd = reg_wdata[2];
 
   assign gpio_11_mux_sel_we = addr_hit[24] & reg_we & !reg_error;
-  assign gpio_11_mux_sel_wd = reg_wdata[2:0];
+  assign gpio_11_mux_sel_wd = reg_wdata[3:0];
 
   assign gpio_12_cfg_chip2pad_we = addr_hit[25] & reg_we & !reg_error;
   assign gpio_12_cfg_chip2pad_wd = reg_wdata[0];
@@ -4229,7 +4229,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   assign gpio_12_cfg_rx_en_wd = reg_wdata[2];
 
   assign gpio_12_mux_sel_we = addr_hit[26] & reg_we & !reg_error;
-  assign gpio_12_mux_sel_wd = reg_wdata[2:0];
+  assign gpio_12_mux_sel_wd = reg_wdata[3:0];
 
   assign gpio_13_cfg_chip2pad_we = addr_hit[27] & reg_we & !reg_error;
   assign gpio_13_cfg_chip2pad_wd = reg_wdata[0];
@@ -4241,7 +4241,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   assign gpio_13_cfg_rx_en_wd = reg_wdata[2];
 
   assign gpio_13_mux_sel_we = addr_hit[28] & reg_we & !reg_error;
-  assign gpio_13_mux_sel_wd = reg_wdata[2:0];
+  assign gpio_13_mux_sel_wd = reg_wdata[3:0];
 
   assign gpio_14_cfg_chip2pad_we = addr_hit[29] & reg_we & !reg_error;
   assign gpio_14_cfg_chip2pad_wd = reg_wdata[0];
@@ -4253,7 +4253,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   assign gpio_14_cfg_rx_en_wd = reg_wdata[2];
 
   assign gpio_14_mux_sel_we = addr_hit[30] & reg_we & !reg_error;
-  assign gpio_14_mux_sel_wd = reg_wdata[2:0];
+  assign gpio_14_mux_sel_wd = reg_wdata[3:0];
 
   assign gpio_15_cfg_chip2pad_we = addr_hit[31] & reg_we & !reg_error;
   assign gpio_15_cfg_chip2pad_wd = reg_wdata[0];
@@ -4265,7 +4265,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   assign gpio_15_cfg_rx_en_wd = reg_wdata[2];
 
   assign gpio_15_mux_sel_we = addr_hit[32] & reg_we & !reg_error;
-  assign gpio_15_mux_sel_wd = reg_wdata[2:0];
+  assign gpio_15_mux_sel_wd = reg_wdata[3:0];
 
   assign gpio_16_cfg_chip2pad_we = addr_hit[33] & reg_we & !reg_error;
   assign gpio_16_cfg_chip2pad_wd = reg_wdata[0];
@@ -4277,7 +4277,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   assign gpio_16_cfg_rx_en_wd = reg_wdata[2];
 
   assign gpio_16_mux_sel_we = addr_hit[34] & reg_we & !reg_error;
-  assign gpio_16_mux_sel_wd = reg_wdata[2:0];
+  assign gpio_16_mux_sel_wd = reg_wdata[3:0];
 
   assign gpio_17_cfg_chip2pad_we = addr_hit[35] & reg_we & !reg_error;
   assign gpio_17_cfg_chip2pad_wd = reg_wdata[0];
@@ -4289,7 +4289,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   assign gpio_17_cfg_rx_en_wd = reg_wdata[2];
 
   assign gpio_17_mux_sel_we = addr_hit[36] & reg_we & !reg_error;
-  assign gpio_17_mux_sel_wd = reg_wdata[2:0];
+  assign gpio_17_mux_sel_wd = reg_wdata[3:0];
 
   assign gpio_18_cfg_chip2pad_we = addr_hit[37] & reg_we & !reg_error;
   assign gpio_18_cfg_chip2pad_wd = reg_wdata[0];
@@ -4301,7 +4301,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   assign gpio_18_cfg_rx_en_wd = reg_wdata[2];
 
   assign gpio_18_mux_sel_we = addr_hit[38] & reg_we & !reg_error;
-  assign gpio_18_mux_sel_wd = reg_wdata[2:0];
+  assign gpio_18_mux_sel_wd = reg_wdata[3:0];
 
   assign gpio_19_cfg_chip2pad_we = addr_hit[39] & reg_we & !reg_error;
   assign gpio_19_cfg_chip2pad_wd = reg_wdata[0];
@@ -4313,7 +4313,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   assign gpio_19_cfg_rx_en_wd = reg_wdata[2];
 
   assign gpio_19_mux_sel_we = addr_hit[40] & reg_we & !reg_error;
-  assign gpio_19_mux_sel_wd = reg_wdata[2:0];
+  assign gpio_19_mux_sel_wd = reg_wdata[3:0];
 
   assign gpio_20_cfg_chip2pad_we = addr_hit[41] & reg_we & !reg_error;
   assign gpio_20_cfg_chip2pad_wd = reg_wdata[0];
@@ -4325,7 +4325,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   assign gpio_20_cfg_rx_en_wd = reg_wdata[2];
 
   assign gpio_20_mux_sel_we = addr_hit[42] & reg_we & !reg_error;
-  assign gpio_20_mux_sel_wd = reg_wdata[2:0];
+  assign gpio_20_mux_sel_wd = reg_wdata[3:0];
 
   assign gpio_21_cfg_chip2pad_we = addr_hit[43] & reg_we & !reg_error;
   assign gpio_21_cfg_chip2pad_wd = reg_wdata[0];
@@ -4337,7 +4337,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   assign gpio_21_cfg_rx_en_wd = reg_wdata[2];
 
   assign gpio_21_mux_sel_we = addr_hit[44] & reg_we & !reg_error;
-  assign gpio_21_mux_sel_wd = reg_wdata[2:0];
+  assign gpio_21_mux_sel_wd = reg_wdata[3:0];
 
   assign gpio_22_cfg_chip2pad_we = addr_hit[45] & reg_we & !reg_error;
   assign gpio_22_cfg_chip2pad_wd = reg_wdata[0];
@@ -4349,7 +4349,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   assign gpio_22_cfg_rx_en_wd = reg_wdata[2];
 
   assign gpio_22_mux_sel_we = addr_hit[46] & reg_we & !reg_error;
-  assign gpio_22_mux_sel_wd = reg_wdata[2:0];
+  assign gpio_22_mux_sel_wd = reg_wdata[3:0];
 
   assign gpio_23_cfg_chip2pad_we = addr_hit[47] & reg_we & !reg_error;
   assign gpio_23_cfg_chip2pad_wd = reg_wdata[0];
@@ -4361,7 +4361,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   assign gpio_23_cfg_rx_en_wd = reg_wdata[2];
 
   assign gpio_23_mux_sel_we = addr_hit[48] & reg_we & !reg_error;
-  assign gpio_23_mux_sel_wd = reg_wdata[2:0];
+  assign gpio_23_mux_sel_wd = reg_wdata[3:0];
 
   assign gpio_24_cfg_chip2pad_we = addr_hit[49] & reg_we & !reg_error;
   assign gpio_24_cfg_chip2pad_wd = reg_wdata[0];
@@ -4373,7 +4373,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   assign gpio_24_cfg_rx_en_wd = reg_wdata[2];
 
   assign gpio_24_mux_sel_we = addr_hit[50] & reg_we & !reg_error;
-  assign gpio_24_mux_sel_wd = reg_wdata[2:0];
+  assign gpio_24_mux_sel_wd = reg_wdata[3:0];
 
   assign gpio_25_cfg_chip2pad_we = addr_hit[51] & reg_we & !reg_error;
   assign gpio_25_cfg_chip2pad_wd = reg_wdata[0];
@@ -4385,7 +4385,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   assign gpio_25_cfg_rx_en_wd = reg_wdata[2];
 
   assign gpio_25_mux_sel_we = addr_hit[52] & reg_we & !reg_error;
-  assign gpio_25_mux_sel_wd = reg_wdata[2:0];
+  assign gpio_25_mux_sel_wd = reg_wdata[3:0];
 
   assign gpio_26_cfg_chip2pad_we = addr_hit[53] & reg_we & !reg_error;
   assign gpio_26_cfg_chip2pad_wd = reg_wdata[0];
@@ -4397,7 +4397,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   assign gpio_26_cfg_rx_en_wd = reg_wdata[2];
 
   assign gpio_26_mux_sel_we = addr_hit[54] & reg_we & !reg_error;
-  assign gpio_26_mux_sel_wd = reg_wdata[2:0];
+  assign gpio_26_mux_sel_wd = reg_wdata[3:0];
 
   assign gpio_27_cfg_chip2pad_we = addr_hit[55] & reg_we & !reg_error;
   assign gpio_27_cfg_chip2pad_wd = reg_wdata[0];
@@ -4409,7 +4409,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   assign gpio_27_cfg_rx_en_wd = reg_wdata[2];
 
   assign gpio_27_mux_sel_we = addr_hit[56] & reg_we & !reg_error;
-  assign gpio_27_mux_sel_wd = reg_wdata[2:0];
+  assign gpio_27_mux_sel_wd = reg_wdata[3:0];
 
   assign gpio_28_cfg_chip2pad_we = addr_hit[57] & reg_we & !reg_error;
   assign gpio_28_cfg_chip2pad_wd = reg_wdata[0];
@@ -4421,7 +4421,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   assign gpio_28_cfg_rx_en_wd = reg_wdata[2];
 
   assign gpio_28_mux_sel_we = addr_hit[58] & reg_we & !reg_error;
-  assign gpio_28_mux_sel_wd = reg_wdata[2:0];
+  assign gpio_28_mux_sel_wd = reg_wdata[3:0];
 
   assign gpio_29_cfg_chip2pad_we = addr_hit[59] & reg_we & !reg_error;
   assign gpio_29_cfg_chip2pad_wd = reg_wdata[0];
@@ -4433,7 +4433,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   assign gpio_29_cfg_rx_en_wd = reg_wdata[2];
 
   assign gpio_29_mux_sel_we = addr_hit[60] & reg_we & !reg_error;
-  assign gpio_29_mux_sel_wd = reg_wdata[2:0];
+  assign gpio_29_mux_sel_wd = reg_wdata[3:0];
 
   assign gpio_30_cfg_chip2pad_we = addr_hit[61] & reg_we & !reg_error;
   assign gpio_30_cfg_chip2pad_wd = reg_wdata[0];
@@ -4445,7 +4445,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
   assign gpio_30_cfg_rx_en_wd = reg_wdata[2];
 
   assign gpio_30_mux_sel_we = addr_hit[62] & reg_we & !reg_error;
-  assign gpio_30_mux_sel_wd = reg_wdata[2:0];
+  assign gpio_30_mux_sel_wd = reg_wdata[3:0];
 
   assign gpio_31_cfg_chip2pad_we = addr_hit[63] & reg_we & !reg_error;
   assign gpio_31_cfg_chip2pad_wd = reg_wdata[0];
@@ -4475,7 +4475,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
       end
 
       addr_hit[2]: begin
-        reg_rdata_next[2:0] = gpio_0_mux_sel_qs;
+        reg_rdata_next[3:0] = gpio_0_mux_sel_qs;
       end
 
       addr_hit[3]: begin
@@ -4485,7 +4485,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
       end
 
       addr_hit[4]: begin
-        reg_rdata_next[2:0] = gpio_1_mux_sel_qs;
+        reg_rdata_next[3:0] = gpio_1_mux_sel_qs;
       end
 
       addr_hit[5]: begin
@@ -4495,7 +4495,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
       end
 
       addr_hit[6]: begin
-        reg_rdata_next[2:0] = gpio_2_mux_sel_qs;
+        reg_rdata_next[3:0] = gpio_2_mux_sel_qs;
       end
 
       addr_hit[7]: begin
@@ -4505,7 +4505,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
       end
 
       addr_hit[8]: begin
-        reg_rdata_next[2:0] = gpio_3_mux_sel_qs;
+        reg_rdata_next[3:0] = gpio_3_mux_sel_qs;
       end
 
       addr_hit[9]: begin
@@ -4515,7 +4515,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
       end
 
       addr_hit[10]: begin
-        reg_rdata_next[2:0] = gpio_4_mux_sel_qs;
+        reg_rdata_next[3:0] = gpio_4_mux_sel_qs;
       end
 
       addr_hit[11]: begin
@@ -4525,7 +4525,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
       end
 
       addr_hit[12]: begin
-        reg_rdata_next[2:0] = gpio_5_mux_sel_qs;
+        reg_rdata_next[3:0] = gpio_5_mux_sel_qs;
       end
 
       addr_hit[13]: begin
@@ -4535,7 +4535,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
       end
 
       addr_hit[14]: begin
-        reg_rdata_next[2:0] = gpio_6_mux_sel_qs;
+        reg_rdata_next[3:0] = gpio_6_mux_sel_qs;
       end
 
       addr_hit[15]: begin
@@ -4545,7 +4545,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
       end
 
       addr_hit[16]: begin
-        reg_rdata_next[2:0] = gpio_7_mux_sel_qs;
+        reg_rdata_next[3:0] = gpio_7_mux_sel_qs;
       end
 
       addr_hit[17]: begin
@@ -4555,7 +4555,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
       end
 
       addr_hit[18]: begin
-        reg_rdata_next[2:0] = gpio_8_mux_sel_qs;
+        reg_rdata_next[3:0] = gpio_8_mux_sel_qs;
       end
 
       addr_hit[19]: begin
@@ -4565,7 +4565,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
       end
 
       addr_hit[20]: begin
-        reg_rdata_next[2:0] = gpio_9_mux_sel_qs;
+        reg_rdata_next[3:0] = gpio_9_mux_sel_qs;
       end
 
       addr_hit[21]: begin
@@ -4575,7 +4575,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
       end
 
       addr_hit[22]: begin
-        reg_rdata_next[2:0] = gpio_10_mux_sel_qs;
+        reg_rdata_next[3:0] = gpio_10_mux_sel_qs;
       end
 
       addr_hit[23]: begin
@@ -4585,7 +4585,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
       end
 
       addr_hit[24]: begin
-        reg_rdata_next[2:0] = gpio_11_mux_sel_qs;
+        reg_rdata_next[3:0] = gpio_11_mux_sel_qs;
       end
 
       addr_hit[25]: begin
@@ -4595,7 +4595,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
       end
 
       addr_hit[26]: begin
-        reg_rdata_next[2:0] = gpio_12_mux_sel_qs;
+        reg_rdata_next[3:0] = gpio_12_mux_sel_qs;
       end
 
       addr_hit[27]: begin
@@ -4605,7 +4605,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
       end
 
       addr_hit[28]: begin
-        reg_rdata_next[2:0] = gpio_13_mux_sel_qs;
+        reg_rdata_next[3:0] = gpio_13_mux_sel_qs;
       end
 
       addr_hit[29]: begin
@@ -4615,7 +4615,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
       end
 
       addr_hit[30]: begin
-        reg_rdata_next[2:0] = gpio_14_mux_sel_qs;
+        reg_rdata_next[3:0] = gpio_14_mux_sel_qs;
       end
 
       addr_hit[31]: begin
@@ -4625,7 +4625,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
       end
 
       addr_hit[32]: begin
-        reg_rdata_next[2:0] = gpio_15_mux_sel_qs;
+        reg_rdata_next[3:0] = gpio_15_mux_sel_qs;
       end
 
       addr_hit[33]: begin
@@ -4635,7 +4635,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
       end
 
       addr_hit[34]: begin
-        reg_rdata_next[2:0] = gpio_16_mux_sel_qs;
+        reg_rdata_next[3:0] = gpio_16_mux_sel_qs;
       end
 
       addr_hit[35]: begin
@@ -4645,7 +4645,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
       end
 
       addr_hit[36]: begin
-        reg_rdata_next[2:0] = gpio_17_mux_sel_qs;
+        reg_rdata_next[3:0] = gpio_17_mux_sel_qs;
       end
 
       addr_hit[37]: begin
@@ -4655,7 +4655,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
       end
 
       addr_hit[38]: begin
-        reg_rdata_next[2:0] = gpio_18_mux_sel_qs;
+        reg_rdata_next[3:0] = gpio_18_mux_sel_qs;
       end
 
       addr_hit[39]: begin
@@ -4665,7 +4665,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
       end
 
       addr_hit[40]: begin
-        reg_rdata_next[2:0] = gpio_19_mux_sel_qs;
+        reg_rdata_next[3:0] = gpio_19_mux_sel_qs;
       end
 
       addr_hit[41]: begin
@@ -4675,7 +4675,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
       end
 
       addr_hit[42]: begin
-        reg_rdata_next[2:0] = gpio_20_mux_sel_qs;
+        reg_rdata_next[3:0] = gpio_20_mux_sel_qs;
       end
 
       addr_hit[43]: begin
@@ -4685,7 +4685,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
       end
 
       addr_hit[44]: begin
-        reg_rdata_next[2:0] = gpio_21_mux_sel_qs;
+        reg_rdata_next[3:0] = gpio_21_mux_sel_qs;
       end
 
       addr_hit[45]: begin
@@ -4695,7 +4695,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
       end
 
       addr_hit[46]: begin
-        reg_rdata_next[2:0] = gpio_22_mux_sel_qs;
+        reg_rdata_next[3:0] = gpio_22_mux_sel_qs;
       end
 
       addr_hit[47]: begin
@@ -4705,7 +4705,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
       end
 
       addr_hit[48]: begin
-        reg_rdata_next[2:0] = gpio_23_mux_sel_qs;
+        reg_rdata_next[3:0] = gpio_23_mux_sel_qs;
       end
 
       addr_hit[49]: begin
@@ -4715,7 +4715,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
       end
 
       addr_hit[50]: begin
-        reg_rdata_next[2:0] = gpio_24_mux_sel_qs;
+        reg_rdata_next[3:0] = gpio_24_mux_sel_qs;
       end
 
       addr_hit[51]: begin
@@ -4725,7 +4725,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
       end
 
       addr_hit[52]: begin
-        reg_rdata_next[2:0] = gpio_25_mux_sel_qs;
+        reg_rdata_next[3:0] = gpio_25_mux_sel_qs;
       end
 
       addr_hit[53]: begin
@@ -4735,7 +4735,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
       end
 
       addr_hit[54]: begin
-        reg_rdata_next[2:0] = gpio_26_mux_sel_qs;
+        reg_rdata_next[3:0] = gpio_26_mux_sel_qs;
       end
 
       addr_hit[55]: begin
@@ -4745,7 +4745,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
       end
 
       addr_hit[56]: begin
-        reg_rdata_next[2:0] = gpio_27_mux_sel_qs;
+        reg_rdata_next[3:0] = gpio_27_mux_sel_qs;
       end
 
       addr_hit[57]: begin
@@ -4755,7 +4755,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
       end
 
       addr_hit[58]: begin
-        reg_rdata_next[2:0] = gpio_28_mux_sel_qs;
+        reg_rdata_next[3:0] = gpio_28_mux_sel_qs;
       end
 
       addr_hit[59]: begin
@@ -4765,7 +4765,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
       end
 
       addr_hit[60]: begin
-        reg_rdata_next[2:0] = gpio_29_mux_sel_qs;
+        reg_rdata_next[3:0] = gpio_29_mux_sel_qs;
       end
 
       addr_hit[61]: begin
@@ -4775,7 +4775,7 @@ module chimera_padframe_aon_gpioa_config_reg_top #(
       end
 
       addr_hit[62]: begin
-        reg_rdata_next[2:0] = gpio_30_mux_sel_qs;
+        reg_rdata_next[3:0] = gpio_30_mux_sel_qs;
       end
 
       addr_hit[63]: begin

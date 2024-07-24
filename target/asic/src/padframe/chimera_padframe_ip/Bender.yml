@@ -13,12 +13,12 @@ export_include_dirs:
 
 sources:
   - src/pkg_chimera_padframe.sv
-  - src/pkg_internal_chimera_padframe_aop_static.sv
-  - src/chimera_padframe_aop_static_config_reg_pkg.sv
-  - src/chimera_padframe_aop_static_config_reg_top.sv
-  - src/chimera_padframe_aop_static_pads.sv
-  - src/chimera_padframe_aop_static_muxer.sv
-  - src/chimera_padframe_aop_static.sv
+  - src/pkg_internal_chimera_padframe_aon_static.sv
+  - src/chimera_padframe_aon_static_config_reg_pkg.sv
+  - src/chimera_padframe_aon_static_config_reg_top.sv
+  - src/chimera_padframe_aon_static_pads.sv
+  - src/chimera_padframe_aon_static_muxer.sv
+  - src/chimera_padframe_aon_static.sv
   - src/pkg_internal_chimera_padframe_aon_gpioa.sv
   - src/chimera_padframe_aon_gpioa_config_reg_pkg.sv
   - src/chimera_padframe_aon_gpioa_config_reg_top.sv

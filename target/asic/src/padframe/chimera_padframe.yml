@@ -18,7 +18,7 @@ user_attr:
   # uartb_count: &uartb_count 0
 
 pad_domains:
-  - name: aop_static # Domains containing only static signals, i.e. non muxed signals
+  - name: aon_static # Domains containing only static signals, i.e. non muxed signals
     pad_types:
       - name: pull_down_pad
         # user defined name of the pad. Used to reference it
@@ -124,22 +124,32 @@ pad_domains:
       #|         STATIC PAD SIGNALS         |
       #|------------------------------------|
 
-      - name: ref_clk
-        description: "Reference clock signal"
+      - name: lse_clk
+        description: "Low Speed External clock"
         pad_type: pull_down_pad
         is_static: true
         connections:
           chip2pad: 1'b0
-          pad2chip: st_ref_clk
+          pad2chip: st_lse_clk
           rx_en: 1'b1
 
-      - name: ext_clk
-        description: "External clock signal"
+      - name: hse_clk
+        description: "High Speed External clock"
         pad_type: pull_down_pad
         is_static: true
         connections:
           chip2pad: 1'b0
-          pad2chip: st_ext_clk
+          pad2chip: st_hse_clk
+          rx_en: 1'b1
+
+      - name: byp_sel_clk
+        description: "Bypass signal for clk selection"
+        pad_type: pull_down_pad
+        is_static: true
+        connections:
+          chip2pad: 1'b0
+          pad2chip: st_byp_clk_sel
+          output_en: 1'b0
           rx_en: 1'b1
 
       - name: rstn
@@ -193,7 +203,17 @@ pad_domains:
         is_static: true
         connections:
           chip2pad: st_jtag_tdo
+          output_en: st_jtag_tdo_oe
+
+      - name: bootsel
+        description: "Boot mode selection signal"
+        pad_type: pull_down_pad
+        is_static: true
+        connections:
+          chip2pad: 1'b0
+          pad2chip: st_bootsel
           output_en: 1'b0
+          rx_en: 1'b1
 
   - name: aon_gpioa
     pad_types:
@@ -237,13 +257,37 @@ pad_domains:
         mux_groups: [gpio_seta]
         multiple: *spia_count
         ports:
-          - name: sd{i} 
-            description: "Serial Data port of the QSPI manager peripheral"
+          - name: sd0 
+            description: "Serial Data port of the QSPI manager peripheral: 0th bit"
             connections:
-              chip2pad: sd{i}_o 
-              sd{i}_i: pad2chip
-              output_en: sd_en{i}_o
-              rx_en: ~sd_en{i}_o
+              chip2pad: sd0_o 
+              sd0_i: pad2chip
+              output_en: sd0_en_o
+              rx_en: ~sd0_en_o
+
+          - name: sd1 
+            description: "Serial Data port of the QSPI manager peripheral: 1st bit"
+            connections:
+              chip2pad: sd1_o 
+              sd1_i: pad2chip
+              output_en: sd1_en_o
+              rx_en: ~sd1_en_o
+
+          - name: sd2 
+            description: "Serial Data port of the QSPI manager peripheral: 2nd bit"
+            connections:
+              chip2pad: sd2_o 
+              sd2_i: pad2chip
+              output_en: sd2_en_o
+              rx_en: ~sd2_en_o
+
+          - name: sd3
+            description: "Serial Data port of the QSPI manager peripheral: 3rd bit"
+            connections:
+              chip2pad: sd3_o 
+              sd3_i: pad2chip
+              output_en: sd3_en_o
+              rx_en: ~sd3_en_o
 
           # - name: miso
           #   description: "MISO port of the SPI subordinate peripheral"
@@ -252,18 +296,32 @@ pad_domains:
           #     rx_en: 1'b1
           #     output_en: 1'b0
 
-          - name: sck{i}
+          - name: sck
             description: "Clock signal of the manager module"
             connections:
-              chip2pad: sck{i}_o
-              output_en: sck_en{i}_o
+              chip2pad: sck_o
+              output_en: sck_en_o
               #rx_en: 1'b0         # Undefined signal are connected to Reg that can be changed later
 
-          - name: csb{i}
+          - name: csb0
             description: "Chip Select signal active Low"
             connections:
-              chip2pad: csb{i}_o
-              output_en: csb_en{i}_o
+              chip2pad: csb0_o
+              output_en: csb0_en_o
+              #rx_en: 1'b0
+
+          - name: csb1
+            description: "Chip Select signal active Low"
+            connections:
+              chip2pad: csb1_o
+              output_en: csb1_en_o
+              #rx_en: 1'b0
+
+          - name: csb2
+            description: "Chip Select signal active Low"
+            connections:
+              chip2pad: csb2_o
+              output_en: csb2_en_o
               #rx_en: 1'b0
 
       - name: i2c{i}
@@ -272,21 +330,21 @@ pad_domains:
         multiple: *i2ca_count
         mux_groups: [gpio_seta]
         ports:
-          - name: sda{i}
+          - name: sda
             description: "SDA port of the I2C peripheral"
             connections:
-              chip2pad: sda{i}_o
-              sda{i}_i: pad2chip
-              output_en: sda_en{i}_o
-              rx_en: ~sda_en{i}_o
+              chip2pad: sda_o
+              sda_i: pad2chip
+              output_en: sda_en_o
+              rx_en: ~sda_en_o
 
-          - name: scl{i}
+          - name: scl
             description: "Manager clock signal"
             connections:
-              chip2pad: scl{i}_o
-              scl{i}_i: pad2chip
-              output_en: scl_en{i}_o
-              rx_en: ~scl_en{i}_o
+              chip2pad: scl_o
+              scl_i: pad2chip
+              output_en: scl_en_o
+              rx_en: ~scl_en_o
 
       - name: uart{i}
         description: "Tx and RX ports for the UART peripheral"
@@ -294,21 +352,21 @@ pad_domains:
         multiple: *uarta_count
         mux_groups: [gpio_seta]
         ports:
-          - name: rx{i}
+          - name: rx
             description: "RX port"
             connections:
-              rx{i}_i: pad2chip
+              rx_i: pad2chip
               #output_en: 1'b0
               rx_en: 1'b1
 
-          - name: tx{i}
+          - name: tx
             description: "TX port"
             connections:
-              chip2pad: tx{i}_o
+              chip2pad: tx_o
               output_en: 1'b0
               # rx_en: 1'b1
               
-      - name: GPIOA{i}
+      - name: gpioa{i}
         multiple: *gpioa_count
         mux_groups: ["gpioa_{i}"]
         output_defaults: 1'b0
@@ -318,8 +376,8 @@ pad_domains:
             connections:
               chip2pad: gpio{i}_o
               gpio{i}_i: pad2chip
-              output_en: gpio_en{i}_o
-              rx_en: ~gpio_en{i}_o
+              output_en: gpio{i}_en_o
+              rx_en: ~gpio{i}_en_o
 
   # - name: aon_gpiob
   #   pad_types:

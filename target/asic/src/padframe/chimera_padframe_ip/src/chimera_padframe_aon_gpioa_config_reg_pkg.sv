@@ -35,7 +35,7 @@ package chimera_padframe_aon_gpioa_config_reg_pkg;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_0_cfg_reg_t;
 
   typedef struct packed {
-    logic [2:0]  q;
+    logic [3:0]  q;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_0_mux_sel_reg_t;
 
   typedef struct packed {
@@ -51,7 +51,7 @@ package chimera_padframe_aon_gpioa_config_reg_pkg;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_1_cfg_reg_t;
 
   typedef struct packed {
-    logic [2:0]  q;
+    logic [3:0]  q;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_1_mux_sel_reg_t;
 
   typedef struct packed {
@@ -67,7 +67,7 @@ package chimera_padframe_aon_gpioa_config_reg_pkg;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_2_cfg_reg_t;
 
   typedef struct packed {
-    logic [2:0]  q;
+    logic [3:0]  q;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_2_mux_sel_reg_t;
 
   typedef struct packed {
@@ -83,7 +83,7 @@ package chimera_padframe_aon_gpioa_config_reg_pkg;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_3_cfg_reg_t;
 
   typedef struct packed {
-    logic [2:0]  q;
+    logic [3:0]  q;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_3_mux_sel_reg_t;
 
   typedef struct packed {
@@ -99,7 +99,7 @@ package chimera_padframe_aon_gpioa_config_reg_pkg;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_4_cfg_reg_t;
 
   typedef struct packed {
-    logic [2:0]  q;
+    logic [3:0]  q;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_4_mux_sel_reg_t;
 
   typedef struct packed {
@@ -115,7 +115,7 @@ package chimera_padframe_aon_gpioa_config_reg_pkg;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_5_cfg_reg_t;
 
   typedef struct packed {
-    logic [2:0]  q;
+    logic [3:0]  q;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_5_mux_sel_reg_t;
 
   typedef struct packed {
@@ -131,7 +131,7 @@ package chimera_padframe_aon_gpioa_config_reg_pkg;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_6_cfg_reg_t;
 
   typedef struct packed {
-    logic [2:0]  q;
+    logic [3:0]  q;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_6_mux_sel_reg_t;
 
   typedef struct packed {
@@ -147,7 +147,7 @@ package chimera_padframe_aon_gpioa_config_reg_pkg;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_7_cfg_reg_t;
 
   typedef struct packed {
-    logic [2:0]  q;
+    logic [3:0]  q;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_7_mux_sel_reg_t;
 
   typedef struct packed {
@@ -163,7 +163,7 @@ package chimera_padframe_aon_gpioa_config_reg_pkg;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_8_cfg_reg_t;
 
   typedef struct packed {
-    logic [2:0]  q;
+    logic [3:0]  q;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_8_mux_sel_reg_t;
 
   typedef struct packed {
@@ -179,7 +179,7 @@ package chimera_padframe_aon_gpioa_config_reg_pkg;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_9_cfg_reg_t;
 
   typedef struct packed {
-    logic [2:0]  q;
+    logic [3:0]  q;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_9_mux_sel_reg_t;
 
   typedef struct packed {
@@ -195,7 +195,7 @@ package chimera_padframe_aon_gpioa_config_reg_pkg;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_10_cfg_reg_t;
 
   typedef struct packed {
-    logic [2:0]  q;
+    logic [3:0]  q;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_10_mux_sel_reg_t;
 
   typedef struct packed {
@@ -211,7 +211,7 @@ package chimera_padframe_aon_gpioa_config_reg_pkg;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_11_cfg_reg_t;
 
   typedef struct packed {
-    logic [2:0]  q;
+    logic [3:0]  q;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_11_mux_sel_reg_t;
 
   typedef struct packed {
@@ -227,7 +227,7 @@ package chimera_padframe_aon_gpioa_config_reg_pkg;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_12_cfg_reg_t;
 
   typedef struct packed {
-    logic [2:0]  q;
+    logic [3:0]  q;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_12_mux_sel_reg_t;
 
   typedef struct packed {
@@ -243,7 +243,7 @@ package chimera_padframe_aon_gpioa_config_reg_pkg;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_13_cfg_reg_t;
 
   typedef struct packed {
-    logic [2:0]  q;
+    logic [3:0]  q;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_13_mux_sel_reg_t;
 
   typedef struct packed {
@@ -259,7 +259,7 @@ package chimera_padframe_aon_gpioa_config_reg_pkg;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_14_cfg_reg_t;
 
   typedef struct packed {
-    logic [2:0]  q;
+    logic [3:0]  q;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_14_mux_sel_reg_t;
 
   typedef struct packed {
@@ -275,7 +275,7 @@ package chimera_padframe_aon_gpioa_config_reg_pkg;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_15_cfg_reg_t;
 
   typedef struct packed {
-    logic [2:0]  q;
+    logic [3:0]  q;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_15_mux_sel_reg_t;
 
   typedef struct packed {
@@ -291,7 +291,7 @@ package chimera_padframe_aon_gpioa_config_reg_pkg;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_16_cfg_reg_t;
 
   typedef struct packed {
-    logic [2:0]  q;
+    logic [3:0]  q;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_16_mux_sel_reg_t;
 
   typedef struct packed {
@@ -307,7 +307,7 @@ package chimera_padframe_aon_gpioa_config_reg_pkg;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_17_cfg_reg_t;
 
   typedef struct packed {
-    logic [2:0]  q;
+    logic [3:0]  q;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_17_mux_sel_reg_t;
 
   typedef struct packed {
@@ -323,7 +323,7 @@ package chimera_padframe_aon_gpioa_config_reg_pkg;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_18_cfg_reg_t;
 
   typedef struct packed {
-    logic [2:0]  q;
+    logic [3:0]  q;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_18_mux_sel_reg_t;
 
   typedef struct packed {
@@ -339,7 +339,7 @@ package chimera_padframe_aon_gpioa_config_reg_pkg;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_19_cfg_reg_t;
 
   typedef struct packed {
-    logic [2:0]  q;
+    logic [3:0]  q;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_19_mux_sel_reg_t;
 
   typedef struct packed {
@@ -355,7 +355,7 @@ package chimera_padframe_aon_gpioa_config_reg_pkg;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_20_cfg_reg_t;
 
   typedef struct packed {
-    logic [2:0]  q;
+    logic [3:0]  q;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_20_mux_sel_reg_t;
 
   typedef struct packed {
@@ -371,7 +371,7 @@ package chimera_padframe_aon_gpioa_config_reg_pkg;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_21_cfg_reg_t;
 
   typedef struct packed {
-    logic [2:0]  q;
+    logic [3:0]  q;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_21_mux_sel_reg_t;
 
   typedef struct packed {
@@ -387,7 +387,7 @@ package chimera_padframe_aon_gpioa_config_reg_pkg;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_22_cfg_reg_t;
 
   typedef struct packed {
-    logic [2:0]  q;
+    logic [3:0]  q;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_22_mux_sel_reg_t;
 
   typedef struct packed {
@@ -403,7 +403,7 @@ package chimera_padframe_aon_gpioa_config_reg_pkg;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_23_cfg_reg_t;
 
   typedef struct packed {
-    logic [2:0]  q;
+    logic [3:0]  q;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_23_mux_sel_reg_t;
 
   typedef struct packed {
@@ -419,7 +419,7 @@ package chimera_padframe_aon_gpioa_config_reg_pkg;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_24_cfg_reg_t;
 
   typedef struct packed {
-    logic [2:0]  q;
+    logic [3:0]  q;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_24_mux_sel_reg_t;
 
   typedef struct packed {
@@ -435,7 +435,7 @@ package chimera_padframe_aon_gpioa_config_reg_pkg;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_25_cfg_reg_t;
 
   typedef struct packed {
-    logic [2:0]  q;
+    logic [3:0]  q;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_25_mux_sel_reg_t;
 
   typedef struct packed {
@@ -451,7 +451,7 @@ package chimera_padframe_aon_gpioa_config_reg_pkg;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_26_cfg_reg_t;
 
   typedef struct packed {
-    logic [2:0]  q;
+    logic [3:0]  q;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_26_mux_sel_reg_t;
 
   typedef struct packed {
@@ -467,7 +467,7 @@ package chimera_padframe_aon_gpioa_config_reg_pkg;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_27_cfg_reg_t;
 
   typedef struct packed {
-    logic [2:0]  q;
+    logic [3:0]  q;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_27_mux_sel_reg_t;
 
   typedef struct packed {
@@ -483,7 +483,7 @@ package chimera_padframe_aon_gpioa_config_reg_pkg;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_28_cfg_reg_t;
 
   typedef struct packed {
-    logic [2:0]  q;
+    logic [3:0]  q;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_28_mux_sel_reg_t;
 
   typedef struct packed {
@@ -499,7 +499,7 @@ package chimera_padframe_aon_gpioa_config_reg_pkg;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_29_cfg_reg_t;
 
   typedef struct packed {
-    logic [2:0]  q;
+    logic [3:0]  q;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_29_mux_sel_reg_t;
 
   typedef struct packed {
@@ -515,7 +515,7 @@ package chimera_padframe_aon_gpioa_config_reg_pkg;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_30_cfg_reg_t;
 
   typedef struct packed {
-    logic [2:0]  q;
+    logic [3:0]  q;
   } chimera_padframe_aon_gpioa_config_reg2hw_gpio_30_mux_sel_reg_t;
 
   typedef struct packed {
@@ -536,69 +536,69 @@ package chimera_padframe_aon_gpioa_config_reg_pkg;
 
   // Register -> HW type
   typedef struct packed {
-    chimera_padframe_aon_gpioa_config_reg2hw_info_reg_t info; // [226:195]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_0_cfg_reg_t gpio_0_cfg; // [194:192]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_0_mux_sel_reg_t gpio_0_mux_sel; // [191:189]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_1_cfg_reg_t gpio_1_cfg; // [188:186]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_1_mux_sel_reg_t gpio_1_mux_sel; // [185:183]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_2_cfg_reg_t gpio_2_cfg; // [182:180]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_2_mux_sel_reg_t gpio_2_mux_sel; // [179:177]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_3_cfg_reg_t gpio_3_cfg; // [176:174]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_3_mux_sel_reg_t gpio_3_mux_sel; // [173:171]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_4_cfg_reg_t gpio_4_cfg; // [170:168]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_4_mux_sel_reg_t gpio_4_mux_sel; // [167:165]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_5_cfg_reg_t gpio_5_cfg; // [164:162]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_5_mux_sel_reg_t gpio_5_mux_sel; // [161:159]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_6_cfg_reg_t gpio_6_cfg; // [158:156]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_6_mux_sel_reg_t gpio_6_mux_sel; // [155:153]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_7_cfg_reg_t gpio_7_cfg; // [152:150]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_7_mux_sel_reg_t gpio_7_mux_sel; // [149:147]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_8_cfg_reg_t gpio_8_cfg; // [146:144]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_8_mux_sel_reg_t gpio_8_mux_sel; // [143:141]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_9_cfg_reg_t gpio_9_cfg; // [140:138]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_9_mux_sel_reg_t gpio_9_mux_sel; // [137:135]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_10_cfg_reg_t gpio_10_cfg; // [134:132]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_10_mux_sel_reg_t gpio_10_mux_sel; // [131:129]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_11_cfg_reg_t gpio_11_cfg; // [128:126]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_11_mux_sel_reg_t gpio_11_mux_sel; // [125:123]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_12_cfg_reg_t gpio_12_cfg; // [122:120]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_12_mux_sel_reg_t gpio_12_mux_sel; // [119:117]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_13_cfg_reg_t gpio_13_cfg; // [116:114]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_13_mux_sel_reg_t gpio_13_mux_sel; // [113:111]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_14_cfg_reg_t gpio_14_cfg; // [110:108]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_14_mux_sel_reg_t gpio_14_mux_sel; // [107:105]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_15_cfg_reg_t gpio_15_cfg; // [104:102]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_15_mux_sel_reg_t gpio_15_mux_sel; // [101:99]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_16_cfg_reg_t gpio_16_cfg; // [98:96]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_16_mux_sel_reg_t gpio_16_mux_sel; // [95:93]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_17_cfg_reg_t gpio_17_cfg; // [92:90]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_17_mux_sel_reg_t gpio_17_mux_sel; // [89:87]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_18_cfg_reg_t gpio_18_cfg; // [86:84]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_18_mux_sel_reg_t gpio_18_mux_sel; // [83:81]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_19_cfg_reg_t gpio_19_cfg; // [80:78]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_19_mux_sel_reg_t gpio_19_mux_sel; // [77:75]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_20_cfg_reg_t gpio_20_cfg; // [74:72]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_20_mux_sel_reg_t gpio_20_mux_sel; // [71:69]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_21_cfg_reg_t gpio_21_cfg; // [68:66]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_21_mux_sel_reg_t gpio_21_mux_sel; // [65:63]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_22_cfg_reg_t gpio_22_cfg; // [62:60]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_22_mux_sel_reg_t gpio_22_mux_sel; // [59:57]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_23_cfg_reg_t gpio_23_cfg; // [56:54]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_23_mux_sel_reg_t gpio_23_mux_sel; // [53:51]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_24_cfg_reg_t gpio_24_cfg; // [50:48]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_24_mux_sel_reg_t gpio_24_mux_sel; // [47:45]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_25_cfg_reg_t gpio_25_cfg; // [44:42]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_25_mux_sel_reg_t gpio_25_mux_sel; // [41:39]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_26_cfg_reg_t gpio_26_cfg; // [38:36]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_26_mux_sel_reg_t gpio_26_mux_sel; // [35:33]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_27_cfg_reg_t gpio_27_cfg; // [32:30]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_27_mux_sel_reg_t gpio_27_mux_sel; // [29:27]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_28_cfg_reg_t gpio_28_cfg; // [26:24]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_28_mux_sel_reg_t gpio_28_mux_sel; // [23:21]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_29_cfg_reg_t gpio_29_cfg; // [20:18]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_29_mux_sel_reg_t gpio_29_mux_sel; // [17:15]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_30_cfg_reg_t gpio_30_cfg; // [14:12]
-    chimera_padframe_aon_gpioa_config_reg2hw_gpio_30_mux_sel_reg_t gpio_30_mux_sel; // [11:9]
+    chimera_padframe_aon_gpioa_config_reg2hw_info_reg_t info; // [257:226]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_0_cfg_reg_t gpio_0_cfg; // [225:223]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_0_mux_sel_reg_t gpio_0_mux_sel; // [222:219]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_1_cfg_reg_t gpio_1_cfg; // [218:216]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_1_mux_sel_reg_t gpio_1_mux_sel; // [215:212]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_2_cfg_reg_t gpio_2_cfg; // [211:209]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_2_mux_sel_reg_t gpio_2_mux_sel; // [208:205]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_3_cfg_reg_t gpio_3_cfg; // [204:202]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_3_mux_sel_reg_t gpio_3_mux_sel; // [201:198]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_4_cfg_reg_t gpio_4_cfg; // [197:195]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_4_mux_sel_reg_t gpio_4_mux_sel; // [194:191]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_5_cfg_reg_t gpio_5_cfg; // [190:188]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_5_mux_sel_reg_t gpio_5_mux_sel; // [187:184]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_6_cfg_reg_t gpio_6_cfg; // [183:181]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_6_mux_sel_reg_t gpio_6_mux_sel; // [180:177]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_7_cfg_reg_t gpio_7_cfg; // [176:174]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_7_mux_sel_reg_t gpio_7_mux_sel; // [173:170]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_8_cfg_reg_t gpio_8_cfg; // [169:167]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_8_mux_sel_reg_t gpio_8_mux_sel; // [166:163]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_9_cfg_reg_t gpio_9_cfg; // [162:160]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_9_mux_sel_reg_t gpio_9_mux_sel; // [159:156]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_10_cfg_reg_t gpio_10_cfg; // [155:153]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_10_mux_sel_reg_t gpio_10_mux_sel; // [152:149]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_11_cfg_reg_t gpio_11_cfg; // [148:146]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_11_mux_sel_reg_t gpio_11_mux_sel; // [145:142]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_12_cfg_reg_t gpio_12_cfg; // [141:139]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_12_mux_sel_reg_t gpio_12_mux_sel; // [138:135]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_13_cfg_reg_t gpio_13_cfg; // [134:132]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_13_mux_sel_reg_t gpio_13_mux_sel; // [131:128]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_14_cfg_reg_t gpio_14_cfg; // [127:125]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_14_mux_sel_reg_t gpio_14_mux_sel; // [124:121]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_15_cfg_reg_t gpio_15_cfg; // [120:118]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_15_mux_sel_reg_t gpio_15_mux_sel; // [117:114]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_16_cfg_reg_t gpio_16_cfg; // [113:111]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_16_mux_sel_reg_t gpio_16_mux_sel; // [110:107]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_17_cfg_reg_t gpio_17_cfg; // [106:104]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_17_mux_sel_reg_t gpio_17_mux_sel; // [103:100]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_18_cfg_reg_t gpio_18_cfg; // [99:97]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_18_mux_sel_reg_t gpio_18_mux_sel; // [96:93]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_19_cfg_reg_t gpio_19_cfg; // [92:90]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_19_mux_sel_reg_t gpio_19_mux_sel; // [89:86]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_20_cfg_reg_t gpio_20_cfg; // [85:83]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_20_mux_sel_reg_t gpio_20_mux_sel; // [82:79]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_21_cfg_reg_t gpio_21_cfg; // [78:76]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_21_mux_sel_reg_t gpio_21_mux_sel; // [75:72]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_22_cfg_reg_t gpio_22_cfg; // [71:69]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_22_mux_sel_reg_t gpio_22_mux_sel; // [68:65]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_23_cfg_reg_t gpio_23_cfg; // [64:62]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_23_mux_sel_reg_t gpio_23_mux_sel; // [61:58]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_24_cfg_reg_t gpio_24_cfg; // [57:55]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_24_mux_sel_reg_t gpio_24_mux_sel; // [54:51]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_25_cfg_reg_t gpio_25_cfg; // [50:48]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_25_mux_sel_reg_t gpio_25_mux_sel; // [47:44]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_26_cfg_reg_t gpio_26_cfg; // [43:41]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_26_mux_sel_reg_t gpio_26_mux_sel; // [40:37]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_27_cfg_reg_t gpio_27_cfg; // [36:34]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_27_mux_sel_reg_t gpio_27_mux_sel; // [33:30]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_28_cfg_reg_t gpio_28_cfg; // [29:27]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_28_mux_sel_reg_t gpio_28_mux_sel; // [26:23]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_29_cfg_reg_t gpio_29_cfg; // [22:20]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_29_mux_sel_reg_t gpio_29_mux_sel; // [19:16]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_30_cfg_reg_t gpio_30_cfg; // [15:13]
+    chimera_padframe_aon_gpioa_config_reg2hw_gpio_30_mux_sel_reg_t gpio_30_mux_sel; // [12:9]
     chimera_padframe_aon_gpioa_config_reg2hw_gpio_31_cfg_reg_t gpio_31_cfg; // [8:6]
     chimera_padframe_aon_gpioa_config_reg2hw_gpio_31_mux_sel_reg_t gpio_31_mux_sel; // [5:0]
   } chimera_padframe_aon_gpioa_config_reg2hw_t;
