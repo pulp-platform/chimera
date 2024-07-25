@@ -54,7 +54,7 @@ module chimera_cluster_adapter
        output clu_wide_out_resp_t clu_wide_out_resp_o,
 
       // Testing
-       input logic wide_mem_bypass_mode
+       input logic wide_mem_bypass_mode_i
       );
 
 `include "axi/typedef.svh"
@@ -151,12 +151,6 @@ module chimera_cluster_adapter
 	 aw_wide_sel = (axi_from_cluster_wide_premux_req.aw.addr >= WidePassThroughRegionStart) && (axi_from_cluster_wide_premux_req.aw.addr < WidePassThroughRegionEnd);
       end
    end
-   // assign ar_wide_sel = (axi_from_cluster_wide_premux_req.ar.addr >= WidePassThroughRegionStart) && (axi_from_cluster_wide_premux_req.ar.addr < WidePassThroughRegionEnd);
-   // assign aw_wide_sel = (axi_from_cluster_wide_premux_req.aw.addr >= WidePassThroughRegionStart) && (axi_from_cluster_wide_premux_req.aw.addr < WidePassThroughRegionEnd);
-
-   // assign ar_wide_sel = '0;
-   // assign aw_wide_sel = '0;
-
 
    axi_demux_simple #(
 		      .AxiIdWidth(WideSlaveIdWidth),
