@@ -30,3 +30,4 @@ modelsim.ini
 compile.tcl
 logs
 vsim.wlf
+*.transcript
