@@ -5,4 +5,5 @@
 # Moritz Scherer <scheremo@iis.ee.ethz.ch>
 
 set BINARY ../../../sw/tests/testMemBypass.memisl.elf
+# set BINARY ../../../sw/tests/testClusterOffload.memisl.elf
 set SELCFG 0

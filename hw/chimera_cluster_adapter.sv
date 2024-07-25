@@ -142,13 +142,22 @@ module chimera_cluster_adapter
 
    logic ar_wide_sel, aw_wide_sel;
 
+   always_comb begin
+      if (wide_mem_bypass_mode) begin
+	  ar_wide_sel = '0;
+	 aw_wide_sel = '0;
+      end else begin
+	 ar_wide_sel = (axi_from_cluster_wide_premux_req.ar.addr >= WidePassThroughRegionStart) && (axi_from_cluster_wide_premux_req.ar.addr < WidePassThroughRegionEnd);
+	 aw_wide_sel = (axi_from_cluster_wide_premux_req.aw.addr >= WidePassThroughRegionStart) && (axi_from_cluster_wide_premux_req.aw.addr < WidePassThroughRegionEnd);
+      end
+   end
    // assign ar_wide_sel = (axi_from_cluster_wide_premux_req.ar.addr >= WidePassThroughRegionStart) && (axi_from_cluster_wide_premux_req.ar.addr < WidePassThroughRegionEnd);
    // assign aw_wide_sel = (axi_from_cluster_wide_premux_req.aw.addr >= WidePassThroughRegionStart) && (axi_from_cluster_wide_premux_req.aw.addr < WidePassThroughRegionEnd);
 
-   assign ar_wide_sel = (wide_mem_bypass_mode) ? '1 : '0;
-   assign aw_wide_sel = (wide_mem_bypass_mode) ? '1 : '0;
+   // assign ar_wide_sel = '0;
+   // assign aw_wide_sel = '0;
 
-   
+
    axi_demux_simple #(
 		      .AxiIdWidth(WideSlaveIdWidth),
 		      .AtopSupport(0),
@@ -172,7 +181,7 @@ module chimera_cluster_adapter
 		 .mst_resps_i({axi_from_cluster_wide_memisl_resp,
 			       axi_from_cluster_wide_to_narrow_resp})
 		 );
-   
+
    assign wide_out_req_o = axi_from_cluster_wide_memisl_req;
    assign axi_from_cluster_wide_memisl_resp = wide_out_resp_i;
 
@@ -365,17 +374,18 @@ module chimera_cluster_adapter
 `ifndef XSIM
 
    write_wide_bypass: assert property (
-     @(posedge clu_clk_i) (axi_from_cluster_wide_premux_req.aw_valid & wide_mem_bypass_mode) |->
-                      (axi_from_cluster_wide_to_narrow_req.aw_valid & ~axi_from_cluster_wide_memisl_req.aw_valid)) else 
-       $fatal(1, "Bypass Mode ON, but write request routed toward the Memisl");
+     @(posedge clu_clk_i) ((axi_from_cluster_wide_premux_req.aw_valid & wide_mem_bypass_mode) |->
+		      (axi_from_cluster_wide_to_narrow_req.aw_valid & ~axi_from_cluster_wide_memisl_req.aw_valid))) else
+       $fatal(1, "Bypass Mode ON, but write request routed toward the Wide interconnect");
 
    read_wide_bypass: assert property (
-     @(posedge clu_clk_i) (axi_from_cluster_wide_premux_req.ar_valid & wide_mem_bypass_mode) |->
-                      (axi_from_cluster_wide_to_narrow_req.ar_valid & ~axi_from_cluster_wide_memisl_req.ar_valid)) else 
-       $fatal(1, "Bypass Mode ON, but read request routed toward the Memisl");
+     @(posedge clu_clk_i) ((axi_from_cluster_wide_premux_req.ar_valid & wide_mem_bypass_mode) |->
+		      (axi_from_cluster_wide_to_narrow_req.ar_valid & ~axi_from_cluster_wide_memisl_req.ar_valid))) else
+       $fatal(1, "Bypass Mode ON, but read request routed toward the Wide interocnnect");
 
- 
+
 `endif
-`endif				       
-   
+`endif
+
+
 endmodule: chimera_cluster_adapter

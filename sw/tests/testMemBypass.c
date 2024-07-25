@@ -1,8 +1,8 @@
 /* =====================================================================
  * Title:        testMemBypass.c
- * Description:  
+ * Description:
  *
- * $Date:        15.07.2024        
+ * $Date:        15.07.2024
  *
  * ===================================================================== */
 /*
@@ -27,31 +27,63 @@
 
 #include <stdint.h>
 #include "regs/soc_ctrl.h"
+#include "offload.h"
+#include "soc_addr_map.h"
 
-#define TOPLEVELREGION 0x30001000
+//#define TOPLEVELREGION 0x30001000
+#define REG_BASE       0x30001000
+#define TESTVAL        0x050CCE55
+
+static uint32_t* clintPointer = (uint32_t*) CLINT_CTRL_BASE;
+
+void clusterTrapHandler(){
+  uint8_t hartId;
+  asm ("csrr %0, mhartid" : "=r" (hartId) ::);
+
+  volatile uint32_t* interruptTarget = clintPointer + hartId;
+  *interruptTarget = 0;
+  return;
+}
+
+uint8_t readBypassReg(){
+  return *((volatile uint8_t*) (SOC_CTRL_BASE + CHIMERA_WIDE_MEM_CLUSTER_BYPASS_REG_OFFSET));
+}
+
+void setBypassReg(uint8_t val){
+  volatile uint8_t* regPtr;
+
+  regPtr = (volatile uint8_t*) (SOC_CTRL_BASE + CHIMERA_WIDE_MEM_CLUSTER_BYPASS_REG_OFFSET);
+  *regPtr = val;
+  return;
+}
+
+int32_t testMemBypass(){
+  return TESTVAL;
+}
 
 int main(){
-  volatile uint8_t* regPtr = (volatile uint8_t*) TOPLEVELREGION;
-  volatile uint8_t* bypassPtr = (volatile uint8_t*) (regPtr + CHIMERA_WIDE_MEM_CLUSTER_BYPASS_REG_OFFSET);
+  uint32_t retVal = 0;
+  uint8_t  setVal = 1;
 
-  uint8_t  ret = 0;
- 
-  // Check Reset value
-    if(*bypassPtr != 0){
-      ret += 1;
-    }
-  
-  // Write a value inside the register
-    *bypassPtr = 1;
+  // Test Reset value
+  if (readBypassReg() != 0){
+    retVal = 1;
+    return retVal;
+  }
 
-  if(*bypassPtr != 1){
-    ret += 1;
+  // Test register writability
+  setBypassReg(setVal);
+
+   if (readBypassReg() != setVal){
+    retVal = 2;
+    return retVal;
   }
-  
-  if(ret == 0){
-    return 0;
-  }
-  
-  return ret;
-  
+
+  // Offload Cluster to use narrow/wide path
+  setupInterruptHandler(clusterTrapHandler);
+  offloadToCluster(testMemBypass, 1);
+  retVal = waitForCluster(1);
+
+  return  (retVal != (TESTVAL | 0x000000001));
+
 }

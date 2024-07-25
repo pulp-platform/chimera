@@ -375,6 +375,7 @@ module chimera_top_wrapper
 			      .clu_wide_out_resp_o(clu_axi_wide_mst_resp[extClusterIdx]),
 
 			      .wide_mem_bypass_mode(reg2hw.wide_mem_cluster_bypass.q)
+			      //.wide_mem_bypass_mode('0)
 			      );
 
       end // block: gen_cluster_adapters
