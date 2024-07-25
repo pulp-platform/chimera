@@ -72,11 +72,15 @@ vsim-test:
   extends: .base
   stage: test
   needs: [ vsim-build ]
+  parallel:
+    matrix:
+      - TESTNAME: [testCluster, testClusterOffload]
   script:
     - cd target/sim/vsim
-    - $VSIM -c -do 'source setup.chimera_soc.tcl; source start.chimera_soc.tcl; run -all'
-    - ../../../scripts/vsim_ret_error.sh transcript
+    - $VSIM -c -l $TESTNAME.transcript -do "set BINARY ../../../sw/tests/$TESTNAME.memisl.elf; source start.chimera_soc.tcl; run -all"
+    - ../../../scripts/vsim_ret_error.sh $TESTNAME.transcript
   dependencies:
     - vsim-build
   artifacts:
-    paths: [ ".venv", "hw", "sw", "target/sim" ]
+    paths: [ ".venv", "hw", "sw", "target/sim", "$TESTNAME.transcript" ]
+    expire_in: 4 weeks
