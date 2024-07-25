@@ -75,6 +75,19 @@ regenerate_soc_regs: $(CHIM_ROOT)/hw/regs/chimera_reg_pkg.sv $(CHIM_ROOT)/hw/reg
 $(CHIM_ROOT)/hw/regs/chimera_reg_pkg.sv $(CHIM_ROOT)/hw/regs/chimera_reg_top.sv: $(CHIM_ROOT)/hw/regs/chimera_regs.hjson
 	python $(CHIM_ROOT)/utils/reggen/regtool.py -r $< --outdir $(dir $@)
 
+
+# Nonfree components
+CHIM_NONFREE_REMOTE ?= git@iis-git.ee.ethz.ch:pulp-restricted/chimera-nonfree.git
+CHIM_NONFREE_COMMIT ?= 48fafe39
+
+.PHONY: chim-nonfree-init
+chim-nonfree-init:
+	git clone $(CHIM_NONFREE_REMOTE) $(CHIM_ROOT)/nonfree
+	cd $(CHIM_ROOT)/nonfree && git checkout $(CHIM_NONFREE_COMMIT)
+
+-include $(CHIM_ROOT)/nonfree/nonfree.mk
+
+
 -include $(CHIM_ROOT)/bender.mk
 
 -include $(CHIM_ROOT)/sim.mk
