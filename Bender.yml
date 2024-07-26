@@ -10,8 +10,8 @@ package:
 dependencies:
   register_interface:       { git: "https://github.com/pulp-platform/register_interface.git", version: 0.4.3  }
   axi:                      { git: "https://github.com/pulp-platform/axi.git",                version: 0.39.2 }
-  cheshire:                 { git: "https://github.com/pulp-platform/cheshire.git",           rev: "scheremo/convolve"}
-  snitch_cluster:           { git: "https://github.com/pulp-platform/snitch_cluster.git",     rev: "main"}
+  cheshire:                 { git: "https://github.com/pulp-platform/cheshire.git",           rev: bdf5654754c93b1e081995c7c3bccd8b5fc2c9c7}
+  snitch_cluster:           { git: "https://github.com/pulp-platform/snitch_cluster.git",     rev: c12ce9b2af1ac8edf3d4feb18939e1ad20c42225}
   common_cells:             { git: "https://github.com/pulp-platform/common_cells.git",       version: 1.31.1}
 
 sources:
