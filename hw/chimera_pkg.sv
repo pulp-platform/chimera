@@ -33,14 +33,14 @@ package chimera_pkg;
    } ClusterConfig;
 
    localparam ClusterConfig ChimeraClusterCfg = {
-						 hasWideMasterPort: {1'b1, 1'b1, 1'b1, 1'b1, 1'b1},
-						 NrCores: {8'h9, 8'h9, 8'h9, 8'h9, 8'h9}
-						 };
+                                                 hasWideMasterPort: {1'b1, 1'b1, 1'b1, 1'b1, 1'b1},
+                                                 NrCores: {8'h9, 8'h9, 8'h9, 8'h9, 8'h9}
+                                                 };
 
    function automatic int _sumVector(byte_bt [iomsb(ExtClusters):0] vector, int vectorLen);
       int sum = 0;
       for(int i=0; i<vectorLen; i++) begin
-	 sum += vector[i];
+         sum += vector[i];
       end
       return sum;
    endfunction
@@ -55,12 +55,12 @@ package chimera_pkg;
    localparam int ExtRegNum = SnitchBootROM + 1;
 
    localparam int SnitchBootROMIdx = 0;
-   localparam doub_bt SnitchBootROMRegionStart = 64'h3000_0000;
-   localparam doub_bt SnitchBootROMRegionEnd = 64'h3000_1000;
+   localparam     doub_bt SnitchBootROMRegionStart = 64'h3000_0000;
+   localparam     doub_bt SnitchBootROMRegionEnd = 64'h3000_1000;
 
    localparam int TopLevelIdx = 1;
-   localparam doub_bt TopLevelRegionStart = 64'h3000_1000;
-   localparam doub_bt TopLevelRegionEnd = 64'h3000_2000;
+   localparam     doub_bt TopLevelRegionStart = 64'h3000_1000;
+   localparam     doub_bt TopLevelRegionEnd = 64'h3000_2000;
 
    function automatic cheshire_cfg_t gen_chimera_cfg();
       localparam AddrWidth = DefaultCfg.AddrWidth;
@@ -110,7 +110,7 @@ package chimera_pkg;
 
    localparam int numCfgs = 1;
 
-   localparam cheshire_cfg_t [numCfgs-1:0] ChimeraCfg =
-	  {gen_chimera_cfg()
-	   };
+   localparam     cheshire_cfg_t [numCfgs-1:0] ChimeraCfg =
+                  {gen_chimera_cfg()
+                   };
 endpackage
