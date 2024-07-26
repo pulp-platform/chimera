@@ -283,7 +283,9 @@ module chimera_top_wrapper
 
    logic [ExtClusters-1:0] cluster_clock_gate_en;
    logic [ExtClusters-1:0] clu_clk_gated;
-   assign cluster_clock_gate_en = {reg2hw.cluster_5_clk_gate_en, reg2hw.cluster_4_clk_gate_en, reg2hw.cluster_3_clk_gate_en, reg2hw.cluster_2_clk_gate_en, reg2hw.cluster_1_clk_gate_en};
+   assign cluster_clock_gate_en = {reg2hw.cluster_5_clk_gate_en,
+                                   reg2hw.cluster_4_clk_gate_en, reg2hw.cluster_3_clk_gate_en,
+                                   reg2hw.cluster_2_clk_gate_en, reg2hw.cluster_1_clk_gate_en};
 
    genvar extClusterIdx;
    generate
@@ -328,8 +330,12 @@ module chimera_top_wrapper
    typedef logic [WideDataWidth/8-1:0]        axi_cluster_strb_wide_t;
    typedef logic [WideSlaveIdWidth +2 -1:0]   axi_cluster_slv_id_width_wide_t;
 
-   `AXI_TYPEDEF_ALL(axi_cluster_out_wide, axi_cluster_addr_t, axi_cluster_slv_id_width_wide_t, axi_cluster_data_wide_t, axi_cluster_strb_wide_t, axi_cluster_user_t)
-   `AXI_TYPEDEF_ALL(axi_cluster_out_narrow, axi_cluster_addr_t, axi_cluster_slv_id_width_narrow_t, axi_cluster_data_narrow_t, axi_cluster_strb_narrow_t, axi_cluster_user_t)
+   `AXI_TYPEDEF_ALL(axi_cluster_out_wide, axi_cluster_addr_t,
+                    axi_cluster_slv_id_width_wide_t, axi_cluster_data_wide_t,
+                    axi_cluster_strb_wide_t, axi_cluster_user_t)
+   `AXI_TYPEDEF_ALL(axi_cluster_out_narrow, axi_cluster_addr_t,
+                    axi_cluster_slv_id_width_narrow_t, axi_cluster_data_narrow_t,
+                    axi_cluster_strb_narrow_t, axi_cluster_user_t)
 
    axi_slv_req_t [iomsb(ExtClusters):0] clu_axi_slv_req;
    axi_slv_rsp_t [iomsb(ExtClusters):0] clu_axi_slv_resp;
@@ -468,7 +474,8 @@ module chimera_top_wrapper
                          .msip_i(clu_msip_ext[extClusterIdx*9+:9]),
 
                          .hart_base_id_i(10'(extClusterIdx*9+1)),
-                         .cluster_base_addr_i(Cfg.AxiExtRegionStart[extClusterIdx][Cfg.AddrWidth-1:0]),
+                         .cluster_base_addr_i(Cfg.AxiExtRegionStart[extClusterIdx]
+                                              [Cfg.AddrWidth-1:0]),
                          .sram_cfgs_i('0),
 
                          .narrow_in_req_i(clu_axi_slv_req[extClusterIdx]),
