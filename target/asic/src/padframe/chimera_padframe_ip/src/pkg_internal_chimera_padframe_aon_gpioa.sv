@@ -2,8 +2,13 @@
 package pkg_internal_chimera_padframe_aon_gpioa;
   typedef struct packed{
     logic  chip2pad;
-    logic  output_en;
-    logic  rx_en;
+    logic [1:0] drv;
+    logic  pde;
+    logic  pue;
+    logic  rxe;
+    logic  slw;
+    logic  smt;
+    logic  trie;
   } mux_to_pad_gpio_0_t;
 
   typedef struct packed{
@@ -12,8 +17,13 @@ package pkg_internal_chimera_padframe_aon_gpioa;
 
   typedef struct packed{
     logic  chip2pad;
-    logic  output_en;
-    logic  rx_en;
+    logic [1:0] drv;
+    logic  pde;
+    logic  pue;
+    logic  rxe;
+    logic  slw;
+    logic  smt;
+    logic  trie;
   } mux_to_pad_gpio_1_t;
 
   typedef struct packed{
@@ -22,8 +32,13 @@ package pkg_internal_chimera_padframe_aon_gpioa;
 
   typedef struct packed{
     logic  chip2pad;
-    logic  output_en;
-    logic  rx_en;
+    logic [1:0] drv;
+    logic  pde;
+    logic  pue;
+    logic  rxe;
+    logic  slw;
+    logic  smt;
+    logic  trie;
   } mux_to_pad_gpio_2_t;
 
   typedef struct packed{
@@ -32,8 +47,13 @@ package pkg_internal_chimera_padframe_aon_gpioa;
 
   typedef struct packed{
     logic  chip2pad;
-    logic  output_en;
-    logic  rx_en;
+    logic [1:0] drv;
+    logic  pde;
+    logic  pue;
+    logic  rxe;
+    logic  slw;
+    logic  smt;
+    logic  trie;
   } mux_to_pad_gpio_3_t;
 
   typedef struct packed{
@@ -42,8 +62,13 @@ package pkg_internal_chimera_padframe_aon_gpioa;
 
   typedef struct packed{
     logic  chip2pad;
-    logic  output_en;
-    logic  rx_en;
+    logic [1:0] drv;
+    logic  pde;
+    logic  pue;
+    logic  rxe;
+    logic  slw;
+    logic  smt;
+    logic  trie;
   } mux_to_pad_gpio_4_t;
 
   typedef struct packed{
@@ -52,8 +77,13 @@ package pkg_internal_chimera_padframe_aon_gpioa;
 
   typedef struct packed{
     logic  chip2pad;
-    logic  output_en;
-    logic  rx_en;
+    logic [1:0] drv;
+    logic  pde;
+    logic  pue;
+    logic  rxe;
+    logic  slw;
+    logic  smt;
+    logic  trie;
   } mux_to_pad_gpio_5_t;
 
   typedef struct packed{
@@ -62,8 +92,13 @@ package pkg_internal_chimera_padframe_aon_gpioa;
 
   typedef struct packed{
     logic  chip2pad;
-    logic  output_en;
-    logic  rx_en;
+    logic [1:0] drv;
+    logic  pde;
+    logic  pue;
+    logic  rxe;
+    logic  slw;
+    logic  smt;
+    logic  trie;
   } mux_to_pad_gpio_6_t;
 
   typedef struct packed{
@@ -72,8 +107,13 @@ package pkg_internal_chimera_padframe_aon_gpioa;
 
   typedef struct packed{
     logic  chip2pad;
-    logic  output_en;
-    logic  rx_en;
+    logic [1:0] drv;
+    logic  pde;
+    logic  pue;
+    logic  rxe;
+    logic  slw;
+    logic  smt;
+    logic  trie;
   } mux_to_pad_gpio_7_t;
 
   typedef struct packed{
@@ -82,8 +122,13 @@ package pkg_internal_chimera_padframe_aon_gpioa;
 
   typedef struct packed{
     logic  chip2pad;
-    logic  output_en;
-    logic  rx_en;
+    logic [1:0] drv;
+    logic  pde;
+    logic  pue;
+    logic  rxe;
+    logic  slw;
+    logic  smt;
+    logic  trie;
   } mux_to_pad_gpio_8_t;
 
   typedef struct packed{
@@ -92,8 +137,13 @@ package pkg_internal_chimera_padframe_aon_gpioa;
 
   typedef struct packed{
     logic  chip2pad;
-    logic  output_en;
-    logic  rx_en;
+    logic [1:0] drv;
+    logic  pde;
+    logic  pue;
+    logic  rxe;
+    logic  slw;
+    logic  smt;
+    logic  trie;
   } mux_to_pad_gpio_9_t;
 
   typedef struct packed{
@@ -102,8 +152,13 @@ package pkg_internal_chimera_padframe_aon_gpioa;
 
   typedef struct packed{
     logic  chip2pad;
-    logic  output_en;
-    logic  rx_en;
+    logic [1:0] drv;
+    logic  pde;
+    logic  pue;
+    logic  rxe;
+    logic  slw;
+    logic  smt;
+    logic  trie;
   } mux_to_pad_gpio_10_t;
 
   typedef struct packed{
@@ -112,8 +167,13 @@ package pkg_internal_chimera_padframe_aon_gpioa;
 
   typedef struct packed{
     logic  chip2pad;
-    logic  output_en;
-    logic  rx_en;
+    logic [1:0] drv;
+    logic  pde;
+    logic  pue;
+    logic  rxe;
+    logic  slw;
+    logic  smt;
+    logic  trie;
   } mux_to_pad_gpio_11_t;
 
   typedef struct packed{
@@ -122,8 +182,13 @@ package pkg_internal_chimera_padframe_aon_gpioa;
 
   typedef struct packed{
     logic  chip2pad;
-    logic  output_en;
-    logic  rx_en;
+    logic [1:0] drv;
+    logic  pde;
+    logic  pue;
+    logic  rxe;
+    logic  slw;
+    logic  smt;
+    logic  trie;
   } mux_to_pad_gpio_12_t;
 
   typedef struct packed{
@@ -132,8 +197,13 @@ package pkg_internal_chimera_padframe_aon_gpioa;
 
   typedef struct packed{
     logic  chip2pad;
-    logic  output_en;
-    logic  rx_en;
+    logic [1:0] drv;
+    logic  pde;
+    logic  pue;
+    logic  rxe;
+    logic  slw;
+    logic  smt;
+    logic  trie;
   } mux_to_pad_gpio_13_t;
 
   typedef struct packed{
@@ -142,8 +212,13 @@ package pkg_internal_chimera_padframe_aon_gpioa;
 
   typedef struct packed{
     logic  chip2pad;
-    logic  output_en;
-    logic  rx_en;
+    logic [1:0] drv;
+    logic  pde;
+    logic  pue;
+    logic  rxe;
+    logic  slw;
+    logic  smt;
+    logic  trie;
   } mux_to_pad_gpio_14_t;
 
   typedef struct packed{
@@ -152,8 +227,13 @@ package pkg_internal_chimera_padframe_aon_gpioa;
 
   typedef struct packed{
     logic  chip2pad;
-    logic  output_en;
-    logic  rx_en;
+    logic [1:0] drv;
+    logic  pde;
+    logic  pue;
+    logic  rxe;
+    logic  slw;
+    logic  smt;
+    logic  trie;
   } mux_to_pad_gpio_15_t;
 
   typedef struct packed{
@@ -162,8 +242,13 @@ package pkg_internal_chimera_padframe_aon_gpioa;
 
   typedef struct packed{
     logic  chip2pad;
-    logic  output_en;
-    logic  rx_en;
+    logic [1:0] drv;
+    logic  pde;
+    logic  pue;
+    logic  rxe;
+    logic  slw;
+    logic  smt;
+    logic  trie;
   } mux_to_pad_gpio_16_t;
 
   typedef struct packed{
@@ -172,8 +257,13 @@ package pkg_internal_chimera_padframe_aon_gpioa;
 
   typedef struct packed{
     logic  chip2pad;
-    logic  output_en;
-    logic  rx_en;
+    logic [1:0] drv;
+    logic  pde;
+    logic  pue;
+    logic  rxe;
+    logic  slw;
+    logic  smt;
+    logic  trie;
   } mux_to_pad_gpio_17_t;
 
   typedef struct packed{
@@ -182,8 +272,13 @@ package pkg_internal_chimera_padframe_aon_gpioa;
 
   typedef struct packed{
     logic  chip2pad;
-    logic  output_en;
-    logic  rx_en;
+    logic [1:0] drv;
+    logic  pde;
+    logic  pue;
+    logic  rxe;
+    logic  slw;
+    logic  smt;
+    logic  trie;
   } mux_to_pad_gpio_18_t;
 
   typedef struct packed{
@@ -192,8 +287,13 @@ package pkg_internal_chimera_padframe_aon_gpioa;
 
   typedef struct packed{
     logic  chip2pad;
-    logic  output_en;
-    logic  rx_en;
+    logic [1:0] drv;
+    logic  pde;
+    logic  pue;
+    logic  rxe;
+    logic  slw;
+    logic  smt;
+    logic  trie;
   } mux_to_pad_gpio_19_t;
 
   typedef struct packed{
@@ -202,8 +302,13 @@ package pkg_internal_chimera_padframe_aon_gpioa;
 
   typedef struct packed{
     logic  chip2pad;
-    logic  output_en;
-    logic  rx_en;
+    logic [1:0] drv;
+    logic  pde;
+    logic  pue;
+    logic  rxe;
+    logic  slw;
+    logic  smt;
+    logic  trie;
   } mux_to_pad_gpio_20_t;
 
   typedef struct packed{
@@ -212,8 +317,13 @@ package pkg_internal_chimera_padframe_aon_gpioa;
 
   typedef struct packed{
     logic  chip2pad;
-    logic  output_en;
-    logic  rx_en;
+    logic [1:0] drv;
+    logic  pde;
+    logic  pue;
+    logic  rxe;
+    logic  slw;
+    logic  smt;
+    logic  trie;
   } mux_to_pad_gpio_21_t;
 
   typedef struct packed{
@@ -222,8 +332,13 @@ package pkg_internal_chimera_padframe_aon_gpioa;
 
   typedef struct packed{
     logic  chip2pad;
-    logic  output_en;
-    logic  rx_en;
+    logic [1:0] drv;
+    logic  pde;
+    logic  pue;
+    logic  rxe;
+    logic  slw;
+    logic  smt;
+    logic  trie;
   } mux_to_pad_gpio_22_t;
 
   typedef struct packed{
@@ -232,8 +347,13 @@ package pkg_internal_chimera_padframe_aon_gpioa;
 
   typedef struct packed{
     logic  chip2pad;
-    logic  output_en;
-    logic  rx_en;
+    logic [1:0] drv;
+    logic  pde;
+    logic  pue;
+    logic  rxe;
+    logic  slw;
+    logic  smt;
+    logic  trie;
   } mux_to_pad_gpio_23_t;
 
   typedef struct packed{
@@ -242,8 +362,13 @@ package pkg_internal_chimera_padframe_aon_gpioa;
 
   typedef struct packed{
     logic  chip2pad;
-    logic  output_en;
-    logic  rx_en;
+    logic [1:0] drv;
+    logic  pde;
+    logic  pue;
+    logic  rxe;
+    logic  slw;
+    logic  smt;
+    logic  trie;
   } mux_to_pad_gpio_24_t;
 
   typedef struct packed{
@@ -252,8 +377,13 @@ package pkg_internal_chimera_padframe_aon_gpioa;
 
   typedef struct packed{
     logic  chip2pad;
-    logic  output_en;
-    logic  rx_en;
+    logic [1:0] drv;
+    logic  pde;
+    logic  pue;
+    logic  rxe;
+    logic  slw;
+    logic  smt;
+    logic  trie;
   } mux_to_pad_gpio_25_t;
 
   typedef struct packed{
@@ -262,8 +392,13 @@ package pkg_internal_chimera_padframe_aon_gpioa;
 
   typedef struct packed{
     logic  chip2pad;
-    logic  output_en;
-    logic  rx_en;
+    logic [1:0] drv;
+    logic  pde;
+    logic  pue;
+    logic  rxe;
+    logic  slw;
+    logic  smt;
+    logic  trie;
   } mux_to_pad_gpio_26_t;
 
   typedef struct packed{
@@ -272,8 +407,13 @@ package pkg_internal_chimera_padframe_aon_gpioa;
 
   typedef struct packed{
     logic  chip2pad;
-    logic  output_en;
-    logic  rx_en;
+    logic [1:0] drv;
+    logic  pde;
+    logic  pue;
+    logic  rxe;
+    logic  slw;
+    logic  smt;
+    logic  trie;
   } mux_to_pad_gpio_27_t;
 
   typedef struct packed{
@@ -282,8 +422,13 @@ package pkg_internal_chimera_padframe_aon_gpioa;
 
   typedef struct packed{
     logic  chip2pad;
-    logic  output_en;
-    logic  rx_en;
+    logic [1:0] drv;
+    logic  pde;
+    logic  pue;
+    logic  rxe;
+    logic  slw;
+    logic  smt;
+    logic  trie;
   } mux_to_pad_gpio_28_t;
 
   typedef struct packed{
@@ -292,8 +437,13 @@ package pkg_internal_chimera_padframe_aon_gpioa;
 
   typedef struct packed{
     logic  chip2pad;
-    logic  output_en;
-    logic  rx_en;
+    logic [1:0] drv;
+    logic  pde;
+    logic  pue;
+    logic  rxe;
+    logic  slw;
+    logic  smt;
+    logic  trie;
   } mux_to_pad_gpio_29_t;
 
   typedef struct packed{
@@ -302,8 +452,13 @@ package pkg_internal_chimera_padframe_aon_gpioa;
 
   typedef struct packed{
     logic  chip2pad;
-    logic  output_en;
-    logic  rx_en;
+    logic [1:0] drv;
+    logic  pde;
+    logic  pue;
+    logic  rxe;
+    logic  slw;
+    logic  smt;
+    logic  trie;
   } mux_to_pad_gpio_30_t;
 
   typedef struct packed{
@@ -312,8 +467,13 @@ package pkg_internal_chimera_padframe_aon_gpioa;
 
   typedef struct packed{
     logic  chip2pad;
-    logic  output_en;
-    logic  rx_en;
+    logic [1:0] drv;
+    logic  pde;
+    logic  pue;
+    logic  rxe;
+    logic  slw;
+    logic  smt;
+    logic  trie;
   } mux_to_pad_gpio_31_t;
 
   typedef struct packed{

@@ -40,73 +40,143 @@ module chimera_padframe_aon_gpioa_muxer
      unique case (s_reg2hw.gpio_0_mux_sel.q)
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_0_SEL_DEFAULT: begin
          mux_to_pads_o.gpio_0.chip2pad = s_reg2hw.gpio_0_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_0.output_en = s_reg2hw.gpio_0_cfg.output_en.q;
-         mux_to_pads_o.gpio_0.rx_en = s_reg2hw.gpio_0_cfg.rx_en.q;
+         mux_to_pads_o.gpio_0.drv = s_reg2hw.gpio_0_cfg.drv.q;
+         mux_to_pads_o.gpio_0.pde = s_reg2hw.gpio_0_cfg.pde.q;
+         mux_to_pads_o.gpio_0.pue = s_reg2hw.gpio_0_cfg.pue.q;
+         mux_to_pads_o.gpio_0.rxe = s_reg2hw.gpio_0_cfg.rxe.q;
+         mux_to_pads_o.gpio_0.slw = s_reg2hw.gpio_0_cfg.slw.q;
+         mux_to_pads_o.gpio_0.smt = s_reg2hw.gpio_0_cfg.smt.q;
+         mux_to_pads_o.gpio_0.trie = s_reg2hw.gpio_0_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_0_SEL_QSPI0_CSB0: begin
           mux_to_pads_o.gpio_0.chip2pad = port_signals_soc2pad_i.qspi0.csb0_o;
-          mux_to_pads_o.gpio_0.output_en = port_signals_soc2pad_i.qspi0.csb0_en_o;
-          mux_to_pads_o.gpio_0.rx_en = s_reg2hw.gpio_0_cfg.rx_en.q;
+          mux_to_pads_o.gpio_0.drv = s_reg2hw.gpio_0_cfg.drv.q;
+          mux_to_pads_o.gpio_0.pde = s_reg2hw.gpio_0_cfg.pde.q;
+          mux_to_pads_o.gpio_0.pue = s_reg2hw.gpio_0_cfg.pue.q;
+          mux_to_pads_o.gpio_0.rxe = s_reg2hw.gpio_0_cfg.rxe.q;
+          mux_to_pads_o.gpio_0.slw = s_reg2hw.gpio_0_cfg.slw.q;
+          mux_to_pads_o.gpio_0.smt = s_reg2hw.gpio_0_cfg.smt.q;
+          mux_to_pads_o.gpio_0.trie = ~port_signals_soc2pad_i.qspi0.csb0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_0_SEL_QSPI0_CSB1: begin
           mux_to_pads_o.gpio_0.chip2pad = port_signals_soc2pad_i.qspi0.csb1_o;
-          mux_to_pads_o.gpio_0.output_en = port_signals_soc2pad_i.qspi0.csb1_en_o;
-          mux_to_pads_o.gpio_0.rx_en = s_reg2hw.gpio_0_cfg.rx_en.q;
+          mux_to_pads_o.gpio_0.drv = s_reg2hw.gpio_0_cfg.drv.q;
+          mux_to_pads_o.gpio_0.pde = s_reg2hw.gpio_0_cfg.pde.q;
+          mux_to_pads_o.gpio_0.pue = s_reg2hw.gpio_0_cfg.pue.q;
+          mux_to_pads_o.gpio_0.rxe = s_reg2hw.gpio_0_cfg.rxe.q;
+          mux_to_pads_o.gpio_0.slw = s_reg2hw.gpio_0_cfg.slw.q;
+          mux_to_pads_o.gpio_0.smt = s_reg2hw.gpio_0_cfg.smt.q;
+          mux_to_pads_o.gpio_0.trie = ~port_signals_soc2pad_i.qspi0.csb1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_0_SEL_QSPI0_CSB2: begin
           mux_to_pads_o.gpio_0.chip2pad = port_signals_soc2pad_i.qspi0.csb2_o;
-          mux_to_pads_o.gpio_0.output_en = port_signals_soc2pad_i.qspi0.csb2_en_o;
-          mux_to_pads_o.gpio_0.rx_en = s_reg2hw.gpio_0_cfg.rx_en.q;
+          mux_to_pads_o.gpio_0.drv = s_reg2hw.gpio_0_cfg.drv.q;
+          mux_to_pads_o.gpio_0.pde = s_reg2hw.gpio_0_cfg.pde.q;
+          mux_to_pads_o.gpio_0.pue = s_reg2hw.gpio_0_cfg.pue.q;
+          mux_to_pads_o.gpio_0.rxe = s_reg2hw.gpio_0_cfg.rxe.q;
+          mux_to_pads_o.gpio_0.slw = s_reg2hw.gpio_0_cfg.slw.q;
+          mux_to_pads_o.gpio_0.smt = s_reg2hw.gpio_0_cfg.smt.q;
+          mux_to_pads_o.gpio_0.trie = ~port_signals_soc2pad_i.qspi0.csb2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_0_SEL_QSPI0_SCK: begin
           mux_to_pads_o.gpio_0.chip2pad = port_signals_soc2pad_i.qspi0.sck_o;
-          mux_to_pads_o.gpio_0.output_en = port_signals_soc2pad_i.qspi0.sck_en_o;
-          mux_to_pads_o.gpio_0.rx_en = s_reg2hw.gpio_0_cfg.rx_en.q;
+          mux_to_pads_o.gpio_0.drv = s_reg2hw.gpio_0_cfg.drv.q;
+          mux_to_pads_o.gpio_0.pde = s_reg2hw.gpio_0_cfg.pde.q;
+          mux_to_pads_o.gpio_0.pue = s_reg2hw.gpio_0_cfg.pue.q;
+          mux_to_pads_o.gpio_0.rxe = s_reg2hw.gpio_0_cfg.rxe.q;
+          mux_to_pads_o.gpio_0.slw = s_reg2hw.gpio_0_cfg.slw.q;
+          mux_to_pads_o.gpio_0.smt = s_reg2hw.gpio_0_cfg.smt.q;
+          mux_to_pads_o.gpio_0.trie = port_signals_soc2pad_i.qspi0.sck_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_0_SEL_QSPI0_SD0: begin
           mux_to_pads_o.gpio_0.chip2pad = port_signals_soc2pad_i.qspi0.sd0_o;
-          mux_to_pads_o.gpio_0.output_en = port_signals_soc2pad_i.qspi0.sd0_en_o;
-          mux_to_pads_o.gpio_0.rx_en = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_0.drv = s_reg2hw.gpio_0_cfg.drv.q;
+          mux_to_pads_o.gpio_0.pde = s_reg2hw.gpio_0_cfg.pde.q;
+          mux_to_pads_o.gpio_0.pue = s_reg2hw.gpio_0_cfg.pue.q;
+          mux_to_pads_o.gpio_0.rxe = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_0.slw = s_reg2hw.gpio_0_cfg.slw.q;
+          mux_to_pads_o.gpio_0.smt = s_reg2hw.gpio_0_cfg.smt.q;
+          mux_to_pads_o.gpio_0.trie = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_0_SEL_QSPI0_SD1: begin
           mux_to_pads_o.gpio_0.chip2pad = port_signals_soc2pad_i.qspi0.sd1_o;
-          mux_to_pads_o.gpio_0.output_en = port_signals_soc2pad_i.qspi0.sd1_en_o;
-          mux_to_pads_o.gpio_0.rx_en = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_0.drv = s_reg2hw.gpio_0_cfg.drv.q;
+          mux_to_pads_o.gpio_0.pde = s_reg2hw.gpio_0_cfg.pde.q;
+          mux_to_pads_o.gpio_0.pue = s_reg2hw.gpio_0_cfg.pue.q;
+          mux_to_pads_o.gpio_0.rxe = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_0.slw = s_reg2hw.gpio_0_cfg.slw.q;
+          mux_to_pads_o.gpio_0.smt = s_reg2hw.gpio_0_cfg.smt.q;
+          mux_to_pads_o.gpio_0.trie = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_0_SEL_QSPI0_SD2: begin
           mux_to_pads_o.gpio_0.chip2pad = port_signals_soc2pad_i.qspi0.sd2_o;
-          mux_to_pads_o.gpio_0.output_en = port_signals_soc2pad_i.qspi0.sd2_en_o;
-          mux_to_pads_o.gpio_0.rx_en = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_0.drv = s_reg2hw.gpio_0_cfg.drv.q;
+          mux_to_pads_o.gpio_0.pde = s_reg2hw.gpio_0_cfg.pde.q;
+          mux_to_pads_o.gpio_0.pue = s_reg2hw.gpio_0_cfg.pue.q;
+          mux_to_pads_o.gpio_0.rxe = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_0.slw = s_reg2hw.gpio_0_cfg.slw.q;
+          mux_to_pads_o.gpio_0.smt = s_reg2hw.gpio_0_cfg.smt.q;
+          mux_to_pads_o.gpio_0.trie = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_0_SEL_QSPI0_SD3: begin
           mux_to_pads_o.gpio_0.chip2pad = port_signals_soc2pad_i.qspi0.sd3_o;
-          mux_to_pads_o.gpio_0.output_en = port_signals_soc2pad_i.qspi0.sd3_en_o;
-          mux_to_pads_o.gpio_0.rx_en = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_0.drv = s_reg2hw.gpio_0_cfg.drv.q;
+          mux_to_pads_o.gpio_0.pde = s_reg2hw.gpio_0_cfg.pde.q;
+          mux_to_pads_o.gpio_0.pue = s_reg2hw.gpio_0_cfg.pue.q;
+          mux_to_pads_o.gpio_0.rxe = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_0.slw = s_reg2hw.gpio_0_cfg.slw.q;
+          mux_to_pads_o.gpio_0.smt = s_reg2hw.gpio_0_cfg.smt.q;
+          mux_to_pads_o.gpio_0.trie = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_0_SEL_I2C0_SCL: begin
           mux_to_pads_o.gpio_0.chip2pad = port_signals_soc2pad_i.i2c0.scl_o;
-          mux_to_pads_o.gpio_0.output_en = port_signals_soc2pad_i.i2c0.scl_en_o;
-          mux_to_pads_o.gpio_0.rx_en = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_0.drv = s_reg2hw.gpio_0_cfg.drv.q;
+          mux_to_pads_o.gpio_0.pde = s_reg2hw.gpio_0_cfg.pde.q;
+          mux_to_pads_o.gpio_0.pue = s_reg2hw.gpio_0_cfg.pue.q;
+          mux_to_pads_o.gpio_0.rxe = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_0.slw = s_reg2hw.gpio_0_cfg.slw.q;
+          mux_to_pads_o.gpio_0.smt = s_reg2hw.gpio_0_cfg.smt.q;
+          mux_to_pads_o.gpio_0.trie = ~port_signals_soc2pad_i.i2c0.scl_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_0_SEL_I2C0_SDA: begin
           mux_to_pads_o.gpio_0.chip2pad = port_signals_soc2pad_i.i2c0.sda_o;
-          mux_to_pads_o.gpio_0.output_en = port_signals_soc2pad_i.i2c0.sda_en_o;
-          mux_to_pads_o.gpio_0.rx_en = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_0.drv = s_reg2hw.gpio_0_cfg.drv.q;
+          mux_to_pads_o.gpio_0.pde = s_reg2hw.gpio_0_cfg.pde.q;
+          mux_to_pads_o.gpio_0.pue = s_reg2hw.gpio_0_cfg.pue.q;
+          mux_to_pads_o.gpio_0.rxe = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_0.slw = s_reg2hw.gpio_0_cfg.slw.q;
+          mux_to_pads_o.gpio_0.smt = s_reg2hw.gpio_0_cfg.smt.q;
+          mux_to_pads_o.gpio_0.trie = ~port_signals_soc2pad_i.i2c0.sda_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_0_SEL_UART0_RX: begin
           mux_to_pads_o.gpio_0.chip2pad = s_reg2hw.gpio_0_cfg.chip2pad.q;
-          mux_to_pads_o.gpio_0.output_en = s_reg2hw.gpio_0_cfg.output_en.q;
-          mux_to_pads_o.gpio_0.rx_en = 1'b1;
+          mux_to_pads_o.gpio_0.drv = s_reg2hw.gpio_0_cfg.drv.q;
+          mux_to_pads_o.gpio_0.pde = s_reg2hw.gpio_0_cfg.pde.q;
+          mux_to_pads_o.gpio_0.pue = s_reg2hw.gpio_0_cfg.pue.q;
+          mux_to_pads_o.gpio_0.rxe = 1'b1;
+          mux_to_pads_o.gpio_0.slw = s_reg2hw.gpio_0_cfg.slw.q;
+          mux_to_pads_o.gpio_0.smt = s_reg2hw.gpio_0_cfg.smt.q;
+          mux_to_pads_o.gpio_0.trie = s_reg2hw.gpio_0_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_0_SEL_UART0_TX: begin
           mux_to_pads_o.gpio_0.chip2pad = port_signals_soc2pad_i.uart0.tx_o;
-          mux_to_pads_o.gpio_0.output_en = 1'b0;
-          mux_to_pads_o.gpio_0.rx_en = s_reg2hw.gpio_0_cfg.rx_en.q;
+          mux_to_pads_o.gpio_0.drv = s_reg2hw.gpio_0_cfg.drv.q;
+          mux_to_pads_o.gpio_0.pde = s_reg2hw.gpio_0_cfg.pde.q;
+          mux_to_pads_o.gpio_0.pue = s_reg2hw.gpio_0_cfg.pue.q;
+          mux_to_pads_o.gpio_0.rxe = s_reg2hw.gpio_0_cfg.rxe.q;
+          mux_to_pads_o.gpio_0.slw = s_reg2hw.gpio_0_cfg.slw.q;
+          mux_to_pads_o.gpio_0.smt = s_reg2hw.gpio_0_cfg.smt.q;
+          mux_to_pads_o.gpio_0.trie = 1'b0;
        end
        default: begin
          mux_to_pads_o.gpio_0.chip2pad = s_reg2hw.gpio_0_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_0.output_en = s_reg2hw.gpio_0_cfg.output_en.q;
-         mux_to_pads_o.gpio_0.rx_en = s_reg2hw.gpio_0_cfg.rx_en.q;
+         mux_to_pads_o.gpio_0.drv = s_reg2hw.gpio_0_cfg.drv.q;
+         mux_to_pads_o.gpio_0.pde = s_reg2hw.gpio_0_cfg.pde.q;
+         mux_to_pads_o.gpio_0.pue = s_reg2hw.gpio_0_cfg.pue.q;
+         mux_to_pads_o.gpio_0.rxe = s_reg2hw.gpio_0_cfg.rxe.q;
+         mux_to_pads_o.gpio_0.slw = s_reg2hw.gpio_0_cfg.slw.q;
+         mux_to_pads_o.gpio_0.smt = s_reg2hw.gpio_0_cfg.smt.q;
+         mux_to_pads_o.gpio_0.trie = s_reg2hw.gpio_0_cfg.trie.q;
        end
      endcase
    end // always_comb
@@ -116,73 +186,143 @@ module chimera_padframe_aon_gpioa_muxer
      unique case (s_reg2hw.gpio_1_mux_sel.q)
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_1_SEL_DEFAULT: begin
          mux_to_pads_o.gpio_1.chip2pad = s_reg2hw.gpio_1_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_1.output_en = s_reg2hw.gpio_1_cfg.output_en.q;
-         mux_to_pads_o.gpio_1.rx_en = s_reg2hw.gpio_1_cfg.rx_en.q;
+         mux_to_pads_o.gpio_1.drv = s_reg2hw.gpio_1_cfg.drv.q;
+         mux_to_pads_o.gpio_1.pde = s_reg2hw.gpio_1_cfg.pde.q;
+         mux_to_pads_o.gpio_1.pue = s_reg2hw.gpio_1_cfg.pue.q;
+         mux_to_pads_o.gpio_1.rxe = s_reg2hw.gpio_1_cfg.rxe.q;
+         mux_to_pads_o.gpio_1.slw = s_reg2hw.gpio_1_cfg.slw.q;
+         mux_to_pads_o.gpio_1.smt = s_reg2hw.gpio_1_cfg.smt.q;
+         mux_to_pads_o.gpio_1.trie = s_reg2hw.gpio_1_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_1_SEL_QSPI0_CSB0: begin
           mux_to_pads_o.gpio_1.chip2pad = port_signals_soc2pad_i.qspi0.csb0_o;
-          mux_to_pads_o.gpio_1.output_en = port_signals_soc2pad_i.qspi0.csb0_en_o;
-          mux_to_pads_o.gpio_1.rx_en = s_reg2hw.gpio_1_cfg.rx_en.q;
+          mux_to_pads_o.gpio_1.drv = s_reg2hw.gpio_1_cfg.drv.q;
+          mux_to_pads_o.gpio_1.pde = s_reg2hw.gpio_1_cfg.pde.q;
+          mux_to_pads_o.gpio_1.pue = s_reg2hw.gpio_1_cfg.pue.q;
+          mux_to_pads_o.gpio_1.rxe = s_reg2hw.gpio_1_cfg.rxe.q;
+          mux_to_pads_o.gpio_1.slw = s_reg2hw.gpio_1_cfg.slw.q;
+          mux_to_pads_o.gpio_1.smt = s_reg2hw.gpio_1_cfg.smt.q;
+          mux_to_pads_o.gpio_1.trie = ~port_signals_soc2pad_i.qspi0.csb0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_1_SEL_QSPI0_CSB1: begin
           mux_to_pads_o.gpio_1.chip2pad = port_signals_soc2pad_i.qspi0.csb1_o;
-          mux_to_pads_o.gpio_1.output_en = port_signals_soc2pad_i.qspi0.csb1_en_o;
-          mux_to_pads_o.gpio_1.rx_en = s_reg2hw.gpio_1_cfg.rx_en.q;
+          mux_to_pads_o.gpio_1.drv = s_reg2hw.gpio_1_cfg.drv.q;
+          mux_to_pads_o.gpio_1.pde = s_reg2hw.gpio_1_cfg.pde.q;
+          mux_to_pads_o.gpio_1.pue = s_reg2hw.gpio_1_cfg.pue.q;
+          mux_to_pads_o.gpio_1.rxe = s_reg2hw.gpio_1_cfg.rxe.q;
+          mux_to_pads_o.gpio_1.slw = s_reg2hw.gpio_1_cfg.slw.q;
+          mux_to_pads_o.gpio_1.smt = s_reg2hw.gpio_1_cfg.smt.q;
+          mux_to_pads_o.gpio_1.trie = ~port_signals_soc2pad_i.qspi0.csb1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_1_SEL_QSPI0_CSB2: begin
           mux_to_pads_o.gpio_1.chip2pad = port_signals_soc2pad_i.qspi0.csb2_o;
-          mux_to_pads_o.gpio_1.output_en = port_signals_soc2pad_i.qspi0.csb2_en_o;
-          mux_to_pads_o.gpio_1.rx_en = s_reg2hw.gpio_1_cfg.rx_en.q;
+          mux_to_pads_o.gpio_1.drv = s_reg2hw.gpio_1_cfg.drv.q;
+          mux_to_pads_o.gpio_1.pde = s_reg2hw.gpio_1_cfg.pde.q;
+          mux_to_pads_o.gpio_1.pue = s_reg2hw.gpio_1_cfg.pue.q;
+          mux_to_pads_o.gpio_1.rxe = s_reg2hw.gpio_1_cfg.rxe.q;
+          mux_to_pads_o.gpio_1.slw = s_reg2hw.gpio_1_cfg.slw.q;
+          mux_to_pads_o.gpio_1.smt = s_reg2hw.gpio_1_cfg.smt.q;
+          mux_to_pads_o.gpio_1.trie = ~port_signals_soc2pad_i.qspi0.csb2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_1_SEL_QSPI0_SCK: begin
           mux_to_pads_o.gpio_1.chip2pad = port_signals_soc2pad_i.qspi0.sck_o;
-          mux_to_pads_o.gpio_1.output_en = port_signals_soc2pad_i.qspi0.sck_en_o;
-          mux_to_pads_o.gpio_1.rx_en = s_reg2hw.gpio_1_cfg.rx_en.q;
+          mux_to_pads_o.gpio_1.drv = s_reg2hw.gpio_1_cfg.drv.q;
+          mux_to_pads_o.gpio_1.pde = s_reg2hw.gpio_1_cfg.pde.q;
+          mux_to_pads_o.gpio_1.pue = s_reg2hw.gpio_1_cfg.pue.q;
+          mux_to_pads_o.gpio_1.rxe = s_reg2hw.gpio_1_cfg.rxe.q;
+          mux_to_pads_o.gpio_1.slw = s_reg2hw.gpio_1_cfg.slw.q;
+          mux_to_pads_o.gpio_1.smt = s_reg2hw.gpio_1_cfg.smt.q;
+          mux_to_pads_o.gpio_1.trie = port_signals_soc2pad_i.qspi0.sck_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_1_SEL_QSPI0_SD0: begin
           mux_to_pads_o.gpio_1.chip2pad = port_signals_soc2pad_i.qspi0.sd0_o;
-          mux_to_pads_o.gpio_1.output_en = port_signals_soc2pad_i.qspi0.sd0_en_o;
-          mux_to_pads_o.gpio_1.rx_en = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_1.drv = s_reg2hw.gpio_1_cfg.drv.q;
+          mux_to_pads_o.gpio_1.pde = s_reg2hw.gpio_1_cfg.pde.q;
+          mux_to_pads_o.gpio_1.pue = s_reg2hw.gpio_1_cfg.pue.q;
+          mux_to_pads_o.gpio_1.rxe = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_1.slw = s_reg2hw.gpio_1_cfg.slw.q;
+          mux_to_pads_o.gpio_1.smt = s_reg2hw.gpio_1_cfg.smt.q;
+          mux_to_pads_o.gpio_1.trie = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_1_SEL_QSPI0_SD1: begin
           mux_to_pads_o.gpio_1.chip2pad = port_signals_soc2pad_i.qspi0.sd1_o;
-          mux_to_pads_o.gpio_1.output_en = port_signals_soc2pad_i.qspi0.sd1_en_o;
-          mux_to_pads_o.gpio_1.rx_en = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_1.drv = s_reg2hw.gpio_1_cfg.drv.q;
+          mux_to_pads_o.gpio_1.pde = s_reg2hw.gpio_1_cfg.pde.q;
+          mux_to_pads_o.gpio_1.pue = s_reg2hw.gpio_1_cfg.pue.q;
+          mux_to_pads_o.gpio_1.rxe = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_1.slw = s_reg2hw.gpio_1_cfg.slw.q;
+          mux_to_pads_o.gpio_1.smt = s_reg2hw.gpio_1_cfg.smt.q;
+          mux_to_pads_o.gpio_1.trie = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_1_SEL_QSPI0_SD2: begin
           mux_to_pads_o.gpio_1.chip2pad = port_signals_soc2pad_i.qspi0.sd2_o;
-          mux_to_pads_o.gpio_1.output_en = port_signals_soc2pad_i.qspi0.sd2_en_o;
-          mux_to_pads_o.gpio_1.rx_en = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_1.drv = s_reg2hw.gpio_1_cfg.drv.q;
+          mux_to_pads_o.gpio_1.pde = s_reg2hw.gpio_1_cfg.pde.q;
+          mux_to_pads_o.gpio_1.pue = s_reg2hw.gpio_1_cfg.pue.q;
+          mux_to_pads_o.gpio_1.rxe = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_1.slw = s_reg2hw.gpio_1_cfg.slw.q;
+          mux_to_pads_o.gpio_1.smt = s_reg2hw.gpio_1_cfg.smt.q;
+          mux_to_pads_o.gpio_1.trie = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_1_SEL_QSPI0_SD3: begin
           mux_to_pads_o.gpio_1.chip2pad = port_signals_soc2pad_i.qspi0.sd3_o;
-          mux_to_pads_o.gpio_1.output_en = port_signals_soc2pad_i.qspi0.sd3_en_o;
-          mux_to_pads_o.gpio_1.rx_en = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_1.drv = s_reg2hw.gpio_1_cfg.drv.q;
+          mux_to_pads_o.gpio_1.pde = s_reg2hw.gpio_1_cfg.pde.q;
+          mux_to_pads_o.gpio_1.pue = s_reg2hw.gpio_1_cfg.pue.q;
+          mux_to_pads_o.gpio_1.rxe = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_1.slw = s_reg2hw.gpio_1_cfg.slw.q;
+          mux_to_pads_o.gpio_1.smt = s_reg2hw.gpio_1_cfg.smt.q;
+          mux_to_pads_o.gpio_1.trie = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_1_SEL_I2C0_SCL: begin
           mux_to_pads_o.gpio_1.chip2pad = port_signals_soc2pad_i.i2c0.scl_o;
-          mux_to_pads_o.gpio_1.output_en = port_signals_soc2pad_i.i2c0.scl_en_o;
-          mux_to_pads_o.gpio_1.rx_en = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_1.drv = s_reg2hw.gpio_1_cfg.drv.q;
+          mux_to_pads_o.gpio_1.pde = s_reg2hw.gpio_1_cfg.pde.q;
+          mux_to_pads_o.gpio_1.pue = s_reg2hw.gpio_1_cfg.pue.q;
+          mux_to_pads_o.gpio_1.rxe = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_1.slw = s_reg2hw.gpio_1_cfg.slw.q;
+          mux_to_pads_o.gpio_1.smt = s_reg2hw.gpio_1_cfg.smt.q;
+          mux_to_pads_o.gpio_1.trie = ~port_signals_soc2pad_i.i2c0.scl_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_1_SEL_I2C0_SDA: begin
           mux_to_pads_o.gpio_1.chip2pad = port_signals_soc2pad_i.i2c0.sda_o;
-          mux_to_pads_o.gpio_1.output_en = port_signals_soc2pad_i.i2c0.sda_en_o;
-          mux_to_pads_o.gpio_1.rx_en = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_1.drv = s_reg2hw.gpio_1_cfg.drv.q;
+          mux_to_pads_o.gpio_1.pde = s_reg2hw.gpio_1_cfg.pde.q;
+          mux_to_pads_o.gpio_1.pue = s_reg2hw.gpio_1_cfg.pue.q;
+          mux_to_pads_o.gpio_1.rxe = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_1.slw = s_reg2hw.gpio_1_cfg.slw.q;
+          mux_to_pads_o.gpio_1.smt = s_reg2hw.gpio_1_cfg.smt.q;
+          mux_to_pads_o.gpio_1.trie = ~port_signals_soc2pad_i.i2c0.sda_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_1_SEL_UART0_RX: begin
           mux_to_pads_o.gpio_1.chip2pad = s_reg2hw.gpio_1_cfg.chip2pad.q;
-          mux_to_pads_o.gpio_1.output_en = s_reg2hw.gpio_1_cfg.output_en.q;
-          mux_to_pads_o.gpio_1.rx_en = 1'b1;
+          mux_to_pads_o.gpio_1.drv = s_reg2hw.gpio_1_cfg.drv.q;
+          mux_to_pads_o.gpio_1.pde = s_reg2hw.gpio_1_cfg.pde.q;
+          mux_to_pads_o.gpio_1.pue = s_reg2hw.gpio_1_cfg.pue.q;
+          mux_to_pads_o.gpio_1.rxe = 1'b1;
+          mux_to_pads_o.gpio_1.slw = s_reg2hw.gpio_1_cfg.slw.q;
+          mux_to_pads_o.gpio_1.smt = s_reg2hw.gpio_1_cfg.smt.q;
+          mux_to_pads_o.gpio_1.trie = s_reg2hw.gpio_1_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_1_SEL_UART0_TX: begin
           mux_to_pads_o.gpio_1.chip2pad = port_signals_soc2pad_i.uart0.tx_o;
-          mux_to_pads_o.gpio_1.output_en = 1'b0;
-          mux_to_pads_o.gpio_1.rx_en = s_reg2hw.gpio_1_cfg.rx_en.q;
+          mux_to_pads_o.gpio_1.drv = s_reg2hw.gpio_1_cfg.drv.q;
+          mux_to_pads_o.gpio_1.pde = s_reg2hw.gpio_1_cfg.pde.q;
+          mux_to_pads_o.gpio_1.pue = s_reg2hw.gpio_1_cfg.pue.q;
+          mux_to_pads_o.gpio_1.rxe = s_reg2hw.gpio_1_cfg.rxe.q;
+          mux_to_pads_o.gpio_1.slw = s_reg2hw.gpio_1_cfg.slw.q;
+          mux_to_pads_o.gpio_1.smt = s_reg2hw.gpio_1_cfg.smt.q;
+          mux_to_pads_o.gpio_1.trie = 1'b0;
        end
        default: begin
          mux_to_pads_o.gpio_1.chip2pad = s_reg2hw.gpio_1_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_1.output_en = s_reg2hw.gpio_1_cfg.output_en.q;
-         mux_to_pads_o.gpio_1.rx_en = s_reg2hw.gpio_1_cfg.rx_en.q;
+         mux_to_pads_o.gpio_1.drv = s_reg2hw.gpio_1_cfg.drv.q;
+         mux_to_pads_o.gpio_1.pde = s_reg2hw.gpio_1_cfg.pde.q;
+         mux_to_pads_o.gpio_1.pue = s_reg2hw.gpio_1_cfg.pue.q;
+         mux_to_pads_o.gpio_1.rxe = s_reg2hw.gpio_1_cfg.rxe.q;
+         mux_to_pads_o.gpio_1.slw = s_reg2hw.gpio_1_cfg.slw.q;
+         mux_to_pads_o.gpio_1.smt = s_reg2hw.gpio_1_cfg.smt.q;
+         mux_to_pads_o.gpio_1.trie = s_reg2hw.gpio_1_cfg.trie.q;
        end
      endcase
    end // always_comb
@@ -192,73 +332,143 @@ module chimera_padframe_aon_gpioa_muxer
      unique case (s_reg2hw.gpio_2_mux_sel.q)
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_2_SEL_DEFAULT: begin
          mux_to_pads_o.gpio_2.chip2pad = s_reg2hw.gpio_2_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_2.output_en = s_reg2hw.gpio_2_cfg.output_en.q;
-         mux_to_pads_o.gpio_2.rx_en = s_reg2hw.gpio_2_cfg.rx_en.q;
+         mux_to_pads_o.gpio_2.drv = s_reg2hw.gpio_2_cfg.drv.q;
+         mux_to_pads_o.gpio_2.pde = s_reg2hw.gpio_2_cfg.pde.q;
+         mux_to_pads_o.gpio_2.pue = s_reg2hw.gpio_2_cfg.pue.q;
+         mux_to_pads_o.gpio_2.rxe = s_reg2hw.gpio_2_cfg.rxe.q;
+         mux_to_pads_o.gpio_2.slw = s_reg2hw.gpio_2_cfg.slw.q;
+         mux_to_pads_o.gpio_2.smt = s_reg2hw.gpio_2_cfg.smt.q;
+         mux_to_pads_o.gpio_2.trie = s_reg2hw.gpio_2_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_2_SEL_QSPI0_CSB0: begin
           mux_to_pads_o.gpio_2.chip2pad = port_signals_soc2pad_i.qspi0.csb0_o;
-          mux_to_pads_o.gpio_2.output_en = port_signals_soc2pad_i.qspi0.csb0_en_o;
-          mux_to_pads_o.gpio_2.rx_en = s_reg2hw.gpio_2_cfg.rx_en.q;
+          mux_to_pads_o.gpio_2.drv = s_reg2hw.gpio_2_cfg.drv.q;
+          mux_to_pads_o.gpio_2.pde = s_reg2hw.gpio_2_cfg.pde.q;
+          mux_to_pads_o.gpio_2.pue = s_reg2hw.gpio_2_cfg.pue.q;
+          mux_to_pads_o.gpio_2.rxe = s_reg2hw.gpio_2_cfg.rxe.q;
+          mux_to_pads_o.gpio_2.slw = s_reg2hw.gpio_2_cfg.slw.q;
+          mux_to_pads_o.gpio_2.smt = s_reg2hw.gpio_2_cfg.smt.q;
+          mux_to_pads_o.gpio_2.trie = ~port_signals_soc2pad_i.qspi0.csb0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_2_SEL_QSPI0_CSB1: begin
           mux_to_pads_o.gpio_2.chip2pad = port_signals_soc2pad_i.qspi0.csb1_o;
-          mux_to_pads_o.gpio_2.output_en = port_signals_soc2pad_i.qspi0.csb1_en_o;
-          mux_to_pads_o.gpio_2.rx_en = s_reg2hw.gpio_2_cfg.rx_en.q;
+          mux_to_pads_o.gpio_2.drv = s_reg2hw.gpio_2_cfg.drv.q;
+          mux_to_pads_o.gpio_2.pde = s_reg2hw.gpio_2_cfg.pde.q;
+          mux_to_pads_o.gpio_2.pue = s_reg2hw.gpio_2_cfg.pue.q;
+          mux_to_pads_o.gpio_2.rxe = s_reg2hw.gpio_2_cfg.rxe.q;
+          mux_to_pads_o.gpio_2.slw = s_reg2hw.gpio_2_cfg.slw.q;
+          mux_to_pads_o.gpio_2.smt = s_reg2hw.gpio_2_cfg.smt.q;
+          mux_to_pads_o.gpio_2.trie = ~port_signals_soc2pad_i.qspi0.csb1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_2_SEL_QSPI0_CSB2: begin
           mux_to_pads_o.gpio_2.chip2pad = port_signals_soc2pad_i.qspi0.csb2_o;
-          mux_to_pads_o.gpio_2.output_en = port_signals_soc2pad_i.qspi0.csb2_en_o;
-          mux_to_pads_o.gpio_2.rx_en = s_reg2hw.gpio_2_cfg.rx_en.q;
+          mux_to_pads_o.gpio_2.drv = s_reg2hw.gpio_2_cfg.drv.q;
+          mux_to_pads_o.gpio_2.pde = s_reg2hw.gpio_2_cfg.pde.q;
+          mux_to_pads_o.gpio_2.pue = s_reg2hw.gpio_2_cfg.pue.q;
+          mux_to_pads_o.gpio_2.rxe = s_reg2hw.gpio_2_cfg.rxe.q;
+          mux_to_pads_o.gpio_2.slw = s_reg2hw.gpio_2_cfg.slw.q;
+          mux_to_pads_o.gpio_2.smt = s_reg2hw.gpio_2_cfg.smt.q;
+          mux_to_pads_o.gpio_2.trie = ~port_signals_soc2pad_i.qspi0.csb2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_2_SEL_QSPI0_SCK: begin
           mux_to_pads_o.gpio_2.chip2pad = port_signals_soc2pad_i.qspi0.sck_o;
-          mux_to_pads_o.gpio_2.output_en = port_signals_soc2pad_i.qspi0.sck_en_o;
-          mux_to_pads_o.gpio_2.rx_en = s_reg2hw.gpio_2_cfg.rx_en.q;
+          mux_to_pads_o.gpio_2.drv = s_reg2hw.gpio_2_cfg.drv.q;
+          mux_to_pads_o.gpio_2.pde = s_reg2hw.gpio_2_cfg.pde.q;
+          mux_to_pads_o.gpio_2.pue = s_reg2hw.gpio_2_cfg.pue.q;
+          mux_to_pads_o.gpio_2.rxe = s_reg2hw.gpio_2_cfg.rxe.q;
+          mux_to_pads_o.gpio_2.slw = s_reg2hw.gpio_2_cfg.slw.q;
+          mux_to_pads_o.gpio_2.smt = s_reg2hw.gpio_2_cfg.smt.q;
+          mux_to_pads_o.gpio_2.trie = port_signals_soc2pad_i.qspi0.sck_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_2_SEL_QSPI0_SD0: begin
           mux_to_pads_o.gpio_2.chip2pad = port_signals_soc2pad_i.qspi0.sd0_o;
-          mux_to_pads_o.gpio_2.output_en = port_signals_soc2pad_i.qspi0.sd0_en_o;
-          mux_to_pads_o.gpio_2.rx_en = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_2.drv = s_reg2hw.gpio_2_cfg.drv.q;
+          mux_to_pads_o.gpio_2.pde = s_reg2hw.gpio_2_cfg.pde.q;
+          mux_to_pads_o.gpio_2.pue = s_reg2hw.gpio_2_cfg.pue.q;
+          mux_to_pads_o.gpio_2.rxe = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_2.slw = s_reg2hw.gpio_2_cfg.slw.q;
+          mux_to_pads_o.gpio_2.smt = s_reg2hw.gpio_2_cfg.smt.q;
+          mux_to_pads_o.gpio_2.trie = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_2_SEL_QSPI0_SD1: begin
           mux_to_pads_o.gpio_2.chip2pad = port_signals_soc2pad_i.qspi0.sd1_o;
-          mux_to_pads_o.gpio_2.output_en = port_signals_soc2pad_i.qspi0.sd1_en_o;
-          mux_to_pads_o.gpio_2.rx_en = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_2.drv = s_reg2hw.gpio_2_cfg.drv.q;
+          mux_to_pads_o.gpio_2.pde = s_reg2hw.gpio_2_cfg.pde.q;
+          mux_to_pads_o.gpio_2.pue = s_reg2hw.gpio_2_cfg.pue.q;
+          mux_to_pads_o.gpio_2.rxe = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_2.slw = s_reg2hw.gpio_2_cfg.slw.q;
+          mux_to_pads_o.gpio_2.smt = s_reg2hw.gpio_2_cfg.smt.q;
+          mux_to_pads_o.gpio_2.trie = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_2_SEL_QSPI0_SD2: begin
           mux_to_pads_o.gpio_2.chip2pad = port_signals_soc2pad_i.qspi0.sd2_o;
-          mux_to_pads_o.gpio_2.output_en = port_signals_soc2pad_i.qspi0.sd2_en_o;
-          mux_to_pads_o.gpio_2.rx_en = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_2.drv = s_reg2hw.gpio_2_cfg.drv.q;
+          mux_to_pads_o.gpio_2.pde = s_reg2hw.gpio_2_cfg.pde.q;
+          mux_to_pads_o.gpio_2.pue = s_reg2hw.gpio_2_cfg.pue.q;
+          mux_to_pads_o.gpio_2.rxe = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_2.slw = s_reg2hw.gpio_2_cfg.slw.q;
+          mux_to_pads_o.gpio_2.smt = s_reg2hw.gpio_2_cfg.smt.q;
+          mux_to_pads_o.gpio_2.trie = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_2_SEL_QSPI0_SD3: begin
           mux_to_pads_o.gpio_2.chip2pad = port_signals_soc2pad_i.qspi0.sd3_o;
-          mux_to_pads_o.gpio_2.output_en = port_signals_soc2pad_i.qspi0.sd3_en_o;
-          mux_to_pads_o.gpio_2.rx_en = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_2.drv = s_reg2hw.gpio_2_cfg.drv.q;
+          mux_to_pads_o.gpio_2.pde = s_reg2hw.gpio_2_cfg.pde.q;
+          mux_to_pads_o.gpio_2.pue = s_reg2hw.gpio_2_cfg.pue.q;
+          mux_to_pads_o.gpio_2.rxe = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_2.slw = s_reg2hw.gpio_2_cfg.slw.q;
+          mux_to_pads_o.gpio_2.smt = s_reg2hw.gpio_2_cfg.smt.q;
+          mux_to_pads_o.gpio_2.trie = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_2_SEL_I2C0_SCL: begin
           mux_to_pads_o.gpio_2.chip2pad = port_signals_soc2pad_i.i2c0.scl_o;
-          mux_to_pads_o.gpio_2.output_en = port_signals_soc2pad_i.i2c0.scl_en_o;
-          mux_to_pads_o.gpio_2.rx_en = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_2.drv = s_reg2hw.gpio_2_cfg.drv.q;
+          mux_to_pads_o.gpio_2.pde = s_reg2hw.gpio_2_cfg.pde.q;
+          mux_to_pads_o.gpio_2.pue = s_reg2hw.gpio_2_cfg.pue.q;
+          mux_to_pads_o.gpio_2.rxe = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_2.slw = s_reg2hw.gpio_2_cfg.slw.q;
+          mux_to_pads_o.gpio_2.smt = s_reg2hw.gpio_2_cfg.smt.q;
+          mux_to_pads_o.gpio_2.trie = ~port_signals_soc2pad_i.i2c0.scl_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_2_SEL_I2C0_SDA: begin
           mux_to_pads_o.gpio_2.chip2pad = port_signals_soc2pad_i.i2c0.sda_o;
-          mux_to_pads_o.gpio_2.output_en = port_signals_soc2pad_i.i2c0.sda_en_o;
-          mux_to_pads_o.gpio_2.rx_en = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_2.drv = s_reg2hw.gpio_2_cfg.drv.q;
+          mux_to_pads_o.gpio_2.pde = s_reg2hw.gpio_2_cfg.pde.q;
+          mux_to_pads_o.gpio_2.pue = s_reg2hw.gpio_2_cfg.pue.q;
+          mux_to_pads_o.gpio_2.rxe = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_2.slw = s_reg2hw.gpio_2_cfg.slw.q;
+          mux_to_pads_o.gpio_2.smt = s_reg2hw.gpio_2_cfg.smt.q;
+          mux_to_pads_o.gpio_2.trie = ~port_signals_soc2pad_i.i2c0.sda_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_2_SEL_UART0_RX: begin
           mux_to_pads_o.gpio_2.chip2pad = s_reg2hw.gpio_2_cfg.chip2pad.q;
-          mux_to_pads_o.gpio_2.output_en = s_reg2hw.gpio_2_cfg.output_en.q;
-          mux_to_pads_o.gpio_2.rx_en = 1'b1;
+          mux_to_pads_o.gpio_2.drv = s_reg2hw.gpio_2_cfg.drv.q;
+          mux_to_pads_o.gpio_2.pde = s_reg2hw.gpio_2_cfg.pde.q;
+          mux_to_pads_o.gpio_2.pue = s_reg2hw.gpio_2_cfg.pue.q;
+          mux_to_pads_o.gpio_2.rxe = 1'b1;
+          mux_to_pads_o.gpio_2.slw = s_reg2hw.gpio_2_cfg.slw.q;
+          mux_to_pads_o.gpio_2.smt = s_reg2hw.gpio_2_cfg.smt.q;
+          mux_to_pads_o.gpio_2.trie = s_reg2hw.gpio_2_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_2_SEL_UART0_TX: begin
           mux_to_pads_o.gpio_2.chip2pad = port_signals_soc2pad_i.uart0.tx_o;
-          mux_to_pads_o.gpio_2.output_en = 1'b0;
-          mux_to_pads_o.gpio_2.rx_en = s_reg2hw.gpio_2_cfg.rx_en.q;
+          mux_to_pads_o.gpio_2.drv = s_reg2hw.gpio_2_cfg.drv.q;
+          mux_to_pads_o.gpio_2.pde = s_reg2hw.gpio_2_cfg.pde.q;
+          mux_to_pads_o.gpio_2.pue = s_reg2hw.gpio_2_cfg.pue.q;
+          mux_to_pads_o.gpio_2.rxe = s_reg2hw.gpio_2_cfg.rxe.q;
+          mux_to_pads_o.gpio_2.slw = s_reg2hw.gpio_2_cfg.slw.q;
+          mux_to_pads_o.gpio_2.smt = s_reg2hw.gpio_2_cfg.smt.q;
+          mux_to_pads_o.gpio_2.trie = 1'b0;
        end
        default: begin
          mux_to_pads_o.gpio_2.chip2pad = s_reg2hw.gpio_2_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_2.output_en = s_reg2hw.gpio_2_cfg.output_en.q;
-         mux_to_pads_o.gpio_2.rx_en = s_reg2hw.gpio_2_cfg.rx_en.q;
+         mux_to_pads_o.gpio_2.drv = s_reg2hw.gpio_2_cfg.drv.q;
+         mux_to_pads_o.gpio_2.pde = s_reg2hw.gpio_2_cfg.pde.q;
+         mux_to_pads_o.gpio_2.pue = s_reg2hw.gpio_2_cfg.pue.q;
+         mux_to_pads_o.gpio_2.rxe = s_reg2hw.gpio_2_cfg.rxe.q;
+         mux_to_pads_o.gpio_2.slw = s_reg2hw.gpio_2_cfg.slw.q;
+         mux_to_pads_o.gpio_2.smt = s_reg2hw.gpio_2_cfg.smt.q;
+         mux_to_pads_o.gpio_2.trie = s_reg2hw.gpio_2_cfg.trie.q;
        end
      endcase
    end // always_comb
@@ -268,73 +478,143 @@ module chimera_padframe_aon_gpioa_muxer
      unique case (s_reg2hw.gpio_3_mux_sel.q)
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_3_SEL_DEFAULT: begin
          mux_to_pads_o.gpio_3.chip2pad = s_reg2hw.gpio_3_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_3.output_en = s_reg2hw.gpio_3_cfg.output_en.q;
-         mux_to_pads_o.gpio_3.rx_en = s_reg2hw.gpio_3_cfg.rx_en.q;
+         mux_to_pads_o.gpio_3.drv = s_reg2hw.gpio_3_cfg.drv.q;
+         mux_to_pads_o.gpio_3.pde = s_reg2hw.gpio_3_cfg.pde.q;
+         mux_to_pads_o.gpio_3.pue = s_reg2hw.gpio_3_cfg.pue.q;
+         mux_to_pads_o.gpio_3.rxe = s_reg2hw.gpio_3_cfg.rxe.q;
+         mux_to_pads_o.gpio_3.slw = s_reg2hw.gpio_3_cfg.slw.q;
+         mux_to_pads_o.gpio_3.smt = s_reg2hw.gpio_3_cfg.smt.q;
+         mux_to_pads_o.gpio_3.trie = s_reg2hw.gpio_3_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_3_SEL_QSPI0_CSB0: begin
           mux_to_pads_o.gpio_3.chip2pad = port_signals_soc2pad_i.qspi0.csb0_o;
-          mux_to_pads_o.gpio_3.output_en = port_signals_soc2pad_i.qspi0.csb0_en_o;
-          mux_to_pads_o.gpio_3.rx_en = s_reg2hw.gpio_3_cfg.rx_en.q;
+          mux_to_pads_o.gpio_3.drv = s_reg2hw.gpio_3_cfg.drv.q;
+          mux_to_pads_o.gpio_3.pde = s_reg2hw.gpio_3_cfg.pde.q;
+          mux_to_pads_o.gpio_3.pue = s_reg2hw.gpio_3_cfg.pue.q;
+          mux_to_pads_o.gpio_3.rxe = s_reg2hw.gpio_3_cfg.rxe.q;
+          mux_to_pads_o.gpio_3.slw = s_reg2hw.gpio_3_cfg.slw.q;
+          mux_to_pads_o.gpio_3.smt = s_reg2hw.gpio_3_cfg.smt.q;
+          mux_to_pads_o.gpio_3.trie = ~port_signals_soc2pad_i.qspi0.csb0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_3_SEL_QSPI0_CSB1: begin
           mux_to_pads_o.gpio_3.chip2pad = port_signals_soc2pad_i.qspi0.csb1_o;
-          mux_to_pads_o.gpio_3.output_en = port_signals_soc2pad_i.qspi0.csb1_en_o;
-          mux_to_pads_o.gpio_3.rx_en = s_reg2hw.gpio_3_cfg.rx_en.q;
+          mux_to_pads_o.gpio_3.drv = s_reg2hw.gpio_3_cfg.drv.q;
+          mux_to_pads_o.gpio_3.pde = s_reg2hw.gpio_3_cfg.pde.q;
+          mux_to_pads_o.gpio_3.pue = s_reg2hw.gpio_3_cfg.pue.q;
+          mux_to_pads_o.gpio_3.rxe = s_reg2hw.gpio_3_cfg.rxe.q;
+          mux_to_pads_o.gpio_3.slw = s_reg2hw.gpio_3_cfg.slw.q;
+          mux_to_pads_o.gpio_3.smt = s_reg2hw.gpio_3_cfg.smt.q;
+          mux_to_pads_o.gpio_3.trie = ~port_signals_soc2pad_i.qspi0.csb1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_3_SEL_QSPI0_CSB2: begin
           mux_to_pads_o.gpio_3.chip2pad = port_signals_soc2pad_i.qspi0.csb2_o;
-          mux_to_pads_o.gpio_3.output_en = port_signals_soc2pad_i.qspi0.csb2_en_o;
-          mux_to_pads_o.gpio_3.rx_en = s_reg2hw.gpio_3_cfg.rx_en.q;
+          mux_to_pads_o.gpio_3.drv = s_reg2hw.gpio_3_cfg.drv.q;
+          mux_to_pads_o.gpio_3.pde = s_reg2hw.gpio_3_cfg.pde.q;
+          mux_to_pads_o.gpio_3.pue = s_reg2hw.gpio_3_cfg.pue.q;
+          mux_to_pads_o.gpio_3.rxe = s_reg2hw.gpio_3_cfg.rxe.q;
+          mux_to_pads_o.gpio_3.slw = s_reg2hw.gpio_3_cfg.slw.q;
+          mux_to_pads_o.gpio_3.smt = s_reg2hw.gpio_3_cfg.smt.q;
+          mux_to_pads_o.gpio_3.trie = ~port_signals_soc2pad_i.qspi0.csb2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_3_SEL_QSPI0_SCK: begin
           mux_to_pads_o.gpio_3.chip2pad = port_signals_soc2pad_i.qspi0.sck_o;
-          mux_to_pads_o.gpio_3.output_en = port_signals_soc2pad_i.qspi0.sck_en_o;
-          mux_to_pads_o.gpio_3.rx_en = s_reg2hw.gpio_3_cfg.rx_en.q;
+          mux_to_pads_o.gpio_3.drv = s_reg2hw.gpio_3_cfg.drv.q;
+          mux_to_pads_o.gpio_3.pde = s_reg2hw.gpio_3_cfg.pde.q;
+          mux_to_pads_o.gpio_3.pue = s_reg2hw.gpio_3_cfg.pue.q;
+          mux_to_pads_o.gpio_3.rxe = s_reg2hw.gpio_3_cfg.rxe.q;
+          mux_to_pads_o.gpio_3.slw = s_reg2hw.gpio_3_cfg.slw.q;
+          mux_to_pads_o.gpio_3.smt = s_reg2hw.gpio_3_cfg.smt.q;
+          mux_to_pads_o.gpio_3.trie = port_signals_soc2pad_i.qspi0.sck_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_3_SEL_QSPI0_SD0: begin
           mux_to_pads_o.gpio_3.chip2pad = port_signals_soc2pad_i.qspi0.sd0_o;
-          mux_to_pads_o.gpio_3.output_en = port_signals_soc2pad_i.qspi0.sd0_en_o;
-          mux_to_pads_o.gpio_3.rx_en = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_3.drv = s_reg2hw.gpio_3_cfg.drv.q;
+          mux_to_pads_o.gpio_3.pde = s_reg2hw.gpio_3_cfg.pde.q;
+          mux_to_pads_o.gpio_3.pue = s_reg2hw.gpio_3_cfg.pue.q;
+          mux_to_pads_o.gpio_3.rxe = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_3.slw = s_reg2hw.gpio_3_cfg.slw.q;
+          mux_to_pads_o.gpio_3.smt = s_reg2hw.gpio_3_cfg.smt.q;
+          mux_to_pads_o.gpio_3.trie = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_3_SEL_QSPI0_SD1: begin
           mux_to_pads_o.gpio_3.chip2pad = port_signals_soc2pad_i.qspi0.sd1_o;
-          mux_to_pads_o.gpio_3.output_en = port_signals_soc2pad_i.qspi0.sd1_en_o;
-          mux_to_pads_o.gpio_3.rx_en = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_3.drv = s_reg2hw.gpio_3_cfg.drv.q;
+          mux_to_pads_o.gpio_3.pde = s_reg2hw.gpio_3_cfg.pde.q;
+          mux_to_pads_o.gpio_3.pue = s_reg2hw.gpio_3_cfg.pue.q;
+          mux_to_pads_o.gpio_3.rxe = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_3.slw = s_reg2hw.gpio_3_cfg.slw.q;
+          mux_to_pads_o.gpio_3.smt = s_reg2hw.gpio_3_cfg.smt.q;
+          mux_to_pads_o.gpio_3.trie = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_3_SEL_QSPI0_SD2: begin
           mux_to_pads_o.gpio_3.chip2pad = port_signals_soc2pad_i.qspi0.sd2_o;
-          mux_to_pads_o.gpio_3.output_en = port_signals_soc2pad_i.qspi0.sd2_en_o;
-          mux_to_pads_o.gpio_3.rx_en = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_3.drv = s_reg2hw.gpio_3_cfg.drv.q;
+          mux_to_pads_o.gpio_3.pde = s_reg2hw.gpio_3_cfg.pde.q;
+          mux_to_pads_o.gpio_3.pue = s_reg2hw.gpio_3_cfg.pue.q;
+          mux_to_pads_o.gpio_3.rxe = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_3.slw = s_reg2hw.gpio_3_cfg.slw.q;
+          mux_to_pads_o.gpio_3.smt = s_reg2hw.gpio_3_cfg.smt.q;
+          mux_to_pads_o.gpio_3.trie = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_3_SEL_QSPI0_SD3: begin
           mux_to_pads_o.gpio_3.chip2pad = port_signals_soc2pad_i.qspi0.sd3_o;
-          mux_to_pads_o.gpio_3.output_en = port_signals_soc2pad_i.qspi0.sd3_en_o;
-          mux_to_pads_o.gpio_3.rx_en = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_3.drv = s_reg2hw.gpio_3_cfg.drv.q;
+          mux_to_pads_o.gpio_3.pde = s_reg2hw.gpio_3_cfg.pde.q;
+          mux_to_pads_o.gpio_3.pue = s_reg2hw.gpio_3_cfg.pue.q;
+          mux_to_pads_o.gpio_3.rxe = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_3.slw = s_reg2hw.gpio_3_cfg.slw.q;
+          mux_to_pads_o.gpio_3.smt = s_reg2hw.gpio_3_cfg.smt.q;
+          mux_to_pads_o.gpio_3.trie = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_3_SEL_I2C0_SCL: begin
           mux_to_pads_o.gpio_3.chip2pad = port_signals_soc2pad_i.i2c0.scl_o;
-          mux_to_pads_o.gpio_3.output_en = port_signals_soc2pad_i.i2c0.scl_en_o;
-          mux_to_pads_o.gpio_3.rx_en = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_3.drv = s_reg2hw.gpio_3_cfg.drv.q;
+          mux_to_pads_o.gpio_3.pde = s_reg2hw.gpio_3_cfg.pde.q;
+          mux_to_pads_o.gpio_3.pue = s_reg2hw.gpio_3_cfg.pue.q;
+          mux_to_pads_o.gpio_3.rxe = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_3.slw = s_reg2hw.gpio_3_cfg.slw.q;
+          mux_to_pads_o.gpio_3.smt = s_reg2hw.gpio_3_cfg.smt.q;
+          mux_to_pads_o.gpio_3.trie = ~port_signals_soc2pad_i.i2c0.scl_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_3_SEL_I2C0_SDA: begin
           mux_to_pads_o.gpio_3.chip2pad = port_signals_soc2pad_i.i2c0.sda_o;
-          mux_to_pads_o.gpio_3.output_en = port_signals_soc2pad_i.i2c0.sda_en_o;
-          mux_to_pads_o.gpio_3.rx_en = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_3.drv = s_reg2hw.gpio_3_cfg.drv.q;
+          mux_to_pads_o.gpio_3.pde = s_reg2hw.gpio_3_cfg.pde.q;
+          mux_to_pads_o.gpio_3.pue = s_reg2hw.gpio_3_cfg.pue.q;
+          mux_to_pads_o.gpio_3.rxe = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_3.slw = s_reg2hw.gpio_3_cfg.slw.q;
+          mux_to_pads_o.gpio_3.smt = s_reg2hw.gpio_3_cfg.smt.q;
+          mux_to_pads_o.gpio_3.trie = ~port_signals_soc2pad_i.i2c0.sda_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_3_SEL_UART0_RX: begin
           mux_to_pads_o.gpio_3.chip2pad = s_reg2hw.gpio_3_cfg.chip2pad.q;
-          mux_to_pads_o.gpio_3.output_en = s_reg2hw.gpio_3_cfg.output_en.q;
-          mux_to_pads_o.gpio_3.rx_en = 1'b1;
+          mux_to_pads_o.gpio_3.drv = s_reg2hw.gpio_3_cfg.drv.q;
+          mux_to_pads_o.gpio_3.pde = s_reg2hw.gpio_3_cfg.pde.q;
+          mux_to_pads_o.gpio_3.pue = s_reg2hw.gpio_3_cfg.pue.q;
+          mux_to_pads_o.gpio_3.rxe = 1'b1;
+          mux_to_pads_o.gpio_3.slw = s_reg2hw.gpio_3_cfg.slw.q;
+          mux_to_pads_o.gpio_3.smt = s_reg2hw.gpio_3_cfg.smt.q;
+          mux_to_pads_o.gpio_3.trie = s_reg2hw.gpio_3_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_3_SEL_UART0_TX: begin
           mux_to_pads_o.gpio_3.chip2pad = port_signals_soc2pad_i.uart0.tx_o;
-          mux_to_pads_o.gpio_3.output_en = 1'b0;
-          mux_to_pads_o.gpio_3.rx_en = s_reg2hw.gpio_3_cfg.rx_en.q;
+          mux_to_pads_o.gpio_3.drv = s_reg2hw.gpio_3_cfg.drv.q;
+          mux_to_pads_o.gpio_3.pde = s_reg2hw.gpio_3_cfg.pde.q;
+          mux_to_pads_o.gpio_3.pue = s_reg2hw.gpio_3_cfg.pue.q;
+          mux_to_pads_o.gpio_3.rxe = s_reg2hw.gpio_3_cfg.rxe.q;
+          mux_to_pads_o.gpio_3.slw = s_reg2hw.gpio_3_cfg.slw.q;
+          mux_to_pads_o.gpio_3.smt = s_reg2hw.gpio_3_cfg.smt.q;
+          mux_to_pads_o.gpio_3.trie = 1'b0;
        end
        default: begin
          mux_to_pads_o.gpio_3.chip2pad = s_reg2hw.gpio_3_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_3.output_en = s_reg2hw.gpio_3_cfg.output_en.q;
-         mux_to_pads_o.gpio_3.rx_en = s_reg2hw.gpio_3_cfg.rx_en.q;
+         mux_to_pads_o.gpio_3.drv = s_reg2hw.gpio_3_cfg.drv.q;
+         mux_to_pads_o.gpio_3.pde = s_reg2hw.gpio_3_cfg.pde.q;
+         mux_to_pads_o.gpio_3.pue = s_reg2hw.gpio_3_cfg.pue.q;
+         mux_to_pads_o.gpio_3.rxe = s_reg2hw.gpio_3_cfg.rxe.q;
+         mux_to_pads_o.gpio_3.slw = s_reg2hw.gpio_3_cfg.slw.q;
+         mux_to_pads_o.gpio_3.smt = s_reg2hw.gpio_3_cfg.smt.q;
+         mux_to_pads_o.gpio_3.trie = s_reg2hw.gpio_3_cfg.trie.q;
        end
      endcase
    end // always_comb
@@ -344,73 +624,143 @@ module chimera_padframe_aon_gpioa_muxer
      unique case (s_reg2hw.gpio_4_mux_sel.q)
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_4_SEL_DEFAULT: begin
          mux_to_pads_o.gpio_4.chip2pad = s_reg2hw.gpio_4_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_4.output_en = s_reg2hw.gpio_4_cfg.output_en.q;
-         mux_to_pads_o.gpio_4.rx_en = s_reg2hw.gpio_4_cfg.rx_en.q;
+         mux_to_pads_o.gpio_4.drv = s_reg2hw.gpio_4_cfg.drv.q;
+         mux_to_pads_o.gpio_4.pde = s_reg2hw.gpio_4_cfg.pde.q;
+         mux_to_pads_o.gpio_4.pue = s_reg2hw.gpio_4_cfg.pue.q;
+         mux_to_pads_o.gpio_4.rxe = s_reg2hw.gpio_4_cfg.rxe.q;
+         mux_to_pads_o.gpio_4.slw = s_reg2hw.gpio_4_cfg.slw.q;
+         mux_to_pads_o.gpio_4.smt = s_reg2hw.gpio_4_cfg.smt.q;
+         mux_to_pads_o.gpio_4.trie = s_reg2hw.gpio_4_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_4_SEL_QSPI0_CSB0: begin
           mux_to_pads_o.gpio_4.chip2pad = port_signals_soc2pad_i.qspi0.csb0_o;
-          mux_to_pads_o.gpio_4.output_en = port_signals_soc2pad_i.qspi0.csb0_en_o;
-          mux_to_pads_o.gpio_4.rx_en = s_reg2hw.gpio_4_cfg.rx_en.q;
+          mux_to_pads_o.gpio_4.drv = s_reg2hw.gpio_4_cfg.drv.q;
+          mux_to_pads_o.gpio_4.pde = s_reg2hw.gpio_4_cfg.pde.q;
+          mux_to_pads_o.gpio_4.pue = s_reg2hw.gpio_4_cfg.pue.q;
+          mux_to_pads_o.gpio_4.rxe = s_reg2hw.gpio_4_cfg.rxe.q;
+          mux_to_pads_o.gpio_4.slw = s_reg2hw.gpio_4_cfg.slw.q;
+          mux_to_pads_o.gpio_4.smt = s_reg2hw.gpio_4_cfg.smt.q;
+          mux_to_pads_o.gpio_4.trie = ~port_signals_soc2pad_i.qspi0.csb0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_4_SEL_QSPI0_CSB1: begin
           mux_to_pads_o.gpio_4.chip2pad = port_signals_soc2pad_i.qspi0.csb1_o;
-          mux_to_pads_o.gpio_4.output_en = port_signals_soc2pad_i.qspi0.csb1_en_o;
-          mux_to_pads_o.gpio_4.rx_en = s_reg2hw.gpio_4_cfg.rx_en.q;
+          mux_to_pads_o.gpio_4.drv = s_reg2hw.gpio_4_cfg.drv.q;
+          mux_to_pads_o.gpio_4.pde = s_reg2hw.gpio_4_cfg.pde.q;
+          mux_to_pads_o.gpio_4.pue = s_reg2hw.gpio_4_cfg.pue.q;
+          mux_to_pads_o.gpio_4.rxe = s_reg2hw.gpio_4_cfg.rxe.q;
+          mux_to_pads_o.gpio_4.slw = s_reg2hw.gpio_4_cfg.slw.q;
+          mux_to_pads_o.gpio_4.smt = s_reg2hw.gpio_4_cfg.smt.q;
+          mux_to_pads_o.gpio_4.trie = ~port_signals_soc2pad_i.qspi0.csb1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_4_SEL_QSPI0_CSB2: begin
           mux_to_pads_o.gpio_4.chip2pad = port_signals_soc2pad_i.qspi0.csb2_o;
-          mux_to_pads_o.gpio_4.output_en = port_signals_soc2pad_i.qspi0.csb2_en_o;
-          mux_to_pads_o.gpio_4.rx_en = s_reg2hw.gpio_4_cfg.rx_en.q;
+          mux_to_pads_o.gpio_4.drv = s_reg2hw.gpio_4_cfg.drv.q;
+          mux_to_pads_o.gpio_4.pde = s_reg2hw.gpio_4_cfg.pde.q;
+          mux_to_pads_o.gpio_4.pue = s_reg2hw.gpio_4_cfg.pue.q;
+          mux_to_pads_o.gpio_4.rxe = s_reg2hw.gpio_4_cfg.rxe.q;
+          mux_to_pads_o.gpio_4.slw = s_reg2hw.gpio_4_cfg.slw.q;
+          mux_to_pads_o.gpio_4.smt = s_reg2hw.gpio_4_cfg.smt.q;
+          mux_to_pads_o.gpio_4.trie = ~port_signals_soc2pad_i.qspi0.csb2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_4_SEL_QSPI0_SCK: begin
           mux_to_pads_o.gpio_4.chip2pad = port_signals_soc2pad_i.qspi0.sck_o;
-          mux_to_pads_o.gpio_4.output_en = port_signals_soc2pad_i.qspi0.sck_en_o;
-          mux_to_pads_o.gpio_4.rx_en = s_reg2hw.gpio_4_cfg.rx_en.q;
+          mux_to_pads_o.gpio_4.drv = s_reg2hw.gpio_4_cfg.drv.q;
+          mux_to_pads_o.gpio_4.pde = s_reg2hw.gpio_4_cfg.pde.q;
+          mux_to_pads_o.gpio_4.pue = s_reg2hw.gpio_4_cfg.pue.q;
+          mux_to_pads_o.gpio_4.rxe = s_reg2hw.gpio_4_cfg.rxe.q;
+          mux_to_pads_o.gpio_4.slw = s_reg2hw.gpio_4_cfg.slw.q;
+          mux_to_pads_o.gpio_4.smt = s_reg2hw.gpio_4_cfg.smt.q;
+          mux_to_pads_o.gpio_4.trie = port_signals_soc2pad_i.qspi0.sck_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_4_SEL_QSPI0_SD0: begin
           mux_to_pads_o.gpio_4.chip2pad = port_signals_soc2pad_i.qspi0.sd0_o;
-          mux_to_pads_o.gpio_4.output_en = port_signals_soc2pad_i.qspi0.sd0_en_o;
-          mux_to_pads_o.gpio_4.rx_en = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_4.drv = s_reg2hw.gpio_4_cfg.drv.q;
+          mux_to_pads_o.gpio_4.pde = s_reg2hw.gpio_4_cfg.pde.q;
+          mux_to_pads_o.gpio_4.pue = s_reg2hw.gpio_4_cfg.pue.q;
+          mux_to_pads_o.gpio_4.rxe = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_4.slw = s_reg2hw.gpio_4_cfg.slw.q;
+          mux_to_pads_o.gpio_4.smt = s_reg2hw.gpio_4_cfg.smt.q;
+          mux_to_pads_o.gpio_4.trie = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_4_SEL_QSPI0_SD1: begin
           mux_to_pads_o.gpio_4.chip2pad = port_signals_soc2pad_i.qspi0.sd1_o;
-          mux_to_pads_o.gpio_4.output_en = port_signals_soc2pad_i.qspi0.sd1_en_o;
-          mux_to_pads_o.gpio_4.rx_en = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_4.drv = s_reg2hw.gpio_4_cfg.drv.q;
+          mux_to_pads_o.gpio_4.pde = s_reg2hw.gpio_4_cfg.pde.q;
+          mux_to_pads_o.gpio_4.pue = s_reg2hw.gpio_4_cfg.pue.q;
+          mux_to_pads_o.gpio_4.rxe = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_4.slw = s_reg2hw.gpio_4_cfg.slw.q;
+          mux_to_pads_o.gpio_4.smt = s_reg2hw.gpio_4_cfg.smt.q;
+          mux_to_pads_o.gpio_4.trie = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_4_SEL_QSPI0_SD2: begin
           mux_to_pads_o.gpio_4.chip2pad = port_signals_soc2pad_i.qspi0.sd2_o;
-          mux_to_pads_o.gpio_4.output_en = port_signals_soc2pad_i.qspi0.sd2_en_o;
-          mux_to_pads_o.gpio_4.rx_en = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_4.drv = s_reg2hw.gpio_4_cfg.drv.q;
+          mux_to_pads_o.gpio_4.pde = s_reg2hw.gpio_4_cfg.pde.q;
+          mux_to_pads_o.gpio_4.pue = s_reg2hw.gpio_4_cfg.pue.q;
+          mux_to_pads_o.gpio_4.rxe = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_4.slw = s_reg2hw.gpio_4_cfg.slw.q;
+          mux_to_pads_o.gpio_4.smt = s_reg2hw.gpio_4_cfg.smt.q;
+          mux_to_pads_o.gpio_4.trie = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_4_SEL_QSPI0_SD3: begin
           mux_to_pads_o.gpio_4.chip2pad = port_signals_soc2pad_i.qspi0.sd3_o;
-          mux_to_pads_o.gpio_4.output_en = port_signals_soc2pad_i.qspi0.sd3_en_o;
-          mux_to_pads_o.gpio_4.rx_en = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_4.drv = s_reg2hw.gpio_4_cfg.drv.q;
+          mux_to_pads_o.gpio_4.pde = s_reg2hw.gpio_4_cfg.pde.q;
+          mux_to_pads_o.gpio_4.pue = s_reg2hw.gpio_4_cfg.pue.q;
+          mux_to_pads_o.gpio_4.rxe = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_4.slw = s_reg2hw.gpio_4_cfg.slw.q;
+          mux_to_pads_o.gpio_4.smt = s_reg2hw.gpio_4_cfg.smt.q;
+          mux_to_pads_o.gpio_4.trie = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_4_SEL_I2C0_SCL: begin
           mux_to_pads_o.gpio_4.chip2pad = port_signals_soc2pad_i.i2c0.scl_o;
-          mux_to_pads_o.gpio_4.output_en = port_signals_soc2pad_i.i2c0.scl_en_o;
-          mux_to_pads_o.gpio_4.rx_en = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_4.drv = s_reg2hw.gpio_4_cfg.drv.q;
+          mux_to_pads_o.gpio_4.pde = s_reg2hw.gpio_4_cfg.pde.q;
+          mux_to_pads_o.gpio_4.pue = s_reg2hw.gpio_4_cfg.pue.q;
+          mux_to_pads_o.gpio_4.rxe = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_4.slw = s_reg2hw.gpio_4_cfg.slw.q;
+          mux_to_pads_o.gpio_4.smt = s_reg2hw.gpio_4_cfg.smt.q;
+          mux_to_pads_o.gpio_4.trie = ~port_signals_soc2pad_i.i2c0.scl_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_4_SEL_I2C0_SDA: begin
           mux_to_pads_o.gpio_4.chip2pad = port_signals_soc2pad_i.i2c0.sda_o;
-          mux_to_pads_o.gpio_4.output_en = port_signals_soc2pad_i.i2c0.sda_en_o;
-          mux_to_pads_o.gpio_4.rx_en = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_4.drv = s_reg2hw.gpio_4_cfg.drv.q;
+          mux_to_pads_o.gpio_4.pde = s_reg2hw.gpio_4_cfg.pde.q;
+          mux_to_pads_o.gpio_4.pue = s_reg2hw.gpio_4_cfg.pue.q;
+          mux_to_pads_o.gpio_4.rxe = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_4.slw = s_reg2hw.gpio_4_cfg.slw.q;
+          mux_to_pads_o.gpio_4.smt = s_reg2hw.gpio_4_cfg.smt.q;
+          mux_to_pads_o.gpio_4.trie = ~port_signals_soc2pad_i.i2c0.sda_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_4_SEL_UART0_RX: begin
           mux_to_pads_o.gpio_4.chip2pad = s_reg2hw.gpio_4_cfg.chip2pad.q;
-          mux_to_pads_o.gpio_4.output_en = s_reg2hw.gpio_4_cfg.output_en.q;
-          mux_to_pads_o.gpio_4.rx_en = 1'b1;
+          mux_to_pads_o.gpio_4.drv = s_reg2hw.gpio_4_cfg.drv.q;
+          mux_to_pads_o.gpio_4.pde = s_reg2hw.gpio_4_cfg.pde.q;
+          mux_to_pads_o.gpio_4.pue = s_reg2hw.gpio_4_cfg.pue.q;
+          mux_to_pads_o.gpio_4.rxe = 1'b1;
+          mux_to_pads_o.gpio_4.slw = s_reg2hw.gpio_4_cfg.slw.q;
+          mux_to_pads_o.gpio_4.smt = s_reg2hw.gpio_4_cfg.smt.q;
+          mux_to_pads_o.gpio_4.trie = s_reg2hw.gpio_4_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_4_SEL_UART0_TX: begin
           mux_to_pads_o.gpio_4.chip2pad = port_signals_soc2pad_i.uart0.tx_o;
-          mux_to_pads_o.gpio_4.output_en = 1'b0;
-          mux_to_pads_o.gpio_4.rx_en = s_reg2hw.gpio_4_cfg.rx_en.q;
+          mux_to_pads_o.gpio_4.drv = s_reg2hw.gpio_4_cfg.drv.q;
+          mux_to_pads_o.gpio_4.pde = s_reg2hw.gpio_4_cfg.pde.q;
+          mux_to_pads_o.gpio_4.pue = s_reg2hw.gpio_4_cfg.pue.q;
+          mux_to_pads_o.gpio_4.rxe = s_reg2hw.gpio_4_cfg.rxe.q;
+          mux_to_pads_o.gpio_4.slw = s_reg2hw.gpio_4_cfg.slw.q;
+          mux_to_pads_o.gpio_4.smt = s_reg2hw.gpio_4_cfg.smt.q;
+          mux_to_pads_o.gpio_4.trie = 1'b0;
        end
        default: begin
          mux_to_pads_o.gpio_4.chip2pad = s_reg2hw.gpio_4_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_4.output_en = s_reg2hw.gpio_4_cfg.output_en.q;
-         mux_to_pads_o.gpio_4.rx_en = s_reg2hw.gpio_4_cfg.rx_en.q;
+         mux_to_pads_o.gpio_4.drv = s_reg2hw.gpio_4_cfg.drv.q;
+         mux_to_pads_o.gpio_4.pde = s_reg2hw.gpio_4_cfg.pde.q;
+         mux_to_pads_o.gpio_4.pue = s_reg2hw.gpio_4_cfg.pue.q;
+         mux_to_pads_o.gpio_4.rxe = s_reg2hw.gpio_4_cfg.rxe.q;
+         mux_to_pads_o.gpio_4.slw = s_reg2hw.gpio_4_cfg.slw.q;
+         mux_to_pads_o.gpio_4.smt = s_reg2hw.gpio_4_cfg.smt.q;
+         mux_to_pads_o.gpio_4.trie = s_reg2hw.gpio_4_cfg.trie.q;
        end
      endcase
    end // always_comb
@@ -420,73 +770,143 @@ module chimera_padframe_aon_gpioa_muxer
      unique case (s_reg2hw.gpio_5_mux_sel.q)
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_5_SEL_DEFAULT: begin
          mux_to_pads_o.gpio_5.chip2pad = s_reg2hw.gpio_5_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_5.output_en = s_reg2hw.gpio_5_cfg.output_en.q;
-         mux_to_pads_o.gpio_5.rx_en = s_reg2hw.gpio_5_cfg.rx_en.q;
+         mux_to_pads_o.gpio_5.drv = s_reg2hw.gpio_5_cfg.drv.q;
+         mux_to_pads_o.gpio_5.pde = s_reg2hw.gpio_5_cfg.pde.q;
+         mux_to_pads_o.gpio_5.pue = s_reg2hw.gpio_5_cfg.pue.q;
+         mux_to_pads_o.gpio_5.rxe = s_reg2hw.gpio_5_cfg.rxe.q;
+         mux_to_pads_o.gpio_5.slw = s_reg2hw.gpio_5_cfg.slw.q;
+         mux_to_pads_o.gpio_5.smt = s_reg2hw.gpio_5_cfg.smt.q;
+         mux_to_pads_o.gpio_5.trie = s_reg2hw.gpio_5_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_5_SEL_QSPI0_CSB0: begin
           mux_to_pads_o.gpio_5.chip2pad = port_signals_soc2pad_i.qspi0.csb0_o;
-          mux_to_pads_o.gpio_5.output_en = port_signals_soc2pad_i.qspi0.csb0_en_o;
-          mux_to_pads_o.gpio_5.rx_en = s_reg2hw.gpio_5_cfg.rx_en.q;
+          mux_to_pads_o.gpio_5.drv = s_reg2hw.gpio_5_cfg.drv.q;
+          mux_to_pads_o.gpio_5.pde = s_reg2hw.gpio_5_cfg.pde.q;
+          mux_to_pads_o.gpio_5.pue = s_reg2hw.gpio_5_cfg.pue.q;
+          mux_to_pads_o.gpio_5.rxe = s_reg2hw.gpio_5_cfg.rxe.q;
+          mux_to_pads_o.gpio_5.slw = s_reg2hw.gpio_5_cfg.slw.q;
+          mux_to_pads_o.gpio_5.smt = s_reg2hw.gpio_5_cfg.smt.q;
+          mux_to_pads_o.gpio_5.trie = ~port_signals_soc2pad_i.qspi0.csb0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_5_SEL_QSPI0_CSB1: begin
           mux_to_pads_o.gpio_5.chip2pad = port_signals_soc2pad_i.qspi0.csb1_o;
-          mux_to_pads_o.gpio_5.output_en = port_signals_soc2pad_i.qspi0.csb1_en_o;
-          mux_to_pads_o.gpio_5.rx_en = s_reg2hw.gpio_5_cfg.rx_en.q;
+          mux_to_pads_o.gpio_5.drv = s_reg2hw.gpio_5_cfg.drv.q;
+          mux_to_pads_o.gpio_5.pde = s_reg2hw.gpio_5_cfg.pde.q;
+          mux_to_pads_o.gpio_5.pue = s_reg2hw.gpio_5_cfg.pue.q;
+          mux_to_pads_o.gpio_5.rxe = s_reg2hw.gpio_5_cfg.rxe.q;
+          mux_to_pads_o.gpio_5.slw = s_reg2hw.gpio_5_cfg.slw.q;
+          mux_to_pads_o.gpio_5.smt = s_reg2hw.gpio_5_cfg.smt.q;
+          mux_to_pads_o.gpio_5.trie = ~port_signals_soc2pad_i.qspi0.csb1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_5_SEL_QSPI0_CSB2: begin
           mux_to_pads_o.gpio_5.chip2pad = port_signals_soc2pad_i.qspi0.csb2_o;
-          mux_to_pads_o.gpio_5.output_en = port_signals_soc2pad_i.qspi0.csb2_en_o;
-          mux_to_pads_o.gpio_5.rx_en = s_reg2hw.gpio_5_cfg.rx_en.q;
+          mux_to_pads_o.gpio_5.drv = s_reg2hw.gpio_5_cfg.drv.q;
+          mux_to_pads_o.gpio_5.pde = s_reg2hw.gpio_5_cfg.pde.q;
+          mux_to_pads_o.gpio_5.pue = s_reg2hw.gpio_5_cfg.pue.q;
+          mux_to_pads_o.gpio_5.rxe = s_reg2hw.gpio_5_cfg.rxe.q;
+          mux_to_pads_o.gpio_5.slw = s_reg2hw.gpio_5_cfg.slw.q;
+          mux_to_pads_o.gpio_5.smt = s_reg2hw.gpio_5_cfg.smt.q;
+          mux_to_pads_o.gpio_5.trie = ~port_signals_soc2pad_i.qspi0.csb2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_5_SEL_QSPI0_SCK: begin
           mux_to_pads_o.gpio_5.chip2pad = port_signals_soc2pad_i.qspi0.sck_o;
-          mux_to_pads_o.gpio_5.output_en = port_signals_soc2pad_i.qspi0.sck_en_o;
-          mux_to_pads_o.gpio_5.rx_en = s_reg2hw.gpio_5_cfg.rx_en.q;
+          mux_to_pads_o.gpio_5.drv = s_reg2hw.gpio_5_cfg.drv.q;
+          mux_to_pads_o.gpio_5.pde = s_reg2hw.gpio_5_cfg.pde.q;
+          mux_to_pads_o.gpio_5.pue = s_reg2hw.gpio_5_cfg.pue.q;
+          mux_to_pads_o.gpio_5.rxe = s_reg2hw.gpio_5_cfg.rxe.q;
+          mux_to_pads_o.gpio_5.slw = s_reg2hw.gpio_5_cfg.slw.q;
+          mux_to_pads_o.gpio_5.smt = s_reg2hw.gpio_5_cfg.smt.q;
+          mux_to_pads_o.gpio_5.trie = port_signals_soc2pad_i.qspi0.sck_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_5_SEL_QSPI0_SD0: begin
           mux_to_pads_o.gpio_5.chip2pad = port_signals_soc2pad_i.qspi0.sd0_o;
-          mux_to_pads_o.gpio_5.output_en = port_signals_soc2pad_i.qspi0.sd0_en_o;
-          mux_to_pads_o.gpio_5.rx_en = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_5.drv = s_reg2hw.gpio_5_cfg.drv.q;
+          mux_to_pads_o.gpio_5.pde = s_reg2hw.gpio_5_cfg.pde.q;
+          mux_to_pads_o.gpio_5.pue = s_reg2hw.gpio_5_cfg.pue.q;
+          mux_to_pads_o.gpio_5.rxe = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_5.slw = s_reg2hw.gpio_5_cfg.slw.q;
+          mux_to_pads_o.gpio_5.smt = s_reg2hw.gpio_5_cfg.smt.q;
+          mux_to_pads_o.gpio_5.trie = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_5_SEL_QSPI0_SD1: begin
           mux_to_pads_o.gpio_5.chip2pad = port_signals_soc2pad_i.qspi0.sd1_o;
-          mux_to_pads_o.gpio_5.output_en = port_signals_soc2pad_i.qspi0.sd1_en_o;
-          mux_to_pads_o.gpio_5.rx_en = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_5.drv = s_reg2hw.gpio_5_cfg.drv.q;
+          mux_to_pads_o.gpio_5.pde = s_reg2hw.gpio_5_cfg.pde.q;
+          mux_to_pads_o.gpio_5.pue = s_reg2hw.gpio_5_cfg.pue.q;
+          mux_to_pads_o.gpio_5.rxe = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_5.slw = s_reg2hw.gpio_5_cfg.slw.q;
+          mux_to_pads_o.gpio_5.smt = s_reg2hw.gpio_5_cfg.smt.q;
+          mux_to_pads_o.gpio_5.trie = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_5_SEL_QSPI0_SD2: begin
           mux_to_pads_o.gpio_5.chip2pad = port_signals_soc2pad_i.qspi0.sd2_o;
-          mux_to_pads_o.gpio_5.output_en = port_signals_soc2pad_i.qspi0.sd2_en_o;
-          mux_to_pads_o.gpio_5.rx_en = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_5.drv = s_reg2hw.gpio_5_cfg.drv.q;
+          mux_to_pads_o.gpio_5.pde = s_reg2hw.gpio_5_cfg.pde.q;
+          mux_to_pads_o.gpio_5.pue = s_reg2hw.gpio_5_cfg.pue.q;
+          mux_to_pads_o.gpio_5.rxe = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_5.slw = s_reg2hw.gpio_5_cfg.slw.q;
+          mux_to_pads_o.gpio_5.smt = s_reg2hw.gpio_5_cfg.smt.q;
+          mux_to_pads_o.gpio_5.trie = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_5_SEL_QSPI0_SD3: begin
           mux_to_pads_o.gpio_5.chip2pad = port_signals_soc2pad_i.qspi0.sd3_o;
-          mux_to_pads_o.gpio_5.output_en = port_signals_soc2pad_i.qspi0.sd3_en_o;
-          mux_to_pads_o.gpio_5.rx_en = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_5.drv = s_reg2hw.gpio_5_cfg.drv.q;
+          mux_to_pads_o.gpio_5.pde = s_reg2hw.gpio_5_cfg.pde.q;
+          mux_to_pads_o.gpio_5.pue = s_reg2hw.gpio_5_cfg.pue.q;
+          mux_to_pads_o.gpio_5.rxe = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_5.slw = s_reg2hw.gpio_5_cfg.slw.q;
+          mux_to_pads_o.gpio_5.smt = s_reg2hw.gpio_5_cfg.smt.q;
+          mux_to_pads_o.gpio_5.trie = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_5_SEL_I2C0_SCL: begin
           mux_to_pads_o.gpio_5.chip2pad = port_signals_soc2pad_i.i2c0.scl_o;
-          mux_to_pads_o.gpio_5.output_en = port_signals_soc2pad_i.i2c0.scl_en_o;
-          mux_to_pads_o.gpio_5.rx_en = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_5.drv = s_reg2hw.gpio_5_cfg.drv.q;
+          mux_to_pads_o.gpio_5.pde = s_reg2hw.gpio_5_cfg.pde.q;
+          mux_to_pads_o.gpio_5.pue = s_reg2hw.gpio_5_cfg.pue.q;
+          mux_to_pads_o.gpio_5.rxe = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_5.slw = s_reg2hw.gpio_5_cfg.slw.q;
+          mux_to_pads_o.gpio_5.smt = s_reg2hw.gpio_5_cfg.smt.q;
+          mux_to_pads_o.gpio_5.trie = ~port_signals_soc2pad_i.i2c0.scl_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_5_SEL_I2C0_SDA: begin
           mux_to_pads_o.gpio_5.chip2pad = port_signals_soc2pad_i.i2c0.sda_o;
-          mux_to_pads_o.gpio_5.output_en = port_signals_soc2pad_i.i2c0.sda_en_o;
-          mux_to_pads_o.gpio_5.rx_en = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_5.drv = s_reg2hw.gpio_5_cfg.drv.q;
+          mux_to_pads_o.gpio_5.pde = s_reg2hw.gpio_5_cfg.pde.q;
+          mux_to_pads_o.gpio_5.pue = s_reg2hw.gpio_5_cfg.pue.q;
+          mux_to_pads_o.gpio_5.rxe = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_5.slw = s_reg2hw.gpio_5_cfg.slw.q;
+          mux_to_pads_o.gpio_5.smt = s_reg2hw.gpio_5_cfg.smt.q;
+          mux_to_pads_o.gpio_5.trie = ~port_signals_soc2pad_i.i2c0.sda_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_5_SEL_UART0_RX: begin
           mux_to_pads_o.gpio_5.chip2pad = s_reg2hw.gpio_5_cfg.chip2pad.q;
-          mux_to_pads_o.gpio_5.output_en = s_reg2hw.gpio_5_cfg.output_en.q;
-          mux_to_pads_o.gpio_5.rx_en = 1'b1;
+          mux_to_pads_o.gpio_5.drv = s_reg2hw.gpio_5_cfg.drv.q;
+          mux_to_pads_o.gpio_5.pde = s_reg2hw.gpio_5_cfg.pde.q;
+          mux_to_pads_o.gpio_5.pue = s_reg2hw.gpio_5_cfg.pue.q;
+          mux_to_pads_o.gpio_5.rxe = 1'b1;
+          mux_to_pads_o.gpio_5.slw = s_reg2hw.gpio_5_cfg.slw.q;
+          mux_to_pads_o.gpio_5.smt = s_reg2hw.gpio_5_cfg.smt.q;
+          mux_to_pads_o.gpio_5.trie = s_reg2hw.gpio_5_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_5_SEL_UART0_TX: begin
           mux_to_pads_o.gpio_5.chip2pad = port_signals_soc2pad_i.uart0.tx_o;
-          mux_to_pads_o.gpio_5.output_en = 1'b0;
-          mux_to_pads_o.gpio_5.rx_en = s_reg2hw.gpio_5_cfg.rx_en.q;
+          mux_to_pads_o.gpio_5.drv = s_reg2hw.gpio_5_cfg.drv.q;
+          mux_to_pads_o.gpio_5.pde = s_reg2hw.gpio_5_cfg.pde.q;
+          mux_to_pads_o.gpio_5.pue = s_reg2hw.gpio_5_cfg.pue.q;
+          mux_to_pads_o.gpio_5.rxe = s_reg2hw.gpio_5_cfg.rxe.q;
+          mux_to_pads_o.gpio_5.slw = s_reg2hw.gpio_5_cfg.slw.q;
+          mux_to_pads_o.gpio_5.smt = s_reg2hw.gpio_5_cfg.smt.q;
+          mux_to_pads_o.gpio_5.trie = 1'b0;
        end
        default: begin
          mux_to_pads_o.gpio_5.chip2pad = s_reg2hw.gpio_5_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_5.output_en = s_reg2hw.gpio_5_cfg.output_en.q;
-         mux_to_pads_o.gpio_5.rx_en = s_reg2hw.gpio_5_cfg.rx_en.q;
+         mux_to_pads_o.gpio_5.drv = s_reg2hw.gpio_5_cfg.drv.q;
+         mux_to_pads_o.gpio_5.pde = s_reg2hw.gpio_5_cfg.pde.q;
+         mux_to_pads_o.gpio_5.pue = s_reg2hw.gpio_5_cfg.pue.q;
+         mux_to_pads_o.gpio_5.rxe = s_reg2hw.gpio_5_cfg.rxe.q;
+         mux_to_pads_o.gpio_5.slw = s_reg2hw.gpio_5_cfg.slw.q;
+         mux_to_pads_o.gpio_5.smt = s_reg2hw.gpio_5_cfg.smt.q;
+         mux_to_pads_o.gpio_5.trie = s_reg2hw.gpio_5_cfg.trie.q;
        end
      endcase
    end // always_comb
@@ -496,73 +916,143 @@ module chimera_padframe_aon_gpioa_muxer
      unique case (s_reg2hw.gpio_6_mux_sel.q)
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_6_SEL_DEFAULT: begin
          mux_to_pads_o.gpio_6.chip2pad = s_reg2hw.gpio_6_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_6.output_en = s_reg2hw.gpio_6_cfg.output_en.q;
-         mux_to_pads_o.gpio_6.rx_en = s_reg2hw.gpio_6_cfg.rx_en.q;
+         mux_to_pads_o.gpio_6.drv = s_reg2hw.gpio_6_cfg.drv.q;
+         mux_to_pads_o.gpio_6.pde = s_reg2hw.gpio_6_cfg.pde.q;
+         mux_to_pads_o.gpio_6.pue = s_reg2hw.gpio_6_cfg.pue.q;
+         mux_to_pads_o.gpio_6.rxe = s_reg2hw.gpio_6_cfg.rxe.q;
+         mux_to_pads_o.gpio_6.slw = s_reg2hw.gpio_6_cfg.slw.q;
+         mux_to_pads_o.gpio_6.smt = s_reg2hw.gpio_6_cfg.smt.q;
+         mux_to_pads_o.gpio_6.trie = s_reg2hw.gpio_6_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_6_SEL_QSPI0_CSB0: begin
           mux_to_pads_o.gpio_6.chip2pad = port_signals_soc2pad_i.qspi0.csb0_o;
-          mux_to_pads_o.gpio_6.output_en = port_signals_soc2pad_i.qspi0.csb0_en_o;
-          mux_to_pads_o.gpio_6.rx_en = s_reg2hw.gpio_6_cfg.rx_en.q;
+          mux_to_pads_o.gpio_6.drv = s_reg2hw.gpio_6_cfg.drv.q;
+          mux_to_pads_o.gpio_6.pde = s_reg2hw.gpio_6_cfg.pde.q;
+          mux_to_pads_o.gpio_6.pue = s_reg2hw.gpio_6_cfg.pue.q;
+          mux_to_pads_o.gpio_6.rxe = s_reg2hw.gpio_6_cfg.rxe.q;
+          mux_to_pads_o.gpio_6.slw = s_reg2hw.gpio_6_cfg.slw.q;
+          mux_to_pads_o.gpio_6.smt = s_reg2hw.gpio_6_cfg.smt.q;
+          mux_to_pads_o.gpio_6.trie = ~port_signals_soc2pad_i.qspi0.csb0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_6_SEL_QSPI0_CSB1: begin
           mux_to_pads_o.gpio_6.chip2pad = port_signals_soc2pad_i.qspi0.csb1_o;
-          mux_to_pads_o.gpio_6.output_en = port_signals_soc2pad_i.qspi0.csb1_en_o;
-          mux_to_pads_o.gpio_6.rx_en = s_reg2hw.gpio_6_cfg.rx_en.q;
+          mux_to_pads_o.gpio_6.drv = s_reg2hw.gpio_6_cfg.drv.q;
+          mux_to_pads_o.gpio_6.pde = s_reg2hw.gpio_6_cfg.pde.q;
+          mux_to_pads_o.gpio_6.pue = s_reg2hw.gpio_6_cfg.pue.q;
+          mux_to_pads_o.gpio_6.rxe = s_reg2hw.gpio_6_cfg.rxe.q;
+          mux_to_pads_o.gpio_6.slw = s_reg2hw.gpio_6_cfg.slw.q;
+          mux_to_pads_o.gpio_6.smt = s_reg2hw.gpio_6_cfg.smt.q;
+          mux_to_pads_o.gpio_6.trie = ~port_signals_soc2pad_i.qspi0.csb1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_6_SEL_QSPI0_CSB2: begin
           mux_to_pads_o.gpio_6.chip2pad = port_signals_soc2pad_i.qspi0.csb2_o;
-          mux_to_pads_o.gpio_6.output_en = port_signals_soc2pad_i.qspi0.csb2_en_o;
-          mux_to_pads_o.gpio_6.rx_en = s_reg2hw.gpio_6_cfg.rx_en.q;
+          mux_to_pads_o.gpio_6.drv = s_reg2hw.gpio_6_cfg.drv.q;
+          mux_to_pads_o.gpio_6.pde = s_reg2hw.gpio_6_cfg.pde.q;
+          mux_to_pads_o.gpio_6.pue = s_reg2hw.gpio_6_cfg.pue.q;
+          mux_to_pads_o.gpio_6.rxe = s_reg2hw.gpio_6_cfg.rxe.q;
+          mux_to_pads_o.gpio_6.slw = s_reg2hw.gpio_6_cfg.slw.q;
+          mux_to_pads_o.gpio_6.smt = s_reg2hw.gpio_6_cfg.smt.q;
+          mux_to_pads_o.gpio_6.trie = ~port_signals_soc2pad_i.qspi0.csb2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_6_SEL_QSPI0_SCK: begin
           mux_to_pads_o.gpio_6.chip2pad = port_signals_soc2pad_i.qspi0.sck_o;
-          mux_to_pads_o.gpio_6.output_en = port_signals_soc2pad_i.qspi0.sck_en_o;
-          mux_to_pads_o.gpio_6.rx_en = s_reg2hw.gpio_6_cfg.rx_en.q;
+          mux_to_pads_o.gpio_6.drv = s_reg2hw.gpio_6_cfg.drv.q;
+          mux_to_pads_o.gpio_6.pde = s_reg2hw.gpio_6_cfg.pde.q;
+          mux_to_pads_o.gpio_6.pue = s_reg2hw.gpio_6_cfg.pue.q;
+          mux_to_pads_o.gpio_6.rxe = s_reg2hw.gpio_6_cfg.rxe.q;
+          mux_to_pads_o.gpio_6.slw = s_reg2hw.gpio_6_cfg.slw.q;
+          mux_to_pads_o.gpio_6.smt = s_reg2hw.gpio_6_cfg.smt.q;
+          mux_to_pads_o.gpio_6.trie = port_signals_soc2pad_i.qspi0.sck_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_6_SEL_QSPI0_SD0: begin
           mux_to_pads_o.gpio_6.chip2pad = port_signals_soc2pad_i.qspi0.sd0_o;
-          mux_to_pads_o.gpio_6.output_en = port_signals_soc2pad_i.qspi0.sd0_en_o;
-          mux_to_pads_o.gpio_6.rx_en = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_6.drv = s_reg2hw.gpio_6_cfg.drv.q;
+          mux_to_pads_o.gpio_6.pde = s_reg2hw.gpio_6_cfg.pde.q;
+          mux_to_pads_o.gpio_6.pue = s_reg2hw.gpio_6_cfg.pue.q;
+          mux_to_pads_o.gpio_6.rxe = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_6.slw = s_reg2hw.gpio_6_cfg.slw.q;
+          mux_to_pads_o.gpio_6.smt = s_reg2hw.gpio_6_cfg.smt.q;
+          mux_to_pads_o.gpio_6.trie = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_6_SEL_QSPI0_SD1: begin
           mux_to_pads_o.gpio_6.chip2pad = port_signals_soc2pad_i.qspi0.sd1_o;
-          mux_to_pads_o.gpio_6.output_en = port_signals_soc2pad_i.qspi0.sd1_en_o;
-          mux_to_pads_o.gpio_6.rx_en = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_6.drv = s_reg2hw.gpio_6_cfg.drv.q;
+          mux_to_pads_o.gpio_6.pde = s_reg2hw.gpio_6_cfg.pde.q;
+          mux_to_pads_o.gpio_6.pue = s_reg2hw.gpio_6_cfg.pue.q;
+          mux_to_pads_o.gpio_6.rxe = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_6.slw = s_reg2hw.gpio_6_cfg.slw.q;
+          mux_to_pads_o.gpio_6.smt = s_reg2hw.gpio_6_cfg.smt.q;
+          mux_to_pads_o.gpio_6.trie = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_6_SEL_QSPI0_SD2: begin
           mux_to_pads_o.gpio_6.chip2pad = port_signals_soc2pad_i.qspi0.sd2_o;
-          mux_to_pads_o.gpio_6.output_en = port_signals_soc2pad_i.qspi0.sd2_en_o;
-          mux_to_pads_o.gpio_6.rx_en = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_6.drv = s_reg2hw.gpio_6_cfg.drv.q;
+          mux_to_pads_o.gpio_6.pde = s_reg2hw.gpio_6_cfg.pde.q;
+          mux_to_pads_o.gpio_6.pue = s_reg2hw.gpio_6_cfg.pue.q;
+          mux_to_pads_o.gpio_6.rxe = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_6.slw = s_reg2hw.gpio_6_cfg.slw.q;
+          mux_to_pads_o.gpio_6.smt = s_reg2hw.gpio_6_cfg.smt.q;
+          mux_to_pads_o.gpio_6.trie = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_6_SEL_QSPI0_SD3: begin
           mux_to_pads_o.gpio_6.chip2pad = port_signals_soc2pad_i.qspi0.sd3_o;
-          mux_to_pads_o.gpio_6.output_en = port_signals_soc2pad_i.qspi0.sd3_en_o;
-          mux_to_pads_o.gpio_6.rx_en = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_6.drv = s_reg2hw.gpio_6_cfg.drv.q;
+          mux_to_pads_o.gpio_6.pde = s_reg2hw.gpio_6_cfg.pde.q;
+          mux_to_pads_o.gpio_6.pue = s_reg2hw.gpio_6_cfg.pue.q;
+          mux_to_pads_o.gpio_6.rxe = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_6.slw = s_reg2hw.gpio_6_cfg.slw.q;
+          mux_to_pads_o.gpio_6.smt = s_reg2hw.gpio_6_cfg.smt.q;
+          mux_to_pads_o.gpio_6.trie = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_6_SEL_I2C0_SCL: begin
           mux_to_pads_o.gpio_6.chip2pad = port_signals_soc2pad_i.i2c0.scl_o;
-          mux_to_pads_o.gpio_6.output_en = port_signals_soc2pad_i.i2c0.scl_en_o;
-          mux_to_pads_o.gpio_6.rx_en = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_6.drv = s_reg2hw.gpio_6_cfg.drv.q;
+          mux_to_pads_o.gpio_6.pde = s_reg2hw.gpio_6_cfg.pde.q;
+          mux_to_pads_o.gpio_6.pue = s_reg2hw.gpio_6_cfg.pue.q;
+          mux_to_pads_o.gpio_6.rxe = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_6.slw = s_reg2hw.gpio_6_cfg.slw.q;
+          mux_to_pads_o.gpio_6.smt = s_reg2hw.gpio_6_cfg.smt.q;
+          mux_to_pads_o.gpio_6.trie = ~port_signals_soc2pad_i.i2c0.scl_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_6_SEL_I2C0_SDA: begin
           mux_to_pads_o.gpio_6.chip2pad = port_signals_soc2pad_i.i2c0.sda_o;
-          mux_to_pads_o.gpio_6.output_en = port_signals_soc2pad_i.i2c0.sda_en_o;
-          mux_to_pads_o.gpio_6.rx_en = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_6.drv = s_reg2hw.gpio_6_cfg.drv.q;
+          mux_to_pads_o.gpio_6.pde = s_reg2hw.gpio_6_cfg.pde.q;
+          mux_to_pads_o.gpio_6.pue = s_reg2hw.gpio_6_cfg.pue.q;
+          mux_to_pads_o.gpio_6.rxe = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_6.slw = s_reg2hw.gpio_6_cfg.slw.q;
+          mux_to_pads_o.gpio_6.smt = s_reg2hw.gpio_6_cfg.smt.q;
+          mux_to_pads_o.gpio_6.trie = ~port_signals_soc2pad_i.i2c0.sda_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_6_SEL_UART0_RX: begin
           mux_to_pads_o.gpio_6.chip2pad = s_reg2hw.gpio_6_cfg.chip2pad.q;
-          mux_to_pads_o.gpio_6.output_en = s_reg2hw.gpio_6_cfg.output_en.q;
-          mux_to_pads_o.gpio_6.rx_en = 1'b1;
+          mux_to_pads_o.gpio_6.drv = s_reg2hw.gpio_6_cfg.drv.q;
+          mux_to_pads_o.gpio_6.pde = s_reg2hw.gpio_6_cfg.pde.q;
+          mux_to_pads_o.gpio_6.pue = s_reg2hw.gpio_6_cfg.pue.q;
+          mux_to_pads_o.gpio_6.rxe = 1'b1;
+          mux_to_pads_o.gpio_6.slw = s_reg2hw.gpio_6_cfg.slw.q;
+          mux_to_pads_o.gpio_6.smt = s_reg2hw.gpio_6_cfg.smt.q;
+          mux_to_pads_o.gpio_6.trie = s_reg2hw.gpio_6_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_6_SEL_UART0_TX: begin
           mux_to_pads_o.gpio_6.chip2pad = port_signals_soc2pad_i.uart0.tx_o;
-          mux_to_pads_o.gpio_6.output_en = 1'b0;
-          mux_to_pads_o.gpio_6.rx_en = s_reg2hw.gpio_6_cfg.rx_en.q;
+          mux_to_pads_o.gpio_6.drv = s_reg2hw.gpio_6_cfg.drv.q;
+          mux_to_pads_o.gpio_6.pde = s_reg2hw.gpio_6_cfg.pde.q;
+          mux_to_pads_o.gpio_6.pue = s_reg2hw.gpio_6_cfg.pue.q;
+          mux_to_pads_o.gpio_6.rxe = s_reg2hw.gpio_6_cfg.rxe.q;
+          mux_to_pads_o.gpio_6.slw = s_reg2hw.gpio_6_cfg.slw.q;
+          mux_to_pads_o.gpio_6.smt = s_reg2hw.gpio_6_cfg.smt.q;
+          mux_to_pads_o.gpio_6.trie = 1'b0;
        end
        default: begin
          mux_to_pads_o.gpio_6.chip2pad = s_reg2hw.gpio_6_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_6.output_en = s_reg2hw.gpio_6_cfg.output_en.q;
-         mux_to_pads_o.gpio_6.rx_en = s_reg2hw.gpio_6_cfg.rx_en.q;
+         mux_to_pads_o.gpio_6.drv = s_reg2hw.gpio_6_cfg.drv.q;
+         mux_to_pads_o.gpio_6.pde = s_reg2hw.gpio_6_cfg.pde.q;
+         mux_to_pads_o.gpio_6.pue = s_reg2hw.gpio_6_cfg.pue.q;
+         mux_to_pads_o.gpio_6.rxe = s_reg2hw.gpio_6_cfg.rxe.q;
+         mux_to_pads_o.gpio_6.slw = s_reg2hw.gpio_6_cfg.slw.q;
+         mux_to_pads_o.gpio_6.smt = s_reg2hw.gpio_6_cfg.smt.q;
+         mux_to_pads_o.gpio_6.trie = s_reg2hw.gpio_6_cfg.trie.q;
        end
      endcase
    end // always_comb
@@ -572,73 +1062,143 @@ module chimera_padframe_aon_gpioa_muxer
      unique case (s_reg2hw.gpio_7_mux_sel.q)
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_7_SEL_DEFAULT: begin
          mux_to_pads_o.gpio_7.chip2pad = s_reg2hw.gpio_7_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_7.output_en = s_reg2hw.gpio_7_cfg.output_en.q;
-         mux_to_pads_o.gpio_7.rx_en = s_reg2hw.gpio_7_cfg.rx_en.q;
+         mux_to_pads_o.gpio_7.drv = s_reg2hw.gpio_7_cfg.drv.q;
+         mux_to_pads_o.gpio_7.pde = s_reg2hw.gpio_7_cfg.pde.q;
+         mux_to_pads_o.gpio_7.pue = s_reg2hw.gpio_7_cfg.pue.q;
+         mux_to_pads_o.gpio_7.rxe = s_reg2hw.gpio_7_cfg.rxe.q;
+         mux_to_pads_o.gpio_7.slw = s_reg2hw.gpio_7_cfg.slw.q;
+         mux_to_pads_o.gpio_7.smt = s_reg2hw.gpio_7_cfg.smt.q;
+         mux_to_pads_o.gpio_7.trie = s_reg2hw.gpio_7_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_7_SEL_QSPI0_CSB0: begin
           mux_to_pads_o.gpio_7.chip2pad = port_signals_soc2pad_i.qspi0.csb0_o;
-          mux_to_pads_o.gpio_7.output_en = port_signals_soc2pad_i.qspi0.csb0_en_o;
-          mux_to_pads_o.gpio_7.rx_en = s_reg2hw.gpio_7_cfg.rx_en.q;
+          mux_to_pads_o.gpio_7.drv = s_reg2hw.gpio_7_cfg.drv.q;
+          mux_to_pads_o.gpio_7.pde = s_reg2hw.gpio_7_cfg.pde.q;
+          mux_to_pads_o.gpio_7.pue = s_reg2hw.gpio_7_cfg.pue.q;
+          mux_to_pads_o.gpio_7.rxe = s_reg2hw.gpio_7_cfg.rxe.q;
+          mux_to_pads_o.gpio_7.slw = s_reg2hw.gpio_7_cfg.slw.q;
+          mux_to_pads_o.gpio_7.smt = s_reg2hw.gpio_7_cfg.smt.q;
+          mux_to_pads_o.gpio_7.trie = ~port_signals_soc2pad_i.qspi0.csb0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_7_SEL_QSPI0_CSB1: begin
           mux_to_pads_o.gpio_7.chip2pad = port_signals_soc2pad_i.qspi0.csb1_o;
-          mux_to_pads_o.gpio_7.output_en = port_signals_soc2pad_i.qspi0.csb1_en_o;
-          mux_to_pads_o.gpio_7.rx_en = s_reg2hw.gpio_7_cfg.rx_en.q;
+          mux_to_pads_o.gpio_7.drv = s_reg2hw.gpio_7_cfg.drv.q;
+          mux_to_pads_o.gpio_7.pde = s_reg2hw.gpio_7_cfg.pde.q;
+          mux_to_pads_o.gpio_7.pue = s_reg2hw.gpio_7_cfg.pue.q;
+          mux_to_pads_o.gpio_7.rxe = s_reg2hw.gpio_7_cfg.rxe.q;
+          mux_to_pads_o.gpio_7.slw = s_reg2hw.gpio_7_cfg.slw.q;
+          mux_to_pads_o.gpio_7.smt = s_reg2hw.gpio_7_cfg.smt.q;
+          mux_to_pads_o.gpio_7.trie = ~port_signals_soc2pad_i.qspi0.csb1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_7_SEL_QSPI0_CSB2: begin
           mux_to_pads_o.gpio_7.chip2pad = port_signals_soc2pad_i.qspi0.csb2_o;
-          mux_to_pads_o.gpio_7.output_en = port_signals_soc2pad_i.qspi0.csb2_en_o;
-          mux_to_pads_o.gpio_7.rx_en = s_reg2hw.gpio_7_cfg.rx_en.q;
+          mux_to_pads_o.gpio_7.drv = s_reg2hw.gpio_7_cfg.drv.q;
+          mux_to_pads_o.gpio_7.pde = s_reg2hw.gpio_7_cfg.pde.q;
+          mux_to_pads_o.gpio_7.pue = s_reg2hw.gpio_7_cfg.pue.q;
+          mux_to_pads_o.gpio_7.rxe = s_reg2hw.gpio_7_cfg.rxe.q;
+          mux_to_pads_o.gpio_7.slw = s_reg2hw.gpio_7_cfg.slw.q;
+          mux_to_pads_o.gpio_7.smt = s_reg2hw.gpio_7_cfg.smt.q;
+          mux_to_pads_o.gpio_7.trie = ~port_signals_soc2pad_i.qspi0.csb2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_7_SEL_QSPI0_SCK: begin
           mux_to_pads_o.gpio_7.chip2pad = port_signals_soc2pad_i.qspi0.sck_o;
-          mux_to_pads_o.gpio_7.output_en = port_signals_soc2pad_i.qspi0.sck_en_o;
-          mux_to_pads_o.gpio_7.rx_en = s_reg2hw.gpio_7_cfg.rx_en.q;
+          mux_to_pads_o.gpio_7.drv = s_reg2hw.gpio_7_cfg.drv.q;
+          mux_to_pads_o.gpio_7.pde = s_reg2hw.gpio_7_cfg.pde.q;
+          mux_to_pads_o.gpio_7.pue = s_reg2hw.gpio_7_cfg.pue.q;
+          mux_to_pads_o.gpio_7.rxe = s_reg2hw.gpio_7_cfg.rxe.q;
+          mux_to_pads_o.gpio_7.slw = s_reg2hw.gpio_7_cfg.slw.q;
+          mux_to_pads_o.gpio_7.smt = s_reg2hw.gpio_7_cfg.smt.q;
+          mux_to_pads_o.gpio_7.trie = port_signals_soc2pad_i.qspi0.sck_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_7_SEL_QSPI0_SD0: begin
           mux_to_pads_o.gpio_7.chip2pad = port_signals_soc2pad_i.qspi0.sd0_o;
-          mux_to_pads_o.gpio_7.output_en = port_signals_soc2pad_i.qspi0.sd0_en_o;
-          mux_to_pads_o.gpio_7.rx_en = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_7.drv = s_reg2hw.gpio_7_cfg.drv.q;
+          mux_to_pads_o.gpio_7.pde = s_reg2hw.gpio_7_cfg.pde.q;
+          mux_to_pads_o.gpio_7.pue = s_reg2hw.gpio_7_cfg.pue.q;
+          mux_to_pads_o.gpio_7.rxe = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_7.slw = s_reg2hw.gpio_7_cfg.slw.q;
+          mux_to_pads_o.gpio_7.smt = s_reg2hw.gpio_7_cfg.smt.q;
+          mux_to_pads_o.gpio_7.trie = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_7_SEL_QSPI0_SD1: begin
           mux_to_pads_o.gpio_7.chip2pad = port_signals_soc2pad_i.qspi0.sd1_o;
-          mux_to_pads_o.gpio_7.output_en = port_signals_soc2pad_i.qspi0.sd1_en_o;
-          mux_to_pads_o.gpio_7.rx_en = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_7.drv = s_reg2hw.gpio_7_cfg.drv.q;
+          mux_to_pads_o.gpio_7.pde = s_reg2hw.gpio_7_cfg.pde.q;
+          mux_to_pads_o.gpio_7.pue = s_reg2hw.gpio_7_cfg.pue.q;
+          mux_to_pads_o.gpio_7.rxe = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_7.slw = s_reg2hw.gpio_7_cfg.slw.q;
+          mux_to_pads_o.gpio_7.smt = s_reg2hw.gpio_7_cfg.smt.q;
+          mux_to_pads_o.gpio_7.trie = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_7_SEL_QSPI0_SD2: begin
           mux_to_pads_o.gpio_7.chip2pad = port_signals_soc2pad_i.qspi0.sd2_o;
-          mux_to_pads_o.gpio_7.output_en = port_signals_soc2pad_i.qspi0.sd2_en_o;
-          mux_to_pads_o.gpio_7.rx_en = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_7.drv = s_reg2hw.gpio_7_cfg.drv.q;
+          mux_to_pads_o.gpio_7.pde = s_reg2hw.gpio_7_cfg.pde.q;
+          mux_to_pads_o.gpio_7.pue = s_reg2hw.gpio_7_cfg.pue.q;
+          mux_to_pads_o.gpio_7.rxe = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_7.slw = s_reg2hw.gpio_7_cfg.slw.q;
+          mux_to_pads_o.gpio_7.smt = s_reg2hw.gpio_7_cfg.smt.q;
+          mux_to_pads_o.gpio_7.trie = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_7_SEL_QSPI0_SD3: begin
           mux_to_pads_o.gpio_7.chip2pad = port_signals_soc2pad_i.qspi0.sd3_o;
-          mux_to_pads_o.gpio_7.output_en = port_signals_soc2pad_i.qspi0.sd3_en_o;
-          mux_to_pads_o.gpio_7.rx_en = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_7.drv = s_reg2hw.gpio_7_cfg.drv.q;
+          mux_to_pads_o.gpio_7.pde = s_reg2hw.gpio_7_cfg.pde.q;
+          mux_to_pads_o.gpio_7.pue = s_reg2hw.gpio_7_cfg.pue.q;
+          mux_to_pads_o.gpio_7.rxe = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_7.slw = s_reg2hw.gpio_7_cfg.slw.q;
+          mux_to_pads_o.gpio_7.smt = s_reg2hw.gpio_7_cfg.smt.q;
+          mux_to_pads_o.gpio_7.trie = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_7_SEL_I2C0_SCL: begin
           mux_to_pads_o.gpio_7.chip2pad = port_signals_soc2pad_i.i2c0.scl_o;
-          mux_to_pads_o.gpio_7.output_en = port_signals_soc2pad_i.i2c0.scl_en_o;
-          mux_to_pads_o.gpio_7.rx_en = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_7.drv = s_reg2hw.gpio_7_cfg.drv.q;
+          mux_to_pads_o.gpio_7.pde = s_reg2hw.gpio_7_cfg.pde.q;
+          mux_to_pads_o.gpio_7.pue = s_reg2hw.gpio_7_cfg.pue.q;
+          mux_to_pads_o.gpio_7.rxe = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_7.slw = s_reg2hw.gpio_7_cfg.slw.q;
+          mux_to_pads_o.gpio_7.smt = s_reg2hw.gpio_7_cfg.smt.q;
+          mux_to_pads_o.gpio_7.trie = ~port_signals_soc2pad_i.i2c0.scl_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_7_SEL_I2C0_SDA: begin
           mux_to_pads_o.gpio_7.chip2pad = port_signals_soc2pad_i.i2c0.sda_o;
-          mux_to_pads_o.gpio_7.output_en = port_signals_soc2pad_i.i2c0.sda_en_o;
-          mux_to_pads_o.gpio_7.rx_en = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_7.drv = s_reg2hw.gpio_7_cfg.drv.q;
+          mux_to_pads_o.gpio_7.pde = s_reg2hw.gpio_7_cfg.pde.q;
+          mux_to_pads_o.gpio_7.pue = s_reg2hw.gpio_7_cfg.pue.q;
+          mux_to_pads_o.gpio_7.rxe = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_7.slw = s_reg2hw.gpio_7_cfg.slw.q;
+          mux_to_pads_o.gpio_7.smt = s_reg2hw.gpio_7_cfg.smt.q;
+          mux_to_pads_o.gpio_7.trie = ~port_signals_soc2pad_i.i2c0.sda_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_7_SEL_UART0_RX: begin
           mux_to_pads_o.gpio_7.chip2pad = s_reg2hw.gpio_7_cfg.chip2pad.q;
-          mux_to_pads_o.gpio_7.output_en = s_reg2hw.gpio_7_cfg.output_en.q;
-          mux_to_pads_o.gpio_7.rx_en = 1'b1;
+          mux_to_pads_o.gpio_7.drv = s_reg2hw.gpio_7_cfg.drv.q;
+          mux_to_pads_o.gpio_7.pde = s_reg2hw.gpio_7_cfg.pde.q;
+          mux_to_pads_o.gpio_7.pue = s_reg2hw.gpio_7_cfg.pue.q;
+          mux_to_pads_o.gpio_7.rxe = 1'b1;
+          mux_to_pads_o.gpio_7.slw = s_reg2hw.gpio_7_cfg.slw.q;
+          mux_to_pads_o.gpio_7.smt = s_reg2hw.gpio_7_cfg.smt.q;
+          mux_to_pads_o.gpio_7.trie = s_reg2hw.gpio_7_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_7_SEL_UART0_TX: begin
           mux_to_pads_o.gpio_7.chip2pad = port_signals_soc2pad_i.uart0.tx_o;
-          mux_to_pads_o.gpio_7.output_en = 1'b0;
-          mux_to_pads_o.gpio_7.rx_en = s_reg2hw.gpio_7_cfg.rx_en.q;
+          mux_to_pads_o.gpio_7.drv = s_reg2hw.gpio_7_cfg.drv.q;
+          mux_to_pads_o.gpio_7.pde = s_reg2hw.gpio_7_cfg.pde.q;
+          mux_to_pads_o.gpio_7.pue = s_reg2hw.gpio_7_cfg.pue.q;
+          mux_to_pads_o.gpio_7.rxe = s_reg2hw.gpio_7_cfg.rxe.q;
+          mux_to_pads_o.gpio_7.slw = s_reg2hw.gpio_7_cfg.slw.q;
+          mux_to_pads_o.gpio_7.smt = s_reg2hw.gpio_7_cfg.smt.q;
+          mux_to_pads_o.gpio_7.trie = 1'b0;
        end
        default: begin
          mux_to_pads_o.gpio_7.chip2pad = s_reg2hw.gpio_7_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_7.output_en = s_reg2hw.gpio_7_cfg.output_en.q;
-         mux_to_pads_o.gpio_7.rx_en = s_reg2hw.gpio_7_cfg.rx_en.q;
+         mux_to_pads_o.gpio_7.drv = s_reg2hw.gpio_7_cfg.drv.q;
+         mux_to_pads_o.gpio_7.pde = s_reg2hw.gpio_7_cfg.pde.q;
+         mux_to_pads_o.gpio_7.pue = s_reg2hw.gpio_7_cfg.pue.q;
+         mux_to_pads_o.gpio_7.rxe = s_reg2hw.gpio_7_cfg.rxe.q;
+         mux_to_pads_o.gpio_7.slw = s_reg2hw.gpio_7_cfg.slw.q;
+         mux_to_pads_o.gpio_7.smt = s_reg2hw.gpio_7_cfg.smt.q;
+         mux_to_pads_o.gpio_7.trie = s_reg2hw.gpio_7_cfg.trie.q;
        end
      endcase
    end // always_comb
@@ -648,73 +1208,143 @@ module chimera_padframe_aon_gpioa_muxer
      unique case (s_reg2hw.gpio_8_mux_sel.q)
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_8_SEL_DEFAULT: begin
          mux_to_pads_o.gpio_8.chip2pad = s_reg2hw.gpio_8_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_8.output_en = s_reg2hw.gpio_8_cfg.output_en.q;
-         mux_to_pads_o.gpio_8.rx_en = s_reg2hw.gpio_8_cfg.rx_en.q;
+         mux_to_pads_o.gpio_8.drv = s_reg2hw.gpio_8_cfg.drv.q;
+         mux_to_pads_o.gpio_8.pde = s_reg2hw.gpio_8_cfg.pde.q;
+         mux_to_pads_o.gpio_8.pue = s_reg2hw.gpio_8_cfg.pue.q;
+         mux_to_pads_o.gpio_8.rxe = s_reg2hw.gpio_8_cfg.rxe.q;
+         mux_to_pads_o.gpio_8.slw = s_reg2hw.gpio_8_cfg.slw.q;
+         mux_to_pads_o.gpio_8.smt = s_reg2hw.gpio_8_cfg.smt.q;
+         mux_to_pads_o.gpio_8.trie = s_reg2hw.gpio_8_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_8_SEL_QSPI0_CSB0: begin
           mux_to_pads_o.gpio_8.chip2pad = port_signals_soc2pad_i.qspi0.csb0_o;
-          mux_to_pads_o.gpio_8.output_en = port_signals_soc2pad_i.qspi0.csb0_en_o;
-          mux_to_pads_o.gpio_8.rx_en = s_reg2hw.gpio_8_cfg.rx_en.q;
+          mux_to_pads_o.gpio_8.drv = s_reg2hw.gpio_8_cfg.drv.q;
+          mux_to_pads_o.gpio_8.pde = s_reg2hw.gpio_8_cfg.pde.q;
+          mux_to_pads_o.gpio_8.pue = s_reg2hw.gpio_8_cfg.pue.q;
+          mux_to_pads_o.gpio_8.rxe = s_reg2hw.gpio_8_cfg.rxe.q;
+          mux_to_pads_o.gpio_8.slw = s_reg2hw.gpio_8_cfg.slw.q;
+          mux_to_pads_o.gpio_8.smt = s_reg2hw.gpio_8_cfg.smt.q;
+          mux_to_pads_o.gpio_8.trie = ~port_signals_soc2pad_i.qspi0.csb0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_8_SEL_QSPI0_CSB1: begin
           mux_to_pads_o.gpio_8.chip2pad = port_signals_soc2pad_i.qspi0.csb1_o;
-          mux_to_pads_o.gpio_8.output_en = port_signals_soc2pad_i.qspi0.csb1_en_o;
-          mux_to_pads_o.gpio_8.rx_en = s_reg2hw.gpio_8_cfg.rx_en.q;
+          mux_to_pads_o.gpio_8.drv = s_reg2hw.gpio_8_cfg.drv.q;
+          mux_to_pads_o.gpio_8.pde = s_reg2hw.gpio_8_cfg.pde.q;
+          mux_to_pads_o.gpio_8.pue = s_reg2hw.gpio_8_cfg.pue.q;
+          mux_to_pads_o.gpio_8.rxe = s_reg2hw.gpio_8_cfg.rxe.q;
+          mux_to_pads_o.gpio_8.slw = s_reg2hw.gpio_8_cfg.slw.q;
+          mux_to_pads_o.gpio_8.smt = s_reg2hw.gpio_8_cfg.smt.q;
+          mux_to_pads_o.gpio_8.trie = ~port_signals_soc2pad_i.qspi0.csb1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_8_SEL_QSPI0_CSB2: begin
           mux_to_pads_o.gpio_8.chip2pad = port_signals_soc2pad_i.qspi0.csb2_o;
-          mux_to_pads_o.gpio_8.output_en = port_signals_soc2pad_i.qspi0.csb2_en_o;
-          mux_to_pads_o.gpio_8.rx_en = s_reg2hw.gpio_8_cfg.rx_en.q;
+          mux_to_pads_o.gpio_8.drv = s_reg2hw.gpio_8_cfg.drv.q;
+          mux_to_pads_o.gpio_8.pde = s_reg2hw.gpio_8_cfg.pde.q;
+          mux_to_pads_o.gpio_8.pue = s_reg2hw.gpio_8_cfg.pue.q;
+          mux_to_pads_o.gpio_8.rxe = s_reg2hw.gpio_8_cfg.rxe.q;
+          mux_to_pads_o.gpio_8.slw = s_reg2hw.gpio_8_cfg.slw.q;
+          mux_to_pads_o.gpio_8.smt = s_reg2hw.gpio_8_cfg.smt.q;
+          mux_to_pads_o.gpio_8.trie = ~port_signals_soc2pad_i.qspi0.csb2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_8_SEL_QSPI0_SCK: begin
           mux_to_pads_o.gpio_8.chip2pad = port_signals_soc2pad_i.qspi0.sck_o;
-          mux_to_pads_o.gpio_8.output_en = port_signals_soc2pad_i.qspi0.sck_en_o;
-          mux_to_pads_o.gpio_8.rx_en = s_reg2hw.gpio_8_cfg.rx_en.q;
+          mux_to_pads_o.gpio_8.drv = s_reg2hw.gpio_8_cfg.drv.q;
+          mux_to_pads_o.gpio_8.pde = s_reg2hw.gpio_8_cfg.pde.q;
+          mux_to_pads_o.gpio_8.pue = s_reg2hw.gpio_8_cfg.pue.q;
+          mux_to_pads_o.gpio_8.rxe = s_reg2hw.gpio_8_cfg.rxe.q;
+          mux_to_pads_o.gpio_8.slw = s_reg2hw.gpio_8_cfg.slw.q;
+          mux_to_pads_o.gpio_8.smt = s_reg2hw.gpio_8_cfg.smt.q;
+          mux_to_pads_o.gpio_8.trie = port_signals_soc2pad_i.qspi0.sck_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_8_SEL_QSPI0_SD0: begin
           mux_to_pads_o.gpio_8.chip2pad = port_signals_soc2pad_i.qspi0.sd0_o;
-          mux_to_pads_o.gpio_8.output_en = port_signals_soc2pad_i.qspi0.sd0_en_o;
-          mux_to_pads_o.gpio_8.rx_en = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_8.drv = s_reg2hw.gpio_8_cfg.drv.q;
+          mux_to_pads_o.gpio_8.pde = s_reg2hw.gpio_8_cfg.pde.q;
+          mux_to_pads_o.gpio_8.pue = s_reg2hw.gpio_8_cfg.pue.q;
+          mux_to_pads_o.gpio_8.rxe = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_8.slw = s_reg2hw.gpio_8_cfg.slw.q;
+          mux_to_pads_o.gpio_8.smt = s_reg2hw.gpio_8_cfg.smt.q;
+          mux_to_pads_o.gpio_8.trie = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_8_SEL_QSPI0_SD1: begin
           mux_to_pads_o.gpio_8.chip2pad = port_signals_soc2pad_i.qspi0.sd1_o;
-          mux_to_pads_o.gpio_8.output_en = port_signals_soc2pad_i.qspi0.sd1_en_o;
-          mux_to_pads_o.gpio_8.rx_en = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_8.drv = s_reg2hw.gpio_8_cfg.drv.q;
+          mux_to_pads_o.gpio_8.pde = s_reg2hw.gpio_8_cfg.pde.q;
+          mux_to_pads_o.gpio_8.pue = s_reg2hw.gpio_8_cfg.pue.q;
+          mux_to_pads_o.gpio_8.rxe = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_8.slw = s_reg2hw.gpio_8_cfg.slw.q;
+          mux_to_pads_o.gpio_8.smt = s_reg2hw.gpio_8_cfg.smt.q;
+          mux_to_pads_o.gpio_8.trie = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_8_SEL_QSPI0_SD2: begin
           mux_to_pads_o.gpio_8.chip2pad = port_signals_soc2pad_i.qspi0.sd2_o;
-          mux_to_pads_o.gpio_8.output_en = port_signals_soc2pad_i.qspi0.sd2_en_o;
-          mux_to_pads_o.gpio_8.rx_en = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_8.drv = s_reg2hw.gpio_8_cfg.drv.q;
+          mux_to_pads_o.gpio_8.pde = s_reg2hw.gpio_8_cfg.pde.q;
+          mux_to_pads_o.gpio_8.pue = s_reg2hw.gpio_8_cfg.pue.q;
+          mux_to_pads_o.gpio_8.rxe = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_8.slw = s_reg2hw.gpio_8_cfg.slw.q;
+          mux_to_pads_o.gpio_8.smt = s_reg2hw.gpio_8_cfg.smt.q;
+          mux_to_pads_o.gpio_8.trie = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_8_SEL_QSPI0_SD3: begin
           mux_to_pads_o.gpio_8.chip2pad = port_signals_soc2pad_i.qspi0.sd3_o;
-          mux_to_pads_o.gpio_8.output_en = port_signals_soc2pad_i.qspi0.sd3_en_o;
-          mux_to_pads_o.gpio_8.rx_en = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_8.drv = s_reg2hw.gpio_8_cfg.drv.q;
+          mux_to_pads_o.gpio_8.pde = s_reg2hw.gpio_8_cfg.pde.q;
+          mux_to_pads_o.gpio_8.pue = s_reg2hw.gpio_8_cfg.pue.q;
+          mux_to_pads_o.gpio_8.rxe = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_8.slw = s_reg2hw.gpio_8_cfg.slw.q;
+          mux_to_pads_o.gpio_8.smt = s_reg2hw.gpio_8_cfg.smt.q;
+          mux_to_pads_o.gpio_8.trie = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_8_SEL_I2C0_SCL: begin
           mux_to_pads_o.gpio_8.chip2pad = port_signals_soc2pad_i.i2c0.scl_o;
-          mux_to_pads_o.gpio_8.output_en = port_signals_soc2pad_i.i2c0.scl_en_o;
-          mux_to_pads_o.gpio_8.rx_en = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_8.drv = s_reg2hw.gpio_8_cfg.drv.q;
+          mux_to_pads_o.gpio_8.pde = s_reg2hw.gpio_8_cfg.pde.q;
+          mux_to_pads_o.gpio_8.pue = s_reg2hw.gpio_8_cfg.pue.q;
+          mux_to_pads_o.gpio_8.rxe = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_8.slw = s_reg2hw.gpio_8_cfg.slw.q;
+          mux_to_pads_o.gpio_8.smt = s_reg2hw.gpio_8_cfg.smt.q;
+          mux_to_pads_o.gpio_8.trie = ~port_signals_soc2pad_i.i2c0.scl_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_8_SEL_I2C0_SDA: begin
           mux_to_pads_o.gpio_8.chip2pad = port_signals_soc2pad_i.i2c0.sda_o;
-          mux_to_pads_o.gpio_8.output_en = port_signals_soc2pad_i.i2c0.sda_en_o;
-          mux_to_pads_o.gpio_8.rx_en = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_8.drv = s_reg2hw.gpio_8_cfg.drv.q;
+          mux_to_pads_o.gpio_8.pde = s_reg2hw.gpio_8_cfg.pde.q;
+          mux_to_pads_o.gpio_8.pue = s_reg2hw.gpio_8_cfg.pue.q;
+          mux_to_pads_o.gpio_8.rxe = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_8.slw = s_reg2hw.gpio_8_cfg.slw.q;
+          mux_to_pads_o.gpio_8.smt = s_reg2hw.gpio_8_cfg.smt.q;
+          mux_to_pads_o.gpio_8.trie = ~port_signals_soc2pad_i.i2c0.sda_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_8_SEL_UART0_RX: begin
           mux_to_pads_o.gpio_8.chip2pad = s_reg2hw.gpio_8_cfg.chip2pad.q;
-          mux_to_pads_o.gpio_8.output_en = s_reg2hw.gpio_8_cfg.output_en.q;
-          mux_to_pads_o.gpio_8.rx_en = 1'b1;
+          mux_to_pads_o.gpio_8.drv = s_reg2hw.gpio_8_cfg.drv.q;
+          mux_to_pads_o.gpio_8.pde = s_reg2hw.gpio_8_cfg.pde.q;
+          mux_to_pads_o.gpio_8.pue = s_reg2hw.gpio_8_cfg.pue.q;
+          mux_to_pads_o.gpio_8.rxe = 1'b1;
+          mux_to_pads_o.gpio_8.slw = s_reg2hw.gpio_8_cfg.slw.q;
+          mux_to_pads_o.gpio_8.smt = s_reg2hw.gpio_8_cfg.smt.q;
+          mux_to_pads_o.gpio_8.trie = s_reg2hw.gpio_8_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_8_SEL_UART0_TX: begin
           mux_to_pads_o.gpio_8.chip2pad = port_signals_soc2pad_i.uart0.tx_o;
-          mux_to_pads_o.gpio_8.output_en = 1'b0;
-          mux_to_pads_o.gpio_8.rx_en = s_reg2hw.gpio_8_cfg.rx_en.q;
+          mux_to_pads_o.gpio_8.drv = s_reg2hw.gpio_8_cfg.drv.q;
+          mux_to_pads_o.gpio_8.pde = s_reg2hw.gpio_8_cfg.pde.q;
+          mux_to_pads_o.gpio_8.pue = s_reg2hw.gpio_8_cfg.pue.q;
+          mux_to_pads_o.gpio_8.rxe = s_reg2hw.gpio_8_cfg.rxe.q;
+          mux_to_pads_o.gpio_8.slw = s_reg2hw.gpio_8_cfg.slw.q;
+          mux_to_pads_o.gpio_8.smt = s_reg2hw.gpio_8_cfg.smt.q;
+          mux_to_pads_o.gpio_8.trie = 1'b0;
        end
        default: begin
          mux_to_pads_o.gpio_8.chip2pad = s_reg2hw.gpio_8_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_8.output_en = s_reg2hw.gpio_8_cfg.output_en.q;
-         mux_to_pads_o.gpio_8.rx_en = s_reg2hw.gpio_8_cfg.rx_en.q;
+         mux_to_pads_o.gpio_8.drv = s_reg2hw.gpio_8_cfg.drv.q;
+         mux_to_pads_o.gpio_8.pde = s_reg2hw.gpio_8_cfg.pde.q;
+         mux_to_pads_o.gpio_8.pue = s_reg2hw.gpio_8_cfg.pue.q;
+         mux_to_pads_o.gpio_8.rxe = s_reg2hw.gpio_8_cfg.rxe.q;
+         mux_to_pads_o.gpio_8.slw = s_reg2hw.gpio_8_cfg.slw.q;
+         mux_to_pads_o.gpio_8.smt = s_reg2hw.gpio_8_cfg.smt.q;
+         mux_to_pads_o.gpio_8.trie = s_reg2hw.gpio_8_cfg.trie.q;
        end
      endcase
    end // always_comb
@@ -724,73 +1354,143 @@ module chimera_padframe_aon_gpioa_muxer
      unique case (s_reg2hw.gpio_9_mux_sel.q)
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_9_SEL_DEFAULT: begin
          mux_to_pads_o.gpio_9.chip2pad = s_reg2hw.gpio_9_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_9.output_en = s_reg2hw.gpio_9_cfg.output_en.q;
-         mux_to_pads_o.gpio_9.rx_en = s_reg2hw.gpio_9_cfg.rx_en.q;
+         mux_to_pads_o.gpio_9.drv = s_reg2hw.gpio_9_cfg.drv.q;
+         mux_to_pads_o.gpio_9.pde = s_reg2hw.gpio_9_cfg.pde.q;
+         mux_to_pads_o.gpio_9.pue = s_reg2hw.gpio_9_cfg.pue.q;
+         mux_to_pads_o.gpio_9.rxe = s_reg2hw.gpio_9_cfg.rxe.q;
+         mux_to_pads_o.gpio_9.slw = s_reg2hw.gpio_9_cfg.slw.q;
+         mux_to_pads_o.gpio_9.smt = s_reg2hw.gpio_9_cfg.smt.q;
+         mux_to_pads_o.gpio_9.trie = s_reg2hw.gpio_9_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_9_SEL_QSPI0_CSB0: begin
           mux_to_pads_o.gpio_9.chip2pad = port_signals_soc2pad_i.qspi0.csb0_o;
-          mux_to_pads_o.gpio_9.output_en = port_signals_soc2pad_i.qspi0.csb0_en_o;
-          mux_to_pads_o.gpio_9.rx_en = s_reg2hw.gpio_9_cfg.rx_en.q;
+          mux_to_pads_o.gpio_9.drv = s_reg2hw.gpio_9_cfg.drv.q;
+          mux_to_pads_o.gpio_9.pde = s_reg2hw.gpio_9_cfg.pde.q;
+          mux_to_pads_o.gpio_9.pue = s_reg2hw.gpio_9_cfg.pue.q;
+          mux_to_pads_o.gpio_9.rxe = s_reg2hw.gpio_9_cfg.rxe.q;
+          mux_to_pads_o.gpio_9.slw = s_reg2hw.gpio_9_cfg.slw.q;
+          mux_to_pads_o.gpio_9.smt = s_reg2hw.gpio_9_cfg.smt.q;
+          mux_to_pads_o.gpio_9.trie = ~port_signals_soc2pad_i.qspi0.csb0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_9_SEL_QSPI0_CSB1: begin
           mux_to_pads_o.gpio_9.chip2pad = port_signals_soc2pad_i.qspi0.csb1_o;
-          mux_to_pads_o.gpio_9.output_en = port_signals_soc2pad_i.qspi0.csb1_en_o;
-          mux_to_pads_o.gpio_9.rx_en = s_reg2hw.gpio_9_cfg.rx_en.q;
+          mux_to_pads_o.gpio_9.drv = s_reg2hw.gpio_9_cfg.drv.q;
+          mux_to_pads_o.gpio_9.pde = s_reg2hw.gpio_9_cfg.pde.q;
+          mux_to_pads_o.gpio_9.pue = s_reg2hw.gpio_9_cfg.pue.q;
+          mux_to_pads_o.gpio_9.rxe = s_reg2hw.gpio_9_cfg.rxe.q;
+          mux_to_pads_o.gpio_9.slw = s_reg2hw.gpio_9_cfg.slw.q;
+          mux_to_pads_o.gpio_9.smt = s_reg2hw.gpio_9_cfg.smt.q;
+          mux_to_pads_o.gpio_9.trie = ~port_signals_soc2pad_i.qspi0.csb1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_9_SEL_QSPI0_CSB2: begin
           mux_to_pads_o.gpio_9.chip2pad = port_signals_soc2pad_i.qspi0.csb2_o;
-          mux_to_pads_o.gpio_9.output_en = port_signals_soc2pad_i.qspi0.csb2_en_o;
-          mux_to_pads_o.gpio_9.rx_en = s_reg2hw.gpio_9_cfg.rx_en.q;
+          mux_to_pads_o.gpio_9.drv = s_reg2hw.gpio_9_cfg.drv.q;
+          mux_to_pads_o.gpio_9.pde = s_reg2hw.gpio_9_cfg.pde.q;
+          mux_to_pads_o.gpio_9.pue = s_reg2hw.gpio_9_cfg.pue.q;
+          mux_to_pads_o.gpio_9.rxe = s_reg2hw.gpio_9_cfg.rxe.q;
+          mux_to_pads_o.gpio_9.slw = s_reg2hw.gpio_9_cfg.slw.q;
+          mux_to_pads_o.gpio_9.smt = s_reg2hw.gpio_9_cfg.smt.q;
+          mux_to_pads_o.gpio_9.trie = ~port_signals_soc2pad_i.qspi0.csb2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_9_SEL_QSPI0_SCK: begin
           mux_to_pads_o.gpio_9.chip2pad = port_signals_soc2pad_i.qspi0.sck_o;
-          mux_to_pads_o.gpio_9.output_en = port_signals_soc2pad_i.qspi0.sck_en_o;
-          mux_to_pads_o.gpio_9.rx_en = s_reg2hw.gpio_9_cfg.rx_en.q;
+          mux_to_pads_o.gpio_9.drv = s_reg2hw.gpio_9_cfg.drv.q;
+          mux_to_pads_o.gpio_9.pde = s_reg2hw.gpio_9_cfg.pde.q;
+          mux_to_pads_o.gpio_9.pue = s_reg2hw.gpio_9_cfg.pue.q;
+          mux_to_pads_o.gpio_9.rxe = s_reg2hw.gpio_9_cfg.rxe.q;
+          mux_to_pads_o.gpio_9.slw = s_reg2hw.gpio_9_cfg.slw.q;
+          mux_to_pads_o.gpio_9.smt = s_reg2hw.gpio_9_cfg.smt.q;
+          mux_to_pads_o.gpio_9.trie = port_signals_soc2pad_i.qspi0.sck_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_9_SEL_QSPI0_SD0: begin
           mux_to_pads_o.gpio_9.chip2pad = port_signals_soc2pad_i.qspi0.sd0_o;
-          mux_to_pads_o.gpio_9.output_en = port_signals_soc2pad_i.qspi0.sd0_en_o;
-          mux_to_pads_o.gpio_9.rx_en = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_9.drv = s_reg2hw.gpio_9_cfg.drv.q;
+          mux_to_pads_o.gpio_9.pde = s_reg2hw.gpio_9_cfg.pde.q;
+          mux_to_pads_o.gpio_9.pue = s_reg2hw.gpio_9_cfg.pue.q;
+          mux_to_pads_o.gpio_9.rxe = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_9.slw = s_reg2hw.gpio_9_cfg.slw.q;
+          mux_to_pads_o.gpio_9.smt = s_reg2hw.gpio_9_cfg.smt.q;
+          mux_to_pads_o.gpio_9.trie = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_9_SEL_QSPI0_SD1: begin
           mux_to_pads_o.gpio_9.chip2pad = port_signals_soc2pad_i.qspi0.sd1_o;
-          mux_to_pads_o.gpio_9.output_en = port_signals_soc2pad_i.qspi0.sd1_en_o;
-          mux_to_pads_o.gpio_9.rx_en = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_9.drv = s_reg2hw.gpio_9_cfg.drv.q;
+          mux_to_pads_o.gpio_9.pde = s_reg2hw.gpio_9_cfg.pde.q;
+          mux_to_pads_o.gpio_9.pue = s_reg2hw.gpio_9_cfg.pue.q;
+          mux_to_pads_o.gpio_9.rxe = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_9.slw = s_reg2hw.gpio_9_cfg.slw.q;
+          mux_to_pads_o.gpio_9.smt = s_reg2hw.gpio_9_cfg.smt.q;
+          mux_to_pads_o.gpio_9.trie = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_9_SEL_QSPI0_SD2: begin
           mux_to_pads_o.gpio_9.chip2pad = port_signals_soc2pad_i.qspi0.sd2_o;
-          mux_to_pads_o.gpio_9.output_en = port_signals_soc2pad_i.qspi0.sd2_en_o;
-          mux_to_pads_o.gpio_9.rx_en = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_9.drv = s_reg2hw.gpio_9_cfg.drv.q;
+          mux_to_pads_o.gpio_9.pde = s_reg2hw.gpio_9_cfg.pde.q;
+          mux_to_pads_o.gpio_9.pue = s_reg2hw.gpio_9_cfg.pue.q;
+          mux_to_pads_o.gpio_9.rxe = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_9.slw = s_reg2hw.gpio_9_cfg.slw.q;
+          mux_to_pads_o.gpio_9.smt = s_reg2hw.gpio_9_cfg.smt.q;
+          mux_to_pads_o.gpio_9.trie = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_9_SEL_QSPI0_SD3: begin
           mux_to_pads_o.gpio_9.chip2pad = port_signals_soc2pad_i.qspi0.sd3_o;
-          mux_to_pads_o.gpio_9.output_en = port_signals_soc2pad_i.qspi0.sd3_en_o;
-          mux_to_pads_o.gpio_9.rx_en = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_9.drv = s_reg2hw.gpio_9_cfg.drv.q;
+          mux_to_pads_o.gpio_9.pde = s_reg2hw.gpio_9_cfg.pde.q;
+          mux_to_pads_o.gpio_9.pue = s_reg2hw.gpio_9_cfg.pue.q;
+          mux_to_pads_o.gpio_9.rxe = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_9.slw = s_reg2hw.gpio_9_cfg.slw.q;
+          mux_to_pads_o.gpio_9.smt = s_reg2hw.gpio_9_cfg.smt.q;
+          mux_to_pads_o.gpio_9.trie = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_9_SEL_I2C0_SCL: begin
           mux_to_pads_o.gpio_9.chip2pad = port_signals_soc2pad_i.i2c0.scl_o;
-          mux_to_pads_o.gpio_9.output_en = port_signals_soc2pad_i.i2c0.scl_en_o;
-          mux_to_pads_o.gpio_9.rx_en = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_9.drv = s_reg2hw.gpio_9_cfg.drv.q;
+          mux_to_pads_o.gpio_9.pde = s_reg2hw.gpio_9_cfg.pde.q;
+          mux_to_pads_o.gpio_9.pue = s_reg2hw.gpio_9_cfg.pue.q;
+          mux_to_pads_o.gpio_9.rxe = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_9.slw = s_reg2hw.gpio_9_cfg.slw.q;
+          mux_to_pads_o.gpio_9.smt = s_reg2hw.gpio_9_cfg.smt.q;
+          mux_to_pads_o.gpio_9.trie = ~port_signals_soc2pad_i.i2c0.scl_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_9_SEL_I2C0_SDA: begin
           mux_to_pads_o.gpio_9.chip2pad = port_signals_soc2pad_i.i2c0.sda_o;
-          mux_to_pads_o.gpio_9.output_en = port_signals_soc2pad_i.i2c0.sda_en_o;
-          mux_to_pads_o.gpio_9.rx_en = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_9.drv = s_reg2hw.gpio_9_cfg.drv.q;
+          mux_to_pads_o.gpio_9.pde = s_reg2hw.gpio_9_cfg.pde.q;
+          mux_to_pads_o.gpio_9.pue = s_reg2hw.gpio_9_cfg.pue.q;
+          mux_to_pads_o.gpio_9.rxe = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_9.slw = s_reg2hw.gpio_9_cfg.slw.q;
+          mux_to_pads_o.gpio_9.smt = s_reg2hw.gpio_9_cfg.smt.q;
+          mux_to_pads_o.gpio_9.trie = ~port_signals_soc2pad_i.i2c0.sda_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_9_SEL_UART0_RX: begin
           mux_to_pads_o.gpio_9.chip2pad = s_reg2hw.gpio_9_cfg.chip2pad.q;
-          mux_to_pads_o.gpio_9.output_en = s_reg2hw.gpio_9_cfg.output_en.q;
-          mux_to_pads_o.gpio_9.rx_en = 1'b1;
+          mux_to_pads_o.gpio_9.drv = s_reg2hw.gpio_9_cfg.drv.q;
+          mux_to_pads_o.gpio_9.pde = s_reg2hw.gpio_9_cfg.pde.q;
+          mux_to_pads_o.gpio_9.pue = s_reg2hw.gpio_9_cfg.pue.q;
+          mux_to_pads_o.gpio_9.rxe = 1'b1;
+          mux_to_pads_o.gpio_9.slw = s_reg2hw.gpio_9_cfg.slw.q;
+          mux_to_pads_o.gpio_9.smt = s_reg2hw.gpio_9_cfg.smt.q;
+          mux_to_pads_o.gpio_9.trie = s_reg2hw.gpio_9_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_9_SEL_UART0_TX: begin
           mux_to_pads_o.gpio_9.chip2pad = port_signals_soc2pad_i.uart0.tx_o;
-          mux_to_pads_o.gpio_9.output_en = 1'b0;
-          mux_to_pads_o.gpio_9.rx_en = s_reg2hw.gpio_9_cfg.rx_en.q;
+          mux_to_pads_o.gpio_9.drv = s_reg2hw.gpio_9_cfg.drv.q;
+          mux_to_pads_o.gpio_9.pde = s_reg2hw.gpio_9_cfg.pde.q;
+          mux_to_pads_o.gpio_9.pue = s_reg2hw.gpio_9_cfg.pue.q;
+          mux_to_pads_o.gpio_9.rxe = s_reg2hw.gpio_9_cfg.rxe.q;
+          mux_to_pads_o.gpio_9.slw = s_reg2hw.gpio_9_cfg.slw.q;
+          mux_to_pads_o.gpio_9.smt = s_reg2hw.gpio_9_cfg.smt.q;
+          mux_to_pads_o.gpio_9.trie = 1'b0;
        end
        default: begin
          mux_to_pads_o.gpio_9.chip2pad = s_reg2hw.gpio_9_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_9.output_en = s_reg2hw.gpio_9_cfg.output_en.q;
-         mux_to_pads_o.gpio_9.rx_en = s_reg2hw.gpio_9_cfg.rx_en.q;
+         mux_to_pads_o.gpio_9.drv = s_reg2hw.gpio_9_cfg.drv.q;
+         mux_to_pads_o.gpio_9.pde = s_reg2hw.gpio_9_cfg.pde.q;
+         mux_to_pads_o.gpio_9.pue = s_reg2hw.gpio_9_cfg.pue.q;
+         mux_to_pads_o.gpio_9.rxe = s_reg2hw.gpio_9_cfg.rxe.q;
+         mux_to_pads_o.gpio_9.slw = s_reg2hw.gpio_9_cfg.slw.q;
+         mux_to_pads_o.gpio_9.smt = s_reg2hw.gpio_9_cfg.smt.q;
+         mux_to_pads_o.gpio_9.trie = s_reg2hw.gpio_9_cfg.trie.q;
        end
      endcase
    end // always_comb
@@ -800,73 +1500,143 @@ module chimera_padframe_aon_gpioa_muxer
      unique case (s_reg2hw.gpio_10_mux_sel.q)
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_10_SEL_DEFAULT: begin
          mux_to_pads_o.gpio_10.chip2pad = s_reg2hw.gpio_10_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_10.output_en = s_reg2hw.gpio_10_cfg.output_en.q;
-         mux_to_pads_o.gpio_10.rx_en = s_reg2hw.gpio_10_cfg.rx_en.q;
+         mux_to_pads_o.gpio_10.drv = s_reg2hw.gpio_10_cfg.drv.q;
+         mux_to_pads_o.gpio_10.pde = s_reg2hw.gpio_10_cfg.pde.q;
+         mux_to_pads_o.gpio_10.pue = s_reg2hw.gpio_10_cfg.pue.q;
+         mux_to_pads_o.gpio_10.rxe = s_reg2hw.gpio_10_cfg.rxe.q;
+         mux_to_pads_o.gpio_10.slw = s_reg2hw.gpio_10_cfg.slw.q;
+         mux_to_pads_o.gpio_10.smt = s_reg2hw.gpio_10_cfg.smt.q;
+         mux_to_pads_o.gpio_10.trie = s_reg2hw.gpio_10_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_10_SEL_QSPI0_CSB0: begin
           mux_to_pads_o.gpio_10.chip2pad = port_signals_soc2pad_i.qspi0.csb0_o;
-          mux_to_pads_o.gpio_10.output_en = port_signals_soc2pad_i.qspi0.csb0_en_o;
-          mux_to_pads_o.gpio_10.rx_en = s_reg2hw.gpio_10_cfg.rx_en.q;
+          mux_to_pads_o.gpio_10.drv = s_reg2hw.gpio_10_cfg.drv.q;
+          mux_to_pads_o.gpio_10.pde = s_reg2hw.gpio_10_cfg.pde.q;
+          mux_to_pads_o.gpio_10.pue = s_reg2hw.gpio_10_cfg.pue.q;
+          mux_to_pads_o.gpio_10.rxe = s_reg2hw.gpio_10_cfg.rxe.q;
+          mux_to_pads_o.gpio_10.slw = s_reg2hw.gpio_10_cfg.slw.q;
+          mux_to_pads_o.gpio_10.smt = s_reg2hw.gpio_10_cfg.smt.q;
+          mux_to_pads_o.gpio_10.trie = ~port_signals_soc2pad_i.qspi0.csb0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_10_SEL_QSPI0_CSB1: begin
           mux_to_pads_o.gpio_10.chip2pad = port_signals_soc2pad_i.qspi0.csb1_o;
-          mux_to_pads_o.gpio_10.output_en = port_signals_soc2pad_i.qspi0.csb1_en_o;
-          mux_to_pads_o.gpio_10.rx_en = s_reg2hw.gpio_10_cfg.rx_en.q;
+          mux_to_pads_o.gpio_10.drv = s_reg2hw.gpio_10_cfg.drv.q;
+          mux_to_pads_o.gpio_10.pde = s_reg2hw.gpio_10_cfg.pde.q;
+          mux_to_pads_o.gpio_10.pue = s_reg2hw.gpio_10_cfg.pue.q;
+          mux_to_pads_o.gpio_10.rxe = s_reg2hw.gpio_10_cfg.rxe.q;
+          mux_to_pads_o.gpio_10.slw = s_reg2hw.gpio_10_cfg.slw.q;
+          mux_to_pads_o.gpio_10.smt = s_reg2hw.gpio_10_cfg.smt.q;
+          mux_to_pads_o.gpio_10.trie = ~port_signals_soc2pad_i.qspi0.csb1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_10_SEL_QSPI0_CSB2: begin
           mux_to_pads_o.gpio_10.chip2pad = port_signals_soc2pad_i.qspi0.csb2_o;
-          mux_to_pads_o.gpio_10.output_en = port_signals_soc2pad_i.qspi0.csb2_en_o;
-          mux_to_pads_o.gpio_10.rx_en = s_reg2hw.gpio_10_cfg.rx_en.q;
+          mux_to_pads_o.gpio_10.drv = s_reg2hw.gpio_10_cfg.drv.q;
+          mux_to_pads_o.gpio_10.pde = s_reg2hw.gpio_10_cfg.pde.q;
+          mux_to_pads_o.gpio_10.pue = s_reg2hw.gpio_10_cfg.pue.q;
+          mux_to_pads_o.gpio_10.rxe = s_reg2hw.gpio_10_cfg.rxe.q;
+          mux_to_pads_o.gpio_10.slw = s_reg2hw.gpio_10_cfg.slw.q;
+          mux_to_pads_o.gpio_10.smt = s_reg2hw.gpio_10_cfg.smt.q;
+          mux_to_pads_o.gpio_10.trie = ~port_signals_soc2pad_i.qspi0.csb2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_10_SEL_QSPI0_SCK: begin
           mux_to_pads_o.gpio_10.chip2pad = port_signals_soc2pad_i.qspi0.sck_o;
-          mux_to_pads_o.gpio_10.output_en = port_signals_soc2pad_i.qspi0.sck_en_o;
-          mux_to_pads_o.gpio_10.rx_en = s_reg2hw.gpio_10_cfg.rx_en.q;
+          mux_to_pads_o.gpio_10.drv = s_reg2hw.gpio_10_cfg.drv.q;
+          mux_to_pads_o.gpio_10.pde = s_reg2hw.gpio_10_cfg.pde.q;
+          mux_to_pads_o.gpio_10.pue = s_reg2hw.gpio_10_cfg.pue.q;
+          mux_to_pads_o.gpio_10.rxe = s_reg2hw.gpio_10_cfg.rxe.q;
+          mux_to_pads_o.gpio_10.slw = s_reg2hw.gpio_10_cfg.slw.q;
+          mux_to_pads_o.gpio_10.smt = s_reg2hw.gpio_10_cfg.smt.q;
+          mux_to_pads_o.gpio_10.trie = port_signals_soc2pad_i.qspi0.sck_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_10_SEL_QSPI0_SD0: begin
           mux_to_pads_o.gpio_10.chip2pad = port_signals_soc2pad_i.qspi0.sd0_o;
-          mux_to_pads_o.gpio_10.output_en = port_signals_soc2pad_i.qspi0.sd0_en_o;
-          mux_to_pads_o.gpio_10.rx_en = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_10.drv = s_reg2hw.gpio_10_cfg.drv.q;
+          mux_to_pads_o.gpio_10.pde = s_reg2hw.gpio_10_cfg.pde.q;
+          mux_to_pads_o.gpio_10.pue = s_reg2hw.gpio_10_cfg.pue.q;
+          mux_to_pads_o.gpio_10.rxe = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_10.slw = s_reg2hw.gpio_10_cfg.slw.q;
+          mux_to_pads_o.gpio_10.smt = s_reg2hw.gpio_10_cfg.smt.q;
+          mux_to_pads_o.gpio_10.trie = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_10_SEL_QSPI0_SD1: begin
           mux_to_pads_o.gpio_10.chip2pad = port_signals_soc2pad_i.qspi0.sd1_o;
-          mux_to_pads_o.gpio_10.output_en = port_signals_soc2pad_i.qspi0.sd1_en_o;
-          mux_to_pads_o.gpio_10.rx_en = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_10.drv = s_reg2hw.gpio_10_cfg.drv.q;
+          mux_to_pads_o.gpio_10.pde = s_reg2hw.gpio_10_cfg.pde.q;
+          mux_to_pads_o.gpio_10.pue = s_reg2hw.gpio_10_cfg.pue.q;
+          mux_to_pads_o.gpio_10.rxe = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_10.slw = s_reg2hw.gpio_10_cfg.slw.q;
+          mux_to_pads_o.gpio_10.smt = s_reg2hw.gpio_10_cfg.smt.q;
+          mux_to_pads_o.gpio_10.trie = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_10_SEL_QSPI0_SD2: begin
           mux_to_pads_o.gpio_10.chip2pad = port_signals_soc2pad_i.qspi0.sd2_o;
-          mux_to_pads_o.gpio_10.output_en = port_signals_soc2pad_i.qspi0.sd2_en_o;
-          mux_to_pads_o.gpio_10.rx_en = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_10.drv = s_reg2hw.gpio_10_cfg.drv.q;
+          mux_to_pads_o.gpio_10.pde = s_reg2hw.gpio_10_cfg.pde.q;
+          mux_to_pads_o.gpio_10.pue = s_reg2hw.gpio_10_cfg.pue.q;
+          mux_to_pads_o.gpio_10.rxe = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_10.slw = s_reg2hw.gpio_10_cfg.slw.q;
+          mux_to_pads_o.gpio_10.smt = s_reg2hw.gpio_10_cfg.smt.q;
+          mux_to_pads_o.gpio_10.trie = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_10_SEL_QSPI0_SD3: begin
           mux_to_pads_o.gpio_10.chip2pad = port_signals_soc2pad_i.qspi0.sd3_o;
-          mux_to_pads_o.gpio_10.output_en = port_signals_soc2pad_i.qspi0.sd3_en_o;
-          mux_to_pads_o.gpio_10.rx_en = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_10.drv = s_reg2hw.gpio_10_cfg.drv.q;
+          mux_to_pads_o.gpio_10.pde = s_reg2hw.gpio_10_cfg.pde.q;
+          mux_to_pads_o.gpio_10.pue = s_reg2hw.gpio_10_cfg.pue.q;
+          mux_to_pads_o.gpio_10.rxe = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_10.slw = s_reg2hw.gpio_10_cfg.slw.q;
+          mux_to_pads_o.gpio_10.smt = s_reg2hw.gpio_10_cfg.smt.q;
+          mux_to_pads_o.gpio_10.trie = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_10_SEL_I2C0_SCL: begin
           mux_to_pads_o.gpio_10.chip2pad = port_signals_soc2pad_i.i2c0.scl_o;
-          mux_to_pads_o.gpio_10.output_en = port_signals_soc2pad_i.i2c0.scl_en_o;
-          mux_to_pads_o.gpio_10.rx_en = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_10.drv = s_reg2hw.gpio_10_cfg.drv.q;
+          mux_to_pads_o.gpio_10.pde = s_reg2hw.gpio_10_cfg.pde.q;
+          mux_to_pads_o.gpio_10.pue = s_reg2hw.gpio_10_cfg.pue.q;
+          mux_to_pads_o.gpio_10.rxe = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_10.slw = s_reg2hw.gpio_10_cfg.slw.q;
+          mux_to_pads_o.gpio_10.smt = s_reg2hw.gpio_10_cfg.smt.q;
+          mux_to_pads_o.gpio_10.trie = ~port_signals_soc2pad_i.i2c0.scl_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_10_SEL_I2C0_SDA: begin
           mux_to_pads_o.gpio_10.chip2pad = port_signals_soc2pad_i.i2c0.sda_o;
-          mux_to_pads_o.gpio_10.output_en = port_signals_soc2pad_i.i2c0.sda_en_o;
-          mux_to_pads_o.gpio_10.rx_en = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_10.drv = s_reg2hw.gpio_10_cfg.drv.q;
+          mux_to_pads_o.gpio_10.pde = s_reg2hw.gpio_10_cfg.pde.q;
+          mux_to_pads_o.gpio_10.pue = s_reg2hw.gpio_10_cfg.pue.q;
+          mux_to_pads_o.gpio_10.rxe = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_10.slw = s_reg2hw.gpio_10_cfg.slw.q;
+          mux_to_pads_o.gpio_10.smt = s_reg2hw.gpio_10_cfg.smt.q;
+          mux_to_pads_o.gpio_10.trie = ~port_signals_soc2pad_i.i2c0.sda_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_10_SEL_UART0_RX: begin
           mux_to_pads_o.gpio_10.chip2pad = s_reg2hw.gpio_10_cfg.chip2pad.q;
-          mux_to_pads_o.gpio_10.output_en = s_reg2hw.gpio_10_cfg.output_en.q;
-          mux_to_pads_o.gpio_10.rx_en = 1'b1;
+          mux_to_pads_o.gpio_10.drv = s_reg2hw.gpio_10_cfg.drv.q;
+          mux_to_pads_o.gpio_10.pde = s_reg2hw.gpio_10_cfg.pde.q;
+          mux_to_pads_o.gpio_10.pue = s_reg2hw.gpio_10_cfg.pue.q;
+          mux_to_pads_o.gpio_10.rxe = 1'b1;
+          mux_to_pads_o.gpio_10.slw = s_reg2hw.gpio_10_cfg.slw.q;
+          mux_to_pads_o.gpio_10.smt = s_reg2hw.gpio_10_cfg.smt.q;
+          mux_to_pads_o.gpio_10.trie = s_reg2hw.gpio_10_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_10_SEL_UART0_TX: begin
           mux_to_pads_o.gpio_10.chip2pad = port_signals_soc2pad_i.uart0.tx_o;
-          mux_to_pads_o.gpio_10.output_en = 1'b0;
-          mux_to_pads_o.gpio_10.rx_en = s_reg2hw.gpio_10_cfg.rx_en.q;
+          mux_to_pads_o.gpio_10.drv = s_reg2hw.gpio_10_cfg.drv.q;
+          mux_to_pads_o.gpio_10.pde = s_reg2hw.gpio_10_cfg.pde.q;
+          mux_to_pads_o.gpio_10.pue = s_reg2hw.gpio_10_cfg.pue.q;
+          mux_to_pads_o.gpio_10.rxe = s_reg2hw.gpio_10_cfg.rxe.q;
+          mux_to_pads_o.gpio_10.slw = s_reg2hw.gpio_10_cfg.slw.q;
+          mux_to_pads_o.gpio_10.smt = s_reg2hw.gpio_10_cfg.smt.q;
+          mux_to_pads_o.gpio_10.trie = 1'b0;
        end
        default: begin
          mux_to_pads_o.gpio_10.chip2pad = s_reg2hw.gpio_10_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_10.output_en = s_reg2hw.gpio_10_cfg.output_en.q;
-         mux_to_pads_o.gpio_10.rx_en = s_reg2hw.gpio_10_cfg.rx_en.q;
+         mux_to_pads_o.gpio_10.drv = s_reg2hw.gpio_10_cfg.drv.q;
+         mux_to_pads_o.gpio_10.pde = s_reg2hw.gpio_10_cfg.pde.q;
+         mux_to_pads_o.gpio_10.pue = s_reg2hw.gpio_10_cfg.pue.q;
+         mux_to_pads_o.gpio_10.rxe = s_reg2hw.gpio_10_cfg.rxe.q;
+         mux_to_pads_o.gpio_10.slw = s_reg2hw.gpio_10_cfg.slw.q;
+         mux_to_pads_o.gpio_10.smt = s_reg2hw.gpio_10_cfg.smt.q;
+         mux_to_pads_o.gpio_10.trie = s_reg2hw.gpio_10_cfg.trie.q;
        end
      endcase
    end // always_comb
@@ -876,73 +1646,143 @@ module chimera_padframe_aon_gpioa_muxer
      unique case (s_reg2hw.gpio_11_mux_sel.q)
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_11_SEL_DEFAULT: begin
          mux_to_pads_o.gpio_11.chip2pad = s_reg2hw.gpio_11_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_11.output_en = s_reg2hw.gpio_11_cfg.output_en.q;
-         mux_to_pads_o.gpio_11.rx_en = s_reg2hw.gpio_11_cfg.rx_en.q;
+         mux_to_pads_o.gpio_11.drv = s_reg2hw.gpio_11_cfg.drv.q;
+         mux_to_pads_o.gpio_11.pde = s_reg2hw.gpio_11_cfg.pde.q;
+         mux_to_pads_o.gpio_11.pue = s_reg2hw.gpio_11_cfg.pue.q;
+         mux_to_pads_o.gpio_11.rxe = s_reg2hw.gpio_11_cfg.rxe.q;
+         mux_to_pads_o.gpio_11.slw = s_reg2hw.gpio_11_cfg.slw.q;
+         mux_to_pads_o.gpio_11.smt = s_reg2hw.gpio_11_cfg.smt.q;
+         mux_to_pads_o.gpio_11.trie = s_reg2hw.gpio_11_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_11_SEL_QSPI0_CSB0: begin
           mux_to_pads_o.gpio_11.chip2pad = port_signals_soc2pad_i.qspi0.csb0_o;
-          mux_to_pads_o.gpio_11.output_en = port_signals_soc2pad_i.qspi0.csb0_en_o;
-          mux_to_pads_o.gpio_11.rx_en = s_reg2hw.gpio_11_cfg.rx_en.q;
+          mux_to_pads_o.gpio_11.drv = s_reg2hw.gpio_11_cfg.drv.q;
+          mux_to_pads_o.gpio_11.pde = s_reg2hw.gpio_11_cfg.pde.q;
+          mux_to_pads_o.gpio_11.pue = s_reg2hw.gpio_11_cfg.pue.q;
+          mux_to_pads_o.gpio_11.rxe = s_reg2hw.gpio_11_cfg.rxe.q;
+          mux_to_pads_o.gpio_11.slw = s_reg2hw.gpio_11_cfg.slw.q;
+          mux_to_pads_o.gpio_11.smt = s_reg2hw.gpio_11_cfg.smt.q;
+          mux_to_pads_o.gpio_11.trie = ~port_signals_soc2pad_i.qspi0.csb0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_11_SEL_QSPI0_CSB1: begin
           mux_to_pads_o.gpio_11.chip2pad = port_signals_soc2pad_i.qspi0.csb1_o;
-          mux_to_pads_o.gpio_11.output_en = port_signals_soc2pad_i.qspi0.csb1_en_o;
-          mux_to_pads_o.gpio_11.rx_en = s_reg2hw.gpio_11_cfg.rx_en.q;
+          mux_to_pads_o.gpio_11.drv = s_reg2hw.gpio_11_cfg.drv.q;
+          mux_to_pads_o.gpio_11.pde = s_reg2hw.gpio_11_cfg.pde.q;
+          mux_to_pads_o.gpio_11.pue = s_reg2hw.gpio_11_cfg.pue.q;
+          mux_to_pads_o.gpio_11.rxe = s_reg2hw.gpio_11_cfg.rxe.q;
+          mux_to_pads_o.gpio_11.slw = s_reg2hw.gpio_11_cfg.slw.q;
+          mux_to_pads_o.gpio_11.smt = s_reg2hw.gpio_11_cfg.smt.q;
+          mux_to_pads_o.gpio_11.trie = ~port_signals_soc2pad_i.qspi0.csb1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_11_SEL_QSPI0_CSB2: begin
           mux_to_pads_o.gpio_11.chip2pad = port_signals_soc2pad_i.qspi0.csb2_o;
-          mux_to_pads_o.gpio_11.output_en = port_signals_soc2pad_i.qspi0.csb2_en_o;
-          mux_to_pads_o.gpio_11.rx_en = s_reg2hw.gpio_11_cfg.rx_en.q;
+          mux_to_pads_o.gpio_11.drv = s_reg2hw.gpio_11_cfg.drv.q;
+          mux_to_pads_o.gpio_11.pde = s_reg2hw.gpio_11_cfg.pde.q;
+          mux_to_pads_o.gpio_11.pue = s_reg2hw.gpio_11_cfg.pue.q;
+          mux_to_pads_o.gpio_11.rxe = s_reg2hw.gpio_11_cfg.rxe.q;
+          mux_to_pads_o.gpio_11.slw = s_reg2hw.gpio_11_cfg.slw.q;
+          mux_to_pads_o.gpio_11.smt = s_reg2hw.gpio_11_cfg.smt.q;
+          mux_to_pads_o.gpio_11.trie = ~port_signals_soc2pad_i.qspi0.csb2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_11_SEL_QSPI0_SCK: begin
           mux_to_pads_o.gpio_11.chip2pad = port_signals_soc2pad_i.qspi0.sck_o;
-          mux_to_pads_o.gpio_11.output_en = port_signals_soc2pad_i.qspi0.sck_en_o;
-          mux_to_pads_o.gpio_11.rx_en = s_reg2hw.gpio_11_cfg.rx_en.q;
+          mux_to_pads_o.gpio_11.drv = s_reg2hw.gpio_11_cfg.drv.q;
+          mux_to_pads_o.gpio_11.pde = s_reg2hw.gpio_11_cfg.pde.q;
+          mux_to_pads_o.gpio_11.pue = s_reg2hw.gpio_11_cfg.pue.q;
+          mux_to_pads_o.gpio_11.rxe = s_reg2hw.gpio_11_cfg.rxe.q;
+          mux_to_pads_o.gpio_11.slw = s_reg2hw.gpio_11_cfg.slw.q;
+          mux_to_pads_o.gpio_11.smt = s_reg2hw.gpio_11_cfg.smt.q;
+          mux_to_pads_o.gpio_11.trie = port_signals_soc2pad_i.qspi0.sck_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_11_SEL_QSPI0_SD0: begin
           mux_to_pads_o.gpio_11.chip2pad = port_signals_soc2pad_i.qspi0.sd0_o;
-          mux_to_pads_o.gpio_11.output_en = port_signals_soc2pad_i.qspi0.sd0_en_o;
-          mux_to_pads_o.gpio_11.rx_en = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_11.drv = s_reg2hw.gpio_11_cfg.drv.q;
+          mux_to_pads_o.gpio_11.pde = s_reg2hw.gpio_11_cfg.pde.q;
+          mux_to_pads_o.gpio_11.pue = s_reg2hw.gpio_11_cfg.pue.q;
+          mux_to_pads_o.gpio_11.rxe = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_11.slw = s_reg2hw.gpio_11_cfg.slw.q;
+          mux_to_pads_o.gpio_11.smt = s_reg2hw.gpio_11_cfg.smt.q;
+          mux_to_pads_o.gpio_11.trie = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_11_SEL_QSPI0_SD1: begin
           mux_to_pads_o.gpio_11.chip2pad = port_signals_soc2pad_i.qspi0.sd1_o;
-          mux_to_pads_o.gpio_11.output_en = port_signals_soc2pad_i.qspi0.sd1_en_o;
-          mux_to_pads_o.gpio_11.rx_en = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_11.drv = s_reg2hw.gpio_11_cfg.drv.q;
+          mux_to_pads_o.gpio_11.pde = s_reg2hw.gpio_11_cfg.pde.q;
+          mux_to_pads_o.gpio_11.pue = s_reg2hw.gpio_11_cfg.pue.q;
+          mux_to_pads_o.gpio_11.rxe = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_11.slw = s_reg2hw.gpio_11_cfg.slw.q;
+          mux_to_pads_o.gpio_11.smt = s_reg2hw.gpio_11_cfg.smt.q;
+          mux_to_pads_o.gpio_11.trie = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_11_SEL_QSPI0_SD2: begin
           mux_to_pads_o.gpio_11.chip2pad = port_signals_soc2pad_i.qspi0.sd2_o;
-          mux_to_pads_o.gpio_11.output_en = port_signals_soc2pad_i.qspi0.sd2_en_o;
-          mux_to_pads_o.gpio_11.rx_en = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_11.drv = s_reg2hw.gpio_11_cfg.drv.q;
+          mux_to_pads_o.gpio_11.pde = s_reg2hw.gpio_11_cfg.pde.q;
+          mux_to_pads_o.gpio_11.pue = s_reg2hw.gpio_11_cfg.pue.q;
+          mux_to_pads_o.gpio_11.rxe = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_11.slw = s_reg2hw.gpio_11_cfg.slw.q;
+          mux_to_pads_o.gpio_11.smt = s_reg2hw.gpio_11_cfg.smt.q;
+          mux_to_pads_o.gpio_11.trie = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_11_SEL_QSPI0_SD3: begin
           mux_to_pads_o.gpio_11.chip2pad = port_signals_soc2pad_i.qspi0.sd3_o;
-          mux_to_pads_o.gpio_11.output_en = port_signals_soc2pad_i.qspi0.sd3_en_o;
-          mux_to_pads_o.gpio_11.rx_en = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_11.drv = s_reg2hw.gpio_11_cfg.drv.q;
+          mux_to_pads_o.gpio_11.pde = s_reg2hw.gpio_11_cfg.pde.q;
+          mux_to_pads_o.gpio_11.pue = s_reg2hw.gpio_11_cfg.pue.q;
+          mux_to_pads_o.gpio_11.rxe = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_11.slw = s_reg2hw.gpio_11_cfg.slw.q;
+          mux_to_pads_o.gpio_11.smt = s_reg2hw.gpio_11_cfg.smt.q;
+          mux_to_pads_o.gpio_11.trie = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_11_SEL_I2C0_SCL: begin
           mux_to_pads_o.gpio_11.chip2pad = port_signals_soc2pad_i.i2c0.scl_o;
-          mux_to_pads_o.gpio_11.output_en = port_signals_soc2pad_i.i2c0.scl_en_o;
-          mux_to_pads_o.gpio_11.rx_en = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_11.drv = s_reg2hw.gpio_11_cfg.drv.q;
+          mux_to_pads_o.gpio_11.pde = s_reg2hw.gpio_11_cfg.pde.q;
+          mux_to_pads_o.gpio_11.pue = s_reg2hw.gpio_11_cfg.pue.q;
+          mux_to_pads_o.gpio_11.rxe = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_11.slw = s_reg2hw.gpio_11_cfg.slw.q;
+          mux_to_pads_o.gpio_11.smt = s_reg2hw.gpio_11_cfg.smt.q;
+          mux_to_pads_o.gpio_11.trie = ~port_signals_soc2pad_i.i2c0.scl_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_11_SEL_I2C0_SDA: begin
           mux_to_pads_o.gpio_11.chip2pad = port_signals_soc2pad_i.i2c0.sda_o;
-          mux_to_pads_o.gpio_11.output_en = port_signals_soc2pad_i.i2c0.sda_en_o;
-          mux_to_pads_o.gpio_11.rx_en = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_11.drv = s_reg2hw.gpio_11_cfg.drv.q;
+          mux_to_pads_o.gpio_11.pde = s_reg2hw.gpio_11_cfg.pde.q;
+          mux_to_pads_o.gpio_11.pue = s_reg2hw.gpio_11_cfg.pue.q;
+          mux_to_pads_o.gpio_11.rxe = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_11.slw = s_reg2hw.gpio_11_cfg.slw.q;
+          mux_to_pads_o.gpio_11.smt = s_reg2hw.gpio_11_cfg.smt.q;
+          mux_to_pads_o.gpio_11.trie = ~port_signals_soc2pad_i.i2c0.sda_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_11_SEL_UART0_RX: begin
           mux_to_pads_o.gpio_11.chip2pad = s_reg2hw.gpio_11_cfg.chip2pad.q;
-          mux_to_pads_o.gpio_11.output_en = s_reg2hw.gpio_11_cfg.output_en.q;
-          mux_to_pads_o.gpio_11.rx_en = 1'b1;
+          mux_to_pads_o.gpio_11.drv = s_reg2hw.gpio_11_cfg.drv.q;
+          mux_to_pads_o.gpio_11.pde = s_reg2hw.gpio_11_cfg.pde.q;
+          mux_to_pads_o.gpio_11.pue = s_reg2hw.gpio_11_cfg.pue.q;
+          mux_to_pads_o.gpio_11.rxe = 1'b1;
+          mux_to_pads_o.gpio_11.slw = s_reg2hw.gpio_11_cfg.slw.q;
+          mux_to_pads_o.gpio_11.smt = s_reg2hw.gpio_11_cfg.smt.q;
+          mux_to_pads_o.gpio_11.trie = s_reg2hw.gpio_11_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_11_SEL_UART0_TX: begin
           mux_to_pads_o.gpio_11.chip2pad = port_signals_soc2pad_i.uart0.tx_o;
-          mux_to_pads_o.gpio_11.output_en = 1'b0;
-          mux_to_pads_o.gpio_11.rx_en = s_reg2hw.gpio_11_cfg.rx_en.q;
+          mux_to_pads_o.gpio_11.drv = s_reg2hw.gpio_11_cfg.drv.q;
+          mux_to_pads_o.gpio_11.pde = s_reg2hw.gpio_11_cfg.pde.q;
+          mux_to_pads_o.gpio_11.pue = s_reg2hw.gpio_11_cfg.pue.q;
+          mux_to_pads_o.gpio_11.rxe = s_reg2hw.gpio_11_cfg.rxe.q;
+          mux_to_pads_o.gpio_11.slw = s_reg2hw.gpio_11_cfg.slw.q;
+          mux_to_pads_o.gpio_11.smt = s_reg2hw.gpio_11_cfg.smt.q;
+          mux_to_pads_o.gpio_11.trie = 1'b0;
        end
        default: begin
          mux_to_pads_o.gpio_11.chip2pad = s_reg2hw.gpio_11_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_11.output_en = s_reg2hw.gpio_11_cfg.output_en.q;
-         mux_to_pads_o.gpio_11.rx_en = s_reg2hw.gpio_11_cfg.rx_en.q;
+         mux_to_pads_o.gpio_11.drv = s_reg2hw.gpio_11_cfg.drv.q;
+         mux_to_pads_o.gpio_11.pde = s_reg2hw.gpio_11_cfg.pde.q;
+         mux_to_pads_o.gpio_11.pue = s_reg2hw.gpio_11_cfg.pue.q;
+         mux_to_pads_o.gpio_11.rxe = s_reg2hw.gpio_11_cfg.rxe.q;
+         mux_to_pads_o.gpio_11.slw = s_reg2hw.gpio_11_cfg.slw.q;
+         mux_to_pads_o.gpio_11.smt = s_reg2hw.gpio_11_cfg.smt.q;
+         mux_to_pads_o.gpio_11.trie = s_reg2hw.gpio_11_cfg.trie.q;
        end
      endcase
    end // always_comb
@@ -952,73 +1792,143 @@ module chimera_padframe_aon_gpioa_muxer
      unique case (s_reg2hw.gpio_12_mux_sel.q)
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_12_SEL_DEFAULT: begin
          mux_to_pads_o.gpio_12.chip2pad = s_reg2hw.gpio_12_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_12.output_en = s_reg2hw.gpio_12_cfg.output_en.q;
-         mux_to_pads_o.gpio_12.rx_en = s_reg2hw.gpio_12_cfg.rx_en.q;
+         mux_to_pads_o.gpio_12.drv = s_reg2hw.gpio_12_cfg.drv.q;
+         mux_to_pads_o.gpio_12.pde = s_reg2hw.gpio_12_cfg.pde.q;
+         mux_to_pads_o.gpio_12.pue = s_reg2hw.gpio_12_cfg.pue.q;
+         mux_to_pads_o.gpio_12.rxe = s_reg2hw.gpio_12_cfg.rxe.q;
+         mux_to_pads_o.gpio_12.slw = s_reg2hw.gpio_12_cfg.slw.q;
+         mux_to_pads_o.gpio_12.smt = s_reg2hw.gpio_12_cfg.smt.q;
+         mux_to_pads_o.gpio_12.trie = s_reg2hw.gpio_12_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_12_SEL_QSPI0_CSB0: begin
           mux_to_pads_o.gpio_12.chip2pad = port_signals_soc2pad_i.qspi0.csb0_o;
-          mux_to_pads_o.gpio_12.output_en = port_signals_soc2pad_i.qspi0.csb0_en_o;
-          mux_to_pads_o.gpio_12.rx_en = s_reg2hw.gpio_12_cfg.rx_en.q;
+          mux_to_pads_o.gpio_12.drv = s_reg2hw.gpio_12_cfg.drv.q;
+          mux_to_pads_o.gpio_12.pde = s_reg2hw.gpio_12_cfg.pde.q;
+          mux_to_pads_o.gpio_12.pue = s_reg2hw.gpio_12_cfg.pue.q;
+          mux_to_pads_o.gpio_12.rxe = s_reg2hw.gpio_12_cfg.rxe.q;
+          mux_to_pads_o.gpio_12.slw = s_reg2hw.gpio_12_cfg.slw.q;
+          mux_to_pads_o.gpio_12.smt = s_reg2hw.gpio_12_cfg.smt.q;
+          mux_to_pads_o.gpio_12.trie = ~port_signals_soc2pad_i.qspi0.csb0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_12_SEL_QSPI0_CSB1: begin
           mux_to_pads_o.gpio_12.chip2pad = port_signals_soc2pad_i.qspi0.csb1_o;
-          mux_to_pads_o.gpio_12.output_en = port_signals_soc2pad_i.qspi0.csb1_en_o;
-          mux_to_pads_o.gpio_12.rx_en = s_reg2hw.gpio_12_cfg.rx_en.q;
+          mux_to_pads_o.gpio_12.drv = s_reg2hw.gpio_12_cfg.drv.q;
+          mux_to_pads_o.gpio_12.pde = s_reg2hw.gpio_12_cfg.pde.q;
+          mux_to_pads_o.gpio_12.pue = s_reg2hw.gpio_12_cfg.pue.q;
+          mux_to_pads_o.gpio_12.rxe = s_reg2hw.gpio_12_cfg.rxe.q;
+          mux_to_pads_o.gpio_12.slw = s_reg2hw.gpio_12_cfg.slw.q;
+          mux_to_pads_o.gpio_12.smt = s_reg2hw.gpio_12_cfg.smt.q;
+          mux_to_pads_o.gpio_12.trie = ~port_signals_soc2pad_i.qspi0.csb1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_12_SEL_QSPI0_CSB2: begin
           mux_to_pads_o.gpio_12.chip2pad = port_signals_soc2pad_i.qspi0.csb2_o;
-          mux_to_pads_o.gpio_12.output_en = port_signals_soc2pad_i.qspi0.csb2_en_o;
-          mux_to_pads_o.gpio_12.rx_en = s_reg2hw.gpio_12_cfg.rx_en.q;
+          mux_to_pads_o.gpio_12.drv = s_reg2hw.gpio_12_cfg.drv.q;
+          mux_to_pads_o.gpio_12.pde = s_reg2hw.gpio_12_cfg.pde.q;
+          mux_to_pads_o.gpio_12.pue = s_reg2hw.gpio_12_cfg.pue.q;
+          mux_to_pads_o.gpio_12.rxe = s_reg2hw.gpio_12_cfg.rxe.q;
+          mux_to_pads_o.gpio_12.slw = s_reg2hw.gpio_12_cfg.slw.q;
+          mux_to_pads_o.gpio_12.smt = s_reg2hw.gpio_12_cfg.smt.q;
+          mux_to_pads_o.gpio_12.trie = ~port_signals_soc2pad_i.qspi0.csb2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_12_SEL_QSPI0_SCK: begin
           mux_to_pads_o.gpio_12.chip2pad = port_signals_soc2pad_i.qspi0.sck_o;
-          mux_to_pads_o.gpio_12.output_en = port_signals_soc2pad_i.qspi0.sck_en_o;
-          mux_to_pads_o.gpio_12.rx_en = s_reg2hw.gpio_12_cfg.rx_en.q;
+          mux_to_pads_o.gpio_12.drv = s_reg2hw.gpio_12_cfg.drv.q;
+          mux_to_pads_o.gpio_12.pde = s_reg2hw.gpio_12_cfg.pde.q;
+          mux_to_pads_o.gpio_12.pue = s_reg2hw.gpio_12_cfg.pue.q;
+          mux_to_pads_o.gpio_12.rxe = s_reg2hw.gpio_12_cfg.rxe.q;
+          mux_to_pads_o.gpio_12.slw = s_reg2hw.gpio_12_cfg.slw.q;
+          mux_to_pads_o.gpio_12.smt = s_reg2hw.gpio_12_cfg.smt.q;
+          mux_to_pads_o.gpio_12.trie = port_signals_soc2pad_i.qspi0.sck_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_12_SEL_QSPI0_SD0: begin
           mux_to_pads_o.gpio_12.chip2pad = port_signals_soc2pad_i.qspi0.sd0_o;
-          mux_to_pads_o.gpio_12.output_en = port_signals_soc2pad_i.qspi0.sd0_en_o;
-          mux_to_pads_o.gpio_12.rx_en = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_12.drv = s_reg2hw.gpio_12_cfg.drv.q;
+          mux_to_pads_o.gpio_12.pde = s_reg2hw.gpio_12_cfg.pde.q;
+          mux_to_pads_o.gpio_12.pue = s_reg2hw.gpio_12_cfg.pue.q;
+          mux_to_pads_o.gpio_12.rxe = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_12.slw = s_reg2hw.gpio_12_cfg.slw.q;
+          mux_to_pads_o.gpio_12.smt = s_reg2hw.gpio_12_cfg.smt.q;
+          mux_to_pads_o.gpio_12.trie = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_12_SEL_QSPI0_SD1: begin
           mux_to_pads_o.gpio_12.chip2pad = port_signals_soc2pad_i.qspi0.sd1_o;
-          mux_to_pads_o.gpio_12.output_en = port_signals_soc2pad_i.qspi0.sd1_en_o;
-          mux_to_pads_o.gpio_12.rx_en = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_12.drv = s_reg2hw.gpio_12_cfg.drv.q;
+          mux_to_pads_o.gpio_12.pde = s_reg2hw.gpio_12_cfg.pde.q;
+          mux_to_pads_o.gpio_12.pue = s_reg2hw.gpio_12_cfg.pue.q;
+          mux_to_pads_o.gpio_12.rxe = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_12.slw = s_reg2hw.gpio_12_cfg.slw.q;
+          mux_to_pads_o.gpio_12.smt = s_reg2hw.gpio_12_cfg.smt.q;
+          mux_to_pads_o.gpio_12.trie = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_12_SEL_QSPI0_SD2: begin
           mux_to_pads_o.gpio_12.chip2pad = port_signals_soc2pad_i.qspi0.sd2_o;
-          mux_to_pads_o.gpio_12.output_en = port_signals_soc2pad_i.qspi0.sd2_en_o;
-          mux_to_pads_o.gpio_12.rx_en = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_12.drv = s_reg2hw.gpio_12_cfg.drv.q;
+          mux_to_pads_o.gpio_12.pde = s_reg2hw.gpio_12_cfg.pde.q;
+          mux_to_pads_o.gpio_12.pue = s_reg2hw.gpio_12_cfg.pue.q;
+          mux_to_pads_o.gpio_12.rxe = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_12.slw = s_reg2hw.gpio_12_cfg.slw.q;
+          mux_to_pads_o.gpio_12.smt = s_reg2hw.gpio_12_cfg.smt.q;
+          mux_to_pads_o.gpio_12.trie = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_12_SEL_QSPI0_SD3: begin
           mux_to_pads_o.gpio_12.chip2pad = port_signals_soc2pad_i.qspi0.sd3_o;
-          mux_to_pads_o.gpio_12.output_en = port_signals_soc2pad_i.qspi0.sd3_en_o;
-          mux_to_pads_o.gpio_12.rx_en = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_12.drv = s_reg2hw.gpio_12_cfg.drv.q;
+          mux_to_pads_o.gpio_12.pde = s_reg2hw.gpio_12_cfg.pde.q;
+          mux_to_pads_o.gpio_12.pue = s_reg2hw.gpio_12_cfg.pue.q;
+          mux_to_pads_o.gpio_12.rxe = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_12.slw = s_reg2hw.gpio_12_cfg.slw.q;
+          mux_to_pads_o.gpio_12.smt = s_reg2hw.gpio_12_cfg.smt.q;
+          mux_to_pads_o.gpio_12.trie = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_12_SEL_I2C0_SCL: begin
           mux_to_pads_o.gpio_12.chip2pad = port_signals_soc2pad_i.i2c0.scl_o;
-          mux_to_pads_o.gpio_12.output_en = port_signals_soc2pad_i.i2c0.scl_en_o;
-          mux_to_pads_o.gpio_12.rx_en = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_12.drv = s_reg2hw.gpio_12_cfg.drv.q;
+          mux_to_pads_o.gpio_12.pde = s_reg2hw.gpio_12_cfg.pde.q;
+          mux_to_pads_o.gpio_12.pue = s_reg2hw.gpio_12_cfg.pue.q;
+          mux_to_pads_o.gpio_12.rxe = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_12.slw = s_reg2hw.gpio_12_cfg.slw.q;
+          mux_to_pads_o.gpio_12.smt = s_reg2hw.gpio_12_cfg.smt.q;
+          mux_to_pads_o.gpio_12.trie = ~port_signals_soc2pad_i.i2c0.scl_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_12_SEL_I2C0_SDA: begin
           mux_to_pads_o.gpio_12.chip2pad = port_signals_soc2pad_i.i2c0.sda_o;
-          mux_to_pads_o.gpio_12.output_en = port_signals_soc2pad_i.i2c0.sda_en_o;
-          mux_to_pads_o.gpio_12.rx_en = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_12.drv = s_reg2hw.gpio_12_cfg.drv.q;
+          mux_to_pads_o.gpio_12.pde = s_reg2hw.gpio_12_cfg.pde.q;
+          mux_to_pads_o.gpio_12.pue = s_reg2hw.gpio_12_cfg.pue.q;
+          mux_to_pads_o.gpio_12.rxe = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_12.slw = s_reg2hw.gpio_12_cfg.slw.q;
+          mux_to_pads_o.gpio_12.smt = s_reg2hw.gpio_12_cfg.smt.q;
+          mux_to_pads_o.gpio_12.trie = ~port_signals_soc2pad_i.i2c0.sda_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_12_SEL_UART0_RX: begin
           mux_to_pads_o.gpio_12.chip2pad = s_reg2hw.gpio_12_cfg.chip2pad.q;
-          mux_to_pads_o.gpio_12.output_en = s_reg2hw.gpio_12_cfg.output_en.q;
-          mux_to_pads_o.gpio_12.rx_en = 1'b1;
+          mux_to_pads_o.gpio_12.drv = s_reg2hw.gpio_12_cfg.drv.q;
+          mux_to_pads_o.gpio_12.pde = s_reg2hw.gpio_12_cfg.pde.q;
+          mux_to_pads_o.gpio_12.pue = s_reg2hw.gpio_12_cfg.pue.q;
+          mux_to_pads_o.gpio_12.rxe = 1'b1;
+          mux_to_pads_o.gpio_12.slw = s_reg2hw.gpio_12_cfg.slw.q;
+          mux_to_pads_o.gpio_12.smt = s_reg2hw.gpio_12_cfg.smt.q;
+          mux_to_pads_o.gpio_12.trie = s_reg2hw.gpio_12_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_12_SEL_UART0_TX: begin
           mux_to_pads_o.gpio_12.chip2pad = port_signals_soc2pad_i.uart0.tx_o;
-          mux_to_pads_o.gpio_12.output_en = 1'b0;
-          mux_to_pads_o.gpio_12.rx_en = s_reg2hw.gpio_12_cfg.rx_en.q;
+          mux_to_pads_o.gpio_12.drv = s_reg2hw.gpio_12_cfg.drv.q;
+          mux_to_pads_o.gpio_12.pde = s_reg2hw.gpio_12_cfg.pde.q;
+          mux_to_pads_o.gpio_12.pue = s_reg2hw.gpio_12_cfg.pue.q;
+          mux_to_pads_o.gpio_12.rxe = s_reg2hw.gpio_12_cfg.rxe.q;
+          mux_to_pads_o.gpio_12.slw = s_reg2hw.gpio_12_cfg.slw.q;
+          mux_to_pads_o.gpio_12.smt = s_reg2hw.gpio_12_cfg.smt.q;
+          mux_to_pads_o.gpio_12.trie = 1'b0;
        end
        default: begin
          mux_to_pads_o.gpio_12.chip2pad = s_reg2hw.gpio_12_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_12.output_en = s_reg2hw.gpio_12_cfg.output_en.q;
-         mux_to_pads_o.gpio_12.rx_en = s_reg2hw.gpio_12_cfg.rx_en.q;
+         mux_to_pads_o.gpio_12.drv = s_reg2hw.gpio_12_cfg.drv.q;
+         mux_to_pads_o.gpio_12.pde = s_reg2hw.gpio_12_cfg.pde.q;
+         mux_to_pads_o.gpio_12.pue = s_reg2hw.gpio_12_cfg.pue.q;
+         mux_to_pads_o.gpio_12.rxe = s_reg2hw.gpio_12_cfg.rxe.q;
+         mux_to_pads_o.gpio_12.slw = s_reg2hw.gpio_12_cfg.slw.q;
+         mux_to_pads_o.gpio_12.smt = s_reg2hw.gpio_12_cfg.smt.q;
+         mux_to_pads_o.gpio_12.trie = s_reg2hw.gpio_12_cfg.trie.q;
        end
      endcase
    end // always_comb
@@ -1028,73 +1938,143 @@ module chimera_padframe_aon_gpioa_muxer
      unique case (s_reg2hw.gpio_13_mux_sel.q)
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_13_SEL_DEFAULT: begin
          mux_to_pads_o.gpio_13.chip2pad = s_reg2hw.gpio_13_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_13.output_en = s_reg2hw.gpio_13_cfg.output_en.q;
-         mux_to_pads_o.gpio_13.rx_en = s_reg2hw.gpio_13_cfg.rx_en.q;
+         mux_to_pads_o.gpio_13.drv = s_reg2hw.gpio_13_cfg.drv.q;
+         mux_to_pads_o.gpio_13.pde = s_reg2hw.gpio_13_cfg.pde.q;
+         mux_to_pads_o.gpio_13.pue = s_reg2hw.gpio_13_cfg.pue.q;
+         mux_to_pads_o.gpio_13.rxe = s_reg2hw.gpio_13_cfg.rxe.q;
+         mux_to_pads_o.gpio_13.slw = s_reg2hw.gpio_13_cfg.slw.q;
+         mux_to_pads_o.gpio_13.smt = s_reg2hw.gpio_13_cfg.smt.q;
+         mux_to_pads_o.gpio_13.trie = s_reg2hw.gpio_13_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_13_SEL_QSPI0_CSB0: begin
           mux_to_pads_o.gpio_13.chip2pad = port_signals_soc2pad_i.qspi0.csb0_o;
-          mux_to_pads_o.gpio_13.output_en = port_signals_soc2pad_i.qspi0.csb0_en_o;
-          mux_to_pads_o.gpio_13.rx_en = s_reg2hw.gpio_13_cfg.rx_en.q;
+          mux_to_pads_o.gpio_13.drv = s_reg2hw.gpio_13_cfg.drv.q;
+          mux_to_pads_o.gpio_13.pde = s_reg2hw.gpio_13_cfg.pde.q;
+          mux_to_pads_o.gpio_13.pue = s_reg2hw.gpio_13_cfg.pue.q;
+          mux_to_pads_o.gpio_13.rxe = s_reg2hw.gpio_13_cfg.rxe.q;
+          mux_to_pads_o.gpio_13.slw = s_reg2hw.gpio_13_cfg.slw.q;
+          mux_to_pads_o.gpio_13.smt = s_reg2hw.gpio_13_cfg.smt.q;
+          mux_to_pads_o.gpio_13.trie = ~port_signals_soc2pad_i.qspi0.csb0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_13_SEL_QSPI0_CSB1: begin
           mux_to_pads_o.gpio_13.chip2pad = port_signals_soc2pad_i.qspi0.csb1_o;
-          mux_to_pads_o.gpio_13.output_en = port_signals_soc2pad_i.qspi0.csb1_en_o;
-          mux_to_pads_o.gpio_13.rx_en = s_reg2hw.gpio_13_cfg.rx_en.q;
+          mux_to_pads_o.gpio_13.drv = s_reg2hw.gpio_13_cfg.drv.q;
+          mux_to_pads_o.gpio_13.pde = s_reg2hw.gpio_13_cfg.pde.q;
+          mux_to_pads_o.gpio_13.pue = s_reg2hw.gpio_13_cfg.pue.q;
+          mux_to_pads_o.gpio_13.rxe = s_reg2hw.gpio_13_cfg.rxe.q;
+          mux_to_pads_o.gpio_13.slw = s_reg2hw.gpio_13_cfg.slw.q;
+          mux_to_pads_o.gpio_13.smt = s_reg2hw.gpio_13_cfg.smt.q;
+          mux_to_pads_o.gpio_13.trie = ~port_signals_soc2pad_i.qspi0.csb1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_13_SEL_QSPI0_CSB2: begin
           mux_to_pads_o.gpio_13.chip2pad = port_signals_soc2pad_i.qspi0.csb2_o;
-          mux_to_pads_o.gpio_13.output_en = port_signals_soc2pad_i.qspi0.csb2_en_o;
-          mux_to_pads_o.gpio_13.rx_en = s_reg2hw.gpio_13_cfg.rx_en.q;
+          mux_to_pads_o.gpio_13.drv = s_reg2hw.gpio_13_cfg.drv.q;
+          mux_to_pads_o.gpio_13.pde = s_reg2hw.gpio_13_cfg.pde.q;
+          mux_to_pads_o.gpio_13.pue = s_reg2hw.gpio_13_cfg.pue.q;
+          mux_to_pads_o.gpio_13.rxe = s_reg2hw.gpio_13_cfg.rxe.q;
+          mux_to_pads_o.gpio_13.slw = s_reg2hw.gpio_13_cfg.slw.q;
+          mux_to_pads_o.gpio_13.smt = s_reg2hw.gpio_13_cfg.smt.q;
+          mux_to_pads_o.gpio_13.trie = ~port_signals_soc2pad_i.qspi0.csb2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_13_SEL_QSPI0_SCK: begin
           mux_to_pads_o.gpio_13.chip2pad = port_signals_soc2pad_i.qspi0.sck_o;
-          mux_to_pads_o.gpio_13.output_en = port_signals_soc2pad_i.qspi0.sck_en_o;
-          mux_to_pads_o.gpio_13.rx_en = s_reg2hw.gpio_13_cfg.rx_en.q;
+          mux_to_pads_o.gpio_13.drv = s_reg2hw.gpio_13_cfg.drv.q;
+          mux_to_pads_o.gpio_13.pde = s_reg2hw.gpio_13_cfg.pde.q;
+          mux_to_pads_o.gpio_13.pue = s_reg2hw.gpio_13_cfg.pue.q;
+          mux_to_pads_o.gpio_13.rxe = s_reg2hw.gpio_13_cfg.rxe.q;
+          mux_to_pads_o.gpio_13.slw = s_reg2hw.gpio_13_cfg.slw.q;
+          mux_to_pads_o.gpio_13.smt = s_reg2hw.gpio_13_cfg.smt.q;
+          mux_to_pads_o.gpio_13.trie = port_signals_soc2pad_i.qspi0.sck_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_13_SEL_QSPI0_SD0: begin
           mux_to_pads_o.gpio_13.chip2pad = port_signals_soc2pad_i.qspi0.sd0_o;
-          mux_to_pads_o.gpio_13.output_en = port_signals_soc2pad_i.qspi0.sd0_en_o;
-          mux_to_pads_o.gpio_13.rx_en = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_13.drv = s_reg2hw.gpio_13_cfg.drv.q;
+          mux_to_pads_o.gpio_13.pde = s_reg2hw.gpio_13_cfg.pde.q;
+          mux_to_pads_o.gpio_13.pue = s_reg2hw.gpio_13_cfg.pue.q;
+          mux_to_pads_o.gpio_13.rxe = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_13.slw = s_reg2hw.gpio_13_cfg.slw.q;
+          mux_to_pads_o.gpio_13.smt = s_reg2hw.gpio_13_cfg.smt.q;
+          mux_to_pads_o.gpio_13.trie = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_13_SEL_QSPI0_SD1: begin
           mux_to_pads_o.gpio_13.chip2pad = port_signals_soc2pad_i.qspi0.sd1_o;
-          mux_to_pads_o.gpio_13.output_en = port_signals_soc2pad_i.qspi0.sd1_en_o;
-          mux_to_pads_o.gpio_13.rx_en = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_13.drv = s_reg2hw.gpio_13_cfg.drv.q;
+          mux_to_pads_o.gpio_13.pde = s_reg2hw.gpio_13_cfg.pde.q;
+          mux_to_pads_o.gpio_13.pue = s_reg2hw.gpio_13_cfg.pue.q;
+          mux_to_pads_o.gpio_13.rxe = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_13.slw = s_reg2hw.gpio_13_cfg.slw.q;
+          mux_to_pads_o.gpio_13.smt = s_reg2hw.gpio_13_cfg.smt.q;
+          mux_to_pads_o.gpio_13.trie = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_13_SEL_QSPI0_SD2: begin
           mux_to_pads_o.gpio_13.chip2pad = port_signals_soc2pad_i.qspi0.sd2_o;
-          mux_to_pads_o.gpio_13.output_en = port_signals_soc2pad_i.qspi0.sd2_en_o;
-          mux_to_pads_o.gpio_13.rx_en = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_13.drv = s_reg2hw.gpio_13_cfg.drv.q;
+          mux_to_pads_o.gpio_13.pde = s_reg2hw.gpio_13_cfg.pde.q;
+          mux_to_pads_o.gpio_13.pue = s_reg2hw.gpio_13_cfg.pue.q;
+          mux_to_pads_o.gpio_13.rxe = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_13.slw = s_reg2hw.gpio_13_cfg.slw.q;
+          mux_to_pads_o.gpio_13.smt = s_reg2hw.gpio_13_cfg.smt.q;
+          mux_to_pads_o.gpio_13.trie = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_13_SEL_QSPI0_SD3: begin
           mux_to_pads_o.gpio_13.chip2pad = port_signals_soc2pad_i.qspi0.sd3_o;
-          mux_to_pads_o.gpio_13.output_en = port_signals_soc2pad_i.qspi0.sd3_en_o;
-          mux_to_pads_o.gpio_13.rx_en = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_13.drv = s_reg2hw.gpio_13_cfg.drv.q;
+          mux_to_pads_o.gpio_13.pde = s_reg2hw.gpio_13_cfg.pde.q;
+          mux_to_pads_o.gpio_13.pue = s_reg2hw.gpio_13_cfg.pue.q;
+          mux_to_pads_o.gpio_13.rxe = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_13.slw = s_reg2hw.gpio_13_cfg.slw.q;
+          mux_to_pads_o.gpio_13.smt = s_reg2hw.gpio_13_cfg.smt.q;
+          mux_to_pads_o.gpio_13.trie = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_13_SEL_I2C0_SCL: begin
           mux_to_pads_o.gpio_13.chip2pad = port_signals_soc2pad_i.i2c0.scl_o;
-          mux_to_pads_o.gpio_13.output_en = port_signals_soc2pad_i.i2c0.scl_en_o;
-          mux_to_pads_o.gpio_13.rx_en = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_13.drv = s_reg2hw.gpio_13_cfg.drv.q;
+          mux_to_pads_o.gpio_13.pde = s_reg2hw.gpio_13_cfg.pde.q;
+          mux_to_pads_o.gpio_13.pue = s_reg2hw.gpio_13_cfg.pue.q;
+          mux_to_pads_o.gpio_13.rxe = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_13.slw = s_reg2hw.gpio_13_cfg.slw.q;
+          mux_to_pads_o.gpio_13.smt = s_reg2hw.gpio_13_cfg.smt.q;
+          mux_to_pads_o.gpio_13.trie = ~port_signals_soc2pad_i.i2c0.scl_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_13_SEL_I2C0_SDA: begin
           mux_to_pads_o.gpio_13.chip2pad = port_signals_soc2pad_i.i2c0.sda_o;
-          mux_to_pads_o.gpio_13.output_en = port_signals_soc2pad_i.i2c0.sda_en_o;
-          mux_to_pads_o.gpio_13.rx_en = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_13.drv = s_reg2hw.gpio_13_cfg.drv.q;
+          mux_to_pads_o.gpio_13.pde = s_reg2hw.gpio_13_cfg.pde.q;
+          mux_to_pads_o.gpio_13.pue = s_reg2hw.gpio_13_cfg.pue.q;
+          mux_to_pads_o.gpio_13.rxe = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_13.slw = s_reg2hw.gpio_13_cfg.slw.q;
+          mux_to_pads_o.gpio_13.smt = s_reg2hw.gpio_13_cfg.smt.q;
+          mux_to_pads_o.gpio_13.trie = ~port_signals_soc2pad_i.i2c0.sda_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_13_SEL_UART0_RX: begin
           mux_to_pads_o.gpio_13.chip2pad = s_reg2hw.gpio_13_cfg.chip2pad.q;
-          mux_to_pads_o.gpio_13.output_en = s_reg2hw.gpio_13_cfg.output_en.q;
-          mux_to_pads_o.gpio_13.rx_en = 1'b1;
+          mux_to_pads_o.gpio_13.drv = s_reg2hw.gpio_13_cfg.drv.q;
+          mux_to_pads_o.gpio_13.pde = s_reg2hw.gpio_13_cfg.pde.q;
+          mux_to_pads_o.gpio_13.pue = s_reg2hw.gpio_13_cfg.pue.q;
+          mux_to_pads_o.gpio_13.rxe = 1'b1;
+          mux_to_pads_o.gpio_13.slw = s_reg2hw.gpio_13_cfg.slw.q;
+          mux_to_pads_o.gpio_13.smt = s_reg2hw.gpio_13_cfg.smt.q;
+          mux_to_pads_o.gpio_13.trie = s_reg2hw.gpio_13_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_13_SEL_UART0_TX: begin
           mux_to_pads_o.gpio_13.chip2pad = port_signals_soc2pad_i.uart0.tx_o;
-          mux_to_pads_o.gpio_13.output_en = 1'b0;
-          mux_to_pads_o.gpio_13.rx_en = s_reg2hw.gpio_13_cfg.rx_en.q;
+          mux_to_pads_o.gpio_13.drv = s_reg2hw.gpio_13_cfg.drv.q;
+          mux_to_pads_o.gpio_13.pde = s_reg2hw.gpio_13_cfg.pde.q;
+          mux_to_pads_o.gpio_13.pue = s_reg2hw.gpio_13_cfg.pue.q;
+          mux_to_pads_o.gpio_13.rxe = s_reg2hw.gpio_13_cfg.rxe.q;
+          mux_to_pads_o.gpio_13.slw = s_reg2hw.gpio_13_cfg.slw.q;
+          mux_to_pads_o.gpio_13.smt = s_reg2hw.gpio_13_cfg.smt.q;
+          mux_to_pads_o.gpio_13.trie = 1'b0;
        end
        default: begin
          mux_to_pads_o.gpio_13.chip2pad = s_reg2hw.gpio_13_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_13.output_en = s_reg2hw.gpio_13_cfg.output_en.q;
-         mux_to_pads_o.gpio_13.rx_en = s_reg2hw.gpio_13_cfg.rx_en.q;
+         mux_to_pads_o.gpio_13.drv = s_reg2hw.gpio_13_cfg.drv.q;
+         mux_to_pads_o.gpio_13.pde = s_reg2hw.gpio_13_cfg.pde.q;
+         mux_to_pads_o.gpio_13.pue = s_reg2hw.gpio_13_cfg.pue.q;
+         mux_to_pads_o.gpio_13.rxe = s_reg2hw.gpio_13_cfg.rxe.q;
+         mux_to_pads_o.gpio_13.slw = s_reg2hw.gpio_13_cfg.slw.q;
+         mux_to_pads_o.gpio_13.smt = s_reg2hw.gpio_13_cfg.smt.q;
+         mux_to_pads_o.gpio_13.trie = s_reg2hw.gpio_13_cfg.trie.q;
        end
      endcase
    end // always_comb
@@ -1104,73 +2084,143 @@ module chimera_padframe_aon_gpioa_muxer
      unique case (s_reg2hw.gpio_14_mux_sel.q)
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_14_SEL_DEFAULT: begin
          mux_to_pads_o.gpio_14.chip2pad = s_reg2hw.gpio_14_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_14.output_en = s_reg2hw.gpio_14_cfg.output_en.q;
-         mux_to_pads_o.gpio_14.rx_en = s_reg2hw.gpio_14_cfg.rx_en.q;
+         mux_to_pads_o.gpio_14.drv = s_reg2hw.gpio_14_cfg.drv.q;
+         mux_to_pads_o.gpio_14.pde = s_reg2hw.gpio_14_cfg.pde.q;
+         mux_to_pads_o.gpio_14.pue = s_reg2hw.gpio_14_cfg.pue.q;
+         mux_to_pads_o.gpio_14.rxe = s_reg2hw.gpio_14_cfg.rxe.q;
+         mux_to_pads_o.gpio_14.slw = s_reg2hw.gpio_14_cfg.slw.q;
+         mux_to_pads_o.gpio_14.smt = s_reg2hw.gpio_14_cfg.smt.q;
+         mux_to_pads_o.gpio_14.trie = s_reg2hw.gpio_14_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_14_SEL_QSPI0_CSB0: begin
           mux_to_pads_o.gpio_14.chip2pad = port_signals_soc2pad_i.qspi0.csb0_o;
-          mux_to_pads_o.gpio_14.output_en = port_signals_soc2pad_i.qspi0.csb0_en_o;
-          mux_to_pads_o.gpio_14.rx_en = s_reg2hw.gpio_14_cfg.rx_en.q;
+          mux_to_pads_o.gpio_14.drv = s_reg2hw.gpio_14_cfg.drv.q;
+          mux_to_pads_o.gpio_14.pde = s_reg2hw.gpio_14_cfg.pde.q;
+          mux_to_pads_o.gpio_14.pue = s_reg2hw.gpio_14_cfg.pue.q;
+          mux_to_pads_o.gpio_14.rxe = s_reg2hw.gpio_14_cfg.rxe.q;
+          mux_to_pads_o.gpio_14.slw = s_reg2hw.gpio_14_cfg.slw.q;
+          mux_to_pads_o.gpio_14.smt = s_reg2hw.gpio_14_cfg.smt.q;
+          mux_to_pads_o.gpio_14.trie = ~port_signals_soc2pad_i.qspi0.csb0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_14_SEL_QSPI0_CSB1: begin
           mux_to_pads_o.gpio_14.chip2pad = port_signals_soc2pad_i.qspi0.csb1_o;
-          mux_to_pads_o.gpio_14.output_en = port_signals_soc2pad_i.qspi0.csb1_en_o;
-          mux_to_pads_o.gpio_14.rx_en = s_reg2hw.gpio_14_cfg.rx_en.q;
+          mux_to_pads_o.gpio_14.drv = s_reg2hw.gpio_14_cfg.drv.q;
+          mux_to_pads_o.gpio_14.pde = s_reg2hw.gpio_14_cfg.pde.q;
+          mux_to_pads_o.gpio_14.pue = s_reg2hw.gpio_14_cfg.pue.q;
+          mux_to_pads_o.gpio_14.rxe = s_reg2hw.gpio_14_cfg.rxe.q;
+          mux_to_pads_o.gpio_14.slw = s_reg2hw.gpio_14_cfg.slw.q;
+          mux_to_pads_o.gpio_14.smt = s_reg2hw.gpio_14_cfg.smt.q;
+          mux_to_pads_o.gpio_14.trie = ~port_signals_soc2pad_i.qspi0.csb1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_14_SEL_QSPI0_CSB2: begin
           mux_to_pads_o.gpio_14.chip2pad = port_signals_soc2pad_i.qspi0.csb2_o;
-          mux_to_pads_o.gpio_14.output_en = port_signals_soc2pad_i.qspi0.csb2_en_o;
-          mux_to_pads_o.gpio_14.rx_en = s_reg2hw.gpio_14_cfg.rx_en.q;
+          mux_to_pads_o.gpio_14.drv = s_reg2hw.gpio_14_cfg.drv.q;
+          mux_to_pads_o.gpio_14.pde = s_reg2hw.gpio_14_cfg.pde.q;
+          mux_to_pads_o.gpio_14.pue = s_reg2hw.gpio_14_cfg.pue.q;
+          mux_to_pads_o.gpio_14.rxe = s_reg2hw.gpio_14_cfg.rxe.q;
+          mux_to_pads_o.gpio_14.slw = s_reg2hw.gpio_14_cfg.slw.q;
+          mux_to_pads_o.gpio_14.smt = s_reg2hw.gpio_14_cfg.smt.q;
+          mux_to_pads_o.gpio_14.trie = ~port_signals_soc2pad_i.qspi0.csb2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_14_SEL_QSPI0_SCK: begin
           mux_to_pads_o.gpio_14.chip2pad = port_signals_soc2pad_i.qspi0.sck_o;
-          mux_to_pads_o.gpio_14.output_en = port_signals_soc2pad_i.qspi0.sck_en_o;
-          mux_to_pads_o.gpio_14.rx_en = s_reg2hw.gpio_14_cfg.rx_en.q;
+          mux_to_pads_o.gpio_14.drv = s_reg2hw.gpio_14_cfg.drv.q;
+          mux_to_pads_o.gpio_14.pde = s_reg2hw.gpio_14_cfg.pde.q;
+          mux_to_pads_o.gpio_14.pue = s_reg2hw.gpio_14_cfg.pue.q;
+          mux_to_pads_o.gpio_14.rxe = s_reg2hw.gpio_14_cfg.rxe.q;
+          mux_to_pads_o.gpio_14.slw = s_reg2hw.gpio_14_cfg.slw.q;
+          mux_to_pads_o.gpio_14.smt = s_reg2hw.gpio_14_cfg.smt.q;
+          mux_to_pads_o.gpio_14.trie = port_signals_soc2pad_i.qspi0.sck_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_14_SEL_QSPI0_SD0: begin
           mux_to_pads_o.gpio_14.chip2pad = port_signals_soc2pad_i.qspi0.sd0_o;
-          mux_to_pads_o.gpio_14.output_en = port_signals_soc2pad_i.qspi0.sd0_en_o;
-          mux_to_pads_o.gpio_14.rx_en = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_14.drv = s_reg2hw.gpio_14_cfg.drv.q;
+          mux_to_pads_o.gpio_14.pde = s_reg2hw.gpio_14_cfg.pde.q;
+          mux_to_pads_o.gpio_14.pue = s_reg2hw.gpio_14_cfg.pue.q;
+          mux_to_pads_o.gpio_14.rxe = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_14.slw = s_reg2hw.gpio_14_cfg.slw.q;
+          mux_to_pads_o.gpio_14.smt = s_reg2hw.gpio_14_cfg.smt.q;
+          mux_to_pads_o.gpio_14.trie = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_14_SEL_QSPI0_SD1: begin
           mux_to_pads_o.gpio_14.chip2pad = port_signals_soc2pad_i.qspi0.sd1_o;
-          mux_to_pads_o.gpio_14.output_en = port_signals_soc2pad_i.qspi0.sd1_en_o;
-          mux_to_pads_o.gpio_14.rx_en = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_14.drv = s_reg2hw.gpio_14_cfg.drv.q;
+          mux_to_pads_o.gpio_14.pde = s_reg2hw.gpio_14_cfg.pde.q;
+          mux_to_pads_o.gpio_14.pue = s_reg2hw.gpio_14_cfg.pue.q;
+          mux_to_pads_o.gpio_14.rxe = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_14.slw = s_reg2hw.gpio_14_cfg.slw.q;
+          mux_to_pads_o.gpio_14.smt = s_reg2hw.gpio_14_cfg.smt.q;
+          mux_to_pads_o.gpio_14.trie = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_14_SEL_QSPI0_SD2: begin
           mux_to_pads_o.gpio_14.chip2pad = port_signals_soc2pad_i.qspi0.sd2_o;
-          mux_to_pads_o.gpio_14.output_en = port_signals_soc2pad_i.qspi0.sd2_en_o;
-          mux_to_pads_o.gpio_14.rx_en = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_14.drv = s_reg2hw.gpio_14_cfg.drv.q;
+          mux_to_pads_o.gpio_14.pde = s_reg2hw.gpio_14_cfg.pde.q;
+          mux_to_pads_o.gpio_14.pue = s_reg2hw.gpio_14_cfg.pue.q;
+          mux_to_pads_o.gpio_14.rxe = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_14.slw = s_reg2hw.gpio_14_cfg.slw.q;
+          mux_to_pads_o.gpio_14.smt = s_reg2hw.gpio_14_cfg.smt.q;
+          mux_to_pads_o.gpio_14.trie = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_14_SEL_QSPI0_SD3: begin
           mux_to_pads_o.gpio_14.chip2pad = port_signals_soc2pad_i.qspi0.sd3_o;
-          mux_to_pads_o.gpio_14.output_en = port_signals_soc2pad_i.qspi0.sd3_en_o;
-          mux_to_pads_o.gpio_14.rx_en = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_14.drv = s_reg2hw.gpio_14_cfg.drv.q;
+          mux_to_pads_o.gpio_14.pde = s_reg2hw.gpio_14_cfg.pde.q;
+          mux_to_pads_o.gpio_14.pue = s_reg2hw.gpio_14_cfg.pue.q;
+          mux_to_pads_o.gpio_14.rxe = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_14.slw = s_reg2hw.gpio_14_cfg.slw.q;
+          mux_to_pads_o.gpio_14.smt = s_reg2hw.gpio_14_cfg.smt.q;
+          mux_to_pads_o.gpio_14.trie = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_14_SEL_I2C0_SCL: begin
           mux_to_pads_o.gpio_14.chip2pad = port_signals_soc2pad_i.i2c0.scl_o;
-          mux_to_pads_o.gpio_14.output_en = port_signals_soc2pad_i.i2c0.scl_en_o;
-          mux_to_pads_o.gpio_14.rx_en = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_14.drv = s_reg2hw.gpio_14_cfg.drv.q;
+          mux_to_pads_o.gpio_14.pde = s_reg2hw.gpio_14_cfg.pde.q;
+          mux_to_pads_o.gpio_14.pue = s_reg2hw.gpio_14_cfg.pue.q;
+          mux_to_pads_o.gpio_14.rxe = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_14.slw = s_reg2hw.gpio_14_cfg.slw.q;
+          mux_to_pads_o.gpio_14.smt = s_reg2hw.gpio_14_cfg.smt.q;
+          mux_to_pads_o.gpio_14.trie = ~port_signals_soc2pad_i.i2c0.scl_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_14_SEL_I2C0_SDA: begin
           mux_to_pads_o.gpio_14.chip2pad = port_signals_soc2pad_i.i2c0.sda_o;
-          mux_to_pads_o.gpio_14.output_en = port_signals_soc2pad_i.i2c0.sda_en_o;
-          mux_to_pads_o.gpio_14.rx_en = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_14.drv = s_reg2hw.gpio_14_cfg.drv.q;
+          mux_to_pads_o.gpio_14.pde = s_reg2hw.gpio_14_cfg.pde.q;
+          mux_to_pads_o.gpio_14.pue = s_reg2hw.gpio_14_cfg.pue.q;
+          mux_to_pads_o.gpio_14.rxe = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_14.slw = s_reg2hw.gpio_14_cfg.slw.q;
+          mux_to_pads_o.gpio_14.smt = s_reg2hw.gpio_14_cfg.smt.q;
+          mux_to_pads_o.gpio_14.trie = ~port_signals_soc2pad_i.i2c0.sda_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_14_SEL_UART0_RX: begin
           mux_to_pads_o.gpio_14.chip2pad = s_reg2hw.gpio_14_cfg.chip2pad.q;
-          mux_to_pads_o.gpio_14.output_en = s_reg2hw.gpio_14_cfg.output_en.q;
-          mux_to_pads_o.gpio_14.rx_en = 1'b1;
+          mux_to_pads_o.gpio_14.drv = s_reg2hw.gpio_14_cfg.drv.q;
+          mux_to_pads_o.gpio_14.pde = s_reg2hw.gpio_14_cfg.pde.q;
+          mux_to_pads_o.gpio_14.pue = s_reg2hw.gpio_14_cfg.pue.q;
+          mux_to_pads_o.gpio_14.rxe = 1'b1;
+          mux_to_pads_o.gpio_14.slw = s_reg2hw.gpio_14_cfg.slw.q;
+          mux_to_pads_o.gpio_14.smt = s_reg2hw.gpio_14_cfg.smt.q;
+          mux_to_pads_o.gpio_14.trie = s_reg2hw.gpio_14_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_14_SEL_UART0_TX: begin
           mux_to_pads_o.gpio_14.chip2pad = port_signals_soc2pad_i.uart0.tx_o;
-          mux_to_pads_o.gpio_14.output_en = 1'b0;
-          mux_to_pads_o.gpio_14.rx_en = s_reg2hw.gpio_14_cfg.rx_en.q;
+          mux_to_pads_o.gpio_14.drv = s_reg2hw.gpio_14_cfg.drv.q;
+          mux_to_pads_o.gpio_14.pde = s_reg2hw.gpio_14_cfg.pde.q;
+          mux_to_pads_o.gpio_14.pue = s_reg2hw.gpio_14_cfg.pue.q;
+          mux_to_pads_o.gpio_14.rxe = s_reg2hw.gpio_14_cfg.rxe.q;
+          mux_to_pads_o.gpio_14.slw = s_reg2hw.gpio_14_cfg.slw.q;
+          mux_to_pads_o.gpio_14.smt = s_reg2hw.gpio_14_cfg.smt.q;
+          mux_to_pads_o.gpio_14.trie = 1'b0;
        end
        default: begin
          mux_to_pads_o.gpio_14.chip2pad = s_reg2hw.gpio_14_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_14.output_en = s_reg2hw.gpio_14_cfg.output_en.q;
-         mux_to_pads_o.gpio_14.rx_en = s_reg2hw.gpio_14_cfg.rx_en.q;
+         mux_to_pads_o.gpio_14.drv = s_reg2hw.gpio_14_cfg.drv.q;
+         mux_to_pads_o.gpio_14.pde = s_reg2hw.gpio_14_cfg.pde.q;
+         mux_to_pads_o.gpio_14.pue = s_reg2hw.gpio_14_cfg.pue.q;
+         mux_to_pads_o.gpio_14.rxe = s_reg2hw.gpio_14_cfg.rxe.q;
+         mux_to_pads_o.gpio_14.slw = s_reg2hw.gpio_14_cfg.slw.q;
+         mux_to_pads_o.gpio_14.smt = s_reg2hw.gpio_14_cfg.smt.q;
+         mux_to_pads_o.gpio_14.trie = s_reg2hw.gpio_14_cfg.trie.q;
        end
      endcase
    end // always_comb
@@ -1180,73 +2230,143 @@ module chimera_padframe_aon_gpioa_muxer
      unique case (s_reg2hw.gpio_15_mux_sel.q)
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_15_SEL_DEFAULT: begin
          mux_to_pads_o.gpio_15.chip2pad = s_reg2hw.gpio_15_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_15.output_en = s_reg2hw.gpio_15_cfg.output_en.q;
-         mux_to_pads_o.gpio_15.rx_en = s_reg2hw.gpio_15_cfg.rx_en.q;
+         mux_to_pads_o.gpio_15.drv = s_reg2hw.gpio_15_cfg.drv.q;
+         mux_to_pads_o.gpio_15.pde = s_reg2hw.gpio_15_cfg.pde.q;
+         mux_to_pads_o.gpio_15.pue = s_reg2hw.gpio_15_cfg.pue.q;
+         mux_to_pads_o.gpio_15.rxe = s_reg2hw.gpio_15_cfg.rxe.q;
+         mux_to_pads_o.gpio_15.slw = s_reg2hw.gpio_15_cfg.slw.q;
+         mux_to_pads_o.gpio_15.smt = s_reg2hw.gpio_15_cfg.smt.q;
+         mux_to_pads_o.gpio_15.trie = s_reg2hw.gpio_15_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_15_SEL_QSPI0_CSB0: begin
           mux_to_pads_o.gpio_15.chip2pad = port_signals_soc2pad_i.qspi0.csb0_o;
-          mux_to_pads_o.gpio_15.output_en = port_signals_soc2pad_i.qspi0.csb0_en_o;
-          mux_to_pads_o.gpio_15.rx_en = s_reg2hw.gpio_15_cfg.rx_en.q;
+          mux_to_pads_o.gpio_15.drv = s_reg2hw.gpio_15_cfg.drv.q;
+          mux_to_pads_o.gpio_15.pde = s_reg2hw.gpio_15_cfg.pde.q;
+          mux_to_pads_o.gpio_15.pue = s_reg2hw.gpio_15_cfg.pue.q;
+          mux_to_pads_o.gpio_15.rxe = s_reg2hw.gpio_15_cfg.rxe.q;
+          mux_to_pads_o.gpio_15.slw = s_reg2hw.gpio_15_cfg.slw.q;
+          mux_to_pads_o.gpio_15.smt = s_reg2hw.gpio_15_cfg.smt.q;
+          mux_to_pads_o.gpio_15.trie = ~port_signals_soc2pad_i.qspi0.csb0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_15_SEL_QSPI0_CSB1: begin
           mux_to_pads_o.gpio_15.chip2pad = port_signals_soc2pad_i.qspi0.csb1_o;
-          mux_to_pads_o.gpio_15.output_en = port_signals_soc2pad_i.qspi0.csb1_en_o;
-          mux_to_pads_o.gpio_15.rx_en = s_reg2hw.gpio_15_cfg.rx_en.q;
+          mux_to_pads_o.gpio_15.drv = s_reg2hw.gpio_15_cfg.drv.q;
+          mux_to_pads_o.gpio_15.pde = s_reg2hw.gpio_15_cfg.pde.q;
+          mux_to_pads_o.gpio_15.pue = s_reg2hw.gpio_15_cfg.pue.q;
+          mux_to_pads_o.gpio_15.rxe = s_reg2hw.gpio_15_cfg.rxe.q;
+          mux_to_pads_o.gpio_15.slw = s_reg2hw.gpio_15_cfg.slw.q;
+          mux_to_pads_o.gpio_15.smt = s_reg2hw.gpio_15_cfg.smt.q;
+          mux_to_pads_o.gpio_15.trie = ~port_signals_soc2pad_i.qspi0.csb1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_15_SEL_QSPI0_CSB2: begin
           mux_to_pads_o.gpio_15.chip2pad = port_signals_soc2pad_i.qspi0.csb2_o;
-          mux_to_pads_o.gpio_15.output_en = port_signals_soc2pad_i.qspi0.csb2_en_o;
-          mux_to_pads_o.gpio_15.rx_en = s_reg2hw.gpio_15_cfg.rx_en.q;
+          mux_to_pads_o.gpio_15.drv = s_reg2hw.gpio_15_cfg.drv.q;
+          mux_to_pads_o.gpio_15.pde = s_reg2hw.gpio_15_cfg.pde.q;
+          mux_to_pads_o.gpio_15.pue = s_reg2hw.gpio_15_cfg.pue.q;
+          mux_to_pads_o.gpio_15.rxe = s_reg2hw.gpio_15_cfg.rxe.q;
+          mux_to_pads_o.gpio_15.slw = s_reg2hw.gpio_15_cfg.slw.q;
+          mux_to_pads_o.gpio_15.smt = s_reg2hw.gpio_15_cfg.smt.q;
+          mux_to_pads_o.gpio_15.trie = ~port_signals_soc2pad_i.qspi0.csb2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_15_SEL_QSPI0_SCK: begin
           mux_to_pads_o.gpio_15.chip2pad = port_signals_soc2pad_i.qspi0.sck_o;
-          mux_to_pads_o.gpio_15.output_en = port_signals_soc2pad_i.qspi0.sck_en_o;
-          mux_to_pads_o.gpio_15.rx_en = s_reg2hw.gpio_15_cfg.rx_en.q;
+          mux_to_pads_o.gpio_15.drv = s_reg2hw.gpio_15_cfg.drv.q;
+          mux_to_pads_o.gpio_15.pde = s_reg2hw.gpio_15_cfg.pde.q;
+          mux_to_pads_o.gpio_15.pue = s_reg2hw.gpio_15_cfg.pue.q;
+          mux_to_pads_o.gpio_15.rxe = s_reg2hw.gpio_15_cfg.rxe.q;
+          mux_to_pads_o.gpio_15.slw = s_reg2hw.gpio_15_cfg.slw.q;
+          mux_to_pads_o.gpio_15.smt = s_reg2hw.gpio_15_cfg.smt.q;
+          mux_to_pads_o.gpio_15.trie = port_signals_soc2pad_i.qspi0.sck_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_15_SEL_QSPI0_SD0: begin
           mux_to_pads_o.gpio_15.chip2pad = port_signals_soc2pad_i.qspi0.sd0_o;
-          mux_to_pads_o.gpio_15.output_en = port_signals_soc2pad_i.qspi0.sd0_en_o;
-          mux_to_pads_o.gpio_15.rx_en = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_15.drv = s_reg2hw.gpio_15_cfg.drv.q;
+          mux_to_pads_o.gpio_15.pde = s_reg2hw.gpio_15_cfg.pde.q;
+          mux_to_pads_o.gpio_15.pue = s_reg2hw.gpio_15_cfg.pue.q;
+          mux_to_pads_o.gpio_15.rxe = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_15.slw = s_reg2hw.gpio_15_cfg.slw.q;
+          mux_to_pads_o.gpio_15.smt = s_reg2hw.gpio_15_cfg.smt.q;
+          mux_to_pads_o.gpio_15.trie = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_15_SEL_QSPI0_SD1: begin
           mux_to_pads_o.gpio_15.chip2pad = port_signals_soc2pad_i.qspi0.sd1_o;
-          mux_to_pads_o.gpio_15.output_en = port_signals_soc2pad_i.qspi0.sd1_en_o;
-          mux_to_pads_o.gpio_15.rx_en = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_15.drv = s_reg2hw.gpio_15_cfg.drv.q;
+          mux_to_pads_o.gpio_15.pde = s_reg2hw.gpio_15_cfg.pde.q;
+          mux_to_pads_o.gpio_15.pue = s_reg2hw.gpio_15_cfg.pue.q;
+          mux_to_pads_o.gpio_15.rxe = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_15.slw = s_reg2hw.gpio_15_cfg.slw.q;
+          mux_to_pads_o.gpio_15.smt = s_reg2hw.gpio_15_cfg.smt.q;
+          mux_to_pads_o.gpio_15.trie = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_15_SEL_QSPI0_SD2: begin
           mux_to_pads_o.gpio_15.chip2pad = port_signals_soc2pad_i.qspi0.sd2_o;
-          mux_to_pads_o.gpio_15.output_en = port_signals_soc2pad_i.qspi0.sd2_en_o;
-          mux_to_pads_o.gpio_15.rx_en = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_15.drv = s_reg2hw.gpio_15_cfg.drv.q;
+          mux_to_pads_o.gpio_15.pde = s_reg2hw.gpio_15_cfg.pde.q;
+          mux_to_pads_o.gpio_15.pue = s_reg2hw.gpio_15_cfg.pue.q;
+          mux_to_pads_o.gpio_15.rxe = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_15.slw = s_reg2hw.gpio_15_cfg.slw.q;
+          mux_to_pads_o.gpio_15.smt = s_reg2hw.gpio_15_cfg.smt.q;
+          mux_to_pads_o.gpio_15.trie = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_15_SEL_QSPI0_SD3: begin
           mux_to_pads_o.gpio_15.chip2pad = port_signals_soc2pad_i.qspi0.sd3_o;
-          mux_to_pads_o.gpio_15.output_en = port_signals_soc2pad_i.qspi0.sd3_en_o;
-          mux_to_pads_o.gpio_15.rx_en = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_15.drv = s_reg2hw.gpio_15_cfg.drv.q;
+          mux_to_pads_o.gpio_15.pde = s_reg2hw.gpio_15_cfg.pde.q;
+          mux_to_pads_o.gpio_15.pue = s_reg2hw.gpio_15_cfg.pue.q;
+          mux_to_pads_o.gpio_15.rxe = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_15.slw = s_reg2hw.gpio_15_cfg.slw.q;
+          mux_to_pads_o.gpio_15.smt = s_reg2hw.gpio_15_cfg.smt.q;
+          mux_to_pads_o.gpio_15.trie = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_15_SEL_I2C0_SCL: begin
           mux_to_pads_o.gpio_15.chip2pad = port_signals_soc2pad_i.i2c0.scl_o;
-          mux_to_pads_o.gpio_15.output_en = port_signals_soc2pad_i.i2c0.scl_en_o;
-          mux_to_pads_o.gpio_15.rx_en = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_15.drv = s_reg2hw.gpio_15_cfg.drv.q;
+          mux_to_pads_o.gpio_15.pde = s_reg2hw.gpio_15_cfg.pde.q;
+          mux_to_pads_o.gpio_15.pue = s_reg2hw.gpio_15_cfg.pue.q;
+          mux_to_pads_o.gpio_15.rxe = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_15.slw = s_reg2hw.gpio_15_cfg.slw.q;
+          mux_to_pads_o.gpio_15.smt = s_reg2hw.gpio_15_cfg.smt.q;
+          mux_to_pads_o.gpio_15.trie = ~port_signals_soc2pad_i.i2c0.scl_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_15_SEL_I2C0_SDA: begin
           mux_to_pads_o.gpio_15.chip2pad = port_signals_soc2pad_i.i2c0.sda_o;
-          mux_to_pads_o.gpio_15.output_en = port_signals_soc2pad_i.i2c0.sda_en_o;
-          mux_to_pads_o.gpio_15.rx_en = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_15.drv = s_reg2hw.gpio_15_cfg.drv.q;
+          mux_to_pads_o.gpio_15.pde = s_reg2hw.gpio_15_cfg.pde.q;
+          mux_to_pads_o.gpio_15.pue = s_reg2hw.gpio_15_cfg.pue.q;
+          mux_to_pads_o.gpio_15.rxe = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_15.slw = s_reg2hw.gpio_15_cfg.slw.q;
+          mux_to_pads_o.gpio_15.smt = s_reg2hw.gpio_15_cfg.smt.q;
+          mux_to_pads_o.gpio_15.trie = ~port_signals_soc2pad_i.i2c0.sda_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_15_SEL_UART0_RX: begin
           mux_to_pads_o.gpio_15.chip2pad = s_reg2hw.gpio_15_cfg.chip2pad.q;
-          mux_to_pads_o.gpio_15.output_en = s_reg2hw.gpio_15_cfg.output_en.q;
-          mux_to_pads_o.gpio_15.rx_en = 1'b1;
+          mux_to_pads_o.gpio_15.drv = s_reg2hw.gpio_15_cfg.drv.q;
+          mux_to_pads_o.gpio_15.pde = s_reg2hw.gpio_15_cfg.pde.q;
+          mux_to_pads_o.gpio_15.pue = s_reg2hw.gpio_15_cfg.pue.q;
+          mux_to_pads_o.gpio_15.rxe = 1'b1;
+          mux_to_pads_o.gpio_15.slw = s_reg2hw.gpio_15_cfg.slw.q;
+          mux_to_pads_o.gpio_15.smt = s_reg2hw.gpio_15_cfg.smt.q;
+          mux_to_pads_o.gpio_15.trie = s_reg2hw.gpio_15_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_15_SEL_UART0_TX: begin
           mux_to_pads_o.gpio_15.chip2pad = port_signals_soc2pad_i.uart0.tx_o;
-          mux_to_pads_o.gpio_15.output_en = 1'b0;
-          mux_to_pads_o.gpio_15.rx_en = s_reg2hw.gpio_15_cfg.rx_en.q;
+          mux_to_pads_o.gpio_15.drv = s_reg2hw.gpio_15_cfg.drv.q;
+          mux_to_pads_o.gpio_15.pde = s_reg2hw.gpio_15_cfg.pde.q;
+          mux_to_pads_o.gpio_15.pue = s_reg2hw.gpio_15_cfg.pue.q;
+          mux_to_pads_o.gpio_15.rxe = s_reg2hw.gpio_15_cfg.rxe.q;
+          mux_to_pads_o.gpio_15.slw = s_reg2hw.gpio_15_cfg.slw.q;
+          mux_to_pads_o.gpio_15.smt = s_reg2hw.gpio_15_cfg.smt.q;
+          mux_to_pads_o.gpio_15.trie = 1'b0;
        end
        default: begin
          mux_to_pads_o.gpio_15.chip2pad = s_reg2hw.gpio_15_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_15.output_en = s_reg2hw.gpio_15_cfg.output_en.q;
-         mux_to_pads_o.gpio_15.rx_en = s_reg2hw.gpio_15_cfg.rx_en.q;
+         mux_to_pads_o.gpio_15.drv = s_reg2hw.gpio_15_cfg.drv.q;
+         mux_to_pads_o.gpio_15.pde = s_reg2hw.gpio_15_cfg.pde.q;
+         mux_to_pads_o.gpio_15.pue = s_reg2hw.gpio_15_cfg.pue.q;
+         mux_to_pads_o.gpio_15.rxe = s_reg2hw.gpio_15_cfg.rxe.q;
+         mux_to_pads_o.gpio_15.slw = s_reg2hw.gpio_15_cfg.slw.q;
+         mux_to_pads_o.gpio_15.smt = s_reg2hw.gpio_15_cfg.smt.q;
+         mux_to_pads_o.gpio_15.trie = s_reg2hw.gpio_15_cfg.trie.q;
        end
      endcase
    end // always_comb
@@ -1256,73 +2376,143 @@ module chimera_padframe_aon_gpioa_muxer
      unique case (s_reg2hw.gpio_16_mux_sel.q)
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_16_SEL_DEFAULT: begin
          mux_to_pads_o.gpio_16.chip2pad = s_reg2hw.gpio_16_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_16.output_en = s_reg2hw.gpio_16_cfg.output_en.q;
-         mux_to_pads_o.gpio_16.rx_en = s_reg2hw.gpio_16_cfg.rx_en.q;
+         mux_to_pads_o.gpio_16.drv = s_reg2hw.gpio_16_cfg.drv.q;
+         mux_to_pads_o.gpio_16.pde = s_reg2hw.gpio_16_cfg.pde.q;
+         mux_to_pads_o.gpio_16.pue = s_reg2hw.gpio_16_cfg.pue.q;
+         mux_to_pads_o.gpio_16.rxe = s_reg2hw.gpio_16_cfg.rxe.q;
+         mux_to_pads_o.gpio_16.slw = s_reg2hw.gpio_16_cfg.slw.q;
+         mux_to_pads_o.gpio_16.smt = s_reg2hw.gpio_16_cfg.smt.q;
+         mux_to_pads_o.gpio_16.trie = s_reg2hw.gpio_16_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_16_SEL_QSPI0_CSB0: begin
           mux_to_pads_o.gpio_16.chip2pad = port_signals_soc2pad_i.qspi0.csb0_o;
-          mux_to_pads_o.gpio_16.output_en = port_signals_soc2pad_i.qspi0.csb0_en_o;
-          mux_to_pads_o.gpio_16.rx_en = s_reg2hw.gpio_16_cfg.rx_en.q;
+          mux_to_pads_o.gpio_16.drv = s_reg2hw.gpio_16_cfg.drv.q;
+          mux_to_pads_o.gpio_16.pde = s_reg2hw.gpio_16_cfg.pde.q;
+          mux_to_pads_o.gpio_16.pue = s_reg2hw.gpio_16_cfg.pue.q;
+          mux_to_pads_o.gpio_16.rxe = s_reg2hw.gpio_16_cfg.rxe.q;
+          mux_to_pads_o.gpio_16.slw = s_reg2hw.gpio_16_cfg.slw.q;
+          mux_to_pads_o.gpio_16.smt = s_reg2hw.gpio_16_cfg.smt.q;
+          mux_to_pads_o.gpio_16.trie = ~port_signals_soc2pad_i.qspi0.csb0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_16_SEL_QSPI0_CSB1: begin
           mux_to_pads_o.gpio_16.chip2pad = port_signals_soc2pad_i.qspi0.csb1_o;
-          mux_to_pads_o.gpio_16.output_en = port_signals_soc2pad_i.qspi0.csb1_en_o;
-          mux_to_pads_o.gpio_16.rx_en = s_reg2hw.gpio_16_cfg.rx_en.q;
+          mux_to_pads_o.gpio_16.drv = s_reg2hw.gpio_16_cfg.drv.q;
+          mux_to_pads_o.gpio_16.pde = s_reg2hw.gpio_16_cfg.pde.q;
+          mux_to_pads_o.gpio_16.pue = s_reg2hw.gpio_16_cfg.pue.q;
+          mux_to_pads_o.gpio_16.rxe = s_reg2hw.gpio_16_cfg.rxe.q;
+          mux_to_pads_o.gpio_16.slw = s_reg2hw.gpio_16_cfg.slw.q;
+          mux_to_pads_o.gpio_16.smt = s_reg2hw.gpio_16_cfg.smt.q;
+          mux_to_pads_o.gpio_16.trie = ~port_signals_soc2pad_i.qspi0.csb1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_16_SEL_QSPI0_CSB2: begin
           mux_to_pads_o.gpio_16.chip2pad = port_signals_soc2pad_i.qspi0.csb2_o;
-          mux_to_pads_o.gpio_16.output_en = port_signals_soc2pad_i.qspi0.csb2_en_o;
-          mux_to_pads_o.gpio_16.rx_en = s_reg2hw.gpio_16_cfg.rx_en.q;
+          mux_to_pads_o.gpio_16.drv = s_reg2hw.gpio_16_cfg.drv.q;
+          mux_to_pads_o.gpio_16.pde = s_reg2hw.gpio_16_cfg.pde.q;
+          mux_to_pads_o.gpio_16.pue = s_reg2hw.gpio_16_cfg.pue.q;
+          mux_to_pads_o.gpio_16.rxe = s_reg2hw.gpio_16_cfg.rxe.q;
+          mux_to_pads_o.gpio_16.slw = s_reg2hw.gpio_16_cfg.slw.q;
+          mux_to_pads_o.gpio_16.smt = s_reg2hw.gpio_16_cfg.smt.q;
+          mux_to_pads_o.gpio_16.trie = ~port_signals_soc2pad_i.qspi0.csb2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_16_SEL_QSPI0_SCK: begin
           mux_to_pads_o.gpio_16.chip2pad = port_signals_soc2pad_i.qspi0.sck_o;
-          mux_to_pads_o.gpio_16.output_en = port_signals_soc2pad_i.qspi0.sck_en_o;
-          mux_to_pads_o.gpio_16.rx_en = s_reg2hw.gpio_16_cfg.rx_en.q;
+          mux_to_pads_o.gpio_16.drv = s_reg2hw.gpio_16_cfg.drv.q;
+          mux_to_pads_o.gpio_16.pde = s_reg2hw.gpio_16_cfg.pde.q;
+          mux_to_pads_o.gpio_16.pue = s_reg2hw.gpio_16_cfg.pue.q;
+          mux_to_pads_o.gpio_16.rxe = s_reg2hw.gpio_16_cfg.rxe.q;
+          mux_to_pads_o.gpio_16.slw = s_reg2hw.gpio_16_cfg.slw.q;
+          mux_to_pads_o.gpio_16.smt = s_reg2hw.gpio_16_cfg.smt.q;
+          mux_to_pads_o.gpio_16.trie = port_signals_soc2pad_i.qspi0.sck_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_16_SEL_QSPI0_SD0: begin
           mux_to_pads_o.gpio_16.chip2pad = port_signals_soc2pad_i.qspi0.sd0_o;
-          mux_to_pads_o.gpio_16.output_en = port_signals_soc2pad_i.qspi0.sd0_en_o;
-          mux_to_pads_o.gpio_16.rx_en = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_16.drv = s_reg2hw.gpio_16_cfg.drv.q;
+          mux_to_pads_o.gpio_16.pde = s_reg2hw.gpio_16_cfg.pde.q;
+          mux_to_pads_o.gpio_16.pue = s_reg2hw.gpio_16_cfg.pue.q;
+          mux_to_pads_o.gpio_16.rxe = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_16.slw = s_reg2hw.gpio_16_cfg.slw.q;
+          mux_to_pads_o.gpio_16.smt = s_reg2hw.gpio_16_cfg.smt.q;
+          mux_to_pads_o.gpio_16.trie = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_16_SEL_QSPI0_SD1: begin
           mux_to_pads_o.gpio_16.chip2pad = port_signals_soc2pad_i.qspi0.sd1_o;
-          mux_to_pads_o.gpio_16.output_en = port_signals_soc2pad_i.qspi0.sd1_en_o;
-          mux_to_pads_o.gpio_16.rx_en = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_16.drv = s_reg2hw.gpio_16_cfg.drv.q;
+          mux_to_pads_o.gpio_16.pde = s_reg2hw.gpio_16_cfg.pde.q;
+          mux_to_pads_o.gpio_16.pue = s_reg2hw.gpio_16_cfg.pue.q;
+          mux_to_pads_o.gpio_16.rxe = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_16.slw = s_reg2hw.gpio_16_cfg.slw.q;
+          mux_to_pads_o.gpio_16.smt = s_reg2hw.gpio_16_cfg.smt.q;
+          mux_to_pads_o.gpio_16.trie = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_16_SEL_QSPI0_SD2: begin
           mux_to_pads_o.gpio_16.chip2pad = port_signals_soc2pad_i.qspi0.sd2_o;
-          mux_to_pads_o.gpio_16.output_en = port_signals_soc2pad_i.qspi0.sd2_en_o;
-          mux_to_pads_o.gpio_16.rx_en = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_16.drv = s_reg2hw.gpio_16_cfg.drv.q;
+          mux_to_pads_o.gpio_16.pde = s_reg2hw.gpio_16_cfg.pde.q;
+          mux_to_pads_o.gpio_16.pue = s_reg2hw.gpio_16_cfg.pue.q;
+          mux_to_pads_o.gpio_16.rxe = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_16.slw = s_reg2hw.gpio_16_cfg.slw.q;
+          mux_to_pads_o.gpio_16.smt = s_reg2hw.gpio_16_cfg.smt.q;
+          mux_to_pads_o.gpio_16.trie = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_16_SEL_QSPI0_SD3: begin
           mux_to_pads_o.gpio_16.chip2pad = port_signals_soc2pad_i.qspi0.sd3_o;
-          mux_to_pads_o.gpio_16.output_en = port_signals_soc2pad_i.qspi0.sd3_en_o;
-          mux_to_pads_o.gpio_16.rx_en = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_16.drv = s_reg2hw.gpio_16_cfg.drv.q;
+          mux_to_pads_o.gpio_16.pde = s_reg2hw.gpio_16_cfg.pde.q;
+          mux_to_pads_o.gpio_16.pue = s_reg2hw.gpio_16_cfg.pue.q;
+          mux_to_pads_o.gpio_16.rxe = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_16.slw = s_reg2hw.gpio_16_cfg.slw.q;
+          mux_to_pads_o.gpio_16.smt = s_reg2hw.gpio_16_cfg.smt.q;
+          mux_to_pads_o.gpio_16.trie = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_16_SEL_I2C0_SCL: begin
           mux_to_pads_o.gpio_16.chip2pad = port_signals_soc2pad_i.i2c0.scl_o;
-          mux_to_pads_o.gpio_16.output_en = port_signals_soc2pad_i.i2c0.scl_en_o;
-          mux_to_pads_o.gpio_16.rx_en = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_16.drv = s_reg2hw.gpio_16_cfg.drv.q;
+          mux_to_pads_o.gpio_16.pde = s_reg2hw.gpio_16_cfg.pde.q;
+          mux_to_pads_o.gpio_16.pue = s_reg2hw.gpio_16_cfg.pue.q;
+          mux_to_pads_o.gpio_16.rxe = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_16.slw = s_reg2hw.gpio_16_cfg.slw.q;
+          mux_to_pads_o.gpio_16.smt = s_reg2hw.gpio_16_cfg.smt.q;
+          mux_to_pads_o.gpio_16.trie = ~port_signals_soc2pad_i.i2c0.scl_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_16_SEL_I2C0_SDA: begin
           mux_to_pads_o.gpio_16.chip2pad = port_signals_soc2pad_i.i2c0.sda_o;
-          mux_to_pads_o.gpio_16.output_en = port_signals_soc2pad_i.i2c0.sda_en_o;
-          mux_to_pads_o.gpio_16.rx_en = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_16.drv = s_reg2hw.gpio_16_cfg.drv.q;
+          mux_to_pads_o.gpio_16.pde = s_reg2hw.gpio_16_cfg.pde.q;
+          mux_to_pads_o.gpio_16.pue = s_reg2hw.gpio_16_cfg.pue.q;
+          mux_to_pads_o.gpio_16.rxe = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_16.slw = s_reg2hw.gpio_16_cfg.slw.q;
+          mux_to_pads_o.gpio_16.smt = s_reg2hw.gpio_16_cfg.smt.q;
+          mux_to_pads_o.gpio_16.trie = ~port_signals_soc2pad_i.i2c0.sda_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_16_SEL_UART0_RX: begin
           mux_to_pads_o.gpio_16.chip2pad = s_reg2hw.gpio_16_cfg.chip2pad.q;
-          mux_to_pads_o.gpio_16.output_en = s_reg2hw.gpio_16_cfg.output_en.q;
-          mux_to_pads_o.gpio_16.rx_en = 1'b1;
+          mux_to_pads_o.gpio_16.drv = s_reg2hw.gpio_16_cfg.drv.q;
+          mux_to_pads_o.gpio_16.pde = s_reg2hw.gpio_16_cfg.pde.q;
+          mux_to_pads_o.gpio_16.pue = s_reg2hw.gpio_16_cfg.pue.q;
+          mux_to_pads_o.gpio_16.rxe = 1'b1;
+          mux_to_pads_o.gpio_16.slw = s_reg2hw.gpio_16_cfg.slw.q;
+          mux_to_pads_o.gpio_16.smt = s_reg2hw.gpio_16_cfg.smt.q;
+          mux_to_pads_o.gpio_16.trie = s_reg2hw.gpio_16_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_16_SEL_UART0_TX: begin
           mux_to_pads_o.gpio_16.chip2pad = port_signals_soc2pad_i.uart0.tx_o;
-          mux_to_pads_o.gpio_16.output_en = 1'b0;
-          mux_to_pads_o.gpio_16.rx_en = s_reg2hw.gpio_16_cfg.rx_en.q;
+          mux_to_pads_o.gpio_16.drv = s_reg2hw.gpio_16_cfg.drv.q;
+          mux_to_pads_o.gpio_16.pde = s_reg2hw.gpio_16_cfg.pde.q;
+          mux_to_pads_o.gpio_16.pue = s_reg2hw.gpio_16_cfg.pue.q;
+          mux_to_pads_o.gpio_16.rxe = s_reg2hw.gpio_16_cfg.rxe.q;
+          mux_to_pads_o.gpio_16.slw = s_reg2hw.gpio_16_cfg.slw.q;
+          mux_to_pads_o.gpio_16.smt = s_reg2hw.gpio_16_cfg.smt.q;
+          mux_to_pads_o.gpio_16.trie = 1'b0;
        end
        default: begin
          mux_to_pads_o.gpio_16.chip2pad = s_reg2hw.gpio_16_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_16.output_en = s_reg2hw.gpio_16_cfg.output_en.q;
-         mux_to_pads_o.gpio_16.rx_en = s_reg2hw.gpio_16_cfg.rx_en.q;
+         mux_to_pads_o.gpio_16.drv = s_reg2hw.gpio_16_cfg.drv.q;
+         mux_to_pads_o.gpio_16.pde = s_reg2hw.gpio_16_cfg.pde.q;
+         mux_to_pads_o.gpio_16.pue = s_reg2hw.gpio_16_cfg.pue.q;
+         mux_to_pads_o.gpio_16.rxe = s_reg2hw.gpio_16_cfg.rxe.q;
+         mux_to_pads_o.gpio_16.slw = s_reg2hw.gpio_16_cfg.slw.q;
+         mux_to_pads_o.gpio_16.smt = s_reg2hw.gpio_16_cfg.smt.q;
+         mux_to_pads_o.gpio_16.trie = s_reg2hw.gpio_16_cfg.trie.q;
        end
      endcase
    end // always_comb
@@ -1332,73 +2522,143 @@ module chimera_padframe_aon_gpioa_muxer
      unique case (s_reg2hw.gpio_17_mux_sel.q)
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_17_SEL_DEFAULT: begin
          mux_to_pads_o.gpio_17.chip2pad = s_reg2hw.gpio_17_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_17.output_en = s_reg2hw.gpio_17_cfg.output_en.q;
-         mux_to_pads_o.gpio_17.rx_en = s_reg2hw.gpio_17_cfg.rx_en.q;
+         mux_to_pads_o.gpio_17.drv = s_reg2hw.gpio_17_cfg.drv.q;
+         mux_to_pads_o.gpio_17.pde = s_reg2hw.gpio_17_cfg.pde.q;
+         mux_to_pads_o.gpio_17.pue = s_reg2hw.gpio_17_cfg.pue.q;
+         mux_to_pads_o.gpio_17.rxe = s_reg2hw.gpio_17_cfg.rxe.q;
+         mux_to_pads_o.gpio_17.slw = s_reg2hw.gpio_17_cfg.slw.q;
+         mux_to_pads_o.gpio_17.smt = s_reg2hw.gpio_17_cfg.smt.q;
+         mux_to_pads_o.gpio_17.trie = s_reg2hw.gpio_17_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_17_SEL_QSPI0_CSB0: begin
           mux_to_pads_o.gpio_17.chip2pad = port_signals_soc2pad_i.qspi0.csb0_o;
-          mux_to_pads_o.gpio_17.output_en = port_signals_soc2pad_i.qspi0.csb0_en_o;
-          mux_to_pads_o.gpio_17.rx_en = s_reg2hw.gpio_17_cfg.rx_en.q;
+          mux_to_pads_o.gpio_17.drv = s_reg2hw.gpio_17_cfg.drv.q;
+          mux_to_pads_o.gpio_17.pde = s_reg2hw.gpio_17_cfg.pde.q;
+          mux_to_pads_o.gpio_17.pue = s_reg2hw.gpio_17_cfg.pue.q;
+          mux_to_pads_o.gpio_17.rxe = s_reg2hw.gpio_17_cfg.rxe.q;
+          mux_to_pads_o.gpio_17.slw = s_reg2hw.gpio_17_cfg.slw.q;
+          mux_to_pads_o.gpio_17.smt = s_reg2hw.gpio_17_cfg.smt.q;
+          mux_to_pads_o.gpio_17.trie = ~port_signals_soc2pad_i.qspi0.csb0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_17_SEL_QSPI0_CSB1: begin
           mux_to_pads_o.gpio_17.chip2pad = port_signals_soc2pad_i.qspi0.csb1_o;
-          mux_to_pads_o.gpio_17.output_en = port_signals_soc2pad_i.qspi0.csb1_en_o;
-          mux_to_pads_o.gpio_17.rx_en = s_reg2hw.gpio_17_cfg.rx_en.q;
+          mux_to_pads_o.gpio_17.drv = s_reg2hw.gpio_17_cfg.drv.q;
+          mux_to_pads_o.gpio_17.pde = s_reg2hw.gpio_17_cfg.pde.q;
+          mux_to_pads_o.gpio_17.pue = s_reg2hw.gpio_17_cfg.pue.q;
+          mux_to_pads_o.gpio_17.rxe = s_reg2hw.gpio_17_cfg.rxe.q;
+          mux_to_pads_o.gpio_17.slw = s_reg2hw.gpio_17_cfg.slw.q;
+          mux_to_pads_o.gpio_17.smt = s_reg2hw.gpio_17_cfg.smt.q;
+          mux_to_pads_o.gpio_17.trie = ~port_signals_soc2pad_i.qspi0.csb1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_17_SEL_QSPI0_CSB2: begin
           mux_to_pads_o.gpio_17.chip2pad = port_signals_soc2pad_i.qspi0.csb2_o;
-          mux_to_pads_o.gpio_17.output_en = port_signals_soc2pad_i.qspi0.csb2_en_o;
-          mux_to_pads_o.gpio_17.rx_en = s_reg2hw.gpio_17_cfg.rx_en.q;
+          mux_to_pads_o.gpio_17.drv = s_reg2hw.gpio_17_cfg.drv.q;
+          mux_to_pads_o.gpio_17.pde = s_reg2hw.gpio_17_cfg.pde.q;
+          mux_to_pads_o.gpio_17.pue = s_reg2hw.gpio_17_cfg.pue.q;
+          mux_to_pads_o.gpio_17.rxe = s_reg2hw.gpio_17_cfg.rxe.q;
+          mux_to_pads_o.gpio_17.slw = s_reg2hw.gpio_17_cfg.slw.q;
+          mux_to_pads_o.gpio_17.smt = s_reg2hw.gpio_17_cfg.smt.q;
+          mux_to_pads_o.gpio_17.trie = ~port_signals_soc2pad_i.qspi0.csb2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_17_SEL_QSPI0_SCK: begin
           mux_to_pads_o.gpio_17.chip2pad = port_signals_soc2pad_i.qspi0.sck_o;
-          mux_to_pads_o.gpio_17.output_en = port_signals_soc2pad_i.qspi0.sck_en_o;
-          mux_to_pads_o.gpio_17.rx_en = s_reg2hw.gpio_17_cfg.rx_en.q;
+          mux_to_pads_o.gpio_17.drv = s_reg2hw.gpio_17_cfg.drv.q;
+          mux_to_pads_o.gpio_17.pde = s_reg2hw.gpio_17_cfg.pde.q;
+          mux_to_pads_o.gpio_17.pue = s_reg2hw.gpio_17_cfg.pue.q;
+          mux_to_pads_o.gpio_17.rxe = s_reg2hw.gpio_17_cfg.rxe.q;
+          mux_to_pads_o.gpio_17.slw = s_reg2hw.gpio_17_cfg.slw.q;
+          mux_to_pads_o.gpio_17.smt = s_reg2hw.gpio_17_cfg.smt.q;
+          mux_to_pads_o.gpio_17.trie = port_signals_soc2pad_i.qspi0.sck_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_17_SEL_QSPI0_SD0: begin
           mux_to_pads_o.gpio_17.chip2pad = port_signals_soc2pad_i.qspi0.sd0_o;
-          mux_to_pads_o.gpio_17.output_en = port_signals_soc2pad_i.qspi0.sd0_en_o;
-          mux_to_pads_o.gpio_17.rx_en = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_17.drv = s_reg2hw.gpio_17_cfg.drv.q;
+          mux_to_pads_o.gpio_17.pde = s_reg2hw.gpio_17_cfg.pde.q;
+          mux_to_pads_o.gpio_17.pue = s_reg2hw.gpio_17_cfg.pue.q;
+          mux_to_pads_o.gpio_17.rxe = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_17.slw = s_reg2hw.gpio_17_cfg.slw.q;
+          mux_to_pads_o.gpio_17.smt = s_reg2hw.gpio_17_cfg.smt.q;
+          mux_to_pads_o.gpio_17.trie = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_17_SEL_QSPI0_SD1: begin
           mux_to_pads_o.gpio_17.chip2pad = port_signals_soc2pad_i.qspi0.sd1_o;
-          mux_to_pads_o.gpio_17.output_en = port_signals_soc2pad_i.qspi0.sd1_en_o;
-          mux_to_pads_o.gpio_17.rx_en = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_17.drv = s_reg2hw.gpio_17_cfg.drv.q;
+          mux_to_pads_o.gpio_17.pde = s_reg2hw.gpio_17_cfg.pde.q;
+          mux_to_pads_o.gpio_17.pue = s_reg2hw.gpio_17_cfg.pue.q;
+          mux_to_pads_o.gpio_17.rxe = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_17.slw = s_reg2hw.gpio_17_cfg.slw.q;
+          mux_to_pads_o.gpio_17.smt = s_reg2hw.gpio_17_cfg.smt.q;
+          mux_to_pads_o.gpio_17.trie = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_17_SEL_QSPI0_SD2: begin
           mux_to_pads_o.gpio_17.chip2pad = port_signals_soc2pad_i.qspi0.sd2_o;
-          mux_to_pads_o.gpio_17.output_en = port_signals_soc2pad_i.qspi0.sd2_en_o;
-          mux_to_pads_o.gpio_17.rx_en = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_17.drv = s_reg2hw.gpio_17_cfg.drv.q;
+          mux_to_pads_o.gpio_17.pde = s_reg2hw.gpio_17_cfg.pde.q;
+          mux_to_pads_o.gpio_17.pue = s_reg2hw.gpio_17_cfg.pue.q;
+          mux_to_pads_o.gpio_17.rxe = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_17.slw = s_reg2hw.gpio_17_cfg.slw.q;
+          mux_to_pads_o.gpio_17.smt = s_reg2hw.gpio_17_cfg.smt.q;
+          mux_to_pads_o.gpio_17.trie = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_17_SEL_QSPI0_SD3: begin
           mux_to_pads_o.gpio_17.chip2pad = port_signals_soc2pad_i.qspi0.sd3_o;
-          mux_to_pads_o.gpio_17.output_en = port_signals_soc2pad_i.qspi0.sd3_en_o;
-          mux_to_pads_o.gpio_17.rx_en = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_17.drv = s_reg2hw.gpio_17_cfg.drv.q;
+          mux_to_pads_o.gpio_17.pde = s_reg2hw.gpio_17_cfg.pde.q;
+          mux_to_pads_o.gpio_17.pue = s_reg2hw.gpio_17_cfg.pue.q;
+          mux_to_pads_o.gpio_17.rxe = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_17.slw = s_reg2hw.gpio_17_cfg.slw.q;
+          mux_to_pads_o.gpio_17.smt = s_reg2hw.gpio_17_cfg.smt.q;
+          mux_to_pads_o.gpio_17.trie = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_17_SEL_I2C0_SCL: begin
           mux_to_pads_o.gpio_17.chip2pad = port_signals_soc2pad_i.i2c0.scl_o;
-          mux_to_pads_o.gpio_17.output_en = port_signals_soc2pad_i.i2c0.scl_en_o;
-          mux_to_pads_o.gpio_17.rx_en = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_17.drv = s_reg2hw.gpio_17_cfg.drv.q;
+          mux_to_pads_o.gpio_17.pde = s_reg2hw.gpio_17_cfg.pde.q;
+          mux_to_pads_o.gpio_17.pue = s_reg2hw.gpio_17_cfg.pue.q;
+          mux_to_pads_o.gpio_17.rxe = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_17.slw = s_reg2hw.gpio_17_cfg.slw.q;
+          mux_to_pads_o.gpio_17.smt = s_reg2hw.gpio_17_cfg.smt.q;
+          mux_to_pads_o.gpio_17.trie = ~port_signals_soc2pad_i.i2c0.scl_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_17_SEL_I2C0_SDA: begin
           mux_to_pads_o.gpio_17.chip2pad = port_signals_soc2pad_i.i2c0.sda_o;
-          mux_to_pads_o.gpio_17.output_en = port_signals_soc2pad_i.i2c0.sda_en_o;
-          mux_to_pads_o.gpio_17.rx_en = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_17.drv = s_reg2hw.gpio_17_cfg.drv.q;
+          mux_to_pads_o.gpio_17.pde = s_reg2hw.gpio_17_cfg.pde.q;
+          mux_to_pads_o.gpio_17.pue = s_reg2hw.gpio_17_cfg.pue.q;
+          mux_to_pads_o.gpio_17.rxe = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_17.slw = s_reg2hw.gpio_17_cfg.slw.q;
+          mux_to_pads_o.gpio_17.smt = s_reg2hw.gpio_17_cfg.smt.q;
+          mux_to_pads_o.gpio_17.trie = ~port_signals_soc2pad_i.i2c0.sda_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_17_SEL_UART0_RX: begin
           mux_to_pads_o.gpio_17.chip2pad = s_reg2hw.gpio_17_cfg.chip2pad.q;
-          mux_to_pads_o.gpio_17.output_en = s_reg2hw.gpio_17_cfg.output_en.q;
-          mux_to_pads_o.gpio_17.rx_en = 1'b1;
+          mux_to_pads_o.gpio_17.drv = s_reg2hw.gpio_17_cfg.drv.q;
+          mux_to_pads_o.gpio_17.pde = s_reg2hw.gpio_17_cfg.pde.q;
+          mux_to_pads_o.gpio_17.pue = s_reg2hw.gpio_17_cfg.pue.q;
+          mux_to_pads_o.gpio_17.rxe = 1'b1;
+          mux_to_pads_o.gpio_17.slw = s_reg2hw.gpio_17_cfg.slw.q;
+          mux_to_pads_o.gpio_17.smt = s_reg2hw.gpio_17_cfg.smt.q;
+          mux_to_pads_o.gpio_17.trie = s_reg2hw.gpio_17_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_17_SEL_UART0_TX: begin
           mux_to_pads_o.gpio_17.chip2pad = port_signals_soc2pad_i.uart0.tx_o;
-          mux_to_pads_o.gpio_17.output_en = 1'b0;
-          mux_to_pads_o.gpio_17.rx_en = s_reg2hw.gpio_17_cfg.rx_en.q;
+          mux_to_pads_o.gpio_17.drv = s_reg2hw.gpio_17_cfg.drv.q;
+          mux_to_pads_o.gpio_17.pde = s_reg2hw.gpio_17_cfg.pde.q;
+          mux_to_pads_o.gpio_17.pue = s_reg2hw.gpio_17_cfg.pue.q;
+          mux_to_pads_o.gpio_17.rxe = s_reg2hw.gpio_17_cfg.rxe.q;
+          mux_to_pads_o.gpio_17.slw = s_reg2hw.gpio_17_cfg.slw.q;
+          mux_to_pads_o.gpio_17.smt = s_reg2hw.gpio_17_cfg.smt.q;
+          mux_to_pads_o.gpio_17.trie = 1'b0;
        end
        default: begin
          mux_to_pads_o.gpio_17.chip2pad = s_reg2hw.gpio_17_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_17.output_en = s_reg2hw.gpio_17_cfg.output_en.q;
-         mux_to_pads_o.gpio_17.rx_en = s_reg2hw.gpio_17_cfg.rx_en.q;
+         mux_to_pads_o.gpio_17.drv = s_reg2hw.gpio_17_cfg.drv.q;
+         mux_to_pads_o.gpio_17.pde = s_reg2hw.gpio_17_cfg.pde.q;
+         mux_to_pads_o.gpio_17.pue = s_reg2hw.gpio_17_cfg.pue.q;
+         mux_to_pads_o.gpio_17.rxe = s_reg2hw.gpio_17_cfg.rxe.q;
+         mux_to_pads_o.gpio_17.slw = s_reg2hw.gpio_17_cfg.slw.q;
+         mux_to_pads_o.gpio_17.smt = s_reg2hw.gpio_17_cfg.smt.q;
+         mux_to_pads_o.gpio_17.trie = s_reg2hw.gpio_17_cfg.trie.q;
        end
      endcase
    end // always_comb
@@ -1408,73 +2668,143 @@ module chimera_padframe_aon_gpioa_muxer
      unique case (s_reg2hw.gpio_18_mux_sel.q)
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_18_SEL_DEFAULT: begin
          mux_to_pads_o.gpio_18.chip2pad = s_reg2hw.gpio_18_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_18.output_en = s_reg2hw.gpio_18_cfg.output_en.q;
-         mux_to_pads_o.gpio_18.rx_en = s_reg2hw.gpio_18_cfg.rx_en.q;
+         mux_to_pads_o.gpio_18.drv = s_reg2hw.gpio_18_cfg.drv.q;
+         mux_to_pads_o.gpio_18.pde = s_reg2hw.gpio_18_cfg.pde.q;
+         mux_to_pads_o.gpio_18.pue = s_reg2hw.gpio_18_cfg.pue.q;
+         mux_to_pads_o.gpio_18.rxe = s_reg2hw.gpio_18_cfg.rxe.q;
+         mux_to_pads_o.gpio_18.slw = s_reg2hw.gpio_18_cfg.slw.q;
+         mux_to_pads_o.gpio_18.smt = s_reg2hw.gpio_18_cfg.smt.q;
+         mux_to_pads_o.gpio_18.trie = s_reg2hw.gpio_18_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_18_SEL_QSPI0_CSB0: begin
           mux_to_pads_o.gpio_18.chip2pad = port_signals_soc2pad_i.qspi0.csb0_o;
-          mux_to_pads_o.gpio_18.output_en = port_signals_soc2pad_i.qspi0.csb0_en_o;
-          mux_to_pads_o.gpio_18.rx_en = s_reg2hw.gpio_18_cfg.rx_en.q;
+          mux_to_pads_o.gpio_18.drv = s_reg2hw.gpio_18_cfg.drv.q;
+          mux_to_pads_o.gpio_18.pde = s_reg2hw.gpio_18_cfg.pde.q;
+          mux_to_pads_o.gpio_18.pue = s_reg2hw.gpio_18_cfg.pue.q;
+          mux_to_pads_o.gpio_18.rxe = s_reg2hw.gpio_18_cfg.rxe.q;
+          mux_to_pads_o.gpio_18.slw = s_reg2hw.gpio_18_cfg.slw.q;
+          mux_to_pads_o.gpio_18.smt = s_reg2hw.gpio_18_cfg.smt.q;
+          mux_to_pads_o.gpio_18.trie = ~port_signals_soc2pad_i.qspi0.csb0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_18_SEL_QSPI0_CSB1: begin
           mux_to_pads_o.gpio_18.chip2pad = port_signals_soc2pad_i.qspi0.csb1_o;
-          mux_to_pads_o.gpio_18.output_en = port_signals_soc2pad_i.qspi0.csb1_en_o;
-          mux_to_pads_o.gpio_18.rx_en = s_reg2hw.gpio_18_cfg.rx_en.q;
+          mux_to_pads_o.gpio_18.drv = s_reg2hw.gpio_18_cfg.drv.q;
+          mux_to_pads_o.gpio_18.pde = s_reg2hw.gpio_18_cfg.pde.q;
+          mux_to_pads_o.gpio_18.pue = s_reg2hw.gpio_18_cfg.pue.q;
+          mux_to_pads_o.gpio_18.rxe = s_reg2hw.gpio_18_cfg.rxe.q;
+          mux_to_pads_o.gpio_18.slw = s_reg2hw.gpio_18_cfg.slw.q;
+          mux_to_pads_o.gpio_18.smt = s_reg2hw.gpio_18_cfg.smt.q;
+          mux_to_pads_o.gpio_18.trie = ~port_signals_soc2pad_i.qspi0.csb1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_18_SEL_QSPI0_CSB2: begin
           mux_to_pads_o.gpio_18.chip2pad = port_signals_soc2pad_i.qspi0.csb2_o;
-          mux_to_pads_o.gpio_18.output_en = port_signals_soc2pad_i.qspi0.csb2_en_o;
-          mux_to_pads_o.gpio_18.rx_en = s_reg2hw.gpio_18_cfg.rx_en.q;
+          mux_to_pads_o.gpio_18.drv = s_reg2hw.gpio_18_cfg.drv.q;
+          mux_to_pads_o.gpio_18.pde = s_reg2hw.gpio_18_cfg.pde.q;
+          mux_to_pads_o.gpio_18.pue = s_reg2hw.gpio_18_cfg.pue.q;
+          mux_to_pads_o.gpio_18.rxe = s_reg2hw.gpio_18_cfg.rxe.q;
+          mux_to_pads_o.gpio_18.slw = s_reg2hw.gpio_18_cfg.slw.q;
+          mux_to_pads_o.gpio_18.smt = s_reg2hw.gpio_18_cfg.smt.q;
+          mux_to_pads_o.gpio_18.trie = ~port_signals_soc2pad_i.qspi0.csb2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_18_SEL_QSPI0_SCK: begin
           mux_to_pads_o.gpio_18.chip2pad = port_signals_soc2pad_i.qspi0.sck_o;
-          mux_to_pads_o.gpio_18.output_en = port_signals_soc2pad_i.qspi0.sck_en_o;
-          mux_to_pads_o.gpio_18.rx_en = s_reg2hw.gpio_18_cfg.rx_en.q;
+          mux_to_pads_o.gpio_18.drv = s_reg2hw.gpio_18_cfg.drv.q;
+          mux_to_pads_o.gpio_18.pde = s_reg2hw.gpio_18_cfg.pde.q;
+          mux_to_pads_o.gpio_18.pue = s_reg2hw.gpio_18_cfg.pue.q;
+          mux_to_pads_o.gpio_18.rxe = s_reg2hw.gpio_18_cfg.rxe.q;
+          mux_to_pads_o.gpio_18.slw = s_reg2hw.gpio_18_cfg.slw.q;
+          mux_to_pads_o.gpio_18.smt = s_reg2hw.gpio_18_cfg.smt.q;
+          mux_to_pads_o.gpio_18.trie = port_signals_soc2pad_i.qspi0.sck_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_18_SEL_QSPI0_SD0: begin
           mux_to_pads_o.gpio_18.chip2pad = port_signals_soc2pad_i.qspi0.sd0_o;
-          mux_to_pads_o.gpio_18.output_en = port_signals_soc2pad_i.qspi0.sd0_en_o;
-          mux_to_pads_o.gpio_18.rx_en = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_18.drv = s_reg2hw.gpio_18_cfg.drv.q;
+          mux_to_pads_o.gpio_18.pde = s_reg2hw.gpio_18_cfg.pde.q;
+          mux_to_pads_o.gpio_18.pue = s_reg2hw.gpio_18_cfg.pue.q;
+          mux_to_pads_o.gpio_18.rxe = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_18.slw = s_reg2hw.gpio_18_cfg.slw.q;
+          mux_to_pads_o.gpio_18.smt = s_reg2hw.gpio_18_cfg.smt.q;
+          mux_to_pads_o.gpio_18.trie = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_18_SEL_QSPI0_SD1: begin
           mux_to_pads_o.gpio_18.chip2pad = port_signals_soc2pad_i.qspi0.sd1_o;
-          mux_to_pads_o.gpio_18.output_en = port_signals_soc2pad_i.qspi0.sd1_en_o;
-          mux_to_pads_o.gpio_18.rx_en = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_18.drv = s_reg2hw.gpio_18_cfg.drv.q;
+          mux_to_pads_o.gpio_18.pde = s_reg2hw.gpio_18_cfg.pde.q;
+          mux_to_pads_o.gpio_18.pue = s_reg2hw.gpio_18_cfg.pue.q;
+          mux_to_pads_o.gpio_18.rxe = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_18.slw = s_reg2hw.gpio_18_cfg.slw.q;
+          mux_to_pads_o.gpio_18.smt = s_reg2hw.gpio_18_cfg.smt.q;
+          mux_to_pads_o.gpio_18.trie = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_18_SEL_QSPI0_SD2: begin
           mux_to_pads_o.gpio_18.chip2pad = port_signals_soc2pad_i.qspi0.sd2_o;
-          mux_to_pads_o.gpio_18.output_en = port_signals_soc2pad_i.qspi0.sd2_en_o;
-          mux_to_pads_o.gpio_18.rx_en = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_18.drv = s_reg2hw.gpio_18_cfg.drv.q;
+          mux_to_pads_o.gpio_18.pde = s_reg2hw.gpio_18_cfg.pde.q;
+          mux_to_pads_o.gpio_18.pue = s_reg2hw.gpio_18_cfg.pue.q;
+          mux_to_pads_o.gpio_18.rxe = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_18.slw = s_reg2hw.gpio_18_cfg.slw.q;
+          mux_to_pads_o.gpio_18.smt = s_reg2hw.gpio_18_cfg.smt.q;
+          mux_to_pads_o.gpio_18.trie = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_18_SEL_QSPI0_SD3: begin
           mux_to_pads_o.gpio_18.chip2pad = port_signals_soc2pad_i.qspi0.sd3_o;
-          mux_to_pads_o.gpio_18.output_en = port_signals_soc2pad_i.qspi0.sd3_en_o;
-          mux_to_pads_o.gpio_18.rx_en = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_18.drv = s_reg2hw.gpio_18_cfg.drv.q;
+          mux_to_pads_o.gpio_18.pde = s_reg2hw.gpio_18_cfg.pde.q;
+          mux_to_pads_o.gpio_18.pue = s_reg2hw.gpio_18_cfg.pue.q;
+          mux_to_pads_o.gpio_18.rxe = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_18.slw = s_reg2hw.gpio_18_cfg.slw.q;
+          mux_to_pads_o.gpio_18.smt = s_reg2hw.gpio_18_cfg.smt.q;
+          mux_to_pads_o.gpio_18.trie = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_18_SEL_I2C0_SCL: begin
           mux_to_pads_o.gpio_18.chip2pad = port_signals_soc2pad_i.i2c0.scl_o;
-          mux_to_pads_o.gpio_18.output_en = port_signals_soc2pad_i.i2c0.scl_en_o;
-          mux_to_pads_o.gpio_18.rx_en = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_18.drv = s_reg2hw.gpio_18_cfg.drv.q;
+          mux_to_pads_o.gpio_18.pde = s_reg2hw.gpio_18_cfg.pde.q;
+          mux_to_pads_o.gpio_18.pue = s_reg2hw.gpio_18_cfg.pue.q;
+          mux_to_pads_o.gpio_18.rxe = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_18.slw = s_reg2hw.gpio_18_cfg.slw.q;
+          mux_to_pads_o.gpio_18.smt = s_reg2hw.gpio_18_cfg.smt.q;
+          mux_to_pads_o.gpio_18.trie = ~port_signals_soc2pad_i.i2c0.scl_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_18_SEL_I2C0_SDA: begin
           mux_to_pads_o.gpio_18.chip2pad = port_signals_soc2pad_i.i2c0.sda_o;
-          mux_to_pads_o.gpio_18.output_en = port_signals_soc2pad_i.i2c0.sda_en_o;
-          mux_to_pads_o.gpio_18.rx_en = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_18.drv = s_reg2hw.gpio_18_cfg.drv.q;
+          mux_to_pads_o.gpio_18.pde = s_reg2hw.gpio_18_cfg.pde.q;
+          mux_to_pads_o.gpio_18.pue = s_reg2hw.gpio_18_cfg.pue.q;
+          mux_to_pads_o.gpio_18.rxe = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_18.slw = s_reg2hw.gpio_18_cfg.slw.q;
+          mux_to_pads_o.gpio_18.smt = s_reg2hw.gpio_18_cfg.smt.q;
+          mux_to_pads_o.gpio_18.trie = ~port_signals_soc2pad_i.i2c0.sda_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_18_SEL_UART0_RX: begin
           mux_to_pads_o.gpio_18.chip2pad = s_reg2hw.gpio_18_cfg.chip2pad.q;
-          mux_to_pads_o.gpio_18.output_en = s_reg2hw.gpio_18_cfg.output_en.q;
-          mux_to_pads_o.gpio_18.rx_en = 1'b1;
+          mux_to_pads_o.gpio_18.drv = s_reg2hw.gpio_18_cfg.drv.q;
+          mux_to_pads_o.gpio_18.pde = s_reg2hw.gpio_18_cfg.pde.q;
+          mux_to_pads_o.gpio_18.pue = s_reg2hw.gpio_18_cfg.pue.q;
+          mux_to_pads_o.gpio_18.rxe = 1'b1;
+          mux_to_pads_o.gpio_18.slw = s_reg2hw.gpio_18_cfg.slw.q;
+          mux_to_pads_o.gpio_18.smt = s_reg2hw.gpio_18_cfg.smt.q;
+          mux_to_pads_o.gpio_18.trie = s_reg2hw.gpio_18_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_18_SEL_UART0_TX: begin
           mux_to_pads_o.gpio_18.chip2pad = port_signals_soc2pad_i.uart0.tx_o;
-          mux_to_pads_o.gpio_18.output_en = 1'b0;
-          mux_to_pads_o.gpio_18.rx_en = s_reg2hw.gpio_18_cfg.rx_en.q;
+          mux_to_pads_o.gpio_18.drv = s_reg2hw.gpio_18_cfg.drv.q;
+          mux_to_pads_o.gpio_18.pde = s_reg2hw.gpio_18_cfg.pde.q;
+          mux_to_pads_o.gpio_18.pue = s_reg2hw.gpio_18_cfg.pue.q;
+          mux_to_pads_o.gpio_18.rxe = s_reg2hw.gpio_18_cfg.rxe.q;
+          mux_to_pads_o.gpio_18.slw = s_reg2hw.gpio_18_cfg.slw.q;
+          mux_to_pads_o.gpio_18.smt = s_reg2hw.gpio_18_cfg.smt.q;
+          mux_to_pads_o.gpio_18.trie = 1'b0;
        end
        default: begin
          mux_to_pads_o.gpio_18.chip2pad = s_reg2hw.gpio_18_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_18.output_en = s_reg2hw.gpio_18_cfg.output_en.q;
-         mux_to_pads_o.gpio_18.rx_en = s_reg2hw.gpio_18_cfg.rx_en.q;
+         mux_to_pads_o.gpio_18.drv = s_reg2hw.gpio_18_cfg.drv.q;
+         mux_to_pads_o.gpio_18.pde = s_reg2hw.gpio_18_cfg.pde.q;
+         mux_to_pads_o.gpio_18.pue = s_reg2hw.gpio_18_cfg.pue.q;
+         mux_to_pads_o.gpio_18.rxe = s_reg2hw.gpio_18_cfg.rxe.q;
+         mux_to_pads_o.gpio_18.slw = s_reg2hw.gpio_18_cfg.slw.q;
+         mux_to_pads_o.gpio_18.smt = s_reg2hw.gpio_18_cfg.smt.q;
+         mux_to_pads_o.gpio_18.trie = s_reg2hw.gpio_18_cfg.trie.q;
        end
      endcase
    end // always_comb
@@ -1484,73 +2814,143 @@ module chimera_padframe_aon_gpioa_muxer
      unique case (s_reg2hw.gpio_19_mux_sel.q)
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_19_SEL_DEFAULT: begin
          mux_to_pads_o.gpio_19.chip2pad = s_reg2hw.gpio_19_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_19.output_en = s_reg2hw.gpio_19_cfg.output_en.q;
-         mux_to_pads_o.gpio_19.rx_en = s_reg2hw.gpio_19_cfg.rx_en.q;
+         mux_to_pads_o.gpio_19.drv = s_reg2hw.gpio_19_cfg.drv.q;
+         mux_to_pads_o.gpio_19.pde = s_reg2hw.gpio_19_cfg.pde.q;
+         mux_to_pads_o.gpio_19.pue = s_reg2hw.gpio_19_cfg.pue.q;
+         mux_to_pads_o.gpio_19.rxe = s_reg2hw.gpio_19_cfg.rxe.q;
+         mux_to_pads_o.gpio_19.slw = s_reg2hw.gpio_19_cfg.slw.q;
+         mux_to_pads_o.gpio_19.smt = s_reg2hw.gpio_19_cfg.smt.q;
+         mux_to_pads_o.gpio_19.trie = s_reg2hw.gpio_19_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_19_SEL_QSPI0_CSB0: begin
           mux_to_pads_o.gpio_19.chip2pad = port_signals_soc2pad_i.qspi0.csb0_o;
-          mux_to_pads_o.gpio_19.output_en = port_signals_soc2pad_i.qspi0.csb0_en_o;
-          mux_to_pads_o.gpio_19.rx_en = s_reg2hw.gpio_19_cfg.rx_en.q;
+          mux_to_pads_o.gpio_19.drv = s_reg2hw.gpio_19_cfg.drv.q;
+          mux_to_pads_o.gpio_19.pde = s_reg2hw.gpio_19_cfg.pde.q;
+          mux_to_pads_o.gpio_19.pue = s_reg2hw.gpio_19_cfg.pue.q;
+          mux_to_pads_o.gpio_19.rxe = s_reg2hw.gpio_19_cfg.rxe.q;
+          mux_to_pads_o.gpio_19.slw = s_reg2hw.gpio_19_cfg.slw.q;
+          mux_to_pads_o.gpio_19.smt = s_reg2hw.gpio_19_cfg.smt.q;
+          mux_to_pads_o.gpio_19.trie = ~port_signals_soc2pad_i.qspi0.csb0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_19_SEL_QSPI0_CSB1: begin
           mux_to_pads_o.gpio_19.chip2pad = port_signals_soc2pad_i.qspi0.csb1_o;
-          mux_to_pads_o.gpio_19.output_en = port_signals_soc2pad_i.qspi0.csb1_en_o;
-          mux_to_pads_o.gpio_19.rx_en = s_reg2hw.gpio_19_cfg.rx_en.q;
+          mux_to_pads_o.gpio_19.drv = s_reg2hw.gpio_19_cfg.drv.q;
+          mux_to_pads_o.gpio_19.pde = s_reg2hw.gpio_19_cfg.pde.q;
+          mux_to_pads_o.gpio_19.pue = s_reg2hw.gpio_19_cfg.pue.q;
+          mux_to_pads_o.gpio_19.rxe = s_reg2hw.gpio_19_cfg.rxe.q;
+          mux_to_pads_o.gpio_19.slw = s_reg2hw.gpio_19_cfg.slw.q;
+          mux_to_pads_o.gpio_19.smt = s_reg2hw.gpio_19_cfg.smt.q;
+          mux_to_pads_o.gpio_19.trie = ~port_signals_soc2pad_i.qspi0.csb1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_19_SEL_QSPI0_CSB2: begin
           mux_to_pads_o.gpio_19.chip2pad = port_signals_soc2pad_i.qspi0.csb2_o;
-          mux_to_pads_o.gpio_19.output_en = port_signals_soc2pad_i.qspi0.csb2_en_o;
-          mux_to_pads_o.gpio_19.rx_en = s_reg2hw.gpio_19_cfg.rx_en.q;
+          mux_to_pads_o.gpio_19.drv = s_reg2hw.gpio_19_cfg.drv.q;
+          mux_to_pads_o.gpio_19.pde = s_reg2hw.gpio_19_cfg.pde.q;
+          mux_to_pads_o.gpio_19.pue = s_reg2hw.gpio_19_cfg.pue.q;
+          mux_to_pads_o.gpio_19.rxe = s_reg2hw.gpio_19_cfg.rxe.q;
+          mux_to_pads_o.gpio_19.slw = s_reg2hw.gpio_19_cfg.slw.q;
+          mux_to_pads_o.gpio_19.smt = s_reg2hw.gpio_19_cfg.smt.q;
+          mux_to_pads_o.gpio_19.trie = ~port_signals_soc2pad_i.qspi0.csb2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_19_SEL_QSPI0_SCK: begin
           mux_to_pads_o.gpio_19.chip2pad = port_signals_soc2pad_i.qspi0.sck_o;
-          mux_to_pads_o.gpio_19.output_en = port_signals_soc2pad_i.qspi0.sck_en_o;
-          mux_to_pads_o.gpio_19.rx_en = s_reg2hw.gpio_19_cfg.rx_en.q;
+          mux_to_pads_o.gpio_19.drv = s_reg2hw.gpio_19_cfg.drv.q;
+          mux_to_pads_o.gpio_19.pde = s_reg2hw.gpio_19_cfg.pde.q;
+          mux_to_pads_o.gpio_19.pue = s_reg2hw.gpio_19_cfg.pue.q;
+          mux_to_pads_o.gpio_19.rxe = s_reg2hw.gpio_19_cfg.rxe.q;
+          mux_to_pads_o.gpio_19.slw = s_reg2hw.gpio_19_cfg.slw.q;
+          mux_to_pads_o.gpio_19.smt = s_reg2hw.gpio_19_cfg.smt.q;
+          mux_to_pads_o.gpio_19.trie = port_signals_soc2pad_i.qspi0.sck_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_19_SEL_QSPI0_SD0: begin
           mux_to_pads_o.gpio_19.chip2pad = port_signals_soc2pad_i.qspi0.sd0_o;
-          mux_to_pads_o.gpio_19.output_en = port_signals_soc2pad_i.qspi0.sd0_en_o;
-          mux_to_pads_o.gpio_19.rx_en = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_19.drv = s_reg2hw.gpio_19_cfg.drv.q;
+          mux_to_pads_o.gpio_19.pde = s_reg2hw.gpio_19_cfg.pde.q;
+          mux_to_pads_o.gpio_19.pue = s_reg2hw.gpio_19_cfg.pue.q;
+          mux_to_pads_o.gpio_19.rxe = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_19.slw = s_reg2hw.gpio_19_cfg.slw.q;
+          mux_to_pads_o.gpio_19.smt = s_reg2hw.gpio_19_cfg.smt.q;
+          mux_to_pads_o.gpio_19.trie = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_19_SEL_QSPI0_SD1: begin
           mux_to_pads_o.gpio_19.chip2pad = port_signals_soc2pad_i.qspi0.sd1_o;
-          mux_to_pads_o.gpio_19.output_en = port_signals_soc2pad_i.qspi0.sd1_en_o;
-          mux_to_pads_o.gpio_19.rx_en = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_19.drv = s_reg2hw.gpio_19_cfg.drv.q;
+          mux_to_pads_o.gpio_19.pde = s_reg2hw.gpio_19_cfg.pde.q;
+          mux_to_pads_o.gpio_19.pue = s_reg2hw.gpio_19_cfg.pue.q;
+          mux_to_pads_o.gpio_19.rxe = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_19.slw = s_reg2hw.gpio_19_cfg.slw.q;
+          mux_to_pads_o.gpio_19.smt = s_reg2hw.gpio_19_cfg.smt.q;
+          mux_to_pads_o.gpio_19.trie = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_19_SEL_QSPI0_SD2: begin
           mux_to_pads_o.gpio_19.chip2pad = port_signals_soc2pad_i.qspi0.sd2_o;
-          mux_to_pads_o.gpio_19.output_en = port_signals_soc2pad_i.qspi0.sd2_en_o;
-          mux_to_pads_o.gpio_19.rx_en = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_19.drv = s_reg2hw.gpio_19_cfg.drv.q;
+          mux_to_pads_o.gpio_19.pde = s_reg2hw.gpio_19_cfg.pde.q;
+          mux_to_pads_o.gpio_19.pue = s_reg2hw.gpio_19_cfg.pue.q;
+          mux_to_pads_o.gpio_19.rxe = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_19.slw = s_reg2hw.gpio_19_cfg.slw.q;
+          mux_to_pads_o.gpio_19.smt = s_reg2hw.gpio_19_cfg.smt.q;
+          mux_to_pads_o.gpio_19.trie = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_19_SEL_QSPI0_SD3: begin
           mux_to_pads_o.gpio_19.chip2pad = port_signals_soc2pad_i.qspi0.sd3_o;
-          mux_to_pads_o.gpio_19.output_en = port_signals_soc2pad_i.qspi0.sd3_en_o;
-          mux_to_pads_o.gpio_19.rx_en = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_19.drv = s_reg2hw.gpio_19_cfg.drv.q;
+          mux_to_pads_o.gpio_19.pde = s_reg2hw.gpio_19_cfg.pde.q;
+          mux_to_pads_o.gpio_19.pue = s_reg2hw.gpio_19_cfg.pue.q;
+          mux_to_pads_o.gpio_19.rxe = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_19.slw = s_reg2hw.gpio_19_cfg.slw.q;
+          mux_to_pads_o.gpio_19.smt = s_reg2hw.gpio_19_cfg.smt.q;
+          mux_to_pads_o.gpio_19.trie = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_19_SEL_I2C0_SCL: begin
           mux_to_pads_o.gpio_19.chip2pad = port_signals_soc2pad_i.i2c0.scl_o;
-          mux_to_pads_o.gpio_19.output_en = port_signals_soc2pad_i.i2c0.scl_en_o;
-          mux_to_pads_o.gpio_19.rx_en = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_19.drv = s_reg2hw.gpio_19_cfg.drv.q;
+          mux_to_pads_o.gpio_19.pde = s_reg2hw.gpio_19_cfg.pde.q;
+          mux_to_pads_o.gpio_19.pue = s_reg2hw.gpio_19_cfg.pue.q;
+          mux_to_pads_o.gpio_19.rxe = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_19.slw = s_reg2hw.gpio_19_cfg.slw.q;
+          mux_to_pads_o.gpio_19.smt = s_reg2hw.gpio_19_cfg.smt.q;
+          mux_to_pads_o.gpio_19.trie = ~port_signals_soc2pad_i.i2c0.scl_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_19_SEL_I2C0_SDA: begin
           mux_to_pads_o.gpio_19.chip2pad = port_signals_soc2pad_i.i2c0.sda_o;
-          mux_to_pads_o.gpio_19.output_en = port_signals_soc2pad_i.i2c0.sda_en_o;
-          mux_to_pads_o.gpio_19.rx_en = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_19.drv = s_reg2hw.gpio_19_cfg.drv.q;
+          mux_to_pads_o.gpio_19.pde = s_reg2hw.gpio_19_cfg.pde.q;
+          mux_to_pads_o.gpio_19.pue = s_reg2hw.gpio_19_cfg.pue.q;
+          mux_to_pads_o.gpio_19.rxe = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_19.slw = s_reg2hw.gpio_19_cfg.slw.q;
+          mux_to_pads_o.gpio_19.smt = s_reg2hw.gpio_19_cfg.smt.q;
+          mux_to_pads_o.gpio_19.trie = ~port_signals_soc2pad_i.i2c0.sda_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_19_SEL_UART0_RX: begin
           mux_to_pads_o.gpio_19.chip2pad = s_reg2hw.gpio_19_cfg.chip2pad.q;
-          mux_to_pads_o.gpio_19.output_en = s_reg2hw.gpio_19_cfg.output_en.q;
-          mux_to_pads_o.gpio_19.rx_en = 1'b1;
+          mux_to_pads_o.gpio_19.drv = s_reg2hw.gpio_19_cfg.drv.q;
+          mux_to_pads_o.gpio_19.pde = s_reg2hw.gpio_19_cfg.pde.q;
+          mux_to_pads_o.gpio_19.pue = s_reg2hw.gpio_19_cfg.pue.q;
+          mux_to_pads_o.gpio_19.rxe = 1'b1;
+          mux_to_pads_o.gpio_19.slw = s_reg2hw.gpio_19_cfg.slw.q;
+          mux_to_pads_o.gpio_19.smt = s_reg2hw.gpio_19_cfg.smt.q;
+          mux_to_pads_o.gpio_19.trie = s_reg2hw.gpio_19_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_19_SEL_UART0_TX: begin
           mux_to_pads_o.gpio_19.chip2pad = port_signals_soc2pad_i.uart0.tx_o;
-          mux_to_pads_o.gpio_19.output_en = 1'b0;
-          mux_to_pads_o.gpio_19.rx_en = s_reg2hw.gpio_19_cfg.rx_en.q;
+          mux_to_pads_o.gpio_19.drv = s_reg2hw.gpio_19_cfg.drv.q;
+          mux_to_pads_o.gpio_19.pde = s_reg2hw.gpio_19_cfg.pde.q;
+          mux_to_pads_o.gpio_19.pue = s_reg2hw.gpio_19_cfg.pue.q;
+          mux_to_pads_o.gpio_19.rxe = s_reg2hw.gpio_19_cfg.rxe.q;
+          mux_to_pads_o.gpio_19.slw = s_reg2hw.gpio_19_cfg.slw.q;
+          mux_to_pads_o.gpio_19.smt = s_reg2hw.gpio_19_cfg.smt.q;
+          mux_to_pads_o.gpio_19.trie = 1'b0;
        end
        default: begin
          mux_to_pads_o.gpio_19.chip2pad = s_reg2hw.gpio_19_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_19.output_en = s_reg2hw.gpio_19_cfg.output_en.q;
-         mux_to_pads_o.gpio_19.rx_en = s_reg2hw.gpio_19_cfg.rx_en.q;
+         mux_to_pads_o.gpio_19.drv = s_reg2hw.gpio_19_cfg.drv.q;
+         mux_to_pads_o.gpio_19.pde = s_reg2hw.gpio_19_cfg.pde.q;
+         mux_to_pads_o.gpio_19.pue = s_reg2hw.gpio_19_cfg.pue.q;
+         mux_to_pads_o.gpio_19.rxe = s_reg2hw.gpio_19_cfg.rxe.q;
+         mux_to_pads_o.gpio_19.slw = s_reg2hw.gpio_19_cfg.slw.q;
+         mux_to_pads_o.gpio_19.smt = s_reg2hw.gpio_19_cfg.smt.q;
+         mux_to_pads_o.gpio_19.trie = s_reg2hw.gpio_19_cfg.trie.q;
        end
      endcase
    end // always_comb
@@ -1560,73 +2960,143 @@ module chimera_padframe_aon_gpioa_muxer
      unique case (s_reg2hw.gpio_20_mux_sel.q)
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_20_SEL_DEFAULT: begin
          mux_to_pads_o.gpio_20.chip2pad = s_reg2hw.gpio_20_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_20.output_en = s_reg2hw.gpio_20_cfg.output_en.q;
-         mux_to_pads_o.gpio_20.rx_en = s_reg2hw.gpio_20_cfg.rx_en.q;
+         mux_to_pads_o.gpio_20.drv = s_reg2hw.gpio_20_cfg.drv.q;
+         mux_to_pads_o.gpio_20.pde = s_reg2hw.gpio_20_cfg.pde.q;
+         mux_to_pads_o.gpio_20.pue = s_reg2hw.gpio_20_cfg.pue.q;
+         mux_to_pads_o.gpio_20.rxe = s_reg2hw.gpio_20_cfg.rxe.q;
+         mux_to_pads_o.gpio_20.slw = s_reg2hw.gpio_20_cfg.slw.q;
+         mux_to_pads_o.gpio_20.smt = s_reg2hw.gpio_20_cfg.smt.q;
+         mux_to_pads_o.gpio_20.trie = s_reg2hw.gpio_20_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_20_SEL_QSPI0_CSB0: begin
           mux_to_pads_o.gpio_20.chip2pad = port_signals_soc2pad_i.qspi0.csb0_o;
-          mux_to_pads_o.gpio_20.output_en = port_signals_soc2pad_i.qspi0.csb0_en_o;
-          mux_to_pads_o.gpio_20.rx_en = s_reg2hw.gpio_20_cfg.rx_en.q;
+          mux_to_pads_o.gpio_20.drv = s_reg2hw.gpio_20_cfg.drv.q;
+          mux_to_pads_o.gpio_20.pde = s_reg2hw.gpio_20_cfg.pde.q;
+          mux_to_pads_o.gpio_20.pue = s_reg2hw.gpio_20_cfg.pue.q;
+          mux_to_pads_o.gpio_20.rxe = s_reg2hw.gpio_20_cfg.rxe.q;
+          mux_to_pads_o.gpio_20.slw = s_reg2hw.gpio_20_cfg.slw.q;
+          mux_to_pads_o.gpio_20.smt = s_reg2hw.gpio_20_cfg.smt.q;
+          mux_to_pads_o.gpio_20.trie = ~port_signals_soc2pad_i.qspi0.csb0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_20_SEL_QSPI0_CSB1: begin
           mux_to_pads_o.gpio_20.chip2pad = port_signals_soc2pad_i.qspi0.csb1_o;
-          mux_to_pads_o.gpio_20.output_en = port_signals_soc2pad_i.qspi0.csb1_en_o;
-          mux_to_pads_o.gpio_20.rx_en = s_reg2hw.gpio_20_cfg.rx_en.q;
+          mux_to_pads_o.gpio_20.drv = s_reg2hw.gpio_20_cfg.drv.q;
+          mux_to_pads_o.gpio_20.pde = s_reg2hw.gpio_20_cfg.pde.q;
+          mux_to_pads_o.gpio_20.pue = s_reg2hw.gpio_20_cfg.pue.q;
+          mux_to_pads_o.gpio_20.rxe = s_reg2hw.gpio_20_cfg.rxe.q;
+          mux_to_pads_o.gpio_20.slw = s_reg2hw.gpio_20_cfg.slw.q;
+          mux_to_pads_o.gpio_20.smt = s_reg2hw.gpio_20_cfg.smt.q;
+          mux_to_pads_o.gpio_20.trie = ~port_signals_soc2pad_i.qspi0.csb1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_20_SEL_QSPI0_CSB2: begin
           mux_to_pads_o.gpio_20.chip2pad = port_signals_soc2pad_i.qspi0.csb2_o;
-          mux_to_pads_o.gpio_20.output_en = port_signals_soc2pad_i.qspi0.csb2_en_o;
-          mux_to_pads_o.gpio_20.rx_en = s_reg2hw.gpio_20_cfg.rx_en.q;
+          mux_to_pads_o.gpio_20.drv = s_reg2hw.gpio_20_cfg.drv.q;
+          mux_to_pads_o.gpio_20.pde = s_reg2hw.gpio_20_cfg.pde.q;
+          mux_to_pads_o.gpio_20.pue = s_reg2hw.gpio_20_cfg.pue.q;
+          mux_to_pads_o.gpio_20.rxe = s_reg2hw.gpio_20_cfg.rxe.q;
+          mux_to_pads_o.gpio_20.slw = s_reg2hw.gpio_20_cfg.slw.q;
+          mux_to_pads_o.gpio_20.smt = s_reg2hw.gpio_20_cfg.smt.q;
+          mux_to_pads_o.gpio_20.trie = ~port_signals_soc2pad_i.qspi0.csb2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_20_SEL_QSPI0_SCK: begin
           mux_to_pads_o.gpio_20.chip2pad = port_signals_soc2pad_i.qspi0.sck_o;
-          mux_to_pads_o.gpio_20.output_en = port_signals_soc2pad_i.qspi0.sck_en_o;
-          mux_to_pads_o.gpio_20.rx_en = s_reg2hw.gpio_20_cfg.rx_en.q;
+          mux_to_pads_o.gpio_20.drv = s_reg2hw.gpio_20_cfg.drv.q;
+          mux_to_pads_o.gpio_20.pde = s_reg2hw.gpio_20_cfg.pde.q;
+          mux_to_pads_o.gpio_20.pue = s_reg2hw.gpio_20_cfg.pue.q;
+          mux_to_pads_o.gpio_20.rxe = s_reg2hw.gpio_20_cfg.rxe.q;
+          mux_to_pads_o.gpio_20.slw = s_reg2hw.gpio_20_cfg.slw.q;
+          mux_to_pads_o.gpio_20.smt = s_reg2hw.gpio_20_cfg.smt.q;
+          mux_to_pads_o.gpio_20.trie = port_signals_soc2pad_i.qspi0.sck_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_20_SEL_QSPI0_SD0: begin
           mux_to_pads_o.gpio_20.chip2pad = port_signals_soc2pad_i.qspi0.sd0_o;
-          mux_to_pads_o.gpio_20.output_en = port_signals_soc2pad_i.qspi0.sd0_en_o;
-          mux_to_pads_o.gpio_20.rx_en = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_20.drv = s_reg2hw.gpio_20_cfg.drv.q;
+          mux_to_pads_o.gpio_20.pde = s_reg2hw.gpio_20_cfg.pde.q;
+          mux_to_pads_o.gpio_20.pue = s_reg2hw.gpio_20_cfg.pue.q;
+          mux_to_pads_o.gpio_20.rxe = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_20.slw = s_reg2hw.gpio_20_cfg.slw.q;
+          mux_to_pads_o.gpio_20.smt = s_reg2hw.gpio_20_cfg.smt.q;
+          mux_to_pads_o.gpio_20.trie = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_20_SEL_QSPI0_SD1: begin
           mux_to_pads_o.gpio_20.chip2pad = port_signals_soc2pad_i.qspi0.sd1_o;
-          mux_to_pads_o.gpio_20.output_en = port_signals_soc2pad_i.qspi0.sd1_en_o;
-          mux_to_pads_o.gpio_20.rx_en = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_20.drv = s_reg2hw.gpio_20_cfg.drv.q;
+          mux_to_pads_o.gpio_20.pde = s_reg2hw.gpio_20_cfg.pde.q;
+          mux_to_pads_o.gpio_20.pue = s_reg2hw.gpio_20_cfg.pue.q;
+          mux_to_pads_o.gpio_20.rxe = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_20.slw = s_reg2hw.gpio_20_cfg.slw.q;
+          mux_to_pads_o.gpio_20.smt = s_reg2hw.gpio_20_cfg.smt.q;
+          mux_to_pads_o.gpio_20.trie = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_20_SEL_QSPI0_SD2: begin
           mux_to_pads_o.gpio_20.chip2pad = port_signals_soc2pad_i.qspi0.sd2_o;
-          mux_to_pads_o.gpio_20.output_en = port_signals_soc2pad_i.qspi0.sd2_en_o;
-          mux_to_pads_o.gpio_20.rx_en = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_20.drv = s_reg2hw.gpio_20_cfg.drv.q;
+          mux_to_pads_o.gpio_20.pde = s_reg2hw.gpio_20_cfg.pde.q;
+          mux_to_pads_o.gpio_20.pue = s_reg2hw.gpio_20_cfg.pue.q;
+          mux_to_pads_o.gpio_20.rxe = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_20.slw = s_reg2hw.gpio_20_cfg.slw.q;
+          mux_to_pads_o.gpio_20.smt = s_reg2hw.gpio_20_cfg.smt.q;
+          mux_to_pads_o.gpio_20.trie = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_20_SEL_QSPI0_SD3: begin
           mux_to_pads_o.gpio_20.chip2pad = port_signals_soc2pad_i.qspi0.sd3_o;
-          mux_to_pads_o.gpio_20.output_en = port_signals_soc2pad_i.qspi0.sd3_en_o;
-          mux_to_pads_o.gpio_20.rx_en = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_20.drv = s_reg2hw.gpio_20_cfg.drv.q;
+          mux_to_pads_o.gpio_20.pde = s_reg2hw.gpio_20_cfg.pde.q;
+          mux_to_pads_o.gpio_20.pue = s_reg2hw.gpio_20_cfg.pue.q;
+          mux_to_pads_o.gpio_20.rxe = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_20.slw = s_reg2hw.gpio_20_cfg.slw.q;
+          mux_to_pads_o.gpio_20.smt = s_reg2hw.gpio_20_cfg.smt.q;
+          mux_to_pads_o.gpio_20.trie = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_20_SEL_I2C0_SCL: begin
           mux_to_pads_o.gpio_20.chip2pad = port_signals_soc2pad_i.i2c0.scl_o;
-          mux_to_pads_o.gpio_20.output_en = port_signals_soc2pad_i.i2c0.scl_en_o;
-          mux_to_pads_o.gpio_20.rx_en = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_20.drv = s_reg2hw.gpio_20_cfg.drv.q;
+          mux_to_pads_o.gpio_20.pde = s_reg2hw.gpio_20_cfg.pde.q;
+          mux_to_pads_o.gpio_20.pue = s_reg2hw.gpio_20_cfg.pue.q;
+          mux_to_pads_o.gpio_20.rxe = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_20.slw = s_reg2hw.gpio_20_cfg.slw.q;
+          mux_to_pads_o.gpio_20.smt = s_reg2hw.gpio_20_cfg.smt.q;
+          mux_to_pads_o.gpio_20.trie = ~port_signals_soc2pad_i.i2c0.scl_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_20_SEL_I2C0_SDA: begin
           mux_to_pads_o.gpio_20.chip2pad = port_signals_soc2pad_i.i2c0.sda_o;
-          mux_to_pads_o.gpio_20.output_en = port_signals_soc2pad_i.i2c0.sda_en_o;
-          mux_to_pads_o.gpio_20.rx_en = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_20.drv = s_reg2hw.gpio_20_cfg.drv.q;
+          mux_to_pads_o.gpio_20.pde = s_reg2hw.gpio_20_cfg.pde.q;
+          mux_to_pads_o.gpio_20.pue = s_reg2hw.gpio_20_cfg.pue.q;
+          mux_to_pads_o.gpio_20.rxe = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_20.slw = s_reg2hw.gpio_20_cfg.slw.q;
+          mux_to_pads_o.gpio_20.smt = s_reg2hw.gpio_20_cfg.smt.q;
+          mux_to_pads_o.gpio_20.trie = ~port_signals_soc2pad_i.i2c0.sda_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_20_SEL_UART0_RX: begin
           mux_to_pads_o.gpio_20.chip2pad = s_reg2hw.gpio_20_cfg.chip2pad.q;
-          mux_to_pads_o.gpio_20.output_en = s_reg2hw.gpio_20_cfg.output_en.q;
-          mux_to_pads_o.gpio_20.rx_en = 1'b1;
+          mux_to_pads_o.gpio_20.drv = s_reg2hw.gpio_20_cfg.drv.q;
+          mux_to_pads_o.gpio_20.pde = s_reg2hw.gpio_20_cfg.pde.q;
+          mux_to_pads_o.gpio_20.pue = s_reg2hw.gpio_20_cfg.pue.q;
+          mux_to_pads_o.gpio_20.rxe = 1'b1;
+          mux_to_pads_o.gpio_20.slw = s_reg2hw.gpio_20_cfg.slw.q;
+          mux_to_pads_o.gpio_20.smt = s_reg2hw.gpio_20_cfg.smt.q;
+          mux_to_pads_o.gpio_20.trie = s_reg2hw.gpio_20_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_20_SEL_UART0_TX: begin
           mux_to_pads_o.gpio_20.chip2pad = port_signals_soc2pad_i.uart0.tx_o;
-          mux_to_pads_o.gpio_20.output_en = 1'b0;
-          mux_to_pads_o.gpio_20.rx_en = s_reg2hw.gpio_20_cfg.rx_en.q;
+          mux_to_pads_o.gpio_20.drv = s_reg2hw.gpio_20_cfg.drv.q;
+          mux_to_pads_o.gpio_20.pde = s_reg2hw.gpio_20_cfg.pde.q;
+          mux_to_pads_o.gpio_20.pue = s_reg2hw.gpio_20_cfg.pue.q;
+          mux_to_pads_o.gpio_20.rxe = s_reg2hw.gpio_20_cfg.rxe.q;
+          mux_to_pads_o.gpio_20.slw = s_reg2hw.gpio_20_cfg.slw.q;
+          mux_to_pads_o.gpio_20.smt = s_reg2hw.gpio_20_cfg.smt.q;
+          mux_to_pads_o.gpio_20.trie = 1'b0;
        end
        default: begin
          mux_to_pads_o.gpio_20.chip2pad = s_reg2hw.gpio_20_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_20.output_en = s_reg2hw.gpio_20_cfg.output_en.q;
-         mux_to_pads_o.gpio_20.rx_en = s_reg2hw.gpio_20_cfg.rx_en.q;
+         mux_to_pads_o.gpio_20.drv = s_reg2hw.gpio_20_cfg.drv.q;
+         mux_to_pads_o.gpio_20.pde = s_reg2hw.gpio_20_cfg.pde.q;
+         mux_to_pads_o.gpio_20.pue = s_reg2hw.gpio_20_cfg.pue.q;
+         mux_to_pads_o.gpio_20.rxe = s_reg2hw.gpio_20_cfg.rxe.q;
+         mux_to_pads_o.gpio_20.slw = s_reg2hw.gpio_20_cfg.slw.q;
+         mux_to_pads_o.gpio_20.smt = s_reg2hw.gpio_20_cfg.smt.q;
+         mux_to_pads_o.gpio_20.trie = s_reg2hw.gpio_20_cfg.trie.q;
        end
      endcase
    end // always_comb
@@ -1636,73 +3106,143 @@ module chimera_padframe_aon_gpioa_muxer
      unique case (s_reg2hw.gpio_21_mux_sel.q)
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_21_SEL_DEFAULT: begin
          mux_to_pads_o.gpio_21.chip2pad = s_reg2hw.gpio_21_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_21.output_en = s_reg2hw.gpio_21_cfg.output_en.q;
-         mux_to_pads_o.gpio_21.rx_en = s_reg2hw.gpio_21_cfg.rx_en.q;
+         mux_to_pads_o.gpio_21.drv = s_reg2hw.gpio_21_cfg.drv.q;
+         mux_to_pads_o.gpio_21.pde = s_reg2hw.gpio_21_cfg.pde.q;
+         mux_to_pads_o.gpio_21.pue = s_reg2hw.gpio_21_cfg.pue.q;
+         mux_to_pads_o.gpio_21.rxe = s_reg2hw.gpio_21_cfg.rxe.q;
+         mux_to_pads_o.gpio_21.slw = s_reg2hw.gpio_21_cfg.slw.q;
+         mux_to_pads_o.gpio_21.smt = s_reg2hw.gpio_21_cfg.smt.q;
+         mux_to_pads_o.gpio_21.trie = s_reg2hw.gpio_21_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_21_SEL_QSPI0_CSB0: begin
           mux_to_pads_o.gpio_21.chip2pad = port_signals_soc2pad_i.qspi0.csb0_o;
-          mux_to_pads_o.gpio_21.output_en = port_signals_soc2pad_i.qspi0.csb0_en_o;
-          mux_to_pads_o.gpio_21.rx_en = s_reg2hw.gpio_21_cfg.rx_en.q;
+          mux_to_pads_o.gpio_21.drv = s_reg2hw.gpio_21_cfg.drv.q;
+          mux_to_pads_o.gpio_21.pde = s_reg2hw.gpio_21_cfg.pde.q;
+          mux_to_pads_o.gpio_21.pue = s_reg2hw.gpio_21_cfg.pue.q;
+          mux_to_pads_o.gpio_21.rxe = s_reg2hw.gpio_21_cfg.rxe.q;
+          mux_to_pads_o.gpio_21.slw = s_reg2hw.gpio_21_cfg.slw.q;
+          mux_to_pads_o.gpio_21.smt = s_reg2hw.gpio_21_cfg.smt.q;
+          mux_to_pads_o.gpio_21.trie = ~port_signals_soc2pad_i.qspi0.csb0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_21_SEL_QSPI0_CSB1: begin
           mux_to_pads_o.gpio_21.chip2pad = port_signals_soc2pad_i.qspi0.csb1_o;
-          mux_to_pads_o.gpio_21.output_en = port_signals_soc2pad_i.qspi0.csb1_en_o;
-          mux_to_pads_o.gpio_21.rx_en = s_reg2hw.gpio_21_cfg.rx_en.q;
+          mux_to_pads_o.gpio_21.drv = s_reg2hw.gpio_21_cfg.drv.q;
+          mux_to_pads_o.gpio_21.pde = s_reg2hw.gpio_21_cfg.pde.q;
+          mux_to_pads_o.gpio_21.pue = s_reg2hw.gpio_21_cfg.pue.q;
+          mux_to_pads_o.gpio_21.rxe = s_reg2hw.gpio_21_cfg.rxe.q;
+          mux_to_pads_o.gpio_21.slw = s_reg2hw.gpio_21_cfg.slw.q;
+          mux_to_pads_o.gpio_21.smt = s_reg2hw.gpio_21_cfg.smt.q;
+          mux_to_pads_o.gpio_21.trie = ~port_signals_soc2pad_i.qspi0.csb1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_21_SEL_QSPI0_CSB2: begin
           mux_to_pads_o.gpio_21.chip2pad = port_signals_soc2pad_i.qspi0.csb2_o;
-          mux_to_pads_o.gpio_21.output_en = port_signals_soc2pad_i.qspi0.csb2_en_o;
-          mux_to_pads_o.gpio_21.rx_en = s_reg2hw.gpio_21_cfg.rx_en.q;
+          mux_to_pads_o.gpio_21.drv = s_reg2hw.gpio_21_cfg.drv.q;
+          mux_to_pads_o.gpio_21.pde = s_reg2hw.gpio_21_cfg.pde.q;
+          mux_to_pads_o.gpio_21.pue = s_reg2hw.gpio_21_cfg.pue.q;
+          mux_to_pads_o.gpio_21.rxe = s_reg2hw.gpio_21_cfg.rxe.q;
+          mux_to_pads_o.gpio_21.slw = s_reg2hw.gpio_21_cfg.slw.q;
+          mux_to_pads_o.gpio_21.smt = s_reg2hw.gpio_21_cfg.smt.q;
+          mux_to_pads_o.gpio_21.trie = ~port_signals_soc2pad_i.qspi0.csb2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_21_SEL_QSPI0_SCK: begin
           mux_to_pads_o.gpio_21.chip2pad = port_signals_soc2pad_i.qspi0.sck_o;
-          mux_to_pads_o.gpio_21.output_en = port_signals_soc2pad_i.qspi0.sck_en_o;
-          mux_to_pads_o.gpio_21.rx_en = s_reg2hw.gpio_21_cfg.rx_en.q;
+          mux_to_pads_o.gpio_21.drv = s_reg2hw.gpio_21_cfg.drv.q;
+          mux_to_pads_o.gpio_21.pde = s_reg2hw.gpio_21_cfg.pde.q;
+          mux_to_pads_o.gpio_21.pue = s_reg2hw.gpio_21_cfg.pue.q;
+          mux_to_pads_o.gpio_21.rxe = s_reg2hw.gpio_21_cfg.rxe.q;
+          mux_to_pads_o.gpio_21.slw = s_reg2hw.gpio_21_cfg.slw.q;
+          mux_to_pads_o.gpio_21.smt = s_reg2hw.gpio_21_cfg.smt.q;
+          mux_to_pads_o.gpio_21.trie = port_signals_soc2pad_i.qspi0.sck_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_21_SEL_QSPI0_SD0: begin
           mux_to_pads_o.gpio_21.chip2pad = port_signals_soc2pad_i.qspi0.sd0_o;
-          mux_to_pads_o.gpio_21.output_en = port_signals_soc2pad_i.qspi0.sd0_en_o;
-          mux_to_pads_o.gpio_21.rx_en = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_21.drv = s_reg2hw.gpio_21_cfg.drv.q;
+          mux_to_pads_o.gpio_21.pde = s_reg2hw.gpio_21_cfg.pde.q;
+          mux_to_pads_o.gpio_21.pue = s_reg2hw.gpio_21_cfg.pue.q;
+          mux_to_pads_o.gpio_21.rxe = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_21.slw = s_reg2hw.gpio_21_cfg.slw.q;
+          mux_to_pads_o.gpio_21.smt = s_reg2hw.gpio_21_cfg.smt.q;
+          mux_to_pads_o.gpio_21.trie = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_21_SEL_QSPI0_SD1: begin
           mux_to_pads_o.gpio_21.chip2pad = port_signals_soc2pad_i.qspi0.sd1_o;
-          mux_to_pads_o.gpio_21.output_en = port_signals_soc2pad_i.qspi0.sd1_en_o;
-          mux_to_pads_o.gpio_21.rx_en = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_21.drv = s_reg2hw.gpio_21_cfg.drv.q;
+          mux_to_pads_o.gpio_21.pde = s_reg2hw.gpio_21_cfg.pde.q;
+          mux_to_pads_o.gpio_21.pue = s_reg2hw.gpio_21_cfg.pue.q;
+          mux_to_pads_o.gpio_21.rxe = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_21.slw = s_reg2hw.gpio_21_cfg.slw.q;
+          mux_to_pads_o.gpio_21.smt = s_reg2hw.gpio_21_cfg.smt.q;
+          mux_to_pads_o.gpio_21.trie = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_21_SEL_QSPI0_SD2: begin
           mux_to_pads_o.gpio_21.chip2pad = port_signals_soc2pad_i.qspi0.sd2_o;
-          mux_to_pads_o.gpio_21.output_en = port_signals_soc2pad_i.qspi0.sd2_en_o;
-          mux_to_pads_o.gpio_21.rx_en = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_21.drv = s_reg2hw.gpio_21_cfg.drv.q;
+          mux_to_pads_o.gpio_21.pde = s_reg2hw.gpio_21_cfg.pde.q;
+          mux_to_pads_o.gpio_21.pue = s_reg2hw.gpio_21_cfg.pue.q;
+          mux_to_pads_o.gpio_21.rxe = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_21.slw = s_reg2hw.gpio_21_cfg.slw.q;
+          mux_to_pads_o.gpio_21.smt = s_reg2hw.gpio_21_cfg.smt.q;
+          mux_to_pads_o.gpio_21.trie = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_21_SEL_QSPI0_SD3: begin
           mux_to_pads_o.gpio_21.chip2pad = port_signals_soc2pad_i.qspi0.sd3_o;
-          mux_to_pads_o.gpio_21.output_en = port_signals_soc2pad_i.qspi0.sd3_en_o;
-          mux_to_pads_o.gpio_21.rx_en = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_21.drv = s_reg2hw.gpio_21_cfg.drv.q;
+          mux_to_pads_o.gpio_21.pde = s_reg2hw.gpio_21_cfg.pde.q;
+          mux_to_pads_o.gpio_21.pue = s_reg2hw.gpio_21_cfg.pue.q;
+          mux_to_pads_o.gpio_21.rxe = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_21.slw = s_reg2hw.gpio_21_cfg.slw.q;
+          mux_to_pads_o.gpio_21.smt = s_reg2hw.gpio_21_cfg.smt.q;
+          mux_to_pads_o.gpio_21.trie = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_21_SEL_I2C0_SCL: begin
           mux_to_pads_o.gpio_21.chip2pad = port_signals_soc2pad_i.i2c0.scl_o;
-          mux_to_pads_o.gpio_21.output_en = port_signals_soc2pad_i.i2c0.scl_en_o;
-          mux_to_pads_o.gpio_21.rx_en = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_21.drv = s_reg2hw.gpio_21_cfg.drv.q;
+          mux_to_pads_o.gpio_21.pde = s_reg2hw.gpio_21_cfg.pde.q;
+          mux_to_pads_o.gpio_21.pue = s_reg2hw.gpio_21_cfg.pue.q;
+          mux_to_pads_o.gpio_21.rxe = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_21.slw = s_reg2hw.gpio_21_cfg.slw.q;
+          mux_to_pads_o.gpio_21.smt = s_reg2hw.gpio_21_cfg.smt.q;
+          mux_to_pads_o.gpio_21.trie = ~port_signals_soc2pad_i.i2c0.scl_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_21_SEL_I2C0_SDA: begin
           mux_to_pads_o.gpio_21.chip2pad = port_signals_soc2pad_i.i2c0.sda_o;
-          mux_to_pads_o.gpio_21.output_en = port_signals_soc2pad_i.i2c0.sda_en_o;
-          mux_to_pads_o.gpio_21.rx_en = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_21.drv = s_reg2hw.gpio_21_cfg.drv.q;
+          mux_to_pads_o.gpio_21.pde = s_reg2hw.gpio_21_cfg.pde.q;
+          mux_to_pads_o.gpio_21.pue = s_reg2hw.gpio_21_cfg.pue.q;
+          mux_to_pads_o.gpio_21.rxe = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_21.slw = s_reg2hw.gpio_21_cfg.slw.q;
+          mux_to_pads_o.gpio_21.smt = s_reg2hw.gpio_21_cfg.smt.q;
+          mux_to_pads_o.gpio_21.trie = ~port_signals_soc2pad_i.i2c0.sda_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_21_SEL_UART0_RX: begin
           mux_to_pads_o.gpio_21.chip2pad = s_reg2hw.gpio_21_cfg.chip2pad.q;
-          mux_to_pads_o.gpio_21.output_en = s_reg2hw.gpio_21_cfg.output_en.q;
-          mux_to_pads_o.gpio_21.rx_en = 1'b1;
+          mux_to_pads_o.gpio_21.drv = s_reg2hw.gpio_21_cfg.drv.q;
+          mux_to_pads_o.gpio_21.pde = s_reg2hw.gpio_21_cfg.pde.q;
+          mux_to_pads_o.gpio_21.pue = s_reg2hw.gpio_21_cfg.pue.q;
+          mux_to_pads_o.gpio_21.rxe = 1'b1;
+          mux_to_pads_o.gpio_21.slw = s_reg2hw.gpio_21_cfg.slw.q;
+          mux_to_pads_o.gpio_21.smt = s_reg2hw.gpio_21_cfg.smt.q;
+          mux_to_pads_o.gpio_21.trie = s_reg2hw.gpio_21_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_21_SEL_UART0_TX: begin
           mux_to_pads_o.gpio_21.chip2pad = port_signals_soc2pad_i.uart0.tx_o;
-          mux_to_pads_o.gpio_21.output_en = 1'b0;
-          mux_to_pads_o.gpio_21.rx_en = s_reg2hw.gpio_21_cfg.rx_en.q;
+          mux_to_pads_o.gpio_21.drv = s_reg2hw.gpio_21_cfg.drv.q;
+          mux_to_pads_o.gpio_21.pde = s_reg2hw.gpio_21_cfg.pde.q;
+          mux_to_pads_o.gpio_21.pue = s_reg2hw.gpio_21_cfg.pue.q;
+          mux_to_pads_o.gpio_21.rxe = s_reg2hw.gpio_21_cfg.rxe.q;
+          mux_to_pads_o.gpio_21.slw = s_reg2hw.gpio_21_cfg.slw.q;
+          mux_to_pads_o.gpio_21.smt = s_reg2hw.gpio_21_cfg.smt.q;
+          mux_to_pads_o.gpio_21.trie = 1'b0;
        end
        default: begin
          mux_to_pads_o.gpio_21.chip2pad = s_reg2hw.gpio_21_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_21.output_en = s_reg2hw.gpio_21_cfg.output_en.q;
-         mux_to_pads_o.gpio_21.rx_en = s_reg2hw.gpio_21_cfg.rx_en.q;
+         mux_to_pads_o.gpio_21.drv = s_reg2hw.gpio_21_cfg.drv.q;
+         mux_to_pads_o.gpio_21.pde = s_reg2hw.gpio_21_cfg.pde.q;
+         mux_to_pads_o.gpio_21.pue = s_reg2hw.gpio_21_cfg.pue.q;
+         mux_to_pads_o.gpio_21.rxe = s_reg2hw.gpio_21_cfg.rxe.q;
+         mux_to_pads_o.gpio_21.slw = s_reg2hw.gpio_21_cfg.slw.q;
+         mux_to_pads_o.gpio_21.smt = s_reg2hw.gpio_21_cfg.smt.q;
+         mux_to_pads_o.gpio_21.trie = s_reg2hw.gpio_21_cfg.trie.q;
        end
      endcase
    end // always_comb
@@ -1712,73 +3252,143 @@ module chimera_padframe_aon_gpioa_muxer
      unique case (s_reg2hw.gpio_22_mux_sel.q)
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_22_SEL_DEFAULT: begin
          mux_to_pads_o.gpio_22.chip2pad = s_reg2hw.gpio_22_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_22.output_en = s_reg2hw.gpio_22_cfg.output_en.q;
-         mux_to_pads_o.gpio_22.rx_en = s_reg2hw.gpio_22_cfg.rx_en.q;
+         mux_to_pads_o.gpio_22.drv = s_reg2hw.gpio_22_cfg.drv.q;
+         mux_to_pads_o.gpio_22.pde = s_reg2hw.gpio_22_cfg.pde.q;
+         mux_to_pads_o.gpio_22.pue = s_reg2hw.gpio_22_cfg.pue.q;
+         mux_to_pads_o.gpio_22.rxe = s_reg2hw.gpio_22_cfg.rxe.q;
+         mux_to_pads_o.gpio_22.slw = s_reg2hw.gpio_22_cfg.slw.q;
+         mux_to_pads_o.gpio_22.smt = s_reg2hw.gpio_22_cfg.smt.q;
+         mux_to_pads_o.gpio_22.trie = s_reg2hw.gpio_22_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_22_SEL_QSPI0_CSB0: begin
           mux_to_pads_o.gpio_22.chip2pad = port_signals_soc2pad_i.qspi0.csb0_o;
-          mux_to_pads_o.gpio_22.output_en = port_signals_soc2pad_i.qspi0.csb0_en_o;
-          mux_to_pads_o.gpio_22.rx_en = s_reg2hw.gpio_22_cfg.rx_en.q;
+          mux_to_pads_o.gpio_22.drv = s_reg2hw.gpio_22_cfg.drv.q;
+          mux_to_pads_o.gpio_22.pde = s_reg2hw.gpio_22_cfg.pde.q;
+          mux_to_pads_o.gpio_22.pue = s_reg2hw.gpio_22_cfg.pue.q;
+          mux_to_pads_o.gpio_22.rxe = s_reg2hw.gpio_22_cfg.rxe.q;
+          mux_to_pads_o.gpio_22.slw = s_reg2hw.gpio_22_cfg.slw.q;
+          mux_to_pads_o.gpio_22.smt = s_reg2hw.gpio_22_cfg.smt.q;
+          mux_to_pads_o.gpio_22.trie = ~port_signals_soc2pad_i.qspi0.csb0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_22_SEL_QSPI0_CSB1: begin
           mux_to_pads_o.gpio_22.chip2pad = port_signals_soc2pad_i.qspi0.csb1_o;
-          mux_to_pads_o.gpio_22.output_en = port_signals_soc2pad_i.qspi0.csb1_en_o;
-          mux_to_pads_o.gpio_22.rx_en = s_reg2hw.gpio_22_cfg.rx_en.q;
+          mux_to_pads_o.gpio_22.drv = s_reg2hw.gpio_22_cfg.drv.q;
+          mux_to_pads_o.gpio_22.pde = s_reg2hw.gpio_22_cfg.pde.q;
+          mux_to_pads_o.gpio_22.pue = s_reg2hw.gpio_22_cfg.pue.q;
+          mux_to_pads_o.gpio_22.rxe = s_reg2hw.gpio_22_cfg.rxe.q;
+          mux_to_pads_o.gpio_22.slw = s_reg2hw.gpio_22_cfg.slw.q;
+          mux_to_pads_o.gpio_22.smt = s_reg2hw.gpio_22_cfg.smt.q;
+          mux_to_pads_o.gpio_22.trie = ~port_signals_soc2pad_i.qspi0.csb1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_22_SEL_QSPI0_CSB2: begin
           mux_to_pads_o.gpio_22.chip2pad = port_signals_soc2pad_i.qspi0.csb2_o;
-          mux_to_pads_o.gpio_22.output_en = port_signals_soc2pad_i.qspi0.csb2_en_o;
-          mux_to_pads_o.gpio_22.rx_en = s_reg2hw.gpio_22_cfg.rx_en.q;
+          mux_to_pads_o.gpio_22.drv = s_reg2hw.gpio_22_cfg.drv.q;
+          mux_to_pads_o.gpio_22.pde = s_reg2hw.gpio_22_cfg.pde.q;
+          mux_to_pads_o.gpio_22.pue = s_reg2hw.gpio_22_cfg.pue.q;
+          mux_to_pads_o.gpio_22.rxe = s_reg2hw.gpio_22_cfg.rxe.q;
+          mux_to_pads_o.gpio_22.slw = s_reg2hw.gpio_22_cfg.slw.q;
+          mux_to_pads_o.gpio_22.smt = s_reg2hw.gpio_22_cfg.smt.q;
+          mux_to_pads_o.gpio_22.trie = ~port_signals_soc2pad_i.qspi0.csb2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_22_SEL_QSPI0_SCK: begin
           mux_to_pads_o.gpio_22.chip2pad = port_signals_soc2pad_i.qspi0.sck_o;
-          mux_to_pads_o.gpio_22.output_en = port_signals_soc2pad_i.qspi0.sck_en_o;
-          mux_to_pads_o.gpio_22.rx_en = s_reg2hw.gpio_22_cfg.rx_en.q;
+          mux_to_pads_o.gpio_22.drv = s_reg2hw.gpio_22_cfg.drv.q;
+          mux_to_pads_o.gpio_22.pde = s_reg2hw.gpio_22_cfg.pde.q;
+          mux_to_pads_o.gpio_22.pue = s_reg2hw.gpio_22_cfg.pue.q;
+          mux_to_pads_o.gpio_22.rxe = s_reg2hw.gpio_22_cfg.rxe.q;
+          mux_to_pads_o.gpio_22.slw = s_reg2hw.gpio_22_cfg.slw.q;
+          mux_to_pads_o.gpio_22.smt = s_reg2hw.gpio_22_cfg.smt.q;
+          mux_to_pads_o.gpio_22.trie = port_signals_soc2pad_i.qspi0.sck_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_22_SEL_QSPI0_SD0: begin
           mux_to_pads_o.gpio_22.chip2pad = port_signals_soc2pad_i.qspi0.sd0_o;
-          mux_to_pads_o.gpio_22.output_en = port_signals_soc2pad_i.qspi0.sd0_en_o;
-          mux_to_pads_o.gpio_22.rx_en = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_22.drv = s_reg2hw.gpio_22_cfg.drv.q;
+          mux_to_pads_o.gpio_22.pde = s_reg2hw.gpio_22_cfg.pde.q;
+          mux_to_pads_o.gpio_22.pue = s_reg2hw.gpio_22_cfg.pue.q;
+          mux_to_pads_o.gpio_22.rxe = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_22.slw = s_reg2hw.gpio_22_cfg.slw.q;
+          mux_to_pads_o.gpio_22.smt = s_reg2hw.gpio_22_cfg.smt.q;
+          mux_to_pads_o.gpio_22.trie = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_22_SEL_QSPI0_SD1: begin
           mux_to_pads_o.gpio_22.chip2pad = port_signals_soc2pad_i.qspi0.sd1_o;
-          mux_to_pads_o.gpio_22.output_en = port_signals_soc2pad_i.qspi0.sd1_en_o;
-          mux_to_pads_o.gpio_22.rx_en = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_22.drv = s_reg2hw.gpio_22_cfg.drv.q;
+          mux_to_pads_o.gpio_22.pde = s_reg2hw.gpio_22_cfg.pde.q;
+          mux_to_pads_o.gpio_22.pue = s_reg2hw.gpio_22_cfg.pue.q;
+          mux_to_pads_o.gpio_22.rxe = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_22.slw = s_reg2hw.gpio_22_cfg.slw.q;
+          mux_to_pads_o.gpio_22.smt = s_reg2hw.gpio_22_cfg.smt.q;
+          mux_to_pads_o.gpio_22.trie = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_22_SEL_QSPI0_SD2: begin
           mux_to_pads_o.gpio_22.chip2pad = port_signals_soc2pad_i.qspi0.sd2_o;
-          mux_to_pads_o.gpio_22.output_en = port_signals_soc2pad_i.qspi0.sd2_en_o;
-          mux_to_pads_o.gpio_22.rx_en = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_22.drv = s_reg2hw.gpio_22_cfg.drv.q;
+          mux_to_pads_o.gpio_22.pde = s_reg2hw.gpio_22_cfg.pde.q;
+          mux_to_pads_o.gpio_22.pue = s_reg2hw.gpio_22_cfg.pue.q;
+          mux_to_pads_o.gpio_22.rxe = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_22.slw = s_reg2hw.gpio_22_cfg.slw.q;
+          mux_to_pads_o.gpio_22.smt = s_reg2hw.gpio_22_cfg.smt.q;
+          mux_to_pads_o.gpio_22.trie = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_22_SEL_QSPI0_SD3: begin
           mux_to_pads_o.gpio_22.chip2pad = port_signals_soc2pad_i.qspi0.sd3_o;
-          mux_to_pads_o.gpio_22.output_en = port_signals_soc2pad_i.qspi0.sd3_en_o;
-          mux_to_pads_o.gpio_22.rx_en = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_22.drv = s_reg2hw.gpio_22_cfg.drv.q;
+          mux_to_pads_o.gpio_22.pde = s_reg2hw.gpio_22_cfg.pde.q;
+          mux_to_pads_o.gpio_22.pue = s_reg2hw.gpio_22_cfg.pue.q;
+          mux_to_pads_o.gpio_22.rxe = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_22.slw = s_reg2hw.gpio_22_cfg.slw.q;
+          mux_to_pads_o.gpio_22.smt = s_reg2hw.gpio_22_cfg.smt.q;
+          mux_to_pads_o.gpio_22.trie = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_22_SEL_I2C0_SCL: begin
           mux_to_pads_o.gpio_22.chip2pad = port_signals_soc2pad_i.i2c0.scl_o;
-          mux_to_pads_o.gpio_22.output_en = port_signals_soc2pad_i.i2c0.scl_en_o;
-          mux_to_pads_o.gpio_22.rx_en = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_22.drv = s_reg2hw.gpio_22_cfg.drv.q;
+          mux_to_pads_o.gpio_22.pde = s_reg2hw.gpio_22_cfg.pde.q;
+          mux_to_pads_o.gpio_22.pue = s_reg2hw.gpio_22_cfg.pue.q;
+          mux_to_pads_o.gpio_22.rxe = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_22.slw = s_reg2hw.gpio_22_cfg.slw.q;
+          mux_to_pads_o.gpio_22.smt = s_reg2hw.gpio_22_cfg.smt.q;
+          mux_to_pads_o.gpio_22.trie = ~port_signals_soc2pad_i.i2c0.scl_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_22_SEL_I2C0_SDA: begin
           mux_to_pads_o.gpio_22.chip2pad = port_signals_soc2pad_i.i2c0.sda_o;
-          mux_to_pads_o.gpio_22.output_en = port_signals_soc2pad_i.i2c0.sda_en_o;
-          mux_to_pads_o.gpio_22.rx_en = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_22.drv = s_reg2hw.gpio_22_cfg.drv.q;
+          mux_to_pads_o.gpio_22.pde = s_reg2hw.gpio_22_cfg.pde.q;
+          mux_to_pads_o.gpio_22.pue = s_reg2hw.gpio_22_cfg.pue.q;
+          mux_to_pads_o.gpio_22.rxe = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_22.slw = s_reg2hw.gpio_22_cfg.slw.q;
+          mux_to_pads_o.gpio_22.smt = s_reg2hw.gpio_22_cfg.smt.q;
+          mux_to_pads_o.gpio_22.trie = ~port_signals_soc2pad_i.i2c0.sda_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_22_SEL_UART0_RX: begin
           mux_to_pads_o.gpio_22.chip2pad = s_reg2hw.gpio_22_cfg.chip2pad.q;
-          mux_to_pads_o.gpio_22.output_en = s_reg2hw.gpio_22_cfg.output_en.q;
-          mux_to_pads_o.gpio_22.rx_en = 1'b1;
+          mux_to_pads_o.gpio_22.drv = s_reg2hw.gpio_22_cfg.drv.q;
+          mux_to_pads_o.gpio_22.pde = s_reg2hw.gpio_22_cfg.pde.q;
+          mux_to_pads_o.gpio_22.pue = s_reg2hw.gpio_22_cfg.pue.q;
+          mux_to_pads_o.gpio_22.rxe = 1'b1;
+          mux_to_pads_o.gpio_22.slw = s_reg2hw.gpio_22_cfg.slw.q;
+          mux_to_pads_o.gpio_22.smt = s_reg2hw.gpio_22_cfg.smt.q;
+          mux_to_pads_o.gpio_22.trie = s_reg2hw.gpio_22_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_22_SEL_UART0_TX: begin
           mux_to_pads_o.gpio_22.chip2pad = port_signals_soc2pad_i.uart0.tx_o;
-          mux_to_pads_o.gpio_22.output_en = 1'b0;
-          mux_to_pads_o.gpio_22.rx_en = s_reg2hw.gpio_22_cfg.rx_en.q;
+          mux_to_pads_o.gpio_22.drv = s_reg2hw.gpio_22_cfg.drv.q;
+          mux_to_pads_o.gpio_22.pde = s_reg2hw.gpio_22_cfg.pde.q;
+          mux_to_pads_o.gpio_22.pue = s_reg2hw.gpio_22_cfg.pue.q;
+          mux_to_pads_o.gpio_22.rxe = s_reg2hw.gpio_22_cfg.rxe.q;
+          mux_to_pads_o.gpio_22.slw = s_reg2hw.gpio_22_cfg.slw.q;
+          mux_to_pads_o.gpio_22.smt = s_reg2hw.gpio_22_cfg.smt.q;
+          mux_to_pads_o.gpio_22.trie = 1'b0;
        end
        default: begin
          mux_to_pads_o.gpio_22.chip2pad = s_reg2hw.gpio_22_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_22.output_en = s_reg2hw.gpio_22_cfg.output_en.q;
-         mux_to_pads_o.gpio_22.rx_en = s_reg2hw.gpio_22_cfg.rx_en.q;
+         mux_to_pads_o.gpio_22.drv = s_reg2hw.gpio_22_cfg.drv.q;
+         mux_to_pads_o.gpio_22.pde = s_reg2hw.gpio_22_cfg.pde.q;
+         mux_to_pads_o.gpio_22.pue = s_reg2hw.gpio_22_cfg.pue.q;
+         mux_to_pads_o.gpio_22.rxe = s_reg2hw.gpio_22_cfg.rxe.q;
+         mux_to_pads_o.gpio_22.slw = s_reg2hw.gpio_22_cfg.slw.q;
+         mux_to_pads_o.gpio_22.smt = s_reg2hw.gpio_22_cfg.smt.q;
+         mux_to_pads_o.gpio_22.trie = s_reg2hw.gpio_22_cfg.trie.q;
        end
      endcase
    end // always_comb
@@ -1788,73 +3398,143 @@ module chimera_padframe_aon_gpioa_muxer
      unique case (s_reg2hw.gpio_23_mux_sel.q)
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_23_SEL_DEFAULT: begin
          mux_to_pads_o.gpio_23.chip2pad = s_reg2hw.gpio_23_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_23.output_en = s_reg2hw.gpio_23_cfg.output_en.q;
-         mux_to_pads_o.gpio_23.rx_en = s_reg2hw.gpio_23_cfg.rx_en.q;
+         mux_to_pads_o.gpio_23.drv = s_reg2hw.gpio_23_cfg.drv.q;
+         mux_to_pads_o.gpio_23.pde = s_reg2hw.gpio_23_cfg.pde.q;
+         mux_to_pads_o.gpio_23.pue = s_reg2hw.gpio_23_cfg.pue.q;
+         mux_to_pads_o.gpio_23.rxe = s_reg2hw.gpio_23_cfg.rxe.q;
+         mux_to_pads_o.gpio_23.slw = s_reg2hw.gpio_23_cfg.slw.q;
+         mux_to_pads_o.gpio_23.smt = s_reg2hw.gpio_23_cfg.smt.q;
+         mux_to_pads_o.gpio_23.trie = s_reg2hw.gpio_23_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_23_SEL_QSPI0_CSB0: begin
           mux_to_pads_o.gpio_23.chip2pad = port_signals_soc2pad_i.qspi0.csb0_o;
-          mux_to_pads_o.gpio_23.output_en = port_signals_soc2pad_i.qspi0.csb0_en_o;
-          mux_to_pads_o.gpio_23.rx_en = s_reg2hw.gpio_23_cfg.rx_en.q;
+          mux_to_pads_o.gpio_23.drv = s_reg2hw.gpio_23_cfg.drv.q;
+          mux_to_pads_o.gpio_23.pde = s_reg2hw.gpio_23_cfg.pde.q;
+          mux_to_pads_o.gpio_23.pue = s_reg2hw.gpio_23_cfg.pue.q;
+          mux_to_pads_o.gpio_23.rxe = s_reg2hw.gpio_23_cfg.rxe.q;
+          mux_to_pads_o.gpio_23.slw = s_reg2hw.gpio_23_cfg.slw.q;
+          mux_to_pads_o.gpio_23.smt = s_reg2hw.gpio_23_cfg.smt.q;
+          mux_to_pads_o.gpio_23.trie = ~port_signals_soc2pad_i.qspi0.csb0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_23_SEL_QSPI0_CSB1: begin
           mux_to_pads_o.gpio_23.chip2pad = port_signals_soc2pad_i.qspi0.csb1_o;
-          mux_to_pads_o.gpio_23.output_en = port_signals_soc2pad_i.qspi0.csb1_en_o;
-          mux_to_pads_o.gpio_23.rx_en = s_reg2hw.gpio_23_cfg.rx_en.q;
+          mux_to_pads_o.gpio_23.drv = s_reg2hw.gpio_23_cfg.drv.q;
+          mux_to_pads_o.gpio_23.pde = s_reg2hw.gpio_23_cfg.pde.q;
+          mux_to_pads_o.gpio_23.pue = s_reg2hw.gpio_23_cfg.pue.q;
+          mux_to_pads_o.gpio_23.rxe = s_reg2hw.gpio_23_cfg.rxe.q;
+          mux_to_pads_o.gpio_23.slw = s_reg2hw.gpio_23_cfg.slw.q;
+          mux_to_pads_o.gpio_23.smt = s_reg2hw.gpio_23_cfg.smt.q;
+          mux_to_pads_o.gpio_23.trie = ~port_signals_soc2pad_i.qspi0.csb1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_23_SEL_QSPI0_CSB2: begin
           mux_to_pads_o.gpio_23.chip2pad = port_signals_soc2pad_i.qspi0.csb2_o;
-          mux_to_pads_o.gpio_23.output_en = port_signals_soc2pad_i.qspi0.csb2_en_o;
-          mux_to_pads_o.gpio_23.rx_en = s_reg2hw.gpio_23_cfg.rx_en.q;
+          mux_to_pads_o.gpio_23.drv = s_reg2hw.gpio_23_cfg.drv.q;
+          mux_to_pads_o.gpio_23.pde = s_reg2hw.gpio_23_cfg.pde.q;
+          mux_to_pads_o.gpio_23.pue = s_reg2hw.gpio_23_cfg.pue.q;
+          mux_to_pads_o.gpio_23.rxe = s_reg2hw.gpio_23_cfg.rxe.q;
+          mux_to_pads_o.gpio_23.slw = s_reg2hw.gpio_23_cfg.slw.q;
+          mux_to_pads_o.gpio_23.smt = s_reg2hw.gpio_23_cfg.smt.q;
+          mux_to_pads_o.gpio_23.trie = ~port_signals_soc2pad_i.qspi0.csb2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_23_SEL_QSPI0_SCK: begin
           mux_to_pads_o.gpio_23.chip2pad = port_signals_soc2pad_i.qspi0.sck_o;
-          mux_to_pads_o.gpio_23.output_en = port_signals_soc2pad_i.qspi0.sck_en_o;
-          mux_to_pads_o.gpio_23.rx_en = s_reg2hw.gpio_23_cfg.rx_en.q;
+          mux_to_pads_o.gpio_23.drv = s_reg2hw.gpio_23_cfg.drv.q;
+          mux_to_pads_o.gpio_23.pde = s_reg2hw.gpio_23_cfg.pde.q;
+          mux_to_pads_o.gpio_23.pue = s_reg2hw.gpio_23_cfg.pue.q;
+          mux_to_pads_o.gpio_23.rxe = s_reg2hw.gpio_23_cfg.rxe.q;
+          mux_to_pads_o.gpio_23.slw = s_reg2hw.gpio_23_cfg.slw.q;
+          mux_to_pads_o.gpio_23.smt = s_reg2hw.gpio_23_cfg.smt.q;
+          mux_to_pads_o.gpio_23.trie = port_signals_soc2pad_i.qspi0.sck_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_23_SEL_QSPI0_SD0: begin
           mux_to_pads_o.gpio_23.chip2pad = port_signals_soc2pad_i.qspi0.sd0_o;
-          mux_to_pads_o.gpio_23.output_en = port_signals_soc2pad_i.qspi0.sd0_en_o;
-          mux_to_pads_o.gpio_23.rx_en = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_23.drv = s_reg2hw.gpio_23_cfg.drv.q;
+          mux_to_pads_o.gpio_23.pde = s_reg2hw.gpio_23_cfg.pde.q;
+          mux_to_pads_o.gpio_23.pue = s_reg2hw.gpio_23_cfg.pue.q;
+          mux_to_pads_o.gpio_23.rxe = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_23.slw = s_reg2hw.gpio_23_cfg.slw.q;
+          mux_to_pads_o.gpio_23.smt = s_reg2hw.gpio_23_cfg.smt.q;
+          mux_to_pads_o.gpio_23.trie = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_23_SEL_QSPI0_SD1: begin
           mux_to_pads_o.gpio_23.chip2pad = port_signals_soc2pad_i.qspi0.sd1_o;
-          mux_to_pads_o.gpio_23.output_en = port_signals_soc2pad_i.qspi0.sd1_en_o;
-          mux_to_pads_o.gpio_23.rx_en = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_23.drv = s_reg2hw.gpio_23_cfg.drv.q;
+          mux_to_pads_o.gpio_23.pde = s_reg2hw.gpio_23_cfg.pde.q;
+          mux_to_pads_o.gpio_23.pue = s_reg2hw.gpio_23_cfg.pue.q;
+          mux_to_pads_o.gpio_23.rxe = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_23.slw = s_reg2hw.gpio_23_cfg.slw.q;
+          mux_to_pads_o.gpio_23.smt = s_reg2hw.gpio_23_cfg.smt.q;
+          mux_to_pads_o.gpio_23.trie = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_23_SEL_QSPI0_SD2: begin
           mux_to_pads_o.gpio_23.chip2pad = port_signals_soc2pad_i.qspi0.sd2_o;
-          mux_to_pads_o.gpio_23.output_en = port_signals_soc2pad_i.qspi0.sd2_en_o;
-          mux_to_pads_o.gpio_23.rx_en = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_23.drv = s_reg2hw.gpio_23_cfg.drv.q;
+          mux_to_pads_o.gpio_23.pde = s_reg2hw.gpio_23_cfg.pde.q;
+          mux_to_pads_o.gpio_23.pue = s_reg2hw.gpio_23_cfg.pue.q;
+          mux_to_pads_o.gpio_23.rxe = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_23.slw = s_reg2hw.gpio_23_cfg.slw.q;
+          mux_to_pads_o.gpio_23.smt = s_reg2hw.gpio_23_cfg.smt.q;
+          mux_to_pads_o.gpio_23.trie = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_23_SEL_QSPI0_SD3: begin
           mux_to_pads_o.gpio_23.chip2pad = port_signals_soc2pad_i.qspi0.sd3_o;
-          mux_to_pads_o.gpio_23.output_en = port_signals_soc2pad_i.qspi0.sd3_en_o;
-          mux_to_pads_o.gpio_23.rx_en = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_23.drv = s_reg2hw.gpio_23_cfg.drv.q;
+          mux_to_pads_o.gpio_23.pde = s_reg2hw.gpio_23_cfg.pde.q;
+          mux_to_pads_o.gpio_23.pue = s_reg2hw.gpio_23_cfg.pue.q;
+          mux_to_pads_o.gpio_23.rxe = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_23.slw = s_reg2hw.gpio_23_cfg.slw.q;
+          mux_to_pads_o.gpio_23.smt = s_reg2hw.gpio_23_cfg.smt.q;
+          mux_to_pads_o.gpio_23.trie = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_23_SEL_I2C0_SCL: begin
           mux_to_pads_o.gpio_23.chip2pad = port_signals_soc2pad_i.i2c0.scl_o;
-          mux_to_pads_o.gpio_23.output_en = port_signals_soc2pad_i.i2c0.scl_en_o;
-          mux_to_pads_o.gpio_23.rx_en = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_23.drv = s_reg2hw.gpio_23_cfg.drv.q;
+          mux_to_pads_o.gpio_23.pde = s_reg2hw.gpio_23_cfg.pde.q;
+          mux_to_pads_o.gpio_23.pue = s_reg2hw.gpio_23_cfg.pue.q;
+          mux_to_pads_o.gpio_23.rxe = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_23.slw = s_reg2hw.gpio_23_cfg.slw.q;
+          mux_to_pads_o.gpio_23.smt = s_reg2hw.gpio_23_cfg.smt.q;
+          mux_to_pads_o.gpio_23.trie = ~port_signals_soc2pad_i.i2c0.scl_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_23_SEL_I2C0_SDA: begin
           mux_to_pads_o.gpio_23.chip2pad = port_signals_soc2pad_i.i2c0.sda_o;
-          mux_to_pads_o.gpio_23.output_en = port_signals_soc2pad_i.i2c0.sda_en_o;
-          mux_to_pads_o.gpio_23.rx_en = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_23.drv = s_reg2hw.gpio_23_cfg.drv.q;
+          mux_to_pads_o.gpio_23.pde = s_reg2hw.gpio_23_cfg.pde.q;
+          mux_to_pads_o.gpio_23.pue = s_reg2hw.gpio_23_cfg.pue.q;
+          mux_to_pads_o.gpio_23.rxe = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_23.slw = s_reg2hw.gpio_23_cfg.slw.q;
+          mux_to_pads_o.gpio_23.smt = s_reg2hw.gpio_23_cfg.smt.q;
+          mux_to_pads_o.gpio_23.trie = ~port_signals_soc2pad_i.i2c0.sda_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_23_SEL_UART0_RX: begin
           mux_to_pads_o.gpio_23.chip2pad = s_reg2hw.gpio_23_cfg.chip2pad.q;
-          mux_to_pads_o.gpio_23.output_en = s_reg2hw.gpio_23_cfg.output_en.q;
-          mux_to_pads_o.gpio_23.rx_en = 1'b1;
+          mux_to_pads_o.gpio_23.drv = s_reg2hw.gpio_23_cfg.drv.q;
+          mux_to_pads_o.gpio_23.pde = s_reg2hw.gpio_23_cfg.pde.q;
+          mux_to_pads_o.gpio_23.pue = s_reg2hw.gpio_23_cfg.pue.q;
+          mux_to_pads_o.gpio_23.rxe = 1'b1;
+          mux_to_pads_o.gpio_23.slw = s_reg2hw.gpio_23_cfg.slw.q;
+          mux_to_pads_o.gpio_23.smt = s_reg2hw.gpio_23_cfg.smt.q;
+          mux_to_pads_o.gpio_23.trie = s_reg2hw.gpio_23_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_23_SEL_UART0_TX: begin
           mux_to_pads_o.gpio_23.chip2pad = port_signals_soc2pad_i.uart0.tx_o;
-          mux_to_pads_o.gpio_23.output_en = 1'b0;
-          mux_to_pads_o.gpio_23.rx_en = s_reg2hw.gpio_23_cfg.rx_en.q;
+          mux_to_pads_o.gpio_23.drv = s_reg2hw.gpio_23_cfg.drv.q;
+          mux_to_pads_o.gpio_23.pde = s_reg2hw.gpio_23_cfg.pde.q;
+          mux_to_pads_o.gpio_23.pue = s_reg2hw.gpio_23_cfg.pue.q;
+          mux_to_pads_o.gpio_23.rxe = s_reg2hw.gpio_23_cfg.rxe.q;
+          mux_to_pads_o.gpio_23.slw = s_reg2hw.gpio_23_cfg.slw.q;
+          mux_to_pads_o.gpio_23.smt = s_reg2hw.gpio_23_cfg.smt.q;
+          mux_to_pads_o.gpio_23.trie = 1'b0;
        end
        default: begin
          mux_to_pads_o.gpio_23.chip2pad = s_reg2hw.gpio_23_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_23.output_en = s_reg2hw.gpio_23_cfg.output_en.q;
-         mux_to_pads_o.gpio_23.rx_en = s_reg2hw.gpio_23_cfg.rx_en.q;
+         mux_to_pads_o.gpio_23.drv = s_reg2hw.gpio_23_cfg.drv.q;
+         mux_to_pads_o.gpio_23.pde = s_reg2hw.gpio_23_cfg.pde.q;
+         mux_to_pads_o.gpio_23.pue = s_reg2hw.gpio_23_cfg.pue.q;
+         mux_to_pads_o.gpio_23.rxe = s_reg2hw.gpio_23_cfg.rxe.q;
+         mux_to_pads_o.gpio_23.slw = s_reg2hw.gpio_23_cfg.slw.q;
+         mux_to_pads_o.gpio_23.smt = s_reg2hw.gpio_23_cfg.smt.q;
+         mux_to_pads_o.gpio_23.trie = s_reg2hw.gpio_23_cfg.trie.q;
        end
      endcase
    end // always_comb
@@ -1864,73 +3544,143 @@ module chimera_padframe_aon_gpioa_muxer
      unique case (s_reg2hw.gpio_24_mux_sel.q)
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_24_SEL_DEFAULT: begin
          mux_to_pads_o.gpio_24.chip2pad = s_reg2hw.gpio_24_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_24.output_en = s_reg2hw.gpio_24_cfg.output_en.q;
-         mux_to_pads_o.gpio_24.rx_en = s_reg2hw.gpio_24_cfg.rx_en.q;
+         mux_to_pads_o.gpio_24.drv = s_reg2hw.gpio_24_cfg.drv.q;
+         mux_to_pads_o.gpio_24.pde = s_reg2hw.gpio_24_cfg.pde.q;
+         mux_to_pads_o.gpio_24.pue = s_reg2hw.gpio_24_cfg.pue.q;
+         mux_to_pads_o.gpio_24.rxe = s_reg2hw.gpio_24_cfg.rxe.q;
+         mux_to_pads_o.gpio_24.slw = s_reg2hw.gpio_24_cfg.slw.q;
+         mux_to_pads_o.gpio_24.smt = s_reg2hw.gpio_24_cfg.smt.q;
+         mux_to_pads_o.gpio_24.trie = s_reg2hw.gpio_24_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_24_SEL_QSPI0_CSB0: begin
           mux_to_pads_o.gpio_24.chip2pad = port_signals_soc2pad_i.qspi0.csb0_o;
-          mux_to_pads_o.gpio_24.output_en = port_signals_soc2pad_i.qspi0.csb0_en_o;
-          mux_to_pads_o.gpio_24.rx_en = s_reg2hw.gpio_24_cfg.rx_en.q;
+          mux_to_pads_o.gpio_24.drv = s_reg2hw.gpio_24_cfg.drv.q;
+          mux_to_pads_o.gpio_24.pde = s_reg2hw.gpio_24_cfg.pde.q;
+          mux_to_pads_o.gpio_24.pue = s_reg2hw.gpio_24_cfg.pue.q;
+          mux_to_pads_o.gpio_24.rxe = s_reg2hw.gpio_24_cfg.rxe.q;
+          mux_to_pads_o.gpio_24.slw = s_reg2hw.gpio_24_cfg.slw.q;
+          mux_to_pads_o.gpio_24.smt = s_reg2hw.gpio_24_cfg.smt.q;
+          mux_to_pads_o.gpio_24.trie = ~port_signals_soc2pad_i.qspi0.csb0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_24_SEL_QSPI0_CSB1: begin
           mux_to_pads_o.gpio_24.chip2pad = port_signals_soc2pad_i.qspi0.csb1_o;
-          mux_to_pads_o.gpio_24.output_en = port_signals_soc2pad_i.qspi0.csb1_en_o;
-          mux_to_pads_o.gpio_24.rx_en = s_reg2hw.gpio_24_cfg.rx_en.q;
+          mux_to_pads_o.gpio_24.drv = s_reg2hw.gpio_24_cfg.drv.q;
+          mux_to_pads_o.gpio_24.pde = s_reg2hw.gpio_24_cfg.pde.q;
+          mux_to_pads_o.gpio_24.pue = s_reg2hw.gpio_24_cfg.pue.q;
+          mux_to_pads_o.gpio_24.rxe = s_reg2hw.gpio_24_cfg.rxe.q;
+          mux_to_pads_o.gpio_24.slw = s_reg2hw.gpio_24_cfg.slw.q;
+          mux_to_pads_o.gpio_24.smt = s_reg2hw.gpio_24_cfg.smt.q;
+          mux_to_pads_o.gpio_24.trie = ~port_signals_soc2pad_i.qspi0.csb1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_24_SEL_QSPI0_CSB2: begin
           mux_to_pads_o.gpio_24.chip2pad = port_signals_soc2pad_i.qspi0.csb2_o;
-          mux_to_pads_o.gpio_24.output_en = port_signals_soc2pad_i.qspi0.csb2_en_o;
-          mux_to_pads_o.gpio_24.rx_en = s_reg2hw.gpio_24_cfg.rx_en.q;
+          mux_to_pads_o.gpio_24.drv = s_reg2hw.gpio_24_cfg.drv.q;
+          mux_to_pads_o.gpio_24.pde = s_reg2hw.gpio_24_cfg.pde.q;
+          mux_to_pads_o.gpio_24.pue = s_reg2hw.gpio_24_cfg.pue.q;
+          mux_to_pads_o.gpio_24.rxe = s_reg2hw.gpio_24_cfg.rxe.q;
+          mux_to_pads_o.gpio_24.slw = s_reg2hw.gpio_24_cfg.slw.q;
+          mux_to_pads_o.gpio_24.smt = s_reg2hw.gpio_24_cfg.smt.q;
+          mux_to_pads_o.gpio_24.trie = ~port_signals_soc2pad_i.qspi0.csb2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_24_SEL_QSPI0_SCK: begin
           mux_to_pads_o.gpio_24.chip2pad = port_signals_soc2pad_i.qspi0.sck_o;
-          mux_to_pads_o.gpio_24.output_en = port_signals_soc2pad_i.qspi0.sck_en_o;
-          mux_to_pads_o.gpio_24.rx_en = s_reg2hw.gpio_24_cfg.rx_en.q;
+          mux_to_pads_o.gpio_24.drv = s_reg2hw.gpio_24_cfg.drv.q;
+          mux_to_pads_o.gpio_24.pde = s_reg2hw.gpio_24_cfg.pde.q;
+          mux_to_pads_o.gpio_24.pue = s_reg2hw.gpio_24_cfg.pue.q;
+          mux_to_pads_o.gpio_24.rxe = s_reg2hw.gpio_24_cfg.rxe.q;
+          mux_to_pads_o.gpio_24.slw = s_reg2hw.gpio_24_cfg.slw.q;
+          mux_to_pads_o.gpio_24.smt = s_reg2hw.gpio_24_cfg.smt.q;
+          mux_to_pads_o.gpio_24.trie = port_signals_soc2pad_i.qspi0.sck_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_24_SEL_QSPI0_SD0: begin
           mux_to_pads_o.gpio_24.chip2pad = port_signals_soc2pad_i.qspi0.sd0_o;
-          mux_to_pads_o.gpio_24.output_en = port_signals_soc2pad_i.qspi0.sd0_en_o;
-          mux_to_pads_o.gpio_24.rx_en = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_24.drv = s_reg2hw.gpio_24_cfg.drv.q;
+          mux_to_pads_o.gpio_24.pde = s_reg2hw.gpio_24_cfg.pde.q;
+          mux_to_pads_o.gpio_24.pue = s_reg2hw.gpio_24_cfg.pue.q;
+          mux_to_pads_o.gpio_24.rxe = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_24.slw = s_reg2hw.gpio_24_cfg.slw.q;
+          mux_to_pads_o.gpio_24.smt = s_reg2hw.gpio_24_cfg.smt.q;
+          mux_to_pads_o.gpio_24.trie = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_24_SEL_QSPI0_SD1: begin
           mux_to_pads_o.gpio_24.chip2pad = port_signals_soc2pad_i.qspi0.sd1_o;
-          mux_to_pads_o.gpio_24.output_en = port_signals_soc2pad_i.qspi0.sd1_en_o;
-          mux_to_pads_o.gpio_24.rx_en = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_24.drv = s_reg2hw.gpio_24_cfg.drv.q;
+          mux_to_pads_o.gpio_24.pde = s_reg2hw.gpio_24_cfg.pde.q;
+          mux_to_pads_o.gpio_24.pue = s_reg2hw.gpio_24_cfg.pue.q;
+          mux_to_pads_o.gpio_24.rxe = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_24.slw = s_reg2hw.gpio_24_cfg.slw.q;
+          mux_to_pads_o.gpio_24.smt = s_reg2hw.gpio_24_cfg.smt.q;
+          mux_to_pads_o.gpio_24.trie = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_24_SEL_QSPI0_SD2: begin
           mux_to_pads_o.gpio_24.chip2pad = port_signals_soc2pad_i.qspi0.sd2_o;
-          mux_to_pads_o.gpio_24.output_en = port_signals_soc2pad_i.qspi0.sd2_en_o;
-          mux_to_pads_o.gpio_24.rx_en = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_24.drv = s_reg2hw.gpio_24_cfg.drv.q;
+          mux_to_pads_o.gpio_24.pde = s_reg2hw.gpio_24_cfg.pde.q;
+          mux_to_pads_o.gpio_24.pue = s_reg2hw.gpio_24_cfg.pue.q;
+          mux_to_pads_o.gpio_24.rxe = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_24.slw = s_reg2hw.gpio_24_cfg.slw.q;
+          mux_to_pads_o.gpio_24.smt = s_reg2hw.gpio_24_cfg.smt.q;
+          mux_to_pads_o.gpio_24.trie = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_24_SEL_QSPI0_SD3: begin
           mux_to_pads_o.gpio_24.chip2pad = port_signals_soc2pad_i.qspi0.sd3_o;
-          mux_to_pads_o.gpio_24.output_en = port_signals_soc2pad_i.qspi0.sd3_en_o;
-          mux_to_pads_o.gpio_24.rx_en = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_24.drv = s_reg2hw.gpio_24_cfg.drv.q;
+          mux_to_pads_o.gpio_24.pde = s_reg2hw.gpio_24_cfg.pde.q;
+          mux_to_pads_o.gpio_24.pue = s_reg2hw.gpio_24_cfg.pue.q;
+          mux_to_pads_o.gpio_24.rxe = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_24.slw = s_reg2hw.gpio_24_cfg.slw.q;
+          mux_to_pads_o.gpio_24.smt = s_reg2hw.gpio_24_cfg.smt.q;
+          mux_to_pads_o.gpio_24.trie = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_24_SEL_I2C0_SCL: begin
           mux_to_pads_o.gpio_24.chip2pad = port_signals_soc2pad_i.i2c0.scl_o;
-          mux_to_pads_o.gpio_24.output_en = port_signals_soc2pad_i.i2c0.scl_en_o;
-          mux_to_pads_o.gpio_24.rx_en = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_24.drv = s_reg2hw.gpio_24_cfg.drv.q;
+          mux_to_pads_o.gpio_24.pde = s_reg2hw.gpio_24_cfg.pde.q;
+          mux_to_pads_o.gpio_24.pue = s_reg2hw.gpio_24_cfg.pue.q;
+          mux_to_pads_o.gpio_24.rxe = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_24.slw = s_reg2hw.gpio_24_cfg.slw.q;
+          mux_to_pads_o.gpio_24.smt = s_reg2hw.gpio_24_cfg.smt.q;
+          mux_to_pads_o.gpio_24.trie = ~port_signals_soc2pad_i.i2c0.scl_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_24_SEL_I2C0_SDA: begin
           mux_to_pads_o.gpio_24.chip2pad = port_signals_soc2pad_i.i2c0.sda_o;
-          mux_to_pads_o.gpio_24.output_en = port_signals_soc2pad_i.i2c0.sda_en_o;
-          mux_to_pads_o.gpio_24.rx_en = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_24.drv = s_reg2hw.gpio_24_cfg.drv.q;
+          mux_to_pads_o.gpio_24.pde = s_reg2hw.gpio_24_cfg.pde.q;
+          mux_to_pads_o.gpio_24.pue = s_reg2hw.gpio_24_cfg.pue.q;
+          mux_to_pads_o.gpio_24.rxe = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_24.slw = s_reg2hw.gpio_24_cfg.slw.q;
+          mux_to_pads_o.gpio_24.smt = s_reg2hw.gpio_24_cfg.smt.q;
+          mux_to_pads_o.gpio_24.trie = ~port_signals_soc2pad_i.i2c0.sda_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_24_SEL_UART0_RX: begin
           mux_to_pads_o.gpio_24.chip2pad = s_reg2hw.gpio_24_cfg.chip2pad.q;
-          mux_to_pads_o.gpio_24.output_en = s_reg2hw.gpio_24_cfg.output_en.q;
-          mux_to_pads_o.gpio_24.rx_en = 1'b1;
+          mux_to_pads_o.gpio_24.drv = s_reg2hw.gpio_24_cfg.drv.q;
+          mux_to_pads_o.gpio_24.pde = s_reg2hw.gpio_24_cfg.pde.q;
+          mux_to_pads_o.gpio_24.pue = s_reg2hw.gpio_24_cfg.pue.q;
+          mux_to_pads_o.gpio_24.rxe = 1'b1;
+          mux_to_pads_o.gpio_24.slw = s_reg2hw.gpio_24_cfg.slw.q;
+          mux_to_pads_o.gpio_24.smt = s_reg2hw.gpio_24_cfg.smt.q;
+          mux_to_pads_o.gpio_24.trie = s_reg2hw.gpio_24_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_24_SEL_UART0_TX: begin
           mux_to_pads_o.gpio_24.chip2pad = port_signals_soc2pad_i.uart0.tx_o;
-          mux_to_pads_o.gpio_24.output_en = 1'b0;
-          mux_to_pads_o.gpio_24.rx_en = s_reg2hw.gpio_24_cfg.rx_en.q;
+          mux_to_pads_o.gpio_24.drv = s_reg2hw.gpio_24_cfg.drv.q;
+          mux_to_pads_o.gpio_24.pde = s_reg2hw.gpio_24_cfg.pde.q;
+          mux_to_pads_o.gpio_24.pue = s_reg2hw.gpio_24_cfg.pue.q;
+          mux_to_pads_o.gpio_24.rxe = s_reg2hw.gpio_24_cfg.rxe.q;
+          mux_to_pads_o.gpio_24.slw = s_reg2hw.gpio_24_cfg.slw.q;
+          mux_to_pads_o.gpio_24.smt = s_reg2hw.gpio_24_cfg.smt.q;
+          mux_to_pads_o.gpio_24.trie = 1'b0;
        end
        default: begin
          mux_to_pads_o.gpio_24.chip2pad = s_reg2hw.gpio_24_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_24.output_en = s_reg2hw.gpio_24_cfg.output_en.q;
-         mux_to_pads_o.gpio_24.rx_en = s_reg2hw.gpio_24_cfg.rx_en.q;
+         mux_to_pads_o.gpio_24.drv = s_reg2hw.gpio_24_cfg.drv.q;
+         mux_to_pads_o.gpio_24.pde = s_reg2hw.gpio_24_cfg.pde.q;
+         mux_to_pads_o.gpio_24.pue = s_reg2hw.gpio_24_cfg.pue.q;
+         mux_to_pads_o.gpio_24.rxe = s_reg2hw.gpio_24_cfg.rxe.q;
+         mux_to_pads_o.gpio_24.slw = s_reg2hw.gpio_24_cfg.slw.q;
+         mux_to_pads_o.gpio_24.smt = s_reg2hw.gpio_24_cfg.smt.q;
+         mux_to_pads_o.gpio_24.trie = s_reg2hw.gpio_24_cfg.trie.q;
        end
      endcase
    end // always_comb
@@ -1940,73 +3690,143 @@ module chimera_padframe_aon_gpioa_muxer
      unique case (s_reg2hw.gpio_25_mux_sel.q)
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_25_SEL_DEFAULT: begin
          mux_to_pads_o.gpio_25.chip2pad = s_reg2hw.gpio_25_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_25.output_en = s_reg2hw.gpio_25_cfg.output_en.q;
-         mux_to_pads_o.gpio_25.rx_en = s_reg2hw.gpio_25_cfg.rx_en.q;
+         mux_to_pads_o.gpio_25.drv = s_reg2hw.gpio_25_cfg.drv.q;
+         mux_to_pads_o.gpio_25.pde = s_reg2hw.gpio_25_cfg.pde.q;
+         mux_to_pads_o.gpio_25.pue = s_reg2hw.gpio_25_cfg.pue.q;
+         mux_to_pads_o.gpio_25.rxe = s_reg2hw.gpio_25_cfg.rxe.q;
+         mux_to_pads_o.gpio_25.slw = s_reg2hw.gpio_25_cfg.slw.q;
+         mux_to_pads_o.gpio_25.smt = s_reg2hw.gpio_25_cfg.smt.q;
+         mux_to_pads_o.gpio_25.trie = s_reg2hw.gpio_25_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_25_SEL_QSPI0_CSB0: begin
           mux_to_pads_o.gpio_25.chip2pad = port_signals_soc2pad_i.qspi0.csb0_o;
-          mux_to_pads_o.gpio_25.output_en = port_signals_soc2pad_i.qspi0.csb0_en_o;
-          mux_to_pads_o.gpio_25.rx_en = s_reg2hw.gpio_25_cfg.rx_en.q;
+          mux_to_pads_o.gpio_25.drv = s_reg2hw.gpio_25_cfg.drv.q;
+          mux_to_pads_o.gpio_25.pde = s_reg2hw.gpio_25_cfg.pde.q;
+          mux_to_pads_o.gpio_25.pue = s_reg2hw.gpio_25_cfg.pue.q;
+          mux_to_pads_o.gpio_25.rxe = s_reg2hw.gpio_25_cfg.rxe.q;
+          mux_to_pads_o.gpio_25.slw = s_reg2hw.gpio_25_cfg.slw.q;
+          mux_to_pads_o.gpio_25.smt = s_reg2hw.gpio_25_cfg.smt.q;
+          mux_to_pads_o.gpio_25.trie = ~port_signals_soc2pad_i.qspi0.csb0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_25_SEL_QSPI0_CSB1: begin
           mux_to_pads_o.gpio_25.chip2pad = port_signals_soc2pad_i.qspi0.csb1_o;
-          mux_to_pads_o.gpio_25.output_en = port_signals_soc2pad_i.qspi0.csb1_en_o;
-          mux_to_pads_o.gpio_25.rx_en = s_reg2hw.gpio_25_cfg.rx_en.q;
+          mux_to_pads_o.gpio_25.drv = s_reg2hw.gpio_25_cfg.drv.q;
+          mux_to_pads_o.gpio_25.pde = s_reg2hw.gpio_25_cfg.pde.q;
+          mux_to_pads_o.gpio_25.pue = s_reg2hw.gpio_25_cfg.pue.q;
+          mux_to_pads_o.gpio_25.rxe = s_reg2hw.gpio_25_cfg.rxe.q;
+          mux_to_pads_o.gpio_25.slw = s_reg2hw.gpio_25_cfg.slw.q;
+          mux_to_pads_o.gpio_25.smt = s_reg2hw.gpio_25_cfg.smt.q;
+          mux_to_pads_o.gpio_25.trie = ~port_signals_soc2pad_i.qspi0.csb1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_25_SEL_QSPI0_CSB2: begin
           mux_to_pads_o.gpio_25.chip2pad = port_signals_soc2pad_i.qspi0.csb2_o;
-          mux_to_pads_o.gpio_25.output_en = port_signals_soc2pad_i.qspi0.csb2_en_o;
-          mux_to_pads_o.gpio_25.rx_en = s_reg2hw.gpio_25_cfg.rx_en.q;
+          mux_to_pads_o.gpio_25.drv = s_reg2hw.gpio_25_cfg.drv.q;
+          mux_to_pads_o.gpio_25.pde = s_reg2hw.gpio_25_cfg.pde.q;
+          mux_to_pads_o.gpio_25.pue = s_reg2hw.gpio_25_cfg.pue.q;
+          mux_to_pads_o.gpio_25.rxe = s_reg2hw.gpio_25_cfg.rxe.q;
+          mux_to_pads_o.gpio_25.slw = s_reg2hw.gpio_25_cfg.slw.q;
+          mux_to_pads_o.gpio_25.smt = s_reg2hw.gpio_25_cfg.smt.q;
+          mux_to_pads_o.gpio_25.trie = ~port_signals_soc2pad_i.qspi0.csb2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_25_SEL_QSPI0_SCK: begin
           mux_to_pads_o.gpio_25.chip2pad = port_signals_soc2pad_i.qspi0.sck_o;
-          mux_to_pads_o.gpio_25.output_en = port_signals_soc2pad_i.qspi0.sck_en_o;
-          mux_to_pads_o.gpio_25.rx_en = s_reg2hw.gpio_25_cfg.rx_en.q;
+          mux_to_pads_o.gpio_25.drv = s_reg2hw.gpio_25_cfg.drv.q;
+          mux_to_pads_o.gpio_25.pde = s_reg2hw.gpio_25_cfg.pde.q;
+          mux_to_pads_o.gpio_25.pue = s_reg2hw.gpio_25_cfg.pue.q;
+          mux_to_pads_o.gpio_25.rxe = s_reg2hw.gpio_25_cfg.rxe.q;
+          mux_to_pads_o.gpio_25.slw = s_reg2hw.gpio_25_cfg.slw.q;
+          mux_to_pads_o.gpio_25.smt = s_reg2hw.gpio_25_cfg.smt.q;
+          mux_to_pads_o.gpio_25.trie = port_signals_soc2pad_i.qspi0.sck_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_25_SEL_QSPI0_SD0: begin
           mux_to_pads_o.gpio_25.chip2pad = port_signals_soc2pad_i.qspi0.sd0_o;
-          mux_to_pads_o.gpio_25.output_en = port_signals_soc2pad_i.qspi0.sd0_en_o;
-          mux_to_pads_o.gpio_25.rx_en = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_25.drv = s_reg2hw.gpio_25_cfg.drv.q;
+          mux_to_pads_o.gpio_25.pde = s_reg2hw.gpio_25_cfg.pde.q;
+          mux_to_pads_o.gpio_25.pue = s_reg2hw.gpio_25_cfg.pue.q;
+          mux_to_pads_o.gpio_25.rxe = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_25.slw = s_reg2hw.gpio_25_cfg.slw.q;
+          mux_to_pads_o.gpio_25.smt = s_reg2hw.gpio_25_cfg.smt.q;
+          mux_to_pads_o.gpio_25.trie = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_25_SEL_QSPI0_SD1: begin
           mux_to_pads_o.gpio_25.chip2pad = port_signals_soc2pad_i.qspi0.sd1_o;
-          mux_to_pads_o.gpio_25.output_en = port_signals_soc2pad_i.qspi0.sd1_en_o;
-          mux_to_pads_o.gpio_25.rx_en = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_25.drv = s_reg2hw.gpio_25_cfg.drv.q;
+          mux_to_pads_o.gpio_25.pde = s_reg2hw.gpio_25_cfg.pde.q;
+          mux_to_pads_o.gpio_25.pue = s_reg2hw.gpio_25_cfg.pue.q;
+          mux_to_pads_o.gpio_25.rxe = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_25.slw = s_reg2hw.gpio_25_cfg.slw.q;
+          mux_to_pads_o.gpio_25.smt = s_reg2hw.gpio_25_cfg.smt.q;
+          mux_to_pads_o.gpio_25.trie = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_25_SEL_QSPI0_SD2: begin
           mux_to_pads_o.gpio_25.chip2pad = port_signals_soc2pad_i.qspi0.sd2_o;
-          mux_to_pads_o.gpio_25.output_en = port_signals_soc2pad_i.qspi0.sd2_en_o;
-          mux_to_pads_o.gpio_25.rx_en = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_25.drv = s_reg2hw.gpio_25_cfg.drv.q;
+          mux_to_pads_o.gpio_25.pde = s_reg2hw.gpio_25_cfg.pde.q;
+          mux_to_pads_o.gpio_25.pue = s_reg2hw.gpio_25_cfg.pue.q;
+          mux_to_pads_o.gpio_25.rxe = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_25.slw = s_reg2hw.gpio_25_cfg.slw.q;
+          mux_to_pads_o.gpio_25.smt = s_reg2hw.gpio_25_cfg.smt.q;
+          mux_to_pads_o.gpio_25.trie = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_25_SEL_QSPI0_SD3: begin
           mux_to_pads_o.gpio_25.chip2pad = port_signals_soc2pad_i.qspi0.sd3_o;
-          mux_to_pads_o.gpio_25.output_en = port_signals_soc2pad_i.qspi0.sd3_en_o;
-          mux_to_pads_o.gpio_25.rx_en = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_25.drv = s_reg2hw.gpio_25_cfg.drv.q;
+          mux_to_pads_o.gpio_25.pde = s_reg2hw.gpio_25_cfg.pde.q;
+          mux_to_pads_o.gpio_25.pue = s_reg2hw.gpio_25_cfg.pue.q;
+          mux_to_pads_o.gpio_25.rxe = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_25.slw = s_reg2hw.gpio_25_cfg.slw.q;
+          mux_to_pads_o.gpio_25.smt = s_reg2hw.gpio_25_cfg.smt.q;
+          mux_to_pads_o.gpio_25.trie = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_25_SEL_I2C0_SCL: begin
           mux_to_pads_o.gpio_25.chip2pad = port_signals_soc2pad_i.i2c0.scl_o;
-          mux_to_pads_o.gpio_25.output_en = port_signals_soc2pad_i.i2c0.scl_en_o;
-          mux_to_pads_o.gpio_25.rx_en = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_25.drv = s_reg2hw.gpio_25_cfg.drv.q;
+          mux_to_pads_o.gpio_25.pde = s_reg2hw.gpio_25_cfg.pde.q;
+          mux_to_pads_o.gpio_25.pue = s_reg2hw.gpio_25_cfg.pue.q;
+          mux_to_pads_o.gpio_25.rxe = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_25.slw = s_reg2hw.gpio_25_cfg.slw.q;
+          mux_to_pads_o.gpio_25.smt = s_reg2hw.gpio_25_cfg.smt.q;
+          mux_to_pads_o.gpio_25.trie = ~port_signals_soc2pad_i.i2c0.scl_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_25_SEL_I2C0_SDA: begin
           mux_to_pads_o.gpio_25.chip2pad = port_signals_soc2pad_i.i2c0.sda_o;
-          mux_to_pads_o.gpio_25.output_en = port_signals_soc2pad_i.i2c0.sda_en_o;
-          mux_to_pads_o.gpio_25.rx_en = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_25.drv = s_reg2hw.gpio_25_cfg.drv.q;
+          mux_to_pads_o.gpio_25.pde = s_reg2hw.gpio_25_cfg.pde.q;
+          mux_to_pads_o.gpio_25.pue = s_reg2hw.gpio_25_cfg.pue.q;
+          mux_to_pads_o.gpio_25.rxe = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_25.slw = s_reg2hw.gpio_25_cfg.slw.q;
+          mux_to_pads_o.gpio_25.smt = s_reg2hw.gpio_25_cfg.smt.q;
+          mux_to_pads_o.gpio_25.trie = ~port_signals_soc2pad_i.i2c0.sda_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_25_SEL_UART0_RX: begin
           mux_to_pads_o.gpio_25.chip2pad = s_reg2hw.gpio_25_cfg.chip2pad.q;
-          mux_to_pads_o.gpio_25.output_en = s_reg2hw.gpio_25_cfg.output_en.q;
-          mux_to_pads_o.gpio_25.rx_en = 1'b1;
+          mux_to_pads_o.gpio_25.drv = s_reg2hw.gpio_25_cfg.drv.q;
+          mux_to_pads_o.gpio_25.pde = s_reg2hw.gpio_25_cfg.pde.q;
+          mux_to_pads_o.gpio_25.pue = s_reg2hw.gpio_25_cfg.pue.q;
+          mux_to_pads_o.gpio_25.rxe = 1'b1;
+          mux_to_pads_o.gpio_25.slw = s_reg2hw.gpio_25_cfg.slw.q;
+          mux_to_pads_o.gpio_25.smt = s_reg2hw.gpio_25_cfg.smt.q;
+          mux_to_pads_o.gpio_25.trie = s_reg2hw.gpio_25_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_25_SEL_UART0_TX: begin
           mux_to_pads_o.gpio_25.chip2pad = port_signals_soc2pad_i.uart0.tx_o;
-          mux_to_pads_o.gpio_25.output_en = 1'b0;
-          mux_to_pads_o.gpio_25.rx_en = s_reg2hw.gpio_25_cfg.rx_en.q;
+          mux_to_pads_o.gpio_25.drv = s_reg2hw.gpio_25_cfg.drv.q;
+          mux_to_pads_o.gpio_25.pde = s_reg2hw.gpio_25_cfg.pde.q;
+          mux_to_pads_o.gpio_25.pue = s_reg2hw.gpio_25_cfg.pue.q;
+          mux_to_pads_o.gpio_25.rxe = s_reg2hw.gpio_25_cfg.rxe.q;
+          mux_to_pads_o.gpio_25.slw = s_reg2hw.gpio_25_cfg.slw.q;
+          mux_to_pads_o.gpio_25.smt = s_reg2hw.gpio_25_cfg.smt.q;
+          mux_to_pads_o.gpio_25.trie = 1'b0;
        end
        default: begin
          mux_to_pads_o.gpio_25.chip2pad = s_reg2hw.gpio_25_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_25.output_en = s_reg2hw.gpio_25_cfg.output_en.q;
-         mux_to_pads_o.gpio_25.rx_en = s_reg2hw.gpio_25_cfg.rx_en.q;
+         mux_to_pads_o.gpio_25.drv = s_reg2hw.gpio_25_cfg.drv.q;
+         mux_to_pads_o.gpio_25.pde = s_reg2hw.gpio_25_cfg.pde.q;
+         mux_to_pads_o.gpio_25.pue = s_reg2hw.gpio_25_cfg.pue.q;
+         mux_to_pads_o.gpio_25.rxe = s_reg2hw.gpio_25_cfg.rxe.q;
+         mux_to_pads_o.gpio_25.slw = s_reg2hw.gpio_25_cfg.slw.q;
+         mux_to_pads_o.gpio_25.smt = s_reg2hw.gpio_25_cfg.smt.q;
+         mux_to_pads_o.gpio_25.trie = s_reg2hw.gpio_25_cfg.trie.q;
        end
      endcase
    end // always_comb
@@ -2016,73 +3836,143 @@ module chimera_padframe_aon_gpioa_muxer
      unique case (s_reg2hw.gpio_26_mux_sel.q)
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_26_SEL_DEFAULT: begin
          mux_to_pads_o.gpio_26.chip2pad = s_reg2hw.gpio_26_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_26.output_en = s_reg2hw.gpio_26_cfg.output_en.q;
-         mux_to_pads_o.gpio_26.rx_en = s_reg2hw.gpio_26_cfg.rx_en.q;
+         mux_to_pads_o.gpio_26.drv = s_reg2hw.gpio_26_cfg.drv.q;
+         mux_to_pads_o.gpio_26.pde = s_reg2hw.gpio_26_cfg.pde.q;
+         mux_to_pads_o.gpio_26.pue = s_reg2hw.gpio_26_cfg.pue.q;
+         mux_to_pads_o.gpio_26.rxe = s_reg2hw.gpio_26_cfg.rxe.q;
+         mux_to_pads_o.gpio_26.slw = s_reg2hw.gpio_26_cfg.slw.q;
+         mux_to_pads_o.gpio_26.smt = s_reg2hw.gpio_26_cfg.smt.q;
+         mux_to_pads_o.gpio_26.trie = s_reg2hw.gpio_26_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_26_SEL_QSPI0_CSB0: begin
           mux_to_pads_o.gpio_26.chip2pad = port_signals_soc2pad_i.qspi0.csb0_o;
-          mux_to_pads_o.gpio_26.output_en = port_signals_soc2pad_i.qspi0.csb0_en_o;
-          mux_to_pads_o.gpio_26.rx_en = s_reg2hw.gpio_26_cfg.rx_en.q;
+          mux_to_pads_o.gpio_26.drv = s_reg2hw.gpio_26_cfg.drv.q;
+          mux_to_pads_o.gpio_26.pde = s_reg2hw.gpio_26_cfg.pde.q;
+          mux_to_pads_o.gpio_26.pue = s_reg2hw.gpio_26_cfg.pue.q;
+          mux_to_pads_o.gpio_26.rxe = s_reg2hw.gpio_26_cfg.rxe.q;
+          mux_to_pads_o.gpio_26.slw = s_reg2hw.gpio_26_cfg.slw.q;
+          mux_to_pads_o.gpio_26.smt = s_reg2hw.gpio_26_cfg.smt.q;
+          mux_to_pads_o.gpio_26.trie = ~port_signals_soc2pad_i.qspi0.csb0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_26_SEL_QSPI0_CSB1: begin
           mux_to_pads_o.gpio_26.chip2pad = port_signals_soc2pad_i.qspi0.csb1_o;
-          mux_to_pads_o.gpio_26.output_en = port_signals_soc2pad_i.qspi0.csb1_en_o;
-          mux_to_pads_o.gpio_26.rx_en = s_reg2hw.gpio_26_cfg.rx_en.q;
+          mux_to_pads_o.gpio_26.drv = s_reg2hw.gpio_26_cfg.drv.q;
+          mux_to_pads_o.gpio_26.pde = s_reg2hw.gpio_26_cfg.pde.q;
+          mux_to_pads_o.gpio_26.pue = s_reg2hw.gpio_26_cfg.pue.q;
+          mux_to_pads_o.gpio_26.rxe = s_reg2hw.gpio_26_cfg.rxe.q;
+          mux_to_pads_o.gpio_26.slw = s_reg2hw.gpio_26_cfg.slw.q;
+          mux_to_pads_o.gpio_26.smt = s_reg2hw.gpio_26_cfg.smt.q;
+          mux_to_pads_o.gpio_26.trie = ~port_signals_soc2pad_i.qspi0.csb1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_26_SEL_QSPI0_CSB2: begin
           mux_to_pads_o.gpio_26.chip2pad = port_signals_soc2pad_i.qspi0.csb2_o;
-          mux_to_pads_o.gpio_26.output_en = port_signals_soc2pad_i.qspi0.csb2_en_o;
-          mux_to_pads_o.gpio_26.rx_en = s_reg2hw.gpio_26_cfg.rx_en.q;
+          mux_to_pads_o.gpio_26.drv = s_reg2hw.gpio_26_cfg.drv.q;
+          mux_to_pads_o.gpio_26.pde = s_reg2hw.gpio_26_cfg.pde.q;
+          mux_to_pads_o.gpio_26.pue = s_reg2hw.gpio_26_cfg.pue.q;
+          mux_to_pads_o.gpio_26.rxe = s_reg2hw.gpio_26_cfg.rxe.q;
+          mux_to_pads_o.gpio_26.slw = s_reg2hw.gpio_26_cfg.slw.q;
+          mux_to_pads_o.gpio_26.smt = s_reg2hw.gpio_26_cfg.smt.q;
+          mux_to_pads_o.gpio_26.trie = ~port_signals_soc2pad_i.qspi0.csb2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_26_SEL_QSPI0_SCK: begin
           mux_to_pads_o.gpio_26.chip2pad = port_signals_soc2pad_i.qspi0.sck_o;
-          mux_to_pads_o.gpio_26.output_en = port_signals_soc2pad_i.qspi0.sck_en_o;
-          mux_to_pads_o.gpio_26.rx_en = s_reg2hw.gpio_26_cfg.rx_en.q;
+          mux_to_pads_o.gpio_26.drv = s_reg2hw.gpio_26_cfg.drv.q;
+          mux_to_pads_o.gpio_26.pde = s_reg2hw.gpio_26_cfg.pde.q;
+          mux_to_pads_o.gpio_26.pue = s_reg2hw.gpio_26_cfg.pue.q;
+          mux_to_pads_o.gpio_26.rxe = s_reg2hw.gpio_26_cfg.rxe.q;
+          mux_to_pads_o.gpio_26.slw = s_reg2hw.gpio_26_cfg.slw.q;
+          mux_to_pads_o.gpio_26.smt = s_reg2hw.gpio_26_cfg.smt.q;
+          mux_to_pads_o.gpio_26.trie = port_signals_soc2pad_i.qspi0.sck_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_26_SEL_QSPI0_SD0: begin
           mux_to_pads_o.gpio_26.chip2pad = port_signals_soc2pad_i.qspi0.sd0_o;
-          mux_to_pads_o.gpio_26.output_en = port_signals_soc2pad_i.qspi0.sd0_en_o;
-          mux_to_pads_o.gpio_26.rx_en = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_26.drv = s_reg2hw.gpio_26_cfg.drv.q;
+          mux_to_pads_o.gpio_26.pde = s_reg2hw.gpio_26_cfg.pde.q;
+          mux_to_pads_o.gpio_26.pue = s_reg2hw.gpio_26_cfg.pue.q;
+          mux_to_pads_o.gpio_26.rxe = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_26.slw = s_reg2hw.gpio_26_cfg.slw.q;
+          mux_to_pads_o.gpio_26.smt = s_reg2hw.gpio_26_cfg.smt.q;
+          mux_to_pads_o.gpio_26.trie = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_26_SEL_QSPI0_SD1: begin
           mux_to_pads_o.gpio_26.chip2pad = port_signals_soc2pad_i.qspi0.sd1_o;
-          mux_to_pads_o.gpio_26.output_en = port_signals_soc2pad_i.qspi0.sd1_en_o;
-          mux_to_pads_o.gpio_26.rx_en = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_26.drv = s_reg2hw.gpio_26_cfg.drv.q;
+          mux_to_pads_o.gpio_26.pde = s_reg2hw.gpio_26_cfg.pde.q;
+          mux_to_pads_o.gpio_26.pue = s_reg2hw.gpio_26_cfg.pue.q;
+          mux_to_pads_o.gpio_26.rxe = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_26.slw = s_reg2hw.gpio_26_cfg.slw.q;
+          mux_to_pads_o.gpio_26.smt = s_reg2hw.gpio_26_cfg.smt.q;
+          mux_to_pads_o.gpio_26.trie = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_26_SEL_QSPI0_SD2: begin
           mux_to_pads_o.gpio_26.chip2pad = port_signals_soc2pad_i.qspi0.sd2_o;
-          mux_to_pads_o.gpio_26.output_en = port_signals_soc2pad_i.qspi0.sd2_en_o;
-          mux_to_pads_o.gpio_26.rx_en = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_26.drv = s_reg2hw.gpio_26_cfg.drv.q;
+          mux_to_pads_o.gpio_26.pde = s_reg2hw.gpio_26_cfg.pde.q;
+          mux_to_pads_o.gpio_26.pue = s_reg2hw.gpio_26_cfg.pue.q;
+          mux_to_pads_o.gpio_26.rxe = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_26.slw = s_reg2hw.gpio_26_cfg.slw.q;
+          mux_to_pads_o.gpio_26.smt = s_reg2hw.gpio_26_cfg.smt.q;
+          mux_to_pads_o.gpio_26.trie = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_26_SEL_QSPI0_SD3: begin
           mux_to_pads_o.gpio_26.chip2pad = port_signals_soc2pad_i.qspi0.sd3_o;
-          mux_to_pads_o.gpio_26.output_en = port_signals_soc2pad_i.qspi0.sd3_en_o;
-          mux_to_pads_o.gpio_26.rx_en = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_26.drv = s_reg2hw.gpio_26_cfg.drv.q;
+          mux_to_pads_o.gpio_26.pde = s_reg2hw.gpio_26_cfg.pde.q;
+          mux_to_pads_o.gpio_26.pue = s_reg2hw.gpio_26_cfg.pue.q;
+          mux_to_pads_o.gpio_26.rxe = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_26.slw = s_reg2hw.gpio_26_cfg.slw.q;
+          mux_to_pads_o.gpio_26.smt = s_reg2hw.gpio_26_cfg.smt.q;
+          mux_to_pads_o.gpio_26.trie = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_26_SEL_I2C0_SCL: begin
           mux_to_pads_o.gpio_26.chip2pad = port_signals_soc2pad_i.i2c0.scl_o;
-          mux_to_pads_o.gpio_26.output_en = port_signals_soc2pad_i.i2c0.scl_en_o;
-          mux_to_pads_o.gpio_26.rx_en = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_26.drv = s_reg2hw.gpio_26_cfg.drv.q;
+          mux_to_pads_o.gpio_26.pde = s_reg2hw.gpio_26_cfg.pde.q;
+          mux_to_pads_o.gpio_26.pue = s_reg2hw.gpio_26_cfg.pue.q;
+          mux_to_pads_o.gpio_26.rxe = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_26.slw = s_reg2hw.gpio_26_cfg.slw.q;
+          mux_to_pads_o.gpio_26.smt = s_reg2hw.gpio_26_cfg.smt.q;
+          mux_to_pads_o.gpio_26.trie = ~port_signals_soc2pad_i.i2c0.scl_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_26_SEL_I2C0_SDA: begin
           mux_to_pads_o.gpio_26.chip2pad = port_signals_soc2pad_i.i2c0.sda_o;
-          mux_to_pads_o.gpio_26.output_en = port_signals_soc2pad_i.i2c0.sda_en_o;
-          mux_to_pads_o.gpio_26.rx_en = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_26.drv = s_reg2hw.gpio_26_cfg.drv.q;
+          mux_to_pads_o.gpio_26.pde = s_reg2hw.gpio_26_cfg.pde.q;
+          mux_to_pads_o.gpio_26.pue = s_reg2hw.gpio_26_cfg.pue.q;
+          mux_to_pads_o.gpio_26.rxe = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_26.slw = s_reg2hw.gpio_26_cfg.slw.q;
+          mux_to_pads_o.gpio_26.smt = s_reg2hw.gpio_26_cfg.smt.q;
+          mux_to_pads_o.gpio_26.trie = ~port_signals_soc2pad_i.i2c0.sda_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_26_SEL_UART0_RX: begin
           mux_to_pads_o.gpio_26.chip2pad = s_reg2hw.gpio_26_cfg.chip2pad.q;
-          mux_to_pads_o.gpio_26.output_en = s_reg2hw.gpio_26_cfg.output_en.q;
-          mux_to_pads_o.gpio_26.rx_en = 1'b1;
+          mux_to_pads_o.gpio_26.drv = s_reg2hw.gpio_26_cfg.drv.q;
+          mux_to_pads_o.gpio_26.pde = s_reg2hw.gpio_26_cfg.pde.q;
+          mux_to_pads_o.gpio_26.pue = s_reg2hw.gpio_26_cfg.pue.q;
+          mux_to_pads_o.gpio_26.rxe = 1'b1;
+          mux_to_pads_o.gpio_26.slw = s_reg2hw.gpio_26_cfg.slw.q;
+          mux_to_pads_o.gpio_26.smt = s_reg2hw.gpio_26_cfg.smt.q;
+          mux_to_pads_o.gpio_26.trie = s_reg2hw.gpio_26_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_26_SEL_UART0_TX: begin
           mux_to_pads_o.gpio_26.chip2pad = port_signals_soc2pad_i.uart0.tx_o;
-          mux_to_pads_o.gpio_26.output_en = 1'b0;
-          mux_to_pads_o.gpio_26.rx_en = s_reg2hw.gpio_26_cfg.rx_en.q;
+          mux_to_pads_o.gpio_26.drv = s_reg2hw.gpio_26_cfg.drv.q;
+          mux_to_pads_o.gpio_26.pde = s_reg2hw.gpio_26_cfg.pde.q;
+          mux_to_pads_o.gpio_26.pue = s_reg2hw.gpio_26_cfg.pue.q;
+          mux_to_pads_o.gpio_26.rxe = s_reg2hw.gpio_26_cfg.rxe.q;
+          mux_to_pads_o.gpio_26.slw = s_reg2hw.gpio_26_cfg.slw.q;
+          mux_to_pads_o.gpio_26.smt = s_reg2hw.gpio_26_cfg.smt.q;
+          mux_to_pads_o.gpio_26.trie = 1'b0;
        end
        default: begin
          mux_to_pads_o.gpio_26.chip2pad = s_reg2hw.gpio_26_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_26.output_en = s_reg2hw.gpio_26_cfg.output_en.q;
-         mux_to_pads_o.gpio_26.rx_en = s_reg2hw.gpio_26_cfg.rx_en.q;
+         mux_to_pads_o.gpio_26.drv = s_reg2hw.gpio_26_cfg.drv.q;
+         mux_to_pads_o.gpio_26.pde = s_reg2hw.gpio_26_cfg.pde.q;
+         mux_to_pads_o.gpio_26.pue = s_reg2hw.gpio_26_cfg.pue.q;
+         mux_to_pads_o.gpio_26.rxe = s_reg2hw.gpio_26_cfg.rxe.q;
+         mux_to_pads_o.gpio_26.slw = s_reg2hw.gpio_26_cfg.slw.q;
+         mux_to_pads_o.gpio_26.smt = s_reg2hw.gpio_26_cfg.smt.q;
+         mux_to_pads_o.gpio_26.trie = s_reg2hw.gpio_26_cfg.trie.q;
        end
      endcase
    end // always_comb
@@ -2092,73 +3982,143 @@ module chimera_padframe_aon_gpioa_muxer
      unique case (s_reg2hw.gpio_27_mux_sel.q)
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_27_SEL_DEFAULT: begin
          mux_to_pads_o.gpio_27.chip2pad = s_reg2hw.gpio_27_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_27.output_en = s_reg2hw.gpio_27_cfg.output_en.q;
-         mux_to_pads_o.gpio_27.rx_en = s_reg2hw.gpio_27_cfg.rx_en.q;
+         mux_to_pads_o.gpio_27.drv = s_reg2hw.gpio_27_cfg.drv.q;
+         mux_to_pads_o.gpio_27.pde = s_reg2hw.gpio_27_cfg.pde.q;
+         mux_to_pads_o.gpio_27.pue = s_reg2hw.gpio_27_cfg.pue.q;
+         mux_to_pads_o.gpio_27.rxe = s_reg2hw.gpio_27_cfg.rxe.q;
+         mux_to_pads_o.gpio_27.slw = s_reg2hw.gpio_27_cfg.slw.q;
+         mux_to_pads_o.gpio_27.smt = s_reg2hw.gpio_27_cfg.smt.q;
+         mux_to_pads_o.gpio_27.trie = s_reg2hw.gpio_27_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_27_SEL_QSPI0_CSB0: begin
           mux_to_pads_o.gpio_27.chip2pad = port_signals_soc2pad_i.qspi0.csb0_o;
-          mux_to_pads_o.gpio_27.output_en = port_signals_soc2pad_i.qspi0.csb0_en_o;
-          mux_to_pads_o.gpio_27.rx_en = s_reg2hw.gpio_27_cfg.rx_en.q;
+          mux_to_pads_o.gpio_27.drv = s_reg2hw.gpio_27_cfg.drv.q;
+          mux_to_pads_o.gpio_27.pde = s_reg2hw.gpio_27_cfg.pde.q;
+          mux_to_pads_o.gpio_27.pue = s_reg2hw.gpio_27_cfg.pue.q;
+          mux_to_pads_o.gpio_27.rxe = s_reg2hw.gpio_27_cfg.rxe.q;
+          mux_to_pads_o.gpio_27.slw = s_reg2hw.gpio_27_cfg.slw.q;
+          mux_to_pads_o.gpio_27.smt = s_reg2hw.gpio_27_cfg.smt.q;
+          mux_to_pads_o.gpio_27.trie = ~port_signals_soc2pad_i.qspi0.csb0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_27_SEL_QSPI0_CSB1: begin
           mux_to_pads_o.gpio_27.chip2pad = port_signals_soc2pad_i.qspi0.csb1_o;
-          mux_to_pads_o.gpio_27.output_en = port_signals_soc2pad_i.qspi0.csb1_en_o;
-          mux_to_pads_o.gpio_27.rx_en = s_reg2hw.gpio_27_cfg.rx_en.q;
+          mux_to_pads_o.gpio_27.drv = s_reg2hw.gpio_27_cfg.drv.q;
+          mux_to_pads_o.gpio_27.pde = s_reg2hw.gpio_27_cfg.pde.q;
+          mux_to_pads_o.gpio_27.pue = s_reg2hw.gpio_27_cfg.pue.q;
+          mux_to_pads_o.gpio_27.rxe = s_reg2hw.gpio_27_cfg.rxe.q;
+          mux_to_pads_o.gpio_27.slw = s_reg2hw.gpio_27_cfg.slw.q;
+          mux_to_pads_o.gpio_27.smt = s_reg2hw.gpio_27_cfg.smt.q;
+          mux_to_pads_o.gpio_27.trie = ~port_signals_soc2pad_i.qspi0.csb1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_27_SEL_QSPI0_CSB2: begin
           mux_to_pads_o.gpio_27.chip2pad = port_signals_soc2pad_i.qspi0.csb2_o;
-          mux_to_pads_o.gpio_27.output_en = port_signals_soc2pad_i.qspi0.csb2_en_o;
-          mux_to_pads_o.gpio_27.rx_en = s_reg2hw.gpio_27_cfg.rx_en.q;
+          mux_to_pads_o.gpio_27.drv = s_reg2hw.gpio_27_cfg.drv.q;
+          mux_to_pads_o.gpio_27.pde = s_reg2hw.gpio_27_cfg.pde.q;
+          mux_to_pads_o.gpio_27.pue = s_reg2hw.gpio_27_cfg.pue.q;
+          mux_to_pads_o.gpio_27.rxe = s_reg2hw.gpio_27_cfg.rxe.q;
+          mux_to_pads_o.gpio_27.slw = s_reg2hw.gpio_27_cfg.slw.q;
+          mux_to_pads_o.gpio_27.smt = s_reg2hw.gpio_27_cfg.smt.q;
+          mux_to_pads_o.gpio_27.trie = ~port_signals_soc2pad_i.qspi0.csb2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_27_SEL_QSPI0_SCK: begin
           mux_to_pads_o.gpio_27.chip2pad = port_signals_soc2pad_i.qspi0.sck_o;
-          mux_to_pads_o.gpio_27.output_en = port_signals_soc2pad_i.qspi0.sck_en_o;
-          mux_to_pads_o.gpio_27.rx_en = s_reg2hw.gpio_27_cfg.rx_en.q;
+          mux_to_pads_o.gpio_27.drv = s_reg2hw.gpio_27_cfg.drv.q;
+          mux_to_pads_o.gpio_27.pde = s_reg2hw.gpio_27_cfg.pde.q;
+          mux_to_pads_o.gpio_27.pue = s_reg2hw.gpio_27_cfg.pue.q;
+          mux_to_pads_o.gpio_27.rxe = s_reg2hw.gpio_27_cfg.rxe.q;
+          mux_to_pads_o.gpio_27.slw = s_reg2hw.gpio_27_cfg.slw.q;
+          mux_to_pads_o.gpio_27.smt = s_reg2hw.gpio_27_cfg.smt.q;
+          mux_to_pads_o.gpio_27.trie = port_signals_soc2pad_i.qspi0.sck_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_27_SEL_QSPI0_SD0: begin
           mux_to_pads_o.gpio_27.chip2pad = port_signals_soc2pad_i.qspi0.sd0_o;
-          mux_to_pads_o.gpio_27.output_en = port_signals_soc2pad_i.qspi0.sd0_en_o;
-          mux_to_pads_o.gpio_27.rx_en = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_27.drv = s_reg2hw.gpio_27_cfg.drv.q;
+          mux_to_pads_o.gpio_27.pde = s_reg2hw.gpio_27_cfg.pde.q;
+          mux_to_pads_o.gpio_27.pue = s_reg2hw.gpio_27_cfg.pue.q;
+          mux_to_pads_o.gpio_27.rxe = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_27.slw = s_reg2hw.gpio_27_cfg.slw.q;
+          mux_to_pads_o.gpio_27.smt = s_reg2hw.gpio_27_cfg.smt.q;
+          mux_to_pads_o.gpio_27.trie = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_27_SEL_QSPI0_SD1: begin
           mux_to_pads_o.gpio_27.chip2pad = port_signals_soc2pad_i.qspi0.sd1_o;
-          mux_to_pads_o.gpio_27.output_en = port_signals_soc2pad_i.qspi0.sd1_en_o;
-          mux_to_pads_o.gpio_27.rx_en = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_27.drv = s_reg2hw.gpio_27_cfg.drv.q;
+          mux_to_pads_o.gpio_27.pde = s_reg2hw.gpio_27_cfg.pde.q;
+          mux_to_pads_o.gpio_27.pue = s_reg2hw.gpio_27_cfg.pue.q;
+          mux_to_pads_o.gpio_27.rxe = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_27.slw = s_reg2hw.gpio_27_cfg.slw.q;
+          mux_to_pads_o.gpio_27.smt = s_reg2hw.gpio_27_cfg.smt.q;
+          mux_to_pads_o.gpio_27.trie = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_27_SEL_QSPI0_SD2: begin
           mux_to_pads_o.gpio_27.chip2pad = port_signals_soc2pad_i.qspi0.sd2_o;
-          mux_to_pads_o.gpio_27.output_en = port_signals_soc2pad_i.qspi0.sd2_en_o;
-          mux_to_pads_o.gpio_27.rx_en = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_27.drv = s_reg2hw.gpio_27_cfg.drv.q;
+          mux_to_pads_o.gpio_27.pde = s_reg2hw.gpio_27_cfg.pde.q;
+          mux_to_pads_o.gpio_27.pue = s_reg2hw.gpio_27_cfg.pue.q;
+          mux_to_pads_o.gpio_27.rxe = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_27.slw = s_reg2hw.gpio_27_cfg.slw.q;
+          mux_to_pads_o.gpio_27.smt = s_reg2hw.gpio_27_cfg.smt.q;
+          mux_to_pads_o.gpio_27.trie = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_27_SEL_QSPI0_SD3: begin
           mux_to_pads_o.gpio_27.chip2pad = port_signals_soc2pad_i.qspi0.sd3_o;
-          mux_to_pads_o.gpio_27.output_en = port_signals_soc2pad_i.qspi0.sd3_en_o;
-          mux_to_pads_o.gpio_27.rx_en = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_27.drv = s_reg2hw.gpio_27_cfg.drv.q;
+          mux_to_pads_o.gpio_27.pde = s_reg2hw.gpio_27_cfg.pde.q;
+          mux_to_pads_o.gpio_27.pue = s_reg2hw.gpio_27_cfg.pue.q;
+          mux_to_pads_o.gpio_27.rxe = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_27.slw = s_reg2hw.gpio_27_cfg.slw.q;
+          mux_to_pads_o.gpio_27.smt = s_reg2hw.gpio_27_cfg.smt.q;
+          mux_to_pads_o.gpio_27.trie = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_27_SEL_I2C0_SCL: begin
           mux_to_pads_o.gpio_27.chip2pad = port_signals_soc2pad_i.i2c0.scl_o;
-          mux_to_pads_o.gpio_27.output_en = port_signals_soc2pad_i.i2c0.scl_en_o;
-          mux_to_pads_o.gpio_27.rx_en = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_27.drv = s_reg2hw.gpio_27_cfg.drv.q;
+          mux_to_pads_o.gpio_27.pde = s_reg2hw.gpio_27_cfg.pde.q;
+          mux_to_pads_o.gpio_27.pue = s_reg2hw.gpio_27_cfg.pue.q;
+          mux_to_pads_o.gpio_27.rxe = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_27.slw = s_reg2hw.gpio_27_cfg.slw.q;
+          mux_to_pads_o.gpio_27.smt = s_reg2hw.gpio_27_cfg.smt.q;
+          mux_to_pads_o.gpio_27.trie = ~port_signals_soc2pad_i.i2c0.scl_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_27_SEL_I2C0_SDA: begin
           mux_to_pads_o.gpio_27.chip2pad = port_signals_soc2pad_i.i2c0.sda_o;
-          mux_to_pads_o.gpio_27.output_en = port_signals_soc2pad_i.i2c0.sda_en_o;
-          mux_to_pads_o.gpio_27.rx_en = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_27.drv = s_reg2hw.gpio_27_cfg.drv.q;
+          mux_to_pads_o.gpio_27.pde = s_reg2hw.gpio_27_cfg.pde.q;
+          mux_to_pads_o.gpio_27.pue = s_reg2hw.gpio_27_cfg.pue.q;
+          mux_to_pads_o.gpio_27.rxe = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_27.slw = s_reg2hw.gpio_27_cfg.slw.q;
+          mux_to_pads_o.gpio_27.smt = s_reg2hw.gpio_27_cfg.smt.q;
+          mux_to_pads_o.gpio_27.trie = ~port_signals_soc2pad_i.i2c0.sda_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_27_SEL_UART0_RX: begin
           mux_to_pads_o.gpio_27.chip2pad = s_reg2hw.gpio_27_cfg.chip2pad.q;
-          mux_to_pads_o.gpio_27.output_en = s_reg2hw.gpio_27_cfg.output_en.q;
-          mux_to_pads_o.gpio_27.rx_en = 1'b1;
+          mux_to_pads_o.gpio_27.drv = s_reg2hw.gpio_27_cfg.drv.q;
+          mux_to_pads_o.gpio_27.pde = s_reg2hw.gpio_27_cfg.pde.q;
+          mux_to_pads_o.gpio_27.pue = s_reg2hw.gpio_27_cfg.pue.q;
+          mux_to_pads_o.gpio_27.rxe = 1'b1;
+          mux_to_pads_o.gpio_27.slw = s_reg2hw.gpio_27_cfg.slw.q;
+          mux_to_pads_o.gpio_27.smt = s_reg2hw.gpio_27_cfg.smt.q;
+          mux_to_pads_o.gpio_27.trie = s_reg2hw.gpio_27_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_27_SEL_UART0_TX: begin
           mux_to_pads_o.gpio_27.chip2pad = port_signals_soc2pad_i.uart0.tx_o;
-          mux_to_pads_o.gpio_27.output_en = 1'b0;
-          mux_to_pads_o.gpio_27.rx_en = s_reg2hw.gpio_27_cfg.rx_en.q;
+          mux_to_pads_o.gpio_27.drv = s_reg2hw.gpio_27_cfg.drv.q;
+          mux_to_pads_o.gpio_27.pde = s_reg2hw.gpio_27_cfg.pde.q;
+          mux_to_pads_o.gpio_27.pue = s_reg2hw.gpio_27_cfg.pue.q;
+          mux_to_pads_o.gpio_27.rxe = s_reg2hw.gpio_27_cfg.rxe.q;
+          mux_to_pads_o.gpio_27.slw = s_reg2hw.gpio_27_cfg.slw.q;
+          mux_to_pads_o.gpio_27.smt = s_reg2hw.gpio_27_cfg.smt.q;
+          mux_to_pads_o.gpio_27.trie = 1'b0;
        end
        default: begin
          mux_to_pads_o.gpio_27.chip2pad = s_reg2hw.gpio_27_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_27.output_en = s_reg2hw.gpio_27_cfg.output_en.q;
-         mux_to_pads_o.gpio_27.rx_en = s_reg2hw.gpio_27_cfg.rx_en.q;
+         mux_to_pads_o.gpio_27.drv = s_reg2hw.gpio_27_cfg.drv.q;
+         mux_to_pads_o.gpio_27.pde = s_reg2hw.gpio_27_cfg.pde.q;
+         mux_to_pads_o.gpio_27.pue = s_reg2hw.gpio_27_cfg.pue.q;
+         mux_to_pads_o.gpio_27.rxe = s_reg2hw.gpio_27_cfg.rxe.q;
+         mux_to_pads_o.gpio_27.slw = s_reg2hw.gpio_27_cfg.slw.q;
+         mux_to_pads_o.gpio_27.smt = s_reg2hw.gpio_27_cfg.smt.q;
+         mux_to_pads_o.gpio_27.trie = s_reg2hw.gpio_27_cfg.trie.q;
        end
      endcase
    end // always_comb
@@ -2168,73 +4128,143 @@ module chimera_padframe_aon_gpioa_muxer
      unique case (s_reg2hw.gpio_28_mux_sel.q)
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_28_SEL_DEFAULT: begin
          mux_to_pads_o.gpio_28.chip2pad = s_reg2hw.gpio_28_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_28.output_en = s_reg2hw.gpio_28_cfg.output_en.q;
-         mux_to_pads_o.gpio_28.rx_en = s_reg2hw.gpio_28_cfg.rx_en.q;
+         mux_to_pads_o.gpio_28.drv = s_reg2hw.gpio_28_cfg.drv.q;
+         mux_to_pads_o.gpio_28.pde = s_reg2hw.gpio_28_cfg.pde.q;
+         mux_to_pads_o.gpio_28.pue = s_reg2hw.gpio_28_cfg.pue.q;
+         mux_to_pads_o.gpio_28.rxe = s_reg2hw.gpio_28_cfg.rxe.q;
+         mux_to_pads_o.gpio_28.slw = s_reg2hw.gpio_28_cfg.slw.q;
+         mux_to_pads_o.gpio_28.smt = s_reg2hw.gpio_28_cfg.smt.q;
+         mux_to_pads_o.gpio_28.trie = s_reg2hw.gpio_28_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_28_SEL_QSPI0_CSB0: begin
           mux_to_pads_o.gpio_28.chip2pad = port_signals_soc2pad_i.qspi0.csb0_o;
-          mux_to_pads_o.gpio_28.output_en = port_signals_soc2pad_i.qspi0.csb0_en_o;
-          mux_to_pads_o.gpio_28.rx_en = s_reg2hw.gpio_28_cfg.rx_en.q;
+          mux_to_pads_o.gpio_28.drv = s_reg2hw.gpio_28_cfg.drv.q;
+          mux_to_pads_o.gpio_28.pde = s_reg2hw.gpio_28_cfg.pde.q;
+          mux_to_pads_o.gpio_28.pue = s_reg2hw.gpio_28_cfg.pue.q;
+          mux_to_pads_o.gpio_28.rxe = s_reg2hw.gpio_28_cfg.rxe.q;
+          mux_to_pads_o.gpio_28.slw = s_reg2hw.gpio_28_cfg.slw.q;
+          mux_to_pads_o.gpio_28.smt = s_reg2hw.gpio_28_cfg.smt.q;
+          mux_to_pads_o.gpio_28.trie = ~port_signals_soc2pad_i.qspi0.csb0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_28_SEL_QSPI0_CSB1: begin
           mux_to_pads_o.gpio_28.chip2pad = port_signals_soc2pad_i.qspi0.csb1_o;
-          mux_to_pads_o.gpio_28.output_en = port_signals_soc2pad_i.qspi0.csb1_en_o;
-          mux_to_pads_o.gpio_28.rx_en = s_reg2hw.gpio_28_cfg.rx_en.q;
+          mux_to_pads_o.gpio_28.drv = s_reg2hw.gpio_28_cfg.drv.q;
+          mux_to_pads_o.gpio_28.pde = s_reg2hw.gpio_28_cfg.pde.q;
+          mux_to_pads_o.gpio_28.pue = s_reg2hw.gpio_28_cfg.pue.q;
+          mux_to_pads_o.gpio_28.rxe = s_reg2hw.gpio_28_cfg.rxe.q;
+          mux_to_pads_o.gpio_28.slw = s_reg2hw.gpio_28_cfg.slw.q;
+          mux_to_pads_o.gpio_28.smt = s_reg2hw.gpio_28_cfg.smt.q;
+          mux_to_pads_o.gpio_28.trie = ~port_signals_soc2pad_i.qspi0.csb1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_28_SEL_QSPI0_CSB2: begin
           mux_to_pads_o.gpio_28.chip2pad = port_signals_soc2pad_i.qspi0.csb2_o;
-          mux_to_pads_o.gpio_28.output_en = port_signals_soc2pad_i.qspi0.csb2_en_o;
-          mux_to_pads_o.gpio_28.rx_en = s_reg2hw.gpio_28_cfg.rx_en.q;
+          mux_to_pads_o.gpio_28.drv = s_reg2hw.gpio_28_cfg.drv.q;
+          mux_to_pads_o.gpio_28.pde = s_reg2hw.gpio_28_cfg.pde.q;
+          mux_to_pads_o.gpio_28.pue = s_reg2hw.gpio_28_cfg.pue.q;
+          mux_to_pads_o.gpio_28.rxe = s_reg2hw.gpio_28_cfg.rxe.q;
+          mux_to_pads_o.gpio_28.slw = s_reg2hw.gpio_28_cfg.slw.q;
+          mux_to_pads_o.gpio_28.smt = s_reg2hw.gpio_28_cfg.smt.q;
+          mux_to_pads_o.gpio_28.trie = ~port_signals_soc2pad_i.qspi0.csb2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_28_SEL_QSPI0_SCK: begin
           mux_to_pads_o.gpio_28.chip2pad = port_signals_soc2pad_i.qspi0.sck_o;
-          mux_to_pads_o.gpio_28.output_en = port_signals_soc2pad_i.qspi0.sck_en_o;
-          mux_to_pads_o.gpio_28.rx_en = s_reg2hw.gpio_28_cfg.rx_en.q;
+          mux_to_pads_o.gpio_28.drv = s_reg2hw.gpio_28_cfg.drv.q;
+          mux_to_pads_o.gpio_28.pde = s_reg2hw.gpio_28_cfg.pde.q;
+          mux_to_pads_o.gpio_28.pue = s_reg2hw.gpio_28_cfg.pue.q;
+          mux_to_pads_o.gpio_28.rxe = s_reg2hw.gpio_28_cfg.rxe.q;
+          mux_to_pads_o.gpio_28.slw = s_reg2hw.gpio_28_cfg.slw.q;
+          mux_to_pads_o.gpio_28.smt = s_reg2hw.gpio_28_cfg.smt.q;
+          mux_to_pads_o.gpio_28.trie = port_signals_soc2pad_i.qspi0.sck_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_28_SEL_QSPI0_SD0: begin
           mux_to_pads_o.gpio_28.chip2pad = port_signals_soc2pad_i.qspi0.sd0_o;
-          mux_to_pads_o.gpio_28.output_en = port_signals_soc2pad_i.qspi0.sd0_en_o;
-          mux_to_pads_o.gpio_28.rx_en = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_28.drv = s_reg2hw.gpio_28_cfg.drv.q;
+          mux_to_pads_o.gpio_28.pde = s_reg2hw.gpio_28_cfg.pde.q;
+          mux_to_pads_o.gpio_28.pue = s_reg2hw.gpio_28_cfg.pue.q;
+          mux_to_pads_o.gpio_28.rxe = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_28.slw = s_reg2hw.gpio_28_cfg.slw.q;
+          mux_to_pads_o.gpio_28.smt = s_reg2hw.gpio_28_cfg.smt.q;
+          mux_to_pads_o.gpio_28.trie = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_28_SEL_QSPI0_SD1: begin
           mux_to_pads_o.gpio_28.chip2pad = port_signals_soc2pad_i.qspi0.sd1_o;
-          mux_to_pads_o.gpio_28.output_en = port_signals_soc2pad_i.qspi0.sd1_en_o;
-          mux_to_pads_o.gpio_28.rx_en = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_28.drv = s_reg2hw.gpio_28_cfg.drv.q;
+          mux_to_pads_o.gpio_28.pde = s_reg2hw.gpio_28_cfg.pde.q;
+          mux_to_pads_o.gpio_28.pue = s_reg2hw.gpio_28_cfg.pue.q;
+          mux_to_pads_o.gpio_28.rxe = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_28.slw = s_reg2hw.gpio_28_cfg.slw.q;
+          mux_to_pads_o.gpio_28.smt = s_reg2hw.gpio_28_cfg.smt.q;
+          mux_to_pads_o.gpio_28.trie = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_28_SEL_QSPI0_SD2: begin
           mux_to_pads_o.gpio_28.chip2pad = port_signals_soc2pad_i.qspi0.sd2_o;
-          mux_to_pads_o.gpio_28.output_en = port_signals_soc2pad_i.qspi0.sd2_en_o;
-          mux_to_pads_o.gpio_28.rx_en = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_28.drv = s_reg2hw.gpio_28_cfg.drv.q;
+          mux_to_pads_o.gpio_28.pde = s_reg2hw.gpio_28_cfg.pde.q;
+          mux_to_pads_o.gpio_28.pue = s_reg2hw.gpio_28_cfg.pue.q;
+          mux_to_pads_o.gpio_28.rxe = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_28.slw = s_reg2hw.gpio_28_cfg.slw.q;
+          mux_to_pads_o.gpio_28.smt = s_reg2hw.gpio_28_cfg.smt.q;
+          mux_to_pads_o.gpio_28.trie = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_28_SEL_QSPI0_SD3: begin
           mux_to_pads_o.gpio_28.chip2pad = port_signals_soc2pad_i.qspi0.sd3_o;
-          mux_to_pads_o.gpio_28.output_en = port_signals_soc2pad_i.qspi0.sd3_en_o;
-          mux_to_pads_o.gpio_28.rx_en = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_28.drv = s_reg2hw.gpio_28_cfg.drv.q;
+          mux_to_pads_o.gpio_28.pde = s_reg2hw.gpio_28_cfg.pde.q;
+          mux_to_pads_o.gpio_28.pue = s_reg2hw.gpio_28_cfg.pue.q;
+          mux_to_pads_o.gpio_28.rxe = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_28.slw = s_reg2hw.gpio_28_cfg.slw.q;
+          mux_to_pads_o.gpio_28.smt = s_reg2hw.gpio_28_cfg.smt.q;
+          mux_to_pads_o.gpio_28.trie = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_28_SEL_I2C0_SCL: begin
           mux_to_pads_o.gpio_28.chip2pad = port_signals_soc2pad_i.i2c0.scl_o;
-          mux_to_pads_o.gpio_28.output_en = port_signals_soc2pad_i.i2c0.scl_en_o;
-          mux_to_pads_o.gpio_28.rx_en = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_28.drv = s_reg2hw.gpio_28_cfg.drv.q;
+          mux_to_pads_o.gpio_28.pde = s_reg2hw.gpio_28_cfg.pde.q;
+          mux_to_pads_o.gpio_28.pue = s_reg2hw.gpio_28_cfg.pue.q;
+          mux_to_pads_o.gpio_28.rxe = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_28.slw = s_reg2hw.gpio_28_cfg.slw.q;
+          mux_to_pads_o.gpio_28.smt = s_reg2hw.gpio_28_cfg.smt.q;
+          mux_to_pads_o.gpio_28.trie = ~port_signals_soc2pad_i.i2c0.scl_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_28_SEL_I2C0_SDA: begin
           mux_to_pads_o.gpio_28.chip2pad = port_signals_soc2pad_i.i2c0.sda_o;
-          mux_to_pads_o.gpio_28.output_en = port_signals_soc2pad_i.i2c0.sda_en_o;
-          mux_to_pads_o.gpio_28.rx_en = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_28.drv = s_reg2hw.gpio_28_cfg.drv.q;
+          mux_to_pads_o.gpio_28.pde = s_reg2hw.gpio_28_cfg.pde.q;
+          mux_to_pads_o.gpio_28.pue = s_reg2hw.gpio_28_cfg.pue.q;
+          mux_to_pads_o.gpio_28.rxe = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_28.slw = s_reg2hw.gpio_28_cfg.slw.q;
+          mux_to_pads_o.gpio_28.smt = s_reg2hw.gpio_28_cfg.smt.q;
+          mux_to_pads_o.gpio_28.trie = ~port_signals_soc2pad_i.i2c0.sda_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_28_SEL_UART0_RX: begin
           mux_to_pads_o.gpio_28.chip2pad = s_reg2hw.gpio_28_cfg.chip2pad.q;
-          mux_to_pads_o.gpio_28.output_en = s_reg2hw.gpio_28_cfg.output_en.q;
-          mux_to_pads_o.gpio_28.rx_en = 1'b1;
+          mux_to_pads_o.gpio_28.drv = s_reg2hw.gpio_28_cfg.drv.q;
+          mux_to_pads_o.gpio_28.pde = s_reg2hw.gpio_28_cfg.pde.q;
+          mux_to_pads_o.gpio_28.pue = s_reg2hw.gpio_28_cfg.pue.q;
+          mux_to_pads_o.gpio_28.rxe = 1'b1;
+          mux_to_pads_o.gpio_28.slw = s_reg2hw.gpio_28_cfg.slw.q;
+          mux_to_pads_o.gpio_28.smt = s_reg2hw.gpio_28_cfg.smt.q;
+          mux_to_pads_o.gpio_28.trie = s_reg2hw.gpio_28_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_28_SEL_UART0_TX: begin
           mux_to_pads_o.gpio_28.chip2pad = port_signals_soc2pad_i.uart0.tx_o;
-          mux_to_pads_o.gpio_28.output_en = 1'b0;
-          mux_to_pads_o.gpio_28.rx_en = s_reg2hw.gpio_28_cfg.rx_en.q;
+          mux_to_pads_o.gpio_28.drv = s_reg2hw.gpio_28_cfg.drv.q;
+          mux_to_pads_o.gpio_28.pde = s_reg2hw.gpio_28_cfg.pde.q;
+          mux_to_pads_o.gpio_28.pue = s_reg2hw.gpio_28_cfg.pue.q;
+          mux_to_pads_o.gpio_28.rxe = s_reg2hw.gpio_28_cfg.rxe.q;
+          mux_to_pads_o.gpio_28.slw = s_reg2hw.gpio_28_cfg.slw.q;
+          mux_to_pads_o.gpio_28.smt = s_reg2hw.gpio_28_cfg.smt.q;
+          mux_to_pads_o.gpio_28.trie = 1'b0;
        end
        default: begin
          mux_to_pads_o.gpio_28.chip2pad = s_reg2hw.gpio_28_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_28.output_en = s_reg2hw.gpio_28_cfg.output_en.q;
-         mux_to_pads_o.gpio_28.rx_en = s_reg2hw.gpio_28_cfg.rx_en.q;
+         mux_to_pads_o.gpio_28.drv = s_reg2hw.gpio_28_cfg.drv.q;
+         mux_to_pads_o.gpio_28.pde = s_reg2hw.gpio_28_cfg.pde.q;
+         mux_to_pads_o.gpio_28.pue = s_reg2hw.gpio_28_cfg.pue.q;
+         mux_to_pads_o.gpio_28.rxe = s_reg2hw.gpio_28_cfg.rxe.q;
+         mux_to_pads_o.gpio_28.slw = s_reg2hw.gpio_28_cfg.slw.q;
+         mux_to_pads_o.gpio_28.smt = s_reg2hw.gpio_28_cfg.smt.q;
+         mux_to_pads_o.gpio_28.trie = s_reg2hw.gpio_28_cfg.trie.q;
        end
      endcase
    end // always_comb
@@ -2244,73 +4274,143 @@ module chimera_padframe_aon_gpioa_muxer
      unique case (s_reg2hw.gpio_29_mux_sel.q)
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_29_SEL_DEFAULT: begin
          mux_to_pads_o.gpio_29.chip2pad = s_reg2hw.gpio_29_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_29.output_en = s_reg2hw.gpio_29_cfg.output_en.q;
-         mux_to_pads_o.gpio_29.rx_en = s_reg2hw.gpio_29_cfg.rx_en.q;
+         mux_to_pads_o.gpio_29.drv = s_reg2hw.gpio_29_cfg.drv.q;
+         mux_to_pads_o.gpio_29.pde = s_reg2hw.gpio_29_cfg.pde.q;
+         mux_to_pads_o.gpio_29.pue = s_reg2hw.gpio_29_cfg.pue.q;
+         mux_to_pads_o.gpio_29.rxe = s_reg2hw.gpio_29_cfg.rxe.q;
+         mux_to_pads_o.gpio_29.slw = s_reg2hw.gpio_29_cfg.slw.q;
+         mux_to_pads_o.gpio_29.smt = s_reg2hw.gpio_29_cfg.smt.q;
+         mux_to_pads_o.gpio_29.trie = s_reg2hw.gpio_29_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_29_SEL_QSPI0_CSB0: begin
           mux_to_pads_o.gpio_29.chip2pad = port_signals_soc2pad_i.qspi0.csb0_o;
-          mux_to_pads_o.gpio_29.output_en = port_signals_soc2pad_i.qspi0.csb0_en_o;
-          mux_to_pads_o.gpio_29.rx_en = s_reg2hw.gpio_29_cfg.rx_en.q;
+          mux_to_pads_o.gpio_29.drv = s_reg2hw.gpio_29_cfg.drv.q;
+          mux_to_pads_o.gpio_29.pde = s_reg2hw.gpio_29_cfg.pde.q;
+          mux_to_pads_o.gpio_29.pue = s_reg2hw.gpio_29_cfg.pue.q;
+          mux_to_pads_o.gpio_29.rxe = s_reg2hw.gpio_29_cfg.rxe.q;
+          mux_to_pads_o.gpio_29.slw = s_reg2hw.gpio_29_cfg.slw.q;
+          mux_to_pads_o.gpio_29.smt = s_reg2hw.gpio_29_cfg.smt.q;
+          mux_to_pads_o.gpio_29.trie = ~port_signals_soc2pad_i.qspi0.csb0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_29_SEL_QSPI0_CSB1: begin
           mux_to_pads_o.gpio_29.chip2pad = port_signals_soc2pad_i.qspi0.csb1_o;
-          mux_to_pads_o.gpio_29.output_en = port_signals_soc2pad_i.qspi0.csb1_en_o;
-          mux_to_pads_o.gpio_29.rx_en = s_reg2hw.gpio_29_cfg.rx_en.q;
+          mux_to_pads_o.gpio_29.drv = s_reg2hw.gpio_29_cfg.drv.q;
+          mux_to_pads_o.gpio_29.pde = s_reg2hw.gpio_29_cfg.pde.q;
+          mux_to_pads_o.gpio_29.pue = s_reg2hw.gpio_29_cfg.pue.q;
+          mux_to_pads_o.gpio_29.rxe = s_reg2hw.gpio_29_cfg.rxe.q;
+          mux_to_pads_o.gpio_29.slw = s_reg2hw.gpio_29_cfg.slw.q;
+          mux_to_pads_o.gpio_29.smt = s_reg2hw.gpio_29_cfg.smt.q;
+          mux_to_pads_o.gpio_29.trie = ~port_signals_soc2pad_i.qspi0.csb1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_29_SEL_QSPI0_CSB2: begin
           mux_to_pads_o.gpio_29.chip2pad = port_signals_soc2pad_i.qspi0.csb2_o;
-          mux_to_pads_o.gpio_29.output_en = port_signals_soc2pad_i.qspi0.csb2_en_o;
-          mux_to_pads_o.gpio_29.rx_en = s_reg2hw.gpio_29_cfg.rx_en.q;
+          mux_to_pads_o.gpio_29.drv = s_reg2hw.gpio_29_cfg.drv.q;
+          mux_to_pads_o.gpio_29.pde = s_reg2hw.gpio_29_cfg.pde.q;
+          mux_to_pads_o.gpio_29.pue = s_reg2hw.gpio_29_cfg.pue.q;
+          mux_to_pads_o.gpio_29.rxe = s_reg2hw.gpio_29_cfg.rxe.q;
+          mux_to_pads_o.gpio_29.slw = s_reg2hw.gpio_29_cfg.slw.q;
+          mux_to_pads_o.gpio_29.smt = s_reg2hw.gpio_29_cfg.smt.q;
+          mux_to_pads_o.gpio_29.trie = ~port_signals_soc2pad_i.qspi0.csb2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_29_SEL_QSPI0_SCK: begin
           mux_to_pads_o.gpio_29.chip2pad = port_signals_soc2pad_i.qspi0.sck_o;
-          mux_to_pads_o.gpio_29.output_en = port_signals_soc2pad_i.qspi0.sck_en_o;
-          mux_to_pads_o.gpio_29.rx_en = s_reg2hw.gpio_29_cfg.rx_en.q;
+          mux_to_pads_o.gpio_29.drv = s_reg2hw.gpio_29_cfg.drv.q;
+          mux_to_pads_o.gpio_29.pde = s_reg2hw.gpio_29_cfg.pde.q;
+          mux_to_pads_o.gpio_29.pue = s_reg2hw.gpio_29_cfg.pue.q;
+          mux_to_pads_o.gpio_29.rxe = s_reg2hw.gpio_29_cfg.rxe.q;
+          mux_to_pads_o.gpio_29.slw = s_reg2hw.gpio_29_cfg.slw.q;
+          mux_to_pads_o.gpio_29.smt = s_reg2hw.gpio_29_cfg.smt.q;
+          mux_to_pads_o.gpio_29.trie = port_signals_soc2pad_i.qspi0.sck_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_29_SEL_QSPI0_SD0: begin
           mux_to_pads_o.gpio_29.chip2pad = port_signals_soc2pad_i.qspi0.sd0_o;
-          mux_to_pads_o.gpio_29.output_en = port_signals_soc2pad_i.qspi0.sd0_en_o;
-          mux_to_pads_o.gpio_29.rx_en = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_29.drv = s_reg2hw.gpio_29_cfg.drv.q;
+          mux_to_pads_o.gpio_29.pde = s_reg2hw.gpio_29_cfg.pde.q;
+          mux_to_pads_o.gpio_29.pue = s_reg2hw.gpio_29_cfg.pue.q;
+          mux_to_pads_o.gpio_29.rxe = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_29.slw = s_reg2hw.gpio_29_cfg.slw.q;
+          mux_to_pads_o.gpio_29.smt = s_reg2hw.gpio_29_cfg.smt.q;
+          mux_to_pads_o.gpio_29.trie = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_29_SEL_QSPI0_SD1: begin
           mux_to_pads_o.gpio_29.chip2pad = port_signals_soc2pad_i.qspi0.sd1_o;
-          mux_to_pads_o.gpio_29.output_en = port_signals_soc2pad_i.qspi0.sd1_en_o;
-          mux_to_pads_o.gpio_29.rx_en = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_29.drv = s_reg2hw.gpio_29_cfg.drv.q;
+          mux_to_pads_o.gpio_29.pde = s_reg2hw.gpio_29_cfg.pde.q;
+          mux_to_pads_o.gpio_29.pue = s_reg2hw.gpio_29_cfg.pue.q;
+          mux_to_pads_o.gpio_29.rxe = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_29.slw = s_reg2hw.gpio_29_cfg.slw.q;
+          mux_to_pads_o.gpio_29.smt = s_reg2hw.gpio_29_cfg.smt.q;
+          mux_to_pads_o.gpio_29.trie = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_29_SEL_QSPI0_SD2: begin
           mux_to_pads_o.gpio_29.chip2pad = port_signals_soc2pad_i.qspi0.sd2_o;
-          mux_to_pads_o.gpio_29.output_en = port_signals_soc2pad_i.qspi0.sd2_en_o;
-          mux_to_pads_o.gpio_29.rx_en = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_29.drv = s_reg2hw.gpio_29_cfg.drv.q;
+          mux_to_pads_o.gpio_29.pde = s_reg2hw.gpio_29_cfg.pde.q;
+          mux_to_pads_o.gpio_29.pue = s_reg2hw.gpio_29_cfg.pue.q;
+          mux_to_pads_o.gpio_29.rxe = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_29.slw = s_reg2hw.gpio_29_cfg.slw.q;
+          mux_to_pads_o.gpio_29.smt = s_reg2hw.gpio_29_cfg.smt.q;
+          mux_to_pads_o.gpio_29.trie = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_29_SEL_QSPI0_SD3: begin
           mux_to_pads_o.gpio_29.chip2pad = port_signals_soc2pad_i.qspi0.sd3_o;
-          mux_to_pads_o.gpio_29.output_en = port_signals_soc2pad_i.qspi0.sd3_en_o;
-          mux_to_pads_o.gpio_29.rx_en = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_29.drv = s_reg2hw.gpio_29_cfg.drv.q;
+          mux_to_pads_o.gpio_29.pde = s_reg2hw.gpio_29_cfg.pde.q;
+          mux_to_pads_o.gpio_29.pue = s_reg2hw.gpio_29_cfg.pue.q;
+          mux_to_pads_o.gpio_29.rxe = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_29.slw = s_reg2hw.gpio_29_cfg.slw.q;
+          mux_to_pads_o.gpio_29.smt = s_reg2hw.gpio_29_cfg.smt.q;
+          mux_to_pads_o.gpio_29.trie = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_29_SEL_I2C0_SCL: begin
           mux_to_pads_o.gpio_29.chip2pad = port_signals_soc2pad_i.i2c0.scl_o;
-          mux_to_pads_o.gpio_29.output_en = port_signals_soc2pad_i.i2c0.scl_en_o;
-          mux_to_pads_o.gpio_29.rx_en = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_29.drv = s_reg2hw.gpio_29_cfg.drv.q;
+          mux_to_pads_o.gpio_29.pde = s_reg2hw.gpio_29_cfg.pde.q;
+          mux_to_pads_o.gpio_29.pue = s_reg2hw.gpio_29_cfg.pue.q;
+          mux_to_pads_o.gpio_29.rxe = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_29.slw = s_reg2hw.gpio_29_cfg.slw.q;
+          mux_to_pads_o.gpio_29.smt = s_reg2hw.gpio_29_cfg.smt.q;
+          mux_to_pads_o.gpio_29.trie = ~port_signals_soc2pad_i.i2c0.scl_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_29_SEL_I2C0_SDA: begin
           mux_to_pads_o.gpio_29.chip2pad = port_signals_soc2pad_i.i2c0.sda_o;
-          mux_to_pads_o.gpio_29.output_en = port_signals_soc2pad_i.i2c0.sda_en_o;
-          mux_to_pads_o.gpio_29.rx_en = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_29.drv = s_reg2hw.gpio_29_cfg.drv.q;
+          mux_to_pads_o.gpio_29.pde = s_reg2hw.gpio_29_cfg.pde.q;
+          mux_to_pads_o.gpio_29.pue = s_reg2hw.gpio_29_cfg.pue.q;
+          mux_to_pads_o.gpio_29.rxe = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_29.slw = s_reg2hw.gpio_29_cfg.slw.q;
+          mux_to_pads_o.gpio_29.smt = s_reg2hw.gpio_29_cfg.smt.q;
+          mux_to_pads_o.gpio_29.trie = ~port_signals_soc2pad_i.i2c0.sda_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_29_SEL_UART0_RX: begin
           mux_to_pads_o.gpio_29.chip2pad = s_reg2hw.gpio_29_cfg.chip2pad.q;
-          mux_to_pads_o.gpio_29.output_en = s_reg2hw.gpio_29_cfg.output_en.q;
-          mux_to_pads_o.gpio_29.rx_en = 1'b1;
+          mux_to_pads_o.gpio_29.drv = s_reg2hw.gpio_29_cfg.drv.q;
+          mux_to_pads_o.gpio_29.pde = s_reg2hw.gpio_29_cfg.pde.q;
+          mux_to_pads_o.gpio_29.pue = s_reg2hw.gpio_29_cfg.pue.q;
+          mux_to_pads_o.gpio_29.rxe = 1'b1;
+          mux_to_pads_o.gpio_29.slw = s_reg2hw.gpio_29_cfg.slw.q;
+          mux_to_pads_o.gpio_29.smt = s_reg2hw.gpio_29_cfg.smt.q;
+          mux_to_pads_o.gpio_29.trie = s_reg2hw.gpio_29_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_29_SEL_UART0_TX: begin
           mux_to_pads_o.gpio_29.chip2pad = port_signals_soc2pad_i.uart0.tx_o;
-          mux_to_pads_o.gpio_29.output_en = 1'b0;
-          mux_to_pads_o.gpio_29.rx_en = s_reg2hw.gpio_29_cfg.rx_en.q;
+          mux_to_pads_o.gpio_29.drv = s_reg2hw.gpio_29_cfg.drv.q;
+          mux_to_pads_o.gpio_29.pde = s_reg2hw.gpio_29_cfg.pde.q;
+          mux_to_pads_o.gpio_29.pue = s_reg2hw.gpio_29_cfg.pue.q;
+          mux_to_pads_o.gpio_29.rxe = s_reg2hw.gpio_29_cfg.rxe.q;
+          mux_to_pads_o.gpio_29.slw = s_reg2hw.gpio_29_cfg.slw.q;
+          mux_to_pads_o.gpio_29.smt = s_reg2hw.gpio_29_cfg.smt.q;
+          mux_to_pads_o.gpio_29.trie = 1'b0;
        end
        default: begin
          mux_to_pads_o.gpio_29.chip2pad = s_reg2hw.gpio_29_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_29.output_en = s_reg2hw.gpio_29_cfg.output_en.q;
-         mux_to_pads_o.gpio_29.rx_en = s_reg2hw.gpio_29_cfg.rx_en.q;
+         mux_to_pads_o.gpio_29.drv = s_reg2hw.gpio_29_cfg.drv.q;
+         mux_to_pads_o.gpio_29.pde = s_reg2hw.gpio_29_cfg.pde.q;
+         mux_to_pads_o.gpio_29.pue = s_reg2hw.gpio_29_cfg.pue.q;
+         mux_to_pads_o.gpio_29.rxe = s_reg2hw.gpio_29_cfg.rxe.q;
+         mux_to_pads_o.gpio_29.slw = s_reg2hw.gpio_29_cfg.slw.q;
+         mux_to_pads_o.gpio_29.smt = s_reg2hw.gpio_29_cfg.smt.q;
+         mux_to_pads_o.gpio_29.trie = s_reg2hw.gpio_29_cfg.trie.q;
        end
      endcase
    end // always_comb
@@ -2320,73 +4420,143 @@ module chimera_padframe_aon_gpioa_muxer
      unique case (s_reg2hw.gpio_30_mux_sel.q)
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_30_SEL_DEFAULT: begin
          mux_to_pads_o.gpio_30.chip2pad = s_reg2hw.gpio_30_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_30.output_en = s_reg2hw.gpio_30_cfg.output_en.q;
-         mux_to_pads_o.gpio_30.rx_en = s_reg2hw.gpio_30_cfg.rx_en.q;
+         mux_to_pads_o.gpio_30.drv = s_reg2hw.gpio_30_cfg.drv.q;
+         mux_to_pads_o.gpio_30.pde = s_reg2hw.gpio_30_cfg.pde.q;
+         mux_to_pads_o.gpio_30.pue = s_reg2hw.gpio_30_cfg.pue.q;
+         mux_to_pads_o.gpio_30.rxe = s_reg2hw.gpio_30_cfg.rxe.q;
+         mux_to_pads_o.gpio_30.slw = s_reg2hw.gpio_30_cfg.slw.q;
+         mux_to_pads_o.gpio_30.smt = s_reg2hw.gpio_30_cfg.smt.q;
+         mux_to_pads_o.gpio_30.trie = s_reg2hw.gpio_30_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_30_SEL_QSPI0_CSB0: begin
           mux_to_pads_o.gpio_30.chip2pad = port_signals_soc2pad_i.qspi0.csb0_o;
-          mux_to_pads_o.gpio_30.output_en = port_signals_soc2pad_i.qspi0.csb0_en_o;
-          mux_to_pads_o.gpio_30.rx_en = s_reg2hw.gpio_30_cfg.rx_en.q;
+          mux_to_pads_o.gpio_30.drv = s_reg2hw.gpio_30_cfg.drv.q;
+          mux_to_pads_o.gpio_30.pde = s_reg2hw.gpio_30_cfg.pde.q;
+          mux_to_pads_o.gpio_30.pue = s_reg2hw.gpio_30_cfg.pue.q;
+          mux_to_pads_o.gpio_30.rxe = s_reg2hw.gpio_30_cfg.rxe.q;
+          mux_to_pads_o.gpio_30.slw = s_reg2hw.gpio_30_cfg.slw.q;
+          mux_to_pads_o.gpio_30.smt = s_reg2hw.gpio_30_cfg.smt.q;
+          mux_to_pads_o.gpio_30.trie = ~port_signals_soc2pad_i.qspi0.csb0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_30_SEL_QSPI0_CSB1: begin
           mux_to_pads_o.gpio_30.chip2pad = port_signals_soc2pad_i.qspi0.csb1_o;
-          mux_to_pads_o.gpio_30.output_en = port_signals_soc2pad_i.qspi0.csb1_en_o;
-          mux_to_pads_o.gpio_30.rx_en = s_reg2hw.gpio_30_cfg.rx_en.q;
+          mux_to_pads_o.gpio_30.drv = s_reg2hw.gpio_30_cfg.drv.q;
+          mux_to_pads_o.gpio_30.pde = s_reg2hw.gpio_30_cfg.pde.q;
+          mux_to_pads_o.gpio_30.pue = s_reg2hw.gpio_30_cfg.pue.q;
+          mux_to_pads_o.gpio_30.rxe = s_reg2hw.gpio_30_cfg.rxe.q;
+          mux_to_pads_o.gpio_30.slw = s_reg2hw.gpio_30_cfg.slw.q;
+          mux_to_pads_o.gpio_30.smt = s_reg2hw.gpio_30_cfg.smt.q;
+          mux_to_pads_o.gpio_30.trie = ~port_signals_soc2pad_i.qspi0.csb1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_30_SEL_QSPI0_CSB2: begin
           mux_to_pads_o.gpio_30.chip2pad = port_signals_soc2pad_i.qspi0.csb2_o;
-          mux_to_pads_o.gpio_30.output_en = port_signals_soc2pad_i.qspi0.csb2_en_o;
-          mux_to_pads_o.gpio_30.rx_en = s_reg2hw.gpio_30_cfg.rx_en.q;
+          mux_to_pads_o.gpio_30.drv = s_reg2hw.gpio_30_cfg.drv.q;
+          mux_to_pads_o.gpio_30.pde = s_reg2hw.gpio_30_cfg.pde.q;
+          mux_to_pads_o.gpio_30.pue = s_reg2hw.gpio_30_cfg.pue.q;
+          mux_to_pads_o.gpio_30.rxe = s_reg2hw.gpio_30_cfg.rxe.q;
+          mux_to_pads_o.gpio_30.slw = s_reg2hw.gpio_30_cfg.slw.q;
+          mux_to_pads_o.gpio_30.smt = s_reg2hw.gpio_30_cfg.smt.q;
+          mux_to_pads_o.gpio_30.trie = ~port_signals_soc2pad_i.qspi0.csb2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_30_SEL_QSPI0_SCK: begin
           mux_to_pads_o.gpio_30.chip2pad = port_signals_soc2pad_i.qspi0.sck_o;
-          mux_to_pads_o.gpio_30.output_en = port_signals_soc2pad_i.qspi0.sck_en_o;
-          mux_to_pads_o.gpio_30.rx_en = s_reg2hw.gpio_30_cfg.rx_en.q;
+          mux_to_pads_o.gpio_30.drv = s_reg2hw.gpio_30_cfg.drv.q;
+          mux_to_pads_o.gpio_30.pde = s_reg2hw.gpio_30_cfg.pde.q;
+          mux_to_pads_o.gpio_30.pue = s_reg2hw.gpio_30_cfg.pue.q;
+          mux_to_pads_o.gpio_30.rxe = s_reg2hw.gpio_30_cfg.rxe.q;
+          mux_to_pads_o.gpio_30.slw = s_reg2hw.gpio_30_cfg.slw.q;
+          mux_to_pads_o.gpio_30.smt = s_reg2hw.gpio_30_cfg.smt.q;
+          mux_to_pads_o.gpio_30.trie = port_signals_soc2pad_i.qspi0.sck_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_30_SEL_QSPI0_SD0: begin
           mux_to_pads_o.gpio_30.chip2pad = port_signals_soc2pad_i.qspi0.sd0_o;
-          mux_to_pads_o.gpio_30.output_en = port_signals_soc2pad_i.qspi0.sd0_en_o;
-          mux_to_pads_o.gpio_30.rx_en = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_30.drv = s_reg2hw.gpio_30_cfg.drv.q;
+          mux_to_pads_o.gpio_30.pde = s_reg2hw.gpio_30_cfg.pde.q;
+          mux_to_pads_o.gpio_30.pue = s_reg2hw.gpio_30_cfg.pue.q;
+          mux_to_pads_o.gpio_30.rxe = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_30.slw = s_reg2hw.gpio_30_cfg.slw.q;
+          mux_to_pads_o.gpio_30.smt = s_reg2hw.gpio_30_cfg.smt.q;
+          mux_to_pads_o.gpio_30.trie = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_30_SEL_QSPI0_SD1: begin
           mux_to_pads_o.gpio_30.chip2pad = port_signals_soc2pad_i.qspi0.sd1_o;
-          mux_to_pads_o.gpio_30.output_en = port_signals_soc2pad_i.qspi0.sd1_en_o;
-          mux_to_pads_o.gpio_30.rx_en = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_30.drv = s_reg2hw.gpio_30_cfg.drv.q;
+          mux_to_pads_o.gpio_30.pde = s_reg2hw.gpio_30_cfg.pde.q;
+          mux_to_pads_o.gpio_30.pue = s_reg2hw.gpio_30_cfg.pue.q;
+          mux_to_pads_o.gpio_30.rxe = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_30.slw = s_reg2hw.gpio_30_cfg.slw.q;
+          mux_to_pads_o.gpio_30.smt = s_reg2hw.gpio_30_cfg.smt.q;
+          mux_to_pads_o.gpio_30.trie = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_30_SEL_QSPI0_SD2: begin
           mux_to_pads_o.gpio_30.chip2pad = port_signals_soc2pad_i.qspi0.sd2_o;
-          mux_to_pads_o.gpio_30.output_en = port_signals_soc2pad_i.qspi0.sd2_en_o;
-          mux_to_pads_o.gpio_30.rx_en = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_30.drv = s_reg2hw.gpio_30_cfg.drv.q;
+          mux_to_pads_o.gpio_30.pde = s_reg2hw.gpio_30_cfg.pde.q;
+          mux_to_pads_o.gpio_30.pue = s_reg2hw.gpio_30_cfg.pue.q;
+          mux_to_pads_o.gpio_30.rxe = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_30.slw = s_reg2hw.gpio_30_cfg.slw.q;
+          mux_to_pads_o.gpio_30.smt = s_reg2hw.gpio_30_cfg.smt.q;
+          mux_to_pads_o.gpio_30.trie = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_30_SEL_QSPI0_SD3: begin
           mux_to_pads_o.gpio_30.chip2pad = port_signals_soc2pad_i.qspi0.sd3_o;
-          mux_to_pads_o.gpio_30.output_en = port_signals_soc2pad_i.qspi0.sd3_en_o;
-          mux_to_pads_o.gpio_30.rx_en = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_30.drv = s_reg2hw.gpio_30_cfg.drv.q;
+          mux_to_pads_o.gpio_30.pde = s_reg2hw.gpio_30_cfg.pde.q;
+          mux_to_pads_o.gpio_30.pue = s_reg2hw.gpio_30_cfg.pue.q;
+          mux_to_pads_o.gpio_30.rxe = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_30.slw = s_reg2hw.gpio_30_cfg.slw.q;
+          mux_to_pads_o.gpio_30.smt = s_reg2hw.gpio_30_cfg.smt.q;
+          mux_to_pads_o.gpio_30.trie = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_30_SEL_I2C0_SCL: begin
           mux_to_pads_o.gpio_30.chip2pad = port_signals_soc2pad_i.i2c0.scl_o;
-          mux_to_pads_o.gpio_30.output_en = port_signals_soc2pad_i.i2c0.scl_en_o;
-          mux_to_pads_o.gpio_30.rx_en = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_30.drv = s_reg2hw.gpio_30_cfg.drv.q;
+          mux_to_pads_o.gpio_30.pde = s_reg2hw.gpio_30_cfg.pde.q;
+          mux_to_pads_o.gpio_30.pue = s_reg2hw.gpio_30_cfg.pue.q;
+          mux_to_pads_o.gpio_30.rxe = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_30.slw = s_reg2hw.gpio_30_cfg.slw.q;
+          mux_to_pads_o.gpio_30.smt = s_reg2hw.gpio_30_cfg.smt.q;
+          mux_to_pads_o.gpio_30.trie = ~port_signals_soc2pad_i.i2c0.scl_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_30_SEL_I2C0_SDA: begin
           mux_to_pads_o.gpio_30.chip2pad = port_signals_soc2pad_i.i2c0.sda_o;
-          mux_to_pads_o.gpio_30.output_en = port_signals_soc2pad_i.i2c0.sda_en_o;
-          mux_to_pads_o.gpio_30.rx_en = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_30.drv = s_reg2hw.gpio_30_cfg.drv.q;
+          mux_to_pads_o.gpio_30.pde = s_reg2hw.gpio_30_cfg.pde.q;
+          mux_to_pads_o.gpio_30.pue = s_reg2hw.gpio_30_cfg.pue.q;
+          mux_to_pads_o.gpio_30.rxe = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_30.slw = s_reg2hw.gpio_30_cfg.slw.q;
+          mux_to_pads_o.gpio_30.smt = s_reg2hw.gpio_30_cfg.smt.q;
+          mux_to_pads_o.gpio_30.trie = ~port_signals_soc2pad_i.i2c0.sda_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_30_SEL_UART0_RX: begin
           mux_to_pads_o.gpio_30.chip2pad = s_reg2hw.gpio_30_cfg.chip2pad.q;
-          mux_to_pads_o.gpio_30.output_en = s_reg2hw.gpio_30_cfg.output_en.q;
-          mux_to_pads_o.gpio_30.rx_en = 1'b1;
+          mux_to_pads_o.gpio_30.drv = s_reg2hw.gpio_30_cfg.drv.q;
+          mux_to_pads_o.gpio_30.pde = s_reg2hw.gpio_30_cfg.pde.q;
+          mux_to_pads_o.gpio_30.pue = s_reg2hw.gpio_30_cfg.pue.q;
+          mux_to_pads_o.gpio_30.rxe = 1'b1;
+          mux_to_pads_o.gpio_30.slw = s_reg2hw.gpio_30_cfg.slw.q;
+          mux_to_pads_o.gpio_30.smt = s_reg2hw.gpio_30_cfg.smt.q;
+          mux_to_pads_o.gpio_30.trie = s_reg2hw.gpio_30_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_30_SEL_UART0_TX: begin
           mux_to_pads_o.gpio_30.chip2pad = port_signals_soc2pad_i.uart0.tx_o;
-          mux_to_pads_o.gpio_30.output_en = 1'b0;
-          mux_to_pads_o.gpio_30.rx_en = s_reg2hw.gpio_30_cfg.rx_en.q;
+          mux_to_pads_o.gpio_30.drv = s_reg2hw.gpio_30_cfg.drv.q;
+          mux_to_pads_o.gpio_30.pde = s_reg2hw.gpio_30_cfg.pde.q;
+          mux_to_pads_o.gpio_30.pue = s_reg2hw.gpio_30_cfg.pue.q;
+          mux_to_pads_o.gpio_30.rxe = s_reg2hw.gpio_30_cfg.rxe.q;
+          mux_to_pads_o.gpio_30.slw = s_reg2hw.gpio_30_cfg.slw.q;
+          mux_to_pads_o.gpio_30.smt = s_reg2hw.gpio_30_cfg.smt.q;
+          mux_to_pads_o.gpio_30.trie = 1'b0;
        end
        default: begin
          mux_to_pads_o.gpio_30.chip2pad = s_reg2hw.gpio_30_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_30.output_en = s_reg2hw.gpio_30_cfg.output_en.q;
-         mux_to_pads_o.gpio_30.rx_en = s_reg2hw.gpio_30_cfg.rx_en.q;
+         mux_to_pads_o.gpio_30.drv = s_reg2hw.gpio_30_cfg.drv.q;
+         mux_to_pads_o.gpio_30.pde = s_reg2hw.gpio_30_cfg.pde.q;
+         mux_to_pads_o.gpio_30.pue = s_reg2hw.gpio_30_cfg.pue.q;
+         mux_to_pads_o.gpio_30.rxe = s_reg2hw.gpio_30_cfg.rxe.q;
+         mux_to_pads_o.gpio_30.slw = s_reg2hw.gpio_30_cfg.slw.q;
+         mux_to_pads_o.gpio_30.smt = s_reg2hw.gpio_30_cfg.smt.q;
+         mux_to_pads_o.gpio_30.trie = s_reg2hw.gpio_30_cfg.trie.q;
        end
      endcase
    end // always_comb
@@ -2396,233 +4566,463 @@ module chimera_padframe_aon_gpioa_muxer
      unique case (s_reg2hw.gpio_31_mux_sel.q)
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_DEFAULT: begin
          mux_to_pads_o.gpio_31.chip2pad = s_reg2hw.gpio_31_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_31.output_en = s_reg2hw.gpio_31_cfg.output_en.q;
-         mux_to_pads_o.gpio_31.rx_en = s_reg2hw.gpio_31_cfg.rx_en.q;
+         mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
+         mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
+         mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
+         mux_to_pads_o.gpio_31.rxe = s_reg2hw.gpio_31_cfg.rxe.q;
+         mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
+         mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
+         mux_to_pads_o.gpio_31.trie = s_reg2hw.gpio_31_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_QSPI0_CSB0: begin
           mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.qspi0.csb0_o;
-          mux_to_pads_o.gpio_31.output_en = port_signals_soc2pad_i.qspi0.csb0_en_o;
-          mux_to_pads_o.gpio_31.rx_en = s_reg2hw.gpio_31_cfg.rx_en.q;
+          mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
+          mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
+          mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
+          mux_to_pads_o.gpio_31.rxe = s_reg2hw.gpio_31_cfg.rxe.q;
+          mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
+          mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.qspi0.csb0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_QSPI0_CSB1: begin
           mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.qspi0.csb1_o;
-          mux_to_pads_o.gpio_31.output_en = port_signals_soc2pad_i.qspi0.csb1_en_o;
-          mux_to_pads_o.gpio_31.rx_en = s_reg2hw.gpio_31_cfg.rx_en.q;
+          mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
+          mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
+          mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
+          mux_to_pads_o.gpio_31.rxe = s_reg2hw.gpio_31_cfg.rxe.q;
+          mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
+          mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.qspi0.csb1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_QSPI0_CSB2: begin
           mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.qspi0.csb2_o;
-          mux_to_pads_o.gpio_31.output_en = port_signals_soc2pad_i.qspi0.csb2_en_o;
-          mux_to_pads_o.gpio_31.rx_en = s_reg2hw.gpio_31_cfg.rx_en.q;
+          mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
+          mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
+          mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
+          mux_to_pads_o.gpio_31.rxe = s_reg2hw.gpio_31_cfg.rxe.q;
+          mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
+          mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.qspi0.csb2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_QSPI0_SCK: begin
           mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.qspi0.sck_o;
-          mux_to_pads_o.gpio_31.output_en = port_signals_soc2pad_i.qspi0.sck_en_o;
-          mux_to_pads_o.gpio_31.rx_en = s_reg2hw.gpio_31_cfg.rx_en.q;
+          mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
+          mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
+          mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
+          mux_to_pads_o.gpio_31.rxe = s_reg2hw.gpio_31_cfg.rxe.q;
+          mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
+          mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
+          mux_to_pads_o.gpio_31.trie = port_signals_soc2pad_i.qspi0.sck_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_QSPI0_SD0: begin
           mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.qspi0.sd0_o;
-          mux_to_pads_o.gpio_31.output_en = port_signals_soc2pad_i.qspi0.sd0_en_o;
-          mux_to_pads_o.gpio_31.rx_en = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
+          mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
+          mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
+          mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
+          mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.qspi0.sd0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_QSPI0_SD1: begin
           mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.qspi0.sd1_o;
-          mux_to_pads_o.gpio_31.output_en = port_signals_soc2pad_i.qspi0.sd1_en_o;
-          mux_to_pads_o.gpio_31.rx_en = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
+          mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
+          mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
+          mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
+          mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.qspi0.sd1_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_QSPI0_SD2: begin
           mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.qspi0.sd2_o;
-          mux_to_pads_o.gpio_31.output_en = port_signals_soc2pad_i.qspi0.sd2_en_o;
-          mux_to_pads_o.gpio_31.rx_en = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
+          mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
+          mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
+          mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
+          mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.qspi0.sd2_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_QSPI0_SD3: begin
           mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.qspi0.sd3_o;
-          mux_to_pads_o.gpio_31.output_en = port_signals_soc2pad_i.qspi0.sd3_en_o;
-          mux_to_pads_o.gpio_31.rx_en = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
+          mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
+          mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
+          mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
+          mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.qspi0.sd3_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_I2C0_SCL: begin
           mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.i2c0.scl_o;
-          mux_to_pads_o.gpio_31.output_en = port_signals_soc2pad_i.i2c0.scl_en_o;
-          mux_to_pads_o.gpio_31.rx_en = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
+          mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
+          mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.i2c0.scl_en_o;
+          mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
+          mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.i2c0.scl_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_I2C0_SDA: begin
           mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.i2c0.sda_o;
-          mux_to_pads_o.gpio_31.output_en = port_signals_soc2pad_i.i2c0.sda_en_o;
-          mux_to_pads_o.gpio_31.rx_en = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
+          mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
+          mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.i2c0.sda_en_o;
+          mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
+          mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.i2c0.sda_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_UART0_RX: begin
           mux_to_pads_o.gpio_31.chip2pad = s_reg2hw.gpio_31_cfg.chip2pad.q;
-          mux_to_pads_o.gpio_31.output_en = s_reg2hw.gpio_31_cfg.output_en.q;
-          mux_to_pads_o.gpio_31.rx_en = 1'b1;
+          mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
+          mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
+          mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
+          mux_to_pads_o.gpio_31.rxe = 1'b1;
+          mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
+          mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
+          mux_to_pads_o.gpio_31.trie = s_reg2hw.gpio_31_cfg.trie.q;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_UART0_TX: begin
           mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.uart0.tx_o;
-          mux_to_pads_o.gpio_31.output_en = 1'b0;
-          mux_to_pads_o.gpio_31.rx_en = s_reg2hw.gpio_31_cfg.rx_en.q;
+          mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
+          mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
+          mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
+          mux_to_pads_o.gpio_31.rxe = s_reg2hw.gpio_31_cfg.rxe.q;
+          mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
+          mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
+          mux_to_pads_o.gpio_31.trie = 1'b0;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA0_GPIO0: begin
           mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa0.gpio0_o;
-          mux_to_pads_o.gpio_31.output_en = port_signals_soc2pad_i.gpioa0.gpio0_en_o;
-          mux_to_pads_o.gpio_31.rx_en = ~port_signals_soc2pad_i.gpioa0.gpio0_en_o;
+          mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
+          mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
+          mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa0.gpio0_en_o;
+          mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
+          mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa0.gpio0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA1_GPIO0: begin
           mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa1.gpio0_o;
-          mux_to_pads_o.gpio_31.output_en = port_signals_soc2pad_i.gpioa1.gpio0_en_o;
-          mux_to_pads_o.gpio_31.rx_en = ~port_signals_soc2pad_i.gpioa1.gpio0_en_o;
+          mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
+          mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
+          mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa1.gpio0_en_o;
+          mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
+          mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa1.gpio0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA2_GPIO0: begin
           mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa2.gpio0_o;
-          mux_to_pads_o.gpio_31.output_en = port_signals_soc2pad_i.gpioa2.gpio0_en_o;
-          mux_to_pads_o.gpio_31.rx_en = ~port_signals_soc2pad_i.gpioa2.gpio0_en_o;
+          mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
+          mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
+          mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa2.gpio0_en_o;
+          mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
+          mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa2.gpio0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA3_GPIO0: begin
           mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa3.gpio0_o;
-          mux_to_pads_o.gpio_31.output_en = port_signals_soc2pad_i.gpioa3.gpio0_en_o;
-          mux_to_pads_o.gpio_31.rx_en = ~port_signals_soc2pad_i.gpioa3.gpio0_en_o;
+          mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
+          mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
+          mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa3.gpio0_en_o;
+          mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
+          mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa3.gpio0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA4_GPIO0: begin
           mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa4.gpio0_o;
-          mux_to_pads_o.gpio_31.output_en = port_signals_soc2pad_i.gpioa4.gpio0_en_o;
-          mux_to_pads_o.gpio_31.rx_en = ~port_signals_soc2pad_i.gpioa4.gpio0_en_o;
+          mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
+          mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
+          mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa4.gpio0_en_o;
+          mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
+          mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa4.gpio0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA5_GPIO0: begin
           mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa5.gpio0_o;
-          mux_to_pads_o.gpio_31.output_en = port_signals_soc2pad_i.gpioa5.gpio0_en_o;
-          mux_to_pads_o.gpio_31.rx_en = ~port_signals_soc2pad_i.gpioa5.gpio0_en_o;
+          mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
+          mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
+          mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa5.gpio0_en_o;
+          mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
+          mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa5.gpio0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA6_GPIO0: begin
           mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa6.gpio0_o;
-          mux_to_pads_o.gpio_31.output_en = port_signals_soc2pad_i.gpioa6.gpio0_en_o;
-          mux_to_pads_o.gpio_31.rx_en = ~port_signals_soc2pad_i.gpioa6.gpio0_en_o;
+          mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
+          mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
+          mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa6.gpio0_en_o;
+          mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
+          mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa6.gpio0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA7_GPIO0: begin
           mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa7.gpio0_o;
-          mux_to_pads_o.gpio_31.output_en = port_signals_soc2pad_i.gpioa7.gpio0_en_o;
-          mux_to_pads_o.gpio_31.rx_en = ~port_signals_soc2pad_i.gpioa7.gpio0_en_o;
+          mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
+          mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
+          mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa7.gpio0_en_o;
+          mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
+          mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa7.gpio0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA8_GPIO0: begin
           mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa8.gpio0_o;
-          mux_to_pads_o.gpio_31.output_en = port_signals_soc2pad_i.gpioa8.gpio0_en_o;
-          mux_to_pads_o.gpio_31.rx_en = ~port_signals_soc2pad_i.gpioa8.gpio0_en_o;
+          mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
+          mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
+          mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa8.gpio0_en_o;
+          mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
+          mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa8.gpio0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA9_GPIO0: begin
           mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa9.gpio0_o;
-          mux_to_pads_o.gpio_31.output_en = port_signals_soc2pad_i.gpioa9.gpio0_en_o;
-          mux_to_pads_o.gpio_31.rx_en = ~port_signals_soc2pad_i.gpioa9.gpio0_en_o;
+          mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
+          mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
+          mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa9.gpio0_en_o;
+          mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
+          mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa9.gpio0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA10_GPIO0: begin
           mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa10.gpio0_o;
-          mux_to_pads_o.gpio_31.output_en = port_signals_soc2pad_i.gpioa10.gpio0_en_o;
-          mux_to_pads_o.gpio_31.rx_en = ~port_signals_soc2pad_i.gpioa10.gpio0_en_o;
+          mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
+          mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
+          mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa10.gpio0_en_o;
+          mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
+          mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa10.gpio0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA11_GPIO0: begin
           mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa11.gpio0_o;
-          mux_to_pads_o.gpio_31.output_en = port_signals_soc2pad_i.gpioa11.gpio0_en_o;
-          mux_to_pads_o.gpio_31.rx_en = ~port_signals_soc2pad_i.gpioa11.gpio0_en_o;
+          mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
+          mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
+          mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa11.gpio0_en_o;
+          mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
+          mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa11.gpio0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA12_GPIO0: begin
           mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa12.gpio0_o;
-          mux_to_pads_o.gpio_31.output_en = port_signals_soc2pad_i.gpioa12.gpio0_en_o;
-          mux_to_pads_o.gpio_31.rx_en = ~port_signals_soc2pad_i.gpioa12.gpio0_en_o;
+          mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
+          mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
+          mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa12.gpio0_en_o;
+          mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
+          mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa12.gpio0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA13_GPIO0: begin
           mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa13.gpio0_o;
-          mux_to_pads_o.gpio_31.output_en = port_signals_soc2pad_i.gpioa13.gpio0_en_o;
-          mux_to_pads_o.gpio_31.rx_en = ~port_signals_soc2pad_i.gpioa13.gpio0_en_o;
+          mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
+          mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
+          mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa13.gpio0_en_o;
+          mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
+          mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa13.gpio0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA14_GPIO0: begin
           mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa14.gpio0_o;
-          mux_to_pads_o.gpio_31.output_en = port_signals_soc2pad_i.gpioa14.gpio0_en_o;
-          mux_to_pads_o.gpio_31.rx_en = ~port_signals_soc2pad_i.gpioa14.gpio0_en_o;
+          mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
+          mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
+          mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa14.gpio0_en_o;
+          mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
+          mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa14.gpio0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA15_GPIO0: begin
           mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa15.gpio0_o;
-          mux_to_pads_o.gpio_31.output_en = port_signals_soc2pad_i.gpioa15.gpio0_en_o;
-          mux_to_pads_o.gpio_31.rx_en = ~port_signals_soc2pad_i.gpioa15.gpio0_en_o;
+          mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
+          mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
+          mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa15.gpio0_en_o;
+          mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
+          mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa15.gpio0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA16_GPIO0: begin
           mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa16.gpio0_o;
-          mux_to_pads_o.gpio_31.output_en = port_signals_soc2pad_i.gpioa16.gpio0_en_o;
-          mux_to_pads_o.gpio_31.rx_en = ~port_signals_soc2pad_i.gpioa16.gpio0_en_o;
+          mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
+          mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
+          mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa16.gpio0_en_o;
+          mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
+          mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa16.gpio0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA17_GPIO0: begin
           mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa17.gpio0_o;
-          mux_to_pads_o.gpio_31.output_en = port_signals_soc2pad_i.gpioa17.gpio0_en_o;
-          mux_to_pads_o.gpio_31.rx_en = ~port_signals_soc2pad_i.gpioa17.gpio0_en_o;
+          mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
+          mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
+          mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa17.gpio0_en_o;
+          mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
+          mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa17.gpio0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA18_GPIO0: begin
           mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa18.gpio0_o;
-          mux_to_pads_o.gpio_31.output_en = port_signals_soc2pad_i.gpioa18.gpio0_en_o;
-          mux_to_pads_o.gpio_31.rx_en = ~port_signals_soc2pad_i.gpioa18.gpio0_en_o;
+          mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
+          mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
+          mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa18.gpio0_en_o;
+          mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
+          mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa18.gpio0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA19_GPIO0: begin
           mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa19.gpio0_o;
-          mux_to_pads_o.gpio_31.output_en = port_signals_soc2pad_i.gpioa19.gpio0_en_o;
-          mux_to_pads_o.gpio_31.rx_en = ~port_signals_soc2pad_i.gpioa19.gpio0_en_o;
+          mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
+          mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
+          mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa19.gpio0_en_o;
+          mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
+          mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa19.gpio0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA20_GPIO0: begin
           mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa20.gpio0_o;
-          mux_to_pads_o.gpio_31.output_en = port_signals_soc2pad_i.gpioa20.gpio0_en_o;
-          mux_to_pads_o.gpio_31.rx_en = ~port_signals_soc2pad_i.gpioa20.gpio0_en_o;
+          mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
+          mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
+          mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa20.gpio0_en_o;
+          mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
+          mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa20.gpio0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA21_GPIO0: begin
           mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa21.gpio0_o;
-          mux_to_pads_o.gpio_31.output_en = port_signals_soc2pad_i.gpioa21.gpio0_en_o;
-          mux_to_pads_o.gpio_31.rx_en = ~port_signals_soc2pad_i.gpioa21.gpio0_en_o;
+          mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
+          mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
+          mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa21.gpio0_en_o;
+          mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
+          mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa21.gpio0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA22_GPIO0: begin
           mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa22.gpio0_o;
-          mux_to_pads_o.gpio_31.output_en = port_signals_soc2pad_i.gpioa22.gpio0_en_o;
-          mux_to_pads_o.gpio_31.rx_en = ~port_signals_soc2pad_i.gpioa22.gpio0_en_o;
+          mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
+          mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
+          mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa22.gpio0_en_o;
+          mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
+          mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa22.gpio0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA23_GPIO0: begin
           mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa23.gpio0_o;
-          mux_to_pads_o.gpio_31.output_en = port_signals_soc2pad_i.gpioa23.gpio0_en_o;
-          mux_to_pads_o.gpio_31.rx_en = ~port_signals_soc2pad_i.gpioa23.gpio0_en_o;
+          mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
+          mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
+          mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa23.gpio0_en_o;
+          mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
+          mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa23.gpio0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA24_GPIO0: begin
           mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa24.gpio0_o;
-          mux_to_pads_o.gpio_31.output_en = port_signals_soc2pad_i.gpioa24.gpio0_en_o;
-          mux_to_pads_o.gpio_31.rx_en = ~port_signals_soc2pad_i.gpioa24.gpio0_en_o;
+          mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
+          mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
+          mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa24.gpio0_en_o;
+          mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
+          mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa24.gpio0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA25_GPIO0: begin
           mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa25.gpio0_o;
-          mux_to_pads_o.gpio_31.output_en = port_signals_soc2pad_i.gpioa25.gpio0_en_o;
-          mux_to_pads_o.gpio_31.rx_en = ~port_signals_soc2pad_i.gpioa25.gpio0_en_o;
+          mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
+          mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
+          mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa25.gpio0_en_o;
+          mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
+          mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa25.gpio0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA26_GPIO0: begin
           mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa26.gpio0_o;
-          mux_to_pads_o.gpio_31.output_en = port_signals_soc2pad_i.gpioa26.gpio0_en_o;
-          mux_to_pads_o.gpio_31.rx_en = ~port_signals_soc2pad_i.gpioa26.gpio0_en_o;
+          mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
+          mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
+          mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa26.gpio0_en_o;
+          mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
+          mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa26.gpio0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA27_GPIO0: begin
           mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa27.gpio0_o;
-          mux_to_pads_o.gpio_31.output_en = port_signals_soc2pad_i.gpioa27.gpio0_en_o;
-          mux_to_pads_o.gpio_31.rx_en = ~port_signals_soc2pad_i.gpioa27.gpio0_en_o;
+          mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
+          mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
+          mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa27.gpio0_en_o;
+          mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
+          mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa27.gpio0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA28_GPIO0: begin
           mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa28.gpio0_o;
-          mux_to_pads_o.gpio_31.output_en = port_signals_soc2pad_i.gpioa28.gpio0_en_o;
-          mux_to_pads_o.gpio_31.rx_en = ~port_signals_soc2pad_i.gpioa28.gpio0_en_o;
+          mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
+          mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
+          mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa28.gpio0_en_o;
+          mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
+          mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa28.gpio0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA29_GPIO0: begin
           mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa29.gpio0_o;
-          mux_to_pads_o.gpio_31.output_en = port_signals_soc2pad_i.gpioa29.gpio0_en_o;
-          mux_to_pads_o.gpio_31.rx_en = ~port_signals_soc2pad_i.gpioa29.gpio0_en_o;
+          mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
+          mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
+          mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa29.gpio0_en_o;
+          mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
+          mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa29.gpio0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA30_GPIO0: begin
           mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa30.gpio0_o;
-          mux_to_pads_o.gpio_31.output_en = port_signals_soc2pad_i.gpioa30.gpio0_en_o;
-          mux_to_pads_o.gpio_31.rx_en = ~port_signals_soc2pad_i.gpioa30.gpio0_en_o;
+          mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
+          mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
+          mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa30.gpio0_en_o;
+          mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
+          mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa30.gpio0_en_o;
        end
        PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA31_GPIO0: begin
           mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa31.gpio0_o;
-          mux_to_pads_o.gpio_31.output_en = port_signals_soc2pad_i.gpioa31.gpio0_en_o;
-          mux_to_pads_o.gpio_31.rx_en = ~port_signals_soc2pad_i.gpioa31.gpio0_en_o;
+          mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
+          mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
+          mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa31.gpio0_en_o;
+          mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
+          mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa31.gpio0_en_o;
        end
        default: begin
          mux_to_pads_o.gpio_31.chip2pad = s_reg2hw.gpio_31_cfg.chip2pad.q;
-         mux_to_pads_o.gpio_31.output_en = s_reg2hw.gpio_31_cfg.output_en.q;
-         mux_to_pads_o.gpio_31.rx_en = s_reg2hw.gpio_31_cfg.rx_en.q;
+         mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
+         mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
+         mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
+         mux_to_pads_o.gpio_31.rxe = s_reg2hw.gpio_31_cfg.rxe.q;
+         mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
+         mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
+         mux_to_pads_o.gpio_31.trie = s_reg2hw.gpio_31_cfg.trie.q;
        end
      endcase
    end // always_comb

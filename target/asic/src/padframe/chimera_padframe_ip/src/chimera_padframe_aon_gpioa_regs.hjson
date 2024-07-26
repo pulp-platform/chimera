@@ -41,31 +41,81 @@
                 bits: "0"
                 name: chip2pad
                 desc: '''
-                     The signal that connects to the pads TX driver
+                     Signal to connect internal Chip to the TX driver of the Pad
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "2:1"
+                name: drv
+                desc: '''
+                     Driving Strength selector
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "3"
+            },
+            {
+                bits: "3"
+                name: pde
+                desc: '''
+                     Pull-Down resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "4"
+                name: pue
+                desc: '''
+                     Pull-Up resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "5"
+                name: rxe
+                desc: '''
+                     Active high RX enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "6"
+                name: slw
+                desc: '''
+                     
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "7"
+                name: smt
+                desc: '''
+                     Active High schmidt trigger Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "8"
+                name: trie
+                desc: '''
+                     Active high tri-state enable: trie = 1 -> buffer is in tri-state mode, i.e. Hi-Z. To Transmit trie = 0
                 '''
                 swaccess: "rw"
                 hwaccess: "hro"
                 resval: "1"
-            },
-            {
-                bits: "1"
-                name: output_en
-                desc: '''
-                     Enables the output driver of the pad
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
-            },
-            {
-                bits: "2"
-                name: rx_en
-                desc: '''
-                     Input buffer enable
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
             },
           ]
       }
@@ -112,31 +162,81 @@
                 bits: "0"
                 name: chip2pad
                 desc: '''
-                     The signal that connects to the pads TX driver
+                     Signal to connect internal Chip to the TX driver of the Pad
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "2:1"
+                name: drv
+                desc: '''
+                     Driving Strength selector
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "3"
+            },
+            {
+                bits: "3"
+                name: pde
+                desc: '''
+                     Pull-Down resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "4"
+                name: pue
+                desc: '''
+                     Pull-Up resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "5"
+                name: rxe
+                desc: '''
+                     Active high RX enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "6"
+                name: slw
+                desc: '''
+                     
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "7"
+                name: smt
+                desc: '''
+                     Active High schmidt trigger Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "8"
+                name: trie
+                desc: '''
+                     Active high tri-state enable: trie = 1 -> buffer is in tri-state mode, i.e. Hi-Z. To Transmit trie = 0
                 '''
                 swaccess: "rw"
                 hwaccess: "hro"
                 resval: "1"
-            },
-            {
-                bits: "1"
-                name: output_en
-                desc: '''
-                     Enables the output driver of the pad
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
-            },
-            {
-                bits: "2"
-                name: rx_en
-                desc: '''
-                     Input buffer enable
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
             },
           ]
       }
@@ -183,31 +283,81 @@
                 bits: "0"
                 name: chip2pad
                 desc: '''
-                     The signal that connects to the pads TX driver
+                     Signal to connect internal Chip to the TX driver of the Pad
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "2:1"
+                name: drv
+                desc: '''
+                     Driving Strength selector
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "3"
+            },
+            {
+                bits: "3"
+                name: pde
+                desc: '''
+                     Pull-Down resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "4"
+                name: pue
+                desc: '''
+                     Pull-Up resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "5"
+                name: rxe
+                desc: '''
+                     Active high RX enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "6"
+                name: slw
+                desc: '''
+                     
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "7"
+                name: smt
+                desc: '''
+                     Active High schmidt trigger Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "8"
+                name: trie
+                desc: '''
+                     Active high tri-state enable: trie = 1 -> buffer is in tri-state mode, i.e. Hi-Z. To Transmit trie = 0
                 '''
                 swaccess: "rw"
                 hwaccess: "hro"
                 resval: "1"
-            },
-            {
-                bits: "1"
-                name: output_en
-                desc: '''
-                     Enables the output driver of the pad
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
-            },
-            {
-                bits: "2"
-                name: rx_en
-                desc: '''
-                     Input buffer enable
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
             },
           ]
       }
@@ -254,31 +404,81 @@
                 bits: "0"
                 name: chip2pad
                 desc: '''
-                     The signal that connects to the pads TX driver
+                     Signal to connect internal Chip to the TX driver of the Pad
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "2:1"
+                name: drv
+                desc: '''
+                     Driving Strength selector
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "3"
+            },
+            {
+                bits: "3"
+                name: pde
+                desc: '''
+                     Pull-Down resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "4"
+                name: pue
+                desc: '''
+                     Pull-Up resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "5"
+                name: rxe
+                desc: '''
+                     Active high RX enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "6"
+                name: slw
+                desc: '''
+                     
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "7"
+                name: smt
+                desc: '''
+                     Active High schmidt trigger Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "8"
+                name: trie
+                desc: '''
+                     Active high tri-state enable: trie = 1 -> buffer is in tri-state mode, i.e. Hi-Z. To Transmit trie = 0
                 '''
                 swaccess: "rw"
                 hwaccess: "hro"
                 resval: "1"
-            },
-            {
-                bits: "1"
-                name: output_en
-                desc: '''
-                     Enables the output driver of the pad
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
-            },
-            {
-                bits: "2"
-                name: rx_en
-                desc: '''
-                     Input buffer enable
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
             },
           ]
       }
@@ -325,31 +525,81 @@
                 bits: "0"
                 name: chip2pad
                 desc: '''
-                     The signal that connects to the pads TX driver
+                     Signal to connect internal Chip to the TX driver of the Pad
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "2:1"
+                name: drv
+                desc: '''
+                     Driving Strength selector
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "3"
+            },
+            {
+                bits: "3"
+                name: pde
+                desc: '''
+                     Pull-Down resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "4"
+                name: pue
+                desc: '''
+                     Pull-Up resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "5"
+                name: rxe
+                desc: '''
+                     Active high RX enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "6"
+                name: slw
+                desc: '''
+                     
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "7"
+                name: smt
+                desc: '''
+                     Active High schmidt trigger Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "8"
+                name: trie
+                desc: '''
+                     Active high tri-state enable: trie = 1 -> buffer is in tri-state mode, i.e. Hi-Z. To Transmit trie = 0
                 '''
                 swaccess: "rw"
                 hwaccess: "hro"
                 resval: "1"
-            },
-            {
-                bits: "1"
-                name: output_en
-                desc: '''
-                     Enables the output driver of the pad
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
-            },
-            {
-                bits: "2"
-                name: rx_en
-                desc: '''
-                     Input buffer enable
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
             },
           ]
       }
@@ -396,31 +646,81 @@
                 bits: "0"
                 name: chip2pad
                 desc: '''
-                     The signal that connects to the pads TX driver
+                     Signal to connect internal Chip to the TX driver of the Pad
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "2:1"
+                name: drv
+                desc: '''
+                     Driving Strength selector
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "3"
+            },
+            {
+                bits: "3"
+                name: pde
+                desc: '''
+                     Pull-Down resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "4"
+                name: pue
+                desc: '''
+                     Pull-Up resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "5"
+                name: rxe
+                desc: '''
+                     Active high RX enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "6"
+                name: slw
+                desc: '''
+                     
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "7"
+                name: smt
+                desc: '''
+                     Active High schmidt trigger Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "8"
+                name: trie
+                desc: '''
+                     Active high tri-state enable: trie = 1 -> buffer is in tri-state mode, i.e. Hi-Z. To Transmit trie = 0
                 '''
                 swaccess: "rw"
                 hwaccess: "hro"
                 resval: "1"
-            },
-            {
-                bits: "1"
-                name: output_en
-                desc: '''
-                     Enables the output driver of the pad
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
-            },
-            {
-                bits: "2"
-                name: rx_en
-                desc: '''
-                     Input buffer enable
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
             },
           ]
       }
@@ -467,31 +767,81 @@
                 bits: "0"
                 name: chip2pad
                 desc: '''
-                     The signal that connects to the pads TX driver
+                     Signal to connect internal Chip to the TX driver of the Pad
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "2:1"
+                name: drv
+                desc: '''
+                     Driving Strength selector
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "3"
+            },
+            {
+                bits: "3"
+                name: pde
+                desc: '''
+                     Pull-Down resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "4"
+                name: pue
+                desc: '''
+                     Pull-Up resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "5"
+                name: rxe
+                desc: '''
+                     Active high RX enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "6"
+                name: slw
+                desc: '''
+                     
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "7"
+                name: smt
+                desc: '''
+                     Active High schmidt trigger Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "8"
+                name: trie
+                desc: '''
+                     Active high tri-state enable: trie = 1 -> buffer is in tri-state mode, i.e. Hi-Z. To Transmit trie = 0
                 '''
                 swaccess: "rw"
                 hwaccess: "hro"
                 resval: "1"
-            },
-            {
-                bits: "1"
-                name: output_en
-                desc: '''
-                     Enables the output driver of the pad
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
-            },
-            {
-                bits: "2"
-                name: rx_en
-                desc: '''
-                     Input buffer enable
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
             },
           ]
       }
@@ -538,31 +888,81 @@
                 bits: "0"
                 name: chip2pad
                 desc: '''
-                     The signal that connects to the pads TX driver
+                     Signal to connect internal Chip to the TX driver of the Pad
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "2:1"
+                name: drv
+                desc: '''
+                     Driving Strength selector
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "3"
+            },
+            {
+                bits: "3"
+                name: pde
+                desc: '''
+                     Pull-Down resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "4"
+                name: pue
+                desc: '''
+                     Pull-Up resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "5"
+                name: rxe
+                desc: '''
+                     Active high RX enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "6"
+                name: slw
+                desc: '''
+                     
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "7"
+                name: smt
+                desc: '''
+                     Active High schmidt trigger Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "8"
+                name: trie
+                desc: '''
+                     Active high tri-state enable: trie = 1 -> buffer is in tri-state mode, i.e. Hi-Z. To Transmit trie = 0
                 '''
                 swaccess: "rw"
                 hwaccess: "hro"
                 resval: "1"
-            },
-            {
-                bits: "1"
-                name: output_en
-                desc: '''
-                     Enables the output driver of the pad
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
-            },
-            {
-                bits: "2"
-                name: rx_en
-                desc: '''
-                     Input buffer enable
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
             },
           ]
       }
@@ -609,31 +1009,81 @@
                 bits: "0"
                 name: chip2pad
                 desc: '''
-                     The signal that connects to the pads TX driver
+                     Signal to connect internal Chip to the TX driver of the Pad
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "2:1"
+                name: drv
+                desc: '''
+                     Driving Strength selector
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "3"
+            },
+            {
+                bits: "3"
+                name: pde
+                desc: '''
+                     Pull-Down resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "4"
+                name: pue
+                desc: '''
+                     Pull-Up resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "5"
+                name: rxe
+                desc: '''
+                     Active high RX enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "6"
+                name: slw
+                desc: '''
+                     
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "7"
+                name: smt
+                desc: '''
+                     Active High schmidt trigger Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "8"
+                name: trie
+                desc: '''
+                     Active high tri-state enable: trie = 1 -> buffer is in tri-state mode, i.e. Hi-Z. To Transmit trie = 0
                 '''
                 swaccess: "rw"
                 hwaccess: "hro"
                 resval: "1"
-            },
-            {
-                bits: "1"
-                name: output_en
-                desc: '''
-                     Enables the output driver of the pad
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
-            },
-            {
-                bits: "2"
-                name: rx_en
-                desc: '''
-                     Input buffer enable
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
             },
           ]
       }
@@ -680,31 +1130,81 @@
                 bits: "0"
                 name: chip2pad
                 desc: '''
-                     The signal that connects to the pads TX driver
+                     Signal to connect internal Chip to the TX driver of the Pad
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "2:1"
+                name: drv
+                desc: '''
+                     Driving Strength selector
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "3"
+            },
+            {
+                bits: "3"
+                name: pde
+                desc: '''
+                     Pull-Down resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "4"
+                name: pue
+                desc: '''
+                     Pull-Up resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "5"
+                name: rxe
+                desc: '''
+                     Active high RX enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "6"
+                name: slw
+                desc: '''
+                     
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "7"
+                name: smt
+                desc: '''
+                     Active High schmidt trigger Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "8"
+                name: trie
+                desc: '''
+                     Active high tri-state enable: trie = 1 -> buffer is in tri-state mode, i.e. Hi-Z. To Transmit trie = 0
                 '''
                 swaccess: "rw"
                 hwaccess: "hro"
                 resval: "1"
-            },
-            {
-                bits: "1"
-                name: output_en
-                desc: '''
-                     Enables the output driver of the pad
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
-            },
-            {
-                bits: "2"
-                name: rx_en
-                desc: '''
-                     Input buffer enable
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
             },
           ]
       }
@@ -751,31 +1251,81 @@
                 bits: "0"
                 name: chip2pad
                 desc: '''
-                     The signal that connects to the pads TX driver
+                     Signal to connect internal Chip to the TX driver of the Pad
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "2:1"
+                name: drv
+                desc: '''
+                     Driving Strength selector
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "3"
+            },
+            {
+                bits: "3"
+                name: pde
+                desc: '''
+                     Pull-Down resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "4"
+                name: pue
+                desc: '''
+                     Pull-Up resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "5"
+                name: rxe
+                desc: '''
+                     Active high RX enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "6"
+                name: slw
+                desc: '''
+                     
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "7"
+                name: smt
+                desc: '''
+                     Active High schmidt trigger Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "8"
+                name: trie
+                desc: '''
+                     Active high tri-state enable: trie = 1 -> buffer is in tri-state mode, i.e. Hi-Z. To Transmit trie = 0
                 '''
                 swaccess: "rw"
                 hwaccess: "hro"
                 resval: "1"
-            },
-            {
-                bits: "1"
-                name: output_en
-                desc: '''
-                     Enables the output driver of the pad
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
-            },
-            {
-                bits: "2"
-                name: rx_en
-                desc: '''
-                     Input buffer enable
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
             },
           ]
       }
@@ -822,31 +1372,81 @@
                 bits: "0"
                 name: chip2pad
                 desc: '''
-                     The signal that connects to the pads TX driver
+                     Signal to connect internal Chip to the TX driver of the Pad
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "2:1"
+                name: drv
+                desc: '''
+                     Driving Strength selector
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "3"
+            },
+            {
+                bits: "3"
+                name: pde
+                desc: '''
+                     Pull-Down resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "4"
+                name: pue
+                desc: '''
+                     Pull-Up resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "5"
+                name: rxe
+                desc: '''
+                     Active high RX enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "6"
+                name: slw
+                desc: '''
+                     
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "7"
+                name: smt
+                desc: '''
+                     Active High schmidt trigger Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "8"
+                name: trie
+                desc: '''
+                     Active high tri-state enable: trie = 1 -> buffer is in tri-state mode, i.e. Hi-Z. To Transmit trie = 0
                 '''
                 swaccess: "rw"
                 hwaccess: "hro"
                 resval: "1"
-            },
-            {
-                bits: "1"
-                name: output_en
-                desc: '''
-                     Enables the output driver of the pad
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
-            },
-            {
-                bits: "2"
-                name: rx_en
-                desc: '''
-                     Input buffer enable
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
             },
           ]
       }
@@ -893,31 +1493,81 @@
                 bits: "0"
                 name: chip2pad
                 desc: '''
-                     The signal that connects to the pads TX driver
+                     Signal to connect internal Chip to the TX driver of the Pad
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "2:1"
+                name: drv
+                desc: '''
+                     Driving Strength selector
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "3"
+            },
+            {
+                bits: "3"
+                name: pde
+                desc: '''
+                     Pull-Down resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "4"
+                name: pue
+                desc: '''
+                     Pull-Up resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "5"
+                name: rxe
+                desc: '''
+                     Active high RX enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "6"
+                name: slw
+                desc: '''
+                     
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "7"
+                name: smt
+                desc: '''
+                     Active High schmidt trigger Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "8"
+                name: trie
+                desc: '''
+                     Active high tri-state enable: trie = 1 -> buffer is in tri-state mode, i.e. Hi-Z. To Transmit trie = 0
                 '''
                 swaccess: "rw"
                 hwaccess: "hro"
                 resval: "1"
-            },
-            {
-                bits: "1"
-                name: output_en
-                desc: '''
-                     Enables the output driver of the pad
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
-            },
-            {
-                bits: "2"
-                name: rx_en
-                desc: '''
-                     Input buffer enable
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
             },
           ]
       }
@@ -964,31 +1614,81 @@
                 bits: "0"
                 name: chip2pad
                 desc: '''
-                     The signal that connects to the pads TX driver
+                     Signal to connect internal Chip to the TX driver of the Pad
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "2:1"
+                name: drv
+                desc: '''
+                     Driving Strength selector
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "3"
+            },
+            {
+                bits: "3"
+                name: pde
+                desc: '''
+                     Pull-Down resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "4"
+                name: pue
+                desc: '''
+                     Pull-Up resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "5"
+                name: rxe
+                desc: '''
+                     Active high RX enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "6"
+                name: slw
+                desc: '''
+                     
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "7"
+                name: smt
+                desc: '''
+                     Active High schmidt trigger Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "8"
+                name: trie
+                desc: '''
+                     Active high tri-state enable: trie = 1 -> buffer is in tri-state mode, i.e. Hi-Z. To Transmit trie = 0
                 '''
                 swaccess: "rw"
                 hwaccess: "hro"
                 resval: "1"
-            },
-            {
-                bits: "1"
-                name: output_en
-                desc: '''
-                     Enables the output driver of the pad
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
-            },
-            {
-                bits: "2"
-                name: rx_en
-                desc: '''
-                     Input buffer enable
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
             },
           ]
       }
@@ -1035,31 +1735,81 @@
                 bits: "0"
                 name: chip2pad
                 desc: '''
-                     The signal that connects to the pads TX driver
+                     Signal to connect internal Chip to the TX driver of the Pad
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "2:1"
+                name: drv
+                desc: '''
+                     Driving Strength selector
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "3"
+            },
+            {
+                bits: "3"
+                name: pde
+                desc: '''
+                     Pull-Down resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "4"
+                name: pue
+                desc: '''
+                     Pull-Up resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "5"
+                name: rxe
+                desc: '''
+                     Active high RX enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "6"
+                name: slw
+                desc: '''
+                     
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "7"
+                name: smt
+                desc: '''
+                     Active High schmidt trigger Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "8"
+                name: trie
+                desc: '''
+                     Active high tri-state enable: trie = 1 -> buffer is in tri-state mode, i.e. Hi-Z. To Transmit trie = 0
                 '''
                 swaccess: "rw"
                 hwaccess: "hro"
                 resval: "1"
-            },
-            {
-                bits: "1"
-                name: output_en
-                desc: '''
-                     Enables the output driver of the pad
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
-            },
-            {
-                bits: "2"
-                name: rx_en
-                desc: '''
-                     Input buffer enable
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
             },
           ]
       }
@@ -1106,31 +1856,81 @@
                 bits: "0"
                 name: chip2pad
                 desc: '''
-                     The signal that connects to the pads TX driver
+                     Signal to connect internal Chip to the TX driver of the Pad
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "2:1"
+                name: drv
+                desc: '''
+                     Driving Strength selector
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "3"
+            },
+            {
+                bits: "3"
+                name: pde
+                desc: '''
+                     Pull-Down resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "4"
+                name: pue
+                desc: '''
+                     Pull-Up resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "5"
+                name: rxe
+                desc: '''
+                     Active high RX enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "6"
+                name: slw
+                desc: '''
+                     
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "7"
+                name: smt
+                desc: '''
+                     Active High schmidt trigger Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "8"
+                name: trie
+                desc: '''
+                     Active high tri-state enable: trie = 1 -> buffer is in tri-state mode, i.e. Hi-Z. To Transmit trie = 0
                 '''
                 swaccess: "rw"
                 hwaccess: "hro"
                 resval: "1"
-            },
-            {
-                bits: "1"
-                name: output_en
-                desc: '''
-                     Enables the output driver of the pad
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
-            },
-            {
-                bits: "2"
-                name: rx_en
-                desc: '''
-                     Input buffer enable
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
             },
           ]
       }
@@ -1177,31 +1977,81 @@
                 bits: "0"
                 name: chip2pad
                 desc: '''
-                     The signal that connects to the pads TX driver
+                     Signal to connect internal Chip to the TX driver of the Pad
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "2:1"
+                name: drv
+                desc: '''
+                     Driving Strength selector
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "3"
+            },
+            {
+                bits: "3"
+                name: pde
+                desc: '''
+                     Pull-Down resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "4"
+                name: pue
+                desc: '''
+                     Pull-Up resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "5"
+                name: rxe
+                desc: '''
+                     Active high RX enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "6"
+                name: slw
+                desc: '''
+                     
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "7"
+                name: smt
+                desc: '''
+                     Active High schmidt trigger Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "8"
+                name: trie
+                desc: '''
+                     Active high tri-state enable: trie = 1 -> buffer is in tri-state mode, i.e. Hi-Z. To Transmit trie = 0
                 '''
                 swaccess: "rw"
                 hwaccess: "hro"
                 resval: "1"
-            },
-            {
-                bits: "1"
-                name: output_en
-                desc: '''
-                     Enables the output driver of the pad
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
-            },
-            {
-                bits: "2"
-                name: rx_en
-                desc: '''
-                     Input buffer enable
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
             },
           ]
       }
@@ -1248,31 +2098,81 @@
                 bits: "0"
                 name: chip2pad
                 desc: '''
-                     The signal that connects to the pads TX driver
+                     Signal to connect internal Chip to the TX driver of the Pad
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "2:1"
+                name: drv
+                desc: '''
+                     Driving Strength selector
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "3"
+            },
+            {
+                bits: "3"
+                name: pde
+                desc: '''
+                     Pull-Down resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "4"
+                name: pue
+                desc: '''
+                     Pull-Up resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "5"
+                name: rxe
+                desc: '''
+                     Active high RX enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "6"
+                name: slw
+                desc: '''
+                     
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "7"
+                name: smt
+                desc: '''
+                     Active High schmidt trigger Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "8"
+                name: trie
+                desc: '''
+                     Active high tri-state enable: trie = 1 -> buffer is in tri-state mode, i.e. Hi-Z. To Transmit trie = 0
                 '''
                 swaccess: "rw"
                 hwaccess: "hro"
                 resval: "1"
-            },
-            {
-                bits: "1"
-                name: output_en
-                desc: '''
-                     Enables the output driver of the pad
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
-            },
-            {
-                bits: "2"
-                name: rx_en
-                desc: '''
-                     Input buffer enable
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
             },
           ]
       }
@@ -1319,31 +2219,81 @@
                 bits: "0"
                 name: chip2pad
                 desc: '''
-                     The signal that connects to the pads TX driver
+                     Signal to connect internal Chip to the TX driver of the Pad
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "2:1"
+                name: drv
+                desc: '''
+                     Driving Strength selector
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "3"
+            },
+            {
+                bits: "3"
+                name: pde
+                desc: '''
+                     Pull-Down resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "4"
+                name: pue
+                desc: '''
+                     Pull-Up resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "5"
+                name: rxe
+                desc: '''
+                     Active high RX enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "6"
+                name: slw
+                desc: '''
+                     
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "7"
+                name: smt
+                desc: '''
+                     Active High schmidt trigger Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "8"
+                name: trie
+                desc: '''
+                     Active high tri-state enable: trie = 1 -> buffer is in tri-state mode, i.e. Hi-Z. To Transmit trie = 0
                 '''
                 swaccess: "rw"
                 hwaccess: "hro"
                 resval: "1"
-            },
-            {
-                bits: "1"
-                name: output_en
-                desc: '''
-                     Enables the output driver of the pad
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
-            },
-            {
-                bits: "2"
-                name: rx_en
-                desc: '''
-                     Input buffer enable
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
             },
           ]
       }
@@ -1390,31 +2340,81 @@
                 bits: "0"
                 name: chip2pad
                 desc: '''
-                     The signal that connects to the pads TX driver
+                     Signal to connect internal Chip to the TX driver of the Pad
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "2:1"
+                name: drv
+                desc: '''
+                     Driving Strength selector
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "3"
+            },
+            {
+                bits: "3"
+                name: pde
+                desc: '''
+                     Pull-Down resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "4"
+                name: pue
+                desc: '''
+                     Pull-Up resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "5"
+                name: rxe
+                desc: '''
+                     Active high RX enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "6"
+                name: slw
+                desc: '''
+                     
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "7"
+                name: smt
+                desc: '''
+                     Active High schmidt trigger Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "8"
+                name: trie
+                desc: '''
+                     Active high tri-state enable: trie = 1 -> buffer is in tri-state mode, i.e. Hi-Z. To Transmit trie = 0
                 '''
                 swaccess: "rw"
                 hwaccess: "hro"
                 resval: "1"
-            },
-            {
-                bits: "1"
-                name: output_en
-                desc: '''
-                     Enables the output driver of the pad
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
-            },
-            {
-                bits: "2"
-                name: rx_en
-                desc: '''
-                     Input buffer enable
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
             },
           ]
       }
@@ -1461,31 +2461,81 @@
                 bits: "0"
                 name: chip2pad
                 desc: '''
-                     The signal that connects to the pads TX driver
+                     Signal to connect internal Chip to the TX driver of the Pad
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "2:1"
+                name: drv
+                desc: '''
+                     Driving Strength selector
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "3"
+            },
+            {
+                bits: "3"
+                name: pde
+                desc: '''
+                     Pull-Down resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "4"
+                name: pue
+                desc: '''
+                     Pull-Up resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "5"
+                name: rxe
+                desc: '''
+                     Active high RX enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "6"
+                name: slw
+                desc: '''
+                     
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "7"
+                name: smt
+                desc: '''
+                     Active High schmidt trigger Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "8"
+                name: trie
+                desc: '''
+                     Active high tri-state enable: trie = 1 -> buffer is in tri-state mode, i.e. Hi-Z. To Transmit trie = 0
                 '''
                 swaccess: "rw"
                 hwaccess: "hro"
                 resval: "1"
-            },
-            {
-                bits: "1"
-                name: output_en
-                desc: '''
-                     Enables the output driver of the pad
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
-            },
-            {
-                bits: "2"
-                name: rx_en
-                desc: '''
-                     Input buffer enable
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
             },
           ]
       }
@@ -1532,31 +2582,81 @@
                 bits: "0"
                 name: chip2pad
                 desc: '''
-                     The signal that connects to the pads TX driver
+                     Signal to connect internal Chip to the TX driver of the Pad
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "2:1"
+                name: drv
+                desc: '''
+                     Driving Strength selector
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "3"
+            },
+            {
+                bits: "3"
+                name: pde
+                desc: '''
+                     Pull-Down resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "4"
+                name: pue
+                desc: '''
+                     Pull-Up resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "5"
+                name: rxe
+                desc: '''
+                     Active high RX enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "6"
+                name: slw
+                desc: '''
+                     
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "7"
+                name: smt
+                desc: '''
+                     Active High schmidt trigger Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "8"
+                name: trie
+                desc: '''
+                     Active high tri-state enable: trie = 1 -> buffer is in tri-state mode, i.e. Hi-Z. To Transmit trie = 0
                 '''
                 swaccess: "rw"
                 hwaccess: "hro"
                 resval: "1"
-            },
-            {
-                bits: "1"
-                name: output_en
-                desc: '''
-                     Enables the output driver of the pad
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
-            },
-            {
-                bits: "2"
-                name: rx_en
-                desc: '''
-                     Input buffer enable
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
             },
           ]
       }
@@ -1603,31 +2703,81 @@
                 bits: "0"
                 name: chip2pad
                 desc: '''
-                     The signal that connects to the pads TX driver
+                     Signal to connect internal Chip to the TX driver of the Pad
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "2:1"
+                name: drv
+                desc: '''
+                     Driving Strength selector
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "3"
+            },
+            {
+                bits: "3"
+                name: pde
+                desc: '''
+                     Pull-Down resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "4"
+                name: pue
+                desc: '''
+                     Pull-Up resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "5"
+                name: rxe
+                desc: '''
+                     Active high RX enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "6"
+                name: slw
+                desc: '''
+                     
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "7"
+                name: smt
+                desc: '''
+                     Active High schmidt trigger Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "8"
+                name: trie
+                desc: '''
+                     Active high tri-state enable: trie = 1 -> buffer is in tri-state mode, i.e. Hi-Z. To Transmit trie = 0
                 '''
                 swaccess: "rw"
                 hwaccess: "hro"
                 resval: "1"
-            },
-            {
-                bits: "1"
-                name: output_en
-                desc: '''
-                     Enables the output driver of the pad
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
-            },
-            {
-                bits: "2"
-                name: rx_en
-                desc: '''
-                     Input buffer enable
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
             },
           ]
       }
@@ -1674,31 +2824,81 @@
                 bits: "0"
                 name: chip2pad
                 desc: '''
-                     The signal that connects to the pads TX driver
+                     Signal to connect internal Chip to the TX driver of the Pad
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "2:1"
+                name: drv
+                desc: '''
+                     Driving Strength selector
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "3"
+            },
+            {
+                bits: "3"
+                name: pde
+                desc: '''
+                     Pull-Down resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "4"
+                name: pue
+                desc: '''
+                     Pull-Up resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "5"
+                name: rxe
+                desc: '''
+                     Active high RX enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "6"
+                name: slw
+                desc: '''
+                     
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "7"
+                name: smt
+                desc: '''
+                     Active High schmidt trigger Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "8"
+                name: trie
+                desc: '''
+                     Active high tri-state enable: trie = 1 -> buffer is in tri-state mode, i.e. Hi-Z. To Transmit trie = 0
                 '''
                 swaccess: "rw"
                 hwaccess: "hro"
                 resval: "1"
-            },
-            {
-                bits: "1"
-                name: output_en
-                desc: '''
-                     Enables the output driver of the pad
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
-            },
-            {
-                bits: "2"
-                name: rx_en
-                desc: '''
-                     Input buffer enable
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
             },
           ]
       }
@@ -1745,31 +2945,81 @@
                 bits: "0"
                 name: chip2pad
                 desc: '''
-                     The signal that connects to the pads TX driver
+                     Signal to connect internal Chip to the TX driver of the Pad
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "2:1"
+                name: drv
+                desc: '''
+                     Driving Strength selector
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "3"
+            },
+            {
+                bits: "3"
+                name: pde
+                desc: '''
+                     Pull-Down resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "4"
+                name: pue
+                desc: '''
+                     Pull-Up resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "5"
+                name: rxe
+                desc: '''
+                     Active high RX enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "6"
+                name: slw
+                desc: '''
+                     
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "7"
+                name: smt
+                desc: '''
+                     Active High schmidt trigger Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "8"
+                name: trie
+                desc: '''
+                     Active high tri-state enable: trie = 1 -> buffer is in tri-state mode, i.e. Hi-Z. To Transmit trie = 0
                 '''
                 swaccess: "rw"
                 hwaccess: "hro"
                 resval: "1"
-            },
-            {
-                bits: "1"
-                name: output_en
-                desc: '''
-                     Enables the output driver of the pad
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
-            },
-            {
-                bits: "2"
-                name: rx_en
-                desc: '''
-                     Input buffer enable
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
             },
           ]
       }
@@ -1816,31 +3066,81 @@
                 bits: "0"
                 name: chip2pad
                 desc: '''
-                     The signal that connects to the pads TX driver
+                     Signal to connect internal Chip to the TX driver of the Pad
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "2:1"
+                name: drv
+                desc: '''
+                     Driving Strength selector
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "3"
+            },
+            {
+                bits: "3"
+                name: pde
+                desc: '''
+                     Pull-Down resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "4"
+                name: pue
+                desc: '''
+                     Pull-Up resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "5"
+                name: rxe
+                desc: '''
+                     Active high RX enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "6"
+                name: slw
+                desc: '''
+                     
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "7"
+                name: smt
+                desc: '''
+                     Active High schmidt trigger Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "8"
+                name: trie
+                desc: '''
+                     Active high tri-state enable: trie = 1 -> buffer is in tri-state mode, i.e. Hi-Z. To Transmit trie = 0
                 '''
                 swaccess: "rw"
                 hwaccess: "hro"
                 resval: "1"
-            },
-            {
-                bits: "1"
-                name: output_en
-                desc: '''
-                     Enables the output driver of the pad
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
-            },
-            {
-                bits: "2"
-                name: rx_en
-                desc: '''
-                     Input buffer enable
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
             },
           ]
       }
@@ -1887,31 +3187,81 @@
                 bits: "0"
                 name: chip2pad
                 desc: '''
-                     The signal that connects to the pads TX driver
+                     Signal to connect internal Chip to the TX driver of the Pad
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "2:1"
+                name: drv
+                desc: '''
+                     Driving Strength selector
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "3"
+            },
+            {
+                bits: "3"
+                name: pde
+                desc: '''
+                     Pull-Down resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "4"
+                name: pue
+                desc: '''
+                     Pull-Up resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "5"
+                name: rxe
+                desc: '''
+                     Active high RX enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "6"
+                name: slw
+                desc: '''
+                     
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "7"
+                name: smt
+                desc: '''
+                     Active High schmidt trigger Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "8"
+                name: trie
+                desc: '''
+                     Active high tri-state enable: trie = 1 -> buffer is in tri-state mode, i.e. Hi-Z. To Transmit trie = 0
                 '''
                 swaccess: "rw"
                 hwaccess: "hro"
                 resval: "1"
-            },
-            {
-                bits: "1"
-                name: output_en
-                desc: '''
-                     Enables the output driver of the pad
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
-            },
-            {
-                bits: "2"
-                name: rx_en
-                desc: '''
-                     Input buffer enable
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
             },
           ]
       }
@@ -1958,31 +3308,81 @@
                 bits: "0"
                 name: chip2pad
                 desc: '''
-                     The signal that connects to the pads TX driver
+                     Signal to connect internal Chip to the TX driver of the Pad
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "2:1"
+                name: drv
+                desc: '''
+                     Driving Strength selector
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "3"
+            },
+            {
+                bits: "3"
+                name: pde
+                desc: '''
+                     Pull-Down resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "4"
+                name: pue
+                desc: '''
+                     Pull-Up resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "5"
+                name: rxe
+                desc: '''
+                     Active high RX enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "6"
+                name: slw
+                desc: '''
+                     
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "7"
+                name: smt
+                desc: '''
+                     Active High schmidt trigger Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "8"
+                name: trie
+                desc: '''
+                     Active high tri-state enable: trie = 1 -> buffer is in tri-state mode, i.e. Hi-Z. To Transmit trie = 0
                 '''
                 swaccess: "rw"
                 hwaccess: "hro"
                 resval: "1"
-            },
-            {
-                bits: "1"
-                name: output_en
-                desc: '''
-                     Enables the output driver of the pad
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
-            },
-            {
-                bits: "2"
-                name: rx_en
-                desc: '''
-                     Input buffer enable
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
             },
           ]
       }
@@ -2029,31 +3429,81 @@
                 bits: "0"
                 name: chip2pad
                 desc: '''
-                     The signal that connects to the pads TX driver
+                     Signal to connect internal Chip to the TX driver of the Pad
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "2:1"
+                name: drv
+                desc: '''
+                     Driving Strength selector
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "3"
+            },
+            {
+                bits: "3"
+                name: pde
+                desc: '''
+                     Pull-Down resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "4"
+                name: pue
+                desc: '''
+                     Pull-Up resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "5"
+                name: rxe
+                desc: '''
+                     Active high RX enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "6"
+                name: slw
+                desc: '''
+                     
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "7"
+                name: smt
+                desc: '''
+                     Active High schmidt trigger Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "8"
+                name: trie
+                desc: '''
+                     Active high tri-state enable: trie = 1 -> buffer is in tri-state mode, i.e. Hi-Z. To Transmit trie = 0
                 '''
                 swaccess: "rw"
                 hwaccess: "hro"
                 resval: "1"
-            },
-            {
-                bits: "1"
-                name: output_en
-                desc: '''
-                     Enables the output driver of the pad
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
-            },
-            {
-                bits: "2"
-                name: rx_en
-                desc: '''
-                     Input buffer enable
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
             },
           ]
       }
@@ -2100,31 +3550,81 @@
                 bits: "0"
                 name: chip2pad
                 desc: '''
-                     The signal that connects to the pads TX driver
+                     Signal to connect internal Chip to the TX driver of the Pad
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "2:1"
+                name: drv
+                desc: '''
+                     Driving Strength selector
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "3"
+            },
+            {
+                bits: "3"
+                name: pde
+                desc: '''
+                     Pull-Down resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "4"
+                name: pue
+                desc: '''
+                     Pull-Up resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "5"
+                name: rxe
+                desc: '''
+                     Active high RX enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "6"
+                name: slw
+                desc: '''
+                     
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "7"
+                name: smt
+                desc: '''
+                     Active High schmidt trigger Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "8"
+                name: trie
+                desc: '''
+                     Active high tri-state enable: trie = 1 -> buffer is in tri-state mode, i.e. Hi-Z. To Transmit trie = 0
                 '''
                 swaccess: "rw"
                 hwaccess: "hro"
                 resval: "1"
-            },
-            {
-                bits: "1"
-                name: output_en
-                desc: '''
-                     Enables the output driver of the pad
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
-            },
-            {
-                bits: "2"
-                name: rx_en
-                desc: '''
-                     Input buffer enable
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
             },
           ]
       }
@@ -2171,31 +3671,81 @@
                 bits: "0"
                 name: chip2pad
                 desc: '''
-                     The signal that connects to the pads TX driver
+                     Signal to connect internal Chip to the TX driver of the Pad
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "2:1"
+                name: drv
+                desc: '''
+                     Driving Strength selector
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "3"
+            },
+            {
+                bits: "3"
+                name: pde
+                desc: '''
+                     Pull-Down resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "4"
+                name: pue
+                desc: '''
+                     Pull-Up resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "5"
+                name: rxe
+                desc: '''
+                     Active high RX enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "6"
+                name: slw
+                desc: '''
+                     
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "7"
+                name: smt
+                desc: '''
+                     Active High schmidt trigger Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "8"
+                name: trie
+                desc: '''
+                     Active high tri-state enable: trie = 1 -> buffer is in tri-state mode, i.e. Hi-Z. To Transmit trie = 0
                 '''
                 swaccess: "rw"
                 hwaccess: "hro"
                 resval: "1"
-            },
-            {
-                bits: "1"
-                name: output_en
-                desc: '''
-                     Enables the output driver of the pad
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
-            },
-            {
-                bits: "2"
-                name: rx_en
-                desc: '''
-                     Input buffer enable
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
             },
           ]
       }
@@ -2242,31 +3792,81 @@
                 bits: "0"
                 name: chip2pad
                 desc: '''
-                     The signal that connects to the pads TX driver
+                     Signal to connect internal Chip to the TX driver of the Pad
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "2:1"
+                name: drv
+                desc: '''
+                     Driving Strength selector
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "3"
+            },
+            {
+                bits: "3"
+                name: pde
+                desc: '''
+                     Pull-Down resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "4"
+                name: pue
+                desc: '''
+                     Pull-Up resistor Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "5"
+                name: rxe
+                desc: '''
+                     Active high RX enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "6"
+                name: slw
+                desc: '''
+                     
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "7"
+                name: smt
+                desc: '''
+                     Active High schmidt trigger Enable
+                '''
+                swaccess: "rw"
+                hwaccess: "hro"
+                resval: "0"
+            },
+            {
+                bits: "8"
+                name: trie
+                desc: '''
+                     Active high tri-state enable: trie = 1 -> buffer is in tri-state mode, i.e. Hi-Z. To Transmit trie = 0
                 '''
                 swaccess: "rw"
                 hwaccess: "hro"
                 resval: "1"
-            },
-            {
-                bits: "1"
-                name: output_en
-                desc: '''
-                     Enables the output driver of the pad
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
-            },
-            {
-                bits: "2"
-                name: rx_en
-                desc: '''
-                     Input buffer enable
-                '''
-                swaccess: "rw"
-                hwaccess: "hro"
-                resval: "0"
             },
           ]
       }

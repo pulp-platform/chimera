@@ -8,7 +8,6 @@ module chimera_padframe_aon_static
 ) (
   input logic clk_i,
   input logic rst_ni,
-  input pad_domain_aon_static_override_signals_t override_signals_i,
   output pad_domain_aon_static_static_connection_signals_pad2soc_t static_connection_signals_pad2soc,
   input pad_domain_aon_static_static_connection_signals_soc2pad_t static_connection_signals_soc2pad,
   inout wire logic pad_lse_clk_pad,
@@ -26,7 +25,6 @@ module chimera_padframe_aon_static
 );
 
    chimera_padframe_aon_static_pads i_aon_static_pads (
-     .override_signals_i,
      .static_connection_signals_pad2soc,
      .static_connection_signals_soc2pad,
      .pad_lse_clk_pad,

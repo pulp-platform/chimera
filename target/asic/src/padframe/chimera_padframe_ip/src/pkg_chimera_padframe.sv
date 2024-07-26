@@ -3,15 +3,9 @@ package pkg_chimera_padframe;
 
   //Structs for aon_static
 
-  //Override signals
-  typedef struct packed {
-     logic  s_enable_all_outputs;
-  } pad_domain_aon_static_override_signals_t;
-
   //Static connections signals
    typedef struct packed {
       logic        st_jtag_tdo;
-      logic        st_jtag_tdo_oe;
      } pad_domain_aon_static_static_connection_signals_soc2pad_t;
 
    typedef struct packed {
@@ -27,11 +21,6 @@ package pkg_chimera_padframe;
      } pad_domain_aon_static_static_connection_signals_pad2soc_t;
 
   //Structs for aon_gpioa
-
-  //Override signals
-  typedef struct packed {
-     logic  s_enable_all_outputs;
-  } pad_domain_aon_gpioa_override_signals_t;
 
   // Port Group signals
    typedef struct packed {
@@ -446,11 +435,6 @@ package pkg_chimera_padframe;
 
 
   //Toplevel structs
-
-  typedef struct packed{
-    pad_domain_aon_static_override_signals_t aon_static;
-    pad_domain_aon_gpioa_override_signals_t aon_gpioa;
-  } override_signals_t;
 
   typedef struct packed {
     pad_domain_aon_static_static_connection_signals_pad2soc_t aon_static;

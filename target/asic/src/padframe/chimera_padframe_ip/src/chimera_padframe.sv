@@ -10,7 +10,6 @@ module chimera_padframe
 )(
   input logic                                clk_i,
   input logic                                rst_ni,
-  input override_signals_t                   override_signals,
   output static_connection_signals_pad2soc_t static_connection_signals_pad2soc,
   input  static_connection_signals_soc2pad_t static_connection_signals_soc2pad,
   output port_signals_pad2soc_t              port_signals_pad2soc,
@@ -72,7 +71,6 @@ module chimera_padframe
   ) i_aon_static (
    .clk_i,
    .rst_ni,
-   .override_signals_i(override_signals.aon_static),
    .static_connection_signals_pad2soc(static_connection_signals_pad2soc.aon_static),
    .static_connection_signals_soc2pad(static_connection_signals_soc2pad.aon_static),
    .pad_lse_clk_pad(pad_aon_static_lse_clk_pad),
@@ -97,7 +95,6 @@ module chimera_padframe
   ) i_aon_gpioa (
    .clk_i,
    .rst_ni,
-   .override_signals_i(override_signals.aon_gpioa),
    .port_signals_pad2soc_o(port_signals_pad2soc.aon_gpioa),
    .port_signals_soc2pad_i(port_signals_soc2pad.aon_gpioa),
    .pad_gpio_0_pad(pad_aon_gpioa_gpio_0_pad),

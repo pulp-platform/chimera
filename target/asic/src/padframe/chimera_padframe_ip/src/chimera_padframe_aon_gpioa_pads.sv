@@ -3,8 +3,6 @@ module chimera_padframe_aon_gpioa_pads
   import pkg_chimera_padframe::*;
   import pkg_internal_chimera_padframe_aon_gpioa::*;
 (
-  //Override signals
-  input  pad_domain_aon_gpioa_override_signals_t override_signals_i,
  // Dynamic Pad control signals, these signals are controlled by the multiplexer in the correpsongin pad_controller module
   input mux_to_pads_t mux_to_pads_i,
   output pads_to_mux_t pads_to_mux_o,
@@ -44,261 +42,581 @@ module chimera_padframe_aon_gpioa_pads
   );
 
    // Pad instantiations
-   PDDW04808 i_gpio_0 (
+   IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_0 (
     .PAD(pad_gpio_0_pad),
-    .IE(mux_to_pads_i.gpio_0.rx_en),
-    .OE((mux_to_pads_i.gpio_0.output_en)|(override_signals_i.s_enable_all_outputs)),
-    .DS(1'b0),
-    .I(mux_to_pads_i.gpio_0.chip2pad),
-    .O(pads_to_mux_o.gpio_0.pad2chip)
+    .DATA(mux_to_pads_i.gpio_0.chip2pad),
+    .Y(pads_to_mux_o.gpio_0.pad2chip),
+    .TRIEN(mux_to_pads_i.gpio_0.trie),
+    .RXEN(mux_to_pads_i.gpio_0.rxe),
+    .PUEN(mux_to_pads_i.gpio_0.pue),
+    .PDEN(mux_to_pads_i.gpio_0.pde),
+    .NDIN(1'b0),
+    .NDOUT(),
+    .DRV(mux_to_pads_i.gpio_0.drv),
+    .SLW(mux_to_pads_i.gpio_0.slw),
+    .SMT(mux_to_pads_i.gpio_0.smt),
+    .PWROK(PWROK_S),
+    .IOPWROK(IOPWROK_S),
+    .BAIS(BIAS_S),
+    .RETC(RETC_S)
   );
-   PDDW04808 i_gpio_1 (
+   IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_1 (
     .PAD(pad_gpio_1_pad),
-    .IE(mux_to_pads_i.gpio_1.rx_en),
-    .OE((mux_to_pads_i.gpio_1.output_en)|(override_signals_i.s_enable_all_outputs)),
-    .DS(1'b0),
-    .I(mux_to_pads_i.gpio_1.chip2pad),
-    .O(pads_to_mux_o.gpio_1.pad2chip)
+    .DATA(mux_to_pads_i.gpio_1.chip2pad),
+    .Y(pads_to_mux_o.gpio_1.pad2chip),
+    .TRIEN(mux_to_pads_i.gpio_1.trie),
+    .RXEN(mux_to_pads_i.gpio_1.rxe),
+    .PUEN(mux_to_pads_i.gpio_1.pue),
+    .PDEN(mux_to_pads_i.gpio_1.pde),
+    .NDIN(1'b0),
+    .NDOUT(),
+    .DRV(mux_to_pads_i.gpio_1.drv),
+    .SLW(mux_to_pads_i.gpio_1.slw),
+    .SMT(mux_to_pads_i.gpio_1.smt),
+    .PWROK(PWROK_S),
+    .IOPWROK(IOPWROK_S),
+    .BAIS(BIAS_S),
+    .RETC(RETC_S)
   );
-   PDDW04808 i_gpio_2 (
+   IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_2 (
     .PAD(pad_gpio_2_pad),
-    .IE(mux_to_pads_i.gpio_2.rx_en),
-    .OE((mux_to_pads_i.gpio_2.output_en)|(override_signals_i.s_enable_all_outputs)),
-    .DS(1'b0),
-    .I(mux_to_pads_i.gpio_2.chip2pad),
-    .O(pads_to_mux_o.gpio_2.pad2chip)
+    .DATA(mux_to_pads_i.gpio_2.chip2pad),
+    .Y(pads_to_mux_o.gpio_2.pad2chip),
+    .TRIEN(mux_to_pads_i.gpio_2.trie),
+    .RXEN(mux_to_pads_i.gpio_2.rxe),
+    .PUEN(mux_to_pads_i.gpio_2.pue),
+    .PDEN(mux_to_pads_i.gpio_2.pde),
+    .NDIN(1'b0),
+    .NDOUT(),
+    .DRV(mux_to_pads_i.gpio_2.drv),
+    .SLW(mux_to_pads_i.gpio_2.slw),
+    .SMT(mux_to_pads_i.gpio_2.smt),
+    .PWROK(PWROK_S),
+    .IOPWROK(IOPWROK_S),
+    .BAIS(BIAS_S),
+    .RETC(RETC_S)
   );
-   PDDW04808 i_gpio_3 (
+   IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_3 (
     .PAD(pad_gpio_3_pad),
-    .IE(mux_to_pads_i.gpio_3.rx_en),
-    .OE((mux_to_pads_i.gpio_3.output_en)|(override_signals_i.s_enable_all_outputs)),
-    .DS(1'b0),
-    .I(mux_to_pads_i.gpio_3.chip2pad),
-    .O(pads_to_mux_o.gpio_3.pad2chip)
+    .DATA(mux_to_pads_i.gpio_3.chip2pad),
+    .Y(pads_to_mux_o.gpio_3.pad2chip),
+    .TRIEN(mux_to_pads_i.gpio_3.trie),
+    .RXEN(mux_to_pads_i.gpio_3.rxe),
+    .PUEN(mux_to_pads_i.gpio_3.pue),
+    .PDEN(mux_to_pads_i.gpio_3.pde),
+    .NDIN(1'b0),
+    .NDOUT(),
+    .DRV(mux_to_pads_i.gpio_3.drv),
+    .SLW(mux_to_pads_i.gpio_3.slw),
+    .SMT(mux_to_pads_i.gpio_3.smt),
+    .PWROK(PWROK_S),
+    .IOPWROK(IOPWROK_S),
+    .BAIS(BIAS_S),
+    .RETC(RETC_S)
   );
-   PDDW04808 i_gpio_4 (
+   IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_4 (
     .PAD(pad_gpio_4_pad),
-    .IE(mux_to_pads_i.gpio_4.rx_en),
-    .OE((mux_to_pads_i.gpio_4.output_en)|(override_signals_i.s_enable_all_outputs)),
-    .DS(1'b0),
-    .I(mux_to_pads_i.gpio_4.chip2pad),
-    .O(pads_to_mux_o.gpio_4.pad2chip)
+    .DATA(mux_to_pads_i.gpio_4.chip2pad),
+    .Y(pads_to_mux_o.gpio_4.pad2chip),
+    .TRIEN(mux_to_pads_i.gpio_4.trie),
+    .RXEN(mux_to_pads_i.gpio_4.rxe),
+    .PUEN(mux_to_pads_i.gpio_4.pue),
+    .PDEN(mux_to_pads_i.gpio_4.pde),
+    .NDIN(1'b0),
+    .NDOUT(),
+    .DRV(mux_to_pads_i.gpio_4.drv),
+    .SLW(mux_to_pads_i.gpio_4.slw),
+    .SMT(mux_to_pads_i.gpio_4.smt),
+    .PWROK(PWROK_S),
+    .IOPWROK(IOPWROK_S),
+    .BAIS(BIAS_S),
+    .RETC(RETC_S)
   );
-   PDDW04808 i_gpio_5 (
+   IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_5 (
     .PAD(pad_gpio_5_pad),
-    .IE(mux_to_pads_i.gpio_5.rx_en),
-    .OE((mux_to_pads_i.gpio_5.output_en)|(override_signals_i.s_enable_all_outputs)),
-    .DS(1'b0),
-    .I(mux_to_pads_i.gpio_5.chip2pad),
-    .O(pads_to_mux_o.gpio_5.pad2chip)
+    .DATA(mux_to_pads_i.gpio_5.chip2pad),
+    .Y(pads_to_mux_o.gpio_5.pad2chip),
+    .TRIEN(mux_to_pads_i.gpio_5.trie),
+    .RXEN(mux_to_pads_i.gpio_5.rxe),
+    .PUEN(mux_to_pads_i.gpio_5.pue),
+    .PDEN(mux_to_pads_i.gpio_5.pde),
+    .NDIN(1'b0),
+    .NDOUT(),
+    .DRV(mux_to_pads_i.gpio_5.drv),
+    .SLW(mux_to_pads_i.gpio_5.slw),
+    .SMT(mux_to_pads_i.gpio_5.smt),
+    .PWROK(PWROK_S),
+    .IOPWROK(IOPWROK_S),
+    .BAIS(BIAS_S),
+    .RETC(RETC_S)
   );
-   PDDW04808 i_gpio_6 (
+   IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_6 (
     .PAD(pad_gpio_6_pad),
-    .IE(mux_to_pads_i.gpio_6.rx_en),
-    .OE((mux_to_pads_i.gpio_6.output_en)|(override_signals_i.s_enable_all_outputs)),
-    .DS(1'b0),
-    .I(mux_to_pads_i.gpio_6.chip2pad),
-    .O(pads_to_mux_o.gpio_6.pad2chip)
+    .DATA(mux_to_pads_i.gpio_6.chip2pad),
+    .Y(pads_to_mux_o.gpio_6.pad2chip),
+    .TRIEN(mux_to_pads_i.gpio_6.trie),
+    .RXEN(mux_to_pads_i.gpio_6.rxe),
+    .PUEN(mux_to_pads_i.gpio_6.pue),
+    .PDEN(mux_to_pads_i.gpio_6.pde),
+    .NDIN(1'b0),
+    .NDOUT(),
+    .DRV(mux_to_pads_i.gpio_6.drv),
+    .SLW(mux_to_pads_i.gpio_6.slw),
+    .SMT(mux_to_pads_i.gpio_6.smt),
+    .PWROK(PWROK_S),
+    .IOPWROK(IOPWROK_S),
+    .BAIS(BIAS_S),
+    .RETC(RETC_S)
   );
-   PDDW04808 i_gpio_7 (
+   IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_7 (
     .PAD(pad_gpio_7_pad),
-    .IE(mux_to_pads_i.gpio_7.rx_en),
-    .OE((mux_to_pads_i.gpio_7.output_en)|(override_signals_i.s_enable_all_outputs)),
-    .DS(1'b0),
-    .I(mux_to_pads_i.gpio_7.chip2pad),
-    .O(pads_to_mux_o.gpio_7.pad2chip)
+    .DATA(mux_to_pads_i.gpio_7.chip2pad),
+    .Y(pads_to_mux_o.gpio_7.pad2chip),
+    .TRIEN(mux_to_pads_i.gpio_7.trie),
+    .RXEN(mux_to_pads_i.gpio_7.rxe),
+    .PUEN(mux_to_pads_i.gpio_7.pue),
+    .PDEN(mux_to_pads_i.gpio_7.pde),
+    .NDIN(1'b0),
+    .NDOUT(),
+    .DRV(mux_to_pads_i.gpio_7.drv),
+    .SLW(mux_to_pads_i.gpio_7.slw),
+    .SMT(mux_to_pads_i.gpio_7.smt),
+    .PWROK(PWROK_S),
+    .IOPWROK(IOPWROK_S),
+    .BAIS(BIAS_S),
+    .RETC(RETC_S)
   );
-   PDDW04808 i_gpio_8 (
+   IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_8 (
     .PAD(pad_gpio_8_pad),
-    .IE(mux_to_pads_i.gpio_8.rx_en),
-    .OE((mux_to_pads_i.gpio_8.output_en)|(override_signals_i.s_enable_all_outputs)),
-    .DS(1'b0),
-    .I(mux_to_pads_i.gpio_8.chip2pad),
-    .O(pads_to_mux_o.gpio_8.pad2chip)
+    .DATA(mux_to_pads_i.gpio_8.chip2pad),
+    .Y(pads_to_mux_o.gpio_8.pad2chip),
+    .TRIEN(mux_to_pads_i.gpio_8.trie),
+    .RXEN(mux_to_pads_i.gpio_8.rxe),
+    .PUEN(mux_to_pads_i.gpio_8.pue),
+    .PDEN(mux_to_pads_i.gpio_8.pde),
+    .NDIN(1'b0),
+    .NDOUT(),
+    .DRV(mux_to_pads_i.gpio_8.drv),
+    .SLW(mux_to_pads_i.gpio_8.slw),
+    .SMT(mux_to_pads_i.gpio_8.smt),
+    .PWROK(PWROK_S),
+    .IOPWROK(IOPWROK_S),
+    .BAIS(BIAS_S),
+    .RETC(RETC_S)
   );
-   PDDW04808 i_gpio_9 (
+   IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_9 (
     .PAD(pad_gpio_9_pad),
-    .IE(mux_to_pads_i.gpio_9.rx_en),
-    .OE((mux_to_pads_i.gpio_9.output_en)|(override_signals_i.s_enable_all_outputs)),
-    .DS(1'b0),
-    .I(mux_to_pads_i.gpio_9.chip2pad),
-    .O(pads_to_mux_o.gpio_9.pad2chip)
+    .DATA(mux_to_pads_i.gpio_9.chip2pad),
+    .Y(pads_to_mux_o.gpio_9.pad2chip),
+    .TRIEN(mux_to_pads_i.gpio_9.trie),
+    .RXEN(mux_to_pads_i.gpio_9.rxe),
+    .PUEN(mux_to_pads_i.gpio_9.pue),
+    .PDEN(mux_to_pads_i.gpio_9.pde),
+    .NDIN(1'b0),
+    .NDOUT(),
+    .DRV(mux_to_pads_i.gpio_9.drv),
+    .SLW(mux_to_pads_i.gpio_9.slw),
+    .SMT(mux_to_pads_i.gpio_9.smt),
+    .PWROK(PWROK_S),
+    .IOPWROK(IOPWROK_S),
+    .BAIS(BIAS_S),
+    .RETC(RETC_S)
   );
-   PDDW04808 i_gpio_10 (
+   IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_10 (
     .PAD(pad_gpio_10_pad),
-    .IE(mux_to_pads_i.gpio_10.rx_en),
-    .OE((mux_to_pads_i.gpio_10.output_en)|(override_signals_i.s_enable_all_outputs)),
-    .DS(1'b0),
-    .I(mux_to_pads_i.gpio_10.chip2pad),
-    .O(pads_to_mux_o.gpio_10.pad2chip)
+    .DATA(mux_to_pads_i.gpio_10.chip2pad),
+    .Y(pads_to_mux_o.gpio_10.pad2chip),
+    .TRIEN(mux_to_pads_i.gpio_10.trie),
+    .RXEN(mux_to_pads_i.gpio_10.rxe),
+    .PUEN(mux_to_pads_i.gpio_10.pue),
+    .PDEN(mux_to_pads_i.gpio_10.pde),
+    .NDIN(1'b0),
+    .NDOUT(),
+    .DRV(mux_to_pads_i.gpio_10.drv),
+    .SLW(mux_to_pads_i.gpio_10.slw),
+    .SMT(mux_to_pads_i.gpio_10.smt),
+    .PWROK(PWROK_S),
+    .IOPWROK(IOPWROK_S),
+    .BAIS(BIAS_S),
+    .RETC(RETC_S)
   );
-   PDDW04808 i_gpio_11 (
+   IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_11 (
     .PAD(pad_gpio_11_pad),
-    .IE(mux_to_pads_i.gpio_11.rx_en),
-    .OE((mux_to_pads_i.gpio_11.output_en)|(override_signals_i.s_enable_all_outputs)),
-    .DS(1'b0),
-    .I(mux_to_pads_i.gpio_11.chip2pad),
-    .O(pads_to_mux_o.gpio_11.pad2chip)
+    .DATA(mux_to_pads_i.gpio_11.chip2pad),
+    .Y(pads_to_mux_o.gpio_11.pad2chip),
+    .TRIEN(mux_to_pads_i.gpio_11.trie),
+    .RXEN(mux_to_pads_i.gpio_11.rxe),
+    .PUEN(mux_to_pads_i.gpio_11.pue),
+    .PDEN(mux_to_pads_i.gpio_11.pde),
+    .NDIN(1'b0),
+    .NDOUT(),
+    .DRV(mux_to_pads_i.gpio_11.drv),
+    .SLW(mux_to_pads_i.gpio_11.slw),
+    .SMT(mux_to_pads_i.gpio_11.smt),
+    .PWROK(PWROK_S),
+    .IOPWROK(IOPWROK_S),
+    .BAIS(BIAS_S),
+    .RETC(RETC_S)
   );
-   PDDW04808 i_gpio_12 (
+   IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_12 (
     .PAD(pad_gpio_12_pad),
-    .IE(mux_to_pads_i.gpio_12.rx_en),
-    .OE((mux_to_pads_i.gpio_12.output_en)|(override_signals_i.s_enable_all_outputs)),
-    .DS(1'b0),
-    .I(mux_to_pads_i.gpio_12.chip2pad),
-    .O(pads_to_mux_o.gpio_12.pad2chip)
+    .DATA(mux_to_pads_i.gpio_12.chip2pad),
+    .Y(pads_to_mux_o.gpio_12.pad2chip),
+    .TRIEN(mux_to_pads_i.gpio_12.trie),
+    .RXEN(mux_to_pads_i.gpio_12.rxe),
+    .PUEN(mux_to_pads_i.gpio_12.pue),
+    .PDEN(mux_to_pads_i.gpio_12.pde),
+    .NDIN(1'b0),
+    .NDOUT(),
+    .DRV(mux_to_pads_i.gpio_12.drv),
+    .SLW(mux_to_pads_i.gpio_12.slw),
+    .SMT(mux_to_pads_i.gpio_12.smt),
+    .PWROK(PWROK_S),
+    .IOPWROK(IOPWROK_S),
+    .BAIS(BIAS_S),
+    .RETC(RETC_S)
   );
-   PDDW04808 i_gpio_13 (
+   IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_13 (
     .PAD(pad_gpio_13_pad),
-    .IE(mux_to_pads_i.gpio_13.rx_en),
-    .OE((mux_to_pads_i.gpio_13.output_en)|(override_signals_i.s_enable_all_outputs)),
-    .DS(1'b0),
-    .I(mux_to_pads_i.gpio_13.chip2pad),
-    .O(pads_to_mux_o.gpio_13.pad2chip)
+    .DATA(mux_to_pads_i.gpio_13.chip2pad),
+    .Y(pads_to_mux_o.gpio_13.pad2chip),
+    .TRIEN(mux_to_pads_i.gpio_13.trie),
+    .RXEN(mux_to_pads_i.gpio_13.rxe),
+    .PUEN(mux_to_pads_i.gpio_13.pue),
+    .PDEN(mux_to_pads_i.gpio_13.pde),
+    .NDIN(1'b0),
+    .NDOUT(),
+    .DRV(mux_to_pads_i.gpio_13.drv),
+    .SLW(mux_to_pads_i.gpio_13.slw),
+    .SMT(mux_to_pads_i.gpio_13.smt),
+    .PWROK(PWROK_S),
+    .IOPWROK(IOPWROK_S),
+    .BAIS(BIAS_S),
+    .RETC(RETC_S)
   );
-   PDDW04808 i_gpio_14 (
+   IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_14 (
     .PAD(pad_gpio_14_pad),
-    .IE(mux_to_pads_i.gpio_14.rx_en),
-    .OE((mux_to_pads_i.gpio_14.output_en)|(override_signals_i.s_enable_all_outputs)),
-    .DS(1'b0),
-    .I(mux_to_pads_i.gpio_14.chip2pad),
-    .O(pads_to_mux_o.gpio_14.pad2chip)
+    .DATA(mux_to_pads_i.gpio_14.chip2pad),
+    .Y(pads_to_mux_o.gpio_14.pad2chip),
+    .TRIEN(mux_to_pads_i.gpio_14.trie),
+    .RXEN(mux_to_pads_i.gpio_14.rxe),
+    .PUEN(mux_to_pads_i.gpio_14.pue),
+    .PDEN(mux_to_pads_i.gpio_14.pde),
+    .NDIN(1'b0),
+    .NDOUT(),
+    .DRV(mux_to_pads_i.gpio_14.drv),
+    .SLW(mux_to_pads_i.gpio_14.slw),
+    .SMT(mux_to_pads_i.gpio_14.smt),
+    .PWROK(PWROK_S),
+    .IOPWROK(IOPWROK_S),
+    .BAIS(BIAS_S),
+    .RETC(RETC_S)
   );
-   PDDW04808 i_gpio_15 (
+   IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_15 (
     .PAD(pad_gpio_15_pad),
-    .IE(mux_to_pads_i.gpio_15.rx_en),
-    .OE((mux_to_pads_i.gpio_15.output_en)|(override_signals_i.s_enable_all_outputs)),
-    .DS(1'b0),
-    .I(mux_to_pads_i.gpio_15.chip2pad),
-    .O(pads_to_mux_o.gpio_15.pad2chip)
+    .DATA(mux_to_pads_i.gpio_15.chip2pad),
+    .Y(pads_to_mux_o.gpio_15.pad2chip),
+    .TRIEN(mux_to_pads_i.gpio_15.trie),
+    .RXEN(mux_to_pads_i.gpio_15.rxe),
+    .PUEN(mux_to_pads_i.gpio_15.pue),
+    .PDEN(mux_to_pads_i.gpio_15.pde),
+    .NDIN(1'b0),
+    .NDOUT(),
+    .DRV(mux_to_pads_i.gpio_15.drv),
+    .SLW(mux_to_pads_i.gpio_15.slw),
+    .SMT(mux_to_pads_i.gpio_15.smt),
+    .PWROK(PWROK_S),
+    .IOPWROK(IOPWROK_S),
+    .BAIS(BIAS_S),
+    .RETC(RETC_S)
   );
-   PDDW04808 i_gpio_16 (
+   IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_16 (
     .PAD(pad_gpio_16_pad),
-    .IE(mux_to_pads_i.gpio_16.rx_en),
-    .OE((mux_to_pads_i.gpio_16.output_en)|(override_signals_i.s_enable_all_outputs)),
-    .DS(1'b0),
-    .I(mux_to_pads_i.gpio_16.chip2pad),
-    .O(pads_to_mux_o.gpio_16.pad2chip)
+    .DATA(mux_to_pads_i.gpio_16.chip2pad),
+    .Y(pads_to_mux_o.gpio_16.pad2chip),
+    .TRIEN(mux_to_pads_i.gpio_16.trie),
+    .RXEN(mux_to_pads_i.gpio_16.rxe),
+    .PUEN(mux_to_pads_i.gpio_16.pue),
+    .PDEN(mux_to_pads_i.gpio_16.pde),
+    .NDIN(1'b0),
+    .NDOUT(),
+    .DRV(mux_to_pads_i.gpio_16.drv),
+    .SLW(mux_to_pads_i.gpio_16.slw),
+    .SMT(mux_to_pads_i.gpio_16.smt),
+    .PWROK(PWROK_S),
+    .IOPWROK(IOPWROK_S),
+    .BAIS(BIAS_S),
+    .RETC(RETC_S)
   );
-   PDDW04808 i_gpio_17 (
+   IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_17 (
     .PAD(pad_gpio_17_pad),
-    .IE(mux_to_pads_i.gpio_17.rx_en),
-    .OE((mux_to_pads_i.gpio_17.output_en)|(override_signals_i.s_enable_all_outputs)),
-    .DS(1'b0),
-    .I(mux_to_pads_i.gpio_17.chip2pad),
-    .O(pads_to_mux_o.gpio_17.pad2chip)
+    .DATA(mux_to_pads_i.gpio_17.chip2pad),
+    .Y(pads_to_mux_o.gpio_17.pad2chip),
+    .TRIEN(mux_to_pads_i.gpio_17.trie),
+    .RXEN(mux_to_pads_i.gpio_17.rxe),
+    .PUEN(mux_to_pads_i.gpio_17.pue),
+    .PDEN(mux_to_pads_i.gpio_17.pde),
+    .NDIN(1'b0),
+    .NDOUT(),
+    .DRV(mux_to_pads_i.gpio_17.drv),
+    .SLW(mux_to_pads_i.gpio_17.slw),
+    .SMT(mux_to_pads_i.gpio_17.smt),
+    .PWROK(PWROK_S),
+    .IOPWROK(IOPWROK_S),
+    .BAIS(BIAS_S),
+    .RETC(RETC_S)
   );
-   PDDW04808 i_gpio_18 (
+   IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_18 (
     .PAD(pad_gpio_18_pad),
-    .IE(mux_to_pads_i.gpio_18.rx_en),
-    .OE((mux_to_pads_i.gpio_18.output_en)|(override_signals_i.s_enable_all_outputs)),
-    .DS(1'b0),
-    .I(mux_to_pads_i.gpio_18.chip2pad),
-    .O(pads_to_mux_o.gpio_18.pad2chip)
+    .DATA(mux_to_pads_i.gpio_18.chip2pad),
+    .Y(pads_to_mux_o.gpio_18.pad2chip),
+    .TRIEN(mux_to_pads_i.gpio_18.trie),
+    .RXEN(mux_to_pads_i.gpio_18.rxe),
+    .PUEN(mux_to_pads_i.gpio_18.pue),
+    .PDEN(mux_to_pads_i.gpio_18.pde),
+    .NDIN(1'b0),
+    .NDOUT(),
+    .DRV(mux_to_pads_i.gpio_18.drv),
+    .SLW(mux_to_pads_i.gpio_18.slw),
+    .SMT(mux_to_pads_i.gpio_18.smt),
+    .PWROK(PWROK_S),
+    .IOPWROK(IOPWROK_S),
+    .BAIS(BIAS_S),
+    .RETC(RETC_S)
   );
-   PDDW04808 i_gpio_19 (
+   IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_19 (
     .PAD(pad_gpio_19_pad),
-    .IE(mux_to_pads_i.gpio_19.rx_en),
-    .OE((mux_to_pads_i.gpio_19.output_en)|(override_signals_i.s_enable_all_outputs)),
-    .DS(1'b0),
-    .I(mux_to_pads_i.gpio_19.chip2pad),
-    .O(pads_to_mux_o.gpio_19.pad2chip)
+    .DATA(mux_to_pads_i.gpio_19.chip2pad),
+    .Y(pads_to_mux_o.gpio_19.pad2chip),
+    .TRIEN(mux_to_pads_i.gpio_19.trie),
+    .RXEN(mux_to_pads_i.gpio_19.rxe),
+    .PUEN(mux_to_pads_i.gpio_19.pue),
+    .PDEN(mux_to_pads_i.gpio_19.pde),
+    .NDIN(1'b0),
+    .NDOUT(),
+    .DRV(mux_to_pads_i.gpio_19.drv),
+    .SLW(mux_to_pads_i.gpio_19.slw),
+    .SMT(mux_to_pads_i.gpio_19.smt),
+    .PWROK(PWROK_S),
+    .IOPWROK(IOPWROK_S),
+    .BAIS(BIAS_S),
+    .RETC(RETC_S)
   );
-   PDDW04808 i_gpio_20 (
+   IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_20 (
     .PAD(pad_gpio_20_pad),
-    .IE(mux_to_pads_i.gpio_20.rx_en),
-    .OE((mux_to_pads_i.gpio_20.output_en)|(override_signals_i.s_enable_all_outputs)),
-    .DS(1'b0),
-    .I(mux_to_pads_i.gpio_20.chip2pad),
-    .O(pads_to_mux_o.gpio_20.pad2chip)
+    .DATA(mux_to_pads_i.gpio_20.chip2pad),
+    .Y(pads_to_mux_o.gpio_20.pad2chip),
+    .TRIEN(mux_to_pads_i.gpio_20.trie),
+    .RXEN(mux_to_pads_i.gpio_20.rxe),
+    .PUEN(mux_to_pads_i.gpio_20.pue),
+    .PDEN(mux_to_pads_i.gpio_20.pde),
+    .NDIN(1'b0),
+    .NDOUT(),
+    .DRV(mux_to_pads_i.gpio_20.drv),
+    .SLW(mux_to_pads_i.gpio_20.slw),
+    .SMT(mux_to_pads_i.gpio_20.smt),
+    .PWROK(PWROK_S),
+    .IOPWROK(IOPWROK_S),
+    .BAIS(BIAS_S),
+    .RETC(RETC_S)
   );
-   PDDW04808 i_gpio_21 (
+   IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_21 (
     .PAD(pad_gpio_21_pad),
-    .IE(mux_to_pads_i.gpio_21.rx_en),
-    .OE((mux_to_pads_i.gpio_21.output_en)|(override_signals_i.s_enable_all_outputs)),
-    .DS(1'b0),
-    .I(mux_to_pads_i.gpio_21.chip2pad),
-    .O(pads_to_mux_o.gpio_21.pad2chip)
+    .DATA(mux_to_pads_i.gpio_21.chip2pad),
+    .Y(pads_to_mux_o.gpio_21.pad2chip),
+    .TRIEN(mux_to_pads_i.gpio_21.trie),
+    .RXEN(mux_to_pads_i.gpio_21.rxe),
+    .PUEN(mux_to_pads_i.gpio_21.pue),
+    .PDEN(mux_to_pads_i.gpio_21.pde),
+    .NDIN(1'b0),
+    .NDOUT(),
+    .DRV(mux_to_pads_i.gpio_21.drv),
+    .SLW(mux_to_pads_i.gpio_21.slw),
+    .SMT(mux_to_pads_i.gpio_21.smt),
+    .PWROK(PWROK_S),
+    .IOPWROK(IOPWROK_S),
+    .BAIS(BIAS_S),
+    .RETC(RETC_S)
   );
-   PDDW04808 i_gpio_22 (
+   IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_22 (
     .PAD(pad_gpio_22_pad),
-    .IE(mux_to_pads_i.gpio_22.rx_en),
-    .OE((mux_to_pads_i.gpio_22.output_en)|(override_signals_i.s_enable_all_outputs)),
-    .DS(1'b0),
-    .I(mux_to_pads_i.gpio_22.chip2pad),
-    .O(pads_to_mux_o.gpio_22.pad2chip)
+    .DATA(mux_to_pads_i.gpio_22.chip2pad),
+    .Y(pads_to_mux_o.gpio_22.pad2chip),
+    .TRIEN(mux_to_pads_i.gpio_22.trie),
+    .RXEN(mux_to_pads_i.gpio_22.rxe),
+    .PUEN(mux_to_pads_i.gpio_22.pue),
+    .PDEN(mux_to_pads_i.gpio_22.pde),
+    .NDIN(1'b0),
+    .NDOUT(),
+    .DRV(mux_to_pads_i.gpio_22.drv),
+    .SLW(mux_to_pads_i.gpio_22.slw),
+    .SMT(mux_to_pads_i.gpio_22.smt),
+    .PWROK(PWROK_S),
+    .IOPWROK(IOPWROK_S),
+    .BAIS(BIAS_S),
+    .RETC(RETC_S)
   );
-   PDDW04808 i_gpio_23 (
+   IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_23 (
     .PAD(pad_gpio_23_pad),
-    .IE(mux_to_pads_i.gpio_23.rx_en),
-    .OE((mux_to_pads_i.gpio_23.output_en)|(override_signals_i.s_enable_all_outputs)),
-    .DS(1'b0),
-    .I(mux_to_pads_i.gpio_23.chip2pad),
-    .O(pads_to_mux_o.gpio_23.pad2chip)
+    .DATA(mux_to_pads_i.gpio_23.chip2pad),
+    .Y(pads_to_mux_o.gpio_23.pad2chip),
+    .TRIEN(mux_to_pads_i.gpio_23.trie),
+    .RXEN(mux_to_pads_i.gpio_23.rxe),
+    .PUEN(mux_to_pads_i.gpio_23.pue),
+    .PDEN(mux_to_pads_i.gpio_23.pde),
+    .NDIN(1'b0),
+    .NDOUT(),
+    .DRV(mux_to_pads_i.gpio_23.drv),
+    .SLW(mux_to_pads_i.gpio_23.slw),
+    .SMT(mux_to_pads_i.gpio_23.smt),
+    .PWROK(PWROK_S),
+    .IOPWROK(IOPWROK_S),
+    .BAIS(BIAS_S),
+    .RETC(RETC_S)
   );
-   PDDW04808 i_gpio_24 (
+   IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_24 (
     .PAD(pad_gpio_24_pad),
-    .IE(mux_to_pads_i.gpio_24.rx_en),
-    .OE((mux_to_pads_i.gpio_24.output_en)|(override_signals_i.s_enable_all_outputs)),
-    .DS(1'b0),
-    .I(mux_to_pads_i.gpio_24.chip2pad),
-    .O(pads_to_mux_o.gpio_24.pad2chip)
+    .DATA(mux_to_pads_i.gpio_24.chip2pad),
+    .Y(pads_to_mux_o.gpio_24.pad2chip),
+    .TRIEN(mux_to_pads_i.gpio_24.trie),
+    .RXEN(mux_to_pads_i.gpio_24.rxe),
+    .PUEN(mux_to_pads_i.gpio_24.pue),
+    .PDEN(mux_to_pads_i.gpio_24.pde),
+    .NDIN(1'b0),
+    .NDOUT(),
+    .DRV(mux_to_pads_i.gpio_24.drv),
+    .SLW(mux_to_pads_i.gpio_24.slw),
+    .SMT(mux_to_pads_i.gpio_24.smt),
+    .PWROK(PWROK_S),
+    .IOPWROK(IOPWROK_S),
+    .BAIS(BIAS_S),
+    .RETC(RETC_S)
   );
-   PDDW04808 i_gpio_25 (
+   IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_25 (
     .PAD(pad_gpio_25_pad),
-    .IE(mux_to_pads_i.gpio_25.rx_en),
-    .OE((mux_to_pads_i.gpio_25.output_en)|(override_signals_i.s_enable_all_outputs)),
-    .DS(1'b0),
-    .I(mux_to_pads_i.gpio_25.chip2pad),
-    .O(pads_to_mux_o.gpio_25.pad2chip)
+    .DATA(mux_to_pads_i.gpio_25.chip2pad),
+    .Y(pads_to_mux_o.gpio_25.pad2chip),
+    .TRIEN(mux_to_pads_i.gpio_25.trie),
+    .RXEN(mux_to_pads_i.gpio_25.rxe),
+    .PUEN(mux_to_pads_i.gpio_25.pue),
+    .PDEN(mux_to_pads_i.gpio_25.pde),
+    .NDIN(1'b0),
+    .NDOUT(),
+    .DRV(mux_to_pads_i.gpio_25.drv),
+    .SLW(mux_to_pads_i.gpio_25.slw),
+    .SMT(mux_to_pads_i.gpio_25.smt),
+    .PWROK(PWROK_S),
+    .IOPWROK(IOPWROK_S),
+    .BAIS(BIAS_S),
+    .RETC(RETC_S)
   );
-   PDDW04808 i_gpio_26 (
+   IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_26 (
     .PAD(pad_gpio_26_pad),
-    .IE(mux_to_pads_i.gpio_26.rx_en),
-    .OE((mux_to_pads_i.gpio_26.output_en)|(override_signals_i.s_enable_all_outputs)),
-    .DS(1'b0),
-    .I(mux_to_pads_i.gpio_26.chip2pad),
-    .O(pads_to_mux_o.gpio_26.pad2chip)
+    .DATA(mux_to_pads_i.gpio_26.chip2pad),
+    .Y(pads_to_mux_o.gpio_26.pad2chip),
+    .TRIEN(mux_to_pads_i.gpio_26.trie),
+    .RXEN(mux_to_pads_i.gpio_26.rxe),
+    .PUEN(mux_to_pads_i.gpio_26.pue),
+    .PDEN(mux_to_pads_i.gpio_26.pde),
+    .NDIN(1'b0),
+    .NDOUT(),
+    .DRV(mux_to_pads_i.gpio_26.drv),
+    .SLW(mux_to_pads_i.gpio_26.slw),
+    .SMT(mux_to_pads_i.gpio_26.smt),
+    .PWROK(PWROK_S),
+    .IOPWROK(IOPWROK_S),
+    .BAIS(BIAS_S),
+    .RETC(RETC_S)
   );
-   PDDW04808 i_gpio_27 (
+   IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_27 (
     .PAD(pad_gpio_27_pad),
-    .IE(mux_to_pads_i.gpio_27.rx_en),
-    .OE((mux_to_pads_i.gpio_27.output_en)|(override_signals_i.s_enable_all_outputs)),
-    .DS(1'b0),
-    .I(mux_to_pads_i.gpio_27.chip2pad),
-    .O(pads_to_mux_o.gpio_27.pad2chip)
+    .DATA(mux_to_pads_i.gpio_27.chip2pad),
+    .Y(pads_to_mux_o.gpio_27.pad2chip),
+    .TRIEN(mux_to_pads_i.gpio_27.trie),
+    .RXEN(mux_to_pads_i.gpio_27.rxe),
+    .PUEN(mux_to_pads_i.gpio_27.pue),
+    .PDEN(mux_to_pads_i.gpio_27.pde),
+    .NDIN(1'b0),
+    .NDOUT(),
+    .DRV(mux_to_pads_i.gpio_27.drv),
+    .SLW(mux_to_pads_i.gpio_27.slw),
+    .SMT(mux_to_pads_i.gpio_27.smt),
+    .PWROK(PWROK_S),
+    .IOPWROK(IOPWROK_S),
+    .BAIS(BIAS_S),
+    .RETC(RETC_S)
   );
-   PDDW04808 i_gpio_28 (
+   IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_28 (
     .PAD(pad_gpio_28_pad),
-    .IE(mux_to_pads_i.gpio_28.rx_en),
-    .OE((mux_to_pads_i.gpio_28.output_en)|(override_signals_i.s_enable_all_outputs)),
-    .DS(1'b0),
-    .I(mux_to_pads_i.gpio_28.chip2pad),
-    .O(pads_to_mux_o.gpio_28.pad2chip)
+    .DATA(mux_to_pads_i.gpio_28.chip2pad),
+    .Y(pads_to_mux_o.gpio_28.pad2chip),
+    .TRIEN(mux_to_pads_i.gpio_28.trie),
+    .RXEN(mux_to_pads_i.gpio_28.rxe),
+    .PUEN(mux_to_pads_i.gpio_28.pue),
+    .PDEN(mux_to_pads_i.gpio_28.pde),
+    .NDIN(1'b0),
+    .NDOUT(),
+    .DRV(mux_to_pads_i.gpio_28.drv),
+    .SLW(mux_to_pads_i.gpio_28.slw),
+    .SMT(mux_to_pads_i.gpio_28.smt),
+    .PWROK(PWROK_S),
+    .IOPWROK(IOPWROK_S),
+    .BAIS(BIAS_S),
+    .RETC(RETC_S)
   );
-   PDDW04808 i_gpio_29 (
+   IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_29 (
     .PAD(pad_gpio_29_pad),
-    .IE(mux_to_pads_i.gpio_29.rx_en),
-    .OE((mux_to_pads_i.gpio_29.output_en)|(override_signals_i.s_enable_all_outputs)),
-    .DS(1'b0),
-    .I(mux_to_pads_i.gpio_29.chip2pad),
-    .O(pads_to_mux_o.gpio_29.pad2chip)
+    .DATA(mux_to_pads_i.gpio_29.chip2pad),
+    .Y(pads_to_mux_o.gpio_29.pad2chip),
+    .TRIEN(mux_to_pads_i.gpio_29.trie),
+    .RXEN(mux_to_pads_i.gpio_29.rxe),
+    .PUEN(mux_to_pads_i.gpio_29.pue),
+    .PDEN(mux_to_pads_i.gpio_29.pde),
+    .NDIN(1'b0),
+    .NDOUT(),
+    .DRV(mux_to_pads_i.gpio_29.drv),
+    .SLW(mux_to_pads_i.gpio_29.slw),
+    .SMT(mux_to_pads_i.gpio_29.smt),
+    .PWROK(PWROK_S),
+    .IOPWROK(IOPWROK_S),
+    .BAIS(BIAS_S),
+    .RETC(RETC_S)
   );
-   PDDW04808 i_gpio_30 (
+   IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_30 (
     .PAD(pad_gpio_30_pad),
-    .IE(mux_to_pads_i.gpio_30.rx_en),
-    .OE((mux_to_pads_i.gpio_30.output_en)|(override_signals_i.s_enable_all_outputs)),
-    .DS(1'b0),
-    .I(mux_to_pads_i.gpio_30.chip2pad),
-    .O(pads_to_mux_o.gpio_30.pad2chip)
+    .DATA(mux_to_pads_i.gpio_30.chip2pad),
+    .Y(pads_to_mux_o.gpio_30.pad2chip),
+    .TRIEN(mux_to_pads_i.gpio_30.trie),
+    .RXEN(mux_to_pads_i.gpio_30.rxe),
+    .PUEN(mux_to_pads_i.gpio_30.pue),
+    .PDEN(mux_to_pads_i.gpio_30.pde),
+    .NDIN(1'b0),
+    .NDOUT(),
+    .DRV(mux_to_pads_i.gpio_30.drv),
+    .SLW(mux_to_pads_i.gpio_30.slw),
+    .SMT(mux_to_pads_i.gpio_30.smt),
+    .PWROK(PWROK_S),
+    .IOPWROK(IOPWROK_S),
+    .BAIS(BIAS_S),
+    .RETC(RETC_S)
   );
-   PDDW04808 i_gpio_31 (
+   IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_31 (
     .PAD(pad_gpio_31_pad),
-    .IE(mux_to_pads_i.gpio_31.rx_en),
-    .OE((mux_to_pads_i.gpio_31.output_en)|(override_signals_i.s_enable_all_outputs)),
-    .DS(1'b0),
-    .I(mux_to_pads_i.gpio_31.chip2pad),
-    .O(pads_to_mux_o.gpio_31.pad2chip)
+    .DATA(mux_to_pads_i.gpio_31.chip2pad),
+    .Y(pads_to_mux_o.gpio_31.pad2chip),
+    .TRIEN(mux_to_pads_i.gpio_31.trie),
+    .RXEN(mux_to_pads_i.gpio_31.rxe),
+    .PUEN(mux_to_pads_i.gpio_31.pue),
+    .PDEN(mux_to_pads_i.gpio_31.pde),
+    .NDIN(1'b0),
+    .NDOUT(),
+    .DRV(mux_to_pads_i.gpio_31.drv),
+    .SLW(mux_to_pads_i.gpio_31.slw),
+    .SMT(mux_to_pads_i.gpio_31.smt),
+    .PWROK(PWROK_S),
+    .IOPWROK(IOPWROK_S),
+    .BAIS(BIAS_S),
+    .RETC(RETC_S)
   );
 
 endmodule : chimera_padframe_aon_gpioa_pads

@@ -8,7 +8,6 @@ module chimera_padframe_aon_gpioa
 ) (
   input logic clk_i,
   input logic rst_ni,
-  input pad_domain_aon_gpioa_override_signals_t override_signals_i,
   output pad_domain_aon_gpioa_ports_pad2soc_t port_signals_pad2soc_o,
   input pad_domain_aon_gpioa_ports_soc2pad_t port_signals_soc2pad_i,
   inout wire logic pad_gpio_0_pad,
@@ -51,7 +50,6 @@ module chimera_padframe_aon_gpioa
    pads_to_mux_t s_pads_to_mux;
 
    chimera_padframe_aon_gpioa_pads i_aon_gpioa_pads (
-     .override_signals_i,
      .mux_to_pads_i(s_mux_to_pads),
      .pads_to_mux_o(s_pads_to_mux),
      .pad_gpio_0_pad,

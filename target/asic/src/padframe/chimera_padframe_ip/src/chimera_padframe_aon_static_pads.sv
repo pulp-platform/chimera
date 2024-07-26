@@ -3,8 +3,6 @@ module chimera_padframe_aon_static_pads
   import pkg_chimera_padframe::*;
   import pkg_internal_chimera_padframe_aon_static::*;
 (
-  //Override signals
-  input  pad_domain_aon_static_override_signals_t override_signals_i,
   output pad_domain_aon_static_static_connection_signals_pad2soc_t static_connection_signals_pad2soc,
   input  pad_domain_aon_static_static_connection_signals_soc2pad_t static_connection_signals_soc2pad,
  // Dynamic Pad control signals, these signals are controlled by the multiplexer in the correpsongin pad_controller module
@@ -22,85 +20,185 @@ module chimera_padframe_aon_static_pads
   );
 
    // Pad instantiations
-   PDDW04808 i_lse_clk (
+   IN22FDX_GPIO18_10M3S40PI_IO_V i_lse_clk (
     .PAD(pad_lse_clk_pad),
-    .IE(1'b1),
-    .OE((1'b0)|(override_signals_i.s_enable_all_outputs)),
-    .DS(1'b0),
-    .I(1'b0),
-    .O(static_connection_signals_pad2soc.st_lse_clk)
+    .DATA(1'b0),
+    .Y(static_connection_signals_pad2soc.st_lse_clk),
+    .TRIEN(1'b1),
+    .RXEN(1'b1),
+    .PUEN(1'b0),
+    .PDEN(1'b0),
+    .NDIN(1'b0),
+    .NDOUT(),
+    .DRV(2'b11),
+    .SLW(1'b0),
+    .SMT(1'b0),
+    .PWROK(PWROK_S),
+    .IOPWROK(IOPWROK_S),
+    .BAIS(BIAS_S),
+    .RETC(RETC_S)
   );
-   PDDW04808 i_hse_clk (
+   IN22FDX_GPIO18_10M3S40PI_IO_V i_hse_clk (
     .PAD(pad_hse_clk_pad),
-    .IE(1'b1),
-    .OE((1'b0)|(override_signals_i.s_enable_all_outputs)),
-    .DS(1'b0),
-    .I(1'b0),
-    .O(static_connection_signals_pad2soc.st_hse_clk)
+    .DATA(1'b0),
+    .Y(static_connection_signals_pad2soc.st_hse_clk),
+    .TRIEN(1'b1),
+    .RXEN(1'b1),
+    .PUEN(1'b0),
+    .PDEN(1'b0),
+    .NDIN(1'b0),
+    .NDOUT(),
+    .DRV(2'b11),
+    .SLW(1'b0),
+    .SMT(1'b0),
+    .PWROK(PWROK_S),
+    .IOPWROK(IOPWROK_S),
+    .BAIS(BIAS_S),
+    .RETC(RETC_S)
   );
-   PDDW04808 i_byp_sel_clk (
+   IN22FDX_GPIO18_10M3S40PI_IO_V i_byp_sel_clk (
     .PAD(pad_byp_sel_clk_pad),
-    .IE(1'b1),
-    .OE((1'b0)|(override_signals_i.s_enable_all_outputs)),
-    .DS(1'b0),
-    .I(1'b0),
-    .O(static_connection_signals_pad2soc.st_byp_clk_sel)
+    .DATA(1'b0),
+    .Y(static_connection_signals_pad2soc.st_byp_clk_sel),
+    .TRIEN(1'b1),
+    .RXEN(1'b1),
+    .PUEN(1'b0),
+    .PDEN(1'b0),
+    .NDIN(1'b0),
+    .NDOUT(),
+    .DRV(2'b11),
+    .SLW(1'b0),
+    .SMT(1'b0),
+    .PWROK(PWROK_S),
+    .IOPWROK(IOPWROK_S),
+    .BAIS(BIAS_S),
+    .RETC(RETC_S)
   );
-   PDDW04808 i_rstn (
+   IN22FDX_GPIO18_10M3S40PI_IO_V i_rstn (
     .PAD(pad_rstn_pad),
-    .IE(1'b1),
-    .OE((1'b0)|(override_signals_i.s_enable_all_outputs)),
-    .DS(1'b0),
-    .I(1'b0),
-    .O(static_connection_signals_pad2soc.st_rstn)
+    .DATA(1'b0),
+    .Y(static_connection_signals_pad2soc.st_rstn),
+    .TRIEN(1'b1),
+    .RXEN(1'b1),
+    .PUEN(1'b0),
+    .PDEN(1'b0),
+    .NDIN(1'b0),
+    .NDOUT(),
+    .DRV(2'b11),
+    .SLW(1'b0),
+    .SMT(1'b0),
+    .PWROK(PWROK_S),
+    .IOPWROK(IOPWROK_S),
+    .BAIS(BIAS_S),
+    .RETC(RETC_S)
   );
-   PDDW04808 i_jtag_tck (
+   IN22FDX_GPIO18_10M3S40PI_IO_V i_jtag_tck (
     .PAD(pad_jtag_tck_pad),
-    .IE(1'b1),
-    .OE((1'b0)|(override_signals_i.s_enable_all_outputs)),
-    .DS(1'b0),
-    .I(1'b0),
-    .O(static_connection_signals_pad2soc.st_jtag_tck)
+    .DATA(1'b0),
+    .Y(static_connection_signals_pad2soc.st_jtag_tck),
+    .TRIEN(1'b1),
+    .RXEN(1'b1),
+    .PUEN(1'b0),
+    .PDEN(1'b0),
+    .NDIN(1'b0),
+    .NDOUT(),
+    .DRV(2'b11),
+    .SLW(1'b0),
+    .SMT(1'b0),
+    .PWROK(PWROK_S),
+    .IOPWROK(IOPWROK_S),
+    .BAIS(BIAS_S),
+    .RETC(RETC_S)
   );
-   PDDW04808 i_jtag_trstn (
+   IN22FDX_GPIO18_10M3S40PI_IO_V i_jtag_trstn (
     .PAD(pad_jtag_trstn_pad),
-    .IE(1'b1),
-    .OE((1'b0)|(override_signals_i.s_enable_all_outputs)),
-    .DS(1'b0),
-    .I(1'b0),
-    .O(static_connection_signals_pad2soc.st_jtag_trstn)
+    .DATA(1'b0),
+    .Y(static_connection_signals_pad2soc.st_jtag_trstn),
+    .TRIEN(1'b1),
+    .RXEN(1'b1),
+    .PUEN(1'b0),
+    .PDEN(1'b0),
+    .NDIN(1'b0),
+    .NDOUT(),
+    .DRV(2'b11),
+    .SLW(1'b0),
+    .SMT(1'b0),
+    .PWROK(PWROK_S),
+    .IOPWROK(IOPWROK_S),
+    .BAIS(BIAS_S),
+    .RETC(RETC_S)
   );
-   PDDW04808 i_jtag_tms (
+   IN22FDX_GPIO18_10M3S40PI_IO_V i_jtag_tms (
     .PAD(pad_jtag_tms_pad),
-    .IE(1'b1),
-    .OE((1'b0)|(override_signals_i.s_enable_all_outputs)),
-    .DS(1'b0),
-    .I(1'b0),
-    .O(static_connection_signals_pad2soc.st_jtag_tms)
+    .DATA(1'b0),
+    .Y(static_connection_signals_pad2soc.st_jtag_tms),
+    .TRIEN(1'b1),
+    .RXEN(1'b1),
+    .PUEN(1'b0),
+    .PDEN(1'b0),
+    .NDIN(1'b0),
+    .NDOUT(),
+    .DRV(2'b11),
+    .SLW(1'b0),
+    .SMT(1'b0),
+    .PWROK(PWROK_S),
+    .IOPWROK(IOPWROK_S),
+    .BAIS(BIAS_S),
+    .RETC(RETC_S)
   );
-   PDDW04808 i_jtag_tdi (
+   IN22FDX_GPIO18_10M3S40PI_IO_V i_jtag_tdi (
     .PAD(pad_jtag_tdi_pad),
-    .IE(1'b1),
-    .OE((1'b0)|(override_signals_i.s_enable_all_outputs)),
-    .DS(1'b0),
-    .I(1'b0),
-    .O(static_connection_signals_pad2soc.st_jtag_tdi)
+    .DATA(1'b0),
+    .Y(static_connection_signals_pad2soc.st_jtag_tdi),
+    .TRIEN(1'b1),
+    .RXEN(1'b1),
+    .PUEN(1'b0),
+    .PDEN(1'b0),
+    .NDIN(1'b0),
+    .NDOUT(),
+    .DRV(2'b11),
+    .SLW(1'b0),
+    .SMT(1'b0),
+    .PWROK(PWROK_S),
+    .IOPWROK(IOPWROK_S),
+    .BAIS(BIAS_S),
+    .RETC(RETC_S)
   );
-   PDDW04808 i_jtag_tdo (
+   IN22FDX_GPIO18_10M3S40PI_IO_V i_jtag_tdo (
     .PAD(pad_jtag_tdo_pad),
-    .IE(1'b0),
-    .OE((static_connection_signals_soc2pad.st_jtag_tdo_oe)|(override_signals_i.s_enable_all_outputs)),
-    .DS(1'b0),
-    .I(static_connection_signals_soc2pad.st_jtag_tdo),
-    .O()
+    .DATA(static_connection_signals_soc2pad.st_jtag_tdo),
+    .Y(),
+    .TRIEN(1'b0),
+    .RXEN(1'b0),
+    .PUEN(1'b0),
+    .PDEN(1'b0),
+    .NDIN(1'b0),
+    .NDOUT(),
+    .DRV(2'b11),
+    .SLW(1'b0),
+    .SMT(1'b0),
+    .PWROK(PWROK_S),
+    .IOPWROK(IOPWROK_S),
+    .BAIS(BIAS_S),
+    .RETC(RETC_S)
   );
-   PDDW04808 i_bootsel (
+   IN22FDX_GPIO18_10M3S40PI_IO_V i_bootsel (
     .PAD(pad_bootsel_pad),
-    .IE(1'b1),
-    .OE((1'b0)|(override_signals_i.s_enable_all_outputs)),
-    .DS(1'b0),
-    .I(1'b0),
-    .O(static_connection_signals_pad2soc.st_bootsel)
+    .DATA(1'b0),
+    .Y(static_connection_signals_pad2soc.st_bootsel),
+    .TRIEN(1'b1),
+    .RXEN(1'b1),
+    .PUEN(1'b0),
+    .PDEN(1'b0),
+    .NDIN(1'b0),
+    .NDOUT(),
+    .DRV(2'b11),
+    .SLW(1'b0),
+    .SMT(1'b0),
+    .PWROK(PWROK_S),
+    .IOPWROK(IOPWROK_S),
+    .BAIS(BIAS_S),
+    .RETC(RETC_S)
   );
 
 endmodule : chimera_padframe_aon_static_pads

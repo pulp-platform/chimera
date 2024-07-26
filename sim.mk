@@ -17,3 +17,15 @@ $(CHIM_ROOT)/target/sim/vsim/compile.tcl: chs-hw-init snitch-hw-init
 	@bender script vsim $(COMMON_TARGS) $(SIM_TARGS) --vlog-arg="$(VLOG_ARGS)"> $@
 	echo 'vlog "$(realpath $(CHS_ROOT))/target/sim/src/elfloader.cpp" -ccflags "-std=c++11"' >> $@
 
+.PHONY: chim-asic chim-asic-clean
+
+chim-asic-clean:
+	@rm -rf target/asic/vsim/work
+	@rm -rf target/asic/vsim/transcript
+	@rm -f $(CHIM_ROOT)/target/asic/vsim/compile.tcl
+
+chim-asic: $(CHIM_ROOT)/target/asic/vsim/compile.tcl
+
+$(CHIM_ROOT)/target/asic/vsim/compile.tcl: chs-hw-init snitch-hw-init
+	@bender script vsim $(COMMON_TARGS) $(ASIC_TARGS) --vlog-arg="$(VLOG_ARGS)"> $@
+	echo 'vlog "$(realpath $(CHS_ROOT))/target/vsim/src/elfloader.cpp" -ccflags "-std=c++11"' >> $@

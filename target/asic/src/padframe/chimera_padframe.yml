@@ -38,7 +38,7 @@ pad_domains:
             .O(${conn["pad2chip"]})
           );
 
-        pad_signals: &default_pad_signals 
+        pad_signals: &default_pad_signals
         # The pad signals section specifies a list of all pad signald used in
         # this particular pad_domain. This include the rx signal, tx signal, the
         # actual pad signal as well as all pad configuration signals. These are
@@ -119,6 +119,94 @@ pad_domains:
                       # exposed directly to the toplevel of the generated
                       # padframe module and no type, override signals or default
                       # values are allowed.
+
+      - name: IN22FDX_GPIO18_10M3S40PI
+        description: "gf22 pad"
+        template: |
+          IN22FDX_GPIO18_10M3S40PI_IO_V ${instance_name} (
+            .PAD(${conn["pad"]}),
+            .DATA(${conn["chip2pad"]}),
+            .Y(${conn["pad2chip"]}),
+            .TRIEN(${conn["trie"]}),
+            .RXEN(${conn["rxe"]}),
+            .PUEN(${conn["pue"]}),
+            .PDEN(${conn["pde"]}),
+            .NDIN(1'b0),
+            .NDOUT(),
+            .DRV(${conn["drv"]}),
+            .SLW(${conn["slw"]}),
+            .SMT(${conn["smt"]}),
+            .PWROK(PWROK_S),
+            .IOPWROK(IOPWROK_S),
+            .BAIS(BIAS_S),
+            .RETC(RETC_S)
+          );
+        pad_signals: &IN22FDX_SIGNALS
+          - name: pad
+            size: 1
+            kind: pad
+          - name: chip2pad
+            description: "Signal to connect internal Chip to the TX driver of the Pad"
+            size: 1
+            kind: input
+            conn_type: dynamic
+            default_reset_value: 0
+            default_static_value: 1'b0
+          - name: pad2chip
+            description: "Signal to connect the PAD RX driver to the internal Chip"
+            size: 1
+            kind: output
+            conn_type: dynamic
+          - name: trie
+            description: "Active high tri-state enable: trie = 1 -> buffer is in tri-state mode, i.e. Hi-Z. To Transmit trie = 0"
+            size: 1
+            kind: input
+            conn_type: dynamic
+            default_reset_value: 1
+            default_static_value: 1'b1
+          - name: rxe
+            description: "Active high RX enable"
+            size: 1
+            kind: input
+            conn_type: dynamic
+            default_reset_value: 0
+            default_static_value: 1'b0
+          - name: pue
+            description: "Pull-Up resistor Enable"
+            size: 1
+            kind: input
+            conn_type: dynamic
+            default_reset_value: 0
+            default_static_value: 1'b0
+          - name: pde
+            description: "Pull-Down resistor Enable"
+            size: 1
+            kind: input
+            conn_type: dynamic
+            default_reset_value: 0
+            default_static_value: 1'b0
+          - name: drv
+            description: "Driving Strength selector"
+            size: 2
+            kind: input
+            conn_type: dynamic
+            default_reset_value: 3
+            default_static_value: 2'b11
+          - name: slw
+            size: 1
+            kind: input
+            conn_type: dynamic
+            default_reset_value: 0
+            default_static_value: 1'b0
+          - name: smt
+            description: "Active High schmidt trigger Enable"
+            size: 1
+            kind: input
+            conn_type: dynamic
+            default_reset_value: 0
+            default_static_value: 1'b0
+
+
     pad_list:
       #|------------------------------------|
       #|         STATIC PAD SIGNALS         |
@@ -126,94 +214,102 @@ pad_domains:
 
       - name: lse_clk
         description: "Low Speed External clock"
-        pad_type: pull_down_pad
+        pad_type: IN22FDX_GPIO18_10M3S40PI
         is_static: true
         connections:
           chip2pad: 1'b0
           pad2chip: st_lse_clk
-          rx_en: 1'b1
+          rxe: 1'b1
+          trie: 1'b1
 
       - name: hse_clk
         description: "High Speed External clock"
-        pad_type: pull_down_pad
+        pad_type: IN22FDX_GPIO18_10M3S40PI
         is_static: true
         connections:
           chip2pad: 1'b0
           pad2chip: st_hse_clk
-          rx_en: 1'b1
+          rxe: 1'b1
+          trie: 1'b1
 
       - name: byp_sel_clk
         description: "Bypass signal for clk selection"
-        pad_type: pull_down_pad
+        pad_type: IN22FDX_GPIO18_10M3S40PI
         is_static: true
         connections:
           chip2pad: 1'b0
           pad2chip: st_byp_clk_sel
-          output_en: 1'b0
-          rx_en: 1'b1
+          trie: 1'b1
+          rxe: 1'b1
 
       - name: rstn
         description: "Chip RESET signal"
-        pad_type: pull_down_pad
+        pad_type: IN22FDX_GPIO18_10M3S40PI
         is_static: true
         connections:
           chip2pad: 1'b0
           pad2chip: st_rstn
-          rx_en: 1'b1
+          rxe: 1'b1
+          trie: 1'b1
 
       - name: jtag_tck
         description: "JTAG clock pad signal"
-        pad_type: pull_down_pad
+        pad_type: IN22FDX_GPIO18_10M3S40PI
         is_static: true
         connections:
           pad2chip: st_jtag_tck
           chip2pad: 1'b0
-          rx_en: 1'b1
+          rxe: 1'b1
+          trie: 1'b1
 
       - name: jtag_trstn
         description: "JTAG negative reset pad signal"
-        pad_type: pull_down_pad
+        pad_type: IN22FDX_GPIO18_10M3S40PI
         is_static: true
         connections:
           pad2chip: st_jtag_trstn
           chip2pad: 1'b0
-          rx_en: 1'b1
+          rxe: 1'b1
+          trie: 1'b1
 
       - name: jtag_tms
         description: "JTAG TMS pad signal"
-        pad_type: pull_down_pad
+        pad_type: IN22FDX_GPIO18_10M3S40PI
         is_static: true
         connections:
           pad2chip: st_jtag_tms
           chip2pad: 1'b0
-          rx_en: 1'b1
+          rxe: 1'b1
+          trie: 1'b1
 
       - name: jtag_tdi
         description: "JTAG TDI pad signal"
-        pad_type: pull_down_pad
+        pad_type: IN22FDX_GPIO18_10M3S40PI
         is_static: true
         connections:
           pad2chip: st_jtag_tdi
           chip2pad: 1'b0
-          rx_en: 1'b1
+          rxe: 1'b1
+          trie: 1'b1
 
       - name: jtag_tdo
         description: "JTAG TDO pad signal"
-        pad_type: pull_down_pad
+        pad_type: IN22FDX_GPIO18_10M3S40PI
         is_static: true
         connections:
           chip2pad: st_jtag_tdo
-          output_en: st_jtag_tdo_oe
+          trie: 1'b0
+          rxe: 1'b0
 
       - name: bootsel
         description: "Boot mode selection signal"
-        pad_type: pull_down_pad
+        pad_type: IN22FDX_GPIO18_10M3S40PI
         is_static: true
         connections:
           chip2pad: 1'b0
           pad2chip: st_bootsel
-          output_en: 1'b0
-          rx_en: 1'b1
+          trie: 1'b1
+          rxe: 1'b1
 
   - name: aon_gpioa
     pad_types:
@@ -237,16 +333,39 @@ pad_domains:
 
         pad_signals: *default_pad_signals
 
-    pad_list:      
+      - name: IN22FDX_GPIO18_10M3S40PI
+        description: "gf22 pad"
+        template: |
+          IN22FDX_GPIO18_10M3S40PI_IO_V ${instance_name} (
+            .PAD(${conn["pad"]}),
+            .DATA(${conn["chip2pad"]}),
+            .Y(${conn["pad2chip"]}),
+            .TRIEN(${conn["trie"]}),
+            .RXEN(${conn["rxe"]}),
+            .PUEN(${conn["pue"]}),
+            .PDEN(${conn["pde"]}),
+            .NDIN(1'b0),
+            .NDOUT(),
+            .DRV(${conn["drv"]}),
+            .SLW(${conn["slw"]}),
+            .SMT(${conn["smt"]}),
+            .PWROK(PWROK_S),
+            .IOPWROK(IOPWROK_S),
+            .BAIS(BIAS_S),
+            .RETC(RETC_S)
+          );
+        pad_signals: *IN22FDX_SIGNALS
+
+    pad_list:
       #|------------------------------------|
       #|         DYNAMIC PAD SIGNALS        |
       #|------------------------------------|
-      
+
       - name: gpio_{i}
         mux_groups: [gpio_seta,"gpioa_{i}"]
         description: "General purpose GPIO A. All peripherals can be connected to these Pads."
         multiple: *gpioa_count
-        pad_type: pull_down_pad
+        pad_type: IN22FDX_GPIO18_10M3S40PI
         is_static: false
         #default_port:
 
@@ -257,72 +376,65 @@ pad_domains:
         mux_groups: [gpio_seta]
         multiple: *spia_count
         ports:
-          - name: sd0 
+          - name: sd0
             description: "Serial Data port of the QSPI manager peripheral: 0th bit"
             connections:
-              chip2pad: sd0_o 
+              chip2pad: sd0_o
               sd0_i: pad2chip
-              output_en: sd0_en_o
-              rx_en: ~sd0_en_o
+              trie: ~sd0_en_o
+              rxe: ~sd0_en_o
 
-          - name: sd1 
+          - name: sd1
             description: "Serial Data port of the QSPI manager peripheral: 1st bit"
             connections:
-              chip2pad: sd1_o 
+              chip2pad: sd1_o
               sd1_i: pad2chip
-              output_en: sd1_en_o
-              rx_en: ~sd1_en_o
+              trie: ~sd1_en_o
+              rxe: ~sd1_en_o
 
-          - name: sd2 
+          - name: sd2
             description: "Serial Data port of the QSPI manager peripheral: 2nd bit"
             connections:
-              chip2pad: sd2_o 
+              chip2pad: sd2_o
               sd2_i: pad2chip
-              output_en: sd2_en_o
-              rx_en: ~sd2_en_o
+              trie: ~sd2_en_o
+              rxe: ~sd2_en_o
 
           - name: sd3
             description: "Serial Data port of the QSPI manager peripheral: 3rd bit"
             connections:
-              chip2pad: sd3_o 
+              chip2pad: sd3_o
               sd3_i: pad2chip
-              output_en: sd3_en_o
-              rx_en: ~sd3_en_o
-
-          # - name: miso
-          #   description: "MISO port of the SPI subordinate peripheral"
-          #   connections:
-          #     miso: pad2chip
-          #     rx_en: 1'b1
-          #     output_en: 1'b0
+              trie: ~sd3_en_o
+              rxe: ~sd3_en_o
 
           - name: sck
             description: "Clock signal of the manager module"
             connections:
               chip2pad: sck_o
-              output_en: sck_en_o
-              #rx_en: 1'b0         # Undefined signal are connected to Reg that can be changed later
+              trie: sck_en_o
+              #rxe: 1'b0         # Undefined signal are connected to Reg that can be changed later
 
           - name: csb0
             description: "Chip Select signal active Low"
             connections:
               chip2pad: csb0_o
-              output_en: csb0_en_o
-              #rx_en: 1'b0
+              trie: ~csb0_en_o
+              #rxe: 1'b0
 
           - name: csb1
             description: "Chip Select signal active Low"
             connections:
               chip2pad: csb1_o
-              output_en: csb1_en_o
-              #rx_en: 1'b0
+              trie: ~csb1_en_o
+              #rxe: 1'b0
 
           - name: csb2
             description: "Chip Select signal active Low"
             connections:
               chip2pad: csb2_o
-              output_en: csb2_en_o
-              #rx_en: 1'b0
+              trie: ~csb2_en_o
+              #rxe: 1'b0
 
       - name: i2c{i}
         description: "Set of I2C ports"
@@ -335,16 +447,16 @@ pad_domains:
             connections:
               chip2pad: sda_o
               sda_i: pad2chip
-              output_en: sda_en_o
-              rx_en: ~sda_en_o
+              trie: ~sda_en_o
+              rxe: ~sda_en_o
 
           - name: scl
             description: "Manager clock signal"
             connections:
               chip2pad: scl_o
               scl_i: pad2chip
-              output_en: scl_en_o
-              rx_en: ~scl_en_o
+              trie: ~scl_en_o
+              rxe: ~scl_en_o
 
       - name: uart{i}
         description: "Tx and RX ports for the UART peripheral"
@@ -356,16 +468,16 @@ pad_domains:
             description: "RX port"
             connections:
               rx_i: pad2chip
-              #output_en: 1'b0
-              rx_en: 1'b1
+              #trie: 1'b1
+              rxe: 1'b1
 
           - name: tx
             description: "TX port"
             connections:
               chip2pad: tx_o
-              output_en: 1'b0
-              # rx_en: 1'b1
-              
+              trie: 1'b0
+              # rxe: 1'b0
+
       - name: gpioa{i}
         multiple: *gpioa_count
         mux_groups: ["gpioa_{i}"]
@@ -376,8 +488,8 @@ pad_domains:
             connections:
               chip2pad: gpio{i}_o
               gpio{i}_i: pad2chip
-              output_en: gpio{i}_en_o
-              rx_en: ~gpio{i}_en_o
+              trie: ~gpio{i}_en_o
+              rxe: ~gpio{i}_en_o
 
   # - name: aon_gpiob
   #   pad_types:
@@ -401,11 +513,11 @@ pad_domains:
 
   #       pad_signals: *default_pad_signals
 
-  #   pad_list:      
+  #   pad_list:
   #     #|------------------------------------|
   #     #|            GROUP B PADS            |
   #     #|------------------------------------|
-      
+
   #     - name: gpio_{i}
   #       mux_groups: [gpio_setb]
   #       description: "General purpose GPIO B."
