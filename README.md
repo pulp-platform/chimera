@@ -68,3 +68,17 @@ source setup.chimera_soc.tcl
 source compile.tcl
 source start.chimera_soc.tcl
 ```
+
+## CXX Formatting
+
+To format all files within the `sw` directory, run
+```
+python scripts/run_clang_format.py -ir sw/
+```
+
+Our CI uses llvm-12 for clang-format, so on IIS machines you may run
+```
+python scripts/run_clang_format.py -ir sw/ --clang-format-executable=/usr/pack/riscv-1.0-kgf/pulp-llvm-0.12.0/bin/clang-format
+```
+
+otherwise you should specify a valid clang-format-12 binary instead.
