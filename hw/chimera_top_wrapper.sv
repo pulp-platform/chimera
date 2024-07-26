@@ -302,7 +302,7 @@ module chimera_top_wrapper
    // Synch debug signals & interrupts
    // SCHEREMO: These signals are synchronize in the Snitch cluster!
 
-   logic [iomsb(NumIrqCtxts*Cfg.NumExtIrqHarts):0]			clu_xeip_ext;
+   logic [iomsb(NumIrqCtxts*Cfg.NumExtIrqHarts):0]       clu_xeip_ext;
    logic [iomsb(Cfg.NumExtIrqHarts):0]                   clu_mtip_ext;
    logic [iomsb(Cfg.NumExtIrqHarts):0]                   clu_msip_ext;
    logic [iomsb(Cfg.NumExtDbgHarts):0]                   clu_dbg_ext_req;
