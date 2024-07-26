@@ -199,18 +199,19 @@ module chimera_cluster_adapter
                       .AxiAddrWidth           ( AddrWidth       ),
                       .AxiDataWidth           ( WideDataWidth       ),
                       .AxiUserWidth           ( UserWidth       ),
-                      .slv_req_t              ( wide_out_req_t  ),
-                      .slv_resp_t             ( wide_out_resp_t ),
-                      .mst_req_t              (axi_chimera_cluster_wrapper_out_wide_to_narrow_req_t),
-                      .mst_resp_t             (axi_chimera_cluster_wrapper_out_wide_to_narrow_resp_t)
+
+                      .slv_req_t   ( wide_out_req_t  ),
+                      .slv_resp_t  ( wide_out_resp_t ),
+                      .mst_req_t   (axi_chimera_cluster_wrapper_out_wide_to_narrow_req_t),
+                      .mst_resp_t  (axi_chimera_cluster_wrapper_out_wide_to_narrow_resp_t)
                       )
    wide_to_narrow_mst_iw_converter(
                                    .clk_i      ( soc_clk_i                     ),
-                                   .rst_ni     ( rst_ni                    ),
+                                   .rst_ni     ( rst_ni                        ),
                                    .slv_req_i  ( axi_from_cluster_wide_to_narrow_req  ),
                                    .slv_resp_o ( axi_from_cluster_wide_to_narrow_resp ),
-                                   .mst_req_o  ( axi_from_cluster_wide_to_narrow_iwc_req      ),
-                                   .mst_resp_i ( axi_from_cluster_wide_to_narrow_iwc_resp     )
+                                   .mst_req_o  ( axi_from_cluster_wide_to_narrow_iwc_req  ),
+                                   .mst_resp_i ( axi_from_cluster_wide_to_narrow_iwc_resp )
                                    );
 
    axi_dw_converter #(
