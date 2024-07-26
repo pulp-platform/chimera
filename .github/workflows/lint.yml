@@ -55,7 +55,7 @@ jobs:
       uses: DoozyX/clang-format-lint-action@v0.14
       with:
         extensions: 'c,h,cpp'
-        clangFormatVersion: 14
+        clangFormatVersion: 12
         style: >
           {
           IndentWidth: 4,
