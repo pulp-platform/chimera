@@ -31,8 +31,7 @@
 
 void setupInterruptHandler(void *handler) {
     volatile void **snitchTrapHandlerAddr =
-        (volatile void **)(SOC_CTRL_BASE +
-                           CHIMERA_SNITCH_INTR_HANDLER_ADDR_REG_OFFSET);
+        (volatile void **)(SOC_CTRL_BASE + CHIMERA_SNITCH_INTR_HANDLER_ADDR_REG_OFFSET);
 
     *snitchTrapHandlerAddr = handler;
 }
@@ -57,24 +56,19 @@ uint32_t waitForCluster(uint8_t clusterId) {
     volatile int32_t *snitchReturnAddr;
     if (clusterId == 0) {
         snitchReturnAddr =
-            (volatile int32_t *)(SOC_CTRL_BASE +
-                                 CHIMERA_SNITCH_CLUSTER_1_RETURN_REG_OFFSET);
+            (volatile int32_t *)(SOC_CTRL_BASE + CHIMERA_SNITCH_CLUSTER_1_RETURN_REG_OFFSET);
     } else if (clusterId == 1) {
         snitchReturnAddr =
-            (volatile int32_t *)(SOC_CTRL_BASE +
-                                 CHIMERA_SNITCH_CLUSTER_2_RETURN_REG_OFFSET);
+            (volatile int32_t *)(SOC_CTRL_BASE + CHIMERA_SNITCH_CLUSTER_2_RETURN_REG_OFFSET);
     } else if (clusterId == 2) {
         snitchReturnAddr =
-            (volatile int32_t *)(SOC_CTRL_BASE +
-                                 CHIMERA_SNITCH_CLUSTER_3_RETURN_REG_OFFSET);
+            (volatile int32_t *)(SOC_CTRL_BASE + CHIMERA_SNITCH_CLUSTER_3_RETURN_REG_OFFSET);
     } else if (clusterId == 3) {
         snitchReturnAddr =
-            (volatile int32_t *)(SOC_CTRL_BASE +
-                                 CHIMERA_SNITCH_CLUSTER_4_RETURN_REG_OFFSET);
+            (volatile int32_t *)(SOC_CTRL_BASE + CHIMERA_SNITCH_CLUSTER_4_RETURN_REG_OFFSET);
     } else if (clusterId == 4) {
         snitchReturnAddr =
-            (volatile int32_t *)(SOC_CTRL_BASE +
-                                 CHIMERA_SNITCH_CLUSTER_5_RETURN_REG_OFFSET);
+            (volatile int32_t *)(SOC_CTRL_BASE + CHIMERA_SNITCH_CLUSTER_5_RETURN_REG_OFFSET);
     }
 
     while (*snitchReturnAddr == 0) {

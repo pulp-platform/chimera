@@ -47,7 +47,9 @@ void clusterTrapHandler() {
     return;
 }
 
-int32_t testReturn() { return TESTVAL; }
+int32_t testReturn() {
+    return TESTVAL;
+}
 
 int main() {
     setupInterruptHandler(clusterTrapHandler);
