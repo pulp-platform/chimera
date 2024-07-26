@@ -69,7 +69,7 @@ packages:
     - common_cells
     - register_interface
   cheshire:
-    revision: bdf5654754c93b1e081995c7c3bccd8b5fc2c9c7
+    revision: d58214e5c6a3e8f8609989005e3f1d663109bd7f
     version: null
     source:
       Git: https://github.com/pulp-platform/cheshire.git
@@ -144,7 +144,7 @@ packages:
     revision: 9cb2112d5b7823a3b4ad42a1a2419b65e623ec14
     version: null
     source:
-      Git: git@github.com:Scheremo/cva6.git
+      Git: https://github.com/Scheremo/cva6.git
     dependencies:
     - axi
     - common_cells
