@@ -1,8 +1,8 @@
 /* =====================================================================
  * Title:        testCluster.c
- * Description:  
+ * Description:
  *
- * $Date:        26.06.2024        
+ * $Date:        26.06.2024
  *
  * ===================================================================== */
 /*
@@ -25,8 +25,8 @@
  * limitations under the License.
  */
 
-#include <stdint.h>
 #include <soc_addr_map.h>
+#include <stdint.h>
 
 #define CLUSTERMEMORYSTART CLUSTER_1_BASE
 #define CLUSTERDISTANCE CLUSTER_2_BASE - CLUSTER_1_BASE
@@ -34,27 +34,26 @@
 
 #define TESTVAL 0x00E0D0C0
 
-int main(){
-  volatile int32_t* clusterMemPtr = (volatile int32_t*)CLUSTERMEMORYSTART;
+int main() {
+  volatile int32_t *clusterMemPtr = (volatile int32_t *)CLUSTERMEMORYSTART;
   volatile int32_t result;
 
   uint8_t ret = 0;
-  for (int i=0; i<NUMCLUSTERS; i++){
+  for (int i = 0; i < NUMCLUSTERS; i++) {
     *(clusterMemPtr) = TESTVAL;
-    clusterMemPtr += CLUSTERDISTANCE/4;
+    clusterMemPtr += CLUSTERDISTANCE / 4;
   }
 
-  clusterMemPtr = (volatile int32_t*)CLUSTERMEMORYSTART;
-  for (int i=0; i<NUMCLUSTERS; i++){
+  clusterMemPtr = (volatile int32_t *)CLUSTERMEMORYSTART;
+  for (int i = 0; i < NUMCLUSTERS; i++) {
     result = *(clusterMemPtr);
     ret += (result == TESTVAL);
-    clusterMemPtr += CLUSTERDISTANCE/4;
+    clusterMemPtr += CLUSTERDISTANCE / 4;
   }
-    
-  if (ret == NUMCLUSTERS){
+
+  if (ret == NUMCLUSTERS) {
     return 0;
   }
 
   return ret;
-  
 }

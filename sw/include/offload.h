@@ -1,8 +1,8 @@
 /* =====================================================================
  * Title:        offload.h
- * Description:  
+ * Description:
  *
- * $Date:        23.07.2024        
+ * $Date:        23.07.2024
  *
  * ===================================================================== */
 /*
@@ -27,6 +27,6 @@
 
 #include <stdint.h>
 
-void setupInterruptHandler(void* handler);
-void offloadToCluster(void* function, uint8_t hartId);
+void setupInterruptHandler(void *handler);
+void offloadToCluster(void *function, uint8_t hartId);
 uint32_t waitForCluster(uint8_t clusterId);

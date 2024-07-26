@@ -1,8 +1,8 @@
 /* =====================================================================
  * Title:        testClusterOffload.c
- * Description:  
+ * Description:
  *
- * $Date:        28.06.2024        
+ * $Date:        28.06.2024
  *
  * ===================================================================== */
 /*
@@ -25,34 +25,34 @@
  * limitations under the License.
  */
 
-// Simple offload test. Set the trap handler first, offload a function, retrieve return value from cluster. Does not currently take care of stack initialization and bss initialization on cluster.
+// Simple offload test. Set the trap handler first, offload a function, retrieve
+// return value from cluster. Does not currently take care of stack
+// initialization and bss initialization on cluster.
 
-#include <stdint.h>
-#include <regs/soc_ctrl.h>
-#include "soc_addr_map.h"
 #include "offload.h"
+#include "soc_addr_map.h"
+#include <regs/soc_ctrl.h>
+#include <stdint.h>
 
 #define TESTVAL 0x050CCE55
 
-static uint32_t* clintPointer = (uint32_t*) CLINT_CTRL_BASE;
+static uint32_t *clintPointer = (uint32_t *)CLINT_CTRL_BASE;
 
-void clusterTrapHandler(){
+void clusterTrapHandler() {
   uint8_t hartId;
-  asm ("csrr %0, mhartid" : "=r" (hartId) ::);
+  asm("csrr %0, mhartid" : "=r"(hartId)::);
 
-  volatile uint32_t* interruptTarget = clintPointer + hartId;
+  volatile uint32_t *interruptTarget = clintPointer + hartId;
   *interruptTarget = 0;
   return;
 }
 
-int32_t testReturn(){
-  return TESTVAL;
-}
+int32_t testReturn() { return TESTVAL; }
 
-int main(){
+int main() {
   setupInterruptHandler(clusterTrapHandler);
   offloadToCluster(testReturn, 1);
   uint32_t retVal = waitForCluster(1);
-    
+
   return (retVal != (TESTVAL | 0x000000001));
 }
