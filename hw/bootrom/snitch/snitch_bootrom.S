@@ -1,10 +1,10 @@
-# Copyright 2020 ETH Zurich and University of Bologna.
-# Solderpad Hardware License, Version 0.51, see LICENSE for details.
-# SPDX-License-Identifier: SHL-0.51
+	# Copyright 2020 ETH Zurich and University of Bologna.
+	# Solderpad Hardware License, Version 0.51, see LICENSE for details.
+	# SPDX-License-Identifier: SHL-0.51
 
-#include <soc_ctrl.h>
+	#include <soc_ctrl.h>
 	
-.global _start
+	.global _start
 _start:
 
 	csrrc x0, mstatus, 10
@@ -55,7 +55,7 @@ _return:
 _exit:	
 	j _rerun
 	
-.align 4
+	.align 4
 _trap_handler_initial:
 	la t0, __chim_regs // CHIMERA REGS Base Addr
 	lw t0, CHIMERA_SNITCH_INTR_HANDLER_ADDR_REG_OFFSET(t0)
