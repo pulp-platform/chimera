@@ -39,20 +39,20 @@
 static uint32_t *clintPointer = (uint32_t *)CLINT_CTRL_BASE;
 
 void clusterTrapHandler() {
-  uint8_t hartId;
-  asm("csrr %0, mhartid" : "=r"(hartId)::);
+    uint8_t hartId;
+    asm("csrr %0, mhartid" : "=r"(hartId)::);
 
-  volatile uint32_t *interruptTarget = clintPointer + hartId;
-  *interruptTarget = 0;
-  return;
+    volatile uint32_t *interruptTarget = clintPointer + hartId;
+    *interruptTarget = 0;
+    return;
 }
 
 int32_t testReturn() { return TESTVAL; }
 
 int main() {
-  setupInterruptHandler(clusterTrapHandler);
-  offloadToCluster(testReturn, 1);
-  uint32_t retVal = waitForCluster(1);
+    setupInterruptHandler(clusterTrapHandler);
+    offloadToCluster(testReturn, 1);
+    uint32_t retVal = waitForCluster(1);
 
-  return (retVal != (TESTVAL | 0x000000001));
+    return (retVal != (TESTVAL | 0x000000001));
 }
