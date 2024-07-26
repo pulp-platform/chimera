@@ -437,7 +437,7 @@ module chimera_top_wrapper
                           .ICacheSets('{2}),
 
                           .VMSupport(0),
-                          .Xdma(9'b10000000),
+                          .Xdma(9'b100000000),
 
                           .NumIntOutstandingLoads (NumIntOutstandingLoads),
                           .NumIntOutstandingMem (NumIntOutstandingMem),
