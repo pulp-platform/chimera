@@ -287,7 +287,7 @@ module chimera_top_wrapper
 
    genvar extClusterIdx;
    generate
-      for(extClusterIdx=0; extClusterIdx<ExtClusters; extClusterIdx++) begin : generate_clk_gates
+      for(extClusterIdx=0; extClusterIdx<ExtClusters; extClusterIdx++) begin : gen_clk_gates
          tc_clk_gating i_cluster_clk_gate (
                                            .clk_i(clu_clk_i),
                                            .en_i(~cluster_clock_gate_en[extClusterIdx]),
@@ -341,7 +341,7 @@ module chimera_top_wrapper
    // Cluster Adapters
 
    generate
-      for(extClusterIdx=0; extClusterIdx<ExtClusters; extClusterIdx++) begin : generate_clusters_adapters
+      for(extClusterIdx=0; extClusterIdx<ExtClusters; extClusterIdx++) begin : gen_clusters_adapters
 
          chimera_cluster_adapter #(
                                    .WideSlaveIdWidth(WideSlaveIdWidth),
@@ -383,7 +383,7 @@ module chimera_top_wrapper
                                 .clu_wide_out_resp_o(clu_axi_wide_mst_resp[extClusterIdx])
                                 );
 
-      end // block: generate_cluster_adapters
+      end // block: gen_cluster_adapters
    endgenerate
 
    // Clusters
@@ -404,7 +404,7 @@ module chimera_top_wrapper
    localparam int unsigned NumIntOutstandingMem [9] = '{4, 4, 4, 4, 4, 4, 4, 4, 4};
 
    generate
-      for(extClusterIdx=0; extClusterIdx<ExtClusters; extClusterIdx++) begin : generate_clusters
+      for(extClusterIdx=0; extClusterIdx<ExtClusters; extClusterIdx++) begin : gen_clusters
          snitch_cluster #(
                           .PhysicalAddrWidth(Cfg.AddrWidth),
                           .NarrowDataWidth(Cfg.AxiDataWidth),
@@ -482,7 +482,7 @@ module chimera_top_wrapper
 
                          );
 
-      end // block: generate_clusters
+      end // block: gen_clusters
    endgenerate
 
 endmodule
