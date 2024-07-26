@@ -20,14 +20,19 @@
 //
 // ----------------------------------------------------------------------
 
-// Wraps a cluster's AXI ports with AXI CDCs on all narrow and wide ports, and converts axi id widths to match; takes care of demux wide requests to memory island / narrow crossbar
+// Wraps a cluster's AXI ports with AXI CDCs on all narrow and wide ports,
+// and converts axi id widths to match; takes care of demux wide requests
+// to memory island / narrow crossbar
 
 module chimera_cluster_adapter
   #(
-     parameter int  WideSlaveIdWidth = 0,            // Needs to be defined since there is no wide slave port
+    // Needs to be defined since there is no wide slave port
+     parameter int  WideSlaveIdWidth = 0,
 
-     parameter int  WidePassThroughRegionStart = '0, // Start address of Memory Island
-     parameter int  WidePassThroughRegionEnd = '0, // End address of Memory Island
+    // Start address of Memory Island
+     parameter int  WidePassThroughRegionStart = '0,
+    // End address of Memory Island
+     parameter int  WidePassThroughRegionEnd = '0,
 
      parameter type narrow_in_req_t = logic,
      parameter type narrow_in_resp_t = logic,
@@ -94,10 +99,15 @@ module chimera_cluster_adapter
    typedef logic [SocNarrowSlaveIdWidth-1:0]  axi_soc_narrow_slv_id_width_t;
    typedef logic [SocWideMasterIdWidth-1:0]   axi_soc_wide_mst_id_width_y;
 
-   `AXI_TYPEDEF_ALL(axi_clu_wide_out, axi_addr_width_t, axi_soc_wide_mst_id_width_y, axi_wide_data_width_t, axi_wide_strb_width_t, axi_user_width_t)
-   `AXI_TYPEDEF_ALL(axi_narrow_in, axi_addr_width_t, axi_soc_narrow_slv_id_width_t, axi_narrow_data_width_t, axi_narrow_strb_width_t, axi_user_width_t)
-   `AXI_TYPEDEF_ALL(axi_narrow_out, axi_addr_width_t, axi_soc_narrow_mst_id_width_t, axi_narrow_data_width_t, axi_narrow_strb_width_t, axi_user_width_t)
-   `AXI_TYPEDEF_ALL(axi_chimera_cluster_wrapper_out_wide_to_narrow, axi_addr_width_t, axi_soc_narrow_mst_id_width_t, axi_wide_data_width_t, axi_wide_strb_width_t, axi_user_width_t)
+   `AXI_TYPEDEF_ALL(axi_clu_wide_out, axi_addr_width_t, axi_soc_wide_mst_id_width_y,
+                    axi_wide_data_width_t, axi_wide_strb_width_t, axi_user_width_t)
+   `AXI_TYPEDEF_ALL(axi_narrow_in, axi_addr_width_t, axi_soc_narrow_slv_id_width_t,
+                    axi_narrow_data_width_t, axi_narrow_strb_width_t, axi_user_width_t)
+   `AXI_TYPEDEF_ALL(axi_narrow_out, axi_addr_width_t, axi_soc_narrow_mst_id_width_t,
+                    axi_narrow_data_width_t, axi_narrow_strb_width_t, axi_user_width_t)
+   `AXI_TYPEDEF_ALL(axi_chimera_cluster_wrapper_out_wide_to_narrow, axi_addr_width_t,
+                    axi_soc_narrow_mst_id_width_t, axi_wide_data_width_t,
+                    axi_wide_strb_width_t, axi_user_width_t)
 
    // Direct mst outputs of cluster -> has extra id bits on mst, gets iw converted
 
@@ -115,8 +125,11 @@ module chimera_cluster_adapter
 
    // Wide mst is demuxed to memory island and rest of SoC
 
-   wide_out_req_t  axi_from_cluster_wide_premux_req, axi_from_cluster_wide_memisl_req, axi_from_cluster_wide_to_narrow_req;
-   wide_out_resp_t  axi_from_cluster_wide_premux_resp, axi_from_cluster_wide_memisl_resp, axi_from_cluster_wide_to_narrow_resp;
+   wide_out_req_t  axi_from_cluster_wide_premux_req, axi_from_cluster_wide_memisl_req,
+     axi_from_cluster_wide_to_narrow_req;
+
+   wide_out_resp_t  axi_from_cluster_wide_premux_resp, axi_from_cluster_wide_memisl_resp,
+     axi_from_cluster_wide_to_narrow_resp;
 
    // Rest of SoC is width converted from wide to narrow
 
@@ -137,7 +150,8 @@ module chimera_cluster_adapter
    assign clu_wide_out_resp_o = axi_from_cluster_wide_iwc_resp;
 
    // WIDE-TO-NARROW CONVERSION
-   // Catch requests over the wide port which do not go to the memory island; reroute them over the narrow AXI bus.
+   // Catch requests over the wide port which do not go to the memory island;
+   // reroute them over the narrow AXI bus.
 
    logic ar_wide_sel, aw_wide_sel;
 
@@ -165,8 +179,10 @@ module chimera_cluster_adapter
                  .slv_aw_select_i(aw_wide_sel),
                  .slv_ar_select_i(ar_wide_sel),
                  .slv_resp_o(axi_from_cluster_wide_premux_resp),
-                 .mst_reqs_o({axi_from_cluster_wide_memisl_req, axi_from_cluster_wide_to_narrow_req}),
-                 .mst_resps_i({axi_from_cluster_wide_memisl_resp, axi_from_cluster_wide_to_narrow_resp})
+                 .mst_reqs_o({axi_from_cluster_wide_memisl_req,
+                              axi_from_cluster_wide_to_narrow_req}),
+                 .mst_resps_i({axi_from_cluster_wide_memisl_resp,
+                               axi_from_cluster_wide_to_narrow_resp})
                  );
 
    assign wide_out_req_o = axi_from_cluster_wide_memisl_req;
@@ -185,8 +201,8 @@ module chimera_cluster_adapter
                       .AxiUserWidth           ( UserWidth       ),
                       .slv_req_t              ( wide_out_req_t  ),
                       .slv_resp_t             ( wide_out_resp_t ),
-                      .mst_req_t              ( axi_chimera_cluster_wrapper_out_wide_to_narrow_req_t      ),
-                      .mst_resp_t             ( axi_chimera_cluster_wrapper_out_wide_to_narrow_resp_t     )
+                      .mst_req_t              (axi_chimera_cluster_wrapper_out_wide_to_narrow_req_t),
+                      .mst_resp_t             (axi_chimera_cluster_wrapper_out_wide_to_narrow_resp_t)
                       )
    wide_to_narrow_mst_iw_converter(
                                    .clk_i      ( soc_clk_i                     ),
@@ -214,10 +230,10 @@ module chimera_cluster_adapter
                       .mst_r_chan_t(axi_narrow_out_r_chan_t),
                       .mst_w_chan_t(axi_narrow_out_w_chan_t),
 
-                      .axi_mst_req_t              ( narrow_out_req_t      ),
-                      .axi_mst_resp_t             ( narrow_out_resp_t     ),
-                      .axi_slv_req_t              ( axi_chimera_cluster_wrapper_out_wide_to_narrow_req_t      ),
-                      .axi_slv_resp_t             ( axi_chimera_cluster_wrapper_out_wide_to_narrow_resp_t     )
+                      .axi_mst_req_t( narrow_out_req_t      ),
+                      .axi_mst_resp_t( narrow_out_resp_t     ),
+                      .axi_slv_req_t( axi_chimera_cluster_wrapper_out_wide_to_narrow_req_t ),
+                      .axi_slv_resp_t( axi_chimera_cluster_wrapper_out_wide_to_narrow_resp_t )
                       )
    i_wide_to_narrow_dw_converter
      (
