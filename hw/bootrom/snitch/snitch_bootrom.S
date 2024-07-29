@@ -1,6 +1,8 @@
-# Copyright 2020 ETH Zurich and University of Bologna.
-# Solderpad Hardware License, Version 0.51, see LICENSE for details.
-# SPDX-License-Identifier: SHL-0.51
+// Copyright 2024 ETH Zurich and University of Bologna.
+// Solderpad Hardware License, Version 0.51, see LICENSE for details.
+// SPDX-License-Identifier: SHL-0.51
+//
+// Moritz Scherer <scheremo@iis.ee.ethz.ch>
 
 #include <soc_ctrl.h>
 

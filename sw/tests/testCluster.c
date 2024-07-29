@@ -19,19 +19,19 @@ int main() {
 
     uint8_t ret = 0;
     for (int i = 0; i < NUMCLUSTERS; i++) {
-	*(clusterMemPtr) = TESTVAL;
-	clusterMemPtr += CLUSTERDISTANCE / 4;
+        *(clusterMemPtr) = TESTVAL;
+        clusterMemPtr += CLUSTERDISTANCE / 4;
     }
 
     clusterMemPtr = (volatile int32_t *)CLUSTERMEMORYSTART;
     for (int i = 0; i < NUMCLUSTERS; i++) {
-	result = *(clusterMemPtr);
-	ret += (result == TESTVAL);
-	clusterMemPtr += CLUSTERDISTANCE / 4;
+        result = *(clusterMemPtr);
+        ret += (result == TESTVAL);
+        clusterMemPtr += CLUSTERDISTANCE / 4;
     }
 
     if (ret == NUMCLUSTERS) {
-	return 0;
+        return 0;
     }
 
     return ret;
