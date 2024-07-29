@@ -1,9 +1,11 @@
-# Copyright 2020 ETH Zurich and University of Bologna.
-# Solderpad Hardware License, Version 0.51, see LICENSE for details.
-# SPDX-License-Identifier: SHL-0.51
+// Copyright 2024 ETH Zurich and University of Bologna.
+// Solderpad Hardware License, Version 0.51, see LICENSE for details.
+// SPDX-License-Identifier: SHL-0.51
+//
+// Moritz Scherer <scheremo@iis.ee.ethz.ch>
 
 #include <soc_ctrl.h>
-	
+
 .global _start
 _start:
 
@@ -13,7 +15,7 @@ _start:
 	la t0, _trap_handler_initial
 	csrrw x0, mtvec, t0
 
-_rerun:	
+_rerun:
 	li x5, 0
 	li x6, 0
 	li x7, 0
@@ -41,7 +43,7 @@ _rerun:
 	li x29, 0
 	li x30, 0
 	li x31, 0
-	
+
 	wfi
 
 run_from_reg:
@@ -51,10 +53,10 @@ run_from_reg:
 
 _return:
 	call cluster_return // By calling immediately after return, register contents in a0 are passed as the first argument
-	
-_exit:	
+
+_exit:
 	j _rerun
-	
+
 .align 4
 _trap_handler_initial:
 	la t0, __chim_regs // CHIMERA REGS Base Addr
