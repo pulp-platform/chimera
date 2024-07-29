@@ -268,8 +268,10 @@ module chimera_top_wrapper
    logic [ExtClusters-1:0] cluster_clock_gate_en;
    logic [ExtClusters-1:0] clu_clk_gated;
    assign cluster_clock_gate_en = {reg2hw.cluster_5_clk_gate_en,
-                                   reg2hw.cluster_4_clk_gate_en, reg2hw.cluster_3_clk_gate_en,
-                                   reg2hw.cluster_2_clk_gate_en, reg2hw.cluster_1_clk_gate_en};
+                                   reg2hw.cluster_4_clk_gate_en,
+                                   reg2hw.cluster_3_clk_gate_en,
+                                   reg2hw.cluster_2_clk_gate_en,
+                                   reg2hw.cluster_1_clk_gate_en};
 
    genvar extClusterIdx;
    generate
