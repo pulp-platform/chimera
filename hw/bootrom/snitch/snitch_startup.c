@@ -10,12 +10,12 @@
 
 #define set_csr(reg, bit) \
     ({ \
-	unsigned long __tmp; \
-	if (__builtin_constant_p(bit) && (unsigned long)(bit) < 32) \
-	    asm volatile("csrrs %0, " #reg ", %1" : "=r"(__tmp) : "i"(bit)); \
-	else \
-	    asm volatile("csrrs %0, " #reg ", %1" : "=r"(__tmp) : "r"(bit)); \
-	__tmp; \
+        unsigned long __tmp; \
+        if (__builtin_constant_p(bit) && (unsigned long)(bit) < 32) \
+            asm volatile("csrrs %0, " #reg ", %1" : "=r"(__tmp) : "i"(bit)); \
+        else \
+            asm volatile("csrrs %0, " #reg ", %1" : "=r"(__tmp) : "r"(bit)); \
+        __tmp; \
     })
 
 #define IRQ_M_SOFT 3
@@ -39,25 +39,25 @@ void cluster_return(uint32_t ret) {
     switch (hartId) {
 
     case 1:
-	*((volatile uint32_t *)(SOC_CTRL_BASE + CHIMERA_SNITCH_CLUSTER_1_RETURN_REG_OFFSET)) =
-	    retVal;
-	break;
+        *((volatile uint32_t *)(SOC_CTRL_BASE + CHIMERA_SNITCH_CLUSTER_1_RETURN_REG_OFFSET)) =
+            retVal;
+        break;
     case 10:
-	*((volatile uint32_t *)(SOC_CTRL_BASE + CHIMERA_SNITCH_CLUSTER_2_RETURN_REG_OFFSET)) =
-	    retVal;
-	break;
+        *((volatile uint32_t *)(SOC_CTRL_BASE + CHIMERA_SNITCH_CLUSTER_2_RETURN_REG_OFFSET)) =
+            retVal;
+        break;
     case 19:
-	*((volatile uint32_t *)(SOC_CTRL_BASE + CHIMERA_SNITCH_CLUSTER_3_RETURN_REG_OFFSET)) =
-	    retVal;
-	break;
+        *((volatile uint32_t *)(SOC_CTRL_BASE + CHIMERA_SNITCH_CLUSTER_3_RETURN_REG_OFFSET)) =
+            retVal;
+        break;
     case 28:
-	*((volatile uint32_t *)(SOC_CTRL_BASE + CHIMERA_SNITCH_CLUSTER_4_RETURN_REG_OFFSET)) =
-	    retVal;
-	break;
+        *((volatile uint32_t *)(SOC_CTRL_BASE + CHIMERA_SNITCH_CLUSTER_4_RETURN_REG_OFFSET)) =
+            retVal;
+        break;
     case 37:
-	*((volatile uint32_t *)(SOC_CTRL_BASE + CHIMERA_SNITCH_CLUSTER_5_RETURN_REG_OFFSET)) =
-	    retVal;
-	break;
+        *((volatile uint32_t *)(SOC_CTRL_BASE + CHIMERA_SNITCH_CLUSTER_5_RETURN_REG_OFFSET)) =
+            retVal;
+        break;
     }
 
     return;
