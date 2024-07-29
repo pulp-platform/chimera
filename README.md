@@ -79,6 +79,8 @@ python scripts/run_clang_format.py -ir sw/
 Our CI uses llvm-12 for clang-format, so on IIS machines you may run
 ```
 python scripts/run_clang_format.py -ir sw/ --clang-format-executable=/usr/pack/riscv-1.0-kgf/pulp-llvm-0.12.0/bin/clang-format
+
+python scripts/run_clang_format.py -ir hw/ --clang-format-executable=/usr/pack/riscv-1.0-kgf/pulp-llvm-0.12.0/bin/clang-format
 ```
 
 otherwise you should specify a valid clang-format-12 binary instead.
