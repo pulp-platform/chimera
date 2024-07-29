@@ -4,7 +4,7 @@
 // Copyright 2024 ETH Zurich and University of Bologna.
 
 // Licensing information found in source file:
-// 
+//
 // SPDX-License-Identifier: SHL-0.51
 
 #ifndef _CHIMERA_REG_DEFS_
@@ -58,7 +58,7 @@ extern "C" {
 #define CHIMERA_CLUSTER_5_CLK_GATE_EN_CLUSTER_5_CLK_GATE_EN_BIT 0
 
 #ifdef __cplusplus
-}  // extern "C"
+} // extern "C"
 #endif
-#endif  // _CHIMERA_REG_DEFS_
-// End generated register defines for chimera
+#endif // _CHIMERA_REG_DEFS_
+       // End generated register defines for chimera

@@ -1,24 +1,8 @@
-// ----------------------------------------------------------------------
-//
-// File: chimera_pkg.sv
-//
-// Created: 24.06.2024
-//
-// Copyright (C) 2024, ETH Zurich and University of Bologna.
-//
-// Author: Moritz Scherer, ETH Zurich
-//
+// Copyright 2024 ETH Zurich and University of Bologna.
+// Solderpad Hardware License, Version 0.51, see LICENSE for details.
 // SPDX-License-Identifier: SHL-0.51
 //
-// Copyright and related rights are licensed under the Solderpad Hardware License,
-// Version 0.51 (the "License"); you may not use this file except in compliance with
-// the License. You may obtain a copy of the License at http://solderpad.org/licenses/SHL-0.51.
-// Unless required by applicable law or agreed to in writing, software, hardware and materials
-// distributed under this License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and limitations under the License.
-//
-// ----------------------------------------------------------------------
+// Moritz Scherer <scheremo@iis.ee.ethz.ch>
 
 package chimera_pkg;
 
@@ -33,14 +17,14 @@ package chimera_pkg;
    } ClusterConfig;
 
    localparam ClusterConfig ChimeraClusterCfg = {
-						 hasWideMasterPort: {1'b1, 1'b1, 1'b1, 1'b1, 1'b1},
-						 NrCores: {8'h9, 8'h9, 8'h9, 8'h9, 8'h9}
-						 };
+                                                 hasWideMasterPort: {1'b1, 1'b1, 1'b1, 1'b1, 1'b1},
+                                                 NrCores: {8'h9, 8'h9, 8'h9, 8'h9, 8'h9}
+                                                 };
 
    function automatic int _sumVector(byte_bt [iomsb(ExtClusters):0] vector, int vectorLen);
       int sum = 0;
       for(int i=0; i<vectorLen; i++) begin
-	 sum += vector[i];
+         sum += vector[i];
       end
       return sum;
    endfunction
@@ -55,12 +39,12 @@ package chimera_pkg;
    localparam int ExtRegNum = SnitchBootROM + 1;
 
    localparam int SnitchBootROMIdx = 0;
-   localparam doub_bt SnitchBootROMRegionStart = 64'h3000_0000;
-   localparam doub_bt SnitchBootROMRegionEnd = 64'h3000_1000;
+   localparam     doub_bt SnitchBootROMRegionStart = 64'h3000_0000;
+   localparam     doub_bt SnitchBootROMRegionEnd = 64'h3000_1000;
 
    localparam int TopLevelIdx = 1;
-   localparam doub_bt TopLevelRegionStart = 64'h3000_1000;
-   localparam doub_bt TopLevelRegionEnd = 64'h3000_2000;
+   localparam     doub_bt TopLevelRegionStart = 64'h3000_1000;
+   localparam     doub_bt TopLevelRegionEnd = 64'h3000_2000;
 
    function automatic cheshire_cfg_t gen_chimera_cfg();
       localparam AddrWidth = DefaultCfg.AddrWidth;
@@ -110,7 +94,7 @@ package chimera_pkg;
 
    localparam int numCfgs = 1;
 
-   localparam cheshire_cfg_t [numCfgs-1:0] ChimeraCfg =
-	  {gen_chimera_cfg()
-	   };
+   localparam     cheshire_cfg_t [numCfgs-1:0] ChimeraCfg =
+                  {gen_chimera_cfg()
+                   };
 endpackage
