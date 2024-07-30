@@ -45,227 +45,227 @@
   assign load.tx_o = driver.tx_o; \
 
 `define ASSIGN_AON_GPIOA_GPIOA0_PAD2SOC(load, driver) \
-  assign load.gpio0_i = driver.gpio0_i; \
+  assign load.gpio_i = driver.gpio_i; \
 
 `define ASSIGN_AON_GPIOA_GPIOA0_SOC2PAD(load, driver) \
-  assign load.gpio0_en_o = driver.gpio0_en_o; \
-  assign load.gpio0_o = driver.gpio0_o; \
+  assign load.gpio_en_o = driver.gpio_en_o; \
+  assign load.gpio_o = driver.gpio_o; \
 
 `define ASSIGN_AON_GPIOA_GPIOA1_PAD2SOC(load, driver) \
-  assign load.gpio0_i = driver.gpio0_i; \
+  assign load.gpio_i = driver.gpio_i; \
 
 `define ASSIGN_AON_GPIOA_GPIOA1_SOC2PAD(load, driver) \
-  assign load.gpio0_en_o = driver.gpio0_en_o; \
-  assign load.gpio0_o = driver.gpio0_o; \
+  assign load.gpio_en_o = driver.gpio_en_o; \
+  assign load.gpio_o = driver.gpio_o; \
 
 `define ASSIGN_AON_GPIOA_GPIOA2_PAD2SOC(load, driver) \
-  assign load.gpio0_i = driver.gpio0_i; \
+  assign load.gpio_i = driver.gpio_i; \
 
 `define ASSIGN_AON_GPIOA_GPIOA2_SOC2PAD(load, driver) \
-  assign load.gpio0_en_o = driver.gpio0_en_o; \
-  assign load.gpio0_o = driver.gpio0_o; \
+  assign load.gpio_en_o = driver.gpio_en_o; \
+  assign load.gpio_o = driver.gpio_o; \
 
 `define ASSIGN_AON_GPIOA_GPIOA3_PAD2SOC(load, driver) \
-  assign load.gpio0_i = driver.gpio0_i; \
+  assign load.gpio_i = driver.gpio_i; \
 
 `define ASSIGN_AON_GPIOA_GPIOA3_SOC2PAD(load, driver) \
-  assign load.gpio0_en_o = driver.gpio0_en_o; \
-  assign load.gpio0_o = driver.gpio0_o; \
+  assign load.gpio_en_o = driver.gpio_en_o; \
+  assign load.gpio_o = driver.gpio_o; \
 
 `define ASSIGN_AON_GPIOA_GPIOA4_PAD2SOC(load, driver) \
-  assign load.gpio0_i = driver.gpio0_i; \
+  assign load.gpio_i = driver.gpio_i; \
 
 `define ASSIGN_AON_GPIOA_GPIOA4_SOC2PAD(load, driver) \
-  assign load.gpio0_en_o = driver.gpio0_en_o; \
-  assign load.gpio0_o = driver.gpio0_o; \
+  assign load.gpio_en_o = driver.gpio_en_o; \
+  assign load.gpio_o = driver.gpio_o; \
 
 `define ASSIGN_AON_GPIOA_GPIOA5_PAD2SOC(load, driver) \
-  assign load.gpio0_i = driver.gpio0_i; \
+  assign load.gpio_i = driver.gpio_i; \
 
 `define ASSIGN_AON_GPIOA_GPIOA5_SOC2PAD(load, driver) \
-  assign load.gpio0_en_o = driver.gpio0_en_o; \
-  assign load.gpio0_o = driver.gpio0_o; \
+  assign load.gpio_en_o = driver.gpio_en_o; \
+  assign load.gpio_o = driver.gpio_o; \
 
 `define ASSIGN_AON_GPIOA_GPIOA6_PAD2SOC(load, driver) \
-  assign load.gpio0_i = driver.gpio0_i; \
+  assign load.gpio_i = driver.gpio_i; \
 
 `define ASSIGN_AON_GPIOA_GPIOA6_SOC2PAD(load, driver) \
-  assign load.gpio0_en_o = driver.gpio0_en_o; \
-  assign load.gpio0_o = driver.gpio0_o; \
+  assign load.gpio_en_o = driver.gpio_en_o; \
+  assign load.gpio_o = driver.gpio_o; \
 
 `define ASSIGN_AON_GPIOA_GPIOA7_PAD2SOC(load, driver) \
-  assign load.gpio0_i = driver.gpio0_i; \
+  assign load.gpio_i = driver.gpio_i; \
 
 `define ASSIGN_AON_GPIOA_GPIOA7_SOC2PAD(load, driver) \
-  assign load.gpio0_en_o = driver.gpio0_en_o; \
-  assign load.gpio0_o = driver.gpio0_o; \
+  assign load.gpio_en_o = driver.gpio_en_o; \
+  assign load.gpio_o = driver.gpio_o; \
 
 `define ASSIGN_AON_GPIOA_GPIOA8_PAD2SOC(load, driver) \
-  assign load.gpio0_i = driver.gpio0_i; \
+  assign load.gpio_i = driver.gpio_i; \
 
 `define ASSIGN_AON_GPIOA_GPIOA8_SOC2PAD(load, driver) \
-  assign load.gpio0_en_o = driver.gpio0_en_o; \
-  assign load.gpio0_o = driver.gpio0_o; \
+  assign load.gpio_en_o = driver.gpio_en_o; \
+  assign load.gpio_o = driver.gpio_o; \
 
 `define ASSIGN_AON_GPIOA_GPIOA9_PAD2SOC(load, driver) \
-  assign load.gpio0_i = driver.gpio0_i; \
+  assign load.gpio_i = driver.gpio_i; \
 
 `define ASSIGN_AON_GPIOA_GPIOA9_SOC2PAD(load, driver) \
-  assign load.gpio0_en_o = driver.gpio0_en_o; \
-  assign load.gpio0_o = driver.gpio0_o; \
+  assign load.gpio_en_o = driver.gpio_en_o; \
+  assign load.gpio_o = driver.gpio_o; \
 
 `define ASSIGN_AON_GPIOA_GPIOA10_PAD2SOC(load, driver) \
-  assign load.gpio0_i = driver.gpio0_i; \
+  assign load.gpio_i = driver.gpio_i; \
 
 `define ASSIGN_AON_GPIOA_GPIOA10_SOC2PAD(load, driver) \
-  assign load.gpio0_en_o = driver.gpio0_en_o; \
-  assign load.gpio0_o = driver.gpio0_o; \
+  assign load.gpio_en_o = driver.gpio_en_o; \
+  assign load.gpio_o = driver.gpio_o; \
 
 `define ASSIGN_AON_GPIOA_GPIOA11_PAD2SOC(load, driver) \
-  assign load.gpio0_i = driver.gpio0_i; \
+  assign load.gpio_i = driver.gpio_i; \
 
 `define ASSIGN_AON_GPIOA_GPIOA11_SOC2PAD(load, driver) \
-  assign load.gpio0_en_o = driver.gpio0_en_o; \
-  assign load.gpio0_o = driver.gpio0_o; \
+  assign load.gpio_en_o = driver.gpio_en_o; \
+  assign load.gpio_o = driver.gpio_o; \
 
 `define ASSIGN_AON_GPIOA_GPIOA12_PAD2SOC(load, driver) \
-  assign load.gpio0_i = driver.gpio0_i; \
+  assign load.gpio_i = driver.gpio_i; \
 
 `define ASSIGN_AON_GPIOA_GPIOA12_SOC2PAD(load, driver) \
-  assign load.gpio0_en_o = driver.gpio0_en_o; \
-  assign load.gpio0_o = driver.gpio0_o; \
+  assign load.gpio_en_o = driver.gpio_en_o; \
+  assign load.gpio_o = driver.gpio_o; \
 
 `define ASSIGN_AON_GPIOA_GPIOA13_PAD2SOC(load, driver) \
-  assign load.gpio0_i = driver.gpio0_i; \
+  assign load.gpio_i = driver.gpio_i; \
 
 `define ASSIGN_AON_GPIOA_GPIOA13_SOC2PAD(load, driver) \
-  assign load.gpio0_en_o = driver.gpio0_en_o; \
-  assign load.gpio0_o = driver.gpio0_o; \
+  assign load.gpio_en_o = driver.gpio_en_o; \
+  assign load.gpio_o = driver.gpio_o; \
 
 `define ASSIGN_AON_GPIOA_GPIOA14_PAD2SOC(load, driver) \
-  assign load.gpio0_i = driver.gpio0_i; \
+  assign load.gpio_i = driver.gpio_i; \
 
 `define ASSIGN_AON_GPIOA_GPIOA14_SOC2PAD(load, driver) \
-  assign load.gpio0_en_o = driver.gpio0_en_o; \
-  assign load.gpio0_o = driver.gpio0_o; \
+  assign load.gpio_en_o = driver.gpio_en_o; \
+  assign load.gpio_o = driver.gpio_o; \
 
 `define ASSIGN_AON_GPIOA_GPIOA15_PAD2SOC(load, driver) \
-  assign load.gpio0_i = driver.gpio0_i; \
+  assign load.gpio_i = driver.gpio_i; \
 
 `define ASSIGN_AON_GPIOA_GPIOA15_SOC2PAD(load, driver) \
-  assign load.gpio0_en_o = driver.gpio0_en_o; \
-  assign load.gpio0_o = driver.gpio0_o; \
+  assign load.gpio_en_o = driver.gpio_en_o; \
+  assign load.gpio_o = driver.gpio_o; \
 
 `define ASSIGN_AON_GPIOA_GPIOA16_PAD2SOC(load, driver) \
-  assign load.gpio0_i = driver.gpio0_i; \
+  assign load.gpio_i = driver.gpio_i; \
 
 `define ASSIGN_AON_GPIOA_GPIOA16_SOC2PAD(load, driver) \
-  assign load.gpio0_en_o = driver.gpio0_en_o; \
-  assign load.gpio0_o = driver.gpio0_o; \
+  assign load.gpio_en_o = driver.gpio_en_o; \
+  assign load.gpio_o = driver.gpio_o; \
 
 `define ASSIGN_AON_GPIOA_GPIOA17_PAD2SOC(load, driver) \
-  assign load.gpio0_i = driver.gpio0_i; \
+  assign load.gpio_i = driver.gpio_i; \
 
 `define ASSIGN_AON_GPIOA_GPIOA17_SOC2PAD(load, driver) \
-  assign load.gpio0_en_o = driver.gpio0_en_o; \
-  assign load.gpio0_o = driver.gpio0_o; \
+  assign load.gpio_en_o = driver.gpio_en_o; \
+  assign load.gpio_o = driver.gpio_o; \
 
 `define ASSIGN_AON_GPIOA_GPIOA18_PAD2SOC(load, driver) \
-  assign load.gpio0_i = driver.gpio0_i; \
+  assign load.gpio_i = driver.gpio_i; \
 
 `define ASSIGN_AON_GPIOA_GPIOA18_SOC2PAD(load, driver) \
-  assign load.gpio0_en_o = driver.gpio0_en_o; \
-  assign load.gpio0_o = driver.gpio0_o; \
+  assign load.gpio_en_o = driver.gpio_en_o; \
+  assign load.gpio_o = driver.gpio_o; \
 
 `define ASSIGN_AON_GPIOA_GPIOA19_PAD2SOC(load, driver) \
-  assign load.gpio0_i = driver.gpio0_i; \
+  assign load.gpio_i = driver.gpio_i; \
 
 `define ASSIGN_AON_GPIOA_GPIOA19_SOC2PAD(load, driver) \
-  assign load.gpio0_en_o = driver.gpio0_en_o; \
-  assign load.gpio0_o = driver.gpio0_o; \
+  assign load.gpio_en_o = driver.gpio_en_o; \
+  assign load.gpio_o = driver.gpio_o; \
 
 `define ASSIGN_AON_GPIOA_GPIOA20_PAD2SOC(load, driver) \
-  assign load.gpio0_i = driver.gpio0_i; \
+  assign load.gpio_i = driver.gpio_i; \
 
 `define ASSIGN_AON_GPIOA_GPIOA20_SOC2PAD(load, driver) \
-  assign load.gpio0_en_o = driver.gpio0_en_o; \
-  assign load.gpio0_o = driver.gpio0_o; \
+  assign load.gpio_en_o = driver.gpio_en_o; \
+  assign load.gpio_o = driver.gpio_o; \
 
 `define ASSIGN_AON_GPIOA_GPIOA21_PAD2SOC(load, driver) \
-  assign load.gpio0_i = driver.gpio0_i; \
+  assign load.gpio_i = driver.gpio_i; \
 
 `define ASSIGN_AON_GPIOA_GPIOA21_SOC2PAD(load, driver) \
-  assign load.gpio0_en_o = driver.gpio0_en_o; \
-  assign load.gpio0_o = driver.gpio0_o; \
+  assign load.gpio_en_o = driver.gpio_en_o; \
+  assign load.gpio_o = driver.gpio_o; \
 
 `define ASSIGN_AON_GPIOA_GPIOA22_PAD2SOC(load, driver) \
-  assign load.gpio0_i = driver.gpio0_i; \
+  assign load.gpio_i = driver.gpio_i; \
 
 `define ASSIGN_AON_GPIOA_GPIOA22_SOC2PAD(load, driver) \
-  assign load.gpio0_en_o = driver.gpio0_en_o; \
-  assign load.gpio0_o = driver.gpio0_o; \
+  assign load.gpio_en_o = driver.gpio_en_o; \
+  assign load.gpio_o = driver.gpio_o; \
 
 `define ASSIGN_AON_GPIOA_GPIOA23_PAD2SOC(load, driver) \
-  assign load.gpio0_i = driver.gpio0_i; \
+  assign load.gpio_i = driver.gpio_i; \
 
 `define ASSIGN_AON_GPIOA_GPIOA23_SOC2PAD(load, driver) \
-  assign load.gpio0_en_o = driver.gpio0_en_o; \
-  assign load.gpio0_o = driver.gpio0_o; \
+  assign load.gpio_en_o = driver.gpio_en_o; \
+  assign load.gpio_o = driver.gpio_o; \
 
 `define ASSIGN_AON_GPIOA_GPIOA24_PAD2SOC(load, driver) \
-  assign load.gpio0_i = driver.gpio0_i; \
+  assign load.gpio_i = driver.gpio_i; \
 
 `define ASSIGN_AON_GPIOA_GPIOA24_SOC2PAD(load, driver) \
-  assign load.gpio0_en_o = driver.gpio0_en_o; \
-  assign load.gpio0_o = driver.gpio0_o; \
+  assign load.gpio_en_o = driver.gpio_en_o; \
+  assign load.gpio_o = driver.gpio_o; \
 
 `define ASSIGN_AON_GPIOA_GPIOA25_PAD2SOC(load, driver) \
-  assign load.gpio0_i = driver.gpio0_i; \
+  assign load.gpio_i = driver.gpio_i; \
 
 `define ASSIGN_AON_GPIOA_GPIOA25_SOC2PAD(load, driver) \
-  assign load.gpio0_en_o = driver.gpio0_en_o; \
-  assign load.gpio0_o = driver.gpio0_o; \
+  assign load.gpio_en_o = driver.gpio_en_o; \
+  assign load.gpio_o = driver.gpio_o; \
 
 `define ASSIGN_AON_GPIOA_GPIOA26_PAD2SOC(load, driver) \
-  assign load.gpio0_i = driver.gpio0_i; \
+  assign load.gpio_i = driver.gpio_i; \
 
 `define ASSIGN_AON_GPIOA_GPIOA26_SOC2PAD(load, driver) \
-  assign load.gpio0_en_o = driver.gpio0_en_o; \
-  assign load.gpio0_o = driver.gpio0_o; \
+  assign load.gpio_en_o = driver.gpio_en_o; \
+  assign load.gpio_o = driver.gpio_o; \
 
 `define ASSIGN_AON_GPIOA_GPIOA27_PAD2SOC(load, driver) \
-  assign load.gpio0_i = driver.gpio0_i; \
+  assign load.gpio_i = driver.gpio_i; \
 
 `define ASSIGN_AON_GPIOA_GPIOA27_SOC2PAD(load, driver) \
-  assign load.gpio0_en_o = driver.gpio0_en_o; \
-  assign load.gpio0_o = driver.gpio0_o; \
+  assign load.gpio_en_o = driver.gpio_en_o; \
+  assign load.gpio_o = driver.gpio_o; \
 
 `define ASSIGN_AON_GPIOA_GPIOA28_PAD2SOC(load, driver) \
-  assign load.gpio0_i = driver.gpio0_i; \
+  assign load.gpio_i = driver.gpio_i; \
 
 `define ASSIGN_AON_GPIOA_GPIOA28_SOC2PAD(load, driver) \
-  assign load.gpio0_en_o = driver.gpio0_en_o; \
-  assign load.gpio0_o = driver.gpio0_o; \
+  assign load.gpio_en_o = driver.gpio_en_o; \
+  assign load.gpio_o = driver.gpio_o; \
 
 `define ASSIGN_AON_GPIOA_GPIOA29_PAD2SOC(load, driver) \
-  assign load.gpio0_i = driver.gpio0_i; \
+  assign load.gpio_i = driver.gpio_i; \
 
 `define ASSIGN_AON_GPIOA_GPIOA29_SOC2PAD(load, driver) \
-  assign load.gpio0_en_o = driver.gpio0_en_o; \
-  assign load.gpio0_o = driver.gpio0_o; \
+  assign load.gpio_en_o = driver.gpio_en_o; \
+  assign load.gpio_o = driver.gpio_o; \
 
 `define ASSIGN_AON_GPIOA_GPIOA30_PAD2SOC(load, driver) \
-  assign load.gpio0_i = driver.gpio0_i; \
+  assign load.gpio_i = driver.gpio_i; \
 
 `define ASSIGN_AON_GPIOA_GPIOA30_SOC2PAD(load, driver) \
-  assign load.gpio0_en_o = driver.gpio0_en_o; \
-  assign load.gpio0_o = driver.gpio0_o; \
+  assign load.gpio_en_o = driver.gpio_en_o; \
+  assign load.gpio_o = driver.gpio_o; \
 
 `define ASSIGN_AON_GPIOA_GPIOA31_PAD2SOC(load, driver) \
-  assign load.gpio0_i = driver.gpio0_i; \
+  assign load.gpio_i = driver.gpio_i; \
 
 `define ASSIGN_AON_GPIOA_GPIOA31_SOC2PAD(load, driver) \
-  assign load.gpio0_en_o = driver.gpio0_en_o; \
-  assign load.gpio0_o = driver.gpio0_o; \
+  assign load.gpio_en_o = driver.gpio_en_o; \
+  assign load.gpio_o = driver.gpio_o; \
 
 

@@ -1,0 +1,1 @@
+/usr/pack/gf-22-kgf/invecas/io/0M3S40PI_FE/model/verilog/IN22FDX_GPIO18_10M3S40PI.v

@@ -483,13 +483,13 @@ pad_domains:
         mux_groups: ["gpioa_{i}"]
         output_defaults: 1'b0
         ports:
-          - name: gpio{i}
-            description: "{i}th GPIO A port"
+          - name: gpio
+            description: "GPIO A port"
             connections:
-              chip2pad: gpio{i}_o
-              gpio{i}_i: pad2chip
-              trie: ~gpio{i}_en_o
-              rxe: ~gpio{i}_en_o
+              chip2pad: gpio_o
+              gpio_i: pad2chip
+              trie: ~gpio_en_o
+              rxe: ~gpio_en_o
 
   # - name: aon_gpiob
   #   pad_types:

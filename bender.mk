@@ -7,5 +7,5 @@
 COMMON_TARGS ?=
 COMMON_TARGS += -t snitch_cluster -t cv32a6_convolve -t cva6 -t rtl
 
-SIM_TARGS = -t test -t sim
+SIM_TARGS = -t test -t sim -t asic
 ASIC_TARGS = -t asic

@@ -6,6 +6,9 @@
 
 package chimera_pkg;
 
+// TODO: Include APB TYPEDEF
+`include "apb/typedef.svh"
+
    import cheshire_pkg::*;
 
    // ACCEL CFG
@@ -35,8 +38,8 @@ package chimera_pkg;
    // SoC Config
    localparam int SnitchBootROM = 1;
 
-   // SCHEREMO: Shared Snitch bootrom, one clock gate per cluster
-   localparam int ExtRegNum = SnitchBootROM + 1;
+   // SCHEREMO: Shared Snitch bootrom, one clock gate per cluster, Fll cfg registers
+   localparam int ExtRegNum = SnitchBootROM + 1 + 1;
 
    localparam int SnitchBootROMIdx = 0;
    localparam     doub_bt SnitchBootROMRegionStart = 64'h3000_0000;
@@ -45,6 +48,11 @@ package chimera_pkg;
    localparam int TopLevelIdx = 1;
    localparam     doub_bt TopLevelRegionStart = 64'h3000_1000;
    localparam     doub_bt TopLevelRegionEnd = 64'h3000_2000;
+
+   // FLL external configuration registers
+   localparam int FllIdx = 2;
+   localparam doub_bt FllRegionStart = 64'h3000_2000;
+   localparam doub_bt FllRegionEnd = 64'h3000_3000;
 
    function automatic cheshire_cfg_t gen_chimera_cfg();
       localparam AddrWidth = DefaultCfg.AddrWidth;
@@ -80,9 +88,9 @@ package chimera_pkg;
       // REG CFG
       cfg.RegExtNumSlv = ExtRegNum;
       cfg.RegExtNumRules = ExtRegNum;
-      cfg.RegExtRegionIdx = {8'h1, 8'h0}; // SnitchBootROM
-      cfg.RegExtRegionStart = {TopLevelRegionStart, SnitchBootROMRegionStart};
-      cfg.RegExtRegionEnd = {TopLevelRegionEnd, SnitchBootROMRegionEnd};
+      cfg.RegExtRegionIdx = {8'h2, 8'h1, 8'h0}; // SnitchBootROM
+      cfg.RegExtRegionStart = {FllRegionStart, TopLevelRegionStart, SnitchBootROMRegionStart};
+      cfg.RegExtRegionEnd = {FllRegionEnd, TopLevelRegionEnd, SnitchBootROMRegionEnd};
 
       // ACCEL HART/IRQ CFG
       cfg.NumExtIrqHarts = ExtCores;
@@ -94,7 +102,15 @@ package chimera_pkg;
 
    localparam int numCfgs = 1;
 
-   localparam     cheshire_cfg_t [numCfgs-1:0] ChimeraCfg =
-                  {gen_chimera_cfg()
-                   };
+   localparam cheshire_cfg_t [numCfgs-1:0] ChimeraCfg =
+    {gen_chimera_cfg()
+     };
+
+   // To move into cheshire TYPEDEF
+   localparam type addr_t = logic[DefaultCfg.AddrWidth-1:0];
+   localparam type data_t = logic[DefaultCfg.AxiDataWidth];
+   localparam type strb_t = logic[DefaultCfg.AxiDataWidth/8];
+
+   `APB_TYPEDEF_ALL(apb,addr_t, data_t, strb_t)
+
 endpackage

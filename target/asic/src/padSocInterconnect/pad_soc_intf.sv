@@ -21,9 +21,9 @@
 // ----------------------------------------------------------------------
 
 `define map_gpio(_group,_indx) \
-assign port_signals_soc2pad_o.aon_gpio``_group.gpio``_group``_indx.gpio``_indx``_o = gpio_i``[``_indx``]; \
-assign port_signals_soc2pad_o.aon_gpio``_group.gpio``_group``_indx.gpio``_indx``_en__o = gpio_en_i``[``_indx``]; \
-assign gpio_en_o``[``_indx``] = port_signals_pad2soc_i.aon_gpio``_group.gpio``_group``_indx.gpio``_indx``_i;
+assign port_signals_soc2pad_o.aon_gpio``_group.gpio``_group``_indx.gpio``_o = gpio_i``[``_indx``]; \
+assign port_signals_soc2pad_o.aon_gpio``_group.gpio``_group``_indx.gpio``_en_o = gpio_en_i``[``_indx``]; \
+assign gpio_o``[``_indx``] = port_signals_pad2soc_i.aon_gpio``_group.gpio``_group``_indx.gpio``_i;
 
 
 
@@ -31,7 +31,7 @@ assign gpio_en_o``[``_indx``] = port_signals_pad2soc_i.aon_gpio``_group.gpio``_g
 module pad_soc_intf
   import pkg_chimera_padframe::*;
   import cheshire_pkg::*;
-  import chimera_pkg::*;
+  //import chimera_pkg::*;
   (
    output logic		       soc_clk_o,
    output logic		       rst_no,
@@ -84,11 +84,11 @@ module pad_soc_intf
    assign boot_mode_o  = static_connections_pad2soc_i.aon_static.st_bootsel;
    assign jtag_tck_o   = static_connections_pad2soc_i.aon_static.st_jtag_tck;
    assign jtag_trst_no = static_connections_pad2soc_i.aon_static.st_jtag_trstn;
-   assign jtag_tms_o   = static_connections_pad2soc_i.aon_static.st_jtag_tm;
+   assign jtag_tms_o   = static_connections_pad2soc_i.aon_static.st_jtag_tms;
    assign jtag_tdi_o   = static_connections_pad2soc_i.aon_static.st_jtag_tdi;
 
    assign static_connections_soc2pad_o.aon_static.st_jtag_tdo    = jtag_tdo_i;
-   assign static_connections_soc2pad_o.aon_static.st_jtag_tdo_oe = jtag_tdo_oe_i;
+   //assign static_connections_soc2pad_o.aon_static.st_jtag_tdo_oe = jtag_tdo_oe_i;
 
    // Connect dynamic pads to the SoC signals
    // UART

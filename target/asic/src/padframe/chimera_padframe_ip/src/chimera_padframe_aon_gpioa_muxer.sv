@@ -4694,325 +4694,325 @@ module chimera_padframe_aon_gpioa_muxer
           mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
           mux_to_pads_o.gpio_31.trie = 1'b0;
        end
-       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA0_GPIO0: begin
-          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa0.gpio0_o;
+       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA0_GPIO: begin
+          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa0.gpio_o;
           mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
           mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
           mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
-          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa0.gpio0_en_o;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa0.gpio_en_o;
           mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
           mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
-          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa0.gpio0_en_o;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa0.gpio_en_o;
        end
-       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA1_GPIO0: begin
-          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa1.gpio0_o;
+       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA1_GPIO: begin
+          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa1.gpio_o;
           mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
           mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
           mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
-          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa1.gpio0_en_o;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa1.gpio_en_o;
           mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
           mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
-          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa1.gpio0_en_o;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa1.gpio_en_o;
        end
-       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA2_GPIO0: begin
-          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa2.gpio0_o;
+       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA2_GPIO: begin
+          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa2.gpio_o;
           mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
           mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
           mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
-          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa2.gpio0_en_o;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa2.gpio_en_o;
           mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
           mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
-          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa2.gpio0_en_o;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa2.gpio_en_o;
        end
-       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA3_GPIO0: begin
-          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa3.gpio0_o;
+       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA3_GPIO: begin
+          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa3.gpio_o;
           mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
           mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
           mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
-          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa3.gpio0_en_o;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa3.gpio_en_o;
           mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
           mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
-          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa3.gpio0_en_o;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa3.gpio_en_o;
        end
-       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA4_GPIO0: begin
-          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa4.gpio0_o;
+       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA4_GPIO: begin
+          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa4.gpio_o;
           mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
           mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
           mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
-          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa4.gpio0_en_o;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa4.gpio_en_o;
           mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
           mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
-          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa4.gpio0_en_o;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa4.gpio_en_o;
        end
-       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA5_GPIO0: begin
-          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa5.gpio0_o;
+       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA5_GPIO: begin
+          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa5.gpio_o;
           mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
           mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
           mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
-          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa5.gpio0_en_o;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa5.gpio_en_o;
           mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
           mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
-          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa5.gpio0_en_o;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa5.gpio_en_o;
        end
-       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA6_GPIO0: begin
-          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa6.gpio0_o;
+       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA6_GPIO: begin
+          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa6.gpio_o;
           mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
           mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
           mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
-          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa6.gpio0_en_o;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa6.gpio_en_o;
           mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
           mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
-          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa6.gpio0_en_o;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa6.gpio_en_o;
        end
-       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA7_GPIO0: begin
-          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa7.gpio0_o;
+       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA7_GPIO: begin
+          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa7.gpio_o;
           mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
           mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
           mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
-          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa7.gpio0_en_o;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa7.gpio_en_o;
           mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
           mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
-          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa7.gpio0_en_o;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa7.gpio_en_o;
        end
-       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA8_GPIO0: begin
-          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa8.gpio0_o;
+       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA8_GPIO: begin
+          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa8.gpio_o;
           mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
           mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
           mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
-          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa8.gpio0_en_o;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa8.gpio_en_o;
           mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
           mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
-          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa8.gpio0_en_o;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa8.gpio_en_o;
        end
-       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA9_GPIO0: begin
-          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa9.gpio0_o;
+       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA9_GPIO: begin
+          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa9.gpio_o;
           mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
           mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
           mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
-          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa9.gpio0_en_o;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa9.gpio_en_o;
           mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
           mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
-          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa9.gpio0_en_o;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa9.gpio_en_o;
        end
-       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA10_GPIO0: begin
-          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa10.gpio0_o;
+       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA10_GPIO: begin
+          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa10.gpio_o;
           mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
           mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
           mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
-          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa10.gpio0_en_o;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa10.gpio_en_o;
           mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
           mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
-          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa10.gpio0_en_o;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa10.gpio_en_o;
        end
-       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA11_GPIO0: begin
-          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa11.gpio0_o;
+       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA11_GPIO: begin
+          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa11.gpio_o;
           mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
           mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
           mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
-          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa11.gpio0_en_o;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa11.gpio_en_o;
           mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
           mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
-          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa11.gpio0_en_o;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa11.gpio_en_o;
        end
-       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA12_GPIO0: begin
-          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa12.gpio0_o;
+       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA12_GPIO: begin
+          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa12.gpio_o;
           mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
           mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
           mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
-          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa12.gpio0_en_o;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa12.gpio_en_o;
           mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
           mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
-          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa12.gpio0_en_o;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa12.gpio_en_o;
        end
-       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA13_GPIO0: begin
-          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa13.gpio0_o;
+       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA13_GPIO: begin
+          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa13.gpio_o;
           mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
           mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
           mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
-          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa13.gpio0_en_o;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa13.gpio_en_o;
           mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
           mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
-          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa13.gpio0_en_o;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa13.gpio_en_o;
        end
-       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA14_GPIO0: begin
-          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa14.gpio0_o;
+       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA14_GPIO: begin
+          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa14.gpio_o;
           mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
           mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
           mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
-          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa14.gpio0_en_o;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa14.gpio_en_o;
           mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
           mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
-          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa14.gpio0_en_o;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa14.gpio_en_o;
        end
-       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA15_GPIO0: begin
-          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa15.gpio0_o;
+       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA15_GPIO: begin
+          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa15.gpio_o;
           mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
           mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
           mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
-          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa15.gpio0_en_o;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa15.gpio_en_o;
           mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
           mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
-          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa15.gpio0_en_o;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa15.gpio_en_o;
        end
-       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA16_GPIO0: begin
-          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa16.gpio0_o;
+       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA16_GPIO: begin
+          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa16.gpio_o;
           mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
           mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
           mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
-          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa16.gpio0_en_o;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa16.gpio_en_o;
           mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
           mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
-          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa16.gpio0_en_o;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa16.gpio_en_o;
        end
-       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA17_GPIO0: begin
-          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa17.gpio0_o;
+       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA17_GPIO: begin
+          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa17.gpio_o;
           mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
           mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
           mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
-          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa17.gpio0_en_o;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa17.gpio_en_o;
           mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
           mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
-          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa17.gpio0_en_o;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa17.gpio_en_o;
        end
-       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA18_GPIO0: begin
-          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa18.gpio0_o;
+       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA18_GPIO: begin
+          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa18.gpio_o;
           mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
           mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
           mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
-          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa18.gpio0_en_o;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa18.gpio_en_o;
           mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
           mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
-          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa18.gpio0_en_o;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa18.gpio_en_o;
        end
-       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA19_GPIO0: begin
-          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa19.gpio0_o;
+       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA19_GPIO: begin
+          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa19.gpio_o;
           mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
           mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
           mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
-          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa19.gpio0_en_o;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa19.gpio_en_o;
           mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
           mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
-          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa19.gpio0_en_o;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa19.gpio_en_o;
        end
-       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA20_GPIO0: begin
-          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa20.gpio0_o;
+       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA20_GPIO: begin
+          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa20.gpio_o;
           mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
           mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
           mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
-          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa20.gpio0_en_o;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa20.gpio_en_o;
           mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
           mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
-          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa20.gpio0_en_o;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa20.gpio_en_o;
        end
-       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA21_GPIO0: begin
-          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa21.gpio0_o;
+       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA21_GPIO: begin
+          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa21.gpio_o;
           mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
           mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
           mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
-          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa21.gpio0_en_o;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa21.gpio_en_o;
           mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
           mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
-          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa21.gpio0_en_o;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa21.gpio_en_o;
        end
-       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA22_GPIO0: begin
-          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa22.gpio0_o;
+       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA22_GPIO: begin
+          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa22.gpio_o;
           mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
           mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
           mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
-          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa22.gpio0_en_o;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa22.gpio_en_o;
           mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
           mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
-          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa22.gpio0_en_o;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa22.gpio_en_o;
        end
-       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA23_GPIO0: begin
-          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa23.gpio0_o;
+       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA23_GPIO: begin
+          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa23.gpio_o;
           mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
           mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
           mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
-          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa23.gpio0_en_o;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa23.gpio_en_o;
           mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
           mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
-          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa23.gpio0_en_o;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa23.gpio_en_o;
        end
-       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA24_GPIO0: begin
-          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa24.gpio0_o;
+       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA24_GPIO: begin
+          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa24.gpio_o;
           mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
           mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
           mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
-          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa24.gpio0_en_o;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa24.gpio_en_o;
           mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
           mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
-          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa24.gpio0_en_o;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa24.gpio_en_o;
        end
-       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA25_GPIO0: begin
-          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa25.gpio0_o;
+       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA25_GPIO: begin
+          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa25.gpio_o;
           mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
           mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
           mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
-          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa25.gpio0_en_o;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa25.gpio_en_o;
           mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
           mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
-          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa25.gpio0_en_o;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa25.gpio_en_o;
        end
-       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA26_GPIO0: begin
-          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa26.gpio0_o;
+       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA26_GPIO: begin
+          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa26.gpio_o;
           mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
           mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
           mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
-          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa26.gpio0_en_o;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa26.gpio_en_o;
           mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
           mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
-          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa26.gpio0_en_o;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa26.gpio_en_o;
        end
-       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA27_GPIO0: begin
-          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa27.gpio0_o;
+       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA27_GPIO: begin
+          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa27.gpio_o;
           mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
           mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
           mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
-          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa27.gpio0_en_o;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa27.gpio_en_o;
           mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
           mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
-          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa27.gpio0_en_o;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa27.gpio_en_o;
        end
-       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA28_GPIO0: begin
-          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa28.gpio0_o;
+       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA28_GPIO: begin
+          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa28.gpio_o;
           mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
           mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
           mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
-          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa28.gpio0_en_o;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa28.gpio_en_o;
           mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
           mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
-          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa28.gpio0_en_o;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa28.gpio_en_o;
        end
-       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA29_GPIO0: begin
-          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa29.gpio0_o;
+       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA29_GPIO: begin
+          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa29.gpio_o;
           mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
           mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
           mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
-          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa29.gpio0_en_o;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa29.gpio_en_o;
           mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
           mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
-          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa29.gpio0_en_o;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa29.gpio_en_o;
        end
-       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA30_GPIO0: begin
-          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa30.gpio0_o;
+       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA30_GPIO: begin
+          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa30.gpio_o;
           mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
           mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
           mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
-          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa30.gpio0_en_o;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa30.gpio_en_o;
           mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
           mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
-          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa30.gpio0_en_o;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa30.gpio_en_o;
        end
-       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA31_GPIO0: begin
-          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa31.gpio0_o;
+       PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA31_GPIO: begin
+          mux_to_pads_o.gpio_31.chip2pad = port_signals_soc2pad_i.gpioa31.gpio_o;
           mux_to_pads_o.gpio_31.drv = s_reg2hw.gpio_31_cfg.drv.q;
           mux_to_pads_o.gpio_31.pde = s_reg2hw.gpio_31_cfg.pde.q;
           mux_to_pads_o.gpio_31.pue = s_reg2hw.gpio_31_cfg.pue.q;
-          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa31.gpio0_en_o;
+          mux_to_pads_o.gpio_31.rxe = ~port_signals_soc2pad_i.gpioa31.gpio_en_o;
           mux_to_pads_o.gpio_31.slw = s_reg2hw.gpio_31_cfg.slw.q;
           mux_to_pads_o.gpio_31.smt = s_reg2hw.gpio_31_cfg.smt.q;
-          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa31.gpio0_en_o;
+          mux_to_pads_o.gpio_31.trie = ~port_signals_soc2pad_i.gpioa31.gpio_en_o;
        end
        default: begin
          mux_to_pads_o.gpio_31.chip2pad = s_reg2hw.gpio_31_cfg.chip2pad.q;
@@ -6131,32 +6131,32 @@ module chimera_padframe_aon_gpioa_muxer
 
   // Port Group gpioa0
 
-  // Port Signal gpio0_i
-  logic [0:0] port_mux_sel_gpioa0_gpio0_i_req;
-  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa0_gpio0_i_arbitrated;
-  logic port_mux_sel_gpioa0_gpio0_i_no_connection;
+  // Port Signal gpio_i
+  logic [0:0] port_mux_sel_gpioa0_gpio_i_req;
+  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa0_gpio_i_arbitrated;
+  logic port_mux_sel_gpioa0_gpio_i_no_connection;
 
-   assign port_mux_sel_gpioa0_gpio0_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA0_GPIO0 ? 1'b1 : 1'b0;
+   assign port_mux_sel_gpioa0_gpio_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA0_GPIO ? 1'b1 : 1'b0;
 
    lzc #(
      .WIDTH(1),
      .MODE(1'b0)
-   ) i_port_muxsel_gpioa0_gpio0_i_arbiter (
-     .in_i(port_mux_sel_gpioa0_gpio0_i_req),
-     .cnt_o(port_mux_sel_gpioa0_gpio0_i_arbitrated),
-     .empty_o(port_mux_sel_gpioa0_gpio0_i_no_connection)
+   ) i_port_muxsel_gpioa0_gpio_i_arbiter (
+     .in_i(port_mux_sel_gpioa0_gpio_i_req),
+     .cnt_o(port_mux_sel_gpioa0_gpio_i_arbitrated),
+     .empty_o(port_mux_sel_gpioa0_gpio_i_no_connection)
    );
 
    always_comb begin
-     if (port_mux_sel_gpioa0_gpio0_i_no_connection) begin
-        port_signals_pad2soc_o.gpioa0.gpio0_i = 1'b0;
+     if (port_mux_sel_gpioa0_gpio_i_no_connection) begin
+        port_signals_pad2soc_o.gpioa0.gpio_i = 1'b0;
      end else begin
-        unique case (port_mux_sel_gpioa0_gpio0_i_arbitrated)
+        unique case (port_mux_sel_gpioa0_gpio_i_arbitrated)
           PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31: begin
-            port_signals_pad2soc_o.gpioa0.gpio0_i = pads_to_mux_i.gpio_31.pad2chip;
+            port_signals_pad2soc_o.gpioa0.gpio_i = pads_to_mux_i.gpio_31.pad2chip;
           end
           default: begin
-            port_signals_pad2soc_o.gpioa0.gpio0_i = 1'b0;
+            port_signals_pad2soc_o.gpioa0.gpio_i = 1'b0;
           end
        endcase
      end
@@ -6164,32 +6164,32 @@ module chimera_padframe_aon_gpioa_muxer
 
   // Port Group gpioa1
 
-  // Port Signal gpio0_i
-  logic [0:0] port_mux_sel_gpioa1_gpio0_i_req;
-  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa1_gpio0_i_arbitrated;
-  logic port_mux_sel_gpioa1_gpio0_i_no_connection;
+  // Port Signal gpio_i
+  logic [0:0] port_mux_sel_gpioa1_gpio_i_req;
+  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa1_gpio_i_arbitrated;
+  logic port_mux_sel_gpioa1_gpio_i_no_connection;
 
-   assign port_mux_sel_gpioa1_gpio0_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA1_GPIO0 ? 1'b1 : 1'b0;
+   assign port_mux_sel_gpioa1_gpio_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA1_GPIO ? 1'b1 : 1'b0;
 
    lzc #(
      .WIDTH(1),
      .MODE(1'b0)
-   ) i_port_muxsel_gpioa1_gpio0_i_arbiter (
-     .in_i(port_mux_sel_gpioa1_gpio0_i_req),
-     .cnt_o(port_mux_sel_gpioa1_gpio0_i_arbitrated),
-     .empty_o(port_mux_sel_gpioa1_gpio0_i_no_connection)
+   ) i_port_muxsel_gpioa1_gpio_i_arbiter (
+     .in_i(port_mux_sel_gpioa1_gpio_i_req),
+     .cnt_o(port_mux_sel_gpioa1_gpio_i_arbitrated),
+     .empty_o(port_mux_sel_gpioa1_gpio_i_no_connection)
    );
 
    always_comb begin
-     if (port_mux_sel_gpioa1_gpio0_i_no_connection) begin
-        port_signals_pad2soc_o.gpioa1.gpio0_i = 1'b0;
+     if (port_mux_sel_gpioa1_gpio_i_no_connection) begin
+        port_signals_pad2soc_o.gpioa1.gpio_i = 1'b0;
      end else begin
-        unique case (port_mux_sel_gpioa1_gpio0_i_arbitrated)
+        unique case (port_mux_sel_gpioa1_gpio_i_arbitrated)
           PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31: begin
-            port_signals_pad2soc_o.gpioa1.gpio0_i = pads_to_mux_i.gpio_31.pad2chip;
+            port_signals_pad2soc_o.gpioa1.gpio_i = pads_to_mux_i.gpio_31.pad2chip;
           end
           default: begin
-            port_signals_pad2soc_o.gpioa1.gpio0_i = 1'b0;
+            port_signals_pad2soc_o.gpioa1.gpio_i = 1'b0;
           end
        endcase
      end
@@ -6197,32 +6197,32 @@ module chimera_padframe_aon_gpioa_muxer
 
   // Port Group gpioa2
 
-  // Port Signal gpio0_i
-  logic [0:0] port_mux_sel_gpioa2_gpio0_i_req;
-  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa2_gpio0_i_arbitrated;
-  logic port_mux_sel_gpioa2_gpio0_i_no_connection;
+  // Port Signal gpio_i
+  logic [0:0] port_mux_sel_gpioa2_gpio_i_req;
+  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa2_gpio_i_arbitrated;
+  logic port_mux_sel_gpioa2_gpio_i_no_connection;
 
-   assign port_mux_sel_gpioa2_gpio0_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA2_GPIO0 ? 1'b1 : 1'b0;
+   assign port_mux_sel_gpioa2_gpio_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA2_GPIO ? 1'b1 : 1'b0;
 
    lzc #(
      .WIDTH(1),
      .MODE(1'b0)
-   ) i_port_muxsel_gpioa2_gpio0_i_arbiter (
-     .in_i(port_mux_sel_gpioa2_gpio0_i_req),
-     .cnt_o(port_mux_sel_gpioa2_gpio0_i_arbitrated),
-     .empty_o(port_mux_sel_gpioa2_gpio0_i_no_connection)
+   ) i_port_muxsel_gpioa2_gpio_i_arbiter (
+     .in_i(port_mux_sel_gpioa2_gpio_i_req),
+     .cnt_o(port_mux_sel_gpioa2_gpio_i_arbitrated),
+     .empty_o(port_mux_sel_gpioa2_gpio_i_no_connection)
    );
 
    always_comb begin
-     if (port_mux_sel_gpioa2_gpio0_i_no_connection) begin
-        port_signals_pad2soc_o.gpioa2.gpio0_i = 1'b0;
+     if (port_mux_sel_gpioa2_gpio_i_no_connection) begin
+        port_signals_pad2soc_o.gpioa2.gpio_i = 1'b0;
      end else begin
-        unique case (port_mux_sel_gpioa2_gpio0_i_arbitrated)
+        unique case (port_mux_sel_gpioa2_gpio_i_arbitrated)
           PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31: begin
-            port_signals_pad2soc_o.gpioa2.gpio0_i = pads_to_mux_i.gpio_31.pad2chip;
+            port_signals_pad2soc_o.gpioa2.gpio_i = pads_to_mux_i.gpio_31.pad2chip;
           end
           default: begin
-            port_signals_pad2soc_o.gpioa2.gpio0_i = 1'b0;
+            port_signals_pad2soc_o.gpioa2.gpio_i = 1'b0;
           end
        endcase
      end
@@ -6230,32 +6230,32 @@ module chimera_padframe_aon_gpioa_muxer
 
   // Port Group gpioa3
 
-  // Port Signal gpio0_i
-  logic [0:0] port_mux_sel_gpioa3_gpio0_i_req;
-  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa3_gpio0_i_arbitrated;
-  logic port_mux_sel_gpioa3_gpio0_i_no_connection;
+  // Port Signal gpio_i
+  logic [0:0] port_mux_sel_gpioa3_gpio_i_req;
+  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa3_gpio_i_arbitrated;
+  logic port_mux_sel_gpioa3_gpio_i_no_connection;
 
-   assign port_mux_sel_gpioa3_gpio0_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA3_GPIO0 ? 1'b1 : 1'b0;
+   assign port_mux_sel_gpioa3_gpio_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA3_GPIO ? 1'b1 : 1'b0;
 
    lzc #(
      .WIDTH(1),
      .MODE(1'b0)
-   ) i_port_muxsel_gpioa3_gpio0_i_arbiter (
-     .in_i(port_mux_sel_gpioa3_gpio0_i_req),
-     .cnt_o(port_mux_sel_gpioa3_gpio0_i_arbitrated),
-     .empty_o(port_mux_sel_gpioa3_gpio0_i_no_connection)
+   ) i_port_muxsel_gpioa3_gpio_i_arbiter (
+     .in_i(port_mux_sel_gpioa3_gpio_i_req),
+     .cnt_o(port_mux_sel_gpioa3_gpio_i_arbitrated),
+     .empty_o(port_mux_sel_gpioa3_gpio_i_no_connection)
    );
 
    always_comb begin
-     if (port_mux_sel_gpioa3_gpio0_i_no_connection) begin
-        port_signals_pad2soc_o.gpioa3.gpio0_i = 1'b0;
+     if (port_mux_sel_gpioa3_gpio_i_no_connection) begin
+        port_signals_pad2soc_o.gpioa3.gpio_i = 1'b0;
      end else begin
-        unique case (port_mux_sel_gpioa3_gpio0_i_arbitrated)
+        unique case (port_mux_sel_gpioa3_gpio_i_arbitrated)
           PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31: begin
-            port_signals_pad2soc_o.gpioa3.gpio0_i = pads_to_mux_i.gpio_31.pad2chip;
+            port_signals_pad2soc_o.gpioa3.gpio_i = pads_to_mux_i.gpio_31.pad2chip;
           end
           default: begin
-            port_signals_pad2soc_o.gpioa3.gpio0_i = 1'b0;
+            port_signals_pad2soc_o.gpioa3.gpio_i = 1'b0;
           end
        endcase
      end
@@ -6263,32 +6263,32 @@ module chimera_padframe_aon_gpioa_muxer
 
   // Port Group gpioa4
 
-  // Port Signal gpio0_i
-  logic [0:0] port_mux_sel_gpioa4_gpio0_i_req;
-  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa4_gpio0_i_arbitrated;
-  logic port_mux_sel_gpioa4_gpio0_i_no_connection;
+  // Port Signal gpio_i
+  logic [0:0] port_mux_sel_gpioa4_gpio_i_req;
+  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa4_gpio_i_arbitrated;
+  logic port_mux_sel_gpioa4_gpio_i_no_connection;
 
-   assign port_mux_sel_gpioa4_gpio0_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA4_GPIO0 ? 1'b1 : 1'b0;
+   assign port_mux_sel_gpioa4_gpio_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA4_GPIO ? 1'b1 : 1'b0;
 
    lzc #(
      .WIDTH(1),
      .MODE(1'b0)
-   ) i_port_muxsel_gpioa4_gpio0_i_arbiter (
-     .in_i(port_mux_sel_gpioa4_gpio0_i_req),
-     .cnt_o(port_mux_sel_gpioa4_gpio0_i_arbitrated),
-     .empty_o(port_mux_sel_gpioa4_gpio0_i_no_connection)
+   ) i_port_muxsel_gpioa4_gpio_i_arbiter (
+     .in_i(port_mux_sel_gpioa4_gpio_i_req),
+     .cnt_o(port_mux_sel_gpioa4_gpio_i_arbitrated),
+     .empty_o(port_mux_sel_gpioa4_gpio_i_no_connection)
    );
 
    always_comb begin
-     if (port_mux_sel_gpioa4_gpio0_i_no_connection) begin
-        port_signals_pad2soc_o.gpioa4.gpio0_i = 1'b0;
+     if (port_mux_sel_gpioa4_gpio_i_no_connection) begin
+        port_signals_pad2soc_o.gpioa4.gpio_i = 1'b0;
      end else begin
-        unique case (port_mux_sel_gpioa4_gpio0_i_arbitrated)
+        unique case (port_mux_sel_gpioa4_gpio_i_arbitrated)
           PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31: begin
-            port_signals_pad2soc_o.gpioa4.gpio0_i = pads_to_mux_i.gpio_31.pad2chip;
+            port_signals_pad2soc_o.gpioa4.gpio_i = pads_to_mux_i.gpio_31.pad2chip;
           end
           default: begin
-            port_signals_pad2soc_o.gpioa4.gpio0_i = 1'b0;
+            port_signals_pad2soc_o.gpioa4.gpio_i = 1'b0;
           end
        endcase
      end
@@ -6296,32 +6296,32 @@ module chimera_padframe_aon_gpioa_muxer
 
   // Port Group gpioa5
 
-  // Port Signal gpio0_i
-  logic [0:0] port_mux_sel_gpioa5_gpio0_i_req;
-  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa5_gpio0_i_arbitrated;
-  logic port_mux_sel_gpioa5_gpio0_i_no_connection;
+  // Port Signal gpio_i
+  logic [0:0] port_mux_sel_gpioa5_gpio_i_req;
+  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa5_gpio_i_arbitrated;
+  logic port_mux_sel_gpioa5_gpio_i_no_connection;
 
-   assign port_mux_sel_gpioa5_gpio0_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA5_GPIO0 ? 1'b1 : 1'b0;
+   assign port_mux_sel_gpioa5_gpio_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA5_GPIO ? 1'b1 : 1'b0;
 
    lzc #(
      .WIDTH(1),
      .MODE(1'b0)
-   ) i_port_muxsel_gpioa5_gpio0_i_arbiter (
-     .in_i(port_mux_sel_gpioa5_gpio0_i_req),
-     .cnt_o(port_mux_sel_gpioa5_gpio0_i_arbitrated),
-     .empty_o(port_mux_sel_gpioa5_gpio0_i_no_connection)
+   ) i_port_muxsel_gpioa5_gpio_i_arbiter (
+     .in_i(port_mux_sel_gpioa5_gpio_i_req),
+     .cnt_o(port_mux_sel_gpioa5_gpio_i_arbitrated),
+     .empty_o(port_mux_sel_gpioa5_gpio_i_no_connection)
    );
 
    always_comb begin
-     if (port_mux_sel_gpioa5_gpio0_i_no_connection) begin
-        port_signals_pad2soc_o.gpioa5.gpio0_i = 1'b0;
+     if (port_mux_sel_gpioa5_gpio_i_no_connection) begin
+        port_signals_pad2soc_o.gpioa5.gpio_i = 1'b0;
      end else begin
-        unique case (port_mux_sel_gpioa5_gpio0_i_arbitrated)
+        unique case (port_mux_sel_gpioa5_gpio_i_arbitrated)
           PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31: begin
-            port_signals_pad2soc_o.gpioa5.gpio0_i = pads_to_mux_i.gpio_31.pad2chip;
+            port_signals_pad2soc_o.gpioa5.gpio_i = pads_to_mux_i.gpio_31.pad2chip;
           end
           default: begin
-            port_signals_pad2soc_o.gpioa5.gpio0_i = 1'b0;
+            port_signals_pad2soc_o.gpioa5.gpio_i = 1'b0;
           end
        endcase
      end
@@ -6329,32 +6329,32 @@ module chimera_padframe_aon_gpioa_muxer
 
   // Port Group gpioa6
 
-  // Port Signal gpio0_i
-  logic [0:0] port_mux_sel_gpioa6_gpio0_i_req;
-  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa6_gpio0_i_arbitrated;
-  logic port_mux_sel_gpioa6_gpio0_i_no_connection;
+  // Port Signal gpio_i
+  logic [0:0] port_mux_sel_gpioa6_gpio_i_req;
+  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa6_gpio_i_arbitrated;
+  logic port_mux_sel_gpioa6_gpio_i_no_connection;
 
-   assign port_mux_sel_gpioa6_gpio0_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA6_GPIO0 ? 1'b1 : 1'b0;
+   assign port_mux_sel_gpioa6_gpio_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA6_GPIO ? 1'b1 : 1'b0;
 
    lzc #(
      .WIDTH(1),
      .MODE(1'b0)
-   ) i_port_muxsel_gpioa6_gpio0_i_arbiter (
-     .in_i(port_mux_sel_gpioa6_gpio0_i_req),
-     .cnt_o(port_mux_sel_gpioa6_gpio0_i_arbitrated),
-     .empty_o(port_mux_sel_gpioa6_gpio0_i_no_connection)
+   ) i_port_muxsel_gpioa6_gpio_i_arbiter (
+     .in_i(port_mux_sel_gpioa6_gpio_i_req),
+     .cnt_o(port_mux_sel_gpioa6_gpio_i_arbitrated),
+     .empty_o(port_mux_sel_gpioa6_gpio_i_no_connection)
    );
 
    always_comb begin
-     if (port_mux_sel_gpioa6_gpio0_i_no_connection) begin
-        port_signals_pad2soc_o.gpioa6.gpio0_i = 1'b0;
+     if (port_mux_sel_gpioa6_gpio_i_no_connection) begin
+        port_signals_pad2soc_o.gpioa6.gpio_i = 1'b0;
      end else begin
-        unique case (port_mux_sel_gpioa6_gpio0_i_arbitrated)
+        unique case (port_mux_sel_gpioa6_gpio_i_arbitrated)
           PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31: begin
-            port_signals_pad2soc_o.gpioa6.gpio0_i = pads_to_mux_i.gpio_31.pad2chip;
+            port_signals_pad2soc_o.gpioa6.gpio_i = pads_to_mux_i.gpio_31.pad2chip;
           end
           default: begin
-            port_signals_pad2soc_o.gpioa6.gpio0_i = 1'b0;
+            port_signals_pad2soc_o.gpioa6.gpio_i = 1'b0;
           end
        endcase
      end
@@ -6362,32 +6362,32 @@ module chimera_padframe_aon_gpioa_muxer
 
   // Port Group gpioa7
 
-  // Port Signal gpio0_i
-  logic [0:0] port_mux_sel_gpioa7_gpio0_i_req;
-  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa7_gpio0_i_arbitrated;
-  logic port_mux_sel_gpioa7_gpio0_i_no_connection;
+  // Port Signal gpio_i
+  logic [0:0] port_mux_sel_gpioa7_gpio_i_req;
+  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa7_gpio_i_arbitrated;
+  logic port_mux_sel_gpioa7_gpio_i_no_connection;
 
-   assign port_mux_sel_gpioa7_gpio0_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA7_GPIO0 ? 1'b1 : 1'b0;
+   assign port_mux_sel_gpioa7_gpio_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA7_GPIO ? 1'b1 : 1'b0;
 
    lzc #(
      .WIDTH(1),
      .MODE(1'b0)
-   ) i_port_muxsel_gpioa7_gpio0_i_arbiter (
-     .in_i(port_mux_sel_gpioa7_gpio0_i_req),
-     .cnt_o(port_mux_sel_gpioa7_gpio0_i_arbitrated),
-     .empty_o(port_mux_sel_gpioa7_gpio0_i_no_connection)
+   ) i_port_muxsel_gpioa7_gpio_i_arbiter (
+     .in_i(port_mux_sel_gpioa7_gpio_i_req),
+     .cnt_o(port_mux_sel_gpioa7_gpio_i_arbitrated),
+     .empty_o(port_mux_sel_gpioa7_gpio_i_no_connection)
    );
 
    always_comb begin
-     if (port_mux_sel_gpioa7_gpio0_i_no_connection) begin
-        port_signals_pad2soc_o.gpioa7.gpio0_i = 1'b0;
+     if (port_mux_sel_gpioa7_gpio_i_no_connection) begin
+        port_signals_pad2soc_o.gpioa7.gpio_i = 1'b0;
      end else begin
-        unique case (port_mux_sel_gpioa7_gpio0_i_arbitrated)
+        unique case (port_mux_sel_gpioa7_gpio_i_arbitrated)
           PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31: begin
-            port_signals_pad2soc_o.gpioa7.gpio0_i = pads_to_mux_i.gpio_31.pad2chip;
+            port_signals_pad2soc_o.gpioa7.gpio_i = pads_to_mux_i.gpio_31.pad2chip;
           end
           default: begin
-            port_signals_pad2soc_o.gpioa7.gpio0_i = 1'b0;
+            port_signals_pad2soc_o.gpioa7.gpio_i = 1'b0;
           end
        endcase
      end
@@ -6395,32 +6395,32 @@ module chimera_padframe_aon_gpioa_muxer
 
   // Port Group gpioa8
 
-  // Port Signal gpio0_i
-  logic [0:0] port_mux_sel_gpioa8_gpio0_i_req;
-  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa8_gpio0_i_arbitrated;
-  logic port_mux_sel_gpioa8_gpio0_i_no_connection;
+  // Port Signal gpio_i
+  logic [0:0] port_mux_sel_gpioa8_gpio_i_req;
+  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa8_gpio_i_arbitrated;
+  logic port_mux_sel_gpioa8_gpio_i_no_connection;
 
-   assign port_mux_sel_gpioa8_gpio0_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA8_GPIO0 ? 1'b1 : 1'b0;
+   assign port_mux_sel_gpioa8_gpio_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA8_GPIO ? 1'b1 : 1'b0;
 
    lzc #(
      .WIDTH(1),
      .MODE(1'b0)
-   ) i_port_muxsel_gpioa8_gpio0_i_arbiter (
-     .in_i(port_mux_sel_gpioa8_gpio0_i_req),
-     .cnt_o(port_mux_sel_gpioa8_gpio0_i_arbitrated),
-     .empty_o(port_mux_sel_gpioa8_gpio0_i_no_connection)
+   ) i_port_muxsel_gpioa8_gpio_i_arbiter (
+     .in_i(port_mux_sel_gpioa8_gpio_i_req),
+     .cnt_o(port_mux_sel_gpioa8_gpio_i_arbitrated),
+     .empty_o(port_mux_sel_gpioa8_gpio_i_no_connection)
    );
 
    always_comb begin
-     if (port_mux_sel_gpioa8_gpio0_i_no_connection) begin
-        port_signals_pad2soc_o.gpioa8.gpio0_i = 1'b0;
+     if (port_mux_sel_gpioa8_gpio_i_no_connection) begin
+        port_signals_pad2soc_o.gpioa8.gpio_i = 1'b0;
      end else begin
-        unique case (port_mux_sel_gpioa8_gpio0_i_arbitrated)
+        unique case (port_mux_sel_gpioa8_gpio_i_arbitrated)
           PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31: begin
-            port_signals_pad2soc_o.gpioa8.gpio0_i = pads_to_mux_i.gpio_31.pad2chip;
+            port_signals_pad2soc_o.gpioa8.gpio_i = pads_to_mux_i.gpio_31.pad2chip;
           end
           default: begin
-            port_signals_pad2soc_o.gpioa8.gpio0_i = 1'b0;
+            port_signals_pad2soc_o.gpioa8.gpio_i = 1'b0;
           end
        endcase
      end
@@ -6428,32 +6428,32 @@ module chimera_padframe_aon_gpioa_muxer
 
   // Port Group gpioa9
 
-  // Port Signal gpio0_i
-  logic [0:0] port_mux_sel_gpioa9_gpio0_i_req;
-  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa9_gpio0_i_arbitrated;
-  logic port_mux_sel_gpioa9_gpio0_i_no_connection;
+  // Port Signal gpio_i
+  logic [0:0] port_mux_sel_gpioa9_gpio_i_req;
+  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa9_gpio_i_arbitrated;
+  logic port_mux_sel_gpioa9_gpio_i_no_connection;
 
-   assign port_mux_sel_gpioa9_gpio0_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA9_GPIO0 ? 1'b1 : 1'b0;
+   assign port_mux_sel_gpioa9_gpio_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA9_GPIO ? 1'b1 : 1'b0;
 
    lzc #(
      .WIDTH(1),
      .MODE(1'b0)
-   ) i_port_muxsel_gpioa9_gpio0_i_arbiter (
-     .in_i(port_mux_sel_gpioa9_gpio0_i_req),
-     .cnt_o(port_mux_sel_gpioa9_gpio0_i_arbitrated),
-     .empty_o(port_mux_sel_gpioa9_gpio0_i_no_connection)
+   ) i_port_muxsel_gpioa9_gpio_i_arbiter (
+     .in_i(port_mux_sel_gpioa9_gpio_i_req),
+     .cnt_o(port_mux_sel_gpioa9_gpio_i_arbitrated),
+     .empty_o(port_mux_sel_gpioa9_gpio_i_no_connection)
    );
 
    always_comb begin
-     if (port_mux_sel_gpioa9_gpio0_i_no_connection) begin
-        port_signals_pad2soc_o.gpioa9.gpio0_i = 1'b0;
+     if (port_mux_sel_gpioa9_gpio_i_no_connection) begin
+        port_signals_pad2soc_o.gpioa9.gpio_i = 1'b0;
      end else begin
-        unique case (port_mux_sel_gpioa9_gpio0_i_arbitrated)
+        unique case (port_mux_sel_gpioa9_gpio_i_arbitrated)
           PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31: begin
-            port_signals_pad2soc_o.gpioa9.gpio0_i = pads_to_mux_i.gpio_31.pad2chip;
+            port_signals_pad2soc_o.gpioa9.gpio_i = pads_to_mux_i.gpio_31.pad2chip;
           end
           default: begin
-            port_signals_pad2soc_o.gpioa9.gpio0_i = 1'b0;
+            port_signals_pad2soc_o.gpioa9.gpio_i = 1'b0;
           end
        endcase
      end
@@ -6461,32 +6461,32 @@ module chimera_padframe_aon_gpioa_muxer
 
   // Port Group gpioa10
 
-  // Port Signal gpio0_i
-  logic [0:0] port_mux_sel_gpioa10_gpio0_i_req;
-  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa10_gpio0_i_arbitrated;
-  logic port_mux_sel_gpioa10_gpio0_i_no_connection;
+  // Port Signal gpio_i
+  logic [0:0] port_mux_sel_gpioa10_gpio_i_req;
+  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa10_gpio_i_arbitrated;
+  logic port_mux_sel_gpioa10_gpio_i_no_connection;
 
-   assign port_mux_sel_gpioa10_gpio0_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA10_GPIO0 ? 1'b1 : 1'b0;
+   assign port_mux_sel_gpioa10_gpio_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA10_GPIO ? 1'b1 : 1'b0;
 
    lzc #(
      .WIDTH(1),
      .MODE(1'b0)
-   ) i_port_muxsel_gpioa10_gpio0_i_arbiter (
-     .in_i(port_mux_sel_gpioa10_gpio0_i_req),
-     .cnt_o(port_mux_sel_gpioa10_gpio0_i_arbitrated),
-     .empty_o(port_mux_sel_gpioa10_gpio0_i_no_connection)
+   ) i_port_muxsel_gpioa10_gpio_i_arbiter (
+     .in_i(port_mux_sel_gpioa10_gpio_i_req),
+     .cnt_o(port_mux_sel_gpioa10_gpio_i_arbitrated),
+     .empty_o(port_mux_sel_gpioa10_gpio_i_no_connection)
    );
 
    always_comb begin
-     if (port_mux_sel_gpioa10_gpio0_i_no_connection) begin
-        port_signals_pad2soc_o.gpioa10.gpio0_i = 1'b0;
+     if (port_mux_sel_gpioa10_gpio_i_no_connection) begin
+        port_signals_pad2soc_o.gpioa10.gpio_i = 1'b0;
      end else begin
-        unique case (port_mux_sel_gpioa10_gpio0_i_arbitrated)
+        unique case (port_mux_sel_gpioa10_gpio_i_arbitrated)
           PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31: begin
-            port_signals_pad2soc_o.gpioa10.gpio0_i = pads_to_mux_i.gpio_31.pad2chip;
+            port_signals_pad2soc_o.gpioa10.gpio_i = pads_to_mux_i.gpio_31.pad2chip;
           end
           default: begin
-            port_signals_pad2soc_o.gpioa10.gpio0_i = 1'b0;
+            port_signals_pad2soc_o.gpioa10.gpio_i = 1'b0;
           end
        endcase
      end
@@ -6494,32 +6494,32 @@ module chimera_padframe_aon_gpioa_muxer
 
   // Port Group gpioa11
 
-  // Port Signal gpio0_i
-  logic [0:0] port_mux_sel_gpioa11_gpio0_i_req;
-  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa11_gpio0_i_arbitrated;
-  logic port_mux_sel_gpioa11_gpio0_i_no_connection;
+  // Port Signal gpio_i
+  logic [0:0] port_mux_sel_gpioa11_gpio_i_req;
+  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa11_gpio_i_arbitrated;
+  logic port_mux_sel_gpioa11_gpio_i_no_connection;
 
-   assign port_mux_sel_gpioa11_gpio0_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA11_GPIO0 ? 1'b1 : 1'b0;
+   assign port_mux_sel_gpioa11_gpio_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA11_GPIO ? 1'b1 : 1'b0;
 
    lzc #(
      .WIDTH(1),
      .MODE(1'b0)
-   ) i_port_muxsel_gpioa11_gpio0_i_arbiter (
-     .in_i(port_mux_sel_gpioa11_gpio0_i_req),
-     .cnt_o(port_mux_sel_gpioa11_gpio0_i_arbitrated),
-     .empty_o(port_mux_sel_gpioa11_gpio0_i_no_connection)
+   ) i_port_muxsel_gpioa11_gpio_i_arbiter (
+     .in_i(port_mux_sel_gpioa11_gpio_i_req),
+     .cnt_o(port_mux_sel_gpioa11_gpio_i_arbitrated),
+     .empty_o(port_mux_sel_gpioa11_gpio_i_no_connection)
    );
 
    always_comb begin
-     if (port_mux_sel_gpioa11_gpio0_i_no_connection) begin
-        port_signals_pad2soc_o.gpioa11.gpio0_i = 1'b0;
+     if (port_mux_sel_gpioa11_gpio_i_no_connection) begin
+        port_signals_pad2soc_o.gpioa11.gpio_i = 1'b0;
      end else begin
-        unique case (port_mux_sel_gpioa11_gpio0_i_arbitrated)
+        unique case (port_mux_sel_gpioa11_gpio_i_arbitrated)
           PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31: begin
-            port_signals_pad2soc_o.gpioa11.gpio0_i = pads_to_mux_i.gpio_31.pad2chip;
+            port_signals_pad2soc_o.gpioa11.gpio_i = pads_to_mux_i.gpio_31.pad2chip;
           end
           default: begin
-            port_signals_pad2soc_o.gpioa11.gpio0_i = 1'b0;
+            port_signals_pad2soc_o.gpioa11.gpio_i = 1'b0;
           end
        endcase
      end
@@ -6527,32 +6527,32 @@ module chimera_padframe_aon_gpioa_muxer
 
   // Port Group gpioa12
 
-  // Port Signal gpio0_i
-  logic [0:0] port_mux_sel_gpioa12_gpio0_i_req;
-  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa12_gpio0_i_arbitrated;
-  logic port_mux_sel_gpioa12_gpio0_i_no_connection;
+  // Port Signal gpio_i
+  logic [0:0] port_mux_sel_gpioa12_gpio_i_req;
+  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa12_gpio_i_arbitrated;
+  logic port_mux_sel_gpioa12_gpio_i_no_connection;
 
-   assign port_mux_sel_gpioa12_gpio0_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA12_GPIO0 ? 1'b1 : 1'b0;
+   assign port_mux_sel_gpioa12_gpio_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA12_GPIO ? 1'b1 : 1'b0;
 
    lzc #(
      .WIDTH(1),
      .MODE(1'b0)
-   ) i_port_muxsel_gpioa12_gpio0_i_arbiter (
-     .in_i(port_mux_sel_gpioa12_gpio0_i_req),
-     .cnt_o(port_mux_sel_gpioa12_gpio0_i_arbitrated),
-     .empty_o(port_mux_sel_gpioa12_gpio0_i_no_connection)
+   ) i_port_muxsel_gpioa12_gpio_i_arbiter (
+     .in_i(port_mux_sel_gpioa12_gpio_i_req),
+     .cnt_o(port_mux_sel_gpioa12_gpio_i_arbitrated),
+     .empty_o(port_mux_sel_gpioa12_gpio_i_no_connection)
    );
 
    always_comb begin
-     if (port_mux_sel_gpioa12_gpio0_i_no_connection) begin
-        port_signals_pad2soc_o.gpioa12.gpio0_i = 1'b0;
+     if (port_mux_sel_gpioa12_gpio_i_no_connection) begin
+        port_signals_pad2soc_o.gpioa12.gpio_i = 1'b0;
      end else begin
-        unique case (port_mux_sel_gpioa12_gpio0_i_arbitrated)
+        unique case (port_mux_sel_gpioa12_gpio_i_arbitrated)
           PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31: begin
-            port_signals_pad2soc_o.gpioa12.gpio0_i = pads_to_mux_i.gpio_31.pad2chip;
+            port_signals_pad2soc_o.gpioa12.gpio_i = pads_to_mux_i.gpio_31.pad2chip;
           end
           default: begin
-            port_signals_pad2soc_o.gpioa12.gpio0_i = 1'b0;
+            port_signals_pad2soc_o.gpioa12.gpio_i = 1'b0;
           end
        endcase
      end
@@ -6560,32 +6560,32 @@ module chimera_padframe_aon_gpioa_muxer
 
   // Port Group gpioa13
 
-  // Port Signal gpio0_i
-  logic [0:0] port_mux_sel_gpioa13_gpio0_i_req;
-  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa13_gpio0_i_arbitrated;
-  logic port_mux_sel_gpioa13_gpio0_i_no_connection;
+  // Port Signal gpio_i
+  logic [0:0] port_mux_sel_gpioa13_gpio_i_req;
+  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa13_gpio_i_arbitrated;
+  logic port_mux_sel_gpioa13_gpio_i_no_connection;
 
-   assign port_mux_sel_gpioa13_gpio0_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA13_GPIO0 ? 1'b1 : 1'b0;
+   assign port_mux_sel_gpioa13_gpio_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA13_GPIO ? 1'b1 : 1'b0;
 
    lzc #(
      .WIDTH(1),
      .MODE(1'b0)
-   ) i_port_muxsel_gpioa13_gpio0_i_arbiter (
-     .in_i(port_mux_sel_gpioa13_gpio0_i_req),
-     .cnt_o(port_mux_sel_gpioa13_gpio0_i_arbitrated),
-     .empty_o(port_mux_sel_gpioa13_gpio0_i_no_connection)
+   ) i_port_muxsel_gpioa13_gpio_i_arbiter (
+     .in_i(port_mux_sel_gpioa13_gpio_i_req),
+     .cnt_o(port_mux_sel_gpioa13_gpio_i_arbitrated),
+     .empty_o(port_mux_sel_gpioa13_gpio_i_no_connection)
    );
 
    always_comb begin
-     if (port_mux_sel_gpioa13_gpio0_i_no_connection) begin
-        port_signals_pad2soc_o.gpioa13.gpio0_i = 1'b0;
+     if (port_mux_sel_gpioa13_gpio_i_no_connection) begin
+        port_signals_pad2soc_o.gpioa13.gpio_i = 1'b0;
      end else begin
-        unique case (port_mux_sel_gpioa13_gpio0_i_arbitrated)
+        unique case (port_mux_sel_gpioa13_gpio_i_arbitrated)
           PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31: begin
-            port_signals_pad2soc_o.gpioa13.gpio0_i = pads_to_mux_i.gpio_31.pad2chip;
+            port_signals_pad2soc_o.gpioa13.gpio_i = pads_to_mux_i.gpio_31.pad2chip;
           end
           default: begin
-            port_signals_pad2soc_o.gpioa13.gpio0_i = 1'b0;
+            port_signals_pad2soc_o.gpioa13.gpio_i = 1'b0;
           end
        endcase
      end
@@ -6593,32 +6593,32 @@ module chimera_padframe_aon_gpioa_muxer
 
   // Port Group gpioa14
 
-  // Port Signal gpio0_i
-  logic [0:0] port_mux_sel_gpioa14_gpio0_i_req;
-  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa14_gpio0_i_arbitrated;
-  logic port_mux_sel_gpioa14_gpio0_i_no_connection;
+  // Port Signal gpio_i
+  logic [0:0] port_mux_sel_gpioa14_gpio_i_req;
+  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa14_gpio_i_arbitrated;
+  logic port_mux_sel_gpioa14_gpio_i_no_connection;
 
-   assign port_mux_sel_gpioa14_gpio0_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA14_GPIO0 ? 1'b1 : 1'b0;
+   assign port_mux_sel_gpioa14_gpio_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA14_GPIO ? 1'b1 : 1'b0;
 
    lzc #(
      .WIDTH(1),
      .MODE(1'b0)
-   ) i_port_muxsel_gpioa14_gpio0_i_arbiter (
-     .in_i(port_mux_sel_gpioa14_gpio0_i_req),
-     .cnt_o(port_mux_sel_gpioa14_gpio0_i_arbitrated),
-     .empty_o(port_mux_sel_gpioa14_gpio0_i_no_connection)
+   ) i_port_muxsel_gpioa14_gpio_i_arbiter (
+     .in_i(port_mux_sel_gpioa14_gpio_i_req),
+     .cnt_o(port_mux_sel_gpioa14_gpio_i_arbitrated),
+     .empty_o(port_mux_sel_gpioa14_gpio_i_no_connection)
    );
 
    always_comb begin
-     if (port_mux_sel_gpioa14_gpio0_i_no_connection) begin
-        port_signals_pad2soc_o.gpioa14.gpio0_i = 1'b0;
+     if (port_mux_sel_gpioa14_gpio_i_no_connection) begin
+        port_signals_pad2soc_o.gpioa14.gpio_i = 1'b0;
      end else begin
-        unique case (port_mux_sel_gpioa14_gpio0_i_arbitrated)
+        unique case (port_mux_sel_gpioa14_gpio_i_arbitrated)
           PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31: begin
-            port_signals_pad2soc_o.gpioa14.gpio0_i = pads_to_mux_i.gpio_31.pad2chip;
+            port_signals_pad2soc_o.gpioa14.gpio_i = pads_to_mux_i.gpio_31.pad2chip;
           end
           default: begin
-            port_signals_pad2soc_o.gpioa14.gpio0_i = 1'b0;
+            port_signals_pad2soc_o.gpioa14.gpio_i = 1'b0;
           end
        endcase
      end
@@ -6626,32 +6626,32 @@ module chimera_padframe_aon_gpioa_muxer
 
   // Port Group gpioa15
 
-  // Port Signal gpio0_i
-  logic [0:0] port_mux_sel_gpioa15_gpio0_i_req;
-  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa15_gpio0_i_arbitrated;
-  logic port_mux_sel_gpioa15_gpio0_i_no_connection;
+  // Port Signal gpio_i
+  logic [0:0] port_mux_sel_gpioa15_gpio_i_req;
+  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa15_gpio_i_arbitrated;
+  logic port_mux_sel_gpioa15_gpio_i_no_connection;
 
-   assign port_mux_sel_gpioa15_gpio0_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA15_GPIO0 ? 1'b1 : 1'b0;
+   assign port_mux_sel_gpioa15_gpio_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA15_GPIO ? 1'b1 : 1'b0;
 
    lzc #(
      .WIDTH(1),
      .MODE(1'b0)
-   ) i_port_muxsel_gpioa15_gpio0_i_arbiter (
-     .in_i(port_mux_sel_gpioa15_gpio0_i_req),
-     .cnt_o(port_mux_sel_gpioa15_gpio0_i_arbitrated),
-     .empty_o(port_mux_sel_gpioa15_gpio0_i_no_connection)
+   ) i_port_muxsel_gpioa15_gpio_i_arbiter (
+     .in_i(port_mux_sel_gpioa15_gpio_i_req),
+     .cnt_o(port_mux_sel_gpioa15_gpio_i_arbitrated),
+     .empty_o(port_mux_sel_gpioa15_gpio_i_no_connection)
    );
 
    always_comb begin
-     if (port_mux_sel_gpioa15_gpio0_i_no_connection) begin
-        port_signals_pad2soc_o.gpioa15.gpio0_i = 1'b0;
+     if (port_mux_sel_gpioa15_gpio_i_no_connection) begin
+        port_signals_pad2soc_o.gpioa15.gpio_i = 1'b0;
      end else begin
-        unique case (port_mux_sel_gpioa15_gpio0_i_arbitrated)
+        unique case (port_mux_sel_gpioa15_gpio_i_arbitrated)
           PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31: begin
-            port_signals_pad2soc_o.gpioa15.gpio0_i = pads_to_mux_i.gpio_31.pad2chip;
+            port_signals_pad2soc_o.gpioa15.gpio_i = pads_to_mux_i.gpio_31.pad2chip;
           end
           default: begin
-            port_signals_pad2soc_o.gpioa15.gpio0_i = 1'b0;
+            port_signals_pad2soc_o.gpioa15.gpio_i = 1'b0;
           end
        endcase
      end
@@ -6659,32 +6659,32 @@ module chimera_padframe_aon_gpioa_muxer
 
   // Port Group gpioa16
 
-  // Port Signal gpio0_i
-  logic [0:0] port_mux_sel_gpioa16_gpio0_i_req;
-  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa16_gpio0_i_arbitrated;
-  logic port_mux_sel_gpioa16_gpio0_i_no_connection;
+  // Port Signal gpio_i
+  logic [0:0] port_mux_sel_gpioa16_gpio_i_req;
+  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa16_gpio_i_arbitrated;
+  logic port_mux_sel_gpioa16_gpio_i_no_connection;
 
-   assign port_mux_sel_gpioa16_gpio0_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA16_GPIO0 ? 1'b1 : 1'b0;
+   assign port_mux_sel_gpioa16_gpio_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA16_GPIO ? 1'b1 : 1'b0;
 
    lzc #(
      .WIDTH(1),
      .MODE(1'b0)
-   ) i_port_muxsel_gpioa16_gpio0_i_arbiter (
-     .in_i(port_mux_sel_gpioa16_gpio0_i_req),
-     .cnt_o(port_mux_sel_gpioa16_gpio0_i_arbitrated),
-     .empty_o(port_mux_sel_gpioa16_gpio0_i_no_connection)
+   ) i_port_muxsel_gpioa16_gpio_i_arbiter (
+     .in_i(port_mux_sel_gpioa16_gpio_i_req),
+     .cnt_o(port_mux_sel_gpioa16_gpio_i_arbitrated),
+     .empty_o(port_mux_sel_gpioa16_gpio_i_no_connection)
    );
 
    always_comb begin
-     if (port_mux_sel_gpioa16_gpio0_i_no_connection) begin
-        port_signals_pad2soc_o.gpioa16.gpio0_i = 1'b0;
+     if (port_mux_sel_gpioa16_gpio_i_no_connection) begin
+        port_signals_pad2soc_o.gpioa16.gpio_i = 1'b0;
      end else begin
-        unique case (port_mux_sel_gpioa16_gpio0_i_arbitrated)
+        unique case (port_mux_sel_gpioa16_gpio_i_arbitrated)
           PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31: begin
-            port_signals_pad2soc_o.gpioa16.gpio0_i = pads_to_mux_i.gpio_31.pad2chip;
+            port_signals_pad2soc_o.gpioa16.gpio_i = pads_to_mux_i.gpio_31.pad2chip;
           end
           default: begin
-            port_signals_pad2soc_o.gpioa16.gpio0_i = 1'b0;
+            port_signals_pad2soc_o.gpioa16.gpio_i = 1'b0;
           end
        endcase
      end
@@ -6692,32 +6692,32 @@ module chimera_padframe_aon_gpioa_muxer
 
   // Port Group gpioa17
 
-  // Port Signal gpio0_i
-  logic [0:0] port_mux_sel_gpioa17_gpio0_i_req;
-  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa17_gpio0_i_arbitrated;
-  logic port_mux_sel_gpioa17_gpio0_i_no_connection;
+  // Port Signal gpio_i
+  logic [0:0] port_mux_sel_gpioa17_gpio_i_req;
+  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa17_gpio_i_arbitrated;
+  logic port_mux_sel_gpioa17_gpio_i_no_connection;
 
-   assign port_mux_sel_gpioa17_gpio0_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA17_GPIO0 ? 1'b1 : 1'b0;
+   assign port_mux_sel_gpioa17_gpio_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA17_GPIO ? 1'b1 : 1'b0;
 
    lzc #(
      .WIDTH(1),
      .MODE(1'b0)
-   ) i_port_muxsel_gpioa17_gpio0_i_arbiter (
-     .in_i(port_mux_sel_gpioa17_gpio0_i_req),
-     .cnt_o(port_mux_sel_gpioa17_gpio0_i_arbitrated),
-     .empty_o(port_mux_sel_gpioa17_gpio0_i_no_connection)
+   ) i_port_muxsel_gpioa17_gpio_i_arbiter (
+     .in_i(port_mux_sel_gpioa17_gpio_i_req),
+     .cnt_o(port_mux_sel_gpioa17_gpio_i_arbitrated),
+     .empty_o(port_mux_sel_gpioa17_gpio_i_no_connection)
    );
 
    always_comb begin
-     if (port_mux_sel_gpioa17_gpio0_i_no_connection) begin
-        port_signals_pad2soc_o.gpioa17.gpio0_i = 1'b0;
+     if (port_mux_sel_gpioa17_gpio_i_no_connection) begin
+        port_signals_pad2soc_o.gpioa17.gpio_i = 1'b0;
      end else begin
-        unique case (port_mux_sel_gpioa17_gpio0_i_arbitrated)
+        unique case (port_mux_sel_gpioa17_gpio_i_arbitrated)
           PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31: begin
-            port_signals_pad2soc_o.gpioa17.gpio0_i = pads_to_mux_i.gpio_31.pad2chip;
+            port_signals_pad2soc_o.gpioa17.gpio_i = pads_to_mux_i.gpio_31.pad2chip;
           end
           default: begin
-            port_signals_pad2soc_o.gpioa17.gpio0_i = 1'b0;
+            port_signals_pad2soc_o.gpioa17.gpio_i = 1'b0;
           end
        endcase
      end
@@ -6725,32 +6725,32 @@ module chimera_padframe_aon_gpioa_muxer
 
   // Port Group gpioa18
 
-  // Port Signal gpio0_i
-  logic [0:0] port_mux_sel_gpioa18_gpio0_i_req;
-  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa18_gpio0_i_arbitrated;
-  logic port_mux_sel_gpioa18_gpio0_i_no_connection;
+  // Port Signal gpio_i
+  logic [0:0] port_mux_sel_gpioa18_gpio_i_req;
+  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa18_gpio_i_arbitrated;
+  logic port_mux_sel_gpioa18_gpio_i_no_connection;
 
-   assign port_mux_sel_gpioa18_gpio0_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA18_GPIO0 ? 1'b1 : 1'b0;
+   assign port_mux_sel_gpioa18_gpio_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA18_GPIO ? 1'b1 : 1'b0;
 
    lzc #(
      .WIDTH(1),
      .MODE(1'b0)
-   ) i_port_muxsel_gpioa18_gpio0_i_arbiter (
-     .in_i(port_mux_sel_gpioa18_gpio0_i_req),
-     .cnt_o(port_mux_sel_gpioa18_gpio0_i_arbitrated),
-     .empty_o(port_mux_sel_gpioa18_gpio0_i_no_connection)
+   ) i_port_muxsel_gpioa18_gpio_i_arbiter (
+     .in_i(port_mux_sel_gpioa18_gpio_i_req),
+     .cnt_o(port_mux_sel_gpioa18_gpio_i_arbitrated),
+     .empty_o(port_mux_sel_gpioa18_gpio_i_no_connection)
    );
 
    always_comb begin
-     if (port_mux_sel_gpioa18_gpio0_i_no_connection) begin
-        port_signals_pad2soc_o.gpioa18.gpio0_i = 1'b0;
+     if (port_mux_sel_gpioa18_gpio_i_no_connection) begin
+        port_signals_pad2soc_o.gpioa18.gpio_i = 1'b0;
      end else begin
-        unique case (port_mux_sel_gpioa18_gpio0_i_arbitrated)
+        unique case (port_mux_sel_gpioa18_gpio_i_arbitrated)
           PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31: begin
-            port_signals_pad2soc_o.gpioa18.gpio0_i = pads_to_mux_i.gpio_31.pad2chip;
+            port_signals_pad2soc_o.gpioa18.gpio_i = pads_to_mux_i.gpio_31.pad2chip;
           end
           default: begin
-            port_signals_pad2soc_o.gpioa18.gpio0_i = 1'b0;
+            port_signals_pad2soc_o.gpioa18.gpio_i = 1'b0;
           end
        endcase
      end
@@ -6758,32 +6758,32 @@ module chimera_padframe_aon_gpioa_muxer
 
   // Port Group gpioa19
 
-  // Port Signal gpio0_i
-  logic [0:0] port_mux_sel_gpioa19_gpio0_i_req;
-  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa19_gpio0_i_arbitrated;
-  logic port_mux_sel_gpioa19_gpio0_i_no_connection;
+  // Port Signal gpio_i
+  logic [0:0] port_mux_sel_gpioa19_gpio_i_req;
+  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa19_gpio_i_arbitrated;
+  logic port_mux_sel_gpioa19_gpio_i_no_connection;
 
-   assign port_mux_sel_gpioa19_gpio0_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA19_GPIO0 ? 1'b1 : 1'b0;
+   assign port_mux_sel_gpioa19_gpio_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA19_GPIO ? 1'b1 : 1'b0;
 
    lzc #(
      .WIDTH(1),
      .MODE(1'b0)
-   ) i_port_muxsel_gpioa19_gpio0_i_arbiter (
-     .in_i(port_mux_sel_gpioa19_gpio0_i_req),
-     .cnt_o(port_mux_sel_gpioa19_gpio0_i_arbitrated),
-     .empty_o(port_mux_sel_gpioa19_gpio0_i_no_connection)
+   ) i_port_muxsel_gpioa19_gpio_i_arbiter (
+     .in_i(port_mux_sel_gpioa19_gpio_i_req),
+     .cnt_o(port_mux_sel_gpioa19_gpio_i_arbitrated),
+     .empty_o(port_mux_sel_gpioa19_gpio_i_no_connection)
    );
 
    always_comb begin
-     if (port_mux_sel_gpioa19_gpio0_i_no_connection) begin
-        port_signals_pad2soc_o.gpioa19.gpio0_i = 1'b0;
+     if (port_mux_sel_gpioa19_gpio_i_no_connection) begin
+        port_signals_pad2soc_o.gpioa19.gpio_i = 1'b0;
      end else begin
-        unique case (port_mux_sel_gpioa19_gpio0_i_arbitrated)
+        unique case (port_mux_sel_gpioa19_gpio_i_arbitrated)
           PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31: begin
-            port_signals_pad2soc_o.gpioa19.gpio0_i = pads_to_mux_i.gpio_31.pad2chip;
+            port_signals_pad2soc_o.gpioa19.gpio_i = pads_to_mux_i.gpio_31.pad2chip;
           end
           default: begin
-            port_signals_pad2soc_o.gpioa19.gpio0_i = 1'b0;
+            port_signals_pad2soc_o.gpioa19.gpio_i = 1'b0;
           end
        endcase
      end
@@ -6791,32 +6791,32 @@ module chimera_padframe_aon_gpioa_muxer
 
   // Port Group gpioa20
 
-  // Port Signal gpio0_i
-  logic [0:0] port_mux_sel_gpioa20_gpio0_i_req;
-  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa20_gpio0_i_arbitrated;
-  logic port_mux_sel_gpioa20_gpio0_i_no_connection;
+  // Port Signal gpio_i
+  logic [0:0] port_mux_sel_gpioa20_gpio_i_req;
+  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa20_gpio_i_arbitrated;
+  logic port_mux_sel_gpioa20_gpio_i_no_connection;
 
-   assign port_mux_sel_gpioa20_gpio0_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA20_GPIO0 ? 1'b1 : 1'b0;
+   assign port_mux_sel_gpioa20_gpio_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA20_GPIO ? 1'b1 : 1'b0;
 
    lzc #(
      .WIDTH(1),
      .MODE(1'b0)
-   ) i_port_muxsel_gpioa20_gpio0_i_arbiter (
-     .in_i(port_mux_sel_gpioa20_gpio0_i_req),
-     .cnt_o(port_mux_sel_gpioa20_gpio0_i_arbitrated),
-     .empty_o(port_mux_sel_gpioa20_gpio0_i_no_connection)
+   ) i_port_muxsel_gpioa20_gpio_i_arbiter (
+     .in_i(port_mux_sel_gpioa20_gpio_i_req),
+     .cnt_o(port_mux_sel_gpioa20_gpio_i_arbitrated),
+     .empty_o(port_mux_sel_gpioa20_gpio_i_no_connection)
    );
 
    always_comb begin
-     if (port_mux_sel_gpioa20_gpio0_i_no_connection) begin
-        port_signals_pad2soc_o.gpioa20.gpio0_i = 1'b0;
+     if (port_mux_sel_gpioa20_gpio_i_no_connection) begin
+        port_signals_pad2soc_o.gpioa20.gpio_i = 1'b0;
      end else begin
-        unique case (port_mux_sel_gpioa20_gpio0_i_arbitrated)
+        unique case (port_mux_sel_gpioa20_gpio_i_arbitrated)
           PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31: begin
-            port_signals_pad2soc_o.gpioa20.gpio0_i = pads_to_mux_i.gpio_31.pad2chip;
+            port_signals_pad2soc_o.gpioa20.gpio_i = pads_to_mux_i.gpio_31.pad2chip;
           end
           default: begin
-            port_signals_pad2soc_o.gpioa20.gpio0_i = 1'b0;
+            port_signals_pad2soc_o.gpioa20.gpio_i = 1'b0;
           end
        endcase
      end
@@ -6824,32 +6824,32 @@ module chimera_padframe_aon_gpioa_muxer
 
   // Port Group gpioa21
 
-  // Port Signal gpio0_i
-  logic [0:0] port_mux_sel_gpioa21_gpio0_i_req;
-  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa21_gpio0_i_arbitrated;
-  logic port_mux_sel_gpioa21_gpio0_i_no_connection;
+  // Port Signal gpio_i
+  logic [0:0] port_mux_sel_gpioa21_gpio_i_req;
+  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa21_gpio_i_arbitrated;
+  logic port_mux_sel_gpioa21_gpio_i_no_connection;
 
-   assign port_mux_sel_gpioa21_gpio0_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA21_GPIO0 ? 1'b1 : 1'b0;
+   assign port_mux_sel_gpioa21_gpio_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA21_GPIO ? 1'b1 : 1'b0;
 
    lzc #(
      .WIDTH(1),
      .MODE(1'b0)
-   ) i_port_muxsel_gpioa21_gpio0_i_arbiter (
-     .in_i(port_mux_sel_gpioa21_gpio0_i_req),
-     .cnt_o(port_mux_sel_gpioa21_gpio0_i_arbitrated),
-     .empty_o(port_mux_sel_gpioa21_gpio0_i_no_connection)
+   ) i_port_muxsel_gpioa21_gpio_i_arbiter (
+     .in_i(port_mux_sel_gpioa21_gpio_i_req),
+     .cnt_o(port_mux_sel_gpioa21_gpio_i_arbitrated),
+     .empty_o(port_mux_sel_gpioa21_gpio_i_no_connection)
    );
 
    always_comb begin
-     if (port_mux_sel_gpioa21_gpio0_i_no_connection) begin
-        port_signals_pad2soc_o.gpioa21.gpio0_i = 1'b0;
+     if (port_mux_sel_gpioa21_gpio_i_no_connection) begin
+        port_signals_pad2soc_o.gpioa21.gpio_i = 1'b0;
      end else begin
-        unique case (port_mux_sel_gpioa21_gpio0_i_arbitrated)
+        unique case (port_mux_sel_gpioa21_gpio_i_arbitrated)
           PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31: begin
-            port_signals_pad2soc_o.gpioa21.gpio0_i = pads_to_mux_i.gpio_31.pad2chip;
+            port_signals_pad2soc_o.gpioa21.gpio_i = pads_to_mux_i.gpio_31.pad2chip;
           end
           default: begin
-            port_signals_pad2soc_o.gpioa21.gpio0_i = 1'b0;
+            port_signals_pad2soc_o.gpioa21.gpio_i = 1'b0;
           end
        endcase
      end
@@ -6857,32 +6857,32 @@ module chimera_padframe_aon_gpioa_muxer
 
   // Port Group gpioa22
 
-  // Port Signal gpio0_i
-  logic [0:0] port_mux_sel_gpioa22_gpio0_i_req;
-  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa22_gpio0_i_arbitrated;
-  logic port_mux_sel_gpioa22_gpio0_i_no_connection;
+  // Port Signal gpio_i
+  logic [0:0] port_mux_sel_gpioa22_gpio_i_req;
+  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa22_gpio_i_arbitrated;
+  logic port_mux_sel_gpioa22_gpio_i_no_connection;
 
-   assign port_mux_sel_gpioa22_gpio0_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA22_GPIO0 ? 1'b1 : 1'b0;
+   assign port_mux_sel_gpioa22_gpio_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA22_GPIO ? 1'b1 : 1'b0;
 
    lzc #(
      .WIDTH(1),
      .MODE(1'b0)
-   ) i_port_muxsel_gpioa22_gpio0_i_arbiter (
-     .in_i(port_mux_sel_gpioa22_gpio0_i_req),
-     .cnt_o(port_mux_sel_gpioa22_gpio0_i_arbitrated),
-     .empty_o(port_mux_sel_gpioa22_gpio0_i_no_connection)
+   ) i_port_muxsel_gpioa22_gpio_i_arbiter (
+     .in_i(port_mux_sel_gpioa22_gpio_i_req),
+     .cnt_o(port_mux_sel_gpioa22_gpio_i_arbitrated),
+     .empty_o(port_mux_sel_gpioa22_gpio_i_no_connection)
    );
 
    always_comb begin
-     if (port_mux_sel_gpioa22_gpio0_i_no_connection) begin
-        port_signals_pad2soc_o.gpioa22.gpio0_i = 1'b0;
+     if (port_mux_sel_gpioa22_gpio_i_no_connection) begin
+        port_signals_pad2soc_o.gpioa22.gpio_i = 1'b0;
      end else begin
-        unique case (port_mux_sel_gpioa22_gpio0_i_arbitrated)
+        unique case (port_mux_sel_gpioa22_gpio_i_arbitrated)
           PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31: begin
-            port_signals_pad2soc_o.gpioa22.gpio0_i = pads_to_mux_i.gpio_31.pad2chip;
+            port_signals_pad2soc_o.gpioa22.gpio_i = pads_to_mux_i.gpio_31.pad2chip;
           end
           default: begin
-            port_signals_pad2soc_o.gpioa22.gpio0_i = 1'b0;
+            port_signals_pad2soc_o.gpioa22.gpio_i = 1'b0;
           end
        endcase
      end
@@ -6890,32 +6890,32 @@ module chimera_padframe_aon_gpioa_muxer
 
   // Port Group gpioa23
 
-  // Port Signal gpio0_i
-  logic [0:0] port_mux_sel_gpioa23_gpio0_i_req;
-  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa23_gpio0_i_arbitrated;
-  logic port_mux_sel_gpioa23_gpio0_i_no_connection;
+  // Port Signal gpio_i
+  logic [0:0] port_mux_sel_gpioa23_gpio_i_req;
+  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa23_gpio_i_arbitrated;
+  logic port_mux_sel_gpioa23_gpio_i_no_connection;
 
-   assign port_mux_sel_gpioa23_gpio0_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA23_GPIO0 ? 1'b1 : 1'b0;
+   assign port_mux_sel_gpioa23_gpio_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA23_GPIO ? 1'b1 : 1'b0;
 
    lzc #(
      .WIDTH(1),
      .MODE(1'b0)
-   ) i_port_muxsel_gpioa23_gpio0_i_arbiter (
-     .in_i(port_mux_sel_gpioa23_gpio0_i_req),
-     .cnt_o(port_mux_sel_gpioa23_gpio0_i_arbitrated),
-     .empty_o(port_mux_sel_gpioa23_gpio0_i_no_connection)
+   ) i_port_muxsel_gpioa23_gpio_i_arbiter (
+     .in_i(port_mux_sel_gpioa23_gpio_i_req),
+     .cnt_o(port_mux_sel_gpioa23_gpio_i_arbitrated),
+     .empty_o(port_mux_sel_gpioa23_gpio_i_no_connection)
    );
 
    always_comb begin
-     if (port_mux_sel_gpioa23_gpio0_i_no_connection) begin
-        port_signals_pad2soc_o.gpioa23.gpio0_i = 1'b0;
+     if (port_mux_sel_gpioa23_gpio_i_no_connection) begin
+        port_signals_pad2soc_o.gpioa23.gpio_i = 1'b0;
      end else begin
-        unique case (port_mux_sel_gpioa23_gpio0_i_arbitrated)
+        unique case (port_mux_sel_gpioa23_gpio_i_arbitrated)
           PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31: begin
-            port_signals_pad2soc_o.gpioa23.gpio0_i = pads_to_mux_i.gpio_31.pad2chip;
+            port_signals_pad2soc_o.gpioa23.gpio_i = pads_to_mux_i.gpio_31.pad2chip;
           end
           default: begin
-            port_signals_pad2soc_o.gpioa23.gpio0_i = 1'b0;
+            port_signals_pad2soc_o.gpioa23.gpio_i = 1'b0;
           end
        endcase
      end
@@ -6923,32 +6923,32 @@ module chimera_padframe_aon_gpioa_muxer
 
   // Port Group gpioa24
 
-  // Port Signal gpio0_i
-  logic [0:0] port_mux_sel_gpioa24_gpio0_i_req;
-  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa24_gpio0_i_arbitrated;
-  logic port_mux_sel_gpioa24_gpio0_i_no_connection;
+  // Port Signal gpio_i
+  logic [0:0] port_mux_sel_gpioa24_gpio_i_req;
+  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa24_gpio_i_arbitrated;
+  logic port_mux_sel_gpioa24_gpio_i_no_connection;
 
-   assign port_mux_sel_gpioa24_gpio0_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA24_GPIO0 ? 1'b1 : 1'b0;
+   assign port_mux_sel_gpioa24_gpio_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA24_GPIO ? 1'b1 : 1'b0;
 
    lzc #(
      .WIDTH(1),
      .MODE(1'b0)
-   ) i_port_muxsel_gpioa24_gpio0_i_arbiter (
-     .in_i(port_mux_sel_gpioa24_gpio0_i_req),
-     .cnt_o(port_mux_sel_gpioa24_gpio0_i_arbitrated),
-     .empty_o(port_mux_sel_gpioa24_gpio0_i_no_connection)
+   ) i_port_muxsel_gpioa24_gpio_i_arbiter (
+     .in_i(port_mux_sel_gpioa24_gpio_i_req),
+     .cnt_o(port_mux_sel_gpioa24_gpio_i_arbitrated),
+     .empty_o(port_mux_sel_gpioa24_gpio_i_no_connection)
    );
 
    always_comb begin
-     if (port_mux_sel_gpioa24_gpio0_i_no_connection) begin
-        port_signals_pad2soc_o.gpioa24.gpio0_i = 1'b0;
+     if (port_mux_sel_gpioa24_gpio_i_no_connection) begin
+        port_signals_pad2soc_o.gpioa24.gpio_i = 1'b0;
      end else begin
-        unique case (port_mux_sel_gpioa24_gpio0_i_arbitrated)
+        unique case (port_mux_sel_gpioa24_gpio_i_arbitrated)
           PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31: begin
-            port_signals_pad2soc_o.gpioa24.gpio0_i = pads_to_mux_i.gpio_31.pad2chip;
+            port_signals_pad2soc_o.gpioa24.gpio_i = pads_to_mux_i.gpio_31.pad2chip;
           end
           default: begin
-            port_signals_pad2soc_o.gpioa24.gpio0_i = 1'b0;
+            port_signals_pad2soc_o.gpioa24.gpio_i = 1'b0;
           end
        endcase
      end
@@ -6956,32 +6956,32 @@ module chimera_padframe_aon_gpioa_muxer
 
   // Port Group gpioa25
 
-  // Port Signal gpio0_i
-  logic [0:0] port_mux_sel_gpioa25_gpio0_i_req;
-  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa25_gpio0_i_arbitrated;
-  logic port_mux_sel_gpioa25_gpio0_i_no_connection;
+  // Port Signal gpio_i
+  logic [0:0] port_mux_sel_gpioa25_gpio_i_req;
+  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa25_gpio_i_arbitrated;
+  logic port_mux_sel_gpioa25_gpio_i_no_connection;
 
-   assign port_mux_sel_gpioa25_gpio0_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA25_GPIO0 ? 1'b1 : 1'b0;
+   assign port_mux_sel_gpioa25_gpio_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA25_GPIO ? 1'b1 : 1'b0;
 
    lzc #(
      .WIDTH(1),
      .MODE(1'b0)
-   ) i_port_muxsel_gpioa25_gpio0_i_arbiter (
-     .in_i(port_mux_sel_gpioa25_gpio0_i_req),
-     .cnt_o(port_mux_sel_gpioa25_gpio0_i_arbitrated),
-     .empty_o(port_mux_sel_gpioa25_gpio0_i_no_connection)
+   ) i_port_muxsel_gpioa25_gpio_i_arbiter (
+     .in_i(port_mux_sel_gpioa25_gpio_i_req),
+     .cnt_o(port_mux_sel_gpioa25_gpio_i_arbitrated),
+     .empty_o(port_mux_sel_gpioa25_gpio_i_no_connection)
    );
 
    always_comb begin
-     if (port_mux_sel_gpioa25_gpio0_i_no_connection) begin
-        port_signals_pad2soc_o.gpioa25.gpio0_i = 1'b0;
+     if (port_mux_sel_gpioa25_gpio_i_no_connection) begin
+        port_signals_pad2soc_o.gpioa25.gpio_i = 1'b0;
      end else begin
-        unique case (port_mux_sel_gpioa25_gpio0_i_arbitrated)
+        unique case (port_mux_sel_gpioa25_gpio_i_arbitrated)
           PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31: begin
-            port_signals_pad2soc_o.gpioa25.gpio0_i = pads_to_mux_i.gpio_31.pad2chip;
+            port_signals_pad2soc_o.gpioa25.gpio_i = pads_to_mux_i.gpio_31.pad2chip;
           end
           default: begin
-            port_signals_pad2soc_o.gpioa25.gpio0_i = 1'b0;
+            port_signals_pad2soc_o.gpioa25.gpio_i = 1'b0;
           end
        endcase
      end
@@ -6989,32 +6989,32 @@ module chimera_padframe_aon_gpioa_muxer
 
   // Port Group gpioa26
 
-  // Port Signal gpio0_i
-  logic [0:0] port_mux_sel_gpioa26_gpio0_i_req;
-  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa26_gpio0_i_arbitrated;
-  logic port_mux_sel_gpioa26_gpio0_i_no_connection;
+  // Port Signal gpio_i
+  logic [0:0] port_mux_sel_gpioa26_gpio_i_req;
+  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa26_gpio_i_arbitrated;
+  logic port_mux_sel_gpioa26_gpio_i_no_connection;
 
-   assign port_mux_sel_gpioa26_gpio0_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA26_GPIO0 ? 1'b1 : 1'b0;
+   assign port_mux_sel_gpioa26_gpio_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA26_GPIO ? 1'b1 : 1'b0;
 
    lzc #(
      .WIDTH(1),
      .MODE(1'b0)
-   ) i_port_muxsel_gpioa26_gpio0_i_arbiter (
-     .in_i(port_mux_sel_gpioa26_gpio0_i_req),
-     .cnt_o(port_mux_sel_gpioa26_gpio0_i_arbitrated),
-     .empty_o(port_mux_sel_gpioa26_gpio0_i_no_connection)
+   ) i_port_muxsel_gpioa26_gpio_i_arbiter (
+     .in_i(port_mux_sel_gpioa26_gpio_i_req),
+     .cnt_o(port_mux_sel_gpioa26_gpio_i_arbitrated),
+     .empty_o(port_mux_sel_gpioa26_gpio_i_no_connection)
    );
 
    always_comb begin
-     if (port_mux_sel_gpioa26_gpio0_i_no_connection) begin
-        port_signals_pad2soc_o.gpioa26.gpio0_i = 1'b0;
+     if (port_mux_sel_gpioa26_gpio_i_no_connection) begin
+        port_signals_pad2soc_o.gpioa26.gpio_i = 1'b0;
      end else begin
-        unique case (port_mux_sel_gpioa26_gpio0_i_arbitrated)
+        unique case (port_mux_sel_gpioa26_gpio_i_arbitrated)
           PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31: begin
-            port_signals_pad2soc_o.gpioa26.gpio0_i = pads_to_mux_i.gpio_31.pad2chip;
+            port_signals_pad2soc_o.gpioa26.gpio_i = pads_to_mux_i.gpio_31.pad2chip;
           end
           default: begin
-            port_signals_pad2soc_o.gpioa26.gpio0_i = 1'b0;
+            port_signals_pad2soc_o.gpioa26.gpio_i = 1'b0;
           end
        endcase
      end
@@ -7022,32 +7022,32 @@ module chimera_padframe_aon_gpioa_muxer
 
   // Port Group gpioa27
 
-  // Port Signal gpio0_i
-  logic [0:0] port_mux_sel_gpioa27_gpio0_i_req;
-  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa27_gpio0_i_arbitrated;
-  logic port_mux_sel_gpioa27_gpio0_i_no_connection;
+  // Port Signal gpio_i
+  logic [0:0] port_mux_sel_gpioa27_gpio_i_req;
+  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa27_gpio_i_arbitrated;
+  logic port_mux_sel_gpioa27_gpio_i_no_connection;
 
-   assign port_mux_sel_gpioa27_gpio0_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA27_GPIO0 ? 1'b1 : 1'b0;
+   assign port_mux_sel_gpioa27_gpio_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA27_GPIO ? 1'b1 : 1'b0;
 
    lzc #(
      .WIDTH(1),
      .MODE(1'b0)
-   ) i_port_muxsel_gpioa27_gpio0_i_arbiter (
-     .in_i(port_mux_sel_gpioa27_gpio0_i_req),
-     .cnt_o(port_mux_sel_gpioa27_gpio0_i_arbitrated),
-     .empty_o(port_mux_sel_gpioa27_gpio0_i_no_connection)
+   ) i_port_muxsel_gpioa27_gpio_i_arbiter (
+     .in_i(port_mux_sel_gpioa27_gpio_i_req),
+     .cnt_o(port_mux_sel_gpioa27_gpio_i_arbitrated),
+     .empty_o(port_mux_sel_gpioa27_gpio_i_no_connection)
    );
 
    always_comb begin
-     if (port_mux_sel_gpioa27_gpio0_i_no_connection) begin
-        port_signals_pad2soc_o.gpioa27.gpio0_i = 1'b0;
+     if (port_mux_sel_gpioa27_gpio_i_no_connection) begin
+        port_signals_pad2soc_o.gpioa27.gpio_i = 1'b0;
      end else begin
-        unique case (port_mux_sel_gpioa27_gpio0_i_arbitrated)
+        unique case (port_mux_sel_gpioa27_gpio_i_arbitrated)
           PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31: begin
-            port_signals_pad2soc_o.gpioa27.gpio0_i = pads_to_mux_i.gpio_31.pad2chip;
+            port_signals_pad2soc_o.gpioa27.gpio_i = pads_to_mux_i.gpio_31.pad2chip;
           end
           default: begin
-            port_signals_pad2soc_o.gpioa27.gpio0_i = 1'b0;
+            port_signals_pad2soc_o.gpioa27.gpio_i = 1'b0;
           end
        endcase
      end
@@ -7055,32 +7055,32 @@ module chimera_padframe_aon_gpioa_muxer
 
   // Port Group gpioa28
 
-  // Port Signal gpio0_i
-  logic [0:0] port_mux_sel_gpioa28_gpio0_i_req;
-  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa28_gpio0_i_arbitrated;
-  logic port_mux_sel_gpioa28_gpio0_i_no_connection;
+  // Port Signal gpio_i
+  logic [0:0] port_mux_sel_gpioa28_gpio_i_req;
+  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa28_gpio_i_arbitrated;
+  logic port_mux_sel_gpioa28_gpio_i_no_connection;
 
-   assign port_mux_sel_gpioa28_gpio0_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA28_GPIO0 ? 1'b1 : 1'b0;
+   assign port_mux_sel_gpioa28_gpio_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA28_GPIO ? 1'b1 : 1'b0;
 
    lzc #(
      .WIDTH(1),
      .MODE(1'b0)
-   ) i_port_muxsel_gpioa28_gpio0_i_arbiter (
-     .in_i(port_mux_sel_gpioa28_gpio0_i_req),
-     .cnt_o(port_mux_sel_gpioa28_gpio0_i_arbitrated),
-     .empty_o(port_mux_sel_gpioa28_gpio0_i_no_connection)
+   ) i_port_muxsel_gpioa28_gpio_i_arbiter (
+     .in_i(port_mux_sel_gpioa28_gpio_i_req),
+     .cnt_o(port_mux_sel_gpioa28_gpio_i_arbitrated),
+     .empty_o(port_mux_sel_gpioa28_gpio_i_no_connection)
    );
 
    always_comb begin
-     if (port_mux_sel_gpioa28_gpio0_i_no_connection) begin
-        port_signals_pad2soc_o.gpioa28.gpio0_i = 1'b0;
+     if (port_mux_sel_gpioa28_gpio_i_no_connection) begin
+        port_signals_pad2soc_o.gpioa28.gpio_i = 1'b0;
      end else begin
-        unique case (port_mux_sel_gpioa28_gpio0_i_arbitrated)
+        unique case (port_mux_sel_gpioa28_gpio_i_arbitrated)
           PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31: begin
-            port_signals_pad2soc_o.gpioa28.gpio0_i = pads_to_mux_i.gpio_31.pad2chip;
+            port_signals_pad2soc_o.gpioa28.gpio_i = pads_to_mux_i.gpio_31.pad2chip;
           end
           default: begin
-            port_signals_pad2soc_o.gpioa28.gpio0_i = 1'b0;
+            port_signals_pad2soc_o.gpioa28.gpio_i = 1'b0;
           end
        endcase
      end
@@ -7088,32 +7088,32 @@ module chimera_padframe_aon_gpioa_muxer
 
   // Port Group gpioa29
 
-  // Port Signal gpio0_i
-  logic [0:0] port_mux_sel_gpioa29_gpio0_i_req;
-  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa29_gpio0_i_arbitrated;
-  logic port_mux_sel_gpioa29_gpio0_i_no_connection;
+  // Port Signal gpio_i
+  logic [0:0] port_mux_sel_gpioa29_gpio_i_req;
+  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa29_gpio_i_arbitrated;
+  logic port_mux_sel_gpioa29_gpio_i_no_connection;
 
-   assign port_mux_sel_gpioa29_gpio0_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA29_GPIO0 ? 1'b1 : 1'b0;
+   assign port_mux_sel_gpioa29_gpio_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA29_GPIO ? 1'b1 : 1'b0;
 
    lzc #(
      .WIDTH(1),
      .MODE(1'b0)
-   ) i_port_muxsel_gpioa29_gpio0_i_arbiter (
-     .in_i(port_mux_sel_gpioa29_gpio0_i_req),
-     .cnt_o(port_mux_sel_gpioa29_gpio0_i_arbitrated),
-     .empty_o(port_mux_sel_gpioa29_gpio0_i_no_connection)
+   ) i_port_muxsel_gpioa29_gpio_i_arbiter (
+     .in_i(port_mux_sel_gpioa29_gpio_i_req),
+     .cnt_o(port_mux_sel_gpioa29_gpio_i_arbitrated),
+     .empty_o(port_mux_sel_gpioa29_gpio_i_no_connection)
    );
 
    always_comb begin
-     if (port_mux_sel_gpioa29_gpio0_i_no_connection) begin
-        port_signals_pad2soc_o.gpioa29.gpio0_i = 1'b0;
+     if (port_mux_sel_gpioa29_gpio_i_no_connection) begin
+        port_signals_pad2soc_o.gpioa29.gpio_i = 1'b0;
      end else begin
-        unique case (port_mux_sel_gpioa29_gpio0_i_arbitrated)
+        unique case (port_mux_sel_gpioa29_gpio_i_arbitrated)
           PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31: begin
-            port_signals_pad2soc_o.gpioa29.gpio0_i = pads_to_mux_i.gpio_31.pad2chip;
+            port_signals_pad2soc_o.gpioa29.gpio_i = pads_to_mux_i.gpio_31.pad2chip;
           end
           default: begin
-            port_signals_pad2soc_o.gpioa29.gpio0_i = 1'b0;
+            port_signals_pad2soc_o.gpioa29.gpio_i = 1'b0;
           end
        endcase
      end
@@ -7121,32 +7121,32 @@ module chimera_padframe_aon_gpioa_muxer
 
   // Port Group gpioa30
 
-  // Port Signal gpio0_i
-  logic [0:0] port_mux_sel_gpioa30_gpio0_i_req;
-  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa30_gpio0_i_arbitrated;
-  logic port_mux_sel_gpioa30_gpio0_i_no_connection;
+  // Port Signal gpio_i
+  logic [0:0] port_mux_sel_gpioa30_gpio_i_req;
+  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa30_gpio_i_arbitrated;
+  logic port_mux_sel_gpioa30_gpio_i_no_connection;
 
-   assign port_mux_sel_gpioa30_gpio0_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA30_GPIO0 ? 1'b1 : 1'b0;
+   assign port_mux_sel_gpioa30_gpio_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA30_GPIO ? 1'b1 : 1'b0;
 
    lzc #(
      .WIDTH(1),
      .MODE(1'b0)
-   ) i_port_muxsel_gpioa30_gpio0_i_arbiter (
-     .in_i(port_mux_sel_gpioa30_gpio0_i_req),
-     .cnt_o(port_mux_sel_gpioa30_gpio0_i_arbitrated),
-     .empty_o(port_mux_sel_gpioa30_gpio0_i_no_connection)
+   ) i_port_muxsel_gpioa30_gpio_i_arbiter (
+     .in_i(port_mux_sel_gpioa30_gpio_i_req),
+     .cnt_o(port_mux_sel_gpioa30_gpio_i_arbitrated),
+     .empty_o(port_mux_sel_gpioa30_gpio_i_no_connection)
    );
 
    always_comb begin
-     if (port_mux_sel_gpioa30_gpio0_i_no_connection) begin
-        port_signals_pad2soc_o.gpioa30.gpio0_i = 1'b0;
+     if (port_mux_sel_gpioa30_gpio_i_no_connection) begin
+        port_signals_pad2soc_o.gpioa30.gpio_i = 1'b0;
      end else begin
-        unique case (port_mux_sel_gpioa30_gpio0_i_arbitrated)
+        unique case (port_mux_sel_gpioa30_gpio_i_arbitrated)
           PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31: begin
-            port_signals_pad2soc_o.gpioa30.gpio0_i = pads_to_mux_i.gpio_31.pad2chip;
+            port_signals_pad2soc_o.gpioa30.gpio_i = pads_to_mux_i.gpio_31.pad2chip;
           end
           default: begin
-            port_signals_pad2soc_o.gpioa30.gpio0_i = 1'b0;
+            port_signals_pad2soc_o.gpioa30.gpio_i = 1'b0;
           end
        endcase
      end
@@ -7154,32 +7154,32 @@ module chimera_padframe_aon_gpioa_muxer
 
   // Port Group gpioa31
 
-  // Port Signal gpio0_i
-  logic [0:0] port_mux_sel_gpioa31_gpio0_i_req;
-  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa31_gpio0_i_arbitrated;
-  logic port_mux_sel_gpioa31_gpio0_i_no_connection;
+  // Port Signal gpio_i
+  logic [0:0] port_mux_sel_gpioa31_gpio_i_req;
+  logic [PORT_MUX_GROUP_GPIOA_31_SEL_WIDTH-1:0] port_mux_sel_gpioa31_gpio_i_arbitrated;
+  logic port_mux_sel_gpioa31_gpio_i_no_connection;
 
-   assign port_mux_sel_gpioa31_gpio0_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA31_GPIO0 ? 1'b1 : 1'b0;
+   assign port_mux_sel_gpioa31_gpio_i_req[PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31] = s_reg2hw.gpio_31_mux_sel.q == PAD_MUX_GROUP_GPIO_SETA_GPIOA_31_SEL_GPIOA31_GPIO ? 1'b1 : 1'b0;
 
    lzc #(
      .WIDTH(1),
      .MODE(1'b0)
-   ) i_port_muxsel_gpioa31_gpio0_i_arbiter (
-     .in_i(port_mux_sel_gpioa31_gpio0_i_req),
-     .cnt_o(port_mux_sel_gpioa31_gpio0_i_arbitrated),
-     .empty_o(port_mux_sel_gpioa31_gpio0_i_no_connection)
+   ) i_port_muxsel_gpioa31_gpio_i_arbiter (
+     .in_i(port_mux_sel_gpioa31_gpio_i_req),
+     .cnt_o(port_mux_sel_gpioa31_gpio_i_arbitrated),
+     .empty_o(port_mux_sel_gpioa31_gpio_i_no_connection)
    );
 
    always_comb begin
-     if (port_mux_sel_gpioa31_gpio0_i_no_connection) begin
-        port_signals_pad2soc_o.gpioa31.gpio0_i = 1'b0;
+     if (port_mux_sel_gpioa31_gpio_i_no_connection) begin
+        port_signals_pad2soc_o.gpioa31.gpio_i = 1'b0;
      end else begin
-        unique case (port_mux_sel_gpioa31_gpio0_i_arbitrated)
+        unique case (port_mux_sel_gpioa31_gpio_i_arbitrated)
           PORT_MUX_GROUP_GPIOA_31_SEL_GPIO_31: begin
-            port_signals_pad2soc_o.gpioa31.gpio0_i = pads_to_mux_i.gpio_31.pad2chip;
+            port_signals_pad2soc_o.gpioa31.gpio_i = pads_to_mux_i.gpio_31.pad2chip;
           end
           default: begin
-            port_signals_pad2soc_o.gpioa31.gpio0_i = 1'b0;
+            port_signals_pad2soc_o.gpioa31.gpio_i = 1'b0;
           end
        endcase
      end

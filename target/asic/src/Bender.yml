@@ -10,25 +10,13 @@ package:
 dependencies:
   register_interface:       { git: "https://github.com/pulp-platform/register_interface.git", version: 0.4.3  }
   axi:                      { git: "https://github.com/pulp-platform/axi.git",                version: 0.39.2 }
-  common_cells:             { git: "https://github.com/pulp-platform/common_cells.git",       version: 1.31.1}
+  common_cells:             { git: "https://github.com/pulp-platform/common_cells.git",       version: 1.31.1 }
+  apb:                      { git: "https://github.com/pulp-platform/apb.git",                version: 0.2.4  }
+  chimera_padframe:         { path: "padframe/chimera_padframe_ip"                                            }
 
 sources:
   - target: asic
     files:
+      - chimera/chimera.sv
+      - chimera/fll_clk_gen.sv
       - padSocInterconnect/pad_soc_intf.sv
-      - padframe/chimera_padframe_ip/chimera_padframe_aon_gpioa_config_reg_pkg.sv
-      - padframe/chimera_padframe_ip/chimera_padframe_aon_gpioa_config_reg_top.sv
-      - padframe/chimera_padframe_ip/chimera_padframe_aon_gpioa_muxer.sv
-      - padframe/chimera_padframe_ip/chimera_padframe_aon_gpioa_pads.sv
-      - padframe/chimera_padframe_ip/chimera_padframe_aon_gpioa_regs.hjson
-      - padframe/chimera_padframe_ip/chimera_padframe_aon_gpioa.sv
-      - padframe/chimera_padframe_ip/chimera_padframe_aon_static_config_reg_pkg.sv
-      - padframe/chimera_padframe_ip/chimera_padframe_aon_static_config_reg_top.sv
-      - padframe/chimera_padframe_ip/chimera_padframe_aon_static_muxer.sv
-      - padframe/chimera_padframe_ip/chimera_padframe_aon_static_pads.sv
-      - padframe/chimera_padframe_ip/chimera_padframe_aon_static_regs.hjson
-      - padframe/chimera_padframe_ip/chimera_padframe_aon_static.sv
-      - padframe/chimera_padframe_ip/chimera_padframe.sv
-      - padframe/chimera_padframe_ip/pkg_chimera_padframe.sv
-      - padframe/chimera_padframe_ip/pkg_internal_chimera_padframe_aon_gpioa.sv
-      - padframe/chimera_padframe_ip/pkg_internal_chimera_padframe_aon_static.sv
