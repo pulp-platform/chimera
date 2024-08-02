@@ -11,7 +11,7 @@ variables:
     
 stages:
   - nonfree
-    
+
 init:
   stage: nonfree
   script: make chim-nonfree-init
