@@ -35,7 +35,7 @@ module chimera_padframe_aon_static_pads
     .SMT(1'b0),
     .PWROK(PWROK_S),
     .IOPWROK(IOPWROK_S),
-    .BAIS(BIAS_S),
+    .BIAS(BIAS_S),
     .RETC(RETC_S)
   );
    IN22FDX_GPIO18_10M3S40PI_IO_V i_hse_clk (
@@ -53,7 +53,7 @@ module chimera_padframe_aon_static_pads
     .SMT(1'b0),
     .PWROK(PWROK_S),
     .IOPWROK(IOPWROK_S),
-    .BAIS(BIAS_S),
+    .BIAS(BIAS_S),
     .RETC(RETC_S)
   );
    IN22FDX_GPIO18_10M3S40PI_IO_V i_byp_sel_clk (
@@ -71,7 +71,7 @@ module chimera_padframe_aon_static_pads
     .SMT(1'b0),
     .PWROK(PWROK_S),
     .IOPWROK(IOPWROK_S),
-    .BAIS(BIAS_S),
+    .BIAS(BIAS_S),
     .RETC(RETC_S)
   );
    IN22FDX_GPIO18_10M3S40PI_IO_V i_rstn (
@@ -89,7 +89,7 @@ module chimera_padframe_aon_static_pads
     .SMT(1'b0),
     .PWROK(PWROK_S),
     .IOPWROK(IOPWROK_S),
-    .BAIS(BIAS_S),
+    .BIAS(BIAS_S),
     .RETC(RETC_S)
   );
    IN22FDX_GPIO18_10M3S40PI_IO_V i_jtag_tck (
@@ -107,7 +107,7 @@ module chimera_padframe_aon_static_pads
     .SMT(1'b0),
     .PWROK(PWROK_S),
     .IOPWROK(IOPWROK_S),
-    .BAIS(BIAS_S),
+    .BIAS(BIAS_S),
     .RETC(RETC_S)
   );
    IN22FDX_GPIO18_10M3S40PI_IO_V i_jtag_trstn (
@@ -125,7 +125,7 @@ module chimera_padframe_aon_static_pads
     .SMT(1'b0),
     .PWROK(PWROK_S),
     .IOPWROK(IOPWROK_S),
-    .BAIS(BIAS_S),
+    .BIAS(BIAS_S),
     .RETC(RETC_S)
   );
    IN22FDX_GPIO18_10M3S40PI_IO_V i_jtag_tms (
@@ -143,7 +143,7 @@ module chimera_padframe_aon_static_pads
     .SMT(1'b0),
     .PWROK(PWROK_S),
     .IOPWROK(IOPWROK_S),
-    .BAIS(BIAS_S),
+    .BIAS(BIAS_S),
     .RETC(RETC_S)
   );
    IN22FDX_GPIO18_10M3S40PI_IO_V i_jtag_tdi (
@@ -161,7 +161,7 @@ module chimera_padframe_aon_static_pads
     .SMT(1'b0),
     .PWROK(PWROK_S),
     .IOPWROK(IOPWROK_S),
-    .BAIS(BIAS_S),
+    .BIAS(BIAS_S),
     .RETC(RETC_S)
   );
    IN22FDX_GPIO18_10M3S40PI_IO_V i_jtag_tdo (
@@ -179,7 +179,7 @@ module chimera_padframe_aon_static_pads
     .SMT(1'b0),
     .PWROK(PWROK_S),
     .IOPWROK(IOPWROK_S),
-    .BAIS(BIAS_S),
+    .BIAS(BIAS_S),
     .RETC(RETC_S)
   );
    IN22FDX_GPIO18_10M3S40PI_IO_V i_bootsel (
@@ -197,7 +197,7 @@ module chimera_padframe_aon_static_pads
     .SMT(1'b0),
     .PWROK(PWROK_S),
     .IOPWROK(IOPWROK_S),
-    .BAIS(BIAS_S),
+    .BIAS(BIAS_S),
     .RETC(RETC_S)
   );
 

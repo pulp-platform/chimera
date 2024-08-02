@@ -7,10 +7,10 @@
 // Paul Scheffler <paulsc@iis.ee.ethz.ch>
 
 module fixture_chimera_soc #(
-			     /// The selected simulation configuration from the `tb_cheshire_pkg`.
-			      parameter int unsigned SelectedCfg = 32'd0
+           /// The selected simulation configuration from the `tb_cheshire_pkg`.
+            parameter int unsigned SelectedCfg = 32'd0
 
-			     );
+           );
 
 `include "cheshire/typedef.svh"
 
@@ -64,53 +64,53 @@ module fixture_chimera_soc #(
    logic [SlinkNumChan-1:0][SlinkNumLanes-1:0] slink_o;
 
    chimera #(
-	     .SelectedCfg(SelectedCfg)
-	     ) dut (
+       .SelectedCfg(SelectedCfg)
+       ) dut (
 
-		    .pad_aon_static_lse_clk_pad     (soc_clk),
-		    .pad_aon_static_hse_clk_pad     (soc_clk),
-		    .pad_aon_static_byp_sel_clk_pad ('0),
-		    .pad_aon_static_rstn_pad        (rst_n),
-		    .pad_aon_static_jtag_tck_pad    (jtag_tck),
-		    .pad_aon_static_jtag_trstn_pad  (jtag_trst_n),
-		    .pad_aon_static_jtag_tms_pad    (jtag_tms),
-		    .pad_aon_static_jtag_tdi_pad    (jtag_tdi),
-		    .pad_aon_static_jtag_tdo_pad    (jtag_tdo),
-		    .pad_aon_static_bootsel_pad     (boot_mode),
-		    .pad_aon_gpioa_gpio_0_pad       (),
-		    .pad_aon_gpioa_gpio_1_pad       (),
-		    .pad_aon_gpioa_gpio_2_pad	    (),
-		    .pad_aon_gpioa_gpio_3_pad	    (),
-		    .pad_aon_gpioa_gpio_4_pad	    (),
-		    .pad_aon_gpioa_gpio_5_pad	    (),
-		    .pad_aon_gpioa_gpio_6_pad	    (),
-		    .pad_aon_gpioa_gpio_7_pad	    (),
-		    .pad_aon_gpioa_gpio_8_pad	    (),
-		    .pad_aon_gpioa_gpio_9_pad       (),
-		    .pad_aon_gpioa_gpio_10_pad	    (),
-		    .pad_aon_gpioa_gpio_11_pad	    (),
-		    .pad_aon_gpioa_gpio_12_pad	    (),
-		    .pad_aon_gpioa_gpio_13_pad	    (),
-		    .pad_aon_gpioa_gpio_14_pad	    (),
-		    .pad_aon_gpioa_gpio_15_pad	    (),
-		    .pad_aon_gpioa_gpio_16_pad	    (),
-		    .pad_aon_gpioa_gpio_17_pad      (),
-		    .pad_aon_gpioa_gpio_18_pad	    (),
-		    .pad_aon_gpioa_gpio_19_pad	    (),
-		    .pad_aon_gpioa_gpio_20_pad	    (),
-		    .pad_aon_gpioa_gpio_21_pad	    (),
-		    .pad_aon_gpioa_gpio_22_pad	    (),
-		    .pad_aon_gpioa_gpio_23_pad	    (),
-		    .pad_aon_gpioa_gpio_24_pad      (),
-		    .pad_aon_gpioa_gpio_25_pad      (),
-		    .pad_aon_gpioa_gpio_26_pad      (),
-		    .pad_aon_gpioa_gpio_27_pad      (),
-		    .pad_aon_gpioa_gpio_28_pad      (),
-		    .pad_aon_gpioa_gpio_29_pad      (),
-		    .pad_aon_gpioa_gpio_30_pad      (),
-		    .pad_aon_gpioa_gpio_31_pad      ()
+        .pad_aon_static_lse_clk_pad     (soc_clk),
+        .pad_aon_static_hse_clk_pad     (soc_clk),
+        .pad_aon_static_byp_sel_clk_pad ('0),
+        .pad_aon_static_rstn_pad        (rst_n),
+        .pad_aon_static_jtag_tck_pad    (jtag_tck),
+        .pad_aon_static_jtag_trstn_pad  (jtag_trst_n),
+        .pad_aon_static_jtag_tms_pad    (jtag_tms),
+        .pad_aon_static_jtag_tdi_pad    (jtag_tdi),
+        .pad_aon_static_jtag_tdo_pad    (jtag_tdo),
+        .pad_aon_static_bootsel_pad     (boot_mode),
+        .pad_aon_gpioa_gpio_0_pad       (),
+        .pad_aon_gpioa_gpio_1_pad       (),
+        .pad_aon_gpioa_gpio_2_pad     (),
+        .pad_aon_gpioa_gpio_3_pad     (),
+        .pad_aon_gpioa_gpio_4_pad     (),
+        .pad_aon_gpioa_gpio_5_pad     (),
+        .pad_aon_gpioa_gpio_6_pad     (),
+        .pad_aon_gpioa_gpio_7_pad     (),
+        .pad_aon_gpioa_gpio_8_pad     (),
+        .pad_aon_gpioa_gpio_9_pad       (),
+        .pad_aon_gpioa_gpio_10_pad      (),
+        .pad_aon_gpioa_gpio_11_pad      (),
+        .pad_aon_gpioa_gpio_12_pad      (),
+        .pad_aon_gpioa_gpio_13_pad      (),
+        .pad_aon_gpioa_gpio_14_pad      (),
+        .pad_aon_gpioa_gpio_15_pad      (),
+        .pad_aon_gpioa_gpio_16_pad      (),
+        .pad_aon_gpioa_gpio_17_pad      (),
+        .pad_aon_gpioa_gpio_18_pad      (),
+        .pad_aon_gpioa_gpio_19_pad      (),
+        .pad_aon_gpioa_gpio_20_pad      (),
+        .pad_aon_gpioa_gpio_21_pad      (),
+        .pad_aon_gpioa_gpio_22_pad      (),
+        .pad_aon_gpioa_gpio_23_pad      (),
+        .pad_aon_gpioa_gpio_24_pad      (),
+        .pad_aon_gpioa_gpio_25_pad      (),
+        .pad_aon_gpioa_gpio_26_pad      (),
+        .pad_aon_gpioa_gpio_27_pad      (),
+        .pad_aon_gpioa_gpio_28_pad      (),
+        .pad_aon_gpioa_gpio_29_pad      (),
+        .pad_aon_gpioa_gpio_30_pad      (),
+        .pad_aon_gpioa_gpio_31_pad      ()
+        );
 
-		    );
    // chimera_top_wrapper #(
    //			 .SelectedCfg(SelectedCfg)
    //			 ) dut (
@@ -184,9 +184,9 @@ module fixture_chimera_soc #(
    assign axi_slink_mst_req = '0;
 
    vip_chimera_soc #(
-		     .DutCfg            ( DutCfg ),
-		     .axi_ext_mst_req_t(axi_mst_req_t),
-		     .axi_ext_mst_rsp_t(axi_mst_rsp_t)
-		     ) vip (.*);
+         .DutCfg            ( DutCfg ),
+         .axi_ext_mst_req_t(axi_mst_req_t),
+         .axi_ext_mst_rsp_t(axi_mst_rsp_t)
+         ) vip (.*);
 
 endmodule

@@ -57,7 +57,7 @@ module chimera_padframe_aon_gpioa_pads
     .SMT(mux_to_pads_i.gpio_0.smt),
     .PWROK(PWROK_S),
     .IOPWROK(IOPWROK_S),
-    .BAIS(BIAS_S),
+    .BIAS(BIAS_S),
     .RETC(RETC_S)
   );
    IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_1 (
@@ -75,7 +75,7 @@ module chimera_padframe_aon_gpioa_pads
     .SMT(mux_to_pads_i.gpio_1.smt),
     .PWROK(PWROK_S),
     .IOPWROK(IOPWROK_S),
-    .BAIS(BIAS_S),
+    .BIAS(BIAS_S),
     .RETC(RETC_S)
   );
    IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_2 (
@@ -93,7 +93,7 @@ module chimera_padframe_aon_gpioa_pads
     .SMT(mux_to_pads_i.gpio_2.smt),
     .PWROK(PWROK_S),
     .IOPWROK(IOPWROK_S),
-    .BAIS(BIAS_S),
+    .BIAS(BIAS_S),
     .RETC(RETC_S)
   );
    IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_3 (
@@ -111,7 +111,7 @@ module chimera_padframe_aon_gpioa_pads
     .SMT(mux_to_pads_i.gpio_3.smt),
     .PWROK(PWROK_S),
     .IOPWROK(IOPWROK_S),
-    .BAIS(BIAS_S),
+    .BIAS(BIAS_S),
     .RETC(RETC_S)
   );
    IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_4 (
@@ -129,7 +129,7 @@ module chimera_padframe_aon_gpioa_pads
     .SMT(mux_to_pads_i.gpio_4.smt),
     .PWROK(PWROK_S),
     .IOPWROK(IOPWROK_S),
-    .BAIS(BIAS_S),
+    .BIAS(BIAS_S),
     .RETC(RETC_S)
   );
    IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_5 (
@@ -147,7 +147,7 @@ module chimera_padframe_aon_gpioa_pads
     .SMT(mux_to_pads_i.gpio_5.smt),
     .PWROK(PWROK_S),
     .IOPWROK(IOPWROK_S),
-    .BAIS(BIAS_S),
+    .BIAS(BIAS_S),
     .RETC(RETC_S)
   );
    IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_6 (
@@ -165,7 +165,7 @@ module chimera_padframe_aon_gpioa_pads
     .SMT(mux_to_pads_i.gpio_6.smt),
     .PWROK(PWROK_S),
     .IOPWROK(IOPWROK_S),
-    .BAIS(BIAS_S),
+    .BIAS(BIAS_S),
     .RETC(RETC_S)
   );
    IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_7 (
@@ -183,7 +183,7 @@ module chimera_padframe_aon_gpioa_pads
     .SMT(mux_to_pads_i.gpio_7.smt),
     .PWROK(PWROK_S),
     .IOPWROK(IOPWROK_S),
-    .BAIS(BIAS_S),
+    .BIAS(BIAS_S),
     .RETC(RETC_S)
   );
    IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_8 (
@@ -201,7 +201,7 @@ module chimera_padframe_aon_gpioa_pads
     .SMT(mux_to_pads_i.gpio_8.smt),
     .PWROK(PWROK_S),
     .IOPWROK(IOPWROK_S),
-    .BAIS(BIAS_S),
+    .BIAS(BIAS_S),
     .RETC(RETC_S)
   );
    IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_9 (
@@ -219,7 +219,7 @@ module chimera_padframe_aon_gpioa_pads
     .SMT(mux_to_pads_i.gpio_9.smt),
     .PWROK(PWROK_S),
     .IOPWROK(IOPWROK_S),
-    .BAIS(BIAS_S),
+    .BIAS(BIAS_S),
     .RETC(RETC_S)
   );
    IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_10 (
@@ -237,7 +237,7 @@ module chimera_padframe_aon_gpioa_pads
     .SMT(mux_to_pads_i.gpio_10.smt),
     .PWROK(PWROK_S),
     .IOPWROK(IOPWROK_S),
-    .BAIS(BIAS_S),
+    .BIAS(BIAS_S),
     .RETC(RETC_S)
   );
    IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_11 (
@@ -255,7 +255,7 @@ module chimera_padframe_aon_gpioa_pads
     .SMT(mux_to_pads_i.gpio_11.smt),
     .PWROK(PWROK_S),
     .IOPWROK(IOPWROK_S),
-    .BAIS(BIAS_S),
+    .BIAS(BIAS_S),
     .RETC(RETC_S)
   );
    IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_12 (
@@ -273,7 +273,7 @@ module chimera_padframe_aon_gpioa_pads
     .SMT(mux_to_pads_i.gpio_12.smt),
     .PWROK(PWROK_S),
     .IOPWROK(IOPWROK_S),
-    .BAIS(BIAS_S),
+    .BIAS(BIAS_S),
     .RETC(RETC_S)
   );
    IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_13 (
@@ -291,7 +291,7 @@ module chimera_padframe_aon_gpioa_pads
     .SMT(mux_to_pads_i.gpio_13.smt),
     .PWROK(PWROK_S),
     .IOPWROK(IOPWROK_S),
-    .BAIS(BIAS_S),
+    .BIAS(BIAS_S),
     .RETC(RETC_S)
   );
    IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_14 (
@@ -309,7 +309,7 @@ module chimera_padframe_aon_gpioa_pads
     .SMT(mux_to_pads_i.gpio_14.smt),
     .PWROK(PWROK_S),
     .IOPWROK(IOPWROK_S),
-    .BAIS(BIAS_S),
+    .BIAS(BIAS_S),
     .RETC(RETC_S)
   );
    IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_15 (
@@ -327,7 +327,7 @@ module chimera_padframe_aon_gpioa_pads
     .SMT(mux_to_pads_i.gpio_15.smt),
     .PWROK(PWROK_S),
     .IOPWROK(IOPWROK_S),
-    .BAIS(BIAS_S),
+    .BIAS(BIAS_S),
     .RETC(RETC_S)
   );
    IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_16 (
@@ -345,7 +345,7 @@ module chimera_padframe_aon_gpioa_pads
     .SMT(mux_to_pads_i.gpio_16.smt),
     .PWROK(PWROK_S),
     .IOPWROK(IOPWROK_S),
-    .BAIS(BIAS_S),
+    .BIAS(BIAS_S),
     .RETC(RETC_S)
   );
    IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_17 (
@@ -363,7 +363,7 @@ module chimera_padframe_aon_gpioa_pads
     .SMT(mux_to_pads_i.gpio_17.smt),
     .PWROK(PWROK_S),
     .IOPWROK(IOPWROK_S),
-    .BAIS(BIAS_S),
+    .BIAS(BIAS_S),
     .RETC(RETC_S)
   );
    IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_18 (
@@ -381,7 +381,7 @@ module chimera_padframe_aon_gpioa_pads
     .SMT(mux_to_pads_i.gpio_18.smt),
     .PWROK(PWROK_S),
     .IOPWROK(IOPWROK_S),
-    .BAIS(BIAS_S),
+    .BIAS(BIAS_S),
     .RETC(RETC_S)
   );
    IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_19 (
@@ -399,7 +399,7 @@ module chimera_padframe_aon_gpioa_pads
     .SMT(mux_to_pads_i.gpio_19.smt),
     .PWROK(PWROK_S),
     .IOPWROK(IOPWROK_S),
-    .BAIS(BIAS_S),
+    .BIAS(BIAS_S),
     .RETC(RETC_S)
   );
    IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_20 (
@@ -417,7 +417,7 @@ module chimera_padframe_aon_gpioa_pads
     .SMT(mux_to_pads_i.gpio_20.smt),
     .PWROK(PWROK_S),
     .IOPWROK(IOPWROK_S),
-    .BAIS(BIAS_S),
+    .BIAS(BIAS_S),
     .RETC(RETC_S)
   );
    IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_21 (
@@ -435,7 +435,7 @@ module chimera_padframe_aon_gpioa_pads
     .SMT(mux_to_pads_i.gpio_21.smt),
     .PWROK(PWROK_S),
     .IOPWROK(IOPWROK_S),
-    .BAIS(BIAS_S),
+    .BIAS(BIAS_S),
     .RETC(RETC_S)
   );
    IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_22 (
@@ -453,7 +453,7 @@ module chimera_padframe_aon_gpioa_pads
     .SMT(mux_to_pads_i.gpio_22.smt),
     .PWROK(PWROK_S),
     .IOPWROK(IOPWROK_S),
-    .BAIS(BIAS_S),
+    .BIAS(BIAS_S),
     .RETC(RETC_S)
   );
    IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_23 (
@@ -471,7 +471,7 @@ module chimera_padframe_aon_gpioa_pads
     .SMT(mux_to_pads_i.gpio_23.smt),
     .PWROK(PWROK_S),
     .IOPWROK(IOPWROK_S),
-    .BAIS(BIAS_S),
+    .BIAS(BIAS_S),
     .RETC(RETC_S)
   );
    IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_24 (
@@ -489,7 +489,7 @@ module chimera_padframe_aon_gpioa_pads
     .SMT(mux_to_pads_i.gpio_24.smt),
     .PWROK(PWROK_S),
     .IOPWROK(IOPWROK_S),
-    .BAIS(BIAS_S),
+    .BIAS(BIAS_S),
     .RETC(RETC_S)
   );
    IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_25 (
@@ -507,7 +507,7 @@ module chimera_padframe_aon_gpioa_pads
     .SMT(mux_to_pads_i.gpio_25.smt),
     .PWROK(PWROK_S),
     .IOPWROK(IOPWROK_S),
-    .BAIS(BIAS_S),
+    .BIAS(BIAS_S),
     .RETC(RETC_S)
   );
    IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_26 (
@@ -525,7 +525,7 @@ module chimera_padframe_aon_gpioa_pads
     .SMT(mux_to_pads_i.gpio_26.smt),
     .PWROK(PWROK_S),
     .IOPWROK(IOPWROK_S),
-    .BAIS(BIAS_S),
+    .BIAS(BIAS_S),
     .RETC(RETC_S)
   );
    IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_27 (
@@ -543,7 +543,7 @@ module chimera_padframe_aon_gpioa_pads
     .SMT(mux_to_pads_i.gpio_27.smt),
     .PWROK(PWROK_S),
     .IOPWROK(IOPWROK_S),
-    .BAIS(BIAS_S),
+    .BIAS(BIAS_S),
     .RETC(RETC_S)
   );
    IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_28 (
@@ -561,7 +561,7 @@ module chimera_padframe_aon_gpioa_pads
     .SMT(mux_to_pads_i.gpio_28.smt),
     .PWROK(PWROK_S),
     .IOPWROK(IOPWROK_S),
-    .BAIS(BIAS_S),
+    .BIAS(BIAS_S),
     .RETC(RETC_S)
   );
    IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_29 (
@@ -579,7 +579,7 @@ module chimera_padframe_aon_gpioa_pads
     .SMT(mux_to_pads_i.gpio_29.smt),
     .PWROK(PWROK_S),
     .IOPWROK(IOPWROK_S),
-    .BAIS(BIAS_S),
+    .BIAS(BIAS_S),
     .RETC(RETC_S)
   );
    IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_30 (
@@ -597,7 +597,7 @@ module chimera_padframe_aon_gpioa_pads
     .SMT(mux_to_pads_i.gpio_30.smt),
     .PWROK(PWROK_S),
     .IOPWROK(IOPWROK_S),
-    .BAIS(BIAS_S),
+    .BIAS(BIAS_S),
     .RETC(RETC_S)
   );
    IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_31 (
@@ -615,7 +615,7 @@ module chimera_padframe_aon_gpioa_pads
     .SMT(mux_to_pads_i.gpio_31.smt),
     .PWROK(PWROK_S),
     .IOPWROK(IOPWROK_S),
-    .BAIS(BIAS_S),
+    .BIAS(BIAS_S),
     .RETC(RETC_S)
   );
 

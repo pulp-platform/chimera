@@ -138,7 +138,7 @@ module chimera
       .clk_i (soc_clk)
       );
 
-   APB_BUS apb_fll_bus();
+   //APB_BUS apb_fll_bus();
 
    // CHIMERA PADFRAME
    chimera_padframe #(
@@ -150,7 +150,6 @@ module chimera
       (
        .clk_i ('0),
        .rst_ni ('0),
-       .override_signals ('0),
        .static_connection_signals_pad2soc (static_connection_signals_pad2soc),
        .static_connection_signals_soc2pad (static_connection_signals_soc2pad),
        .port_signals_pad2soc              (port_signals_pad2soc),
@@ -218,7 +217,7 @@ module chimera
       .static_connections_pad2soc_i (static_connection_signals_pad2soc) ,
       .static_connections_soc2pad_o   (static_connection_signals_soc2pad),
       .port_signals_pad2soc_i        (port_signals_pad2soc),
-      .port_signals_soc2pad         (port_signals_soc2pad),
+      .port_signals_soc2pad_o        (port_signals_soc2pad),
 
       .jtag_tck_o                   (jtag_tck_pad2soc),
       .jtag_trst_no                 (jtag_trst_n_pad2soc),
@@ -265,9 +264,9 @@ module chimera
       .paddr_i   (config_apb_req.paddr),
       .psel_i    (config_apb_req.psel),
       .pwdata_i  (config_apb_req.pwdata),
-      .prdata_o  (config_apb_resp.prdata),
-      .pready_o  (config_apb_resp.pready),
-      .pslverr_o (config_apb_resp.pslverr),
+      .prdata_o  (config_apb_rsp .prdata),
+      .pready_o  (config_apb_rsp .pready),
+      .pslverr_o (config_apb_rsp .pslverr),
       .reg_o     (reg_bus_if)
       );
 
@@ -291,14 +290,14 @@ module chimera
       .scan_en_i   ('0),
       .test_mode_i ('0),
 
-      .apb_fll_paddr_i (config_apb_req.paddr),
-      .apb_fll_pwdata_i (config_apb_req.pwdata),
-      .apb_fll_pwrite_i (config_apb_req.pwrite),
-      .apb_fll_psel_i (config_apb_req.psel),
+      .apb_fll_paddr_i   (config_apb_req.paddr),
+      .apb_fll_pwdata_i  (config_apb_req.pwdata),
+      .apb_fll_pwrite_i  (config_apb_req.pwrite),
+      .apb_fll_psel_i    (config_apb_req.psel),
       .apb_fll_penable_i (config_apb_req.penable),
-      .apb_fll_prdata_o (config_apb_resp.prdata),
-      .apb_fll_pready_o (config_apb_resp.pready),
-      .apb_fll_pslverr_o (config_apb_resp.pslverr),
+      .apb_fll_prdata_o  (config_apb_rsp .prdata),
+      .apb_fll_pready_o  (config_apb_rsp .pready),
+      .apb_fll_pslverr_o (config_apb_rsp .pslverr),
 
       .soc_clk_o (soc_clk),
       .clu_clk_o (clu_clk)

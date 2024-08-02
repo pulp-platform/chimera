@@ -22,32 +22,32 @@
 
 
 module fll_clk_gen #(
-		     parameter int AddrWidth = 48,
-		     parameter DataWidth = 32
+         parameter int AddrWidth = 48,
+         parameter DataWidth = 32
   ) (
-     input logic		  hse_clk_i, // High Speed External Clk
-     input logic		  lse_clk_i, //Low Speed External Clk
-     input logic		  sel_clk_i, // Clk selct signal
-     input logic		  rst_ni, // Prikmary rst signal from the PAD
-     input logic		  scan_en_i, // Scan enable
-     input logic		  test_mode_i,
+     input logic                  hse_clk_i, // High Speed External Clk
+     input logic                  lse_clk_i, //Low Speed External Clk
+     input logic                  sel_clk_i, // Clk selct signal
+     input logic                  rst_ni, // Prikmary rst signal from the PAD
+     input logic                  scan_en_i, // Scan enable
+     input logic                  test_mode_i,
 
      input logic [AddrWidth-1:0]  apb_fll_paddr_i,
      input logic [DataWidth-1:0]  apb_fll_pwdata_i,
-     input logic		  apb_fll_pwrite_i,
-     input logic		  apb_fll_psel_i,
-     input logic		  apb_fll_penable_i,
+     input logic                  apb_fll_pwrite_i,
+     input logic                  apb_fll_psel_i,
+     input logic                  apb_fll_penable_i,
      output logic [DataWidth-1:0] apb_fll_prdata_o,
-     output logic		  apb_fll_pready_o,
-     output logic		  apb_fll_pslverr_o,
-				//APB_BUS.Slave apb_fll_bus, // APB Slave Interface: To be connected with the SoC
+     output logic                 apb_fll_pready_o,
+     output logic                 apb_fll_pslverr_o,
+        //APB_BUS.Slave apb_fll_bus, // APB Slave Interface: To be connected with the SoC
 
-     output logic		  soc_clk_o, // SoC Clk signal
-     output logic		  clu_clk_o // Cluster Clk signal
+     output logic                 soc_clk_o, // SoC Clk signal
+     output logic                 clu_clk_o // Cluster Clk signal
      );
 
-   logic			  clk_ffl_soc;
-   logic			  clk_fll_clu;
+   logic        clk_ffl_soc;
+   logic        clk_fll_clu;
 
    FLL_BUS soc_fll_master(.clk_i(soc_clk_o));
    FLL_BUS clu_fll_master(.clk_i(clu_clk_o));
@@ -89,14 +89,6 @@ module fll_clk_gen #(
     .fll3_ack_i    ('0),
     .fll3_r_data_i ('0),
     .fll3_lock_i   ('0),
-
-    .fll4_req_o    ( ),
-    .fll4_wrn_o    ( ),
-    .fll4_add_o    ( ),
-    .fll4_data_o   ( ),
-    .fll4_ack_i    ('0),
-    .fll4_r_data_i ('0),
-    .fll4_lock_i   ('0),
 
     .bbgen_req_o   (),
     .bbgen_wrn_o   (),
@@ -158,11 +150,11 @@ module fll_clk_gen #(
    // Bypass FLL if sel_clk_i = 1
    always_comb begin
       if (sel_clk_i == 1'b1) begin
-	 soc_clk_o = hse_clk_i;
-	 clu_clk_o = hse_clk_i;
+   soc_clk_o = hse_clk_i;
+   clu_clk_o = hse_clk_i;
       end else begin
-	 soc_clk_o = clk_fll_soc;
-	 clu_clk_o = clk_fll_clu;
+   soc_clk_o = clk_fll_soc;
+   clu_clk_o = clk_fll_clu;
       end
    end
 

@@ -138,7 +138,7 @@ pad_domains:
             .SMT(${conn["smt"]}),
             .PWROK(PWROK_S),
             .IOPWROK(IOPWROK_S),
-            .BAIS(BIAS_S),
+            .BIAS(BIAS_S),
             .RETC(RETC_S)
           );
         pad_signals: &IN22FDX_SIGNALS
@@ -351,7 +351,7 @@ pad_domains:
             .SMT(${conn["smt"]}),
             .PWROK(PWROK_S),
             .IOPWROK(IOPWROK_S),
-            .BAIS(BIAS_S),
+            .BIAS(BIAS_S),
             .RETC(RETC_S)
           );
         pad_signals: *IN22FDX_SIGNALS

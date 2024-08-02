@@ -15,7 +15,8 @@ dependencies:
   common_cells:             { git: "https://github.com/pulp-platform/common_cells.git",       version: 1.31.1}
    #chimera_asic:                     { path: "target/asic/src"                                                        }
   apb:                      { git: "https://github.com/pulp-platform/apb.git",                version: 0.2.4          }
-  apb_fll_if:               {git:  "https://github.com/pulp-platform/apb_fll_if.git",         rev: "master"           }
+  apb_fll_if:               { git:  "https://github.com/pulp-platform/apb_fll_if.git",        rev: "master"           }
+  # tech_cells_generic:       { git: "https://github.com/pulp-platform/tech_cells_generic.git", version: 0.2.13         }
   chimera_padframe:         { path: "target/asic/src/padframe/chimera_padframe_ip"                                    }
   tech:                     { path: "target/asic/src/tech/"                                                           }
 
@@ -27,14 +28,14 @@ sources:
   - hw/chimera_cluster_adapter.sv
   - hw/chimera_top_wrapper.sv
 
-  - target: any(simulation, test)
+  - target: any(simulation, test, asic)
     files:
       - target/sim/src/vip_chimera_soc.sv
       - target/sim/src/fixture_chimera_soc.sv
       - target/sim/src/tb_chimera_soc.sv
       - target/sim/src/tb_chimera_pkg.sv
 
-  - target: asic
+  - target: asic_ll
     files:
       - target/asic/src/chimera/chimera.sv
       - target/asic/src/chimera/fll_clk_gen.sv

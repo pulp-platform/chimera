@@ -8,7 +8,7 @@ package:
     - "Lorenzo Leone <lleone@iis.ee.ethz.ch>"
 
 sources:
-  - target: asic
+  - target: asic_ll
     files:
     - FLL/gf22_FLL_model.vhd
     - IO/IN22FDX_GPIO18_10M3S40PI.v
