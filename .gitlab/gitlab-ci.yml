@@ -6,6 +6,9 @@
 
 # We initialize the nonfree repo, then spawn a sub-pipeline from it
 
+variables:
+  VSIM_TESTS: '["testCluster", "testClusterOffload"]'
+    
 stages:
   - nonfree
 
@@ -15,11 +18,21 @@ init:
   artifacts:
     paths: [ nonfree/ci.yml ]
 
+process:
+    stage: nonfree
+    needs: [ init ]
+    script:
+      - envsubst '${VSIM_TESTS}' < nonfree/ci.yml > nonfree/processed_ci.yml
+    artifacts:
+      paths: [ nonfree/processed_ci.yml ]
+    
 subpipe:
   stage: nonfree
-  needs: [ init ]
+  needs: [ process ]
   trigger:
     include:
-      - artifact: nonfree/ci.yml
-        job: init
+      - artifact: nonfree/processed_ci.yml
+        job: process
+    forward:
+      pipeline_variables: true
     strategy: depend
