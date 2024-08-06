@@ -152,5 +152,56 @@
 		{ bits: "0:0" }
 	    ],
 	}
+
+	{
+	    name: "WIDE_MEM_CLUSTER_1_BYPASS",
+	    desc: "Bypass cluster to mem wide connection for cluster 1",
+	    swaccess: "rw",
+	    hwaccess: "hro",
+	    resval: "0",
+	    fields: [
+		{ bits: "0:0" }
+	    ],
+	}
+	{
+	    name: "WIDE_MEM_CLUSTER_2_BYPASS",
+	    desc: "Bypass cluster to mem wide connection for cluster 2",
+	    swaccess: "rw",
+	    hwaccess: "hro",
+	    resval: "0",
+	    fields: [
+		{ bits: "0:0" }
+	    ],
+	}
+	{
+	    name: "WIDE_MEM_CLUSTER_3_BYPASS",
+	    desc: "Bypass cluster to mem wide connection for cluster 3",
+	    swaccess: "rw",
+	    hwaccess: "hro",
+	    resval: "0",
+	    fields: [
+		{ bits: "0:0" }
+	    ],
+	}
+	{
+	    name: "WIDE_MEM_CLUSTER_4_BYPASS",
+	    desc: "Bypass cluster to mem wide connection for cluster 4",
+	    swaccess: "rw",
+	    hwaccess: "hro",
+	    resval: "0",
+	    fields: [
+		{ bits: "0:0" }
+	    ],
+	}
+	{
+	    name: "WIDE_MEM_CLUSTER_5_BYPASS",
+	    desc: "Bypass cluster to mem wide connection for cluster 5",
+	    swaccess: "rw",
+	    hwaccess: "hro",
+	    resval: "0",
+	    fields: [
+		{ bits: "0:0" }
+	    ],
+	}
     ] 
 }
