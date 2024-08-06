@@ -38,7 +38,8 @@ module chimera
    inout wire logic pad_aon_static_jtag_tms_pad,
    inout wire logic pad_aon_static_jtag_tdi_pad,
    inout wire logic pad_aon_static_jtag_tdo_pad,
-   inout wire logic pad_aon_static_bootsel_pad,
+   inout wire logic pad_aon_static_bootsel_0_pad,
+   inout wire logic pad_aon_static_bootsel_1_pad,
    inout wire logic pad_aon_gpioa_gpio_0_pad,
    inout wire logic pad_aon_gpioa_gpio_1_pad,
    inout wire logic pad_aon_gpioa_gpio_2_pad,
@@ -75,6 +76,13 @@ module chimera
 
 `include "cheshire/typedef.svh"
 
+   // Cheshire config
+   localparam cheshire_cfg_t Cfg = ChimeraCfg[SelectedCfg];
+   `CHESHIRE_TYPEDEF_ALL(, Cfg)
+
+   localparam int unsigned AddrWidth = Cfg.AddrWidth;
+   localparam int unsigned DataWidth = 32;
+
    static_connection_signals_pad2soc_t static_connection_signals_pad2soc;
    static_connection_signals_soc2pad_t static_connection_signals_soc2pad;
 
@@ -82,10 +90,10 @@ module chimera
    port_signals_soc2pad_t              port_signals_soc2pad;
 
    // Signals from/to pad and Chimera inetrface
-   logic      soc_clk;
-   logic      clu_clk;
-   logic      rst_n;
-   logic      boot_mode;
+   logic       soc_clk;
+   logic       clu_clk;
+   logic       rst_n;
+   logic [1:0] boot_mode;
    // JTAG
    logic                 jtag_tck_pad2soc;
    logic                 jtag_trst_n_pad2soc;
@@ -121,19 +129,19 @@ module chimera
    logic [31:0]		 gpio_en_soc2pad;
 
 
-   // Cheshire config
-   localparam cheshire_cfg_t Cfg = ChimeraCfg[SelectedCfg];
-   `CHESHIRE_TYPEDEF_ALL(, Cfg)
-
    reg_req_t config_reg_req;
    reg_rsp_t config_reg_rsp;
+
+   apb_req_t  config_apb_fll_req;
+   apb_resp_t config_apb_fll_rsp;
 
    apb_req_t  config_apb_req;
    apb_resp_t config_apb_rsp;
 
-   REG_BUS #(.ADDR_WIDTH(Cfg.AddrWidth),
-       .DATA_WIDTH(Cfg.AxiDataWidth)
-       ) reg_bus_if
+   REG_BUS #(
+             .ADDR_WIDTH(AddrWidth),
+             .DATA_WIDTH(DataWidth)
+             ) reg_bus_if
      (
       .clk_i (soc_clk)
       );
@@ -142,11 +150,11 @@ module chimera
 
    // CHIMERA PADFRAME
    chimera_padframe #(
-          .AW (Cfg.AddrWidth),
-          .DW (Cfg.AxiDataWidth),
+          .AW (AddrWidth),
+          .DW (DataWidth),
           .req_t (reg_req_t),
           .resp_t (reg_rsp_t)
-          ) i_chimera
+          ) i_chimera_padframe
       (
        .clk_i ('0),
        .rst_ni ('0),
@@ -169,7 +177,8 @@ module chimera
        .pad_aon_static_jtag_tms_pad,
        .pad_aon_static_jtag_tdi_pad,
        .pad_aon_static_jtag_tdo_pad,
-       .pad_aon_static_bootsel_pad,
+       .pad_aon_static_bootsel_0_pad,
+       .pad_aon_static_bootsel_1_pad,
        .pad_aon_gpioa_gpio_0_pad,
        .pad_aon_gpioa_gpio_1_pad,
        .pad_aon_gpioa_gpio_2_pad,
@@ -210,7 +219,7 @@ module chimera
 
    pad_soc_intf i_pad_soc_intf
      (
-      .soc_clk_o (soc_clk),
+      //.soc_clk_o (soc_clk),
       .rst_no (rst_n),
       .boot_mode_o (boot_mode),
 
@@ -261,12 +270,12 @@ module chimera
       .rst_ni (rst_n),
       .penable_i (config_apb_req.penable),
       .pwrite_i  (config_apb_req.pwrite),
-      .paddr_i   (config_apb_req.paddr),
+      .paddr_i   (config_apb_req.paddr[AddrWidth-16-1:0]), // Truncate first 16 MSBs beacuse module accepts 32 AddrWidth only
       .psel_i    (config_apb_req.psel),
       .pwdata_i  (config_apb_req.pwdata),
-      .prdata_o  (config_apb_rsp .prdata),
-      .pready_o  (config_apb_rsp .pready),
-      .pslverr_o (config_apb_rsp .pslverr),
+      .prdata_o  (config_apb_rsp.prdata),
+      .pready_o  (config_apb_rsp.pready),
+      .pslverr_o (config_apb_rsp.pslverr),
       .reg_o     (reg_bus_if)
       );
 
@@ -281,7 +290,10 @@ module chimera
    assign reg_bus_if.ready = config_reg_rsp.ready;
 
    // Connect APB to FLL
-   fll_clk_gen i_fll_clk_gen
+   fll_clk_gen  #(
+                  .AddrWidth(AddrWidth),
+                  .DataWidth(DataWidth)
+                  ) i_fll_clk_gen
      (
       .hse_clk_i   (static_connection_signals_pad2soc.aon_static.st_hse_clk),
       .lse_clk_i   (static_connection_signals_pad2soc.aon_static.st_lse_clk),
@@ -290,14 +302,14 @@ module chimera
       .scan_en_i   ('0),
       .test_mode_i ('0),
 
-      .apb_fll_paddr_i   (config_apb_req.paddr),
-      .apb_fll_pwdata_i  (config_apb_req.pwdata),
-      .apb_fll_pwrite_i  (config_apb_req.pwrite),
-      .apb_fll_psel_i    (config_apb_req.psel),
-      .apb_fll_penable_i (config_apb_req.penable),
-      .apb_fll_prdata_o  (config_apb_rsp .prdata),
-      .apb_fll_pready_o  (config_apb_rsp .pready),
-      .apb_fll_pslverr_o (config_apb_rsp .pslverr),
+      .apb_fll_paddr_i   (config_apb_fll_req.paddr),
+      .apb_fll_pwdata_i  (config_apb_fll_req.pwdata),
+      .apb_fll_pwrite_i  (config_apb_fll_req.pwrite),
+      .apb_fll_psel_i    (config_apb_fll_req.psel),
+      .apb_fll_penable_i (config_apb_fll_req.penable),
+      .apb_fll_prdata_o  (config_apb_fll_rsp.prdata),
+      .apb_fll_pready_o  (config_apb_fll_rsp.pready),
+      .apb_fll_pslverr_o (config_apb_fll_rsp.pslverr),
 
       .soc_clk_o (soc_clk),
       .clu_clk_o (clu_clk)
@@ -358,6 +370,9 @@ module chimera
       .gpio_i        (gpio_pad2soc),
       .gpio_o        (gpio_soc2pad),
       .gpio_en_o       (gpio_en_soc2pad),
+
+      .apb_fll_req_o             (config_apb_fll_req),
+      .apb_fll_rsp_i             (config_apb_fll_rsp),
 
       .apb_req_o             (config_apb_req),
       .apb_rsp_i             (config_apb_rsp)

@@ -59,14 +59,16 @@ module chimera_top_wrapper
     input  logic [     SlinkNumChan-1:0][SlinkNumLanes-1:0] slink_i,
     output logic [     SlinkNumChan-1:0][SlinkNumLanes-1:0] slink_o,
     // VGA interface
-     output logic					vga_hsync_o,
-     output logic					vga_vsync_o,
-     output logic [Cfg.VgaRedWidth -1:0]		vga_red_o,
-     output logic [Cfg.VgaGreenWidth-1:0]		vga_green_o,
-     output logic [Cfg.VgaBlueWidth -1:0]		vga_blue_o,
+     output logic                                       vga_hsync_o,
+     output logic                                       vga_vsync_o,
+     output logic [Cfg.VgaRedWidth -1:0]                vga_red_o,
+     output logic [Cfg.VgaGreenWidth-1:0]               vga_green_o,
+     output logic [Cfg.VgaBlueWidth -1:0]               vga_blue_o,
     // APB interface
-     input						apb_resp_t apb_rsp_i,
-     output						apb_req_t apb_req_o
+     output                                             apb_req_t apb_fll_req_o,
+     input                                              apb_resp_t apb_fll_rsp_i,
+     input                                              apb_resp_t apb_rsp_i,
+     output                                             apb_req_t apb_req_o
 
     );
 
@@ -216,6 +218,22 @@ module chimera_top_wrapper
            .rst_ni (rst_ni),
            .reg_req_i (reg_slv_req[FllIdx]),
            .reg_rsp_o (reg_slv_rsp[FllIdx]),
+           .apb_req_o (apb_fll_req_o),
+           .apb_rsp_i (apb_fll_rsp_i)
+           );
+
+   // PADs REG
+   reg_to_apb #(
+    .reg_req_t (reg_req_t),
+    .reg_rsp_t (reg_rsp_t),
+    .apb_req_t (apb_req_t),
+    .apb_rsp_t (apb_resp_t)
+    )
+     i_pad_reg_to_apb (
+           .clk_i (soc_clk_i),
+           .rst_ni (rst_ni),
+           .reg_req_i (reg_slv_req[PadIdx]),
+           .reg_rsp_o (reg_slv_rsp[PadIdx]),
            .apb_req_o (apb_req_o),
            .apb_rsp_i (apb_rsp_i)
            );

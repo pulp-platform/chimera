@@ -9,7 +9,8 @@ package pkg_chimera_padframe;
      } pad_domain_aon_static_static_connection_signals_soc2pad_t;
 
    typedef struct packed {
-      logic        st_bootsel;
+      logic        st_bootsel_0;
+      logic        st_bootsel_1;
       logic        st_byp_clk_sel;
       logic        st_hse_clk;
       logic        st_jtag_tck;

@@ -19,7 +19,8 @@ module chimera_padframe_aon_static
   inout wire logic pad_jtag_tms_pad,
   inout wire logic pad_jtag_tdi_pad,
   inout wire logic pad_jtag_tdo_pad,
-  inout wire logic pad_bootsel_pad,
+  inout wire logic pad_bootsel_0_pad,
+  inout wire logic pad_bootsel_1_pad,
   input req_t config_req_i,
   output resp_t config_rsp_o
 );
@@ -36,7 +37,8 @@ module chimera_padframe_aon_static
      .pad_jtag_tms_pad,
      .pad_jtag_tdi_pad,
      .pad_jtag_tdo_pad,
-     .pad_bootsel_pad
+     .pad_bootsel_0_pad,
+     .pad_bootsel_1_pad
 
   );
 

@@ -8,7 +8,22 @@ package:
     - "Lorenzo Leone <lleone@iis.ee.ethz.ch>"
 
 sources:
-  - target: asic_ll
+  - target: asic_gf22
     files:
+    - FLL/FLLPkg.vhd
+    - FLL/FLL_loop_filter.vhd
+    - FLL/FLL_settling_monitor.vhd
+    - FLL/FLL_clk_period_quantizer.vhd
+    - FLL/FLL_dither_pattern_gen.vhd
+    - FLL/FLL_clock_gated.rtl.vhd
+    - FLL/FLL_glitchfree_clkdiv.vhd
+    - FLL/FLL_clk_divider.vhd
+    - FLL/FLL_glitchfree_clkmux.vhd
+    - FLL/FLL_synchroedge.vhd
+    - FLL/FLL_reg.vhd
+    - FLL/FLL_zerodelta.vhd
+    - FLL/FLL_mux.rtl.vhd
+    - FLL/FLL_digital.vhd
+    - FLL/gf22_DCO_model.tc.vhd
     - FLL/gf22_FLL_model.vhd
     - IO/IN22FDX_GPIO18_10M3S40PI.v

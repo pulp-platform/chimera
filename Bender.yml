@@ -35,7 +35,7 @@ sources:
       - target/sim/src/tb_chimera_soc.sv
       - target/sim/src/tb_chimera_pkg.sv
 
-  - target: asic_ll
+  - target: asic_gf22
     files:
       - target/asic/src/chimera/chimera.sv
       - target/asic/src/chimera/fll_clk_gen.sv

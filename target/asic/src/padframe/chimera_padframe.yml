@@ -120,6 +120,19 @@ pad_domains:
                       # padframe module and no type, override signals or default
                       # values are allowed.
 
+      - name: IN22FDX_GPIO18_10M3S40PI_PWRDET_V
+        description: ""
+        template: |
+          wire PWROK_S, IOPWROK_S, BIAS_S, RETC_S;
+
+          IN22FDX_GPIO18_10M3S40PI_PWRDET_TIE_V ${instance_name} (
+            .RETCOUT (RETC_S),
+            .PWROKOUT (PWROK_S),
+            .IOPWROKOUT (IOPWROK_S),
+            .RETCIN(1'b0),
+            .BIAS(BIAS_S)
+          );
+
       - name: IN22FDX_GPIO18_10M3S40PI
         description: "gf22 pad"
         template: |
@@ -212,6 +225,11 @@ pad_domains:
       #|         STATIC PAD SIGNALS         |
       #|------------------------------------|
 
+      - name: pwrdet
+        description: "pwrdet pad"
+        pad_type: IN22FDX_GPIO18_10M3S40PI_PWRDET_V
+        is_static: true
+
       - name: lse_clk
         description: "Low Speed External clock"
         pad_type: IN22FDX_GPIO18_10M3S40PI
@@ -301,18 +319,41 @@ pad_domains:
           trie: 1'b0
           rxe: 1'b0
 
-      - name: bootsel
-        description: "Boot mode selection signal"
+      - name: bootsel_0
+        description: "Boot mode selection signal: Bit 0"
         pad_type: IN22FDX_GPIO18_10M3S40PI
         is_static: true
         connections:
           chip2pad: 1'b0
-          pad2chip: st_bootsel
+          pad2chip: st_bootsel_0
+          trie: 1'b1
+          rxe: 1'b1
+
+      - name: bootsel_1
+        description: "Boot mode selection signal: BIt 1"
+        pad_type: IN22FDX_GPIO18_10M3S40PI
+        is_static: true
+        connections:
+          chip2pad: 1'b0
+          pad2chip: st_bootsel_1
           trie: 1'b1
           rxe: 1'b1
 
   - name: aon_gpioa
     pad_types:
+      - name: IN22FDX_GPIO18_10M3S40PI_PWRDET_V
+        description: ""
+        template: |
+          wire PWROK_S, IOPWROK_S, BIAS_S, RETC_S;
+
+          IN22FDX_GPIO18_10M3S40PI_PWRDET_TIE_V ${instance_name} (
+            .RETCOUT (RETC_S),
+            .PWROKOUT (PWROK_S),
+            .IOPWROKOUT (IOPWROK_S),
+            .RETCIN(1'b0),
+            .BIAS(BIAS_S)
+          );
+
       - name: pull_down_pad
         # user defined name of the pad. Used to reference it
                               # in the pad_list
@@ -357,6 +398,11 @@ pad_domains:
         pad_signals: *IN22FDX_SIGNALS
 
     pad_list:
+
+      - name: pwrdet
+        description: "pwrdet pad"
+        pad_type: IN22FDX_GPIO18_10M3S40PI_PWRDET_V
+        is_static: true
       #|------------------------------------|
       #|         DYNAMIC PAD SIGNALS        |
       #|------------------------------------|

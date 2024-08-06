@@ -46,11 +46,26 @@ module fll_clk_gen #(
      output logic                 clu_clk_o // Cluster Clk signal
      );
 
-   logic        clk_ffl_soc;
+   logic        clk_fl_soc;
    logic        clk_fll_clu;
 
-   FLL_BUS soc_fll_master(.clk_i(soc_clk_o));
-   FLL_BUS clu_fll_master(.clk_i(clu_clk_o));
+   logic                 soc_fll_master_req;
+   logic                 soc_fll_master_wrn;
+   logic [1:0]           soc_fll_master_addr;
+   logic [DataWidth-1:0] soc_fll_master_wdata;
+   logic                 soc_fll_master_ack;
+   logic [DataWidth-1:0] soc_fll_master_rdata;
+   logic                 soc_fll_master_lock;
+
+   logic                 clu_fll_master_req;
+   logic                 clu_fll_master_wrn;
+   logic [1:0]           clu_fll_master_addr;
+   logic [DataWidth-1:0] clu_fll_master_wdata;
+   logic                 clu_fll_master_ack;
+   logic [DataWidth-1:0] clu_fll_master_rdata;
+   logic                 clu_fll_master_lock;
+
+
 
    // APB to FLL Interface
    apb_fll_if #(.APB_ADDR_WIDTH(AddrWidth)) apb_fll_if_i (
@@ -66,21 +81,21 @@ module fll_clk_gen #(
     .PREADY        ( apb_fll_pready_o           ),
     .PSLVERR       ( apb_fll_pslverr_o          ),
 
-    .fll1_req_o    ( soc_fll_master.req           ),
-    .fll1_wrn_o    ( soc_fll_master.wrn           ),
-    .fll1_add_o    ( soc_fll_master.addr[1:0]     ),
-    .fll1_data_o   ( soc_fll_master.wdata         ),
-    .fll1_ack_i    ( soc_fll_master.ack           ),
-    .fll1_r_data_i ( soc_fll_master.rdata         ),
-    .fll1_lock_i   ( soc_fll_master.lock          ),
+    .fll1_req_o    ( soc_fll_master_req           ),
+    .fll1_wrn_o    ( soc_fll_master_wrn           ),
+    .fll1_add_o    ( soc_fll_master_addr          ),
+    .fll1_data_o   ( soc_fll_master_wdata         ),
+    .fll1_ack_i    ( soc_fll_master_ack           ),
+    .fll1_r_data_i ( soc_fll_master_rdata         ),
+    .fll1_lock_i   ( soc_fll_master_lock          ),
 
-    .fll2_req_o    ( clu_fll_master.req           ),
-    .fll2_wrn_o    ( clu_fll_master.wrn           ),
-    .fll2_add_o    ( clu_fll_master.addr[1:0]     ),
-    .fll2_data_o   ( clu_fll_master.wdata         ),
-    .fll2_ack_i    ( clu_fll_master.ack           ),
-    .fll2_r_data_i ( clu_fll_master.rdata         ),
-    .fll2_lock_i   ( clu_fll_master.lock          ),
+    .fll2_req_o    ( clu_fll_master_req           ),
+    .fll2_wrn_o    ( clu_fll_master_wrn           ),
+    .fll2_add_o    ( clu_fll_master_addr          ),
+    .fll2_data_o   ( clu_fll_master_wdata         ),
+    .fll2_ack_i    ( clu_fll_master_ack           ),
+    .fll2_r_data_i ( clu_fll_master_rdata         ),
+    .fll2_lock_i   ( clu_fll_master_lock          ),
 
     .fll3_req_o    ( ),
     .fll3_wrn_o    ( ),
@@ -105,13 +120,13 @@ module fll_clk_gen #(
       .FLLCLK ( clk_fll_soc              ),
       .FLLOE  ( 1'b1                     ),
       .REFCLK ( lse_clk_i                ),
-      .LOCK   ( soc_fll_master.lock      ),
-      .CFGREQ ( soc_fll_master.req       ),
-      .CFGACK ( soc_fll_master.ack       ),
-      .CFGAD  ( soc_fll_master.addr[1:0] ),
-      .CFGD   ( soc_fll_master.wdata     ),
-      .CFGQ   ( soc_fll_master.rdata     ),
-      .CFGWEB ( soc_fll_master.wrn       ),
+      .LOCK   ( soc_fll_master_lock      ),
+      .CFGREQ ( soc_fll_master_req       ),
+      .CFGACK ( soc_fll_master_ack       ),
+      .CFGAD  ( soc_fll_master_addr      ),
+      .CFGD   ( soc_fll_master_wdata     ),
+      .CFGQ   ( soc_fll_master_rdata     ),
+      .CFGWEB ( soc_fll_master_wrn       ),
       .RSTB   ( rst_ni                   ),
       .PWD    ( 1'b0                     ),
       .RET    ( 1'b0                     ),
@@ -129,13 +144,13 @@ module fll_clk_gen #(
       .FLLCLK ( clk_fll_clu              ),
       .FLLOE  ( 1'b1                     ),
       .REFCLK ( lse_clk_i                ),
-      .LOCK   ( clu_fll_master.lock      ),
-      .CFGREQ ( clu_fll_master.req       ),
-      .CFGACK ( clu_fll_master.ack       ),
-      .CFGAD  ( clu_fll_master.addr[1:0] ),
-      .CFGD   ( clu_fll_master.wdata     ),
-      .CFGQ   ( clu_fll_master.rdata     ),
-      .CFGWEB ( clu_fll_master.wrn       ),
+      .LOCK   ( clu_fll_master_lock      ),
+      .CFGREQ ( clu_fll_master_req       ),
+      .CFGACK ( clu_fll_master_ack       ),
+      .CFGAD  ( clu_fll_master_addr      ),
+      .CFGD   ( clu_fll_master_wdata     ),
+      .CFGQ   ( clu_fll_master_rdata     ),
+      .CFGWEB ( clu_fll_master_wrn       ),
       .RSTB   ( rst_ni                   ),
       .PWD    ( 1'b0                     ),
       .RET    ( 1'b0                     ),

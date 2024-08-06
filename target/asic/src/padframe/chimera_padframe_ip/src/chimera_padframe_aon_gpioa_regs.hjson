@@ -30,6 +30,7 @@
               }
             ]
         }
+
       {
           name: GPIO_0_CFG
           desc: '''

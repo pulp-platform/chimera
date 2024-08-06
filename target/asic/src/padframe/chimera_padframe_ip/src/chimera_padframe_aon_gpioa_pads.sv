@@ -42,6 +42,15 @@ module chimera_padframe_aon_gpioa_pads
   );
 
    // Pad instantiations
+   wire PWROK_S, IOPWROK_S, BIAS_S, RETC_S;
+  
+  IN22FDX_GPIO18_10M3S40PI_PWRDET_TIE_V i_pwrdet (
+    .RETCOUT (RETC_S),
+    .PWROKOUT (PWROK_S),
+    .IOPWROKOUT (IOPWROK_S),
+    .RETCIN(1'b0),
+    .BIAS(BIAS_S)
+  );
    IN22FDX_GPIO18_10M3S40PI_IO_V i_gpio_0 (
     .PAD(pad_gpio_0_pad),
     .DATA(mux_to_pads_i.gpio_0.chip2pad),

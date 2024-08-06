@@ -38,8 +38,8 @@ package chimera_pkg;
    // SoC Config
    localparam int SnitchBootROM = 1;
 
-   // SCHEREMO: Shared Snitch bootrom, one clock gate per cluster, Fll cfg registers
-   localparam int ExtRegNum = SnitchBootROM + 1 + 1;
+   // SCHEREMO: Shared Snitch bootrom, one clock gate per cluster, Fll cfg regs, Pad cfg regs
+   localparam int ExtRegNum = SnitchBootROM + 1 + 1 + 1;
 
    localparam int SnitchBootROMIdx = 0;
    localparam     doub_bt SnitchBootROMRegionStart = 64'h3000_0000;
@@ -49,10 +49,15 @@ package chimera_pkg;
    localparam     doub_bt TopLevelRegionStart = 64'h3000_1000;
    localparam     doub_bt TopLevelRegionEnd = 64'h3000_2000;
 
+   // PADs external configuration registers
+   localparam int PadIdx = 2;
+   localparam doub_bt PadRegionStart = 64'h3000_8000;
+   localparam doub_bt PadRegionEnd = 64'h3000_9000;
+
    // FLL external configuration registers
-   localparam int FllIdx = 2;
-   localparam doub_bt FllRegionStart = 64'h3000_2000;
-   localparam doub_bt FllRegionEnd = 64'h3000_3000;
+   localparam int FllIdx = 3;
+   localparam doub_bt FllRegionStart = 64'h3000_9000;
+   localparam doub_bt FllRegionEnd = 64'h3000_a000;
 
    function automatic cheshire_cfg_t gen_chimera_cfg();
       localparam AddrWidth = DefaultCfg.AddrWidth;
@@ -88,9 +93,9 @@ package chimera_pkg;
       // REG CFG
       cfg.RegExtNumSlv = ExtRegNum;
       cfg.RegExtNumRules = ExtRegNum;
-      cfg.RegExtRegionIdx = {8'h2, 8'h1, 8'h0}; // SnitchBootROM
-      cfg.RegExtRegionStart = {FllRegionStart, TopLevelRegionStart, SnitchBootROMRegionStart};
-      cfg.RegExtRegionEnd = {FllRegionEnd, TopLevelRegionEnd, SnitchBootROMRegionEnd};
+      cfg.RegExtRegionIdx = {8'h3, 8'h2, 8'h1, 8'h0}; // SnitchBootROM
+      cfg.RegExtRegionStart = {PadRegionStart, FllRegionStart, TopLevelRegionStart, SnitchBootROMRegionStart};
+      cfg.RegExtRegionEnd = {PadRegionEnd, FllRegionEnd, TopLevelRegionEnd, SnitchBootROMRegionEnd};
 
       // ACCEL HART/IRQ CFG
       cfg.NumExtIrqHarts = ExtCores;
@@ -107,9 +112,11 @@ package chimera_pkg;
      };
 
    // To move into cheshire TYPEDEF
+   localparam int unsigned RegDataWidth = 32;
    localparam type addr_t = logic[DefaultCfg.AddrWidth-1:0];
-   localparam type data_t = logic[DefaultCfg.AxiDataWidth];
-   localparam type strb_t = logic[DefaultCfg.AxiDataWidth/8];
+   // localparam type data_t = logic[DefaultCfg.AxiDataWidth];
+    localparam type data_t = logic[RegDataWidth-1:0];
+   localparam type strb_t = logic[RegDataWidth/8-1:0];
 
    `APB_TYPEDEF_ALL(apb,addr_t, data_t, strb_t)
 

@@ -33,55 +33,55 @@ module pad_soc_intf
   import cheshire_pkg::*;
   //import chimera_pkg::*;
   (
-   output logic		       soc_clk_o,
-   output logic		       rst_no,
-   output logic [1:0]	       boot_mode_o,
+   //output logic          soc_clk_o,
+   output logic          rst_no,
+   output logic [1:0]        boot_mode_o,
 
    // Static signals from/to the padframe
-   input		       static_connection_signals_pad2soc_t static_connections_pad2soc_i,
-   output		       static_connection_signals_soc2pad_t static_connections_soc2pad_o,
+   input           static_connection_signals_pad2soc_t static_connections_pad2soc_i,
+   output          static_connection_signals_soc2pad_t static_connections_soc2pad_o,
 
    // Muxed signals from/to the padframe
-   input		       port_signals_pad2soc_t port_signals_pad2soc_i,
-   output		       port_signals_soc2pad_t port_signals_soc2pad_o,
+   input           port_signals_pad2soc_t port_signals_pad2soc_i,
+   output          port_signals_soc2pad_t port_signals_soc2pad_o,
 
    // Chimera IO signals
 
    // JTAG interface
-   output logic		       jtag_tck_o,
-   output logic		       jtag_trst_no,
-   output logic		       jtag_tms_o,
-   output logic		       jtag_tdi_o,
-   input logic		       jtag_tdo_i,
-   input logic		       jtag_tdo_oe_i,
+   output logic          jtag_tck_o,
+   output logic          jtag_trst_no,
+   output logic          jtag_tms_o,
+   output logic          jtag_tdi_o,
+   input logic           jtag_tdo_i,
+   // input logic          jtag_tdo_oe_i,
    // UART interface
-   input logic		       uart_tx_i,
-   output logic		       uart_rx_o,
+   input logic           uart_tx_i,
+   output logic          uart_rx_o,
    // I2C interface
-   input logic		       i2c_sda_i,
-   output logic		       i2c_sda_o,
-   input logic		       i2c_sda_en_i,
-   output logic		       i2c_scl_o,
-   input logic		       i2c_scl_i,
-   input logic		       i2c_scl_en_i,
+   input logic           i2c_sda_i,
+   output logic          i2c_sda_o,
+   input logic           i2c_sda_en_i,
+   output logic          i2c_scl_o,
+   input logic           i2c_scl_i,
+   input logic           i2c_scl_en_i,
    // SPI host interface
-   input logic		       spih_sck_i,
-   input logic		       spih_sck_en_i,
+   input logic           spih_sck_i,
+   input logic           spih_sck_en_i,
    input logic [SpihNumCs-1:0] spih_csb_i,
    input logic [SpihNumCs-1:0] spih_csb_en_i,
-   input logic [ 3:0]	       spih_sd_i,
-   input logic [ 3:0]	       spih_sd_en_i,
-   output logic [ 3:0]	       spih_sd_o,
+   input logic [ 3:0]        spih_sd_i,
+   input logic [ 3:0]        spih_sd_en_i,
+   output logic [ 3:0]         spih_sd_o,
    // GPIO interface
-   input logic [31:0]	       gpio_i,
-   output logic [31:0]	       gpio_o,
-   input logic [31:0]	       gpio_en_i
+   input logic [31:0]        gpio_i,
+   output logic [31:0]         gpio_o,
+   input logic [31:0]        gpio_en_i
    );
 
    // Connect static pads to SoC signals
    assign rst_no       = static_connections_pad2soc_i.aon_static.st_rstn;
-   assign soc_clk_o    = static_connections_pad2soc_i.aon_static.st_hse_clk;  // TODO: which clk should be connected here???
-   assign boot_mode_o  = static_connections_pad2soc_i.aon_static.st_bootsel;
+   //assign soc_clk_o    = static_connections_pad2soc_i.aon_static.st_hse_clk;  // TODO: which clk should be connected here???
+   assign boot_mode_o  = {static_connections_pad2soc_i.aon_static.st_bootsel_1, static_connections_pad2soc_i.aon_static.st_bootsel_0};
    assign jtag_tck_o   = static_connections_pad2soc_i.aon_static.st_jtag_tck;
    assign jtag_trst_no = static_connections_pad2soc_i.aon_static.st_jtag_trstn;
    assign jtag_tms_o   = static_connections_pad2soc_i.aon_static.st_jtag_tms;

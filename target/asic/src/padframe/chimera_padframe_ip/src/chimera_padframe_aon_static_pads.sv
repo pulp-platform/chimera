@@ -16,10 +16,20 @@ module chimera_padframe_aon_static_pads
   inout wire logic pad_jtag_tms_pad,
   inout wire logic pad_jtag_tdi_pad,
   inout wire logic pad_jtag_tdo_pad,
-  inout wire logic pad_bootsel_pad
+  inout wire logic pad_bootsel_0_pad,
+  inout wire logic pad_bootsel_1_pad
   );
 
    // Pad instantiations
+   wire PWROK_S, IOPWROK_S, BIAS_S, RETC_S;
+  
+  IN22FDX_GPIO18_10M3S40PI_PWRDET_TIE_V i_pwrdet (
+    .RETCOUT (RETC_S),
+    .PWROKOUT (PWROK_S),
+    .IOPWROKOUT (IOPWROK_S),
+    .RETCIN(1'b0),
+    .BIAS(BIAS_S)
+  );
    IN22FDX_GPIO18_10M3S40PI_IO_V i_lse_clk (
     .PAD(pad_lse_clk_pad),
     .DATA(1'b0),
@@ -182,10 +192,28 @@ module chimera_padframe_aon_static_pads
     .BIAS(BIAS_S),
     .RETC(RETC_S)
   );
-   IN22FDX_GPIO18_10M3S40PI_IO_V i_bootsel (
-    .PAD(pad_bootsel_pad),
+   IN22FDX_GPIO18_10M3S40PI_IO_V i_bootsel_0 (
+    .PAD(pad_bootsel_0_pad),
     .DATA(1'b0),
-    .Y(static_connection_signals_pad2soc.st_bootsel),
+    .Y(static_connection_signals_pad2soc.st_bootsel_0),
+    .TRIEN(1'b1),
+    .RXEN(1'b1),
+    .PUEN(1'b0),
+    .PDEN(1'b0),
+    .NDIN(1'b0),
+    .NDOUT(),
+    .DRV(2'b11),
+    .SLW(1'b0),
+    .SMT(1'b0),
+    .PWROK(PWROK_S),
+    .IOPWROK(IOPWROK_S),
+    .BIAS(BIAS_S),
+    .RETC(RETC_S)
+  );
+   IN22FDX_GPIO18_10M3S40PI_IO_V i_bootsel_1 (
+    .PAD(pad_bootsel_1_pad),
+    .DATA(1'b0),
+    .Y(static_connection_signals_pad2soc.st_bootsel_1),
     .TRIEN(1'b1),
     .RXEN(1'b1),
     .PUEN(1'b0),

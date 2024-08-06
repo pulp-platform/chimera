@@ -18,6 +18,7 @@ module fixture_chimera_soc #(
    import tb_cheshire_pkg::*;
    import chimera_pkg::*;
 
+   localparam int unsigned   NumGpio = 32;
    localparam cheshire_cfg_t DutCfg = ChimeraCfg[SelectedCfg];
 
    `CHESHIRE_TYPEDEF_ALL(, DutCfg)
@@ -63,103 +64,84 @@ module fixture_chimera_soc #(
    logic [SlinkNumChan-1:0][SlinkNumLanes-1:0] slink_i;
    logic [SlinkNumChan-1:0][SlinkNumLanes-1:0] slink_o;
 
+   // Wire signals to connect with Chimera ports
+   wire               w_soc_clk;
+   wire               w_rst_n;
+   wire               w_byp_sel_clk;
+   wire               w_jtag_tck;
+   wire               w_jtag_trst_n;
+   wire               w_jtag_tms;
+   wire               w_jtag_tdi;
+   wire               w_jtag_tdo;
+   wire               w_boot_mode_0;
+   wire               w_boot_mode_1;
+   wire [NumGpio-1:0] w_gpio;
+   wire               xxxxxx;
+
+   assign w_jtag_tms = jtag_tms;
+   assign w_soc_clk = soc_clk;
+   assign w_rst_n = rst_n;
+   assign w_jtag_tck = jtag_tck;
+   // assign w_jtag_tck = 1'b0;
+
+   assign w_jtag_trst_n = jtag_trst_n;
+   assign w_jtag_tms = jtag_tms;
+   assign w_jtag_tdi = jtag_tdi;
+   assign jtag_tdo = w_jtag_tdo;
+   assign w_boot_mode_0 = boot_mode[0];
+   assign w_boot_mode_1 = boot_mode[1];
+   assign w_byp_sel_clk = 1'b0;
+   assign w_gpio = '0;
+
+
    chimera #(
        .SelectedCfg(SelectedCfg)
        ) dut (
 
-        .pad_aon_static_lse_clk_pad     (soc_clk),
-        .pad_aon_static_hse_clk_pad     (soc_clk),
-        .pad_aon_static_byp_sel_clk_pad ('0),
-        .pad_aon_static_rstn_pad        (rst_n),
-        .pad_aon_static_jtag_tck_pad    (jtag_tck),
-        .pad_aon_static_jtag_trstn_pad  (jtag_trst_n),
-        .pad_aon_static_jtag_tms_pad    (jtag_tms),
-        .pad_aon_static_jtag_tdi_pad    (jtag_tdi),
-        .pad_aon_static_jtag_tdo_pad    (jtag_tdo),
-        .pad_aon_static_bootsel_pad     (boot_mode),
-        .pad_aon_gpioa_gpio_0_pad       (),
-        .pad_aon_gpioa_gpio_1_pad       (),
-        .pad_aon_gpioa_gpio_2_pad     (),
-        .pad_aon_gpioa_gpio_3_pad     (),
-        .pad_aon_gpioa_gpio_4_pad     (),
-        .pad_aon_gpioa_gpio_5_pad     (),
-        .pad_aon_gpioa_gpio_6_pad     (),
-        .pad_aon_gpioa_gpio_7_pad     (),
-        .pad_aon_gpioa_gpio_8_pad     (),
-        .pad_aon_gpioa_gpio_9_pad       (),
-        .pad_aon_gpioa_gpio_10_pad      (),
-        .pad_aon_gpioa_gpio_11_pad      (),
-        .pad_aon_gpioa_gpio_12_pad      (),
-        .pad_aon_gpioa_gpio_13_pad      (),
-        .pad_aon_gpioa_gpio_14_pad      (),
-        .pad_aon_gpioa_gpio_15_pad      (),
-        .pad_aon_gpioa_gpio_16_pad      (),
-        .pad_aon_gpioa_gpio_17_pad      (),
-        .pad_aon_gpioa_gpio_18_pad      (),
-        .pad_aon_gpioa_gpio_19_pad      (),
-        .pad_aon_gpioa_gpio_20_pad      (),
-        .pad_aon_gpioa_gpio_21_pad      (),
-        .pad_aon_gpioa_gpio_22_pad      (),
-        .pad_aon_gpioa_gpio_23_pad      (),
-        .pad_aon_gpioa_gpio_24_pad      (),
-        .pad_aon_gpioa_gpio_25_pad      (),
-        .pad_aon_gpioa_gpio_26_pad      (),
-        .pad_aon_gpioa_gpio_27_pad      (),
-        .pad_aon_gpioa_gpio_28_pad      (),
-        .pad_aon_gpioa_gpio_29_pad      (),
-        .pad_aon_gpioa_gpio_30_pad      (),
-        .pad_aon_gpioa_gpio_31_pad      ()
+        .pad_aon_static_lse_clk_pad     (w_soc_clk),
+        .pad_aon_static_hse_clk_pad     (w_soc_clk),
+        .pad_aon_static_byp_sel_clk_pad (w_byp_sel_clk),
+        .pad_aon_static_rstn_pad        (w_rst_n),
+        .pad_aon_static_jtag_tck_pad    (w_jtag_tck),
+        .pad_aon_static_jtag_trstn_pad  (w_jtag_trst_n),
+        .pad_aon_static_jtag_tms_pad    (w_jtag_tms),
+        .pad_aon_static_jtag_tdi_pad    (w_jtag_tdi),
+        .pad_aon_static_jtag_tdo_pad    (w_jtag_tdo),
+        .pad_aon_static_bootsel_0_pad   (w_boot_mode_0),
+        .pad_aon_static_bootsel_1_pad   (w_boot_mode_1),
+        .pad_aon_gpioa_gpio_0_pad       (w_gpio[0]),
+        .pad_aon_gpioa_gpio_1_pad       (w_gpio[1]),
+        .pad_aon_gpioa_gpio_2_pad       (w_gpio[2]),
+        .pad_aon_gpioa_gpio_3_pad       (w_gpio[3]),
+        .pad_aon_gpioa_gpio_4_pad       (w_gpio[4]),
+        .pad_aon_gpioa_gpio_5_pad       (w_gpio[5]),
+        .pad_aon_gpioa_gpio_6_pad       (w_gpio[6]),
+        .pad_aon_gpioa_gpio_7_pad       (w_gpio[7]),
+        .pad_aon_gpioa_gpio_8_pad       (w_gpio[8]),
+        .pad_aon_gpioa_gpio_9_pad       (w_gpio[9]),
+        .pad_aon_gpioa_gpio_10_pad      (w_gpio[10]),
+        .pad_aon_gpioa_gpio_11_pad      (w_gpio[11]),
+        .pad_aon_gpioa_gpio_12_pad      (w_gpio[12]),
+        .pad_aon_gpioa_gpio_13_pad      (w_gpio[13]),
+        .pad_aon_gpioa_gpio_14_pad      (w_gpio[14]),
+        .pad_aon_gpioa_gpio_15_pad      (w_gpio[15]),
+        .pad_aon_gpioa_gpio_16_pad      (w_gpio[16]),
+        .pad_aon_gpioa_gpio_17_pad      (w_gpio[17]),
+        .pad_aon_gpioa_gpio_18_pad      (w_gpio[18]),
+        .pad_aon_gpioa_gpio_19_pad      (w_gpio[19]),
+        .pad_aon_gpioa_gpio_20_pad      (w_gpio[20]),
+        .pad_aon_gpioa_gpio_21_pad      (w_gpio[21]),
+        .pad_aon_gpioa_gpio_22_pad      (w_gpio[22]),
+        .pad_aon_gpioa_gpio_23_pad      (w_gpio[23]),
+        .pad_aon_gpioa_gpio_24_pad      (w_gpio[24]),
+        .pad_aon_gpioa_gpio_25_pad      (w_gpio[25]),
+        .pad_aon_gpioa_gpio_26_pad      (w_gpio[26]),
+        .pad_aon_gpioa_gpio_27_pad      (w_gpio[27]),
+        .pad_aon_gpioa_gpio_28_pad      (w_gpio[28]),
+        .pad_aon_gpioa_gpio_29_pad      (w_gpio[29]),
+        .pad_aon_gpioa_gpio_30_pad      (w_gpio[30]),
+        .pad_aon_gpioa_gpio_31_pad      (w_gpio[31])
         );
-
-   // chimera_top_wrapper #(
-   //			 .SelectedCfg(SelectedCfg)
-   //			 ) dut (
-   //				.soc_clk_i              ( soc_clk       ),
-   //				.clu_clk_i              ( clu_clk       ),
-   //				.rst_ni             ( rst_n     ),
-   //				.test_mode_i        ( test_mode ),
-   //				.boot_mode_i        ( boot_mode ),
-   //				.rtc_i              ( rtc       ),
-   //				.jtag_tck_i         ( jtag_tck    ),
-   //				.jtag_trst_ni       ( jtag_trst_n ),
-   //				.jtag_tms_i         ( jtag_tms    ),
-   //				.jtag_tdi_i         ( jtag_tdi    ),
-   //				.jtag_tdo_o         ( jtag_tdo    ),
-   //				.jtag_tdo_oe_o      ( ),
-   //				.uart_tx_o          ( uart_tx ),
-   //				.uart_rx_i          ( uart_rx ),
-   //				.uart_rts_no        ( ),
-   //				.uart_dtr_no        ( ),
-   //				.uart_cts_ni        ( 1'b0 ),
-   //				.uart_dsr_ni        ( 1'b0 ),
-   //				.uart_dcd_ni        ( 1'b0 ),
-   //				.uart_rin_ni        ( 1'b0 ),
-   //				.i2c_sda_o          ( i2c_sda_o  ),
-   //				.i2c_sda_i          ( i2c_sda_i  ),
-   //				.i2c_sda_en_o       ( i2c_sda_en ),
-   //				.i2c_scl_o          ( i2c_scl_o  ),
-   //				.i2c_scl_i          ( i2c_scl_i  ),
-   //				.i2c_scl_en_o       ( i2c_scl_en ),
-   //				.spih_sck_o         ( spih_sck_o  ),
-   //				.spih_sck_en_o      ( spih_sck_en ),
-   //				.spih_csb_o         ( spih_csb_o  ),
-   //				.spih_csb_en_o      ( spih_csb_en ),
-   //				.spih_sd_o          ( spih_sd_o   ),
-   //				.spih_sd_en_o       ( spih_sd_en  ),
-   //				.spih_sd_i          ( spih_sd_i   ),
-   //				.gpio_i             ( '0 ),
-   //				.gpio_o             ( ),
-   //				.gpio_en_o          ( ),
-   //				.slink_rcv_clk_i    ( slink_rcv_clk_i ),
-   //				.slink_rcv_clk_o    ( slink_rcv_clk_o ),
-   //				.slink_i            ( slink_i ),
-   //				.slink_o            ( slink_o ),
-   //				.vga_hsync_o        ( ),
-   //				.vga_vsync_o        ( ),
-   //				.vga_red_o          ( ),
-   //				.vga_green_o        ( ),
-   //				.vga_blue_o         ( )
-   //				);
 
    ////////////////////////
    //  Tristate Adapter  //
