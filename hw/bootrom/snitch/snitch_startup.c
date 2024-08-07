@@ -64,57 +64,56 @@ void cluster_return(uint32_t ret) {
     return;
 }
 
+void clean_busy() {
 
-void clean_busy(){
+    uint8_t hartId;
+    asm("csrr %0, mhartid" : "=r"(hartId)::);
 
-  uint8_t hartId;
-  asm("csrr %0, mhartid" : "=r"(hartId)::);
+    switch (hartId) {
 
-  switch (hartId) {
+    case 1:
+        *((volatile uint32_t *)(SOC_CTRL_BASE + CHIMERA_CLUSTER_1_BUSY_REG_OFFSET)) = 0;
+        break;
+    case 10:
+        *((volatile uint32_t *)(SOC_CTRL_BASE + CHIMERA_CLUSTER_2_BUSY_REG_OFFSET)) = 0;
+        break;
+    case 19:
+        *((volatile uint32_t *)(SOC_CTRL_BASE + CHIMERA_CLUSTER_3_BUSY_REG_OFFSET)) = 0;
+        break;
+    case 28:
+        *((volatile uint32_t *)(SOC_CTRL_BASE + CHIMERA_CLUSTER_4_BUSY_REG_OFFSET)) = 0;
+        break;
+    case 37:
+        *((volatile uint32_t *)(SOC_CTRL_BASE + CHIMERA_CLUSTER_5_BUSY_REG_OFFSET)) = 0;
+        break;
+    }
 
-  case 1:
-    *((volatile uint32_t*) (SOC_CTRL_BASE + CHIMERA_CLUSTER_1_BUSY_REG_OFFSET)) = 0;
-    break;
-  case 10:
-    *((volatile uint32_t*) (SOC_CTRL_BASE + CHIMERA_CLUSTER_2_BUSY_REG_OFFSET)) = 0;
-    break;
-  case 19:
-    *((volatile uint32_t*) (SOC_CTRL_BASE + CHIMERA_CLUSTER_3_BUSY_REG_OFFSET)) = 0;
-    break;
-  case 28:
-    *((volatile uint32_t*) (SOC_CTRL_BASE + CHIMERA_CLUSTER_4_BUSY_REG_OFFSET)) = 0;
-    break;
-  case 37:
-    *((volatile uint32_t*) (SOC_CTRL_BASE + CHIMERA_CLUSTER_5_BUSY_REG_OFFSET)) = 0;
-    break;
-  }
-
-  return;
+    return;
 }
 
-void set_busy(){
+void set_busy() {
 
-  uint8_t hartId;
-  asm("csrr %0, mhartid" : "=r"(hartId)::);
+    uint8_t hartId;
+    asm("csrr %0, mhartid" : "=r"(hartId)::);
 
-  switch (hartId) {
+    switch (hartId) {
 
-  case 1:
-    *((volatile uint32_t*) (SOC_CTRL_BASE + CHIMERA_CLUSTER_1_BUSY_REG_OFFSET)) = 1;
-    break;
-  case 10:
-    *((volatile uint32_t*) (SOC_CTRL_BASE + CHIMERA_CLUSTER_2_BUSY_REG_OFFSET)) = 1;
-    break;
-  case 19:
-    *((volatile uint32_t*) (SOC_CTRL_BASE + CHIMERA_CLUSTER_3_BUSY_REG_OFFSET)) = 1;
-    break;
-  case 28:
-    *((volatile uint32_t*) (SOC_CTRL_BASE + CHIMERA_CLUSTER_4_BUSY_REG_OFFSET)) = 1;
-    break;
-  case 37:
-    *((volatile uint32_t*) (SOC_CTRL_BASE + CHIMERA_CLUSTER_5_BUSY_REG_OFFSET)) = 1;
-    break;
-  }
+    case 1:
+        *((volatile uint32_t *)(SOC_CTRL_BASE + CHIMERA_CLUSTER_1_BUSY_REG_OFFSET)) = 1;
+        break;
+    case 10:
+        *((volatile uint32_t *)(SOC_CTRL_BASE + CHIMERA_CLUSTER_2_BUSY_REG_OFFSET)) = 1;
+        break;
+    case 19:
+        *((volatile uint32_t *)(SOC_CTRL_BASE + CHIMERA_CLUSTER_3_BUSY_REG_OFFSET)) = 1;
+        break;
+    case 28:
+        *((volatile uint32_t *)(SOC_CTRL_BASE + CHIMERA_CLUSTER_4_BUSY_REG_OFFSET)) = 1;
+        break;
+    case 37:
+        *((volatile uint32_t *)(SOC_CTRL_BASE + CHIMERA_CLUSTER_5_BUSY_REG_OFFSET)) = 1;
+        break;
+    }
 
-  return;
+    return;
 }
