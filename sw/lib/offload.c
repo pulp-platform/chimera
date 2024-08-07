@@ -15,6 +15,26 @@ void setupInterruptHandler(void *handler) {
     *snitchTrapHandlerAddr = handler;
 }
 
+void waitClusterBusy(uint8_t clusterId) {
+    volatile int32_t *busy_ptr;
+
+    if (clusterId == 0) {
+        busy_ptr = (volatile int32_t *)(SOC_CTRL_BASE + CHIMERA_CLUSTER_1_BUSY_REG_OFFSET);
+    } else if (clusterId == 1) {
+        busy_ptr = (volatile int32_t *)(SOC_CTRL_BASE + CHIMERA_CLUSTER_2_BUSY_REG_OFFSET);
+    } else if (clusterId == 2) {
+        busy_ptr = (volatile int32_t *)(SOC_CTRL_BASE + CHIMERA_CLUSTER_3_BUSY_REG_OFFSET);
+    } else if (clusterId == 3) {
+        busy_ptr = (volatile int32_t *)(SOC_CTRL_BASE + CHIMERA_CLUSTER_4_BUSY_REG_OFFSET);
+    } else if (clusterId == 4) {
+        busy_ptr = (volatile int32_t *)(SOC_CTRL_BASE + CHIMERA_CLUSTER_5_BUSY_REG_OFFSET);
+    }
+
+    while (*busy_ptr == 1) {
+    }
+    return;
+}
+
 /* Offloads a void function pointer to the specified cluster's core 0 */
 void offloadToCluster(void *function, uint8_t clusterId) {
 
@@ -26,6 +46,7 @@ void offloadToCluster(void *function, uint8_t clusterId) {
     uint32_t hartId = clusterId * 9 + 1;
 
     volatile uint32_t *interruptTarget = ((uint32_t *)CLINT_CTRL_BASE) + hartId;
+    waitClusterBusy(clusterId);
     *interruptTarget = 1;
 }
 

@@ -380,7 +380,6 @@ module chimera_top_wrapper
           .clu_wide_out_req_i(clu_axi_wide_mst_req[extClusterIdx]),
           .clu_wide_out_resp_o(clu_axi_wide_mst_resp[extClusterIdx]),
 
-          //.wide_mem_bypass_mode(reg2hw.wide_mem_cluster_bypass.q)
           .wide_mem_bypass_mode_i(wide_mem_bypass_mode[extClusterIdx])
       );
 

@@ -118,6 +118,21 @@ module chimera_reg_top #(
   logic wide_mem_cluster_5_bypass_qs;
   logic wide_mem_cluster_5_bypass_wd;
   logic wide_mem_cluster_5_bypass_we;
+  logic cluster_1_busy_qs;
+  logic cluster_1_busy_wd;
+  logic cluster_1_busy_we;
+  logic cluster_2_busy_qs;
+  logic cluster_2_busy_wd;
+  logic cluster_2_busy_we;
+  logic cluster_3_busy_qs;
+  logic cluster_3_busy_wd;
+  logic cluster_3_busy_we;
+  logic cluster_4_busy_qs;
+  logic cluster_4_busy_wd;
+  logic cluster_4_busy_we;
+  logic cluster_5_busy_qs;
+  logic cluster_5_busy_wd;
+  logic cluster_5_busy_we;
 
   // Register instances
   // R[snitch_boot_addr]: V(False)
@@ -579,9 +594,144 @@ module chimera_reg_top #(
   );
 
 
+  // R[cluster_1_busy]: V(False)
+
+  prim_subreg #(
+    .DW      (1),
+    .SWACCESS("RW"),
+    .RESVAL  (1'h1)
+  ) u_cluster_1_busy (
+    .clk_i   (clk_i    ),
+    .rst_ni  (rst_ni  ),
+
+    // from register interface
+    .we     (cluster_1_busy_we),
+    .wd     (cluster_1_busy_wd),
+
+    // from internal hardware
+    .de     (1'b0),
+    .d      ('0  ),
+
+    // to internal hardware
+    .qe     (),
+    .q      (reg2hw.cluster_1_busy.q ),
+
+    // to register interface (read)
+    .qs     (cluster_1_busy_qs)
+  );
 
 
-  logic [16:0] addr_hit;
+  // R[cluster_2_busy]: V(False)
+
+  prim_subreg #(
+    .DW      (1),
+    .SWACCESS("RW"),
+    .RESVAL  (1'h1)
+  ) u_cluster_2_busy (
+    .clk_i   (clk_i    ),
+    .rst_ni  (rst_ni  ),
+
+    // from register interface
+    .we     (cluster_2_busy_we),
+    .wd     (cluster_2_busy_wd),
+
+    // from internal hardware
+    .de     (1'b0),
+    .d      ('0  ),
+
+    // to internal hardware
+    .qe     (),
+    .q      (reg2hw.cluster_2_busy.q ),
+
+    // to register interface (read)
+    .qs     (cluster_2_busy_qs)
+  );
+
+
+  // R[cluster_3_busy]: V(False)
+
+  prim_subreg #(
+    .DW      (1),
+    .SWACCESS("RW"),
+    .RESVAL  (1'h1)
+  ) u_cluster_3_busy (
+    .clk_i   (clk_i    ),
+    .rst_ni  (rst_ni  ),
+
+    // from register interface
+    .we     (cluster_3_busy_we),
+    .wd     (cluster_3_busy_wd),
+
+    // from internal hardware
+    .de     (1'b0),
+    .d      ('0  ),
+
+    // to internal hardware
+    .qe     (),
+    .q      (reg2hw.cluster_3_busy.q ),
+
+    // to register interface (read)
+    .qs     (cluster_3_busy_qs)
+  );
+
+
+  // R[cluster_4_busy]: V(False)
+
+  prim_subreg #(
+    .DW      (1),
+    .SWACCESS("RW"),
+    .RESVAL  (1'h1)
+  ) u_cluster_4_busy (
+    .clk_i   (clk_i    ),
+    .rst_ni  (rst_ni  ),
+
+    // from register interface
+    .we     (cluster_4_busy_we),
+    .wd     (cluster_4_busy_wd),
+
+    // from internal hardware
+    .de     (1'b0),
+    .d      ('0  ),
+
+    // to internal hardware
+    .qe     (),
+    .q      (reg2hw.cluster_4_busy.q ),
+
+    // to register interface (read)
+    .qs     (cluster_4_busy_qs)
+  );
+
+
+  // R[cluster_5_busy]: V(False)
+
+  prim_subreg #(
+    .DW      (1),
+    .SWACCESS("RW"),
+    .RESVAL  (1'h1)
+  ) u_cluster_5_busy (
+    .clk_i   (clk_i    ),
+    .rst_ni  (rst_ni  ),
+
+    // from register interface
+    .we     (cluster_5_busy_we),
+    .wd     (cluster_5_busy_wd),
+
+    // from internal hardware
+    .de     (1'b0),
+    .d      ('0  ),
+
+    // to internal hardware
+    .qe     (),
+    .q      (reg2hw.cluster_5_busy.q ),
+
+    // to register interface (read)
+    .qs     (cluster_5_busy_qs)
+  );
+
+
+
+
+  logic [21:0] addr_hit;
   always_comb begin
     addr_hit = '0;
     addr_hit[ 0] = (reg_addr == CHIMERA_SNITCH_BOOT_ADDR_OFFSET);
@@ -601,6 +751,11 @@ module chimera_reg_top #(
     addr_hit[14] = (reg_addr == CHIMERA_WIDE_MEM_CLUSTER_3_BYPASS_OFFSET);
     addr_hit[15] = (reg_addr == CHIMERA_WIDE_MEM_CLUSTER_4_BYPASS_OFFSET);
     addr_hit[16] = (reg_addr == CHIMERA_WIDE_MEM_CLUSTER_5_BYPASS_OFFSET);
+    addr_hit[17] = (reg_addr == CHIMERA_CLUSTER_1_BUSY_OFFSET);
+    addr_hit[18] = (reg_addr == CHIMERA_CLUSTER_2_BUSY_OFFSET);
+    addr_hit[19] = (reg_addr == CHIMERA_CLUSTER_3_BUSY_OFFSET);
+    addr_hit[20] = (reg_addr == CHIMERA_CLUSTER_4_BUSY_OFFSET);
+    addr_hit[21] = (reg_addr == CHIMERA_CLUSTER_5_BUSY_OFFSET);
   end
 
   assign addrmiss = (reg_re || reg_we) ? ~|addr_hit : 1'b0 ;
@@ -624,7 +779,12 @@ module chimera_reg_top #(
                (addr_hit[13] & (|(CHIMERA_PERMIT[13] & ~reg_be))) |
                (addr_hit[14] & (|(CHIMERA_PERMIT[14] & ~reg_be))) |
                (addr_hit[15] & (|(CHIMERA_PERMIT[15] & ~reg_be))) |
-               (addr_hit[16] & (|(CHIMERA_PERMIT[16] & ~reg_be)))));
+               (addr_hit[16] & (|(CHIMERA_PERMIT[16] & ~reg_be))) |
+               (addr_hit[17] & (|(CHIMERA_PERMIT[17] & ~reg_be))) |
+               (addr_hit[18] & (|(CHIMERA_PERMIT[18] & ~reg_be))) |
+               (addr_hit[19] & (|(CHIMERA_PERMIT[19] & ~reg_be))) |
+               (addr_hit[20] & (|(CHIMERA_PERMIT[20] & ~reg_be))) |
+               (addr_hit[21] & (|(CHIMERA_PERMIT[21] & ~reg_be)))));
   end
 
   assign snitch_boot_addr_we = addr_hit[0] & reg_we & !reg_error;
@@ -677,6 +837,21 @@ module chimera_reg_top #(
 
   assign wide_mem_cluster_5_bypass_we = addr_hit[16] & reg_we & !reg_error;
   assign wide_mem_cluster_5_bypass_wd = reg_wdata[0];
+
+  assign cluster_1_busy_we = addr_hit[17] & reg_we & !reg_error;
+  assign cluster_1_busy_wd = reg_wdata[0];
+
+  assign cluster_2_busy_we = addr_hit[18] & reg_we & !reg_error;
+  assign cluster_2_busy_wd = reg_wdata[0];
+
+  assign cluster_3_busy_we = addr_hit[19] & reg_we & !reg_error;
+  assign cluster_3_busy_wd = reg_wdata[0];
+
+  assign cluster_4_busy_we = addr_hit[20] & reg_we & !reg_error;
+  assign cluster_4_busy_wd = reg_wdata[0];
+
+  assign cluster_5_busy_we = addr_hit[21] & reg_we & !reg_error;
+  assign cluster_5_busy_wd = reg_wdata[0];
 
   // Read data return
   always_comb begin
@@ -748,6 +923,26 @@ module chimera_reg_top #(
 
       addr_hit[16]: begin
         reg_rdata_next[0] = wide_mem_cluster_5_bypass_qs;
+      end
+
+      addr_hit[17]: begin
+        reg_rdata_next[0] = cluster_1_busy_qs;
+      end
+
+      addr_hit[18]: begin
+        reg_rdata_next[0] = cluster_2_busy_qs;
+      end
+
+      addr_hit[19]: begin
+        reg_rdata_next[0] = cluster_3_busy_qs;
+      end
+
+      addr_hit[20]: begin
+        reg_rdata_next[0] = cluster_4_busy_qs;
+      end
+
+      addr_hit[21]: begin
+        reg_rdata_next[0] = cluster_5_busy_qs;
       end
 
       default: begin

@@ -8,4 +8,5 @@
 
 void setupInterruptHandler(void *handler);
 void offloadToCluster(void *function, uint8_t hartId);
+void waitClusterBusy(uint8_t clusterId);
 uint32_t waitForCluster(uint8_t clusterId);

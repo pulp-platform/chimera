@@ -77,6 +77,26 @@ extern "C" {
 #define CHIMERA_WIDE_MEM_CLUSTER_5_BYPASS_REG_OFFSET 0x40
 #define CHIMERA_WIDE_MEM_CLUSTER_5_BYPASS_WIDE_MEM_CLUSTER_5_BYPASS_BIT 0
 
+// Register to identify when cluster 1 is busy
+#define CHIMERA_CLUSTER_1_BUSY_REG_OFFSET 0x44
+#define CHIMERA_CLUSTER_1_BUSY_CLUSTER_1_BUSY_BIT 0
+
+// Register to identify when cluster 2 is busy
+#define CHIMERA_CLUSTER_2_BUSY_REG_OFFSET 0x48
+#define CHIMERA_CLUSTER_2_BUSY_CLUSTER_2_BUSY_BIT 0
+
+// Register to identify when cluster 3 is busy
+#define CHIMERA_CLUSTER_3_BUSY_REG_OFFSET 0x4c
+#define CHIMERA_CLUSTER_3_BUSY_CLUSTER_3_BUSY_BIT 0
+
+// Register to identify when cluster 4 is busy
+#define CHIMERA_CLUSTER_4_BUSY_REG_OFFSET 0x50
+#define CHIMERA_CLUSTER_4_BUSY_CLUSTER_4_BUSY_BIT 0
+
+// Register to identify when cluster 5 is busy
+#define CHIMERA_CLUSTER_5_BUSY_REG_OFFSET 0x54
+#define CHIMERA_CLUSTER_5_BUSY_CLUSTER_5_BUSY_BIT 0
+
 #ifdef __cplusplus
 } // extern "C"
 #endif
