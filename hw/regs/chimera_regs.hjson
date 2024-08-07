@@ -203,5 +203,56 @@
 		{ bits: "0:0" }
 	    ],
 	}
+	{
+	    name: "CLUSTER_1_BUSY",
+	    desc: "Register to identify when cluster 1 is busy",
+	    swaccess: "rw",
+	    hwaccess: "hro",
+	    resval: "1",
+	    fields: [
+		{ bits: "0:0" }
+	    ],
+	}
+	{
+	    name: "CLUSTER_2_BUSY",
+	    desc: "Register to identify when cluster 2 is busy",
+	    swaccess: "rw",
+	    hwaccess: "hro",
+	    resval: "1",
+	    fields: [
+		{ bits: "0:0" }
+	    ],
+	}
+	{
+	    name: "CLUSTER_3_BUSY",
+	    desc: "Register to identify when cluster 3 is busy",
+	    swaccess: "rw",
+	    hwaccess: "hro",
+	    resval: "1",
+	    fields: [
+		{ bits: "0:0" }
+	    ],
+	}
+	{
+	    name: "CLUSTER_4_BUSY",
+	    desc: "Register to identify when cluster 4 is busy",
+	    swaccess: "rw",
+	    hwaccess: "hro",
+	    resval: "1",
+	    fields: [
+		{ bits: "0:0" }
+	    ],
+	}
+	{
+	    name: "CLUSTER_5_BUSY",
+	    desc: "Register to identify when cluster 5 is busy",
+	    swaccess: "rw",
+	    hwaccess: "hro",
+	    resval: "1",
+	    fields: [
+		{ bits: "0:0" }
+	    ],
+	}
+	
     ] 
 }

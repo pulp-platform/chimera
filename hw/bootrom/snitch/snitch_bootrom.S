@@ -44,8 +44,10 @@ _rerun:
 	li x30, 0
 	li x31, 0
 
+	call clean_busy
 	wfi
-
+	call set_busy
+	
 run_from_reg:
 	la t0, __chim_regs // CHIMERA REGS Base Addr, 0x3000_1000
 	lw t0, CHIMERA_SNITCH_BOOT_ADDR_REG_OFFSET(t0) // CHIMERA_SNITCH_BOOT_ADDR_REG_OFFSET
@@ -63,3 +65,4 @@ _trap_handler_initial:
 	lw t0, CHIMERA_SNITCH_INTR_HANDLER_ADDR_REG_OFFSET(t0)
 	jalr t0
 	mret
+
