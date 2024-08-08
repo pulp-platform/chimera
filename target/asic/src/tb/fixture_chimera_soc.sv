@@ -76,13 +76,11 @@ module fixture_chimera_soc #(
    wire               w_boot_mode_0;
    wire               w_boot_mode_1;
    wire [NumGpio-1:0] w_gpio;
-   wire               xxxxxx;
 
    assign w_jtag_tms = jtag_tms;
    assign w_soc_clk = soc_clk;
    assign w_rst_n = rst_n;
    assign w_jtag_tck = jtag_tck;
-   // assign w_jtag_tck = 1'b0;
 
    assign w_jtag_trst_n = jtag_trst_n;
    assign w_jtag_tms = jtag_tms;
@@ -97,7 +95,7 @@ module fixture_chimera_soc #(
    chimera #(
        .SelectedCfg(SelectedCfg)
        ) dut (
-
+        .rtc_i (rtc),
         .pad_aon_static_lse_clk_pad     (w_soc_clk),
         .pad_aon_static_hse_clk_pad     (w_soc_clk),
         .pad_aon_static_byp_sel_clk_pad (w_byp_sel_clk),

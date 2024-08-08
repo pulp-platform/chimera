@@ -32,6 +32,11 @@ void waitClusterBusy(uint8_t clusterId) {
 
     while (*busy_ptr == 1) {
     }
+    // TODO: temporary  fix
+    for (int i = 0; i < 1000; i++) {
+        // NOP
+        asm volatile("addi x0, x0, 0\n" :::);
+    }
     return;
 }
 
