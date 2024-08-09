@@ -32,7 +32,7 @@ void clusterTrapHandler() {
 }
 
 int32_t returnPtr(uint32_t ClstIdx) {
-    int32_t regPtr;
+    int32_t regPtr = 0;
 
     if (ClstIdx == 0) {
         regPtr = (SOC_CTRL_BASE + CHIMERA_WIDE_MEM_CLUSTER_1_BYPASS_REG_OFFSET);
@@ -91,11 +91,11 @@ int main() {
     }
 
     /* Offload Cluster 2 and Test WIDE PATH */
-    regPtr = (volatile int32_t *)returnPtr(2);
+    regPtr = (volatile int32_t *)returnPtr(1);
     *regPtr = 0;
     setupInterruptHandler(clusterTrapHandler);
-    offloadToCluster(testMemWide, 2);
-    retVal = waitForCluster(2);
+    offloadToCluster(testMemWide, 1);
+    retVal = waitForCluster(1);
 
     if (retVal != TESTWIDE) {
         return 4;

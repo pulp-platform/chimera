@@ -16,7 +16,7 @@ void setupInterruptHandler(void *handler) {
 }
 
 void waitClusterBusy(uint8_t clusterId) {
-    volatile int32_t *busy_ptr;
+    volatile int32_t *busy_ptr = 0;
 
     if (clusterId == 0) {
         busy_ptr = (volatile int32_t *)(SOC_CTRL_BASE + CHIMERA_CLUSTER_1_BUSY_REG_OFFSET);
@@ -58,7 +58,7 @@ void offloadToCluster(void *function, uint8_t clusterId) {
 /* Busy waits for the return of a cluster, clears the return register, and
  * returns the return value */
 uint32_t waitForCluster(uint8_t clusterId) {
-    volatile int32_t *snitchReturnAddr;
+    volatile int32_t *snitchReturnAddr = 0;
     if (clusterId == 0) {
         snitchReturnAddr =
             (volatile int32_t *)(SOC_CTRL_BASE + CHIMERA_SNITCH_CLUSTER_1_RETURN_REG_OFFSET);
