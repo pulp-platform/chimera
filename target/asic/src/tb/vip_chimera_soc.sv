@@ -11,18 +11,19 @@
 
 module vip_chimera_soc import cheshire_pkg::*; #(
   // DUT (must be set)
-  parameter		 cheshire_cfg_t DutCfg = '0,
+  parameter              cheshire_cfg_t DutCfg = '0,
   // Timing
-  parameter type	 axi_ext_mst_req_t = logic,
-  parameter type	 axi_ext_mst_rsp_t = logic,
+  parameter              type axi_ext_mst_req_t = logic,
+  parameter              type axi_ext_mst_rsp_t = logic,
 
-  parameter time	 ClkPeriodClu = 2ns,
-  parameter time	 ClkPeriodSys = 5ns,
-  parameter time	 ClkPeriodJtag = 20ns,
-  parameter time	 ClkPeriodRtc = 30518ns,
+  parameter time         ClkPeriodClu = 2ns,
+  parameter time         ClkPeriodSys = 5ns,
+  parameter time         ClkPeriodJtag = 20ns,
+  parameter time         ClkPeriodRef = 31252ns, // ~ 32 kHz
+  parameter time         ClkPeriodRtc = 30518ns,
   parameter int unsigned RstCycles = 5,
-  parameter real	 TAppl = 0.1,
-  parameter real	 TTest = 0.9,
+  parameter real         TAppl = 0.1,
+  parameter real         TTest = 0.9,
   // UART
   parameter int unsigned UartBaudRate = 115200,
   parameter int unsigned UartParityEna = 0,
@@ -35,38 +36,39 @@ module vip_chimera_soc import cheshire_pkg::*; #(
   parameter int unsigned SlinkBurstBytes = 1024,
   parameter int unsigned SlinkMaxTxns = 32,
   parameter int unsigned SlinkMaxTxnsPerId = 16,
-  parameter bit		 SlinkAxiDebug = 0,
+  parameter bit          SlinkAxiDebug = 0,
   // Derived Parameters;  *do not override*
   parameter int unsigned AxiStrbWidth = DutCfg.AxiDataWidth/8,
   parameter int unsigned AxiStrbBits = $clog2(DutCfg.AxiDataWidth/8)
 ) (
-  output logic					     soc_clk,
-  output logic					     clu_clk,
-  output logic					     rst_n,
-  output logic					     test_mode,
-  output logic [1:0]				     boot_mode,
-  output logic					     rtc,
-  input						     axi_ext_mst_req_t axi_slink_mst_req,
-  output					     axi_ext_mst_rsp_t axi_slink_mst_rsp,
+  output logic                                       soc_clk,
+  output logic                                       clu_clk,
+  output logic                                       ref_clk,
+  output logic                                       rst_n,
+  output logic                                       test_mode,
+  output logic [1:0]                                 boot_mode,
+  output logic                                       rtc,
+  input                                              axi_ext_mst_req_t axi_slink_mst_req,
+  output                                             axi_ext_mst_rsp_t axi_slink_mst_rsp,
   // JTAG interface
-  output logic					     jtag_tck,
-  output logic					     jtag_trst_n,
-  output logic					     jtag_tms,
-  output logic					     jtag_tdi,
-  input logic					     jtag_tdo,
+  output logic                                       jtag_tck,
+  output logic                                       jtag_trst_n,
+  output logic                                       jtag_tms,
+  output logic                                       jtag_tdi,
+  input logic                                        jtag_tdo,
   // UART interface
-  input logic					     uart_tx,
-  output logic					     uart_rx,
+  input logic                                        uart_tx,
+  output logic                                       uart_rx,
   // I2C interface
-  inout wire					     i2c_sda,
-  inout wire					     i2c_scl,
+  inout wire                                         i2c_sda,
+  inout wire                                         i2c_scl,
   // SPI host interface
-  inout wire					     spih_sck,
-  inout wire [SpihNumCs-1:0]			     spih_csb,
-  inout wire [ 3:0]				     spih_sd,
+  inout wire                                         spih_sck,
+  inout wire [SpihNumCs-1:0]                         spih_csb,
+  inout wire [ 3:0]                                  spih_sd,
   // Serial link interface
-  output logic [SlinkNumChan-1:0]		     slink_rcv_clk_i,
-  input logic [SlinkNumChan-1:0]		     slink_rcv_clk_o,
+  output logic [SlinkNumChan-1:0]                    slink_rcv_clk_i,
+  input logic [SlinkNumChan-1:0]                     slink_rcv_clk_o,
   output logic [SlinkNumChan-1:0][SlinkNumLanes-1:0] slink_i,
   input logic [SlinkNumChan-1:0][SlinkNumLanes-1:0]  slink_o
 );
@@ -85,6 +87,14 @@ module vip_chimera_soc import cheshire_pkg::*; #(
   import "DPI-C" function byte get_section(output longint address, output longint len);
   import "DPI-C" context function byte read_section(input longint address, inout byte buffer[], input longint len);
 
+   // Reference Clock Gen
+   clk_rst_gen #(
+    .ClkPeriod    ( ClkPeriodRef ),
+    .RstClkCycles ( RstCycles )
+  ) i_clk_rst_ref (
+    .clk_o  ( ref_clk   ),
+    .rst_no ( )
+  );
 
    // CLU Clock Gen
 
@@ -830,13 +840,13 @@ module vip_chimera_soc import cheshire_pkg::*; #(
       // We handle incomplete bursts
       if (i+b-bus_offset >= sec_len) break;
       for (int e = 0; e < AxiStrbWidth; ++e)
-	if (i+b+e < bus_offset) begin
-	  beat[8*e +: 8] = '0;
-	end else if (i+b+e-bus_offset >= sec_len) begin
-	  beat[8*e +: 8] = '0;
-	end else begin
-	  beat[8*e +: 8] = bf [i+b+e-bus_offset];
-	end
+  if (i+b+e < bus_offset) begin
+    beat[8*e +: 8] = '0;
+  end else if (i+b+e-bus_offset >= sec_len) begin
+    beat[8*e +: 8] = '0;
+  end else begin
+    beat[8*e +: 8] = bf [i+b+e-bus_offset];
+  end
 
       beats.push_back(beat);
     end

@@ -30,6 +30,7 @@ module fixture_chimera_soc #(
 
    logic       soc_clk;
    logic       clu_clk;
+   logic       ref_clk;
    logic       rst_n;
    logic       test_mode;
    logic [1:0] boot_mode;
@@ -65,8 +66,9 @@ module fixture_chimera_soc #(
    logic [SlinkNumChan-1:0][SlinkNumLanes-1:0] slink_o;
 
    // Wire signals to connect with Chimera ports
-   wire               w_soc_clk;
+   wire               w_ext_clk;
    wire               w_rst_n;
+   wire               w_ref_clk;
    wire               w_byp_sel_clk;
    wire               w_jtag_tck;
    wire               w_jtag_trst_n;
@@ -78,7 +80,8 @@ module fixture_chimera_soc #(
    wire [NumGpio-1:0] w_gpio;
 
    assign w_jtag_tms = jtag_tms;
-   assign w_soc_clk = soc_clk;
+   assign w_ext_clk = soc_clk;
+   assign w_ref_clk = ref_clk;
    assign w_rst_n = rst_n;
    assign w_jtag_tck = jtag_tck;
 
@@ -88,7 +91,7 @@ module fixture_chimera_soc #(
    assign jtag_tdo = w_jtag_tdo;
    assign w_boot_mode_0 = boot_mode[0];
    assign w_boot_mode_1 = boot_mode[1];
-   assign w_byp_sel_clk = 1'b0;
+   assign w_byp_sel_clk = 1'b1;
    assign w_gpio = '0;
 
 
@@ -96,9 +99,9 @@ module fixture_chimera_soc #(
        .SelectedCfg(SelectedCfg)
        ) dut (
         .rtc_i (rtc),
-        .pad_aon_static_lse_clk_pad     (w_soc_clk),
-        .pad_aon_static_hse_clk_pad     (w_soc_clk),
-        .pad_aon_static_byp_sel_clk_pad (w_byp_sel_clk),
+        .pad_aon_static_ref_clk_pad     (w_ref_clk),
+        .pad_aon_static_ext_clk_pad     (w_ext_clk),
+        .pad_aon_static_byp_fll_sel_pad (w_byp_sel_clk),
         .pad_aon_static_rstn_pad        (w_rst_n),
         .pad_aon_static_jtag_tck_pad    (w_jtag_tck),
         .pad_aon_static_jtag_trstn_pad  (w_jtag_trst_n),

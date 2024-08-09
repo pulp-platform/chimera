@@ -14,9 +14,9 @@ module chimera
      )
    (
     input logic rtc_i,
-    inout wire  logic pad_aon_static_lse_clk_pad,
-    inout wire  logic pad_aon_static_hse_clk_pad,
-    inout wire  logic pad_aon_static_byp_sel_clk_pad,
+    inout wire  logic pad_aon_static_ref_clk_pad,
+    inout wire  logic pad_aon_static_ext_clk_pad,
+    inout wire  logic pad_aon_static_byp_fll_sel_pad,
     inout wire  logic pad_aon_static_rstn_pad,
     inout wire  logic pad_aon_static_jtag_tck_pad,
     inout wire  logic pad_aon_static_jtag_trstn_pad,
@@ -153,9 +153,9 @@ module chimera
        .config_rsp_o (config_reg_rsp),
 
        // pads
-       .pad_aon_static_lse_clk_pad,
-       .pad_aon_static_hse_clk_pad,
-       .pad_aon_static_byp_sel_clk_pad,
+       .pad_aon_static_ref_clk_pad,
+       .pad_aon_static_ext_clk_pad,
+       .pad_aon_static_byp_fll_sel_pad,
        .pad_aon_static_rstn_pad,
        .pad_aon_static_jtag_tck_pad,
        .pad_aon_static_jtag_trstn_pad,
@@ -280,9 +280,9 @@ module chimera
                   .DataWidth(DataWidth)
                   ) i_fll_clk_gen
      (
-      .hse_clk_i   (static_connection_signals_pad2soc.aon_static.st_hse_clk),
-      .lse_clk_i   (static_connection_signals_pad2soc.aon_static.st_lse_clk),
-      .sel_clk_i   (static_connection_signals_pad2soc.aon_static.st_byp_clk_sel),
+      .ext_clk_i   (static_connection_signals_pad2soc.aon_static.st_ext_clk),
+      .ref_clk_i   (static_connection_signals_pad2soc.aon_static.st_ref_clk),
+      .byp_fll_i   (static_connection_signals_pad2soc.aon_static.st_byp_fll_sel),
       .rst_ni      (static_connection_signals_pad2soc.aon_static.st_rstn),
       .scan_en_i   ('0),
       .test_mode_i ('0),

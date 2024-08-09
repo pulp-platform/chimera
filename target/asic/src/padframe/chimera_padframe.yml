@@ -235,33 +235,33 @@ pad_domains:
         pad_type: IN22FDX_GPIO18_10M3S40PI_PWRDET_V
         is_static: true
 
-      - name: lse_clk
-        description: "Low Speed External clock"
+      - name: ref_clk
+        description: "32kHz reference clock"
         pad_type: IN22FDX_GPIO18_10M3S40PI
         is_static: true
         connections:
           chip2pad: 1'b0
-          pad2chip: st_lse_clk
+          pad2chip: st_ref_clk
           rxe: 1'b1
           trie: 1'b1
 
-      - name: hse_clk
-        description: "High Speed External clock"
+      - name: ext_clk
+        description: "External clock"
         pad_type: IN22FDX_GPIO18_10M3S40PI
         is_static: true
         connections:
           chip2pad: 1'b0
-          pad2chip: st_hse_clk
+          pad2chip: st_ext_clk
           rxe: 1'b1
           trie: 1'b1
 
-      - name: byp_sel_clk
-        description: "Bypass signal for clk selection"
+      - name: byp_fll_sel
+        description: "Bypass signal for FLL          "
         pad_type: IN22FDX_GPIO18_10M3S40PI
         is_static: true
         connections:
           chip2pad: 1'b0
-          pad2chip: st_byp_clk_sel
+          pad2chip: st_byp_fll_sel
           trie: 1'b1
           rxe: 1'b1
 

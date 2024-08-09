@@ -9,9 +9,9 @@ module fll_clk_gen #(
          parameter int AddrWidth = 48,
          parameter DataWidth = 32
   ) (
-     input logic                  hse_clk_i, // High Speed External Clk
-     input logic                  lse_clk_i, //Low Speed External Clk
-     input logic                  sel_clk_i, // Clk selct signal
+     input logic                  ext_clk_i, // External Clk
+     input logic                  ref_clk_i, //Reference Clk
+     input logic                  byp_fll_i, // FLL bypass signal
      input logic                  rst_ni, // Prikmary rst signal from the PAD
      input logic                  scan_en_i, // Scan enable
      input logic                  test_mode_i,
@@ -103,7 +103,7 @@ module fll_clk_gen #(
      (
       .FLLCLK ( clk_fll_soc              ),
       .FLLOE  ( 1'b1                     ),
-      .REFCLK ( lse_clk_i                ),
+      .REFCLK ( ref_clk_i                ),
       .LOCK   ( soc_fll_master_lock      ),
       .CFGREQ ( soc_fll_master_req       ),
       .CFGACK ( soc_fll_master_ack       ),
@@ -127,7 +127,7 @@ module fll_clk_gen #(
      (
       .FLLCLK ( clk_fll_clu              ),
       .FLLOE  ( 1'b1                     ),
-      .REFCLK ( lse_clk_i                ),
+      .REFCLK ( ref_clk_i                ),
       .LOCK   ( clu_fll_master_lock      ),
       .CFGREQ ( clu_fll_master_req       ),
       .CFGACK ( clu_fll_master_ack       ),
@@ -148,9 +148,9 @@ module fll_clk_gen #(
 
    // Bypass FLL if sel_clk_i = 1
    always_comb begin
-      if (sel_clk_i == 1'b1) begin
-   soc_clk_o = hse_clk_i;
-   clu_clk_o = hse_clk_i;
+      if (byp_fll_i == 1'b1) begin
+   soc_clk_o = ext_clk_i;
+   clu_clk_o = ext_clk_i;
       end else begin
    soc_clk_o = clk_fll_soc;
    clu_clk_o = clk_fll_clu;

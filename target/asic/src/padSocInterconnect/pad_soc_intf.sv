@@ -64,7 +64,6 @@ module pad_soc_intf
 
    // Connect static pads to SoC signals
    assign rst_no       = static_connections_pad2soc_i.aon_static.st_rstn;
-   //assign soc_clk_o    = static_connections_pad2soc_i.aon_static.st_hse_clk;  // TODO: which clk should be connected here???
    assign boot_mode_o  = {static_connections_pad2soc_i.aon_static.st_bootsel_1, static_connections_pad2soc_i.aon_static.st_bootsel_0};
    assign jtag_tck_o   = static_connections_pad2soc_i.aon_static.st_jtag_tck;
    assign jtag_trst_no = static_connections_pad2soc_i.aon_static.st_jtag_trstn;
@@ -72,7 +71,6 @@ module pad_soc_intf
    assign jtag_tdi_o   = static_connections_pad2soc_i.aon_static.st_jtag_tdi;
 
    assign static_connections_soc2pad_o.aon_static.st_jtag_tdo    = jtag_tdo_i;
-   //assign static_connections_soc2pad_o.aon_static.st_jtag_tdo_oe = jtag_tdo_oe_i;
 
    // Connect dynamic pads to the SoC signals
    // UART
