@@ -46,6 +46,23 @@ jobs:
         fail_on_error: true
         reviewdog_reporter: github-check
 
+  lint-sv-format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: Run Verible formatter action
+        uses: chipsalliance/verible-formatter-action@main
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          files:
+            ./hw/*.sv
+            ./target/sim/src/*.sv
+          parameters:
+            --flagfile .verilog_format
+          fail_on_formatting_suggestions: true
+
   lint-cxx:
     runs-on: ubuntu-latest
     steps:
