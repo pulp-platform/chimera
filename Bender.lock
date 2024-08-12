@@ -69,7 +69,7 @@ packages:
     - common_cells
     - register_interface
   cheshire:
-    revision: d58214e5c6a3e8f8609989005e3f1d663109bd7f
+    revision: 4dfba37385eae48c44080defdfaa3f580921a60c
     version: null
     source:
       Git: https://github.com/pulp-platform/cheshire.git
@@ -141,7 +141,7 @@ packages:
       Git: https://github.com/pulp-platform/common_verification.git
     dependencies: []
   cva6:
-    revision: 9cb2112d5b7823a3b4ad42a1a2419b65e623ec14
+    revision: 637a0e6cbc8ec395c4bb4f54ee9dc1110d3fb1ac
     version: null
     source:
       Git: https://github.com/Scheremo/cva6.git
