@@ -1,3 +1,5 @@
+.svlangserver
+transcript
 .bender
 .venv
 
@@ -19,7 +21,6 @@ hw/regs/pcr.md
 __pycache__
 *.o
 *.a
-
 
 # SIM
 

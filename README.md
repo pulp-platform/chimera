@@ -84,3 +84,11 @@ python scripts/run_clang_format.py -ir hw/ --clang-format-executable=/usr/pack/r
 ```
 
 otherwise you should specify a valid clang-format-12 binary instead.
+
+## Verilog Formatting
+
+To format all hardware source files, run
+
+```
+verible-verilog-format --flagfile .verilog_format --inplace --verbose hw/*.sv target/sim/src/*.sv
+```
