@@ -13,6 +13,7 @@ update_plic: $(CHS_ROOT)/hw/rv_plic.cfg.hjson
 	sed -i 's/src: .*/src: $(PLIC_NUM_INTRS),/' $<
 	sed -i 's/target: .*/target: $(PLICCORES),/' $<
 
+# SCHEREMO: Technically, there exists a __deploy__* tag for the idma with fixes, but we're checking out the base version
 gen_idma_hw:
 	make -C $(IDMA_ROOT) idma_hw_all
 
