@@ -37,6 +37,8 @@ package chimera_pkg;
 
   // SCHEREMO: Shared Snitch bootrom, one clock gate per cluster
   localparam int ExtRegNum = SnitchBootROM + 1;
+  localparam int ClusterDataWidth = 64;
+
 
   localparam int SnitchBootROMIdx = 0;
   localparam doub_bt SnitchBootROMRegionStart = 64'h3000_0000;
@@ -66,6 +68,9 @@ package chimera_pkg;
     // AXI CFG
     // SCHEREMO: Assume 2 Master per cluster -> 5 clusters, 1 host core, 1 DMA, 1 DBG Unit
     cfg.AxiMstIdWidth = 4;
+    cfg.AxiDataWidth = 32;
+    cfg.AddrWidth = 32;
+    cfg.LlcOutRegionEnd = 'hFFFF_FFFF;
 
     cfg.MemIslWidePorts = $countones(ChimeraClusterCfg.hasWideMasterPort);
     cfg.AxiExtNumWideMst = $countones(ChimeraClusterCfg.hasWideMasterPort);
