@@ -341,20 +341,19 @@ module chimera_top_wrapper
                    axi_cluster_mst_id_width_narrow_t, axi_soc_data_narrow_t, axi_soc_strb_narrow_t,
                    axi_cluster_user_t)
 
+  // Cluster-side in- and out- narrow ports used in chimera adapter
+  axi_cluster_in_narrow_req_t       [iomsb(Cfg.AxiExtNumSlv):0] clu_axi_adapter_slv_req;
+  axi_cluster_in_narrow_resp_t      [iomsb(Cfg.AxiExtNumSlv):0] clu_axi_adapter_slv_resp;
+  axi_cluster_soc_out_narrow_req_t  [iomsb(Cfg.AxiExtNumMst):0] clu_axi_adapter_mst_req;
+  axi_cluster_soc_out_narrow_resp_t [iomsb(Cfg.AxiExtNumMst):0] clu_axi_adapter_mst_resp;
 
+  // Cluster-side in- and out- narrow ports used in narrow adapter
+  axi_cluster_in_narrow_req_t       [iomsb(Cfg.AxiExtNumSlv):0] clu_axi_narrow_slv_req;
+  axi_cluster_in_narrow_resp_t      [iomsb(Cfg.AxiExtNumSlv):0] clu_axi_narrow_slv_rsp;
+  axi_cluster_out_narrow_req_t      [iomsb(Cfg.AxiExtNumMst):0] clu_axi_narrow_mst_req;
+  axi_cluster_out_narrow_resp_t     [iomsb(Cfg.AxiExtNumMst):0] clu_axi_narrow_mst_rsp;
 
-  axi_cluster_in_narrow_req_t       [iomsb(Cfg.AxiExtNumSlv):0] clu_axi_slv_req;
-  axi_cluster_in_narrow_resp_t      [iomsb(Cfg.AxiExtNumSlv):0] clu_axi_slv_resp;
-
-  axi_cluster_soc_out_narrow_req_t  [iomsb(Cfg.AxiExtNumMst):0] clu_axi_mst_req;
-  axi_cluster_soc_out_narrow_resp_t [iomsb(Cfg.AxiExtNumMst):0] clu_axi_mst_resp;
-
-  axi_cluster_in_narrow_req_t       [iomsb(Cfg.AxiExtNumSlv):0] clu_64_axi_slv_req;
-  axi_cluster_in_narrow_resp_t      [iomsb(Cfg.AxiExtNumSlv):0] clu_64_axi_slv_rsp;
-
-  axi_cluster_out_narrow_req_t      [iomsb(Cfg.AxiExtNumMst):0] clu_64_axi_mst_req;
-  axi_cluster_out_narrow_resp_t     [iomsb(Cfg.AxiExtNumMst):0] clu_64_axi_mst_rsp;
-
+  // Cluster-side out wide ports
   axi_cluster_out_wide_req_t        [     iomsb(ExtClusters):0] clu_axi_wide_mst_req;
   axi_cluster_out_wide_resp_t       [     iomsb(ExtClusters):0] clu_axi_wide_mst_resp;
 
@@ -393,25 +392,27 @@ module chimera_top_wrapper
           .soc_clk_i(soc_clk_i),
           .rst_ni,
 
+          // SoC side narrow.
           .narrow_in_req_i  (axi_slv_req[extClusterIdx]),
           .narrow_in_resp_o (axi_slv_rsp[extClusterIdx]),
           .narrow_out_req_o (axi_mst_req[2*extClusterIdx+:2]),
           .narrow_out_resp_i(axi_mst_rsp[2*extClusterIdx+:2]),
 
-          .clu_narrow_in_req_o  (clu_64_axi_slv_req[extClusterIdx]),
-          .clu_narrow_in_resp_i (clu_64_axi_slv_rsp[extClusterIdx]),
-          .clu_narrow_out_req_i (clu_64_axi_mst_req[2*extClusterIdx+:2]),
-          .clu_narrow_out_resp_o(clu_64_axi_mst_rsp[2*extClusterIdx+:2])
+          // Cluster side narrow
+          .clu_narrow_in_req_o  (clu_axi_narrow_slv_req[extClusterIdx]),
+          .clu_narrow_in_resp_i (clu_axi_narrow_slv_rsp[extClusterIdx]),
+          .clu_narrow_out_req_i (clu_axi_narrow_mst_req[2*extClusterIdx+:2]),
+          .clu_narrow_out_resp_o(clu_axi_narrow_mst_rsp[2*extClusterIdx+:2])
 
         );
 
 
       end else begin : gen_skip_narrow_adapter  // if (ClusterDataWidth != Cfg.AxiDataWidth)
 
-        assign clu_64_axi_slv_req = axi_slv_req;
-        assign clu_64_axi_slv_rsp = axi_slv_rsp;
-        assign clu_64_axi_mst_req = axi_mst_req;
-        assign clu_64_axi_mst_rsp = axi_mst_rsp;
+        assign clu_axi_narrow_slv_req = axi_slv_req;
+        assign clu_axi_narrow_slv_rsp = axi_slv_rsp;
+        assign clu_axi_narrow_mst_req = axi_mst_req;
+        assign clu_axi_narrow_mst_rsp = axi_mst_rsp;
 
       end
 
@@ -443,16 +444,15 @@ module chimera_top_wrapper
         .clu_clk_i(clu_clk_gated[extClusterIdx]),
         .rst_ni,
 
-        .narrow_in_req_i  (clu_64_axi_slv_req[extClusterIdx]),
-        .narrow_in_resp_o (clu_64_axi_slv_rsp[extClusterIdx]),
-        .narrow_out_req_o (clu_64_axi_mst_req[2*extClusterIdx+:2]),
-        .narrow_out_resp_i(clu_64_axi_mst_rsp[2*extClusterIdx+:2]),
+        .narrow_in_req_i  (clu_axi_narrow_slv_req[extClusterIdx]),
+        .narrow_in_resp_o (clu_axi_narrow_slv_rsp[extClusterIdx]),
+        .narrow_out_req_o (clu_axi_narrow_mst_req[2*extClusterIdx+:2]),
+        .narrow_out_resp_i(clu_axi_narrow_mst_rsp[2*extClusterIdx+:2]),
 
-        .clu_narrow_in_req_o  (clu_axi_slv_req[extClusterIdx]),
-        .clu_narrow_in_resp_i (clu_axi_slv_resp[extClusterIdx]),
-        .clu_narrow_out_req_i (clu_axi_mst_req[extClusterIdx]),
-        .clu_narrow_out_resp_o(clu_axi_mst_resp[extClusterIdx]),
-
+        .clu_narrow_in_req_o  (clu_axi_adapter_slv_req[extClusterIdx]),
+        .clu_narrow_in_resp_i (clu_axi_adapter_slv_resp[extClusterIdx]),
+        .clu_narrow_out_req_i (clu_axi_adapter_mst_req[extClusterIdx]),
+        .clu_narrow_out_resp_o(clu_axi_adapter_mst_resp[extClusterIdx]),
 
         .wide_out_req_o     (axi_wide_mst_req[extClusterIdx]),
         .wide_out_resp_i    (axi_wide_mst_rsp[extClusterIdx]),
@@ -549,10 +549,10 @@ module chimera_top_wrapper
         .cluster_base_addr_i(Cfg.AxiExtRegionStart[extClusterIdx][Cfg.AddrWidth-1:0]),
         .sram_cfgs_i        ('0),
 
-        .narrow_in_req_i  (clu_axi_slv_req[extClusterIdx]),
-        .narrow_in_resp_o (clu_axi_slv_resp[extClusterIdx]),
-        .narrow_out_req_o (clu_axi_mst_req[extClusterIdx]),
-        .narrow_out_resp_i(clu_axi_mst_resp[extClusterIdx]),
+        .narrow_in_req_i  (clu_axi_adapter_slv_req[extClusterIdx]),
+        .narrow_in_resp_o (clu_axi_adapter_slv_resp[extClusterIdx]),
+        .narrow_out_req_o (clu_axi_adapter_mst_req[extClusterIdx]),
+        .narrow_out_resp_i(clu_axi_adapter_mst_resp[extClusterIdx]),
         .wide_in_req_i    ('0),
         .wide_in_resp_o   (),
         .wide_out_req_o   (clu_axi_wide_mst_req[extClusterIdx]),
