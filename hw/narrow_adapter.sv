@@ -68,74 +68,68 @@ module narrow_adapter #(
                    axi_clu_narrow_data_width_t, axi_clu_narrow_strb_width_t, axi_user_width_t)
 
 
-  genvar i;
-  generate
-    for (i = 0; i < MstPorts; i++) begin : gen_clu_to_soc_conv
-      axi_dw_converter #(
-        .AxiMaxReads(2),
+  for (genvar i = 0; i < MstPorts; i++) begin : gen_clu_to_soc_conv
+    axi_dw_converter #(
+      .AxiMaxReads(2),
 
-        .AxiSlvPortDataWidth(CluNarrowDataWidth),
-        .AxiMstPortDataWidth(SoCNarrowDataWidth),
-        .AxiAddrWidth       (AddrWidth),
-        .AxiIdWidth         (SocNarrowMasterIdWidth),
+      .AxiSlvPortDataWidth(CluNarrowDataWidth),
+      .AxiMstPortDataWidth(SoCNarrowDataWidth),
+      .AxiAddrWidth       (AddrWidth),
+      .AxiIdWidth         (SocNarrowMasterIdWidth),
 
-        .aw_chan_t(axi_narrow_out_soc_aw_chan_t),
-        .b_chan_t (axi_narrow_out_soc_b_chan_t),
-        .ar_chan_t(axi_narrow_out_soc_ar_chan_t),
+      .aw_chan_t(axi_narrow_out_soc_aw_chan_t),
+      .b_chan_t (axi_narrow_out_soc_b_chan_t),
+      .ar_chan_t(axi_narrow_out_soc_ar_chan_t),
 
-        .slv_r_chan_t(axi_narrow_out_clu_r_chan_t),
-        .slv_w_chan_t(axi_narrow_out_clu_aw_chan_t),
-        .mst_r_chan_t(axi_narrow_out_soc_r_chan_t),
-        .mst_w_chan_t(axi_narrow_out_soc_w_chan_t),
+      .slv_r_chan_t(axi_narrow_out_clu_r_chan_t),
+      .slv_w_chan_t(axi_narrow_out_clu_aw_chan_t),
+      .mst_r_chan_t(axi_narrow_out_soc_r_chan_t),
+      .mst_w_chan_t(axi_narrow_out_soc_w_chan_t),
 
-        .axi_mst_req_t (axi_narrow_out_soc_req_t),
-        .axi_mst_resp_t(axi_narrow_out_soc_resp_t),
-        .axi_slv_req_t (clu_narrow_out_req_t),
-        .axi_slv_resp_t(clu_narrow_out_resp_t)
-      ) i_clu_to_soc_dw_converter (
-        .clk_i     (soc_clk_i),
-        .rst_ni,
-        .slv_req_i (clu_narrow_out_req_i[i]),
-        .slv_resp_o(clu_narrow_out_resp_o[i]),
-        .mst_req_o (narrow_out_req_o[i]),
-        .mst_resp_i(narrow_out_resp_i[i])
-      );
-    end
+      .axi_mst_req_t (axi_narrow_out_soc_req_t),
+      .axi_mst_resp_t(axi_narrow_out_soc_resp_t),
+      .axi_slv_req_t (clu_narrow_out_req_t),
+      .axi_slv_resp_t(clu_narrow_out_resp_t)
+    ) i_clu_to_soc_dw_converter (
+      .clk_i     (soc_clk_i),
+      .rst_ni,
+      .slv_req_i (clu_narrow_out_req_i[i]),
+      .slv_resp_o(clu_narrow_out_resp_o[i]),
+      .mst_req_o (narrow_out_req_o[i]),
+      .mst_resp_i(narrow_out_resp_i[i])
+    );
+  end
 
-  endgenerate
-  generate
+  for (genvar i = 0; i < SlvPorts; i++) begin : gen_soc_to_clu_conv
+    axi_dw_converter #(
+      .AxiMaxReads(2),
 
-    for (i = 0; i < SlvPorts; i++) begin : gen_soc_to_clu_conv
-      axi_dw_converter #(
-        .AxiMaxReads(2),
+      .AxiSlvPortDataWidth(SoCNarrowDataWidth),
+      .AxiMstPortDataWidth(CluNarrowDataWidth),
+      .AxiAddrWidth       (AddrWidth),
+      .AxiIdWidth         (SocNarrowSlaveIdWidth),
 
-        .AxiSlvPortDataWidth(SoCNarrowDataWidth),
-        .AxiMstPortDataWidth(CluNarrowDataWidth),
-        .AxiAddrWidth       (AddrWidth),
-        .AxiIdWidth         (SocNarrowSlaveIdWidth),
+      .aw_chan_t(axi_narrow_in_clu_aw_chan_t),
+      .b_chan_t (axi_narrow_in_clu_b_chan_t),
+      .ar_chan_t(axi_narrow_in_clu_ar_chan_t),
 
-        .aw_chan_t(axi_narrow_in_clu_aw_chan_t),
-        .b_chan_t (axi_narrow_in_clu_b_chan_t),
-        .ar_chan_t(axi_narrow_in_clu_ar_chan_t),
+      .slv_r_chan_t(axi_narrow_in_soc_r_chan_t),
+      .slv_w_chan_t(axi_narrow_in_soc_w_chan_t),
+      .mst_r_chan_t(axi_narrow_in_clu_r_chan_t),
+      .mst_w_chan_t(axi_narrow_in_clu_w_chan_t),
 
-        .slv_r_chan_t(axi_narrow_in_soc_r_chan_t),
-        .slv_w_chan_t(axi_narrow_in_soc_w_chan_t),
-        .mst_r_chan_t(axi_narrow_in_clu_r_chan_t),
-        .mst_w_chan_t(axi_narrow_in_clu_w_chan_t),
-
-        .axi_mst_req_t (axi_narrow_in_clu_req_t),
-        .axi_mst_resp_t(axi_narrow_in_clu_resp_t),
-        .axi_slv_req_t (axi_narrow_in_soc_req_t),
-        .axi_slv_resp_t(axi_narrow_in_soc_resp_t)
-      ) i_soc_to_clu_dw_converter (
-        .clk_i     (soc_clk_i),
-        .rst_ni,
-        .slv_req_i (narrow_in_req_i[i]),
-        .slv_resp_o(narrow_in_resp_o[i]),
-        .mst_req_o (clu_narrow_in_req_o[i]),
-        .mst_resp_i(clu_narrow_in_resp_i[i])
-      );
-    end  // for (i = 0; i < SlvPorts; i++)
-  endgenerate
+      .axi_mst_req_t (axi_narrow_in_clu_req_t),
+      .axi_mst_resp_t(axi_narrow_in_clu_resp_t),
+      .axi_slv_req_t (axi_narrow_in_soc_req_t),
+      .axi_slv_resp_t(axi_narrow_in_soc_resp_t)
+    ) i_soc_to_clu_dw_converter (
+      .clk_i     (soc_clk_i),
+      .rst_ni,
+      .slv_req_i (narrow_in_req_i[i]),
+      .slv_resp_o(narrow_in_resp_o[i]),
+      .mst_req_o (clu_narrow_in_req_o[i]),
+      .mst_resp_i(clu_narrow_in_resp_i[i])
+    );
+  end  // for (i = 0; i < SlvPorts; i++)
 
 endmodule
