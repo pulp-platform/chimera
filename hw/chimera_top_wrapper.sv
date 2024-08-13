@@ -11,59 +11,48 @@ module chimera_top_wrapper
 #(
   parameter int unsigned SelectedCfg = 0
 ) (
-  input  logic                                            soc_clk_i,
-  input  logic                                            clu_clk_i,
-  input  logic                                            rst_ni,
-  input  logic                                            test_mode_i,
-  input  logic [                  1:0]                    boot_mode_i,
-  input  logic                                            rtc_i,
+  input  logic                 soc_clk_i,
+  input  logic                 clu_clk_i,
+  input  logic                 rst_ni,
+  input  logic                 test_mode_i,
+  input  logic [          1:0] boot_mode_i,
+  input  logic                 rtc_i,
   // JTAG interface
-  input  logic                                            jtag_tck_i,
-  input  logic                                            jtag_trst_ni,
-  input  logic                                            jtag_tms_i,
-  input  logic                                            jtag_tdi_i,
-  output logic                                            jtag_tdo_o,
-  output logic                                            jtag_tdo_oe_o,
+  input  logic                 jtag_tck_i,
+  input  logic                 jtag_trst_ni,
+  input  logic                 jtag_tms_i,
+  input  logic                 jtag_tdi_i,
+  output logic                 jtag_tdo_o,
+  output logic                 jtag_tdo_oe_o,
   // UART interface
-  output logic                                            uart_tx_o,
-  input  logic                                            uart_rx_i,
+  output logic                 uart_tx_o,
+  input  logic                 uart_rx_i,
   // UART modem flow control
-  output logic                                            uart_rts_no,
-  output logic                                            uart_dtr_no,
-  input  logic                                            uart_cts_ni,
-  input  logic                                            uart_dsr_ni,
-  input  logic                                            uart_dcd_ni,
-  input  logic                                            uart_rin_ni,
+  output logic                 uart_rts_no,
+  output logic                 uart_dtr_no,
+  input  logic                 uart_cts_ni,
+  input  logic                 uart_dsr_ni,
+  input  logic                 uart_dcd_ni,
+  input  logic                 uart_rin_ni,
   // I2C interface
-  output logic                                            i2c_sda_o,
-  input  logic                                            i2c_sda_i,
-  output logic                                            i2c_sda_en_o,
-  output logic                                            i2c_scl_o,
-  input  logic                                            i2c_scl_i,
-  output logic                                            i2c_scl_en_o,
+  output logic                 i2c_sda_o,
+  input  logic                 i2c_sda_i,
+  output logic                 i2c_sda_en_o,
+  output logic                 i2c_scl_o,
+  input  logic                 i2c_scl_i,
+  output logic                 i2c_scl_en_o,
   // SPI host interface
-  output logic                                            spih_sck_o,
-  output logic                                            spih_sck_en_o,
-  output logic [        SpihNumCs-1:0]                    spih_csb_o,
-  output logic [        SpihNumCs-1:0]                    spih_csb_en_o,
-  output logic [                  3:0]                    spih_sd_o,
-  output logic [                  3:0]                    spih_sd_en_o,
-  input  logic [                  3:0]                    spih_sd_i,
+  output logic                 spih_sck_o,
+  output logic                 spih_sck_en_o,
+  output logic [SpihNumCs-1:0] spih_csb_o,
+  output logic [SpihNumCs-1:0] spih_csb_en_o,
+  output logic [          3:0] spih_sd_o,
+  output logic [          3:0] spih_sd_en_o,
+  input  logic [          3:0] spih_sd_i,
   // GPIO interface
-  input  logic [                 31:0]                    gpio_i,
-  output logic [                 31:0]                    gpio_o,
-  output logic [                 31:0]                    gpio_en_o,
-  // Serial link interface
-  input  logic [     SlinkNumChan-1:0]                    slink_rcv_clk_i,
-  output logic [     SlinkNumChan-1:0]                    slink_rcv_clk_o,
-  input  logic [     SlinkNumChan-1:0][SlinkNumLanes-1:0] slink_i,
-  output logic [     SlinkNumChan-1:0][SlinkNumLanes-1:0] slink_o,
-  // VGA interface
-  output logic                                            vga_hsync_o,
-  output logic                                            vga_vsync_o,
-  output logic [ Cfg.VgaRedWidth -1:0]                    vga_red_o,
-  output logic [Cfg.VgaGreenWidth-1:0]                    vga_green_o,
-  output logic [Cfg.VgaBlueWidth -1:0]                    vga_blue_o
+  input  logic [         31:0] gpio_i,
+  output logic [         31:0] gpio_o,
+  output logic [         31:0] gpio_en_o
 );
 
   `include "axi/typedef.svh"
@@ -188,16 +177,24 @@ module chimera_top_wrapper
     .gpio_o,
     .gpio_en_o,
     // Serial link interface
-    .slink_rcv_clk_i,
-    .slink_rcv_clk_o,
-    .slink_i,
-    .slink_o,
+    .slink_rcv_clk_i       ('0),
+    .slink_rcv_clk_o       (),
+    .slink_i               ('0),
+    .slink_o               (),
     // VGA interface
-    .vga_hsync_o,
-    .vga_vsync_o,
-    .vga_red_o,
-    .vga_green_o,
-    .vga_blue_o
+    .vga_hsync_o           (),
+    .vga_vsync_o           (),
+    .vga_red_o             (),
+    .vga_green_o           (),
+    .vga_blue_o            (),
+    .usb_clk_i             ('0),
+    .usb_rst_ni            ('1),
+    .usb_dm_i              ('0),
+    .usb_dm_o              (),
+    .usb_dm_oe_o           (),
+    .usb_dp_i              ('0),
+    .usb_dp_o              (),
+    .usb_dp_oe_o           ()
   );
 
   // TOP-LEVEL REG
@@ -272,17 +269,14 @@ module chimera_top_wrapper
     reg2hw.cluster_1_clk_gate_en
   };
 
-  genvar extClusterIdx;
-  generate
-    for (extClusterIdx = 0; extClusterIdx < ExtClusters; extClusterIdx++) begin : gen_clk_gates
-      tc_clk_gating i_cluster_clk_gate (
-        .clk_i    (clu_clk_i),
-        .en_i     (~cluster_clock_gate_en[extClusterIdx]),
-        .test_en_i(1'b0),
-        .clk_o    (clu_clk_gated[extClusterIdx])
-      );
-    end
-  endgenerate
+  for (genvar extClusterIdx = 0; extClusterIdx < ExtClusters; extClusterIdx++) begin : gen_clk_gates
+    tc_clk_gating i_cluster_clk_gate (
+      .clk_i    (clu_clk_i),
+      .en_i     (~cluster_clock_gate_en[extClusterIdx]),
+      .test_en_i(1'b0),
+      .clk_o    (clu_clk_gated[extClusterIdx])
+    );
+  end
 
   // Synch debug signals & interrupts
   // SCHEREMO: These signals are synchronize in the Snitch cluster!
@@ -297,19 +291,25 @@ module chimera_top_wrapper
   assign clu_msip_ext    = msip_ext;
   assign clu_dbg_ext_req = dbg_ext_req;
 
-  // Clusters
-
   localparam int WideDataWidth = $bits(axi_wide_mst_req[0].w.data);
 
   localparam int WideSlaveIdWidth = $bits(axi_wide_mst_req[0].aw.id);
   localparam int NarrowSlaveIdWidth = $bits(axi_slv_req[0].aw.id);
+  localparam int NarrowMasterIdWidth = $bits(axi_mst_req[0].aw.id);
 
   typedef logic [Cfg.AddrWidth-1:0] axi_cluster_addr_t;
   typedef logic [Cfg.AxiUserWidth-1:0] axi_cluster_user_t;
 
-  typedef logic [Cfg.AxiDataWidth-1:0] axi_cluster_data_narrow_t;
-  typedef logic [Cfg.AxiDataWidth/8-1:0] axi_cluster_strb_narrow_t;
+  typedef logic [Cfg.AxiDataWidth-1:0] axi_soc_data_narrow_t;
+  typedef logic [Cfg.AxiDataWidth/8-1:0] axi_soc_strb_narrow_t;
+
+  typedef logic [ClusterDataWidth-1:0] axi_cluster_data_narrow_t;
+  typedef logic [ClusterDataWidth/8-1:0] axi_cluster_strb_narrow_t;
+
   typedef logic [NarrowSlaveIdWidth +2 -1:0] axi_cluster_slv_id_width_narrow_t;
+  typedef logic [NarrowSlaveIdWidth -1:0] axi_cluster_mst_id_width_narrow_t;
+
+  typedef logic [NarrowMasterIdWidth -1:0] axi_soc_mst_id_width_narrow_t;
 
   typedef logic [WideDataWidth-1:0] axi_cluster_data_wide_t;
   typedef logic [WideDataWidth/8-1:0] axi_cluster_strb_wide_t;
@@ -317,18 +317,43 @@ module chimera_top_wrapper
 
   `AXI_TYPEDEF_ALL(axi_cluster_out_wide, axi_cluster_addr_t, axi_cluster_slv_id_width_wide_t,
                    axi_cluster_data_wide_t, axi_cluster_strb_wide_t, axi_cluster_user_t)
-  `AXI_TYPEDEF_ALL(axi_cluster_out_narrow, axi_cluster_addr_t, axi_cluster_slv_id_width_narrow_t,
+
+  `AXI_TYPEDEF_ALL(axi_cluster_soc_out_narrow, axi_cluster_addr_t,
+                   axi_cluster_slv_id_width_narrow_t, axi_cluster_data_narrow_t,
+                   axi_cluster_strb_narrow_t, axi_cluster_user_t)
+
+  `AXI_TYPEDEF_ALL(axi_cluster_out_narrow, axi_cluster_addr_t, axi_soc_mst_id_width_narrow_t,
                    axi_cluster_data_narrow_t, axi_cluster_strb_narrow_t, axi_cluster_user_t)
 
-  axi_slv_req_t                 [iomsb(ExtClusters):0] clu_axi_slv_req;
-  axi_slv_rsp_t                 [iomsb(ExtClusters):0] clu_axi_slv_resp;
-  axi_cluster_out_narrow_req_t  [iomsb(ExtClusters):0] clu_axi_mst_req;
-  axi_cluster_out_narrow_resp_t [iomsb(ExtClusters):0] clu_axi_mst_resp;
-  axi_cluster_out_wide_req_t    [iomsb(ExtClusters):0] clu_axi_wide_mst_req;
-  axi_cluster_out_wide_resp_t   [iomsb(ExtClusters):0] clu_axi_wide_mst_resp;
+  `AXI_TYPEDEF_ALL(axi_cluster_out_socside_narrow, axi_cluster_addr_t,
+                   axi_soc_mst_id_width_narrow_t, axi_soc_data_narrow_t, axi_soc_strb_narrow_t,
+                   axi_cluster_user_t)
+
+  `AXI_TYPEDEF_ALL(axi_cluster_in_narrow, axi_cluster_addr_t, axi_cluster_mst_id_width_narrow_t,
+                   axi_cluster_data_narrow_t, axi_cluster_strb_narrow_t, axi_cluster_user_t)
+
+  `AXI_TYPEDEF_ALL(axi_cluster_in_socside_narrow, axi_cluster_addr_t,
+                   axi_cluster_mst_id_width_narrow_t, axi_soc_data_narrow_t, axi_soc_strb_narrow_t,
+                   axi_cluster_user_t)
+
+  // Cluster-side in- and out- narrow ports used in chimera adapter
+  axi_cluster_in_narrow_req_t       [iomsb(Cfg.AxiExtNumSlv):0] clu_axi_adapter_slv_req;
+  axi_cluster_in_narrow_resp_t      [iomsb(Cfg.AxiExtNumSlv):0] clu_axi_adapter_slv_resp;
+  axi_cluster_soc_out_narrow_req_t  [iomsb(Cfg.AxiExtNumMst):0] clu_axi_adapter_mst_req;
+  axi_cluster_soc_out_narrow_resp_t [iomsb(Cfg.AxiExtNumMst):0] clu_axi_adapter_mst_resp;
+
+  // Cluster-side in- and out- narrow ports used in narrow adapter
+  axi_cluster_in_narrow_req_t       [iomsb(Cfg.AxiExtNumSlv):0] clu_axi_narrow_slv_req;
+  axi_cluster_in_narrow_resp_t      [iomsb(Cfg.AxiExtNumSlv):0] clu_axi_narrow_slv_rsp;
+  axi_cluster_out_narrow_req_t      [iomsb(Cfg.AxiExtNumMst):0] clu_axi_narrow_mst_req;
+  axi_cluster_out_narrow_resp_t     [iomsb(Cfg.AxiExtNumMst):0] clu_axi_narrow_mst_rsp;
+
+  // Cluster-side out wide ports
+  axi_cluster_out_wide_req_t        [     iomsb(ExtClusters):0] clu_axi_wide_mst_req;
+  axi_cluster_out_wide_resp_t       [     iomsb(ExtClusters):0] clu_axi_wide_mst_resp;
 
   // Cluster Adapters
-  logic                         [     ExtClusters-1:0] wide_mem_bypass_mode;
+  logic                             [          ExtClusters-1:0] wide_mem_bypass_mode;
   assign wide_mem_bypass_mode = {
     reg2hw.wide_mem_cluster_5_bypass.q,
     reg2hw.wide_mem_cluster_4_bypass.q,
@@ -337,54 +362,101 @@ module chimera_top_wrapper
     reg2hw.wide_mem_cluster_1_bypass.q
   };
 
-  generate
-    for (
-        extClusterIdx = 0; extClusterIdx < ExtClusters; extClusterIdx++
-    ) begin : gen_clusters_adapters
+  for (
+      genvar extClusterIdx = 0; extClusterIdx < ExtClusters; extClusterIdx++
+  ) begin : gen_clusters_adapters
 
-      chimera_cluster_adapter #(
-        .WideSlaveIdWidth(WideSlaveIdWidth),
+    if (ClusterDataWidth != Cfg.AxiDataWidth) begin : gen_narrow_adapter
 
-        .WidePassThroughRegionStart(Cfg.MemIslRegionStart),
-        .WidePassThroughRegionEnd  (Cfg.MemIslRegionEnd),
+      narrow_adapter #(
+        .narrow_in_req_t  (axi_cluster_in_socside_narrow_req_t),
+        .narrow_in_resp_t (axi_cluster_in_socside_narrow_resp_t),
+        .narrow_out_req_t (axi_cluster_out_socside_narrow_req_t),
+        .narrow_out_resp_t(axi_cluster_out_socside_narrow_resp_t),
 
-        .narrow_in_req_t  (axi_slv_req_t),
-        .narrow_in_resp_t (axi_slv_rsp_t),
-        .wide_in_req_t    (axi_wide_slv_req_t),
-        .wide_in_resp_t   (axi_wide_slv_rsp_t),
-        .narrow_out_req_t (axi_mst_req_t),
-        .narrow_out_resp_t(axi_mst_rsp_t),
-        .wide_out_req_t   (axi_wide_mst_req_t),
-        .wide_out_resp_t  (axi_wide_mst_rsp_t),
-
+        .clu_narrow_in_req_t  (axi_cluster_in_narrow_req_t),
+        .clu_narrow_in_resp_t (axi_cluster_in_narrow_resp_t),
         .clu_narrow_out_req_t (axi_cluster_out_narrow_req_t),
         .clu_narrow_out_resp_t(axi_cluster_out_narrow_resp_t),
-        .clu_wide_out_req_t   (axi_cluster_out_wide_req_t),
-        .clu_wide_out_resp_t  (axi_cluster_out_wide_resp_t)
-      ) i_cluster_axi_adapter (
+
+        .MstPorts(2),
+        .SlvPorts(1)
+
+      ) i_cluster_narrow_adapter (
         .soc_clk_i(soc_clk_i),
-        .clu_clk_i(clu_clk_gated[extClusterIdx]),
         .rst_ni,
 
+        // SoC side narrow.
         .narrow_in_req_i  (axi_slv_req[extClusterIdx]),
         .narrow_in_resp_o (axi_slv_rsp[extClusterIdx]),
         .narrow_out_req_o (axi_mst_req[2*extClusterIdx+:2]),
         .narrow_out_resp_i(axi_mst_rsp[2*extClusterIdx+:2]),
-        .wide_out_req_o   (axi_wide_mst_req[extClusterIdx]),
-        .wide_out_resp_i  (axi_wide_mst_rsp[extClusterIdx]),
 
-        .clu_narrow_in_req_o  (clu_axi_slv_req[extClusterIdx]),
-        .clu_narrow_in_resp_i (clu_axi_slv_resp[extClusterIdx]),
-        .clu_narrow_out_req_i (clu_axi_mst_req[extClusterIdx]),
-        .clu_narrow_out_resp_o(clu_axi_mst_resp[extClusterIdx]),
-        .clu_wide_out_req_i   (clu_axi_wide_mst_req[extClusterIdx]),
-        .clu_wide_out_resp_o  (clu_axi_wide_mst_resp[extClusterIdx]),
+        // Cluster side narrow
+        .clu_narrow_in_req_o  (clu_axi_narrow_slv_req[extClusterIdx]),
+        .clu_narrow_in_resp_i (clu_axi_narrow_slv_rsp[extClusterIdx]),
+        .clu_narrow_out_req_i (clu_axi_narrow_mst_req[2*extClusterIdx+:2]),
+        .clu_narrow_out_resp_o(clu_axi_narrow_mst_rsp[2*extClusterIdx+:2])
 
-        .wide_mem_bypass_mode_i(wide_mem_bypass_mode[extClusterIdx])
       );
 
-    end : gen_clusters_adapters
-  endgenerate
+
+    end else begin : gen_skip_narrow_adapter  // if (ClusterDataWidth != Cfg.AxiDataWidth)
+
+      assign clu_axi_narrow_slv_req = axi_slv_req;
+      assign clu_axi_narrow_slv_rsp = axi_slv_rsp;
+      assign clu_axi_narrow_mst_req = axi_mst_req;
+      assign clu_axi_narrow_mst_rsp = axi_mst_rsp;
+
+    end
+
+
+    chimera_cluster_adapter #(
+      .WideSlaveIdWidth(WideSlaveIdWidth),
+
+      .WidePassThroughRegionStart(Cfg.MemIslRegionStart),
+      .WidePassThroughRegionEnd  (Cfg.MemIslRegionEnd),
+
+      .narrow_in_req_t  (axi_cluster_in_narrow_req_t),
+      .narrow_in_resp_t (axi_cluster_in_narrow_resp_t),
+      .narrow_out_req_t (axi_cluster_out_narrow_req_t),
+      .narrow_out_resp_t(axi_cluster_out_narrow_resp_t),
+
+      .clu_narrow_out_req_t (axi_cluster_soc_out_narrow_req_t),
+      .clu_narrow_out_resp_t(axi_cluster_soc_out_narrow_resp_t),
+
+      .wide_in_req_t  (axi_wide_slv_req_t),
+      .wide_in_resp_t (axi_wide_slv_rsp_t),
+      .wide_out_req_t (axi_wide_mst_req_t),
+      .wide_out_resp_t(axi_wide_mst_rsp_t),
+
+      .clu_wide_out_req_t (axi_cluster_out_wide_req_t),
+      .clu_wide_out_resp_t(axi_cluster_out_wide_resp_t)
+
+    ) i_cluster_axi_adapter (
+      .soc_clk_i(soc_clk_i),
+      .clu_clk_i(clu_clk_gated[extClusterIdx]),
+      .rst_ni,
+
+      .narrow_in_req_i  (clu_axi_narrow_slv_req[extClusterIdx]),
+      .narrow_in_resp_o (clu_axi_narrow_slv_rsp[extClusterIdx]),
+      .narrow_out_req_o (clu_axi_narrow_mst_req[2*extClusterIdx+:2]),
+      .narrow_out_resp_i(clu_axi_narrow_mst_rsp[2*extClusterIdx+:2]),
+
+      .clu_narrow_in_req_o  (clu_axi_adapter_slv_req[extClusterIdx]),
+      .clu_narrow_in_resp_i (clu_axi_adapter_slv_resp[extClusterIdx]),
+      .clu_narrow_out_req_i (clu_axi_adapter_mst_req[extClusterIdx]),
+      .clu_narrow_out_resp_o(clu_axi_adapter_mst_resp[extClusterIdx]),
+
+      .wide_out_req_o     (axi_wide_mst_req[extClusterIdx]),
+      .wide_out_resp_i    (axi_wide_mst_rsp[extClusterIdx]),
+      .clu_wide_out_req_i (clu_axi_wide_mst_req[extClusterIdx]),
+      .clu_wide_out_resp_o(clu_axi_wide_mst_resp[extClusterIdx]),
+
+      .wide_mem_bypass_mode_i(wide_mem_bypass_mode[extClusterIdx])
+    );
+
+  end : gen_clusters_adapters
 
   // Clusters
 
@@ -403,85 +475,83 @@ module chimera_top_wrapper
   localparam int unsigned NumIntOutstandingLoads[9] = '{1, 1, 1, 1, 1, 1, 1, 1, 1};
   localparam int unsigned NumIntOutstandingMem[9] = '{4, 4, 4, 4, 4, 4, 4, 4, 4};
 
-  generate
-    for (extClusterIdx = 0; extClusterIdx < ExtClusters; extClusterIdx++) begin : gen_clusters
-      snitch_cluster #(
-        .PhysicalAddrWidth(Cfg.AddrWidth),
-        .NarrowDataWidth  (Cfg.AxiDataWidth),
-        .WideDataWidth    (WideDataWidth),
-        .NarrowIdWidthIn  (NarrowSlaveIdWidth),
-        .WideIdWidthIn    (WideSlaveIdWidth),
-        .NarrowUserWidth  (Cfg.AxiUserWidth),
-        .WideUserWidth    (Cfg.AxiUserWidth),
+  for (genvar extClusterIdx = 0; extClusterIdx < ExtClusters; extClusterIdx++) begin : gen_clusters
+    snitch_cluster #(
+      .PhysicalAddrWidth(Cfg.AddrWidth),
+      .NarrowDataWidth  (ClusterDataWidth),    // SCHEREMO: Convolve needs this...
+      .WideDataWidth    (WideDataWidth),
+      .NarrowIdWidthIn  (NarrowSlaveIdWidth),
+      .WideIdWidthIn    (WideSlaveIdWidth),
+      .NarrowUserWidth  (Cfg.AxiUserWidth),
+      .WideUserWidth    (Cfg.AxiUserWidth),
 
-        .BootAddr(SnitchBootROMRegionStart),
+      .BootAddr(SnitchBootROMRegionStart),
 
-        .NrHives          (1),
-        .NrCores          (9),
-        .TCDMDepth        (1024),
-        .ZeroMemorySize   (64),
-        .ClusterPeriphSize(64),
-        .NrBanks          (16),
+      .NrHives          (1),
+      .NrCores          (9),
+      .TCDMDepth        (1024),
+      .ZeroMemorySize   (64),
+      .ClusterPeriphSize(64),
+      .NrBanks          (16),
 
-        .DMANumAxInFlight(3),
-        .DMAReqFifoDepth (3),
+      .DMANumAxInFlight(3),
+      .DMAReqFifoDepth (3),
 
-        .ICacheLineWidth('{256}),
-        .ICacheLineCount('{16}),
-        .ICacheSets     ('{2}),
+      .ICacheLineWidth('{256}),
+      .ICacheLineCount('{16}),
+      .ICacheSets     ('{2}),
 
-        .VMSupport(0),
-        .Xdma     (9'b100000000),
+      .VMSupport(0),
+      .Xdma     (9'b100000000),
 
-        .NumIntOutstandingLoads(NumIntOutstandingLoads),
-        .NumIntOutstandingMem  (NumIntOutstandingMem),
-        .RegisterOffloadReq    (1),
-        .RegisterOffloadRsp    (1),
-        .RegisterCoreReq       (1),
-        .RegisterCoreRsp       (1),
+      .NumIntOutstandingLoads(NumIntOutstandingLoads),
+      .NumIntOutstandingMem  (NumIntOutstandingMem),
+      .RegisterOffloadReq    (1),
+      .RegisterOffloadRsp    (1),
+      .RegisterCoreReq       (1),
+      .RegisterCoreRsp       (1),
 
-        .narrow_in_req_t (axi_slv_req_t),
-        .narrow_in_resp_t(axi_slv_rsp_t),
-        .wide_in_req_t   (axi_wide_slv_req_t),
-        .wide_in_resp_t  (axi_wide_slv_rsp_t),
+      .narrow_in_req_t (axi_cluster_in_narrow_req_t),
+      .narrow_in_resp_t(axi_cluster_in_narrow_resp_t),
+      .wide_in_req_t   (axi_wide_slv_req_t),
+      .wide_in_resp_t  (axi_wide_slv_rsp_t),
 
-        .narrow_out_req_t (axi_cluster_out_narrow_req_t),
-        .narrow_out_resp_t(axi_cluster_out_narrow_resp_t),
-        .wide_out_req_t   (axi_cluster_out_wide_req_t),
-        .wide_out_resp_t  (axi_cluster_out_wide_resp_t),
+      .narrow_out_req_t (axi_cluster_soc_out_narrow_req_t),
+      .narrow_out_resp_t(axi_cluster_soc_out_narrow_resp_t),
+      .wide_out_req_t   (axi_cluster_out_wide_req_t),
+      .wide_out_resp_t  (axi_cluster_out_wide_resp_t),
 
-        .sram_cfg_t (sram_cfg_t),
-        .sram_cfgs_t(sram_cfgs_t),
+      .sram_cfg_t (sram_cfg_t),
+      .sram_cfgs_t(sram_cfgs_t),
 
-        .RegisterExtWide  ('0),
-        .RegisterExtNarrow('0)
-      ) i_test_cluster (
+      .RegisterExtWide  ('0),
+      .RegisterExtNarrow('0)
+    ) i_test_cluster (
 
-        .clk_i          (clu_clk_i),
-        .clk_d2_bypass_i('0),
-        .rst_ni,
+      .clk_i          (clu_clk_i),
+      .clk_d2_bypass_i('0),
+      .rst_ni,
 
-        .debug_req_i(clu_dbg_ext_req[extClusterIdx*9+:9]),
-        .meip_i     (clu_xeip_ext[extClusterIdx*9+:9]),
-        .mtip_i     (clu_mtip_ext[extClusterIdx*9+:9]),
-        .msip_i     (clu_msip_ext[extClusterIdx*9+:9]),
+      .debug_req_i(clu_dbg_ext_req[extClusterIdx*9+:9]),
+      .meip_i     (clu_xeip_ext[extClusterIdx*9+:9]),
+      .mtip_i     (clu_mtip_ext[extClusterIdx*9+:9]),
+      .msip_i     (clu_msip_ext[extClusterIdx*9+:9]),
 
-        .hart_base_id_i     (10'(extClusterIdx * 9 + 1)),
-        .cluster_base_addr_i(Cfg.AxiExtRegionStart[extClusterIdx][Cfg.AddrWidth-1:0]),
-        .sram_cfgs_i        ('0),
+      .hart_base_id_i     (10'(extClusterIdx * 9 + 1)),
+      .cluster_base_addr_i(Cfg.AxiExtRegionStart[extClusterIdx][Cfg.AddrWidth-1:0]),
+      .sram_cfgs_i        ('0),
 
-        .narrow_in_req_i  (clu_axi_slv_req[extClusterIdx]),
-        .narrow_in_resp_o (clu_axi_slv_resp[extClusterIdx]),
-        .narrow_out_req_o (clu_axi_mst_req[extClusterIdx]),
-        .narrow_out_resp_i(clu_axi_mst_resp[extClusterIdx]),
-        .wide_in_req_i    ('0),
-        .wide_in_resp_o   (),
-        .wide_out_req_o   (clu_axi_wide_mst_req[extClusterIdx]),
-        .wide_out_resp_i  (clu_axi_wide_mst_resp[extClusterIdx])
+      .narrow_in_req_i  (clu_axi_adapter_slv_req[extClusterIdx]),
+      .narrow_in_resp_o (clu_axi_adapter_slv_resp[extClusterIdx]),
+      .narrow_out_req_o (clu_axi_adapter_mst_req[extClusterIdx]),
+      .narrow_out_resp_i(clu_axi_adapter_mst_resp[extClusterIdx]),
+      .wide_in_req_i    ('0),
+      .wide_in_resp_o   (),
+      .wide_out_req_o   (clu_axi_wide_mst_req[extClusterIdx]),
+      .wide_out_resp_i  (clu_axi_wide_mst_resp[extClusterIdx])
 
-      );
+    );
 
-    end : gen_clusters
-  endgenerate
+  end : gen_clusters
 
 endmodule

@@ -4,7 +4,7 @@
 #
 # Moritz Scherer <scheremo@iis.ee.ethz.ch>
 
-CLINTCORES = 46 
+CLINTCORES = 46
 PLICCORES = 92
 PLIC_NUM_INTRS = 92
 
@@ -13,8 +13,12 @@ update_plic: $(CHS_ROOT)/hw/rv_plic.cfg.hjson
 	sed -i 's/src: .*/src: $(PLIC_NUM_INTRS),/' $<
 	sed -i 's/target: .*/target: $(PLICCORES),/' $<
 
+# SCHEREMO: Technically, there exists a __deploy__* tag for the idma with fixes, but we're checking out the base version
+gen_idma_hw:
+	make -C $(IDMA_ROOT) idma_hw_all
+
 .PHONY: chs-hw-init
-chs-hw-init: update_plic
+chs-hw-init: update_plic gen_idma_hw
 	make -B chs-hw-all CHS_XLEN=$(CHS_XLEN)
 
 .PHONY: snitch-hw-init

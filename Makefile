@@ -9,6 +9,7 @@ BENDER   ?= bender -d $(CHIM_ROOT)
 
 CHS_ROOT      ?= $(shell $(BENDER) path cheshire)
 SNITCH_ROOT      ?= $(shell $(BENDER) path snitch_cluster)
+IDMA_ROOT      ?= $(shell $(BENDER) path idma)
 CHS_XLEN ?= 32
 
 CHIM_HW_DIR      ?= $(CHIM_ROOT)/hw
