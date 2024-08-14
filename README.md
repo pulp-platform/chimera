@@ -34,12 +34,6 @@ pip install -r requirements.txt
 bender checkout
 
 ```
-If you have all needed dependencies and you want to build the entire Chimera SoC, both RTL and SW, just run
-
-``` shell
-make chim-all
-```
-If you want to build the system step by step, all the necessary make targets are listed below:
 
 To build Cheshire and Snitch run
 ``` shell
@@ -52,10 +46,6 @@ To regenerate software tests and libraries:
 `make chim-sw`
 
 This step must be executed before building the hardware to ensure the correct generation of the bootrom.
-
-To build the host device bootrom:
-
-`make chim-bootrom-init`
 
 To build Chehsire simulation files for ModelSim:
 

@@ -11,19 +11,19 @@ package:
 dependencies:
   register_interface:       { git: "https://github.com/pulp-platform/register_interface.git", version: 0.4.3  }
   axi:                      { git: "https://github.com/pulp-platform/axi.git",                version: 0.39.2 }
-  cheshire:                 { git: "https://github.com/pulp-platform/cheshire.git",           rev: 586cb0225be5c57f5ffcf67bd490763efd9b4d24}
+  cheshire:                 { git: "https://github.com/pulp-platform/cheshire.git",           rev: 1f8c3eac515ac09dec98f89f67df6954dd89e17a}
   snitch_cluster:           { git: "https://github.com/pulp-platform/snitch_cluster.git",     rev: c12ce9b2af1ac8edf3d4feb18939e1ad20c42225}
   common_cells:             { git: "https://github.com/pulp-platform/common_cells.git",       version: 1.31.1}
   idma:                     { git: "https://github.com/pulp-platform/iDMA.git",               rev: 9edf489f57389dce5e71252c79e337f527d3aded}
-  memory_island:            { git: "https://github.com/pulp-platform/memory_island.git",          rev: 64828cb7a9ccc1f1656ec92d06129072f445c319 } # main branch
+  memory_island:            { git: "https://github.com/Lore0599/memory_island",          rev: main } # main branch
   apb:                      { git: "https://github.com/pulp-platform/apb.git",                version: 0.2.4          }
   hyperbus:                 { git: "https://github.com/pulp-platform/hyperbus.git",           rev: f039e601c8b6590181734e6d26ff8b77aa380412 } # branch: chi/add_fsm_with_Tcsh
   tech_cells_generic:       { git: "https://github.com/pulp-platform/tech_cells_generic.git", version: 0.2.12 }
-  TUEDCIM:                  { git: "git@gitlab.tue.nl:es/convolve-private/tuedcim.git",           rev: 10102024}
+  TUEDCIM:                  { git: "git@gitlab.tue.nl:es/convolve-private/tuedcim.git",           rev: 22112024-2}
   TUEMEGA:                  { git: "git@gitlab.tue.nl:es/convolve-private/tuemega.git",           rev: 11102024}
-  TUDDCIM:                  { git: "git@gitlab.tue.nl:es/convolve-private/tuddcim.git",           rev: 11102024-6}
-  KULCLUSTER:               { git: "git@gitlab.tue.nl:es/convolve-private/kulcluster.git",        rev: 17102024}
-  ETHCluster:               { git: "git@gitlab.tue.nl:es/convolve-private/ethcluster.git",        rev: 17102024-4}
+  TUDDCIM:                  { git: "git@gitlab.tue.nl:es/convolve-private/tuddcim.git",           rev: 28112024-3}
+  KULCLUSTER:               { git: "git@gitlab.tue.nl:es/convolve-private/kulcluster.git",        rev: 29112024}
+  ETHCluster:               { git: "git@gitlab.tue.nl:es/convolve-private/ethcluster.git",        rev: 31102024-3}
 
 export_include_dirs:
   - hw/include

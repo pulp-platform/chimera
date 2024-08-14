@@ -33,9 +33,10 @@ CHIM_VLOG_ARGS += +define+HYP0_PRELOAD_MEM_FILE=\"$(HYP0_PRELOAD_MEM_FILE)\"
 # an absolute path produce inter-CI-runner file accesses
 CHIM_VLOG_ARGS += +define+PATH_TO_HYP_SDF=\"../models/s27ks0641/s27ks0641.sdf\"
 
+
 # Generate vsim compilation script
 $(CHIM_SIM_DIR)/vsim/compile.tcl: chs-hw-init snitch-hw-init
-	@bender script vsim $(SIM_TARGS) --vlog-arg="$(CHIM_VLOG_ARGS)" > $@
+	@bender script vsim $(SIM_TARGS)  $(EXT_TARGS) --vlog-arg="$(CHIM_VLOG_ARGS)" > $@
 	echo 'vlog "$(realpath $(CHS_ROOT))/target/sim/src/elfloader.cpp" -ccflags "-std=c++11"' >> $@
 
 # Clean
@@ -44,6 +45,5 @@ chim-sim-clean:
 	@rm -rf $(CHIM_SIM_DIR)/vsim/work
 	@rm -rf $(CHIM_SIM_DIR)/vsim/transcript
 	@rm -f $(CHIM_SIM_DIR)/vsim/compile.tcl
-
 
 endif # chim_sim_mk

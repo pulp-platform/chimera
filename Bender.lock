@@ -69,7 +69,7 @@ packages:
     - common_cells
     - register_interface
   cheshire:
-    revision: 586cb0225be5c57f5ffcf67bd490763efd9b4d24
+    revision: 1f8c3eac515ac09dec98f89f67df6954dd89e17a
     version: null
     source:
       Git: https://github.com/pulp-platform/cheshire.git
@@ -150,7 +150,7 @@ packages:
     - fpnew
     - tech_cells_generic
   ethcluster:
-    revision: 49adaab00aa652adf8601e296b13dedc3f3b6197
+    revision: 8bc8ce1e3c63f4120c7055710f9769a9642c64a7
     version: null
     source:
       Git: git@gitlab.tue.nl:es/convolve-private/ethcluster.git
@@ -202,16 +202,16 @@ packages:
     - common_cells
     - register_interface
   kulcluster:
-    revision: 6da824eb38f6db629cdbca0d7727fec8be545d6b
+    revision: 6ecccdbe71edbbde6a5bf149938065369616c96e
     version: null
     source:
       Git: git@gitlab.tue.nl:es/convolve-private/kulcluster.git
     dependencies: []
   memory_island:
-    revision: 64828cb7a9ccc1f1656ec92d06129072f445c319
+    revision: 68c31664bfdba02b74bbaf73889fb306e99fe30b
     version: null
     source:
-      Git: https://github.com/pulp-platform/memory_island.git
+      Git: https://github.com/Lore0599/memory_island
     dependencies:
     - axi
     - cluster_interconnect
@@ -291,13 +291,13 @@ packages:
     dependencies:
     - common_verification
   tuddcim:
-    revision: 5254a92569a24d1eac28cb8093ea2a8f81a855d5
+    revision: 45bf36fc1649f8adcb43bb335ca193e6c9f7e566
     version: null
     source:
       Git: git@gitlab.tue.nl:es/convolve-private/tuddcim.git
     dependencies: []
   tuedcim:
-    revision: 8b3ec32ffe3487a59b45fa49391e8a36196a64c9
+    revision: c7acd066b7e5ed60277078c6ce8c0b31f665e486
     version: null
     source:
       Git: git@gitlab.tue.nl:es/convolve-private/tuedcim.git
