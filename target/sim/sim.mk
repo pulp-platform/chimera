@@ -18,8 +18,9 @@ chim-sim-clean:
 
 chim-sim: $(CHIM_SIM_DIR)/vsim/compile.tcl
 
+
 $(CHIM_SIM_DIR)/vsim/compile.tcl: chs-hw-init snitch-hw-init
-	@bender script vsim $(COMMON_TARGS) $(SIM_TARGS) --vlog-arg="$(VLOG_ARGS)"> $@
+	@bender script vsim $(COMMON_TARGS) $(SIM_TARGS) $(EXT_TARGS) --vlog-arg="$(VLOG_ARGS)"> $@
 	echo 'vlog "$(realpath $(CHS_ROOT))/target/sim/src/elfloader.cpp" -ccflags "-std=c++11"' >> $@
 
 endif # chim_sim_mk

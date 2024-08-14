@@ -28,9 +28,15 @@ package chimera_pkg;
     byte_bt [iomsb(ExtClusters):0] NrCores;
   } cluster_config_t;
 
+  localparam int unsigned TUEDCIMIDX = 0;
+  localparam int unsigned TUEMEGAIDX = 1;
+  localparam int unsigned TUDDCIMIDX = 2;
+  localparam int unsigned KULCLUSTERIDX = 3;
+  localparam int unsigned ETHCLUSTERIDX = 4;
+
   localparam cluster_config_t ChimeraClusterCfg = '{
       hasWideMasterPort: {1'b1, 1'b1, 1'b1, 1'b1, 1'b1},
-      NrCores: {8'h9, 8'h9, 8'h9, 8'h9, 8'h9}
+      NrCores: {8'h9, 8'h3, 8'h2, 8'h2, 8'h2}
   };
 
   function automatic int _sumVector(byte_bt [iomsb(ExtClusters):0] vector, int vectorLen);
@@ -121,6 +127,7 @@ ExtClusters
   // -------------------
   // |   Generate Cfg   |
   // --------------------
+  localparam aw_bt ClusterNarrowAxiMstIdWidth = 2;
 
   function automatic chimera_cfg_t gen_chimera_cfg();
     localparam int AddrWidth = DefaultCfg.AddrWidth;
@@ -143,8 +150,12 @@ ExtClusters
     // AXI CFG
     cfg.AxiMstIdWidth = 2;
     cfg.AxiDataWidth = 32;
-    cfg.AddrWidth = 32;
+    cfg.AxiUserWidth = 2;
+    cfg.AddrWidth = 48;
     cfg.LlcOutRegionEnd = 'hFFFF_FFFF;
+
+    cfg.MemIslWidePorts = $countones(ChimeraClusterCfg.hasWideMasterPort);
+    cfg.MemIslNarrowToWideFactor = 16;
 
     cfg.AxiExtNumWideMst = $countones(ChimeraClusterCfg.hasWideMasterPort);
 
