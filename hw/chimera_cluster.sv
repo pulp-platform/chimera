@@ -72,8 +72,8 @@ module chimera_cluster
   typedef logic [WideDataWidth-1:0] axi_cluster_data_wide_t;
   typedef logic [WideDataWidth/8-1:0] axi_cluster_strb_wide_t;
 
-  typedef logic [NarrowMasterIdWidth-1:0] axi_cluster_mst_id_width_narrow_t;
-  typedef logic [NarrowMasterIdWidth-1+2:0] axi_cluster_slv_id_width_narrow_t;
+  typedef logic [ClusterNarrowAxiMstIdWidth-1:0] axi_cluster_mst_id_width_narrow_t;
+  typedef logic [ClusterNarrowAxiMstIdWidth-1+2:0] axi_cluster_slv_id_width_narrow_t;
 
   typedef logic [NarrowMasterIdWidth-1:0] axi_soc_mst_id_width_narrow_t;
   typedef logic [NarrowSlaveIdWidth-1:0] axi_soc_slv_id_width_narrow_t;
@@ -114,7 +114,7 @@ module chimera_cluster
   axi_cluster_out_narrow_socIW_resp_t [1:0] clu_axi_narrow_mst_rsp;
 
   // Cluster-side out wide ports
-  axi_cluster_out_wide_req_t                clu_wide_out_req_o;
+  axi_cluster_out_wide_req_t                clu_axi_wide_mst_req;
   axi_cluster_out_wide_resp_t               clu_axi_wide_mst_resp;
 
   if (ClusterDataWidth != Cfg.AxiDataWidth) begin : gen_narrow_adapter
@@ -197,7 +197,7 @@ module chimera_cluster
 
     .wide_out_req_o     (wide_out_req_o),
     .wide_out_resp_i    (wide_out_resp_i),
-    .clu_wide_out_req_i (clu_wide_out_req_o),
+    .clu_wide_out_req_i (clu_axi_wide_mst_req),
     .clu_wide_out_resp_o(clu_axi_wide_mst_resp),
 
     .wide_mem_bypass_mode_i(widemem_bypass_i)
@@ -289,7 +289,7 @@ module chimera_cluster
     .narrow_out_resp_i(clu_axi_adapter_mst_resp),
     .wide_in_req_i    ('0),
     .wide_in_resp_o   (),
-    .wide_out_req_o   (clu_wide_out_req_o),
+    .wide_out_req_o   (clu_axi_wide_mst_req),
     .wide_out_resp_i  (clu_axi_wide_mst_resp)
 
   );

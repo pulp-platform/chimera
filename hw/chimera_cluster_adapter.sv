@@ -61,6 +61,7 @@ module chimera_cluster_adapter #(
 
   localparam int ClusterNarrowMasterIdWidth = $bits(clu_narrow_out_req_i.aw.id);
   localparam int ClusterNarrowSlaveIdWidth = $bits(clu_narrow_in_req_o.aw.id);
+  localparam int ClusterWideMasterIdWidth = $bits(clu_wide_out_req_i.aw.id);
 
   localparam int SocNarrowMasterIdWidth = $bits(narrow_out_req_o[0].aw.id);
   localparam int SocNarrowSlaveIdWidth = $bits(narrow_in_req_i.aw.id);
@@ -164,9 +165,9 @@ module chimera_cluster_adapter #(
     .axi_req_t  (wide_out_req_t),
     .axi_resp_t (wide_out_resp_t),
     .NoMstPorts (2),
-    .MaxTrans   (2),
+    .MaxTrans   (16),                    // TODO: Tune this
     .AxiLookBits(SocWideMasterIdWidth),
-    .UniqueIds  ('1)
+    .UniqueIds  (4)                      // TODO: Tune this
   ) i_wide_demux (
     .clk_i          (soc_clk_i),
     .rst_ni,
@@ -182,16 +183,19 @@ module chimera_cluster_adapter #(
   // SoC side Wide-to-narrow ID width converter for bypasses
 
   axi_iw_converter #(
-    .AxiSlvPortIdWidth     (SocWideMasterIdWidth),
-    .AxiMstPortIdWidth     (SocNarrowMasterIdWidth),
-    .AxiSlvPortMaxUniqIds  (1),
-    .AxiSlvPortMaxTxnsPerId(1),
-    .AxiSlvPortMaxTxns     (2),
+    .AxiSlvPortIdWidth(SocWideMasterIdWidth),
+    .AxiMstPortIdWidth(SocNarrowMasterIdWidth),
+
+    .AxiSlvPortMaxUniqIds  (4),
+    .AxiSlvPortMaxTxnsPerId(4),  // TODO: Tune this
+    .AxiSlvPortMaxTxns     (16), // TODO: Tune this
+
     .AxiMstPortMaxUniqIds  (2),
-    .AxiMstPortMaxTxnsPerId(2),
-    .AxiAddrWidth          (AddrWidth),
-    .AxiDataWidth          (WideDataWidth),
-    .AxiUserWidth          (UserWidth),
+    .AxiMstPortMaxTxnsPerId(16), // TODO: Tune this
+
+    .AxiAddrWidth(AddrWidth),
+    .AxiDataWidth(WideDataWidth),
+    .AxiUserWidth(UserWidth),
 
     .slv_req_t (wide_out_req_t),
     .slv_resp_t(wide_out_resp_t),
@@ -209,7 +213,7 @@ module chimera_cluster_adapter #(
   // SoC side Wide-to-narrow data width converter for bypasses
 
   axi_dw_converter #(
-    .AxiMaxReads(2),
+    .AxiMaxReads(4),
 
     .AxiSlvPortDataWidth(WideDataWidth),
     .AxiMstPortDataWidth(NarrowDataWidth),
@@ -242,16 +246,19 @@ module chimera_cluster_adapter #(
   // This relaxes pressure from Snitch Cluster Interco
 
   axi_iw_converter #(
-    .AxiSlvPortIdWidth     (SocNarrowSlaveIdWidth),
-    .AxiMstPortIdWidth     (ClusterNarrowSlaveIdWidth),
-    .AxiSlvPortMaxUniqIds  (32),
-    .AxiSlvPortMaxTxnsPerId(1),
-    .AxiSlvPortMaxTxns     (2),
+    .AxiSlvPortIdWidth(SocNarrowSlaveIdWidth),
+    .AxiMstPortIdWidth(ClusterNarrowSlaveIdWidth),
+
+    .AxiSlvPortMaxUniqIds  (2),
+    .AxiSlvPortMaxTxnsPerId(16),  // TODO: Tune this
+    .AxiSlvPortMaxTxns     (16),  // TODO: Tune this
+
     .AxiMstPortMaxUniqIds  (2),
-    .AxiMstPortMaxTxnsPerId(2),
-    .AxiAddrWidth          (AddrWidth),
-    .AxiDataWidth          (WideDataWidth),
-    .AxiUserWidth          (UserWidth),
+    .AxiMstPortMaxTxnsPerId(16), // TODO: Tune this
+
+    .AxiAddrWidth(AddrWidth),
+    .AxiDataWidth(WideDataWidth),
+    .AxiUserWidth(UserWidth),
 
     .slv_req_t (narrow_in_req_t),
     .slv_resp_t(narrow_in_resp_t),
@@ -272,12 +279,12 @@ module chimera_cluster_adapter #(
     .AxiSlvPortIdWidth(ClusterNarrowMasterIdWidth),
     .AxiMstPortIdWidth(SocNarrowMasterIdWidth),
 
-    .AxiSlvPortMaxUniqIds  (2),
-    .AxiSlvPortMaxTxnsPerId(2),
-    .AxiSlvPortMaxTxns     (4),
+    .AxiSlvPortMaxUniqIds  (4),
+    .AxiSlvPortMaxTxnsPerId(4),  // TODO: Tune this
+    .AxiSlvPortMaxTxns     (4),  // TODO: Tune this
 
     .AxiMstPortMaxUniqIds  (2),
-    .AxiMstPortMaxTxnsPerId(4),
+    .AxiMstPortMaxTxnsPerId(4),  // TODO: Tune this
 
     .AxiAddrWidth(AddrWidth),
     .AxiDataWidth(NarrowDataWidth),
@@ -298,13 +305,12 @@ module chimera_cluster_adapter #(
   // WIDE MASTER PORT Cluster-side ID WIDTH CONVERSION
 
   axi_iw_converter #(
-    .AxiSlvPortIdWidth(SocWideMasterIdWidth),
+    .AxiSlvPortIdWidth(ClusterWideMasterIdWidth),
     .AxiMstPortIdWidth(SocWideMasterIdWidth),
 
-    .AxiSlvPortMaxUniqIds  (2),
-    .AxiSlvPortMaxTxnsPerId(2),
+    .AxiSlvPortMaxUniqIds  (4),
+    .AxiSlvPortMaxTxnsPerId(4),
     .AxiSlvPortMaxTxns     (4),
-
     .AxiMstPortMaxUniqIds  (2),
     .AxiMstPortMaxTxnsPerId(4),
 

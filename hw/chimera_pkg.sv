@@ -47,7 +47,7 @@ package chimera_pkg;
   localparam doub_bt TopLevelRegionStart = 64'h3000_1000;
   localparam doub_bt TopLevelRegionEnd = 64'h3000_2000;
 
-   localparam aw_bt ClusterNarrowAxiMstIdWidth = 1;
+  localparam aw_bt ClusterNarrowAxiMstIdWidth = 1;
 
   function automatic cheshire_cfg_t gen_chimera_cfg();
     localparam int AddrWidth = DefaultCfg.AddrWidth;
@@ -74,7 +74,7 @@ package chimera_pkg;
     cfg.LlcOutRegionEnd = 'hFFFF_FFFF;
 
     cfg.MemIslWidePorts = $countones(ChimeraClusterCfg.hasWideMasterPort);
-    cfg.MemIslNarrowToWideFactor = 16;
+    cfg.MemIslNarrowToWideFactor = 4;
 
     cfg.AxiExtNumWideMst = $countones(ChimeraClusterCfg.hasWideMasterPort);
     // SCHEREMO: Two ports for each cluster: one to convert stray wides, one for the original narrow
