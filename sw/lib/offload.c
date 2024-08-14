@@ -8,6 +8,9 @@
 #include "soc_addr_map.h"
 #include <stdint.h>
 
+#define numClusters 5
+static uint8_t numCores[] = {9, 9, 9, 9, 9};
+
 void setupInterruptHandler(void *handler) {
     volatile void **snitchTrapHandlerAddr =
         (volatile void **)(SOC_CTRL_BASE + CHIMERA_SNITCH_INTR_HANDLER_ADDR_REG_OFFSET);
@@ -43,7 +46,10 @@ void offloadToCluster(void *function, uint8_t clusterId) {
 
     *snitchBootAddr = function;
 
-    uint32_t hartId = clusterId * 9 + 1;
+    uint32_t hartId = 1;
+    for (uint32_t i = 0; i < clusterId; i++) {
+        hartId += numCores[i];
+    }
 
     volatile uint32_t *interruptTarget = ((uint32_t *)CLINT_CTRL_BASE) + hartId;
     waitClusterBusy(clusterId);
