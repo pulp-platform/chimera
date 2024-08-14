@@ -6,9 +6,9 @@
 # Lorenzo Leone <lleone@iis.ee.ethz.ch>
 
 
-CLINTCORES = 46
-PLICCORES = 92
-PLIC_NUM_INTRS = 92
+CLINTCORES = 19
+PLICCORES = 38
+PLIC_NUM_INTRS = 38
 
 .PHONY: update_plic
 update_plic: $(CHS_ROOT)/hw/rv_plic.cfg.hjson
@@ -66,7 +66,7 @@ $(CHIM_ROOT)/hw/regs/chimera_reg_pkg.sv $(CHIM_ROOT)/hw/regs/chimera_reg_top.sv:
 # Nonfree components
 CHIM_NONFREE_REMOTE ?= git@iis-git.ee.ethz.ch:pulp-restricted/chimera-nonfree.git
 CHIM_NONFREE_DIR ?= $(CHIM_ROOT)/nonfree
-CHIM_NONFREE_COMMIT ?= deploy # to deploy `chimera-nonfree` repo changes, push to `deploy` tag
+CHIM_NONFREE_COMMIT ?= deploy_convolve # to deploy `chimera-nonfree` repo changes, push to `deploy` tag
 
 .PHONY: chim-nonfree-init
 chim-nonfree-init:

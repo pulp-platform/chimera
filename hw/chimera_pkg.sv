@@ -28,9 +28,15 @@ package chimera_pkg;
     byte_bt [iomsb(ExtClusters):0] NrCores;
   } cluster_config_t;
 
+  localparam int unsigned TUEDCIMIDX = 0;
+  localparam int unsigned TUEMEGAIDX = 1;
+  localparam int unsigned TUDDCIMIDX = 2;
+  localparam int unsigned KULCLUSTERIDX = 3;
+  localparam int unsigned ETHCLUSTERIDX = 4;
+
   localparam cluster_config_t ChimeraClusterCfg = '{
       hasWideMasterPort: {1'b1, 1'b1, 1'b1, 1'b1, 1'b1},
-      NrCores: {8'h9, 8'h9, 8'h9, 8'h9, 8'h9}
+      NrCores: {8'h9, 8'h3, 8'h2, 8'h2, 8'h2}
   };
 
   function automatic int _sumVector(byte_bt [iomsb(ExtClusters):0] vector, int vectorLen);
@@ -104,15 +110,13 @@ ExtClusters
     64'h40A0_0000, 64'h4080_0000, 64'h4060_0000, 64'h4040_0000, 64'h4020_0000
   };
 
-  localparam aw_bt ClusterNarrowAxiMstIdWidth = 1;
-
   // Parameters for Memory Island
   localparam int MemIslandIdx = ClusterIdx[ExtClusters-1] + 1;
   localparam doub_bt MemIslRegionStart = 64'h4800_0000;
   localparam doub_bt MemIslRegionEnd = 64'h4804_0000;
 
   localparam aw_bt MemIslAxiMstIdWidth = 1;
-  localparam byte_bt MemIslNarrowToWideFactor = 4;
+  localparam byte_bt MemIslNarrowToWideFactor = 16;
   localparam byte_bt MemIslNarrowPorts = 1;
   localparam byte_bt MemIslWidePorts = $countones(ChimeraClusterCfg.hasWideMasterPort);
   localparam byte_bt MemIslNumWideBanks = 2;
@@ -121,6 +125,7 @@ ExtClusters
   // -------------------
   // |   Generate Cfg   |
   // --------------------
+  localparam aw_bt ClusterNarrowAxiMstIdWidth = 2;
 
   function automatic chimera_cfg_t gen_chimera_cfg();
     localparam int AddrWidth = DefaultCfg.AddrWidth;
@@ -143,7 +148,8 @@ ExtClusters
     // AXI CFG
     cfg.AxiMstIdWidth = 2;
     cfg.AxiDataWidth = 32;
-    cfg.AddrWidth = 32;
+    cfg.AxiUserWidth = 2;
+    cfg.AddrWidth = 48;
     cfg.LlcOutRegionEnd = 'hFFFF_FFFF;
 
     cfg.AxiExtNumWideMst = $countones(ChimeraClusterCfg.hasWideMasterPort);

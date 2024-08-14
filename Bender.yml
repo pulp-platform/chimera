@@ -17,6 +17,11 @@ dependencies:
   idma:                     { git: "https://github.com/pulp-platform/iDMA.git",               rev: 9edf489f57389dce5e71252c79e337f527d3aded}
   memory_island:            { git: "https://github.com/pulp-platform/memory_island.git",          rev: 64828cb7a9ccc1f1656ec92d06129072f445c319 } # main branch
   apb:                      { git: "https://github.com/pulp-platform/apb.git",                version: 0.2.4          }
+  TUEDCIM:                  { git: "git@gitlab.tue.nl:es/convolve-private/tuedcim.git",           rev: 10102024}
+  TUEMEGA:                  { git: "git@gitlab.tue.nl:es/convolve-private/tuemega.git",           rev: 11102024}
+  TUDDCIM:                  { git: "git@gitlab.tue.nl:es/convolve-private/tuddcim.git",           rev: 11102024-6}
+  KULCLUSTER:               { git: "git@gitlab.tue.nl:es/convolve-private/kulcluster.git",        rev: 11102024}
+  ETHCluster:               { git: "git@gitlab.tue.nl:es/convolve-private/ethcluster.git",        rev: 8ab985c}
 
 export_include_dirs:
   - hw/include
@@ -44,6 +49,26 @@ sources:
       - target/sim/src/fixture_chimera_soc.sv
       - target/sim/src/tb_chimera_soc.sv
       - target/sim/src/tb_chimera_pkg.sv
+
+  - target: tuedcim
+    files:
+      - hw/convolve/chimera_cluster_tuedcim.sv
+
+  - target: tuemega
+    files:
+      - hw/convolve/chimera_cluster_tuemega.sv
+
+  - target: tuddcim
+    files:
+      - hw/convolve/chimera_cluster_tuddcim.sv
+
+  - target: kulcluster
+    files:
+      - hw/convolve/chimera_cluster_kulcluster.sv
+
+  - target: ethcluster
+    files:
+      - hw/convolve/chimera_cluster_ethcluster.sv
 
 vendor_package:
   - name: reggen

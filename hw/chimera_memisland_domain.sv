@@ -24,9 +24,7 @@ module chimera_memisland_domain
 );
 
   // Define needed parameters
-  localparam int unsigned AxiSlvIdWidth = Cfg.ChsCfg.AxiMstIdWidth + $clog2(
-      cheshire_pkg::gen_axi_in(Cfg.ChsCfg).num_in
-  );
+  localparam int unsigned AxiSlvIdWidth = $bits(axi_narrow_req_i.aw.id);
   localparam int unsigned WideSlaveIdWidth = $clog2(Cfg.MemIslWidePorts);
   localparam int unsigned WideDataWidth = Cfg.ChsCfg.AxiDataWidth * Cfg.MemIslNarrowToWideFactor;
 
