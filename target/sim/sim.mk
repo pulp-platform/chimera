@@ -45,4 +45,5 @@ chim-sim-clean:
 	@rm -rf $(CHIM_SIM_DIR)/vsim/transcript
 	@rm -f $(CHIM_SIM_DIR)/vsim/compile.tcl
 
+
 endif # chim_sim_mk

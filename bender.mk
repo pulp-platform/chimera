@@ -9,3 +9,4 @@ COMMON_TARGS ?=
 COMMON_TARGS += -t snitch_cluster -t cv32a6_convolve -t cva6 -t rtl
 
 SIM_TARGS = $(COMMON_TARGS) -t test -t sim
+EXT_TARGS = -t tuedcim -t tuemega -t kulcluster -t tuddcim

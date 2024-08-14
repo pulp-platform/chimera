@@ -19,6 +19,11 @@ dependencies:
   apb:                      { git: "https://github.com/pulp-platform/apb.git",                version: 0.2.4          }
   hyperbus:                 { git: "https://github.com/pulp-platform/hyperbus.git",           rev: f039e601c8b6590181734e6d26ff8b77aa380412 } # branch: chi/add_fsm_with_Tcsh
   tech_cells_generic:       { git: "https://github.com/pulp-platform/tech_cells_generic.git", version: 0.2.12 }
+  TUEDCIM:                  { git: "git@gitlab.tue.nl:es/convolve-private/tuedcim.git",           rev: 10102024}
+  TUEMEGA:                  { git: "git@gitlab.tue.nl:es/convolve-private/tuemega.git",           rev: 11102024}
+  TUDDCIM:                  { git: "git@gitlab.tue.nl:es/convolve-private/tuddcim.git",           rev: 11102024-6}
+  KULCLUSTER:               { git: "git@gitlab.tue.nl:es/convolve-private/kulcluster.git",        rev: 11102024}
+  ETHCluster:               { git: "git@gitlab.tue.nl:es/convolve-private/ethcluster.git",        rev: 8ab985c}
 
 export_include_dirs:
   - hw/include
@@ -49,6 +54,26 @@ sources:
       - target/sim/src/vip_chimera_soc.sv
       - target/sim/src/fixture_chimera_soc.sv
       - target/sim/src/tb_chimera_soc.sv
+
+  - target: tuedcim
+    files:
+      - hw/convolve/chimera_cluster_tuedcim.sv
+
+  - target: tuemega
+    files:
+      - hw/convolve/chimera_cluster_tuemega.sv
+
+  - target: tuddcim
+    files:
+      - hw/convolve/chimera_cluster_tuddcim.sv
+
+  - target: kulcluster
+    files:
+      - hw/convolve/chimera_cluster_kulcluster.sv
+
+  - target: ethcluster
+    files:
+      - hw/convolve/chimera_cluster_ethcluster.sv
 
 vendor_package:
   - name: reggen

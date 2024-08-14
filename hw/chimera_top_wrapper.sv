@@ -347,7 +347,7 @@ module chimera_top_wrapper
   ) i_cluster_domain (
     .soc_clk_i        (soc_clk_i),
     .clu_clk_i        (clu_clk_gated),
-    .rst_sync_ni      (pmu_rst_clusters_ni),
+    .rst_ni           (rst_ni),
     .widemem_bypass_i (wide_mem_bypass_mode),
     .debug_req_i      (dbg_ext_req),
     .xeip_i           (xeip_ext),
