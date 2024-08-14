@@ -44,8 +44,8 @@ packages:
     - common_cells
     - common_verification
   axi_rt:
-    revision: d5f857e74d0a5db4e4a2cc3652ca4f40f29a1484
-    version: 0.0.0-alpha.8
+    revision: 641ea950e24722af747033f2ab85f0e48ea8d7f8
+    version: 0.0.0-alpha.9
     source:
       Git: https://github.com/pulp-platform/axi_rt.git
     dependencies:
@@ -149,6 +149,12 @@ packages:
     - common_cells
     - fpnew
     - tech_cells_generic
+  ethcluster:
+    revision: 8ab985c7965ec0c3c4dd7e99227439d23804a157
+    version: null
+    source:
+      Git: git@gitlab.tue.nl:es/convolve-private/ethcluster.git
+    dependencies: []
   fpnew:
     revision: a8e0cba6dd50f357ece73c2c955d96efc3c6c315
     version: null
@@ -185,6 +191,12 @@ packages:
     - axi
     - common_cells
     - register_interface
+  kulcluster:
+    revision: e348b6275c79e1b20510f2ee6d497a49fb2699b6
+    version: null
+    source:
+      Git: git@gitlab.tue.nl:es/convolve-private/kulcluster.git
+    dependencies: []
   memory_island:
     revision: 64828cb7a9ccc1f1656ec92d06129072f445c319
     version: null
@@ -268,6 +280,24 @@ packages:
       Git: https://github.com/pulp-platform/tech_cells_generic.git
     dependencies:
     - common_verification
+  tuddcim:
+    revision: 5254a92569a24d1eac28cb8093ea2a8f81a855d5
+    version: null
+    source:
+      Git: git@gitlab.tue.nl:es/convolve-private/tuddcim.git
+    dependencies: []
+  tuedcim:
+    revision: 8b3ec32ffe3487a59b45fa49391e8a36196a64c9
+    version: null
+    source:
+      Git: git@gitlab.tue.nl:es/convolve-private/tuedcim.git
+    dependencies: []
+  tuemega:
+    revision: b0b1fd2ba0733edb1ecdf6bdb758c005ee385499
+    version: null
+    source:
+      Git: git@gitlab.tue.nl:es/convolve-private/tuemega.git
+    dependencies: []
   unbent:
     revision: e9c9d5cfb635f2d4668c816ce9235798cfecb297
     version: 0.1.6
