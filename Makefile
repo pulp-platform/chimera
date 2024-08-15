@@ -5,8 +5,11 @@
 # Moritz Scherer <scheremo@iis.ee.ethz.ch>
 
 CHIM_ROOT ?= $(shell pwd)
-BENDER    ?= bender -d $(CHIM_ROOT)
-PADRICK   ?= padrick
+
+# Tooling
+BENDER                 ?= bender -d $(CHIM_ROOT)
+PADRICK                ?= padrick
+VERIBLE_VERILOG_FORMAT ?= $(CHIM_UTILS_DIR)/verible-verilog/verible-verilog-format
 
 CHS_ROOT    ?= $(shell $(BENDER) path cheshire)
 SNITCH_ROOT ?= $(shell $(BENDER) path snitch_cluster)
