@@ -4,16 +4,17 @@
 #
 # Moritz Scherer <scheremo@iis.ee.ethz.ch>
 
-CHIM_ROOT      ?= $(shell pwd)
-BENDER   ?= bender -d $(CHIM_ROOT)
+CHIM_ROOT ?= $(shell pwd)
+BENDER    ?= bender -d $(CHIM_ROOT)
 
-CHS_ROOT      ?= $(shell $(BENDER) path cheshire)
-SNITCH_ROOT      ?= $(shell $(BENDER) path snitch_cluster)
-IDMA_ROOT      ?= $(shell $(BENDER) path idma)
+CHS_ROOT    ?= $(shell $(BENDER) path cheshire)
+SNITCH_ROOT ?= $(shell $(BENDER) path snitch_cluster)
+IDMA_ROOT   ?= $(shell $(BENDER) path idma)
+
 CHS_XLEN ?= 32
 
-CHIM_HW_DIR      ?= $(CHIM_ROOT)/hw
-CHIM_SW_DIR      ?= $(CHIM_ROOT)/sw
+CHIM_HW_DIR ?= $(CHIM_ROOT)/hw
+CHIM_SW_DIR ?= $(CHIM_ROOT)/sw
 
 -include $(CHS_ROOT)/cheshire.mk
 -include $(CHIM_ROOT)/chimera.mk

@@ -4,6 +4,9 @@
 #
 # Moritz Scherer <scheremo@iis.ee.ethz.ch>
 
+ifndef chim_sw_mk
+chim_sw_mk=1
+
 CHS_SW_INCLUDES += -I$(CHIM_SW_DIR)/include
 CHS_SW_FLAGS += -falign-functions=64 -march=rv32im
 CHS_SW_LDFLAGS += -L$(CHIM_SW_DIR)/lib
@@ -33,3 +36,5 @@ chim-sw-clean:
 	@find sw/tests | grep ".*\.dump" | xargs -I ! rm !
 	@find sw/tests | grep ".*\.memh" | xargs -I ! rm !
 	@find sw/lib | grep ".*\.a" | xargs -I ! rm !
+
+endif # chim_sw_mk
