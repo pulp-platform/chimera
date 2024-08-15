@@ -1,0 +1,244 @@
+# Copyright 2024 ETH Zurich and University of Bologna.
+# Solderpad Hardware License, Version 0.51, see LICENSE for details.
+# SPDX-License-Identifier: SHL-0.51
+
+# Sergio Mazzola <smazzola@iis.ee.ethz.ch>
+
+name: chimera_padframe
+
+manifest_version: 2
+
+user_attr:
+  gpioa_count: &gpioa_count 32
+  i2ca_count: &i2ca_count 1
+  spia_count: &spia_count 1
+  uarta_count: &uarta_count 1
+
+pad_domains:
+  - name: aon_static # Domains containing only static signals, i.e. non-muxed signals
+    pad_types:
+      - name: pull_down_pad
+        description: |
+          IO Pad with pull down resistors.
+        template: |
+          (* PULLDOWN = "YES" *)
+          IOBUF ${instance_name} (
+            .T ( ~${conn["tri_en"]}  ),
+            .I ( ${conn["chip2pad"]} ),
+            .O ( ${conn["pad2chip"]} ),
+            .IO( ${conn["pad"]}      )
+          );
+
+        pad_signals: &default_pad_signals
+          - name: tri_en
+            description: "Enables high-impedance state of the TX driver"
+            size: 1
+            kind: input
+            conn_type: dynamic
+            default_reset_value: 1
+            default_static_value: 1'b1
+          - name: pad2chip
+            description: "The signal that connects to the pad's RX buffer"
+            size: 1
+            kind: output
+            conn_type: dynamic
+          - name: chip2pad
+            description: "The signal that connects to the pad's TX driver"
+            size: 1
+            kind: input
+            conn_type: dynamic
+            default_reset_value: 0
+            default_static_value: 1'b0
+          - name: pad
+            description: "The inout wire of the IO pad that connect to the top-level port of the SoC"
+            size: 1
+            kind: pad
+
+    pad_list:
+      - name: rstn
+        description: "Chip RESET signal"
+        pad_type: pull_down_pad
+        is_static: true
+        connections:
+          pad2chip: st_rstn
+
+      - name: jtag_tck
+        description: "JTAG clock pad signal"
+        pad_type: pull_down_pad
+        is_static: true
+        connections:
+          pad2chip: st_jtag_tck
+
+      - name: jtag_trstn
+        description: "JTAG negative reset pad signal"
+        pad_type: pull_down_pad
+        is_static: true
+        connections:
+          pad2chip: st_jtag_trstn
+
+      - name: jtag_tms
+        description: "JTAG TMS pad signal"
+        pad_type: pull_down_pad
+        is_static: true
+        connections:
+          pad2chip: st_jtag_tms
+
+      - name: jtag_tdi
+        description: "JTAG TDI pad signal"
+        pad_type: pull_down_pad
+        is_static: true
+        connections:
+          pad2chip: st_jtag_tdi
+
+      - name: jtag_tdo
+        description: "JTAG TDO pad signal"
+        pad_type: pull_down_pad
+        is_static: true
+        connections:
+          tri_en: 1'b0
+          chip2pad: st_jtag_tdo
+
+      - name: bootsel_0
+        description: "Boot mode selection signal: Bit 0"
+        pad_type: pull_down_pad
+        is_static: true
+        connections:
+          pad2chip: st_bootsel_0
+
+      - name: bootsel_1
+        description: "Boot mode selection signal: BIt 1"
+        pad_type: pull_down_pad
+        is_static: true
+        connections:
+          pad2chip: st_bootsel_1
+
+  - name: aon_gpioa
+    pad_types:
+      - name: pull_down_pad
+        description: |
+          IO Pad with pull down resistors.
+        template: |
+          (* PULLDOWN = "YES" *)
+          IOBUF ${instance_name} (
+            .T ( ~${conn["tri_en"]}  ),
+            .I ( ${conn["chip2pad"]} ),
+            .O ( ${conn["pad2chip"]} ),
+            .IO( ${conn["pad"]}      )
+          );
+        pad_signals: *default_pad_signals
+
+    pad_list:
+      - name: gpio_{i}
+        mux_groups: [gpio_seta,"gpioa_{i}"]
+        description: "General purpose GPIO A. All peripherals can be connected to these Pads."
+        multiple: *gpioa_count
+        pad_type: pull_down_pad
+        is_static: false
+
+    port_groups:
+      - name: qspi{i}
+        description: "Set of QSPI ports"
+        output_defaults: 1'b0
+        mux_groups: [gpio_seta]
+        multiple: *spia_count
+        ports:
+          - name: sd0
+            description: "Serial Data port of the QSPI manager peripheral: 0th bit"
+            connections:
+              chip2pad: sd0_o
+              sd0_i: pad2chip
+              tri_en: ~sd0_en_o
+
+          - name: sd1
+            description: "Serial Data port of the QSPI manager peripheral: 1st bit"
+            connections:
+              chip2pad: sd1_o
+              sd1_i: pad2chip
+              tri_en: ~sd1_en_o
+
+          - name: sd2
+            description: "Serial Data port of the QSPI manager peripheral: 2nd bit"
+            connections:
+              chip2pad: sd2_o
+              sd2_i: pad2chip
+              tri_en: ~sd2_en_o
+
+          - name: sd3
+            description: "Serial Data port of the QSPI manager peripheral: 3rd bit"
+            connections:
+              chip2pad: sd3_o
+              sd3_i: pad2chip
+              tri_en: ~sd3_en_o
+
+          - name: sck
+            description: "Clock signal of the manager module"
+            connections:
+              chip2pad: sck_o
+              tri_en: ~sck_en_o
+
+          - name: csb0
+            description: "Chip Select signal active Low"
+            connections:
+              chip2pad: csb0_o
+              tri_en: ~csb0_en_o
+
+          - name: csb1
+            description: "Chip Select signal active Low"
+            connections:
+              chip2pad: csb1_o
+              tri_en: ~csb1_en_o
+
+          - name: csb2
+            description: "Chip Select signal active Low"
+            connections:
+              chip2pad: csb2_o
+              tri_en: ~csb2_en_o
+
+      - name: i2c{i}
+        description: "Set of I2C ports"
+        output_defaults: 1'b0
+        multiple: *i2ca_count
+        mux_groups: [gpio_seta]
+        ports:
+          - name: sda
+            description: "SDA port of the I2C peripheral"
+            connections:
+              chip2pad: sda_o
+              sda_i: pad2chip
+              tri_en: ~sda_en_o
+
+          - name: scl
+            description: "Manager clock signal"
+            connections:
+              chip2pad: scl_o
+              scl_i: pad2chip
+              tri_en: ~scl_en_o
+
+      - name: uart{i}
+        description: "Tx and RX ports for the UART peripheral"
+        output_defaults: 1'b0
+        multiple: *uarta_count
+        mux_groups: [gpio_seta]
+        ports:
+          - name: rx
+            description: "RX port"
+            connections:
+              rx_i: pad2chip
+
+          - name: tx
+            description: "TX port"
+            connections:
+              chip2pad: tx_o
+              tri_en: 1'b0
+
+      - name: gpioa{i}
+        multiple: *gpioa_count
+        mux_groups: ["gpioa_{i}"]
+        output_defaults: 1'b0
+        ports:
+          - name: gpio
+            description: "GPIO A port"
+            connections:
+              chip2pad: gpio_o
+              gpio_i: pad2chip
+              tri_en: ~gpio_en_o

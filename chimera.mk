@@ -78,3 +78,4 @@ chim-nonfree-init:
 -include $(CHIM_ROOT)/utils/utils.mk
 # Include target makefiles
 -include $(CHIM_ROOT)/target/sim/sim.mk
+-include $(CHIM_ROOT)/target/fpga/fpga.mk
