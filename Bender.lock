@@ -198,8 +198,8 @@ packages:
     - common_verification
     - tech_cells_generic
   obi:
-    revision: 5321106817e177d6c16ecc4daa922b96b1bc946b
-    version: 0.1.5
+    revision: c2141a653c755461ff44f61d12aeb5d99fc8e760
+    version: 0.1.3
     source:
       Git: https://github.com/pulp-platform/obi.git
     dependencies:
@@ -225,10 +225,10 @@ packages:
     - common_cells
     - common_verification
   riscv-dbg:
-    revision: 5b21f3504fc3913320b39b477ef2a4274e09581d
-    version: null
+    revision: 358f90110220adf7a083f8b65d157e836d706236
+    version: 0.8.1
     source:
-      Git: https://github.com/pulp-platform/riscv-dbg
+      Git: https://github.com/pulp-platform/riscv-dbg.git
     dependencies:
     - common_cells
     - tech_cells_generic
