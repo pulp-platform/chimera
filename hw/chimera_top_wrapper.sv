@@ -258,11 +258,11 @@ module chimera_top_wrapper
 
   logic [ExtClusters-1:0] wide_mem_bypass_mode;
   assign wide_mem_bypass_mode = {
-    reg2hw.wide_mem_cluster_5_bypass.q,
     reg2hw.wide_mem_cluster_4_bypass.q,
     reg2hw.wide_mem_cluster_3_bypass.q,
     reg2hw.wide_mem_cluster_2_bypass.q,
-    reg2hw.wide_mem_cluster_1_bypass.q
+    reg2hw.wide_mem_cluster_1_bypass.q,
+    reg2hw.wide_mem_cluster_0_bypass.q
   };
 
   logic [ExtClusters-1:0] cluster_clock_gate_en;

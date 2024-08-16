@@ -7,7 +7,7 @@
 `define NRCORES(extClusterIdx) ChimeraClusterCfg.NrCores[extClusterIdx]
 `define PREVNRCORES(extClusterIdx) \
  _sumVector( \
-        ChimeraClusterCfg.NrCores[extClusterIdx:0], extClusterIdx \
+        ChimeraClusterCfg.NrCores, extClusterIdx \
     )
 
 module chimera_clu_domain
