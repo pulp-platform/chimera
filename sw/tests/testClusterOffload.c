@@ -32,8 +32,8 @@ int32_t testReturn() {
 
 int main() {
     setupInterruptHandler(clusterTrapHandler);
-    offloadToCluster(testReturn, 1);
-    uint32_t retVal = waitForCluster(1);
+    offloadToCluster(testReturn, 0);
+    uint32_t retVal = waitForCluster(0);
 
     return (retVal != (TESTVAL | 0x000000001));
 }

@@ -35,15 +35,15 @@ int32_t returnPtr(uint32_t ClstIdx) {
     int32_t regPtr;
 
     if (ClstIdx == 0) {
-        regPtr = (SOC_CTRL_BASE + CHIMERA_WIDE_MEM_CLUSTER_1_BYPASS_REG_OFFSET);
+        regPtr = (SOC_CTRL_BASE + CHIMERA_WIDE_MEM_CLUSTER_0_BYPASS_REG_OFFSET);
     } else if (ClstIdx == 1) {
-        regPtr = (SOC_CTRL_BASE + CHIMERA_WIDE_MEM_CLUSTER_2_BYPASS_REG_OFFSET);
+        regPtr = (SOC_CTRL_BASE + CHIMERA_WIDE_MEM_CLUSTER_1_BYPASS_REG_OFFSET);
     } else if (ClstIdx == 2) {
-        regPtr = (SOC_CTRL_BASE + CHIMERA_WIDE_MEM_CLUSTER_3_BYPASS_REG_OFFSET);
+        regPtr = (SOC_CTRL_BASE + CHIMERA_WIDE_MEM_CLUSTER_2_BYPASS_REG_OFFSET);
     } else if (ClstIdx == 3) {
-        regPtr = (SOC_CTRL_BASE + CHIMERA_WIDE_MEM_CLUSTER_4_BYPASS_REG_OFFSET);
+        regPtr = (SOC_CTRL_BASE + CHIMERA_WIDE_MEM_CLUSTER_3_BYPASS_REG_OFFSET);
     } else if (ClstIdx == 4) {
-        regPtr = (SOC_CTRL_BASE + CHIMERA_WIDE_MEM_CLUSTER_5_BYPASS_REG_OFFSET);
+        regPtr = (SOC_CTRL_BASE + CHIMERA_WIDE_MEM_CLUSTER_4_BYPASS_REG_OFFSET);
     }
     return regPtr;
 }
@@ -83,8 +83,8 @@ int main() {
     regPtr = (volatile int32_t *)returnPtr(1);
     *regPtr = 1;
     setupInterruptHandler(clusterTrapHandler);
-    offloadToCluster(testMemNarrow, 1);
-    retVal = waitForCluster(1);
+    offloadToCluster(testMemNarrow, 0);
+    retVal = waitForCluster(0);
 
     if (retVal != TESTNARROW) {
         return 3;
@@ -94,8 +94,8 @@ int main() {
     regPtr = (volatile int32_t *)returnPtr(2);
     *regPtr = 0;
     setupInterruptHandler(clusterTrapHandler);
-    offloadToCluster(testMemWide, 2);
-    retVal = waitForCluster(2);
+    offloadToCluster(testMemWide, 1);
+    retVal = waitForCluster(1);
 
     if (retVal != TESTWIDE) {
         return 4;

@@ -262,11 +262,11 @@ module chimera_top_wrapper
   logic [ExtClusters-1:0] cluster_clock_gate_en;
   logic [ExtClusters-1:0] clu_clk_gated;
   assign cluster_clock_gate_en = {
-    reg2hw.cluster_5_clk_gate_en,
     reg2hw.cluster_4_clk_gate_en,
     reg2hw.cluster_3_clk_gate_en,
     reg2hw.cluster_2_clk_gate_en,
-    reg2hw.cluster_1_clk_gate_en
+    reg2hw.cluster_1_clk_gate_en,
+    reg2hw.cluster_0_clk_gate_en
   };
 
   for (genvar extClusterIdx = 0; extClusterIdx < ExtClusters; extClusterIdx++) begin : gen_clk_gates
@@ -355,11 +355,11 @@ module chimera_top_wrapper
   // Cluster Adapters
   logic                             [          ExtClusters-1:0] wide_mem_bypass_mode;
   assign wide_mem_bypass_mode = {
-    reg2hw.wide_mem_cluster_5_bypass.q,
     reg2hw.wide_mem_cluster_4_bypass.q,
     reg2hw.wide_mem_cluster_3_bypass.q,
     reg2hw.wide_mem_cluster_2_bypass.q,
-    reg2hw.wide_mem_cluster_1_bypass.q
+    reg2hw.wide_mem_cluster_1_bypass.q,
+    reg2hw.wide_mem_cluster_0_bypass.q
   };
 
   for (
