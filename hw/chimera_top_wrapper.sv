@@ -11,48 +11,54 @@ module chimera_top_wrapper
 #(
   parameter int unsigned SelectedCfg = 0
 ) (
-  input  logic                 soc_clk_i,
-  input  logic                 clu_clk_i,
-  input  logic                 rst_ni,
-  input  logic                 test_mode_i,
-  input  logic [          1:0] boot_mode_i,
-  input  logic                 rtc_i,
+  input  logic                      soc_clk_i,
+  input  logic                      clu_clk_i,
+  input  logic                      rst_ni,
+  input  logic                      test_mode_i,
+  input  logic      [          1:0] boot_mode_i,
+  input  logic                      rtc_i,
   // JTAG interface
-  input  logic                 jtag_tck_i,
-  input  logic                 jtag_trst_ni,
-  input  logic                 jtag_tms_i,
-  input  logic                 jtag_tdi_i,
-  output logic                 jtag_tdo_o,
-  output logic                 jtag_tdo_oe_o,
+  input  logic                      jtag_tck_i,
+  input  logic                      jtag_trst_ni,
+  input  logic                      jtag_tms_i,
+  input  logic                      jtag_tdi_i,
+  output logic                      jtag_tdo_o,
+  output logic                      jtag_tdo_oe_o,
   // UART interface
-  output logic                 uart_tx_o,
-  input  logic                 uart_rx_i,
+  output logic                      uart_tx_o,
+  input  logic                      uart_rx_i,
   // UART modem flow control
-  output logic                 uart_rts_no,
-  output logic                 uart_dtr_no,
-  input  logic                 uart_cts_ni,
-  input  logic                 uart_dsr_ni,
-  input  logic                 uart_dcd_ni,
-  input  logic                 uart_rin_ni,
+  output logic                      uart_rts_no,
+  output logic                      uart_dtr_no,
+  input  logic                      uart_cts_ni,
+  input  logic                      uart_dsr_ni,
+  input  logic                      uart_dcd_ni,
+  input  logic                      uart_rin_ni,
   // I2C interface
-  output logic                 i2c_sda_o,
-  input  logic                 i2c_sda_i,
-  output logic                 i2c_sda_en_o,
-  output logic                 i2c_scl_o,
-  input  logic                 i2c_scl_i,
-  output logic                 i2c_scl_en_o,
+  output logic                      i2c_sda_o,
+  input  logic                      i2c_sda_i,
+  output logic                      i2c_sda_en_o,
+  output logic                      i2c_scl_o,
+  input  logic                      i2c_scl_i,
+  output logic                      i2c_scl_en_o,
   // SPI host interface
-  output logic                 spih_sck_o,
-  output logic                 spih_sck_en_o,
-  output logic [SpihNumCs-1:0] spih_csb_o,
-  output logic [SpihNumCs-1:0] spih_csb_en_o,
-  output logic [          3:0] spih_sd_o,
-  output logic [          3:0] spih_sd_en_o,
-  input  logic [          3:0] spih_sd_i,
+  output logic                      spih_sck_o,
+  output logic                      spih_sck_en_o,
+  output logic      [SpihNumCs-1:0] spih_csb_o,
+  output logic      [SpihNumCs-1:0] spih_csb_en_o,
+  output logic      [          3:0] spih_sd_o,
+  output logic      [          3:0] spih_sd_en_o,
+  input  logic      [          3:0] spih_sd_i,
   // GPIO interface
-  input  logic [         31:0] gpio_i,
-  output logic [         31:0] gpio_o,
-  output logic [         31:0] gpio_en_o
+  input  logic      [         31:0] gpio_i,
+  output logic      [         31:0] gpio_o,
+  output logic      [         31:0] gpio_en_o,
+  // APB interface
+  output apb_req_t                  apb_fll_req_o,
+  input  apb_resp_t                 apb_fll_rsp_i,
+  input  apb_resp_t                 apb_rsp_i,
+  output apb_req_t                  apb_req_o
+
 );
 
   `include "common_cells/registers.svh"
@@ -195,6 +201,37 @@ module chimera_top_wrapper
     .usb_dp_o              (),
     .usb_dp_oe_o           ()
   );
+
+  // FLL REG
+  reg_to_apb #(
+    .reg_req_t(reg_req_t),
+    .reg_rsp_t(reg_rsp_t),
+    .apb_req_t(apb_req_t),
+    .apb_rsp_t(apb_resp_t)
+  ) i_fll_reg_to_apb (
+    .clk_i    (soc_clk_i),
+    .rst_ni   (rst_ni),
+    .reg_req_i(reg_slv_req[FllIdx]),
+    .reg_rsp_o(reg_slv_rsp[FllIdx]),
+    .apb_req_o(apb_fll_req_o),
+    .apb_rsp_i(apb_fll_rsp_i)
+  );
+
+  // PADs REG
+  reg_to_apb #(
+    .reg_req_t(reg_req_t),
+    .reg_rsp_t(reg_rsp_t),
+    .apb_req_t(apb_req_t),
+    .apb_rsp_t(apb_resp_t)
+  ) i_pad_reg_to_apb (
+    .clk_i    (soc_clk_i),
+    .rst_ni   (rst_ni),
+    .reg_req_i(reg_slv_req[PadIdx]),
+    .reg_rsp_o(reg_slv_rsp[PadIdx]),
+    .apb_req_o(apb_req_o),
+    .apb_rsp_i(apb_rsp_i)
+  );
+
 
   // TOP-LEVEL REG
 
