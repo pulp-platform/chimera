@@ -38,7 +38,7 @@ package chimera_pkg;
   localparam int SnitchBootROM = 1;
 
   // SCHEREMO: Shared Snitch bootrom, one clock gate per cluster, Fll cfg regs, Pad cfg regs
-  localparam int ExtRegNum = SnitchBootROM + 1 + 1 + 1;
+  localparam int ExtRegNum = SnitchBootROM + 1 + 1 + 1 + 1;
   localparam int ClusterDataWidth = 64;
 
   localparam int SnitchBootROMIdx = 0;
@@ -59,8 +59,15 @@ package chimera_pkg;
   localparam doub_bt FllRegionStart = 64'h3000_3000;
   localparam doub_bt FllRegionEnd = 64'h3000_4000;
 
+  localparam int HyperRegIdx = 4;
+  localparam int HyperAXIIdx = 5;
+  localparam doub_bt HyperRegionStart = 64'h3000_4000;
+  localparam doub_bt HyperRegionEnd = 64'h3000_5000;
 
   localparam aw_bt ClusterNarrowAxiMstIdWidth = 1;
+
+  localparam int HypNumPhys = 1;
+  localparam int HypNumChips = 2;
 
   function automatic cheshire_cfg_t gen_chimera_cfg();
     localparam int AddrWidth = DefaultCfg.AddrWidth;
@@ -92,24 +99,25 @@ package chimera_pkg;
     cfg.AxiExtNumWideMst = $countones(ChimeraClusterCfg.hasWideMasterPort);
     // SCHEREMO: Two ports for each cluster: one to convert stray wides, one for the original narrow
     cfg.AxiExtNumMst = ExtClusters + $countones(ChimeraClusterCfg.hasWideMasterPort);
-    cfg.AxiExtNumSlv = ExtClusters;
-    cfg.AxiExtNumRules = ExtClusters;
-    cfg.AxiExtRegionIdx = {8'h4, 8'h3, 8'h2, 8'h1, 8'h0};
+    // SCHEREMO: Add one for hyperbus
+    cfg.AxiExtNumSlv = ExtClusters + 1;
+    cfg.AxiExtNumRules = ExtClusters + 1;
+    cfg.AxiExtRegionIdx = {8'h5, 8'h4, 8'h3, 8'h2, 8'h1, 8'h0};
     cfg.AxiExtRegionStart = {
-      64'h4080_0000, 64'h4060_0000, 64'h4040_0000, 64'h4020_0000, 64'h4000_0000
+      64'h5000_0000, 64'h4080_0000, 64'h4060_0000, 64'h4040_0000, 64'h4020_0000, 64'h4000_0000
     };
     cfg.AxiExtRegionEnd = {
-      64'h40A0_0000, 64'h4080_0000, 64'h4060_0000, 64'h4040_0000, 64'h4020_0000
+      64'h5800_0000, 64'h40A0_0000, 64'h4080_0000, 64'h4060_0000, 64'h4040_0000, 64'h4020_0000
     };
 
     // REG CFG
     cfg.RegExtNumSlv = ExtRegNum;
     cfg.RegExtNumRules = ExtRegNum;
-    cfg.RegExtRegionIdx = {8'h3, 8'h2, 8'h1, 8'h0};  // SnitchBootROM
+    cfg.RegExtRegionIdx = {8'h4, 8'h3, 8'h2, 8'h1, 8'h0};  // SnitchBootROM
     cfg.RegExtRegionStart = {
-      FllRegionStart, PadRegionStart, TopLevelRegionStart, SnitchBootROMRegionStart
+      HyperRegionStart, FllRegionStart, PadRegionStart, TopLevelRegionStart, SnitchBootROMRegionStart
     };
-    cfg.RegExtRegionEnd = {FllRegionEnd, PadRegionEnd, TopLevelRegionEnd, SnitchBootROMRegionEnd};
+    cfg.RegExtRegionEnd = {HyperRegionEnd, FllRegionEnd, PadRegionEnd, TopLevelRegionEnd, SnitchBootROMRegionEnd};
 
     // ACCEL HART/IRQ CFG
     cfg.NumExtIrqHarts = ExtCores;

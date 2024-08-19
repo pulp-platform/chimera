@@ -53,12 +53,23 @@ module chimera_top_wrapper
   input  logic      [         31:0] gpio_i,
   output logic      [         31:0] gpio_o,
   output logic      [         31:0] gpio_en_o,
+     // Hyperbus interface
+  output logic [HypNumPhys-1:0][HypNumChips-1:0] hyper_cs_no,
+  output logic [HypNumPhys-1:0]                  hyper_ck_o,
+  output logic [HypNumPhys-1:0]                  hyper_ck_no,
+  output logic [HypNumPhys-1:0]                  hyper_rwds_o,
+  input  logic [HypNumPhys-1:0]                  hyper_rwds_i,
+  output logic [HypNumPhys-1:0]                  hyper_rwds_oe_o,
+  input  logic [HypNumPhys-1:0][            7:0] hyper_dq_i,
+  output logic [HypNumPhys-1:0][            7:0] hyper_dq_o,
+  output logic [HypNumPhys-1:0]                  hyper_dq_oe_o,
+  output logic [HypNumPhys-1:0]                  hyper_reset_no
+
   // APB interface
   output apb_req_t                  apb_fll_req_o,
   input  apb_resp_t                 apb_fll_rsp_i,
   input  apb_resp_t                 apb_rsp_i,
   output apb_req_t                  apb_req_o
-
 );
 
   `include "common_cells/registers.svh"
@@ -338,13 +349,78 @@ module chimera_top_wrapper
     .xeip_i           (xeip_ext),
     .mtip_i           (mtip_ext),
     .msip_i           (msip_ext),
-    .narrow_in_req_i  (axi_slv_req),
-    .narrow_in_resp_o (axi_slv_rsp),
-    .narrow_out_req_o (axi_mst_req),
-    .narrow_out_resp_i(axi_mst_rsp),
+    .narrow_in_req_i  (axi_slv_req[(Cfg.AxiExtNumSlv-2):0]),
+    .narrow_in_resp_o (axi_slv_rsp[(Cfg.AxiExtNumSlv-2):0]),
+    .narrow_out_req_o (axi_mst_req[Cfg.AxiExtNumMst-1:0]),
+    .narrow_out_resp_i(axi_mst_rsp[Cfg.AxiExtNumMst-1:0]),
     .wide_out_req_o   (axi_wide_mst_req),
     .wide_out_resp_i  (axi_wide_mst_rsp)
 
   );
+
+
+  typedef struct packed {
+    logic [31:0]              idx;
+    logic [Cfg.AddrWidth-1:0] start_addr;
+    logic [Cfg.AddrWidth-1:0] end_addr;
+  } addr_rule_t;
+
+
+  hyperbus #(
+    .NumChips       (2),                            // RAM + Flash
+    .NumPhys        (1),
+    .IsClockODelayed(0),                            // SCHEREMO: REVIEWME
+    .AxiAddrWidth   (Cfg.AddrWidth),
+    .AxiDataWidth   (Cfg.AxiDataWidth),
+    .AxiIdWidth     ($bits(axi_slv_req[0].aw.id)),
+    .AxiUserWidth   (Cfg.AxiUserWidth),
+
+    .axi_req_t(axi_slv_req_t),
+    .axi_rsp_t(axi_slv_rsp_t),
+
+    .axi_w_chan_t (axi_slv_w_chan_t),
+    .axi_b_chan_t (axi_slv_b_chan_t),
+    .axi_ar_chan_t(axi_slv_ar_chan_t),
+    .axi_r_chan_t (axi_slv_r_chan_t),
+    .axi_aw_chan_t(axi_slv_aw_chan_t),
+
+    .RegAddrWidth(32),
+    .RegDataWidth(32),
+
+    .reg_req_t(reg_req_t),
+    .reg_rsp_t(reg_rsp_t),
+
+    .axi_rule_t(addr_rule_t),
+
+    .RstChipBase (Cfg.AxiExtRegionStart[HyperAXIIdx]),
+    .RstChipSpace(Cfg.AxiExtRegionEnd[HyperAXIIdx] - Cfg.AxiExtRegionStart[HyperAXIIdx])
+
+
+  ) i_hyperbus (
+    .clk_phy_i (soc_clk_i),
+    .rst_phy_ni(rst_ni),     // SCHEREMO: Fixme
+    .clk_sys_i (soc_clk_i),
+    .rst_sys_ni(rst_ni),     // SCHEREMO: Fixme
+
+    .test_mode_i('0),
+
+    .axi_req_i(axi_slv_req[Cfg.AxiExtNumSlv-1]),
+    .axi_rsp_o(axi_slv_rsp[Cfg.AxiExtNumSlv-1]),
+
+    .reg_req_i(reg_slv_req[HyperRegIdx]),
+    .reg_rsp_o(reg_slv_rsp[HyperRegIdx]),
+
+    .hyper_cs_no,
+    .hyper_ck_o,
+    .hyper_ck_no,
+    .hyper_rwds_o,
+    .hyper_rwds_i,
+    .hyper_rwds_oe_o,
+    .hyper_dq_i,
+    .hyper_dq_o,
+    .hyper_dq_oe_o,
+    .hyper_reset_no
+  );
+
 
 endmodule

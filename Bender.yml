@@ -15,6 +15,7 @@ dependencies:
   common_cells:             { git: "https://github.com/pulp-platform/common_cells.git",       version: 1.31.1}
   idma:                     { git: "https://github.com/pulp-platform/iDMA.git",               rev: 9edf489f57389dce5e71252c79e337f527d3aded}
   apb:                      { git: "https://github.com/pulp-platform/apb.git",                version: 0.2.4          }
+  hyperbus:                 { git: "https://github.com/pulp-platform/hyperbus.git",           rev: v0.0.6}
 
 workspace:
   package_links:

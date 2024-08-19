@@ -37,8 +37,8 @@ module chimera_clu_domain
   //-----------------------------
   // Narrow AXI ports
   //-----------------------------
-  input  narrow_in_req_t   [              iomsb(Cfg.AxiExtNumSlv):0] narrow_in_req_i,
-  output narrow_in_resp_t  [              iomsb(Cfg.AxiExtNumSlv):0] narrow_in_resp_o,
+  input  narrow_in_req_t   [              iomsb(Cfg.AxiExtNumSlv-1):0] narrow_in_req_i,
+  output narrow_in_resp_t  [              iomsb(Cfg.AxiExtNumSlv-1):0] narrow_in_resp_o,
   output narrow_out_req_t  [              iomsb(Cfg.AxiExtNumMst):0] narrow_out_req_o,
   input  narrow_out_resp_t [              iomsb(Cfg.AxiExtNumMst):0] narrow_out_resp_i,
   //-----------------------------

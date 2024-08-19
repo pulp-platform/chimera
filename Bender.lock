@@ -165,6 +165,16 @@ packages:
       Git: https://github.com/pulp-platform/fpu_div_sqrt_mvp.git
     dependencies:
     - common_cells
+  hyperbus:
+    revision: d5b0064a0579f1a559f003f94721055d497af51d
+    version: 0.0.6
+    source:
+      Git: https://github.com/pulp-platform/hyperbus.git
+    dependencies:
+    - axi
+    - common_cells
+    - register_interface
+    - tech_cells_generic
   idma:
     revision: 9edf489f57389dce5e71252c79e337f527d3aded
     version: null
