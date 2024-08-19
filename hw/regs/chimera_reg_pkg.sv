@@ -23,6 +23,10 @@ package chimera_reg_pkg;
 
   typedef struct packed {
     logic [31:0] q;
+  } chimera_reg2hw_snitch_cluster_0_return_reg_t;
+
+  typedef struct packed {
+    logic [31:0] q;
   } chimera_reg2hw_snitch_cluster_1_return_reg_t;
 
   typedef struct packed {
@@ -38,8 +42,8 @@ package chimera_reg_pkg;
   } chimera_reg2hw_snitch_cluster_4_return_reg_t;
 
   typedef struct packed {
-    logic [31:0] q;
-  } chimera_reg2hw_snitch_cluster_5_return_reg_t;
+    logic        q;
+  } chimera_reg2hw_cluster_0_clk_gate_en_reg_t;
 
   typedef struct packed {
     logic        q;
@@ -59,7 +63,7 @@ package chimera_reg_pkg;
 
   typedef struct packed {
     logic        q;
-  } chimera_reg2hw_cluster_5_clk_gate_en_reg_t;
+  } chimera_reg2hw_wide_mem_cluster_0_bypass_reg_t;
 
   typedef struct packed {
     logic        q;
@@ -79,7 +83,7 @@ package chimera_reg_pkg;
 
   typedef struct packed {
     logic        q;
-  } chimera_reg2hw_wide_mem_cluster_5_bypass_reg_t;
+  } chimera_reg2hw_cluster_0_busy_reg_t;
 
   typedef struct packed {
     logic        q;
@@ -97,110 +101,106 @@ package chimera_reg_pkg;
     logic        q;
   } chimera_reg2hw_cluster_4_busy_reg_t;
 
-  typedef struct packed {
-    logic        q;
-  } chimera_reg2hw_cluster_5_busy_reg_t;
-
   // Register -> HW type
   typedef struct packed {
     chimera_reg2hw_snitch_boot_addr_reg_t snitch_boot_addr; // [238:207]
     chimera_reg2hw_snitch_intr_handler_addr_reg_t snitch_intr_handler_addr; // [206:175]
-    chimera_reg2hw_snitch_cluster_1_return_reg_t snitch_cluster_1_return; // [174:143]
-    chimera_reg2hw_snitch_cluster_2_return_reg_t snitch_cluster_2_return; // [142:111]
-    chimera_reg2hw_snitch_cluster_3_return_reg_t snitch_cluster_3_return; // [110:79]
-    chimera_reg2hw_snitch_cluster_4_return_reg_t snitch_cluster_4_return; // [78:47]
-    chimera_reg2hw_snitch_cluster_5_return_reg_t snitch_cluster_5_return; // [46:15]
-    chimera_reg2hw_cluster_1_clk_gate_en_reg_t cluster_1_clk_gate_en; // [14:14]
-    chimera_reg2hw_cluster_2_clk_gate_en_reg_t cluster_2_clk_gate_en; // [13:13]
-    chimera_reg2hw_cluster_3_clk_gate_en_reg_t cluster_3_clk_gate_en; // [12:12]
-    chimera_reg2hw_cluster_4_clk_gate_en_reg_t cluster_4_clk_gate_en; // [11:11]
-    chimera_reg2hw_cluster_5_clk_gate_en_reg_t cluster_5_clk_gate_en; // [10:10]
-    chimera_reg2hw_wide_mem_cluster_1_bypass_reg_t wide_mem_cluster_1_bypass; // [9:9]
-    chimera_reg2hw_wide_mem_cluster_2_bypass_reg_t wide_mem_cluster_2_bypass; // [8:8]
-    chimera_reg2hw_wide_mem_cluster_3_bypass_reg_t wide_mem_cluster_3_bypass; // [7:7]
-    chimera_reg2hw_wide_mem_cluster_4_bypass_reg_t wide_mem_cluster_4_bypass; // [6:6]
-    chimera_reg2hw_wide_mem_cluster_5_bypass_reg_t wide_mem_cluster_5_bypass; // [5:5]
-    chimera_reg2hw_cluster_1_busy_reg_t cluster_1_busy; // [4:4]
-    chimera_reg2hw_cluster_2_busy_reg_t cluster_2_busy; // [3:3]
-    chimera_reg2hw_cluster_3_busy_reg_t cluster_3_busy; // [2:2]
-    chimera_reg2hw_cluster_4_busy_reg_t cluster_4_busy; // [1:1]
-    chimera_reg2hw_cluster_5_busy_reg_t cluster_5_busy; // [0:0]
+    chimera_reg2hw_snitch_cluster_0_return_reg_t snitch_cluster_0_return; // [174:143]
+    chimera_reg2hw_snitch_cluster_1_return_reg_t snitch_cluster_1_return; // [142:111]
+    chimera_reg2hw_snitch_cluster_2_return_reg_t snitch_cluster_2_return; // [110:79]
+    chimera_reg2hw_snitch_cluster_3_return_reg_t snitch_cluster_3_return; // [78:47]
+    chimera_reg2hw_snitch_cluster_4_return_reg_t snitch_cluster_4_return; // [46:15]
+    chimera_reg2hw_cluster_0_clk_gate_en_reg_t cluster_0_clk_gate_en; // [14:14]
+    chimera_reg2hw_cluster_1_clk_gate_en_reg_t cluster_1_clk_gate_en; // [13:13]
+    chimera_reg2hw_cluster_2_clk_gate_en_reg_t cluster_2_clk_gate_en; // [12:12]
+    chimera_reg2hw_cluster_3_clk_gate_en_reg_t cluster_3_clk_gate_en; // [11:11]
+    chimera_reg2hw_cluster_4_clk_gate_en_reg_t cluster_4_clk_gate_en; // [10:10]
+    chimera_reg2hw_wide_mem_cluster_0_bypass_reg_t wide_mem_cluster_0_bypass; // [9:9]
+    chimera_reg2hw_wide_mem_cluster_1_bypass_reg_t wide_mem_cluster_1_bypass; // [8:8]
+    chimera_reg2hw_wide_mem_cluster_2_bypass_reg_t wide_mem_cluster_2_bypass; // [7:7]
+    chimera_reg2hw_wide_mem_cluster_3_bypass_reg_t wide_mem_cluster_3_bypass; // [6:6]
+    chimera_reg2hw_wide_mem_cluster_4_bypass_reg_t wide_mem_cluster_4_bypass; // [5:5]
+    chimera_reg2hw_cluster_0_busy_reg_t cluster_0_busy; // [4:4]
+    chimera_reg2hw_cluster_1_busy_reg_t cluster_1_busy; // [3:3]
+    chimera_reg2hw_cluster_2_busy_reg_t cluster_2_busy; // [2:2]
+    chimera_reg2hw_cluster_3_busy_reg_t cluster_3_busy; // [1:1]
+    chimera_reg2hw_cluster_4_busy_reg_t cluster_4_busy; // [0:0]
   } chimera_reg2hw_t;
 
   // Register offsets
   parameter logic [BlockAw-1:0] CHIMERA_SNITCH_BOOT_ADDR_OFFSET = 7'h 0;
   parameter logic [BlockAw-1:0] CHIMERA_SNITCH_INTR_HANDLER_ADDR_OFFSET = 7'h 4;
-  parameter logic [BlockAw-1:0] CHIMERA_SNITCH_CLUSTER_1_RETURN_OFFSET = 7'h 8;
-  parameter logic [BlockAw-1:0] CHIMERA_SNITCH_CLUSTER_2_RETURN_OFFSET = 7'h c;
-  parameter logic [BlockAw-1:0] CHIMERA_SNITCH_CLUSTER_3_RETURN_OFFSET = 7'h 10;
-  parameter logic [BlockAw-1:0] CHIMERA_SNITCH_CLUSTER_4_RETURN_OFFSET = 7'h 14;
-  parameter logic [BlockAw-1:0] CHIMERA_SNITCH_CLUSTER_5_RETURN_OFFSET = 7'h 18;
-  parameter logic [BlockAw-1:0] CHIMERA_CLUSTER_1_CLK_GATE_EN_OFFSET = 7'h 1c;
-  parameter logic [BlockAw-1:0] CHIMERA_CLUSTER_2_CLK_GATE_EN_OFFSET = 7'h 20;
-  parameter logic [BlockAw-1:0] CHIMERA_CLUSTER_3_CLK_GATE_EN_OFFSET = 7'h 24;
-  parameter logic [BlockAw-1:0] CHIMERA_CLUSTER_4_CLK_GATE_EN_OFFSET = 7'h 28;
-  parameter logic [BlockAw-1:0] CHIMERA_CLUSTER_5_CLK_GATE_EN_OFFSET = 7'h 2c;
-  parameter logic [BlockAw-1:0] CHIMERA_WIDE_MEM_CLUSTER_1_BYPASS_OFFSET = 7'h 30;
-  parameter logic [BlockAw-1:0] CHIMERA_WIDE_MEM_CLUSTER_2_BYPASS_OFFSET = 7'h 34;
-  parameter logic [BlockAw-1:0] CHIMERA_WIDE_MEM_CLUSTER_3_BYPASS_OFFSET = 7'h 38;
-  parameter logic [BlockAw-1:0] CHIMERA_WIDE_MEM_CLUSTER_4_BYPASS_OFFSET = 7'h 3c;
-  parameter logic [BlockAw-1:0] CHIMERA_WIDE_MEM_CLUSTER_5_BYPASS_OFFSET = 7'h 40;
-  parameter logic [BlockAw-1:0] CHIMERA_CLUSTER_1_BUSY_OFFSET = 7'h 44;
-  parameter logic [BlockAw-1:0] CHIMERA_CLUSTER_2_BUSY_OFFSET = 7'h 48;
-  parameter logic [BlockAw-1:0] CHIMERA_CLUSTER_3_BUSY_OFFSET = 7'h 4c;
-  parameter logic [BlockAw-1:0] CHIMERA_CLUSTER_4_BUSY_OFFSET = 7'h 50;
-  parameter logic [BlockAw-1:0] CHIMERA_CLUSTER_5_BUSY_OFFSET = 7'h 54;
+  parameter logic [BlockAw-1:0] CHIMERA_SNITCH_CLUSTER_0_RETURN_OFFSET = 7'h 8;
+  parameter logic [BlockAw-1:0] CHIMERA_SNITCH_CLUSTER_1_RETURN_OFFSET = 7'h c;
+  parameter logic [BlockAw-1:0] CHIMERA_SNITCH_CLUSTER_2_RETURN_OFFSET = 7'h 10;
+  parameter logic [BlockAw-1:0] CHIMERA_SNITCH_CLUSTER_3_RETURN_OFFSET = 7'h 14;
+  parameter logic [BlockAw-1:0] CHIMERA_SNITCH_CLUSTER_4_RETURN_OFFSET = 7'h 18;
+  parameter logic [BlockAw-1:0] CHIMERA_CLUSTER_0_CLK_GATE_EN_OFFSET = 7'h 1c;
+  parameter logic [BlockAw-1:0] CHIMERA_CLUSTER_1_CLK_GATE_EN_OFFSET = 7'h 20;
+  parameter logic [BlockAw-1:0] CHIMERA_CLUSTER_2_CLK_GATE_EN_OFFSET = 7'h 24;
+  parameter logic [BlockAw-1:0] CHIMERA_CLUSTER_3_CLK_GATE_EN_OFFSET = 7'h 28;
+  parameter logic [BlockAw-1:0] CHIMERA_CLUSTER_4_CLK_GATE_EN_OFFSET = 7'h 2c;
+  parameter logic [BlockAw-1:0] CHIMERA_WIDE_MEM_CLUSTER_0_BYPASS_OFFSET = 7'h 30;
+  parameter logic [BlockAw-1:0] CHIMERA_WIDE_MEM_CLUSTER_1_BYPASS_OFFSET = 7'h 34;
+  parameter logic [BlockAw-1:0] CHIMERA_WIDE_MEM_CLUSTER_2_BYPASS_OFFSET = 7'h 38;
+  parameter logic [BlockAw-1:0] CHIMERA_WIDE_MEM_CLUSTER_3_BYPASS_OFFSET = 7'h 3c;
+  parameter logic [BlockAw-1:0] CHIMERA_WIDE_MEM_CLUSTER_4_BYPASS_OFFSET = 7'h 40;
+  parameter logic [BlockAw-1:0] CHIMERA_CLUSTER_0_BUSY_OFFSET = 7'h 44;
+  parameter logic [BlockAw-1:0] CHIMERA_CLUSTER_1_BUSY_OFFSET = 7'h 48;
+  parameter logic [BlockAw-1:0] CHIMERA_CLUSTER_2_BUSY_OFFSET = 7'h 4c;
+  parameter logic [BlockAw-1:0] CHIMERA_CLUSTER_3_BUSY_OFFSET = 7'h 50;
+  parameter logic [BlockAw-1:0] CHIMERA_CLUSTER_4_BUSY_OFFSET = 7'h 54;
 
   // Register index
   typedef enum int {
     CHIMERA_SNITCH_BOOT_ADDR,
     CHIMERA_SNITCH_INTR_HANDLER_ADDR,
+    CHIMERA_SNITCH_CLUSTER_0_RETURN,
     CHIMERA_SNITCH_CLUSTER_1_RETURN,
     CHIMERA_SNITCH_CLUSTER_2_RETURN,
     CHIMERA_SNITCH_CLUSTER_3_RETURN,
     CHIMERA_SNITCH_CLUSTER_4_RETURN,
-    CHIMERA_SNITCH_CLUSTER_5_RETURN,
+    CHIMERA_CLUSTER_0_CLK_GATE_EN,
     CHIMERA_CLUSTER_1_CLK_GATE_EN,
     CHIMERA_CLUSTER_2_CLK_GATE_EN,
     CHIMERA_CLUSTER_3_CLK_GATE_EN,
     CHIMERA_CLUSTER_4_CLK_GATE_EN,
-    CHIMERA_CLUSTER_5_CLK_GATE_EN,
+    CHIMERA_WIDE_MEM_CLUSTER_0_BYPASS,
     CHIMERA_WIDE_MEM_CLUSTER_1_BYPASS,
     CHIMERA_WIDE_MEM_CLUSTER_2_BYPASS,
     CHIMERA_WIDE_MEM_CLUSTER_3_BYPASS,
     CHIMERA_WIDE_MEM_CLUSTER_4_BYPASS,
-    CHIMERA_WIDE_MEM_CLUSTER_5_BYPASS,
+    CHIMERA_CLUSTER_0_BUSY,
     CHIMERA_CLUSTER_1_BUSY,
     CHIMERA_CLUSTER_2_BUSY,
     CHIMERA_CLUSTER_3_BUSY,
-    CHIMERA_CLUSTER_4_BUSY,
-    CHIMERA_CLUSTER_5_BUSY
+    CHIMERA_CLUSTER_4_BUSY
   } chimera_id_e;
 
   // Register width information to check illegal writes
   parameter logic [3:0] CHIMERA_PERMIT [22] = '{
     4'b 1111, // index[ 0] CHIMERA_SNITCH_BOOT_ADDR
     4'b 1111, // index[ 1] CHIMERA_SNITCH_INTR_HANDLER_ADDR
-    4'b 1111, // index[ 2] CHIMERA_SNITCH_CLUSTER_1_RETURN
-    4'b 1111, // index[ 3] CHIMERA_SNITCH_CLUSTER_2_RETURN
-    4'b 1111, // index[ 4] CHIMERA_SNITCH_CLUSTER_3_RETURN
-    4'b 1111, // index[ 5] CHIMERA_SNITCH_CLUSTER_4_RETURN
-    4'b 1111, // index[ 6] CHIMERA_SNITCH_CLUSTER_5_RETURN
-    4'b 0001, // index[ 7] CHIMERA_CLUSTER_1_CLK_GATE_EN
-    4'b 0001, // index[ 8] CHIMERA_CLUSTER_2_CLK_GATE_EN
-    4'b 0001, // index[ 9] CHIMERA_CLUSTER_3_CLK_GATE_EN
-    4'b 0001, // index[10] CHIMERA_CLUSTER_4_CLK_GATE_EN
-    4'b 0001, // index[11] CHIMERA_CLUSTER_5_CLK_GATE_EN
-    4'b 0001, // index[12] CHIMERA_WIDE_MEM_CLUSTER_1_BYPASS
-    4'b 0001, // index[13] CHIMERA_WIDE_MEM_CLUSTER_2_BYPASS
-    4'b 0001, // index[14] CHIMERA_WIDE_MEM_CLUSTER_3_BYPASS
-    4'b 0001, // index[15] CHIMERA_WIDE_MEM_CLUSTER_4_BYPASS
-    4'b 0001, // index[16] CHIMERA_WIDE_MEM_CLUSTER_5_BYPASS
-    4'b 0001, // index[17] CHIMERA_CLUSTER_1_BUSY
-    4'b 0001, // index[18] CHIMERA_CLUSTER_2_BUSY
-    4'b 0001, // index[19] CHIMERA_CLUSTER_3_BUSY
-    4'b 0001, // index[20] CHIMERA_CLUSTER_4_BUSY
-    4'b 0001  // index[21] CHIMERA_CLUSTER_5_BUSY
+    4'b 1111, // index[ 2] CHIMERA_SNITCH_CLUSTER_0_RETURN
+    4'b 1111, // index[ 3] CHIMERA_SNITCH_CLUSTER_1_RETURN
+    4'b 1111, // index[ 4] CHIMERA_SNITCH_CLUSTER_2_RETURN
+    4'b 1111, // index[ 5] CHIMERA_SNITCH_CLUSTER_3_RETURN
+    4'b 1111, // index[ 6] CHIMERA_SNITCH_CLUSTER_4_RETURN
+    4'b 0001, // index[ 7] CHIMERA_CLUSTER_0_CLK_GATE_EN
+    4'b 0001, // index[ 8] CHIMERA_CLUSTER_1_CLK_GATE_EN
+    4'b 0001, // index[ 9] CHIMERA_CLUSTER_2_CLK_GATE_EN
+    4'b 0001, // index[10] CHIMERA_CLUSTER_3_CLK_GATE_EN
+    4'b 0001, // index[11] CHIMERA_CLUSTER_4_CLK_GATE_EN
+    4'b 0001, // index[12] CHIMERA_WIDE_MEM_CLUSTER_0_BYPASS
+    4'b 0001, // index[13] CHIMERA_WIDE_MEM_CLUSTER_1_BYPASS
+    4'b 0001, // index[14] CHIMERA_WIDE_MEM_CLUSTER_2_BYPASS
+    4'b 0001, // index[15] CHIMERA_WIDE_MEM_CLUSTER_3_BYPASS
+    4'b 0001, // index[16] CHIMERA_WIDE_MEM_CLUSTER_4_BYPASS
+    4'b 0001, // index[17] CHIMERA_CLUSTER_0_BUSY
+    4'b 0001, // index[18] CHIMERA_CLUSTER_1_BUSY
+    4'b 0001, // index[19] CHIMERA_CLUSTER_2_BUSY
+    4'b 0001, // index[20] CHIMERA_CLUSTER_3_BUSY
+    4'b 0001  // index[21] CHIMERA_CLUSTER_4_BUSY
   };
 
 endpackage
