@@ -167,7 +167,7 @@ module chimera_cluster_adapter #(
     .NoMstPorts (2),
     .MaxTrans   (16),                    // TODO: Tune this
     .AxiLookBits(SocWideMasterIdWidth),
-    .UniqueIds  (4)                      // TODO: Tune this
+    .UniqueIds  (0)                      // TODO: Tune this
   ) i_wide_demux (
     .clk_i          (soc_clk_i),
     .rst_ni,
@@ -186,12 +186,12 @@ module chimera_cluster_adapter #(
     .AxiSlvPortIdWidth(SocWideMasterIdWidth),
     .AxiMstPortIdWidth(SocNarrowMasterIdWidth),
 
-    .AxiSlvPortMaxUniqIds  (4),
-    .AxiSlvPortMaxTxnsPerId(4),  // TODO: Tune this
-    .AxiSlvPortMaxTxns     (16), // TODO: Tune this
+    .AxiSlvPortMaxUniqIds  (2 ** SocWideMasterIdWidth),
+    .AxiSlvPortMaxTxnsPerId(4),                          // TODO: Tune this
+    .AxiSlvPortMaxTxns     (16),                         // TODO: Tune this
 
-    .AxiMstPortMaxUniqIds  (2),
-    .AxiMstPortMaxTxnsPerId(16), // TODO: Tune this
+    .AxiMstPortMaxUniqIds  (2 ** SocNarrowMasterIdWidth),
+    .AxiMstPortMaxTxnsPerId(16),                           // TODO: Tune this
 
     .AxiAddrWidth(AddrWidth),
     .AxiDataWidth(WideDataWidth),
@@ -249,12 +249,12 @@ module chimera_cluster_adapter #(
     .AxiSlvPortIdWidth(SocNarrowSlaveIdWidth),
     .AxiMstPortIdWidth(ClusterNarrowSlaveIdWidth),
 
-    .AxiSlvPortMaxUniqIds  (2),
-    .AxiSlvPortMaxTxnsPerId(16),  // TODO: Tune this
-    .AxiSlvPortMaxTxns     (16),  // TODO: Tune this
+    .AxiSlvPortMaxUniqIds  (2 ** SocNarrowSlaveIdWidth),
+    .AxiSlvPortMaxTxnsPerId(16),                          // TODO: Tune this
+    .AxiSlvPortMaxTxns     (16),                          // TODO: Tune this
 
-    .AxiMstPortMaxUniqIds  (2),
-    .AxiMstPortMaxTxnsPerId(16), // TODO: Tune this
+    .AxiMstPortMaxUniqIds  (2 ** ClusterNarrowSlaveIdWidth),
+    .AxiMstPortMaxTxnsPerId(16),                              // TODO: Tune this
 
     .AxiAddrWidth(AddrWidth),
     .AxiDataWidth(WideDataWidth),
@@ -279,12 +279,12 @@ module chimera_cluster_adapter #(
     .AxiSlvPortIdWidth(ClusterNarrowMasterIdWidth),
     .AxiMstPortIdWidth(SocNarrowMasterIdWidth),
 
-    .AxiSlvPortMaxUniqIds  (4),
-    .AxiSlvPortMaxTxnsPerId(4),  // TODO: Tune this
-    .AxiSlvPortMaxTxns     (4),  // TODO: Tune this
+    .AxiSlvPortMaxUniqIds  (2 ** ClusterNarrowMasterIdWidth),
+    .AxiSlvPortMaxTxnsPerId(4),                                // TODO: Tune this
+    .AxiSlvPortMaxTxns     (4),                                // TODO: Tune this
 
-    .AxiMstPortMaxUniqIds  (2),
-    .AxiMstPortMaxTxnsPerId(4),  // TODO: Tune this
+    .AxiMstPortMaxUniqIds  (2 ** SocNarrowMasterIdWidth),
+    .AxiMstPortMaxTxnsPerId(4),                            // TODO: Tune this
 
     .AxiAddrWidth(AddrWidth),
     .AxiDataWidth(NarrowDataWidth),
@@ -308,10 +308,10 @@ module chimera_cluster_adapter #(
     .AxiSlvPortIdWidth(ClusterWideMasterIdWidth),
     .AxiMstPortIdWidth(SocWideMasterIdWidth),
 
-    .AxiSlvPortMaxUniqIds  (4),
+    .AxiSlvPortMaxUniqIds  (2 ** ClusterWideMasterIdWidth),
     .AxiSlvPortMaxTxnsPerId(4),
     .AxiSlvPortMaxTxns     (4),
-    .AxiMstPortMaxUniqIds  (2),
+    .AxiMstPortMaxUniqIds  (2 ** SocWideMasterIdWidth),
     .AxiMstPortMaxTxnsPerId(4),
 
     .AxiAddrWidth(AddrWidth),

@@ -67,7 +67,7 @@ package chimera_pkg;
     cfg.LlcOutConnect = 0;
 
     // AXI CFG
-    cfg.AxiMstIdWidth = 1;
+    cfg.AxiMstIdWidth = 2;
     cfg.MemIslAxiMstIdWidth = 1;
     cfg.AxiDataWidth = 32;
     cfg.AddrWidth = 32;

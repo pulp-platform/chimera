@@ -220,9 +220,9 @@ module chimera_cluster
 
   snitch_cluster #(
     .PhysicalAddrWidth(Cfg.AddrWidth),
-    .NarrowDataWidth  (ClusterDataWidth),     // SCHEREMO: Convolve needs this...
+    .NarrowDataWidth  (ClusterDataWidth),            // SCHEREMO: Convolve needs this...
     .WideDataWidth    (WideDataWidth),
-    .NarrowIdWidthIn  (NarrowMasterIdWidth),
+    .NarrowIdWidthIn  (ClusterNarrowAxiMstIdWidth),
     .WideIdWidthIn    (WideMasterIdWidth),
     .NarrowUserWidth  (Cfg.AxiUserWidth),
     .WideUserWidth    (Cfg.AxiUserWidth),

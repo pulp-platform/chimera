@@ -10,6 +10,7 @@
         ChimeraClusterCfg.NrCores, extClusterIdx \
     )
 
+// Wraps all snitch-type clusters in chimera
 module chimera_clu_domain
   import chimera_pkg::*;
   import cheshire_pkg::*;
