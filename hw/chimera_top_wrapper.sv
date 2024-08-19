@@ -55,7 +55,6 @@ module chimera_top_wrapper
   output logic [         31:0] gpio_en_o
 );
 
-  `include "axi/typedef.svh"
   `include "common_cells/registers.svh"
   `include "common_cells/assertions.svh"
   `include "cheshire/typedef.svh"
@@ -257,7 +256,14 @@ module chimera_top_wrapper
     .data_o(snitch_bootrom_data)
   );
 
-  // Cluster clock gates
+  logic [ExtClusters-1:0] wide_mem_bypass_mode;
+  assign wide_mem_bypass_mode = {
+    reg2hw.wide_mem_cluster_4_bypass.q,
+    reg2hw.wide_mem_cluster_3_bypass.q,
+    reg2hw.wide_mem_cluster_2_bypass.q,
+    reg2hw.wide_mem_cluster_1_bypass.q,
+    reg2hw.wide_mem_cluster_0_bypass.q
+  };
 
   logic [ExtClusters-1:0] cluster_clock_gate_en;
   logic [ExtClusters-1:0] clu_clk_gated;
@@ -278,280 +284,30 @@ module chimera_top_wrapper
     );
   end
 
-  // Synch debug signals & interrupts
-  // SCHEREMO: These signals are synchronize in the Snitch cluster!
-
-  logic [iomsb(NumIrqCtxts*Cfg.NumExtIrqHarts):0] clu_xeip_ext;
-  logic [            iomsb(Cfg.NumExtIrqHarts):0] clu_mtip_ext;
-  logic [            iomsb(Cfg.NumExtIrqHarts):0] clu_msip_ext;
-  logic [            iomsb(Cfg.NumExtDbgHarts):0] clu_dbg_ext_req;
-
-  assign clu_xeip_ext    = xeip_ext;
-  assign clu_mtip_ext    = mtip_ext;
-  assign clu_msip_ext    = msip_ext;
-  assign clu_dbg_ext_req = dbg_ext_req;
-
-  localparam int WideDataWidth = $bits(axi_wide_mst_req[0].w.data);
-
-  localparam int WideSlaveIdWidth = $bits(axi_wide_mst_req[0].aw.id);
-  localparam int NarrowSlaveIdWidth = $bits(axi_slv_req[0].aw.id);
-  localparam int NarrowMasterIdWidth = $bits(axi_mst_req[0].aw.id);
-
-  typedef logic [Cfg.AddrWidth-1:0] axi_cluster_addr_t;
-  typedef logic [Cfg.AxiUserWidth-1:0] axi_cluster_user_t;
-
-  typedef logic [Cfg.AxiDataWidth-1:0] axi_soc_data_narrow_t;
-  typedef logic [Cfg.AxiDataWidth/8-1:0] axi_soc_strb_narrow_t;
-
-  typedef logic [ClusterDataWidth-1:0] axi_cluster_data_narrow_t;
-  typedef logic [ClusterDataWidth/8-1:0] axi_cluster_strb_narrow_t;
-
-  typedef logic [NarrowSlaveIdWidth +2 -1:0] axi_cluster_slv_id_width_narrow_t;
-  typedef logic [NarrowSlaveIdWidth -1:0] axi_cluster_mst_id_width_narrow_t;
-
-  typedef logic [NarrowMasterIdWidth -1:0] axi_soc_mst_id_width_narrow_t;
-
-  typedef logic [WideDataWidth-1:0] axi_cluster_data_wide_t;
-  typedef logic [WideDataWidth/8-1:0] axi_cluster_strb_wide_t;
-  typedef logic [WideSlaveIdWidth +2 -1:0] axi_cluster_slv_id_width_wide_t;
-
-  `AXI_TYPEDEF_ALL(axi_cluster_out_wide, axi_cluster_addr_t, axi_cluster_slv_id_width_wide_t,
-                   axi_cluster_data_wide_t, axi_cluster_strb_wide_t, axi_cluster_user_t)
-
-  `AXI_TYPEDEF_ALL(axi_cluster_soc_out_narrow, axi_cluster_addr_t,
-                   axi_cluster_slv_id_width_narrow_t, axi_cluster_data_narrow_t,
-                   axi_cluster_strb_narrow_t, axi_cluster_user_t)
-
-  `AXI_TYPEDEF_ALL(axi_cluster_out_narrow, axi_cluster_addr_t, axi_soc_mst_id_width_narrow_t,
-                   axi_cluster_data_narrow_t, axi_cluster_strb_narrow_t, axi_cluster_user_t)
-
-  `AXI_TYPEDEF_ALL(axi_cluster_out_socside_narrow, axi_cluster_addr_t,
-                   axi_soc_mst_id_width_narrow_t, axi_soc_data_narrow_t, axi_soc_strb_narrow_t,
-                   axi_cluster_user_t)
-
-  `AXI_TYPEDEF_ALL(axi_cluster_in_narrow, axi_cluster_addr_t, axi_cluster_mst_id_width_narrow_t,
-                   axi_cluster_data_narrow_t, axi_cluster_strb_narrow_t, axi_cluster_user_t)
-
-  `AXI_TYPEDEF_ALL(axi_cluster_in_socside_narrow, axi_cluster_addr_t,
-                   axi_cluster_mst_id_width_narrow_t, axi_soc_data_narrow_t, axi_soc_strb_narrow_t,
-                   axi_cluster_user_t)
-
-  // Cluster-side in- and out- narrow ports used in chimera adapter
-  axi_cluster_in_narrow_req_t       [iomsb(Cfg.AxiExtNumSlv):0] clu_axi_adapter_slv_req;
-  axi_cluster_in_narrow_resp_t      [iomsb(Cfg.AxiExtNumSlv):0] clu_axi_adapter_slv_resp;
-  axi_cluster_soc_out_narrow_req_t  [iomsb(Cfg.AxiExtNumMst):0] clu_axi_adapter_mst_req;
-  axi_cluster_soc_out_narrow_resp_t [iomsb(Cfg.AxiExtNumMst):0] clu_axi_adapter_mst_resp;
-
-  // Cluster-side in- and out- narrow ports used in narrow adapter
-  axi_cluster_in_narrow_req_t       [iomsb(Cfg.AxiExtNumSlv):0] clu_axi_narrow_slv_req;
-  axi_cluster_in_narrow_resp_t      [iomsb(Cfg.AxiExtNumSlv):0] clu_axi_narrow_slv_rsp;
-  axi_cluster_out_narrow_req_t      [iomsb(Cfg.AxiExtNumMst):0] clu_axi_narrow_mst_req;
-  axi_cluster_out_narrow_resp_t     [iomsb(Cfg.AxiExtNumMst):0] clu_axi_narrow_mst_rsp;
-
-  // Cluster-side out wide ports
-  axi_cluster_out_wide_req_t        [     iomsb(ExtClusters):0] clu_axi_wide_mst_req;
-  axi_cluster_out_wide_resp_t       [     iomsb(ExtClusters):0] clu_axi_wide_mst_resp;
-
-  // Cluster Adapters
-  logic                             [          ExtClusters-1:0] wide_mem_bypass_mode;
-  assign wide_mem_bypass_mode = {
-    reg2hw.wide_mem_cluster_4_bypass.q,
-    reg2hw.wide_mem_cluster_3_bypass.q,
-    reg2hw.wide_mem_cluster_2_bypass.q,
-    reg2hw.wide_mem_cluster_1_bypass.q,
-    reg2hw.wide_mem_cluster_0_bypass.q
-  };
-
-  for (
-      genvar extClusterIdx = 0; extClusterIdx < ExtClusters; extClusterIdx++
-  ) begin : gen_clusters_adapters
-
-    if (ClusterDataWidth != Cfg.AxiDataWidth) begin : gen_narrow_adapter
-
-      narrow_adapter #(
-        .narrow_in_req_t  (axi_cluster_in_socside_narrow_req_t),
-        .narrow_in_resp_t (axi_cluster_in_socside_narrow_resp_t),
-        .narrow_out_req_t (axi_cluster_out_socside_narrow_req_t),
-        .narrow_out_resp_t(axi_cluster_out_socside_narrow_resp_t),
-
-        .clu_narrow_in_req_t  (axi_cluster_in_narrow_req_t),
-        .clu_narrow_in_resp_t (axi_cluster_in_narrow_resp_t),
-        .clu_narrow_out_req_t (axi_cluster_out_narrow_req_t),
-        .clu_narrow_out_resp_t(axi_cluster_out_narrow_resp_t),
-
-        .MstPorts(2),
-        .SlvPorts(1)
-
-      ) i_cluster_narrow_adapter (
-        .soc_clk_i(soc_clk_i),
-        .rst_ni,
-
-        // SoC side narrow.
-        .narrow_in_req_i  (axi_slv_req[extClusterIdx]),
-        .narrow_in_resp_o (axi_slv_rsp[extClusterIdx]),
-        .narrow_out_req_o (axi_mst_req[2*extClusterIdx+:2]),
-        .narrow_out_resp_i(axi_mst_rsp[2*extClusterIdx+:2]),
-
-        // Cluster side narrow
-        .clu_narrow_in_req_o  (clu_axi_narrow_slv_req[extClusterIdx]),
-        .clu_narrow_in_resp_i (clu_axi_narrow_slv_rsp[extClusterIdx]),
-        .clu_narrow_out_req_i (clu_axi_narrow_mst_req[2*extClusterIdx+:2]),
-        .clu_narrow_out_resp_o(clu_axi_narrow_mst_rsp[2*extClusterIdx+:2])
-
-      );
-
-
-    end else begin : gen_skip_narrow_adapter  // if (ClusterDataWidth != Cfg.AxiDataWidth)
-
-      assign clu_axi_narrow_slv_req = axi_slv_req;
-      assign clu_axi_narrow_slv_rsp = axi_slv_rsp;
-      assign clu_axi_narrow_mst_req = axi_mst_req;
-      assign clu_axi_narrow_mst_rsp = axi_mst_rsp;
-
-    end
-
-
-    chimera_cluster_adapter #(
-      .WideSlaveIdWidth(WideSlaveIdWidth),
-
-      .WidePassThroughRegionStart(Cfg.MemIslRegionStart),
-      .WidePassThroughRegionEnd  (Cfg.MemIslRegionEnd),
-
-      .narrow_in_req_t  (axi_cluster_in_narrow_req_t),
-      .narrow_in_resp_t (axi_cluster_in_narrow_resp_t),
-      .narrow_out_req_t (axi_cluster_out_narrow_req_t),
-      .narrow_out_resp_t(axi_cluster_out_narrow_resp_t),
-
-      .clu_narrow_out_req_t (axi_cluster_soc_out_narrow_req_t),
-      .clu_narrow_out_resp_t(axi_cluster_soc_out_narrow_resp_t),
-
-      .wide_in_req_t  (axi_wide_slv_req_t),
-      .wide_in_resp_t (axi_wide_slv_rsp_t),
-      .wide_out_req_t (axi_wide_mst_req_t),
-      .wide_out_resp_t(axi_wide_mst_rsp_t),
-
-      .clu_wide_out_req_t (axi_cluster_out_wide_req_t),
-      .clu_wide_out_resp_t(axi_cluster_out_wide_resp_t)
-
-    ) i_cluster_axi_adapter (
-      .soc_clk_i(soc_clk_i),
-      .clu_clk_i(clu_clk_gated[extClusterIdx]),
-      .rst_ni,
-
-      .narrow_in_req_i  (clu_axi_narrow_slv_req[extClusterIdx]),
-      .narrow_in_resp_o (clu_axi_narrow_slv_rsp[extClusterIdx]),
-      .narrow_out_req_o (clu_axi_narrow_mst_req[2*extClusterIdx+:2]),
-      .narrow_out_resp_i(clu_axi_narrow_mst_rsp[2*extClusterIdx+:2]),
-
-      .clu_narrow_in_req_o  (clu_axi_adapter_slv_req[extClusterIdx]),
-      .clu_narrow_in_resp_i (clu_axi_adapter_slv_resp[extClusterIdx]),
-      .clu_narrow_out_req_i (clu_axi_adapter_mst_req[extClusterIdx]),
-      .clu_narrow_out_resp_o(clu_axi_adapter_mst_resp[extClusterIdx]),
-
-      .wide_out_req_o     (axi_wide_mst_req[extClusterIdx]),
-      .wide_out_resp_i    (axi_wide_mst_rsp[extClusterIdx]),
-      .clu_wide_out_req_i (clu_axi_wide_mst_req[extClusterIdx]),
-      .clu_wide_out_resp_o(clu_axi_wide_mst_resp[extClusterIdx]),
-
-      .wide_mem_bypass_mode_i(wide_mem_bypass_mode[extClusterIdx])
-    );
-
-  end : gen_clusters_adapters
-
-  // Clusters
-
-  typedef struct packed {
-    logic [2:0] ema;
-    logic [1:0] emaw;
-    logic [0:0] emas;
-  } sram_cfg_t;
-
-  typedef struct packed {
-    sram_cfg_t icache_tag;
-    sram_cfg_t icache_data;
-    sram_cfg_t tcdm;
-  } sram_cfgs_t;
-
-  localparam int unsigned NumIntOutstandingLoads[9] = '{1, 1, 1, 1, 1, 1, 1, 1, 1};
-  localparam int unsigned NumIntOutstandingMem[9] = '{4, 4, 4, 4, 4, 4, 4, 4, 4};
-
-  for (genvar extClusterIdx = 0; extClusterIdx < ExtClusters; extClusterIdx++) begin : gen_clusters
-    snitch_cluster #(
-      .PhysicalAddrWidth(Cfg.AddrWidth),
-      .NarrowDataWidth  (ClusterDataWidth),    // SCHEREMO: Convolve needs this...
-      .WideDataWidth    (WideDataWidth),
-      .NarrowIdWidthIn  (NarrowSlaveIdWidth),
-      .WideIdWidthIn    (WideSlaveIdWidth),
-      .NarrowUserWidth  (Cfg.AxiUserWidth),
-      .WideUserWidth    (Cfg.AxiUserWidth),
-
-      .BootAddr(SnitchBootROMRegionStart),
-
-      .NrHives          (1),
-      .NrCores          (9),
-      .TCDMDepth        (1024),
-      .ZeroMemorySize   (64),
-      .ClusterPeriphSize(64),
-      .NrBanks          (16),
-
-      .DMANumAxInFlight(3),
-      .DMAReqFifoDepth (3),
-
-      .ICacheLineWidth('{256}),
-      .ICacheLineCount('{16}),
-      .ICacheSets     ('{2}),
-
-      .VMSupport(0),
-      .Xdma     (9'b100000000),
-
-      .NumIntOutstandingLoads(NumIntOutstandingLoads),
-      .NumIntOutstandingMem  (NumIntOutstandingMem),
-      .RegisterOffloadReq    (1),
-      .RegisterOffloadRsp    (1),
-      .RegisterCoreReq       (1),
-      .RegisterCoreRsp       (1),
-
-      .narrow_in_req_t (axi_cluster_in_narrow_req_t),
-      .narrow_in_resp_t(axi_cluster_in_narrow_resp_t),
-      .wide_in_req_t   (axi_wide_slv_req_t),
-      .wide_in_resp_t  (axi_wide_slv_rsp_t),
-
-      .narrow_out_req_t (axi_cluster_soc_out_narrow_req_t),
-      .narrow_out_resp_t(axi_cluster_soc_out_narrow_resp_t),
-      .wide_out_req_t   (axi_cluster_out_wide_req_t),
-      .wide_out_resp_t  (axi_cluster_out_wide_resp_t),
-
-      .sram_cfg_t (sram_cfg_t),
-      .sram_cfgs_t(sram_cfgs_t),
-
-      .RegisterExtWide  ('0),
-      .RegisterExtNarrow('0)
-    ) i_test_cluster (
-
-      .clk_i          (clu_clk_i),
-      .clk_d2_bypass_i('0),
-      .rst_ni,
-
-      .debug_req_i(clu_dbg_ext_req[extClusterIdx*9+:9]),
-      .meip_i     (clu_xeip_ext[extClusterIdx*9+:9]),
-      .mtip_i     (clu_mtip_ext[extClusterIdx*9+:9]),
-      .msip_i     (clu_msip_ext[extClusterIdx*9+:9]),
-
-      .hart_base_id_i     (10'(extClusterIdx * 9 + 1)),
-      .cluster_base_addr_i(Cfg.AxiExtRegionStart[extClusterIdx][Cfg.AddrWidth-1:0]),
-      .sram_cfgs_i        ('0),
-
-      .narrow_in_req_i  (clu_axi_adapter_slv_req[extClusterIdx]),
-      .narrow_in_resp_o (clu_axi_adapter_slv_resp[extClusterIdx]),
-      .narrow_out_req_o (clu_axi_adapter_mst_req[extClusterIdx]),
-      .narrow_out_resp_i(clu_axi_adapter_mst_resp[extClusterIdx]),
-      .wide_in_req_i    ('0),
-      .wide_in_resp_o   (),
-      .wide_out_req_o   (clu_axi_wide_mst_req[extClusterIdx]),
-      .wide_out_resp_i  (clu_axi_wide_mst_resp[extClusterIdx])
-
-    );
-
-  end : gen_clusters
+  chimera_clu_domain #(
+    .Cfg              (Cfg),
+    .narrow_in_req_t  (axi_slv_req_t),
+    .narrow_in_resp_t (axi_slv_rsp_t),
+    .narrow_out_req_t (axi_mst_req_t),
+    .narrow_out_resp_t(axi_mst_rsp_t),
+    .wide_out_req_t   (axi_wide_mst_req_t),
+    .wide_out_resp_t  (axi_wide_mst_rsp_t)
+  ) i_cluster_domain (
+    .soc_clk_i        (soc_clk_i),
+    .clu_clk_i        (clu_clk_gated),
+    .rst_ni,
+    .widemem_bypass_i (wide_mem_bypass_mode),
+    .debug_req_i      (dbg_ext_req),
+    .xeip_i           (xeip_ext),
+    .mtip_i           (mtip_ext),
+    .msip_i           (msip_ext),
+    .narrow_in_req_i  (axi_slv_req),
+    .narrow_in_resp_o (axi_slv_rsp),
+    .narrow_out_req_o (axi_mst_req),
+    .narrow_out_resp_i(axi_mst_rsp),
+    .wide_out_req_o   (axi_wide_mst_req),
+    .wide_out_resp_i  (axi_wide_mst_rsp)
+
+  );
 
 endmodule

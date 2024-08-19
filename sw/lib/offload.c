@@ -43,7 +43,10 @@ void offloadToCluster(void *function, uint8_t clusterId) {
 
     *snitchBootAddr = function;
 
-    uint32_t hartId = clusterId * 9 + 1;
+    uint32_t hartId = 1;
+    for (uint32_t i = 0; i < clusterId; i++) {
+        hartId += _chimera_numCores[i];
+    }
 
     volatile uint32_t *interruptTarget = ((uint32_t *)CLINT_CTRL_BASE) + hartId;
     waitClusterBusy(clusterId);

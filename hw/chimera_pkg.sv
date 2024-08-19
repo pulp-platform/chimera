@@ -39,7 +39,6 @@ package chimera_pkg;
   localparam int ExtRegNum = SnitchBootROM + 1;
   localparam int ClusterDataWidth = 64;
 
-
   localparam int SnitchBootROMIdx = 0;
   localparam doub_bt SnitchBootROMRegionStart = 64'h3000_0000;
   localparam doub_bt SnitchBootROMRegionEnd = 64'h3000_1000;
@@ -47,6 +46,8 @@ package chimera_pkg;
   localparam int TopLevelIdx = 1;
   localparam doub_bt TopLevelRegionStart = 64'h3000_1000;
   localparam doub_bt TopLevelRegionEnd = 64'h3000_2000;
+
+  localparam aw_bt ClusterNarrowAxiMstIdWidth = 1;
 
   function automatic cheshire_cfg_t gen_chimera_cfg();
     localparam int AddrWidth = DefaultCfg.AddrWidth;
@@ -66,13 +67,15 @@ package chimera_pkg;
     cfg.LlcOutConnect = 0;
 
     // AXI CFG
-    // SCHEREMO: Assume 2 Master per cluster -> 5 clusters, 1 host core, 1 DMA, 1 DBG Unit
-    cfg.AxiMstIdWidth = 4;
+    cfg.AxiMstIdWidth = 2;
+    cfg.MemIslAxiMstIdWidth = 1;
     cfg.AxiDataWidth = 32;
     cfg.AddrWidth = 32;
     cfg.LlcOutRegionEnd = 'hFFFF_FFFF;
 
     cfg.MemIslWidePorts = $countones(ChimeraClusterCfg.hasWideMasterPort);
+    cfg.MemIslNarrowToWideFactor = 4;
+
     cfg.AxiExtNumWideMst = $countones(ChimeraClusterCfg.hasWideMasterPort);
     // SCHEREMO: Two ports for each cluster: one to convert stray wides, one for the original narrow
     cfg.AxiExtNumMst = ExtClusters + $countones(ChimeraClusterCfg.hasWideMasterPort);
