@@ -167,7 +167,7 @@ module chimera_cluster_adapter #(
     .NoMstPorts (2),
     .MaxTrans   (16),                    // TODO: Tune this
     .AxiLookBits(SocWideMasterIdWidth),
-    .UniqueIds  (0)                      // TODO: Tune this
+    .UniqueIds  (0)
   ) i_wide_demux (
     .clk_i          (soc_clk_i),
     .rst_ni,
