@@ -43,19 +43,19 @@ void cluster_return(uint32_t ret) {
         *((volatile uint32_t *)(SOC_CTRL_BASE + CHIMERA_SNITCH_CLUSTER_0_RETURN_REG_OFFSET)) =
             retVal;
         break;
-    case 10:
+    case 1 + CLUSTER_0_NUMCORES:
         *((volatile uint32_t *)(SOC_CTRL_BASE + CHIMERA_SNITCH_CLUSTER_1_RETURN_REG_OFFSET)) =
             retVal;
         break;
-    case 19:
+    case 1 + CLUSTER_0_NUMCORES + CLUSTER_1_NUMCORES:
         *((volatile uint32_t *)(SOC_CTRL_BASE + CHIMERA_SNITCH_CLUSTER_2_RETURN_REG_OFFSET)) =
             retVal;
         break;
-    case 28:
+    case 1 + CLUSTER_0_NUMCORES + CLUSTER_1_NUMCORES + CLUSTER_2_NUMCORES:
         *((volatile uint32_t *)(SOC_CTRL_BASE + CHIMERA_SNITCH_CLUSTER_3_RETURN_REG_OFFSET)) =
             retVal;
         break;
-    case 37:
+    case 1 + CLUSTER_0_NUMCORES + CLUSTER_1_NUMCORES + CLUSTER_2_NUMCORES + CLUSTER_3_NUMCORES:
         *((volatile uint32_t *)(SOC_CTRL_BASE + CHIMERA_SNITCH_CLUSTER_4_RETURN_REG_OFFSET)) =
             retVal;
         break;
@@ -74,16 +74,16 @@ void clean_busy() {
     case 1:
         *((volatile uint32_t *)(SOC_CTRL_BASE + CHIMERA_CLUSTER_0_BUSY_REG_OFFSET)) = 0;
         break;
-    case 10:
+    case 1 + CLUSTER_0_NUMCORES:
         *((volatile uint32_t *)(SOC_CTRL_BASE + CHIMERA_CLUSTER_1_BUSY_REG_OFFSET)) = 0;
         break;
-    case 19:
+    case 1 + CLUSTER_0_NUMCORES + CLUSTER_1_NUMCORES:
         *((volatile uint32_t *)(SOC_CTRL_BASE + CHIMERA_CLUSTER_2_BUSY_REG_OFFSET)) = 0;
         break;
-    case 28:
+    case 1 + CLUSTER_0_NUMCORES + CLUSTER_1_NUMCORES + CLUSTER_2_NUMCORES:
         *((volatile uint32_t *)(SOC_CTRL_BASE + CHIMERA_CLUSTER_3_BUSY_REG_OFFSET)) = 0;
         break;
-    case 37:
+    case 1 + CLUSTER_0_NUMCORES + CLUSTER_1_NUMCORES + CLUSTER_2_NUMCORES + CLUSTER_3_NUMCORES:
         *((volatile uint32_t *)(SOC_CTRL_BASE + CHIMERA_CLUSTER_4_BUSY_REG_OFFSET)) = 0;
         break;
     }
@@ -101,16 +101,16 @@ void set_busy() {
     case 1:
         *((volatile uint32_t *)(SOC_CTRL_BASE + CHIMERA_CLUSTER_0_BUSY_REG_OFFSET)) = 1;
         break;
-    case 10:
+    case 1 + CLUSTER_0_NUMCORES:
         *((volatile uint32_t *)(SOC_CTRL_BASE + CHIMERA_CLUSTER_1_BUSY_REG_OFFSET)) = 1;
         break;
-    case 19:
+    case 1 + CLUSTER_0_NUMCORES + CLUSTER_1_NUMCORES:
         *((volatile uint32_t *)(SOC_CTRL_BASE + CHIMERA_CLUSTER_2_BUSY_REG_OFFSET)) = 1;
         break;
-    case 28:
+    case 1 + CLUSTER_0_NUMCORES + CLUSTER_1_NUMCORES + CLUSTER_2_NUMCORES:
         *((volatile uint32_t *)(SOC_CTRL_BASE + CHIMERA_CLUSTER_3_BUSY_REG_OFFSET)) = 1;
         break;
-    case 37:
+    case 1 + CLUSTER_0_NUMCORES + CLUSTER_1_NUMCORES + CLUSTER_2_NUMCORES + CLUSTER_3_NUMCORES:
         *((volatile uint32_t *)(SOC_CTRL_BASE + CHIMERA_CLUSTER_4_BUSY_REG_OFFSET)) = 1;
         break;
     }
