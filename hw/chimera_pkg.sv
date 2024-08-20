@@ -35,10 +35,14 @@ package chimera_pkg;
   localparam int ExtCores = _sumVector(ChimeraClusterCfg.NrCores, ExtClusters);
 
   // SoC Config
-  localparam int SnitchBootROM = 1;
+  localparam bit SnitchBootROM = 1;
+  localparam bit TopLevelRegs = 1;
+  localparam bit PadRegs = 1;
+  localparam bit FLLRegs = 1;
+  localparam bit HyperRegs = 1;
 
   // SCHEREMO: Shared Snitch bootrom, one clock gate per cluster, Fll cfg regs, Pad cfg regs
-  localparam int ExtRegNum = SnitchBootROM + 1 + 1 + 1 + 1;
+  localparam int ExtRegNum = SnitchBootROM + TopLevelRegs + PadRegs + FLLRegs + HyperRegs;
   localparam int ClusterDataWidth = 64;
 
   localparam int SnitchBootROMIdx = 0;
@@ -115,9 +119,15 @@ package chimera_pkg;
     cfg.RegExtNumRules = ExtRegNum;
     cfg.RegExtRegionIdx = {8'h4, 8'h3, 8'h2, 8'h1, 8'h0};  // SnitchBootROM
     cfg.RegExtRegionStart = {
-      HyperRegionStart, FllRegionStart, PadRegionStart, TopLevelRegionStart, SnitchBootROMRegionStart
+      HyperRegionStart,
+      FllRegionStart,
+      PadRegionStart,
+      TopLevelRegionStart,
+      SnitchBootROMRegionStart
     };
-    cfg.RegExtRegionEnd = {HyperRegionEnd, FllRegionEnd, PadRegionEnd, TopLevelRegionEnd, SnitchBootROMRegionEnd};
+    cfg.RegExtRegionEnd = {
+      HyperRegionEnd, FllRegionEnd, PadRegionEnd, TopLevelRegionEnd, SnitchBootROMRegionEnd
+    };
 
     // ACCEL HART/IRQ CFG
     cfg.NumExtIrqHarts = ExtCores;
