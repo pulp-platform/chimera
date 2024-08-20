@@ -25,3 +25,6 @@
 static uint8_t _chimera_numCores[] = {CLUSTER_0_NUMCORES, CLUSTER_1_NUMCORES, CLUSTER_2_NUMCORES,
                                       CLUSTER_3_NUMCORES, CLUSTER_4_NUMCORES};
 #define _chimera_numClusters 5
+
+#define CHIMERA_PADFRAME_BASE_ADDRESS 0x30002000
+#define FLL_BASE_ADDR 0x30003000
