@@ -4,16 +4,22 @@
 #
 # Moritz Scherer <scheremo@iis.ee.ethz.ch>
 
+ifndef chim_sim_mk
+chim_sim_mk=1
+
+CHIM_SIM_DIR ?= $(CHIM_ROOT)/target/sim
+
 .PHONY: sim sim-clean
 
 chim-sim-clean:
-	@rm -rf target/sim/vsim/work
-	@rm -rf target/sim/vsim/transcript
-	@rm -f $(CHIM_ROOT)/target/sim/vsim/compile.tcl
+	@rm -rf $(CHIM_SIM_DIR)/vsim/work
+	@rm -rf $(CHIM_SIM_DIR)/vsim/transcript
+	@rm -f $(CHIM_SIM_DIR)/vsim/compile.tcl
 
-chim-sim: $(CHIM_ROOT)/target/sim/vsim/compile.tcl
+chim-sim: $(CHIM_SIM_DIR)/vsim/compile.tcl
 
-$(CHIM_ROOT)/target/sim/vsim/compile.tcl: chs-hw-init snitch-hw-init
+$(CHIM_SIM_DIR)/vsim/compile.tcl: chs-hw-init snitch-hw-init
 	@bender script vsim $(COMMON_TARGS) $(SIM_TARGS) --vlog-arg="$(VLOG_ARGS)"> $@
 	echo 'vlog "$(realpath $(CHS_ROOT))/target/sim/src/elfloader.cpp" -ccflags "-std=c++11"' >> $@
 
+endif # chim_sim_mk
