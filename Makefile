@@ -6,6 +6,7 @@
 
 CHIM_ROOT ?= $(shell pwd)
 BENDER    ?= bender -d $(CHIM_ROOT)
+PADRICK   ?= padrick
 
 CHS_ROOT    ?= $(shell $(BENDER) path cheshire)
 SNITCH_ROOT ?= $(shell $(BENDER) path snitch_cluster)
