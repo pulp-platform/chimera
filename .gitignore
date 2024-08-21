@@ -2,6 +2,8 @@
 transcript
 .bender
 .venv
+cheshire
+idma
 
 # EMACS
 
@@ -21,6 +23,10 @@ hw/regs/pcr.md
 __pycache__
 *.o
 *.a
+
+# UTILS
+
+utils/verible-verilog
 
 # SIM
 

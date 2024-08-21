@@ -71,8 +71,10 @@ chim-nonfree-init:
 
 -include $(CHIM_NONFREE_DIR)/nonfree.mk
 
-
 -include $(CHIM_ROOT)/bender.mk
 
--include $(CHIM_ROOT)/sim.mk
+# Include subdir Makefiles
 -include $(CHIM_ROOT)/sw/sw.mk
+-include $(CHIM_ROOT)/utils/utils.mk
+# Include target makefiles
+-include $(CHIM_ROOT)/target/sim/sim.mk
