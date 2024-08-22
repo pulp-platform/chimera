@@ -5,4 +5,3 @@ mako
 jsonref
 jsonschema
 flatdict
-padrick @ git+https://github.com/pulp-platform/padrick@v0.3.6

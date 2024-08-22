@@ -8,7 +8,7 @@ CHIM_ROOT ?= $(shell pwd)
 
 # Tooling
 BENDER                 ?= bender -d $(CHIM_ROOT)
-PADRICK                ?= padrick
+PADRICK                ?= $(CHIM_UTILS_DIR)/padrick
 VERIBLE_VERILOG_FORMAT ?= $(CHIM_UTILS_DIR)/verible-verilog/verible-verilog-format
 
 CHS_ROOT    ?= $(shell $(BENDER) path cheshire)

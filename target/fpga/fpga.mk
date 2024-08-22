@@ -11,12 +11,15 @@ CHIM_FPGA_DIR ?= $(CHIM_ROOT)/target/fpga
 
 VIVADO ?= vitis-2022.1 vivado
 
-.PHONY: chim-fpga-padframe
+.PHONY: chim-fpga-padframe chim-fpga-clean
 
-chim-fpga-padframe: $(CHIM_FPGA_DIR)/src/padframe/chimera_padframe_ip
+chim-fpga-padframe: $(CHIM_FPGA_DIR)/src/padframe/chimera_padframe_ip/src/chimera_padframe.sv
 
-$(CHIM_FPGA_DIR)/src/padframe/chimera_padframe_ip: $(CHIM_FPGA_DIR)/src/padframe/chimera_padframe.yml $(CHIM_UTILS_DIR)/solderpad_header.txt
+$(CHIM_FPGA_DIR)/src/padframe/chimera_padframe_ip/src/chimera_padframe.sv: $(PADRICK) $(CHIM_FPGA_DIR)/src/padframe/chimera_padframe.yml $(CHIM_UTILS_DIR)/solderpad_header.txt
 	mkdir -p $(CHIM_FPGA_DIR)/src/padframe
 	cd $(CHIM_FPGA_DIR)/src/padframe && $(PADRICK) generate rtl chimera_padframe.yml -o $@ --header $(CHIM_UTILS_DIR)/solderpad_header.txt --no-version-string
+
+chim-fpga-clean:
+	rm -rf $(CHIM_FPGA_DIR)/src/padframe/chimera_padframe_ip
 
 endif # chim_fpga_mk

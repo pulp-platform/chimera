@@ -27,6 +27,7 @@ __pycache__
 # UTILS
 
 utils/verible-verilog
+utils/padrick
 
 # SIM
 
