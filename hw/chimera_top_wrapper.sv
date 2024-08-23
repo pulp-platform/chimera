@@ -211,8 +211,8 @@ module chimera_top_wrapper
   ) i_fll_reg_to_apb (
     .clk_i    (soc_clk_i),
     .rst_ni   (rst_ni),
-    .reg_req_i(reg_slv_req[FllIdx]),
-    .reg_rsp_o(reg_slv_rsp[FllIdx]),
+    .reg_req_i(reg_slv_req[FllCfgRegsIdx]),
+    .reg_rsp_o(reg_slv_rsp[FllCfgRegsIdx]),
     .apb_req_o(apb_fll_req_o),
     .apb_rsp_i(apb_fll_rsp_i)
   );
@@ -226,8 +226,8 @@ module chimera_top_wrapper
   ) i_pad_reg_to_apb (
     .clk_i    (soc_clk_i),
     .rst_ni   (rst_ni),
-    .reg_req_i(reg_slv_req[PadIdx]),
-    .reg_rsp_o(reg_slv_rsp[PadIdx]),
+    .reg_req_i(reg_slv_req[PadCfgRegsIdx]),
+    .reg_rsp_o(reg_slv_rsp[PadCfgRegsIdx]),
     .apb_req_o(apb_req_o),
     .apb_rsp_i(apb_rsp_i)
   );
@@ -241,8 +241,8 @@ module chimera_top_wrapper
   ) i_reg_top (
     .clk_i    (soc_clk_i),
     .rst_ni,
-    .reg_req_i(reg_slv_req[TopLevelIdx]),
-    .reg_rsp_o(reg_slv_rsp[TopLevelIdx]),
+    .reg_req_i(reg_slv_req[TopLevelCfgRegsIdx]),
+    .reg_rsp_o(reg_slv_rsp[TopLevelCfgRegsIdx]),
     .reg2hw   (reg2hw),
     .devmode_i('1)
   );
