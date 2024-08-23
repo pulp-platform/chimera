@@ -4,9 +4,14 @@
 //
 // Moritz Scherer <scheremo@iis.ee.ethz.ch>
 
+#ifndef _OFFLOAD_INCLUDE_GUARD_
+#define _OFFLOAD_INCLUDE_GUARD_
+
 #include <stdint.h>
 
 void setupInterruptHandler(void *handler);
 void offloadToCluster(void *function, uint8_t hartId);
 void waitClusterBusy(uint8_t clusterId);
 uint32_t waitForCluster(uint8_t clusterId);
+
+#endif
