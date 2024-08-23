@@ -35,29 +35,32 @@ package chimera_pkg;
   localparam int ExtCores = _sumVector(ChimeraClusterCfg.NrCores, ExtClusters);
 
   // SoC Config
-  localparam int SnitchBootROM = 1;
+  localparam bit SnitchBootROM = 1;
+  localparam bit TopLevelCfgRegs = 1;
+  localparam bit FLLCfgRegs = 1;
+  localparam bit PadCfgRegs = 1;
 
   // SCHEREMO: Shared Snitch bootrom, one clock gate per cluster, Fll cfg regs, Pad cfg regs
-  localparam int ExtRegNum = SnitchBootROM + 1 + 1 + 1;
+  localparam int ExtRegNum = SnitchBootROM + TopLevelCfgRegs + FLLCfgRegs + PadCfgRegs;
   localparam int ClusterDataWidth = 64;
 
   localparam int SnitchBootROMIdx = 0;
   localparam doub_bt SnitchBootROMRegionStart = 64'h3000_0000;
   localparam doub_bt SnitchBootROMRegionEnd = 64'h3000_1000;
 
-  localparam int TopLevelIdx = 1;
-  localparam doub_bt TopLevelRegionStart = 64'h3000_1000;
-  localparam doub_bt TopLevelRegionEnd = 64'h3000_2000;
+  localparam int TopLevelCfgRegsIdx = 1;
+  localparam doub_bt TopLevelCfgRegsRegionStart = 64'h3000_1000;
+  localparam doub_bt TopLevelCfgRegsRegionEnd = 64'h3000_2000;
 
   // PADs external configuration registers
-  localparam int PadIdx = 2;
-  localparam doub_bt PadRegionStart = 64'h3000_2000;
-  localparam doub_bt PadRegionEnd = 64'h3000_3000;
+  localparam int PadCfgRegsIdx = 2;
+  localparam doub_bt PadCfgRegsRegionStart = 64'h3000_2000;
+  localparam doub_bt PadCfgRegsRegionEnd = 64'h3000_3000;
 
   // FLL external configuration registers
-  localparam int FllIdx = 3;
-  localparam doub_bt FllRegionStart = 64'h3000_3000;
-  localparam doub_bt FllRegionEnd = 64'h3000_4000;
+  localparam int FllCfgRegsIdx = 3;
+  localparam doub_bt FllCfgRegsRegionStart = 64'h3000_3000;
+  localparam doub_bt FllCfgRegsRegionEnd = 64'h3000_4000;
 
 
   localparam aw_bt ClusterNarrowAxiMstIdWidth = 1;
@@ -107,9 +110,14 @@ package chimera_pkg;
     cfg.RegExtNumRules = ExtRegNum;
     cfg.RegExtRegionIdx = {8'h3, 8'h2, 8'h1, 8'h0};  // SnitchBootROM
     cfg.RegExtRegionStart = {
-      FllRegionStart, PadRegionStart, TopLevelRegionStart, SnitchBootROMRegionStart
+      FllCfgRegsRegionStart,
+      PadCfgRegsRegionStart,
+      TopLevelCfgRegsRegionStart,
+      SnitchBootROMRegionStart
     };
-    cfg.RegExtRegionEnd = {FllRegionEnd, PadRegionEnd, TopLevelRegionEnd, SnitchBootROMRegionEnd};
+    cfg.RegExtRegionEnd = {
+      FllCfgRegsRegionEnd, PadCfgRegsRegionEnd, TopLevelCfgRegsRegionEnd, SnitchBootROMRegionEnd
+    };
 
     // ACCEL HART/IRQ CFG
     cfg.NumExtIrqHarts = ExtCores;
