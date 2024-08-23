@@ -4,6 +4,9 @@
 //
 // Moritz Scherer <scheremo@iis.ee.ethz.ch>
 
+#ifndef _SOC_ADDR_MAP_INCLUDE_GUARD_
+#define _SOC_ADDR_MAP_INCLUDE_GUARD_
+
 #include <stdint.h>
 
 #define CLINT_CTRL_BASE 0x02040000
@@ -28,3 +31,5 @@ static uint8_t _chimera_numCores[] = {CLUSTER_0_NUMCORES, CLUSTER_1_NUMCORES, CL
 
 #define CHIMERA_PADFRAME_BASE_ADDRESS 0x30002000
 #define FLL_BASE_ADDR 0x30003000
+
+#endif
