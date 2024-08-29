@@ -1,0 +1,182 @@
+// Copyright 2024 KU Leuven.
+// Licensed under the Apache License, Version 2.0, see LICENSE for details.
+// SPDX-License-Identifier: Apache-2.0
+//
+// Xiaoling Yi <xiaoling.yi@esat.kuleuven.be>
+
+#include "data.h"
+
+#include "snax-gemmx-params.h"
+#include "snax-gemmx-lib.h"
+#include "snax-data-reshuffler-lib.h"
+
+#include "snrt_TO.h"
+
+// This is the test function for the SNAX GEMM for Conv2d
+// We use several nested loops to iterate over the input data and weights,
+// achieving implicit im2col
+int kul_cluster_sw_test() {
+    // Set err value for checking
+    int err = 0;
+
+    // ---------------------------GEMM--------------------
+    // ---------------------------GEMM--------------------
+    // ---------------------------GEMM--------------------
+
+    // Prepare addresses in TCDM
+    int8_t *local_a, *local_b;
+    int32_t *local_c, *local_d32;
+    int8_t *local_d8;
+
+    // Allocate space in TCDM
+    local_a = (int8_t *)(snrt_cluster_base_addrl() + delta_local_a);
+    local_b = (int8_t *)(snrt_cluster_base_addrl() + delta_local_b);
+    local_c = (int32_t *)(snrt_cluster_base_addrl() + delta_local_c);
+    local_d32 = (int32_t *)(snrt_cluster_base_addrl() + delta_local_d32);
+    local_d8 = (int8_t *)(snrt_cluster_base_addrl() + delta_local_d8);
+
+    // Transfer data from L3 to L1
+    // Using DMA only
+    if (snrt_is_dm_core()) {
+#ifdef TEST_MATMUL
+        snrt_dma_start_1d(local_a, A,
+                          M * K * meshRow * tileSize * sizeof(int8_t));
+        snrt_dma_start_1d(local_b, B,
+                          N * K * tileSize * meshCol * sizeof(int8_t));
+#else
+        snrt_dma_start_1d(
+            local_a, A,
+            Nbatch * (H + 2 * pad_h) * (W + 2 * pad_w) * Cin * sizeof(int8_t));
+        snrt_dma_start_1d(local_b, B, Cout * Kh * Kw * Cin * sizeof(int8_t));
+#endif
+        snrt_dma_wait_all();
+    }
+
+    // Wait for DMA to finish
+    snrt_cluster_hw_barrier();
+    if (snrt_is_dm_core()) {
+        snrt_dma_start_1d(local_c, C,
+                          M * N * meshRow * meshCol * sizeof(int32_t));
+        snrt_dma_wait_all();
+    }
+
+    snrt_cluster_hw_barrier();
+
+    if (snrt_cluster_core_idx() == 0) {
+        // Set Streamer configuration CSR for conv2d
+        set_gemmx_streamer_csr(
+            Aslstride0, Aslstride1, Atlbound0, Atlstride0, Atlbound1,
+            Atlstride1, Atlbound2, Atlstride2, Atlbound3, Atlstride3, Atlbound4,
+            Atlstride4, Atlbound5, Atlstride5,
+
+            Bslstride0, Bslstride1, Btlbound0, Btlstride0, Btlbound1,
+            Btlstride1, Btlbound2, Btlstride2,
+
+            D8slstride0, D8slstride1, D8tlbound0, D8tlstride0, D8tlbound1,
+            D8tlstride1, D8tlbound2, D8tlstride2,
+
+            Cslstride0, Cslstride1, Ctlbound0, Ctlstride0, Ctlbound1,
+            Ctlstride1, Ctlbound2, Ctlstride2,
+
+            D32slstride0, D32slstride1, D32tlbound0, D32tlstride0, D32tlbound1,
+            D32tlstride1, D32tlbound2, D32tlstride2,
+
+            delta_local_a, delta_local_b, delta_local_d8, delta_local_c,
+            delta_local_d32, bypassSIMD, transposed_A, transposed_B);
+
+        // Set CSR to start Streamer for conv2d
+        set_gemmx_streamer_start();
+
+        // Set GEMMX configuration CSR
+        uint32_t subtraction_setting =
+            gen_subtraction_config(subtraction_a, subtraction_b);
+
+        uint32_t csr0 =
+            gen_csr0_config(input_zp_i, output_zp_i, shift_i, max_int_i);
+        uint32_t csr1 = gen_csr1_config(min_int_i, double_round_i);
+        uint32_t csr2 = gen_csr2_config(multiplier_i);
+
+        set_gemmx_csr(K, N, M, subtraction_setting, csr0, csr1, csr2, M * N,
+                      bypassSIMD);
+
+        // Set CSR to start GEMM
+        set_gemmx_start();
+
+        // Poll until Streamer and GEMM accelerator finish
+        wait_gemmx_and_streamer();
+
+        // check the result of the implicit im2col convolution
+        if (!bypassSIMD) {
+            err += check_gemmx_result_D8(local_d8, D8, Batch, M, N);
+        } else {
+            err += check_gemmx_result_D32(local_d32, D32, Batch, M, N);
+        }
+// #ifdef TEST_MATMUL
+//         printf("SNAX GEMM Matmul: %s, Error: %d . bypassSIMD = %d .\n",
+//                err ? "FAIL" : "PASS", err, bypassSIMD);
+// #else
+//         printf("SNAX GEMM Conv2d: %s, Error: %d . bypassSIMD = %d .\n",
+//                err ? "FAIL" : "PASS", err, bypassSIMD);
+// #endif
+    };
+
+    // ---------------------------GEMM--------------------
+    // ---------------------------GEMM--------------------
+    // ---------------------------GEMM--------------------
+
+    // ---------------------------maxpooling--------------------
+    // ---------------------------maxpooling--------------------
+    // ---------------------------maxpooling--------------------
+    snrt_cluster_hw_barrier();
+
+    // Prepare addresses in TCDM
+    int8_t* local_in;
+    int8_t* local_out;
+
+    // Allocate space in TCDM
+    local_in = (int8_t*)(snrt_cluster_base_addrl() + delta_local_in);
+    local_out = (int8_t*)(snrt_cluster_base_addrl() + delta_local_out);
+
+    // uint32_t dma_pre_load = snrt_mcycle();
+
+    // Transfer data from L3 to L1
+    // Using DMA only
+    if (snrt_is_dm_core()) {
+        snrt_dma_start_1d(local_in, DataIn, input_data_len * sizeof(int8_t));
+    }
+
+    // Wait for DMA to finish
+    snrt_cluster_hw_barrier();
+
+    uint32_t CORE_IDX = snrt_cluster_core_idx();
+    if (CORE_IDX == 1) {
+        // Set data-reshuffler configuration CSR
+        set_data_reshuffler_csr(
+            tempLoop0_in, tempLoop1_in, tempLoop2_in, tempLoop3_in,
+            tempLoop4_in, tempStride0_in, tempStride1_in, tempStride2_in,
+            tempStride3_in, tempStride4_in, spatialStride1_in, tempLoop0_out,
+            tempLoop1_out, tempLoop2_out, tempStride0_out, tempStride1_out,
+            tempStride2_out, spatialStride1_out, (int32_t)delta_local_in,
+            (int32_t)delta_local_out);
+
+        start_streamer();
+
+        // Set CSR to start data-reshuffler
+        set_data_reshuffler(TloopLen, reduceLen, opcode);
+        start_data_reshuffler();
+
+        // Wait for data-reshuffler to finish
+        wait_data_reshuffler();
+        wait_streamer();
+
+        // Compare SNAX data-reshuffler result with golden python model
+        err += test_a_chrunk_of_data(local_out, C_golden, output_data_len);
+        // printf("Data reshuffler finished. Error: %d \n", err);
+    };
+
+    // ---------------------------maxpooling--------------------
+    // ---------------------------maxpooling--------------------
+    // ---------------------------maxpooling--------------------
+
+    return err;
+}
