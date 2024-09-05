@@ -11,51 +11,56 @@ module chimera_top_wrapper
 #(
   parameter int unsigned SelectedCfg = 0
 ) (
-  input  logic                      soc_clk_i,
-  input  logic                      clu_clk_i,
-  input  logic                      rst_ni,
-  input  logic                      test_mode_i,
-  input  logic      [          1:0] boot_mode_i,
-  input  logic                      rtc_i,
+  input  logic                        soc_clk_i,
+  input  logic                        clu_clk_i,
+  input  logic                        rst_ni,
+  input  logic                        test_mode_i,
+  input  logic      [            1:0] boot_mode_i,
+  input  logic                        rtc_i,
   // JTAG interface
-  input  logic                      jtag_tck_i,
-  input  logic                      jtag_trst_ni,
-  input  logic                      jtag_tms_i,
-  input  logic                      jtag_tdi_i,
-  output logic                      jtag_tdo_o,
-  output logic                      jtag_tdo_oe_o,
+  input  logic                        jtag_tck_i,
+  input  logic                        jtag_trst_ni,
+  input  logic                        jtag_tms_i,
+  input  logic                        jtag_tdi_i,
+  output logic                        jtag_tdo_o,
+  output logic                        jtag_tdo_oe_o,
   // UART interface
-  output logic                      uart_tx_o,
-  input  logic                      uart_rx_i,
+  output logic                        uart_tx_o,
+  input  logic                        uart_rx_i,
   // UART modem flow control
-  output logic                      uart_rts_no,
-  output logic                      uart_dtr_no,
-  input  logic                      uart_cts_ni,
-  input  logic                      uart_dsr_ni,
-  input  logic                      uart_dcd_ni,
-  input  logic                      uart_rin_ni,
+  output logic                        uart_rts_no,
+  output logic                        uart_dtr_no,
+  input  logic                        uart_cts_ni,
+  input  logic                        uart_dsr_ni,
+  input  logic                        uart_dcd_ni,
+  input  logic                        uart_rin_ni,
   // I2C interface
-  output logic                      i2c_sda_o,
-  input  logic                      i2c_sda_i,
-  output logic                      i2c_sda_en_o,
-  output logic                      i2c_scl_o,
-  input  logic                      i2c_scl_i,
-  output logic                      i2c_scl_en_o,
+  output logic                        i2c_sda_o,
+  input  logic                        i2c_sda_i,
+  output logic                        i2c_sda_en_o,
+  output logic                        i2c_scl_o,
+  input  logic                        i2c_scl_i,
+  output logic                        i2c_scl_en_o,
   // SPI host interface
-  output logic                      spih_sck_o,
-  output logic                      spih_sck_en_o,
-  output logic      [SpihNumCs-1:0] spih_csb_o,
-  output logic      [SpihNumCs-1:0] spih_csb_en_o,
-  output logic      [          3:0] spih_sd_o,
-  output logic      [          3:0] spih_sd_en_o,
-  input  logic      [          3:0] spih_sd_i,
+  output logic                        spih_sck_o,
+  output logic                        spih_sck_en_o,
+  output logic      [  SpihNumCs-1:0] spih_csb_o,
+  output logic      [  SpihNumCs-1:0] spih_csb_en_o,
+  output logic      [            3:0] spih_sd_o,
+  output logic      [            3:0] spih_sd_en_o,
+  input  logic      [            3:0] spih_sd_i,
   // GPIO interface
-  input  logic      [         31:0] gpio_i,
-  output logic      [         31:0] gpio_o,
-  output logic      [         31:0] gpio_en_o,
+  input  logic      [           31:0] gpio_i,
+  output logic      [           31:0] gpio_o,
+  output logic      [           31:0] gpio_en_o,
   // APB interface
-  input  apb_resp_t                 apb_rsp_i,
-  output apb_req_t                  apb_req_o
+  input  apb_resp_t                   apb_rsp_i,
+  output apb_req_t                    apb_req_o,
+  // PMU  Clusters control signals
+  input  logic      [ExtClusters-1:0] pmu_rst_clusters_ni,
+  input  logic      [ExtClusters-1:0] pmu_clkgate_en_clusters_i,  // TODO: lleone
+  input  logic      [ExtClusters-1:0] pmu_iso_en_clusters_i,
+  output logic      [ExtClusters-1:0] pmu_iso_ack_clusters_o
 
 );
 
@@ -316,7 +321,7 @@ module chimera_top_wrapper
   ) i_cluster_domain (
     .soc_clk_i        (soc_clk_i),
     .clu_clk_i        (clu_clk_gated),
-    .rst_ni,
+    .rst_sync_ni      (pmu_rst_clusters_ni),
     .widemem_bypass_i (wide_mem_bypass_mode),
     .debug_req_i      (dbg_ext_req),
     .xeip_i           (xeip_ext),
@@ -327,8 +332,9 @@ module chimera_top_wrapper
     .narrow_out_req_o (axi_mst_req),
     .narrow_out_resp_i(axi_mst_rsp),
     .wide_out_req_o   (axi_wide_mst_req),
-    .wide_out_resp_i  (axi_wide_mst_rsp)
-
+    .wide_out_resp_i  (axi_wide_mst_rsp),
+    .isolate_i        (pmu_iso_en_clusters_i),
+    .isolate_o        (pmu_iso_ack_clusters_o)
   );
 
 endmodule
