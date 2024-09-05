@@ -54,8 +54,6 @@ module chimera_top_wrapper
   output logic      [         31:0] gpio_o,
   output logic      [         31:0] gpio_en_o,
   // APB interface
-  output apb_req_t                  apb_fll_req_o,
-  input  apb_resp_t                 apb_fll_rsp_i,
   input  apb_resp_t                 apb_rsp_i,
   output apb_req_t                  apb_req_o
 
@@ -202,32 +200,18 @@ module chimera_top_wrapper
     .usb_dp_oe_o           ()
   );
 
-  // FLL REG
-  reg_to_apb #(
-    .reg_req_t(reg_req_t),
-    .reg_rsp_t(reg_rsp_t),
-    .apb_req_t(apb_req_t),
-    .apb_rsp_t(apb_resp_t)
-  ) i_fll_reg_to_apb (
-    .clk_i    (soc_clk_i),
-    .rst_ni   (rst_ni),
-    .reg_req_i(reg_slv_req[FllCfgRegsIdx]),
-    .reg_rsp_o(reg_slv_rsp[FllCfgRegsIdx]),
-    .apb_req_o(apb_fll_req_o),
-    .apb_rsp_i(apb_fll_rsp_i)
-  );
 
-  // PADs REG
+  // External REGs
   reg_to_apb #(
     .reg_req_t(reg_req_t),
     .reg_rsp_t(reg_rsp_t),
     .apb_req_t(apb_req_t),
     .apb_rsp_t(apb_resp_t)
-  ) i_pad_reg_to_apb (
+  ) i_ext_reg_to_apb (
     .clk_i    (soc_clk_i),
     .rst_ni   (rst_ni),
-    .reg_req_i(reg_slv_req[PadCfgRegsIdx]),
-    .reg_rsp_o(reg_slv_rsp[PadCfgRegsIdx]),
+    .reg_req_i(reg_slv_req[ExtCfgRegsIdx]),
+    .reg_rsp_o(reg_slv_rsp[ExtCfgRegsIdx]),
     .apb_req_o(apb_req_o),
     .apb_rsp_i(apb_rsp_i)
   );

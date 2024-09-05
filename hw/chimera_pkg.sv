@@ -37,11 +37,10 @@ package chimera_pkg;
   // SoC Config
   localparam bit SnitchBootROM = 1;
   localparam bit TopLevelCfgRegs = 1;
-  localparam bit FLLCfgRegs = 1;
-  localparam bit PadCfgRegs = 1;
+  localparam bit ExtCfgRegs = 1;
 
-  // SCHEREMO: Shared Snitch bootrom, one clock gate per cluster, Fll cfg regs, Pad cfg regs
-  localparam int ExtRegNum = SnitchBootROM + TopLevelCfgRegs + FLLCfgRegs + PadCfgRegs;
+  // SCHEREMO: Shared Snitch bootrom, one clock gate per cluster, External regs (PADs, FLLs etc...)
+  localparam int ExtRegNum = SnitchBootROM + TopLevelCfgRegs + ExtCfgRegs;
   localparam int ClusterDataWidth = 64;
 
   localparam int SnitchBootROMIdx = 0;
@@ -52,15 +51,10 @@ package chimera_pkg;
   localparam doub_bt TopLevelCfgRegsRegionStart = 64'h3000_1000;
   localparam doub_bt TopLevelCfgRegsRegionEnd = 64'h3000_2000;
 
-  // PADs external configuration registers
-  localparam int PadCfgRegsIdx = 2;
-  localparam doub_bt PadCfgRegsRegionStart = 64'h3000_2000;
-  localparam doub_bt PadCfgRegsRegionEnd = 64'h3000_3000;
-
-  // FLL external configuration registers
-  localparam int FllCfgRegsIdx = 3;
-  localparam doub_bt FllCfgRegsRegionStart = 64'h3000_3000;
-  localparam doub_bt FllCfgRegsRegionEnd = 64'h3000_4000;
+  // External configuration registers: PADs, FLLs, PMU Controller
+  localparam int ExtCfgRegsIdx = 2;
+  localparam doub_bt ExtCfgRegsRegionStart = 64'h3000_2000;
+  localparam doub_bt ExtCfgRegsRegionEnd = 64'h3000_5000;
 
 
   localparam aw_bt ClusterNarrowAxiMstIdWidth = 1;
@@ -110,14 +104,9 @@ package chimera_pkg;
     cfg.RegExtNumRules = ExtRegNum;
     cfg.RegExtRegionIdx = {8'h3, 8'h2, 8'h1, 8'h0};  // SnitchBootROM
     cfg.RegExtRegionStart = {
-      FllCfgRegsRegionStart,
-      PadCfgRegsRegionStart,
-      TopLevelCfgRegsRegionStart,
-      SnitchBootROMRegionStart
+      ExtCfgRegsRegionStart, TopLevelCfgRegsRegionStart, SnitchBootROMRegionStart
     };
-    cfg.RegExtRegionEnd = {
-      FllCfgRegsRegionEnd, PadCfgRegsRegionEnd, TopLevelCfgRegsRegionEnd, SnitchBootROMRegionEnd
-    };
+    cfg.RegExtRegionEnd = {ExtCfgRegsRegionEnd, TopLevelCfgRegsRegionEnd, SnitchBootROMRegionEnd};
 
     // ACCEL HART/IRQ CFG
     cfg.NumExtIrqHarts = ExtCores;
@@ -133,8 +122,7 @@ package chimera_pkg;
 
   // To move into cheshire TYPEDEF
   localparam int unsigned RegDataWidth = 32;
-  localparam type addr_t = logic [DefaultCfg.AddrWidth-1:0];
-  // localparam type data_t = logic[DefaultCfg.AxiDataWidth];
+  localparam type addr_t = logic [ChimeraCfg[0].AddrWidth-1:0];
   localparam type data_t = logic [RegDataWidth-1:0];
   localparam type strb_t = logic [RegDataWidth/8-1:0];
 
