@@ -12,6 +12,9 @@
 #include <regs/soc_ctrl.h>
 #include <stdint.h>
 
+// add snitch runtime for getting TCDM address
+#include "snrt_TO.h"
+
 static uint32_t *clintPointer = (uint32_t *)CLINT_CTRL_BASE;
 
 void clusterTrapHandler() {
@@ -28,7 +31,10 @@ int main() {
 
     setupInterruptHandler(clusterTrapHandler);
 
-    // set the stack pointer?
+    // set the stack pointer
+    // set it to the end of the KUL cluster TCDM (size = 128KB) address - 4
+    uint32_t stack_start = snrt_cluster_base_addrl() + 128 * 1024 - 4;
+    asm("mv sp, %0" ::"r"((uint32_t)stack_start)::);
 
     // offload test function to kul cluster
     offloadToCluster(kul_cluster_sw_test, kul_clusterId);
@@ -36,5 +42,5 @@ int main() {
     // wait fro kul cluster to finish
     uint32_t retVal = waitForCluster(kul_clusterId);
 
-    return retVal;
+    return retVal != 1;
 }
