@@ -7,6 +7,7 @@ package:
   authors:
     - "Moritz Scherer <scheremo@iis.ee.ethz.ch>"
     - "Lorenzo Leone <lleone@iis.ee.ethz.ch>"
+    - "Sergio Mazzola <smazzola@iis.ee.ethz.ch>"
 
 dependencies:
   register_interface:       { git: "https://github.com/pulp-platform/register_interface.git", version: 0.4.3  }
@@ -19,6 +20,7 @@ dependencies:
   apb:                      { git: "https://github.com/pulp-platform/apb.git",                version: 0.2.4          }
   hyperbus:                 { git: "https://github.com/pulp-platform/hyperbus.git",           rev: f039e601c8b6590181734e6d26ff8b77aa380412 } # branch: chi/add_fsm_with_Tcsh
   tech_cells_generic:       { git: "https://github.com/pulp-platform/tech_cells_generic.git", version: 0.2.12 }
+  pulp_cluster:             { git: "git@iis-git.ee.ethz.ch:pulpissimov2/pulp-cluster-pv2.git", rev: 77d8e67b1527109b63110d7c386ec01293cac4e6 } # branch smazzola/chimera
 
 export_include_dirs:
   - hw/include
@@ -41,6 +43,10 @@ sources:
   - hw/chimera_memisland_domain.sv
   - hw/hyperbus_wrap.sv
   - hw/chimera_top_wrapper.sv
+
+  - target: pulp_cluster
+    files:
+      - hw/include/pulp_interfaces.sv
 
   - target: any(simulation, test)
     files:

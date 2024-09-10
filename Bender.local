@@ -1,0 +1,4 @@
+# Related to issue https://github.com/pulp-platform/bender/issues/182
+overrides:
+  # Should use the one from `pulp_cluster` (`fpu_interco` has a different remote for its `riscv` dependency)
+  riscv: { git: "git@iis-git.ee.ethz.ch:pulpissimov2/riscv-nn.git", rev: "53b053cd0be8dae25caa24bd57824e81cf87ba21" }
