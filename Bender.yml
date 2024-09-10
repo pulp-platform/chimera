@@ -6,6 +6,7 @@ package:
   name: chimera
   authors:
     - "Moritz Scherer <scheremo@iis.ee.ethz.ch>"
+    - "Sergio Mazzola <smazzola@iis.ee.ethz.ch>"
 
 dependencies:
   register_interface:       { git: "https://github.com/pulp-platform/register_interface.git", version: 0.4.3  }
@@ -15,6 +16,7 @@ dependencies:
   common_cells:             { git: "https://github.com/pulp-platform/common_cells.git",       version: 1.31.1}
   idma:                     { git: "https://github.com/pulp-platform/iDMA.git",               rev: 9edf489f57389dce5e71252c79e337f527d3aded}
   apb:                      { git: "https://github.com/pulp-platform/apb.git",                version: 0.2.4          }
+  pulp_cluster:             { git: "git@iis-git.ee.ethz.ch:pulpissimov2/pulp-cluster-pv2.git", rev: 6db090848be7b94f69a20eb39533ec1b24c0d5e1 }
 
 workspace:
   package_links:
