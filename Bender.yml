@@ -7,6 +7,7 @@ package:
   authors:
     - "Moritz Scherer <scheremo@iis.ee.ethz.ch>"
     - "Lorenzo Leone <lleone@iis.ee.ethz.ch>"
+    - "Sergio Mazzola <smazzola@iis.ee.ethz.ch>"
 
 dependencies:
   register_interface:       { git: "https://github.com/pulp-platform/register_interface.git", version: 0.4.3  }
@@ -17,6 +18,7 @@ dependencies:
   idma:                     { git: "https://github.com/pulp-platform/iDMA.git",               rev: 9edf489f57389dce5e71252c79e337f527d3aded}
   memory_island:            { git: "https://github.com/pulp-platform/memory_island.git",          rev: 64828cb7a9ccc1f1656ec92d06129072f445c319 } # main branch
   apb:                      { git: "https://github.com/pulp-platform/apb.git",                version: 0.2.4          }
+  pulp_cluster:             { git: "git@iis-git.ee.ethz.ch:pulpissimov2/pulp-cluster-pv2.git", rev: 6db090848be7b94f69a20eb39533ec1b24c0d5e1 }
 
 export_include_dirs:
   - hw/include
