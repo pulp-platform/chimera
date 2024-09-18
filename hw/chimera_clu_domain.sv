@@ -72,12 +72,12 @@ module chimera_clu_domain
       .cluster_base_addr_i(Cfg.AxiExtRegionStart[extClusterIdx][Cfg.AddrWidth-1:0]),
       .boot_addr_i        (SnitchBootROMRegionStart[31:0]),
 
-      .narrow_in_req_i  (narrow_in_req_i[extClusterIdx]),
-      .narrow_in_resp_o (narrow_in_resp_o[extClusterIdx]),
-      .narrow_out_req_o (narrow_out_req_o[2*extClusterIdx+:2]),
-      .narrow_out_resp_i(narrow_out_resp_i[2*extClusterIdx+:2]),
-      .wide_out_req_o   (wide_out_req_o[extClusterIdx]),
-      .wide_out_resp_i  (wide_out_resp_i[extClusterIdx])
+      .narrow_in_req_i      (narrow_in_req_i[extClusterIdx]),
+      .narrow_in_resp_flat_o(narrow_in_resp_o[extClusterIdx]),
+      .narrow_out_req_flat_o(narrow_out_req_o[2*extClusterIdx+:2]),
+      .narrow_out_resp_i    (narrow_out_resp_i[2*extClusterIdx+:2]),
+      .wide_out_req_flat_o  (wide_out_req_o[extClusterIdx]),
+      .wide_out_resp_i      (wide_out_resp_i[extClusterIdx])
     );
 
   end : gen_clusters
