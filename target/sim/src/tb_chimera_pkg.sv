@@ -38,4 +38,8 @@ package tb_chimera_pkg;
     DefaultCfg  // 0: Default configuration
   };
 
+  // HyperBus
+  localparam int HypNumPhys  = 2;
+  localparam int HypNumChips = 2;
+
 endpackage

@@ -14,10 +14,12 @@ module vip_chimera_soc
 #(
   // DUT (must be set)
   parameter cheshire_cfg_t DutCfg            = '0,
-  // Timing
-  parameter type           axi_ext_mst_req_t = logic,
-  parameter type           axi_ext_mst_rsp_t = logic,
+  parameter int unsigned HypNumPhys     = 2,
+  parameter int unsigned HypNumChips    = 2,
 
+  parameter type         axi_ext_mst_req_t = logic,
+  parameter type         axi_ext_mst_rsp_t = logic,
+  // Timing
   parameter time         ClkPeriodClu      = 2ns,
   parameter time         ClkPeriodSys      = 5ns,
   parameter time         ClkPeriodJtag     = 20ns,
@@ -38,6 +40,10 @@ module vip_chimera_soc
   parameter int unsigned SlinkMaxTxns      = 32,
   parameter int unsigned SlinkMaxTxnsPerId = 16,
   parameter bit          SlinkAxiDebug     = 0,
+  // HyperRAM (hardcoded to HypNumPhys = 2)
+  parameter int unsigned HypUserPreload = 0,
+  parameter string       Hyp0UserPreloadMemFile = "",
+  parameter string       Hyp1UserPreloadMemFile = "",
   // Derived Parameters;  *do not override*
   parameter int unsigned AxiStrbWidth      = DutCfg.AxiDataWidth / 8,
   parameter int unsigned AxiStrbBits       = $clog2(DutCfg.AxiDataWidth / 8)
@@ -63,7 +69,14 @@ module vip_chimera_soc
   // SPI host interface
   inout  wire                  spih_sck,
   inout  wire  [SpihNumCs-1:0] spih_csb,
-  inout  wire  [          3:0] spih_sd
+  inout  wire  [          3:0] spih_sd,
+  // Hyperbus interface
+  wire [HypNumPhys-1:0][HypNumChips-1:0] pad_hyper_csn,
+  wire [HypNumPhys-1:0]                  pad_hyper_ck,
+  wire [HypNumPhys-1:0]                  pad_hyper_ckn,
+  wire [HypNumPhys-1:0]                  pad_hyper_rwds,
+  wire [HypNumPhys-1:0]                  pad_hyper_resetn,
+  wire [HypNumPhys-1:0][7:0]             pad_hyper_dq
 );
 
   `include "cheshire/typedef.svh"
@@ -554,13 +567,60 @@ module vip_chimera_soc
     if (image != "") $readmemh(image, i_spi_norflash.Mem);
   endtask
 
+  //////////////
+  // Hyperbus //
+  //////////////
+
+  localparam string HypUserPreloadMemFiles [HypNumPhys] = '{Hyp0UserPreloadMemFile, Hyp1UserPreloadMemFile};
+
+  for (genvar i=0; i<HypNumPhys; i++) begin : hyperrams
+    for (genvar j=0; j<HypNumChips; j++) begin : chips
+      s27ks0641 #(
+        .UserPreload   ( HypUserPreload ),
+        .mem_file_name ( HypUserPreloadMemFiles[i] ),
+        .TimingModel ( "S27KS0641DPBHI020" )
+      ) dut (
+        .DQ7      ( pad_hyper_dq[i][7]  ),
+        .DQ6      ( pad_hyper_dq[i][6]  ),
+        .DQ5      ( pad_hyper_dq[i][5]  ),
+        .DQ4      ( pad_hyper_dq[i][4]  ),
+        .DQ3      ( pad_hyper_dq[i][3]  ),
+        .DQ2      ( pad_hyper_dq[i][2]  ),
+        .DQ1      ( pad_hyper_dq[i][1]  ),
+        .DQ0      ( pad_hyper_dq[i][0]  ),
+        .RWDS     ( pad_hyper_rwds[i]   ),
+        .CSNeg    ( pad_hyper_csn[i][j] ),
+        .CK       ( pad_hyper_ck[i]     ),
+        .CKNeg    ( pad_hyper_ckn[i]    ),
+        .RESETNeg ( pad_hyper_resetn[i] )
+      );
+    end
+  end
+
+  for (genvar p=0; p<HypNumPhys; p++) begin : sdf_annotation
+     for (genvar l=0; l<HypNumChips; l++) begin : sdf_annotation
+        initial begin
+`ifndef PATH_TO_HYP_SDF
+           automatic string sdf_file_path = "../models/s27ks0641/s27ks0641.sdf";
+`else
+           automatic string sdf_file_path = `PATH_TO_HYP_SDF;
+`endif
+           $sdf_annotate(sdf_file_path, hyperrams[p].chips[l].dut);
+           $display("Mem (%d,%d)",p,l);
+        end
+    end
+  end
+
 endmodule
 
 // Map pad IO to tristate wires to adapt from SoC IO (not needed for chip instances).
 
 module vip_cheshire_soc_tristate
   import cheshire_pkg::*;
-(
+#(
+  parameter int unsigned HypNumPhys  = 2,
+  parameter int unsigned HypNumChips = 2
+) (
   // I2C pad IO
   output logic                 i2c_sda_i,
   input  logic                 i2c_sda_o,
@@ -582,7 +642,27 @@ module vip_cheshire_soc_tristate
   // SPI host wires
   inout  wire                  spih_sck,
   inout  wire  [SpihNumCs-1:0] spih_csb,
-  inout  wire  [          3:0] spih_sd
+  inout  wire  [          3:0] spih_sd,
+  // Hyperbus pad IO
+  input  logic [HypNumPhys-1:0][HypNumChips-1:0] hyper_cs_no,
+  output logic [HypNumPhys-1:0]                  hyper_ck_i,
+  input  logic [HypNumPhys-1:0]                  hyper_ck_o,
+  output logic [HypNumPhys-1:0]                  hyper_ck_ni,
+  input  logic [HypNumPhys-1:0]                  hyper_ck_no,
+  input  logic [HypNumPhys-1:0]                  hyper_rwds_o,
+  output logic [HypNumPhys-1:0]                  hyper_rwds_i,
+  input  logic [HypNumPhys-1:0]                  hyper_rwds_oe_o,
+  output logic [HypNumPhys-1:0][7:0]             hyper_dq_i,
+  input  logic [HypNumPhys-1:0][7:0]             hyper_dq_o,
+  input  logic [HypNumPhys-1:0]                  hyper_dq_oe_o,
+  input  logic [HypNumPhys-1:0]                  hyper_reset_no,
+  // Hyperbus wires
+  wire [HypNumPhys-1:0][HypNumChips-1:0] pad_hyper_csn,
+  wire [HypNumPhys-1:0]                  pad_hyper_ck,
+  wire [HypNumPhys-1:0]                  pad_hyper_ckn,
+  wire [HypNumPhys-1:0]                  pad_hyper_rwds,
+  wire [HypNumPhys-1:0]                  pad_hyper_resetn,
+  wire [HypNumPhys-1:0][7:0]             pad_hyper_dq
 );
 
   // I2C
@@ -607,5 +687,54 @@ module vip_cheshire_soc_tristate
     bufif1 (spih_csb[i], spih_csb_o[i], spih_csb_en[i]);
     pullup (spih_csb[i]);
   end
+
+  for (genvar i = 0 ; i<HypNumPhys; i++) begin : gen_hyper_phy
+    for (genvar j = 0; j<HypNumChips; j++) begin : gen_hyper_cs
+      pad_functional_pd padinst_hyper_csno (
+        .OEN ( 1'b0                 ),
+        .I   ( hyper_cs_no[i][j]    ),
+        .O   (                      ),
+        .PEN (                      ),
+        .PAD ( pad_hyper_csn[i][j]  )
+      );
+    end
+    pad_functional_pd padinst_hyper_ck (
+      .OEN ( 1'b0            ),
+      .I   ( hyper_ck_o[i]   ),
+      .O   (                 ),
+      .PEN (                 ),
+      .PAD ( pad_hyper_ck[i] )
+    );
+    pad_functional_pd padinst_hyper_ckno   (
+      .OEN ( 1'b0              ),
+      .I   ( hyper_ck_no[i]    ),
+      .O   (                   ),
+      .PEN (                   ),
+      .PAD ( pad_hyper_ckn[i]  )
+    );
+    pad_functional_pd padinst_hyper_rwds0  (
+      .OEN (~hyper_rwds_oe_o[i] ),
+      .I   ( hyper_rwds_o[i]    ),
+      .O   ( hyper_rwds_i[i]    ),
+      .PEN (                    ),
+      .PAD ( pad_hyper_rwds[i]  )
+    );
+    pad_functional_pd padinst_hyper_resetn (
+      .OEN ( 1'b0               ),
+      .I   ( hyper_reset_no[i]  ),
+      .O   (                    ),
+      .PEN (                    ),
+      .PAD ( pad_hyper_resetn[i] )
+    );
+    for (genvar j = 0; j < 8; j++) begin : gen_hyper_dq
+      pad_functional_pd padinst_hyper_dqio0  (
+        .OEN (~hyper_dq_oe_o[i]   ),
+        .I   ( hyper_dq_o[i][j]   ),
+        .O   ( hyper_dq_i[i][j]   ),
+        .PEN (                    ),
+        .PAD ( pad_hyper_dq[i][j] )
+      );
+    end
+  end : gen_hyper_phy
 
 endmodule
