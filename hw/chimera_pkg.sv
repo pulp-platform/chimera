@@ -12,6 +12,13 @@ package chimera_pkg;
 
   // ACCEL CFG
   localparam int ExtClusters = 5;
+  localparam int ExtClustersBaseIdx = 0;
+
+  // Bit vector types for parameters.
+  //We limit range to keep parameters sane.
+  typedef bit [7:0] byte_bt;
+  typedef bit [63:0] doub_bt;
+  typedef bit [15:0] shrt_bt;
 
   typedef struct packed {
     logic [iomsb(ExtClusters):0]   hasWideMasterPort;
@@ -31,6 +38,18 @@ package chimera_pkg;
     return sum;
   endfunction
 
+  // Configuration struct for Chimer: it includes the Cheshire Cfg
+  typedef struct packed {
+    cheshire_cfg_t ChsCfg;
+    doub_bt        MemIslRegionStart;
+    doub_bt        MemIslRegionEnd;
+    aw_bt          MemIslAxiMstIdWidth;
+    byte_bt        MemIslNarrowToWideFactor;
+    byte_bt        MemIslNarrowPorts;
+    byte_bt        MemIslWidePorts;
+    byte_bt        MemIslNumWideBanks;
+    shrt_bt        MemIslWordsPerBank;
+  } chimera_cfg_t;
 
   localparam int ExtCores = _sumVector(ChimeraClusterCfg.NrCores, ExtClusters);
 
@@ -56,15 +75,28 @@ package chimera_pkg;
   localparam doub_bt ExtCfgRegsRegionStart = 64'h3000_2000;
   localparam doub_bt ExtCfgRegsRegionEnd = 64'h3000_5000;
 
+  // Parameters for Memory Island
+  localparam int MemIslandIdx = ExtClustersBaseIdx + ExtClusters;
+
+  localparam doub_bt MemIslRegionStart = 64'h4800_0000;
+  localparam doub_bt MemIslRegionEnd = 64'h4804_0000;
+  localparam aw_bt MemIslAxiMstIdWidth = 1;
+  localparam byte_bt MemIslNarrowToWideFactor = 4;
+  localparam byte_bt MemIslNarrowPorts = 1;
+  localparam byte_bt MemIslWidePorts = $countones(ChimeraClusterCfg.hasWideMasterPort);
+  localparam byte_bt MemIslNumWideBanks = 2;
+  localparam shrt_bt MemIslWordsPerBank = 1024;
 
   localparam aw_bt ClusterNarrowAxiMstIdWidth = 1;
 
   // Isolate Clusters from SoC
   localparam int unsigned IsolateClusters = 0;
 
-  function automatic cheshire_cfg_t gen_chimera_cfg();
+  function automatic chimera_cfg_t gen_chimera_cfg();
     localparam int AddrWidth = DefaultCfg.AddrWidth;
+    localparam int MemoryIsland = 1;
 
+    chimera_cfg_t  chimera_cfg;
     cheshire_cfg_t cfg = DefaultCfg;
 
     // Global CFG
@@ -74,32 +106,29 @@ package chimera_pkg;
 
     cfg.Vga = 0;
     cfg.SerialLink = 0;
-    cfg.MemoryIsland = 1;
     // SCHEREMO: Fully remove LLC
     cfg.LlcNotBypass = 0;
     cfg.LlcOutConnect = 0;
 
     // AXI CFG
     cfg.AxiMstIdWidth = 2;
-    cfg.MemIslAxiMstIdWidth = 1;
     cfg.AxiDataWidth = 32;
     cfg.AddrWidth = 32;
     cfg.LlcOutRegionEnd = 'hFFFF_FFFF;
 
-    cfg.MemIslWidePorts = $countones(ChimeraClusterCfg.hasWideMasterPort);
-    cfg.MemIslNarrowToWideFactor = 4;
-
     cfg.AxiExtNumWideMst = $countones(ChimeraClusterCfg.hasWideMasterPort);
+
     // SCHEREMO: Two ports for each cluster: one to convert stray wides, one for the original narrow
     cfg.AxiExtNumMst = ExtClusters + $countones(ChimeraClusterCfg.hasWideMasterPort);
-    cfg.AxiExtNumSlv = ExtClusters;
-    cfg.AxiExtNumRules = ExtClusters;
-    cfg.AxiExtRegionIdx = {8'h4, 8'h3, 8'h2, 8'h1, 8'h0};
+    cfg.AxiExtNumSlv = ExtClusters + MemoryIsland;
+    cfg.AxiExtNumRules = ExtClusters + MemoryIsland;
+
+    cfg.AxiExtRegionIdx = {8'h5, 8'h4, 8'h3, 8'h2, 8'h1, 8'h0};
     cfg.AxiExtRegionStart = {
-      64'h4080_0000, 64'h4060_0000, 64'h4040_0000, 64'h4020_0000, 64'h4000_0000
+      MemIslRegionStart, 64'h4080_0000, 64'h4060_0000, 64'h4040_0000, 64'h4020_0000, 64'h4000_0000
     };
     cfg.AxiExtRegionEnd = {
-      64'h40A0_0000, 64'h4080_0000, 64'h4060_0000, 64'h4040_0000, 64'h4020_0000
+      MemIslRegionEnd, 64'h40A0_0000, 64'h4080_0000, 64'h4060_0000, 64'h4040_0000, 64'h4020_0000
     };
 
     // REG CFG
@@ -116,16 +145,29 @@ package chimera_pkg;
     cfg.NumExtDbgHarts = ExtCores;
     cfg.NumExtOutIntrTgts = ExtCores;
 
-    return cfg;
+    chimera_cfg = '{
+        ChsCfg                    : cfg,
+        MemIslRegionStart         : MemIslRegionStart,
+        MemIslRegionEnd           : MemIslRegionEnd,
+        MemIslAxiMstIdWidth       : MemIslAxiMstIdWidth,
+        MemIslNarrowToWideFactor  : MemIslNarrowToWideFactor,
+        MemIslNarrowPorts         : MemIslNarrowPorts,
+        MemIslWidePorts           : MemIslWidePorts,
+        MemIslNumWideBanks        : MemIslNumWideBanks,
+        MemIslWordsPerBank        : MemIslWordsPerBank,
+        default: '0
+    };
+
+    return chimera_cfg;
   endfunction : gen_chimera_cfg
 
   localparam int NumCfgs = 1;
 
-  localparam cheshire_cfg_t [NumCfgs-1:0] ChimeraCfg = {gen_chimera_cfg()};
+  localparam chimera_cfg_t [NumCfgs-1:0] ChimeraCfg = {gen_chimera_cfg()};
 
   // To move into cheshire TYPEDEF
   localparam int unsigned RegDataWidth = 32;
-  localparam type addr_t = logic [ChimeraCfg[0].AddrWidth-1:0];
+  localparam type addr_t = logic [ChimeraCfg[0].ChsCfg.AddrWidth-1:0];
   localparam type data_t = logic [RegDataWidth-1:0];
   localparam type strb_t = logic [RegDataWidth/8-1:0];
 

@@ -15,62 +15,62 @@ module chimera_clu_domain
   import chimera_pkg::*;
   import cheshire_pkg::*;
 #(
-  parameter cheshire_cfg_t Cfg               = '0,
-  parameter type           narrow_in_req_t   = logic,
-  parameter type           narrow_in_resp_t  = logic,
-  parameter type           narrow_out_req_t  = logic,
-  parameter type           narrow_out_resp_t = logic,
-  parameter type           wide_out_req_t    = logic,
-  parameter type           wide_out_resp_t   = logic
+  parameter chimera_cfg_t Cfg               = '0,
+  parameter type          narrow_in_req_t   = logic,
+  parameter type          narrow_in_resp_t  = logic,
+  parameter type          narrow_out_req_t  = logic,
+  parameter type          narrow_out_resp_t = logic,
+  parameter type          wide_out_req_t    = logic,
+  parameter type          wide_out_resp_t   = logic
 ) (
-  input  logic                                                       soc_clk_i,
-  input  logic             [                        ExtClusters-1:0] clu_clk_i,
-  input  logic             [                        ExtClusters-1:0] rst_sync_ni,
-  input  logic             [                        ExtClusters-1:0] widemem_bypass_i,
+  input  logic                                                              soc_clk_i,
+  input  logic             [                               ExtClusters-1:0] clu_clk_i,
+  input  logic             [                               ExtClusters-1:0] rst_sync_ni,
+  input  logic             [                               ExtClusters-1:0] widemem_bypass_i,
   //-----------------------------
   // Interrupt ports
   //-----------------------------
-  input  logic             [iomsb(NumIrqCtxts*Cfg.NumExtIrqHarts):0] xeip_i,
-  input  logic             [            iomsb(Cfg.NumExtIrqHarts):0] mtip_i,
-  input  logic             [            iomsb(Cfg.NumExtIrqHarts):0] msip_i,
-  input  logic             [            iomsb(Cfg.NumExtDbgHarts):0] debug_req_i,
+  input  logic             [iomsb(NumIrqCtxts*Cfg.ChsCfg.NumExtIrqHarts):0] xeip_i,
+  input  logic             [            iomsb(Cfg.ChsCfg.NumExtIrqHarts):0] mtip_i,
+  input  logic             [            iomsb(Cfg.ChsCfg.NumExtIrqHarts):0] msip_i,
+  input  logic             [            iomsb(Cfg.ChsCfg.NumExtDbgHarts):0] debug_req_i,
   //-----------------------------
   // Narrow AXI ports
   //-----------------------------
-  input  narrow_in_req_t   [              iomsb(Cfg.AxiExtNumSlv):0] narrow_in_req_i,
-  output narrow_in_resp_t  [              iomsb(Cfg.AxiExtNumSlv):0] narrow_in_resp_o,
-  output narrow_out_req_t  [              iomsb(Cfg.AxiExtNumMst):0] narrow_out_req_o,
-  input  narrow_out_resp_t [              iomsb(Cfg.AxiExtNumMst):0] narrow_out_resp_i,
+  input  narrow_in_req_t   [                               ExtClusters-1:0] narrow_in_req_i,
+  output narrow_in_resp_t  [                               ExtClusters-1:0] narrow_in_resp_o,
+  output narrow_out_req_t  [              iomsb(Cfg.ChsCfg.AxiExtNumMst):0] narrow_out_req_o,
+  input  narrow_out_resp_t [              iomsb(Cfg.ChsCfg.AxiExtNumMst):0] narrow_out_resp_i,
   //-----------------------------
   // Wide AXI ports
   //-----------------------------
-  output wide_out_req_t    [          iomsb(Cfg.AxiExtNumWideMst):0] wide_out_req_o,
-  input  wide_out_resp_t   [          iomsb(Cfg.AxiExtNumWideMst):0] wide_out_resp_i,
+  output wide_out_req_t    [          iomsb(Cfg.ChsCfg.AxiExtNumWideMst):0] wide_out_req_o,
+  input  wide_out_resp_t   [          iomsb(Cfg.ChsCfg.AxiExtNumWideMst):0] wide_out_resp_i,
   //-----------------------------
   // Isolation control ports
   //-----------------------------
-  input  logic             [                        ExtClusters-1:0] isolate_i,
-  output logic             [                        ExtClusters-1:0] isolate_o
+  input  logic             [                               ExtClusters-1:0] isolate_i,
+  output logic             [                               ExtClusters-1:0] isolate_o
 );
 
   // Axi parameters
-  localparam int unsigned AxiWideDataWidth = Cfg.AxiDataWidth * Cfg.MemIslNarrowToWideFactor;
+  localparam int unsigned AxiWideDataWidth = Cfg.ChsCfg.AxiDataWidth * Cfg.MemIslNarrowToWideFactor;
   localparam int unsigned AxiWideSlvIdWidth = Cfg.MemIslAxiMstIdWidth + $clog2(Cfg.MemIslWidePorts);
-  localparam int unsigned AxiSlvIdWidth = Cfg.AxiMstIdWidth + $clog2(
+  localparam int unsigned AxiSlvIdWidth = Cfg.ChsCfg.AxiMstIdWidth + $clog2(
       cheshire_pkg::gen_axi_in(Cfg).num_in
   );
 
   // Isolated AXI signals
-  narrow_in_req_t   [    iomsb(Cfg.AxiExtNumSlv):0] narrow_in_isolated_req;
-  narrow_in_resp_t  [    iomsb(Cfg.AxiExtNumSlv):0] narrow_in_isolated_resp;
-  narrow_out_req_t  [    iomsb(Cfg.AxiExtNumMst):0] narrow_out_isolated_req;
-  narrow_out_resp_t [    iomsb(Cfg.AxiExtNumMst):0] narrow_out_isolated_resp;
-  wide_out_req_t    [iomsb(Cfg.AxiExtNumWideMst):0] wide_out_isolated_req;
-  wide_out_resp_t   [iomsb(Cfg.AxiExtNumWideMst):0] wide_out_isolated_resp;
+  narrow_in_req_t   [    iomsb(Cfg.ChsCfg.AxiExtNumSlv):0] narrow_in_isolated_req;
+  narrow_in_resp_t  [    iomsb(Cfg.ChsCfg.AxiExtNumSlv):0] narrow_in_isolated_resp;
+  narrow_out_req_t  [    iomsb(Cfg.ChsCfg.AxiExtNumMst):0] narrow_out_isolated_req;
+  narrow_out_resp_t [    iomsb(Cfg.ChsCfg.AxiExtNumMst):0] narrow_out_isolated_resp;
+  wide_out_req_t    [iomsb(Cfg.ChsCfg.AxiExtNumWideMst):0] wide_out_isolated_req;
+  wide_out_resp_t   [iomsb(Cfg.ChsCfg.AxiExtNumWideMst):0] wide_out_isolated_resp;
 
-  logic             [    iomsb(Cfg.AxiExtNumSlv):0] isolated_narrow_in;
-  logic             [    iomsb(Cfg.AxiExtNumMst):0] isolated_narrow_out;
-  logic             [iomsb(Cfg.AxiExtNumWideMst):0] isolated_wide_out;
+  logic             [    iomsb(Cfg.ChsCfg.AxiExtNumSlv):0] isolated_narrow_in;
+  logic             [    iomsb(Cfg.ChsCfg.AxiExtNumMst):0] isolated_narrow_out;
+  logic             [iomsb(Cfg.ChsCfg.AxiExtNumWideMst):0] isolated_wide_out;
 
 
 
@@ -79,13 +79,13 @@ module chimera_clu_domain
     if (IsolateClusters == 1) begin : gen_cluster_iso
       // Add AXI isolation at the Narrow Input Interface
       axi_isolate #(
-        .NumPending          (Cfg.AxiMaxSlvTrans),
+        .NumPending          (Cfg.ChsCfg.AxiMaxSlvTrans),
         .TerminateTransaction(0),
         .AtopSupport         (1),
-        .AxiAddrWidth        (Cfg.AddrWidth),
-        .AxiDataWidth        (Cfg.AxiDataWidth),
+        .AxiAddrWidth        (Cfg.ChsCfg.AddrWidth),
+        .AxiDataWidth        (Cfg.ChsCfg.AxiDataWidth),
         .AxiIdWidth          (AxiSlvIdWidth),
-        .AxiUserWidth        (Cfg.AxiUserWidth),
+        .AxiUserWidth        (Cfg.ChsCfg.AxiUserWidth),
         .axi_req_t           (narrow_in_req_t),
         .axi_resp_t          (narrow_in_resp_t)
       ) i_iso_narrow_in_cluster (
@@ -107,13 +107,13 @@ module chimera_clu_domain
           narrowOutIdx++
       ) begin : gen_iso_narrow_out
         axi_isolate #(
-          .NumPending          (Cfg.AxiMaxSlvTrans),
+          .NumPending          (Cfg.ChsCfg.AxiMaxSlvTrans),
           .TerminateTransaction(0),
           .AtopSupport         (1),
-          .AxiAddrWidth        (Cfg.AddrWidth),
-          .AxiDataWidth        (Cfg.AxiDataWidth),
-          .AxiIdWidth          (Cfg.AxiMstIdWidth),
-          .AxiUserWidth        (Cfg.AxiUserWidth),
+          .AxiAddrWidth        (Cfg.ChsCfg.AddrWidth),
+          .AxiDataWidth        (Cfg.ChsCfg.AxiDataWidth),
+          .AxiIdWidth          (Cfg.ChsCfg.AxiMstIdWidth),
+          .AxiUserWidth        (Cfg.ChsCfg.AxiUserWidth),
           .axi_req_t           (narrow_out_req_t),
           .axi_resp_t          (narrow_out_resp_t)
         ) i_iso_narrow_out_cluster (
@@ -130,13 +130,13 @@ module chimera_clu_domain
 
       // Add AXI isolation at the Wide Interface
       axi_isolate #(
-        .NumPending          (Cfg.AxiMaxSlvTrans),
+        .NumPending          (Cfg.ChsCfg.AxiMaxSlvTrans),
         .TerminateTransaction(0),
         .AtopSupport         (1),
-        .AxiAddrWidth        (Cfg.AddrWidth),
+        .AxiAddrWidth        (Cfg.ChsCfg.AddrWidth),
         .AxiDataWidth        (AxiWideDataWidth),
-        .AxiIdWidth          (Cfg.MemIslAxiMstIdWidth),  // To Check
-        .AxiUserWidth        (Cfg.AxiUserWidth),
+        .AxiIdWidth          (Cfg.MemIslAxiMstIdWidth),    // To Check
+        .AxiUserWidth        (Cfg.ChsCfg.AxiUserWidth),
         .axi_req_t           (wide_out_req_t),
         .axi_resp_t          (wide_out_resp_t)
       ) i_iso_wide_cluster (
@@ -191,7 +191,7 @@ module chimera_clu_domain
       .mtip_i             (mtip_i[`PREVNRCORES(extClusterIdx)+:`NRCORES(extClusterIdx)]),
       .msip_i             (msip_i[`PREVNRCORES(extClusterIdx)+:`NRCORES(extClusterIdx)]),
       .hart_base_id_i     (10'(`PREVNRCORES(extClusterIdx) + 1)),
-      .cluster_base_addr_i(Cfg.AxiExtRegionStart[extClusterIdx][Cfg.AddrWidth-1:0]),
+      .cluster_base_addr_i(Cfg.ChsCfg.AxiExtRegionStart[extClusterIdx][Cfg.ChsCfg.AddrWidth-1:0]),
       .boot_addr_i        (SnitchBootROMRegionStart[31:0]),
 
       .narrow_in_req_i  (narrow_in_isolated_req[extClusterIdx]),
