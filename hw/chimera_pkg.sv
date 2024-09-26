@@ -59,6 +59,9 @@ package chimera_pkg;
 
   localparam aw_bt ClusterNarrowAxiMstIdWidth = 1;
 
+  // Isolate Clusters from SoC
+  localparam int unsigned IsolateClusters = 0;
+
   function automatic cheshire_cfg_t gen_chimera_cfg();
     localparam int AddrWidth = DefaultCfg.AddrWidth;
 
