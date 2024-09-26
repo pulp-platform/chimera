@@ -60,8 +60,8 @@ packages:
     dependencies:
     - common_cells
   axi_vga:
-    revision: 3718b9930f94a9eaad8ee50b4bccc71df0403084
-    version: 0.1.3
+    revision: 4d3e70d4f47bb74edc1ab68d99ffc02382e0fb9e
+    version: 0.1.4
     source:
       Git: https://github.com/pulp-platform/axi_vga.git
     dependencies:
@@ -69,7 +69,7 @@ packages:
     - common_cells
     - register_interface
   cheshire:
-    revision: d91b9a4274d38a2f5f63af5404d974b794707601
+    revision: f28e91b4d2172c3c98ec8672a9c9225c0b45363c
     version: null
     source:
       Git: https://github.com/pulp-platform/cheshire.git
@@ -141,7 +141,7 @@ packages:
       Git: https://github.com/pulp-platform/common_verification.git
     dependencies: []
   cva6:
-    revision: 637a0e6cbc8ec395c4bb4f54ee9dc1110d3fb1ac
+    revision: 630bd959c9cc69a35d461a2abc205310d2edacf8
     version: null
     source:
       Git: https://github.com/Scheremo/cva6.git
@@ -215,8 +215,8 @@ packages:
     - register_interface
     - tech_cells_generic
   register_interface:
-    revision: ae616e5a1ec2b41e72d200e5ab09c65e94aebd3d
-    version: 0.4.4
+    revision: 5daa85d164cf6b54ad061ea1e4c6f3624556e467
+    version: 0.4.5
     source:
       Git: https://github.com/pulp-platform/register_interface.git
     dependencies:
