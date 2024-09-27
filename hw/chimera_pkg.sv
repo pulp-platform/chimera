@@ -38,9 +38,10 @@ package chimera_pkg;
   localparam bit SnitchBootROM = 1;
   localparam bit TopLevelCfgRegs = 1;
   localparam bit ExtCfgRegs = 1;
+  localparam bit HyperCfgRegs = 1;
 
   // SCHEREMO: Shared Snitch bootrom, one clock gate per cluster, External regs (PADs, FLLs etc...)
-  localparam int ExtRegNum = SnitchBootROM + TopLevelCfgRegs + ExtCfgRegs;
+  localparam int ExtRegNum = SnitchBootROM + TopLevelCfgRegs + ExtCfgRegs + HyperCfgRegs;
   localparam int ClusterDataWidth = 64;
 
   localparam int SnitchBootROMIdx = 0;
@@ -56,8 +57,25 @@ package chimera_pkg;
   localparam doub_bt ExtCfgRegsRegionStart = 64'h3000_2000;
   localparam doub_bt ExtCfgRegsRegionEnd = 64'h3000_5000;
 
+  // Hyperbus configuration registers: HyperBus
+  localparam int HyperCfgRegsIdx = 3;
+  localparam doub_bt HyperCfgRegsRegionStart = 64'h3000_5000;
+  localparam doub_bt HyperCfgRegsRegionEnd = 64'h3000_6000;
+
 
   localparam aw_bt ClusterNarrowAxiMstIdWidth = 1;
+  
+  localparam int unsigned LogDepth   = 3;
+  localparam int unsigned SyncStages = 3;
+
+  /*******************************/
+  /* Narrow Parameters: A32, D32 */
+  /*******************************/
+  localparam int unsigned AxiNarrowAddrWidth = 32;
+  localparam int unsigned AxiNarrowDataWidth = 32;
+  localparam int unsigned AxiNarrowStrobe    = AxiNarrowDataWidth/8;
+
+
 
   // Isolate Clusters from SoC
   localparam int unsigned IsolateClusters = 0;
@@ -71,6 +89,7 @@ package chimera_pkg;
 
     // Set all Chimera addresses as uncached
     cfg.Cva6ExtCieLength = 'h0;
+    cfg.Cva6ExtCieOnTop = 1;
 
     cfg.Vga = 0;
     cfg.SerialLink = 0;
@@ -91,15 +110,15 @@ package chimera_pkg;
 
     cfg.AxiExtNumWideMst = $countones(ChimeraClusterCfg.hasWideMasterPort);
     // SCHEREMO: Two ports for each cluster: one to convert stray wides, one for the original narrow
-    cfg.AxiExtNumMst = ExtClusters + $countones(ChimeraClusterCfg.hasWideMasterPort);
-    cfg.AxiExtNumSlv = ExtClusters;
-    cfg.AxiExtNumRules = ExtClusters;
-    cfg.AxiExtRegionIdx = {8'h4, 8'h3, 8'h2, 8'h1, 8'h0};
+    cfg.AxiExtNumMst = ExtClusters + $countones(ChimeraClusterCfg.hasWideMasterPort); // hyperbus - ugly setup at the moment 
+    cfg.AxiExtNumSlv = ExtClusters + 1; // hyperbus - ugly setup at the moment
+    cfg.AxiExtNumRules = ExtClusters + 1;
+    cfg.AxiExtRegionIdx = {8'h5, 8'h4, 8'h3, 8'h2, 8'h1, 8'h0};
     cfg.AxiExtRegionStart = {
-      64'h4080_0000, 64'h4060_0000, 64'h4040_0000, 64'h4020_0000, 64'h4000_0000
+      64'h40A00000, 64'h4080_0000, 64'h4060_0000, 64'h4040_0000, 64'h4020_0000, 64'h4000_0000
     };
     cfg.AxiExtRegionEnd = {
-      64'h40A0_0000, 64'h4080_0000, 64'h4060_0000, 64'h4040_0000, 64'h4020_0000
+      64'h84000000, 64'h40A0_0000, 64'h4080_0000, 64'h4060_0000, 64'h4040_0000, 64'h4020_0000
     };
 
     // REG CFG
@@ -107,9 +126,9 @@ package chimera_pkg;
     cfg.RegExtNumRules = ExtRegNum;
     cfg.RegExtRegionIdx = {8'h3, 8'h2, 8'h1, 8'h0};  // SnitchBootROM
     cfg.RegExtRegionStart = {
-      ExtCfgRegsRegionStart, TopLevelCfgRegsRegionStart, SnitchBootROMRegionStart
+      HyperCfgRegsRegionStart, ExtCfgRegsRegionStart, TopLevelCfgRegsRegionStart, SnitchBootROMRegionStart
     };
-    cfg.RegExtRegionEnd = {ExtCfgRegsRegionEnd, TopLevelCfgRegsRegionEnd, SnitchBootROMRegionEnd};
+    cfg.RegExtRegionEnd = {HyperCfgRegsRegionEnd, ExtCfgRegsRegionEnd, TopLevelCfgRegsRegionEnd, SnitchBootROMRegionEnd};
 
     // ACCEL HART/IRQ CFG
     cfg.NumExtIrqHarts = ExtCores;

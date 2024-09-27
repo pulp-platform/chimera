@@ -15,6 +15,8 @@ dependencies:
   common_cells:             { git: "https://github.com/pulp-platform/common_cells.git",       version: 1.31.1}
   idma:                     { git: "https://github.com/pulp-platform/iDMA.git",               rev: 9edf489f57389dce5e71252c79e337f527d3aded}
   apb:                      { git: "https://github.com/pulp-platform/apb.git",                version: 0.2.4          }
+  hyperbus:                 { git: https://github.com/pulp-platform/hyperbus.git,             rev: f039e601c8b6590181734e6d26ff8b77aa380412 } # branch: chi/add_fsm_with_Tcsh
+
 
 workspace:
   package_links:
@@ -30,6 +32,7 @@ sources:
   - hw/chimera_cluster_adapter.sv
   - hw/chimera_cluster.sv
   - hw/chimera_clu_domain.sv
+  - hw/hyperbus_wrap.sv
   - hw/chimera_top_wrapper.sv
 
   - target: any(simulation, test)

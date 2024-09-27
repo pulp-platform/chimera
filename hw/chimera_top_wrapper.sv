@@ -3,13 +3,16 @@
 // SPDX-License-Identifier: SHL-0.51
 //
 // Moritz Scherer <scheremo@iis.ee.ethz.ch>
+// Arpan Prasad <prasadar@iis.ee.ethz.ch>
 
 module chimera_top_wrapper
   import cheshire_pkg::*;
   import chimera_pkg::*;
   import chimera_reg_pkg::*;
 #(
-  parameter int unsigned SelectedCfg = 0
+  parameter int unsigned SelectedCfg = 0,
+  parameter int unsigned HypNumPhys  = 2,
+  parameter int unsigned HypNumChips = 2
 ) (
   input  logic                        soc_clk_i,
   input  logic                        clu_clk_i,
@@ -50,9 +53,20 @@ module chimera_top_wrapper
   output logic      [            3:0] spih_sd_en_o,
   input  logic      [            3:0] spih_sd_i,
   // GPIO interface
-  input  logic      [           31:0] gpio_i,
-  output logic      [           31:0] gpio_o,
-  output logic      [           31:0] gpio_en_o,
+  input  logic      [         31:0] gpio_i,
+  output logic      [         31:0] gpio_o,
+  output logic      [         31:0] gpio_en_o,
+  // Hyperbus interface
+  output logic [HypNumPhys-1:0][HypNumChips-1:0] hyper_cs_no,
+  output logic [HypNumPhys-1:0]                  hyper_ck_o,
+  output logic [HypNumPhys-1:0]                  hyper_ck_no,
+  output logic [HypNumPhys-1:0]                  hyper_rwds_o,
+  input  logic [HypNumPhys-1:0]                  hyper_rwds_i,
+  output logic [HypNumPhys-1:0]                  hyper_rwds_oe_o,
+  input  logic [HypNumPhys-1:0][7:0]             hyper_dq_i,
+  output logic [HypNumPhys-1:0][7:0]             hyper_dq_o,
+  output logic [HypNumPhys-1:0]                  hyper_dq_oe_o,
+  output logic [HypNumPhys-1:0]                  hyper_reset_no,
   // APB interface
   input  apb_resp_t                   apb_rsp_i,
   output apb_req_t                    apb_req_o,
@@ -327,14 +341,177 @@ module chimera_top_wrapper
     .xeip_i           (xeip_ext),
     .mtip_i           (mtip_ext),
     .msip_i           (msip_ext),
-    .narrow_in_req_i  (axi_slv_req),
-    .narrow_in_resp_o (axi_slv_rsp),
+    .narrow_in_req_i  (axi_slv_req[iomsb(Cfg.AxiExtNumSlv-1):0]),
+    .narrow_in_resp_o (axi_slv_rsp[iomsb(Cfg.AxiExtNumSlv-1):0]),
     .narrow_out_req_o (axi_mst_req),
     .narrow_out_resp_i(axi_mst_rsp),
     .wide_out_req_o   (axi_wide_mst_req),
-    .wide_out_resp_i  (axi_wide_mst_rsp),
-    .isolate_i        (pmu_iso_en_clusters_i),
-    .isolate_o        (pmu_iso_ack_clusters_o)
+    .wide_out_resp_i  (axi_wide_mst_rsp)
+  );
+// Generate indices and get maps for all ports
+localparam axi_in_t   AxiIn   = gen_axi_in(Cfg);
+localparam axi_out_t  AxiOut  = gen_axi_out(Cfg);
+
+localparam int unsigned AxiSlvIdWidth = Cfg.AxiMstIdWidth + $clog2(AxiIn.num_in);
+
+// Slave CDC parameters
+localparam int unsigned ChimeraAxiSlvAwWidth =
+                        (2**LogDepth)*axi_pkg::aw_width(Cfg.AddrWidth   ,
+                                                        AxiSlvIdWidth   ,
+                                                        Cfg.AxiUserWidth);
+localparam int unsigned ChimeraAxiSlvWWidth  =
+                        (2**LogDepth)*axi_pkg::w_width(Cfg.AxiDataWidth,
+                                                       Cfg.AxiUserWidth);
+localparam int unsigned ChimeraAxiSlvBWidth  =
+                        (2**LogDepth)*axi_pkg::b_width(AxiSlvIdWidth   ,
+                                                       Cfg.AxiUserWidth);
+localparam int unsigned ChimeraAxiSlvArWidth =
+                        (2**LogDepth)*axi_pkg::ar_width(Cfg.AddrWidth   ,
+                                                        AxiSlvIdWidth   ,
+                                                        Cfg.AxiUserWidth);
+localparam int unsigned ChimeraAxiSlvRWidth  =
+                        (2**LogDepth)*axi_pkg::r_width(Cfg.AxiDataWidth,
+                                                       AxiSlvIdWidth   ,
+                                                       Cfg.AxiUserWidth);
+
+// Master CDC parameters
+localparam int unsigned ChimeraAxiMstAwWidth =
+                        (2**LogDepth)*axi_pkg::aw_width(Cfg.AddrWidth    ,
+                                                        Cfg.AxiMstIdWidth,
+                                                        Cfg.AxiUserWidth );
+localparam int unsigned ChimeraAxiMstWWidth  =
+                        (2**LogDepth)*axi_pkg::w_width(Cfg.AxiDataWidth,
+                                                       Cfg.AxiUserWidth);
+localparam int unsigned ChimeraAxiMstBWidth  =
+                        (2**LogDepth)*axi_pkg::b_width(Cfg.AxiMstIdWidth,
+                                                      Cfg.AxiUserWidth  );
+localparam int unsigned ChimeraAxiMstArWidth =
+                        (2**LogDepth)*axi_pkg::ar_width(Cfg.AddrWidth    ,
+                                                        Cfg.AxiMstIdWidth,
+                                                        Cfg.AxiUserWidth );
+localparam int unsigned ChimeraAxiMstRWidth  =
+                        (2**LogDepth)*axi_pkg::r_width(Cfg.AxiDataWidth ,
+                                                       Cfg.AxiMstIdWidth,
+                                                       Cfg.AxiUserWidth );
+
+logic [ChimeraAxiSlvArWidth-1:0] hyper_ar_data;
+logic [      LogDepth:0] hyper_ar_wptr;
+logic [      LogDepth:0] hyper_ar_rptr;
+logic [ChimeraAxiSlvAwWidth-1:0] hyper_aw_data;
+logic [      LogDepth:0] hyper_aw_wptr;
+logic [      LogDepth:0] hyper_aw_rptr;
+logic [ ChimeraAxiSlvBWidth-1:0] hyper_b_data;
+logic [      LogDepth:0] hyper_b_wptr;
+logic [      LogDepth:0] hyper_b_rptr;
+logic [ ChimeraAxiSlvRWidth-1:0] hyper_r_data;
+logic [      LogDepth:0] hyper_r_wptr;
+logic [      LogDepth:0] hyper_r_rptr;
+logic [ ChimeraAxiSlvWWidth-1:0] hyper_w_data;
+logic [      LogDepth:0] hyper_w_wptr;
+logic [      LogDepth:0] hyper_w_rptr;
+
+  axi_cdc_src #(
+    .LogDepth   ( LogDepth          ),
+    .SyncStages ( SyncStages        ),
+    .aw_chan_t  ( axi_slv_aw_chan_t ),
+    .w_chan_t   ( axi_slv_w_chan_t  ),
+    .b_chan_t   ( axi_slv_b_chan_t  ),
+    .ar_chan_t  ( axi_slv_ar_chan_t ),
+    .r_chan_t   ( axi_slv_r_chan_t  ),
+    .axi_req_t  ( axi_slv_req_t     ),
+    .axi_resp_t ( axi_slv_rsp_t     )
+  ) hyperbus_slv_cdc_src   (
+    // synchronous slave port
+    .src_clk_i                   ( soc_clk_i                        ),
+    .src_rst_ni                  ( rst_ni                           ),
+    .src_req_i                   ( axi_slv_req [Cfg.AxiExtNumSlv-1] ),
+    .src_resp_o                  ( axi_slv_rsp [Cfg.AxiExtNumSlv-1] ),
+    // asynchronous master port
+    .async_data_master_aw_data_o ( hyper_aw_data   ),
+    .async_data_master_aw_wptr_o ( hyper_aw_wptr   ),
+    .async_data_master_aw_rptr_i ( hyper_aw_rptr   ),
+    .async_data_master_w_data_o  ( hyper_w_data    ),
+    .async_data_master_w_wptr_o  ( hyper_w_wptr    ),
+    .async_data_master_w_rptr_i  ( hyper_w_rptr    ),
+    .async_data_master_b_data_i  ( hyper_b_data    ),
+    .async_data_master_b_wptr_i  ( hyper_b_wptr    ),
+    .async_data_master_b_rptr_o  ( hyper_b_rptr    ),
+    .async_data_master_ar_data_o ( hyper_ar_data   ),
+    .async_data_master_ar_wptr_o ( hyper_ar_wptr   ),
+    .async_data_master_ar_rptr_i ( hyper_ar_rptr   ),
+    .async_data_master_r_data_i  ( hyper_r_data    ),
+    .async_data_master_r_wptr_i  ( hyper_r_wptr    ),
+    .async_data_master_r_rptr_o  ( hyper_r_rptr    )
   );
 
+hyperbus_wrap      #(
+  .NumChips         ( HypNumChips                           ),
+  .NumPhys          ( HypNumPhys                            ),
+  .IsClockODelayed  ( 1'b0                                  ),
+  .AxiAddrWidth     ( Cfg.AddrWidth                         ),
+  .AxiDataWidth     ( Cfg.AxiDataWidth                      ),
+  .AxiIdWidth       ( AxiSlvIdWidth                         ),
+  .AxiUserWidth     ( Cfg.AxiUserWidth                      ),
+  .axi_req_t        ( axi_slv_req_t                         ),
+  .axi_rsp_t        ( axi_slv_rsp_t                         ),
+  .axi_w_chan_t     ( axi_slv_w_chan_t                      ),
+  .axi_b_chan_t     ( axi_slv_b_chan_t                      ),
+  .axi_ar_chan_t    ( axi_slv_ar_chan_t                     ),
+  .axi_r_chan_t     ( axi_slv_r_chan_t                      ),
+  .axi_aw_chan_t    ( axi_slv_aw_chan_t                     ),
+  .RegAddrWidth     ( AxiNarrowAddrWidth                    ),
+  .RegDataWidth     ( AxiNarrowDataWidth                    ),
+  .reg_req_t        ( reg_req_t                             ),
+  .reg_rsp_t        ( reg_rsp_t                             ),
+  .RxFifoLogDepth   ( 32'd2                                 ),
+  .TxFifoLogDepth   ( 32'd2                                 ),
+  .RstChipBase      ( Cfg.LlcOutRegionStart                 ),
+  .RstChipSpace     ( HypNumPhys * HypNumChips * 'h800_0000 ),
+  .PhyStartupCycles ( 300 * 200                             ),
+  .AxiLogDepth      ( LogDepth                              ),
+  .AxiSlaveArWidth  ( ChimeraAxiSlvArWidth                  ),
+  .AxiSlaveAwWidth  ( ChimeraAxiSlvAwWidth                  ),
+  .AxiSlaveBWidth   ( ChimeraAxiSlvBWidth                   ),
+  .AxiSlaveRWidth   ( ChimeraAxiSlvRWidth                   ),
+  .AxiSlaveWWidth   ( ChimeraAxiSlvWWidth                   ),
+  .AxiMaxTrans      ( Cfg.AxiMaxSlvTrans                    ),
+  .CdcSyncStages    ( SyncStages                            )
+) i_hyperbus_wrap   (
+  .clk_i               ( soc_clk_i           ),
+  .rst_ni              ( rst_ni              ),
+  .test_mode_i         ( test_mode_i         ),
+  .axi_slave_ar_data_i ( hyper_ar_data       ),
+  .axi_slave_ar_wptr_i ( hyper_ar_wptr       ),
+  .axi_slave_ar_rptr_o ( hyper_ar_rptr       ),
+  .axi_slave_aw_data_i ( hyper_aw_data       ),
+  .axi_slave_aw_wptr_i ( hyper_aw_wptr       ),
+  .axi_slave_aw_rptr_o ( hyper_aw_rptr       ),
+  .axi_slave_b_data_o  ( hyper_b_data        ),
+  .axi_slave_b_wptr_o  ( hyper_b_wptr        ),
+  .axi_slave_b_rptr_i  ( hyper_b_rptr        ),
+  .axi_slave_r_data_o  ( hyper_r_data        ),
+  .axi_slave_r_wptr_o  ( hyper_r_wptr        ),
+  .axi_slave_r_rptr_i  ( hyper_r_rptr        ),
+  .axi_slave_w_data_i  ( hyper_w_data        ),
+  .axi_slave_w_wptr_i  ( hyper_w_wptr        ),
+  .axi_slave_w_rptr_o  ( hyper_w_rptr        ),
+  .rbus_req_addr_i     (  ),
+  .rbus_req_write_i    (  ),
+  .rbus_req_wdata_i    (  ),
+  .rbus_req_wstrb_i    (  ),
+  .rbus_req_valid_i    (  ),
+  .rbus_rsp_rdata_o    (  ),
+  .rbus_rsp_ready_o    (  ),
+  .rbus_rsp_error_o    (  ),
+  .hyper_cs_no,
+  .hyper_ck_o,
+  .hyper_ck_no,
+  .hyper_rwds_o,
+  .hyper_rwds_i,
+  .hyper_rwds_oe_o,
+  .hyper_dq_i,
+  .hyper_dq_o,
+  .hyper_dq_oe_o,
+  .hyper_reset_no
+);
 endmodule
