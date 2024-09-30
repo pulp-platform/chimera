@@ -4,6 +4,7 @@
 #
 # Moritz Scherer <scheremo@iis.ee.ethz.ch>
 
+
 CLINTCORES = 46
 PLICCORES = 92
 PLIC_NUM_INTRS = 92
@@ -17,9 +18,11 @@ update_plic: $(CHS_ROOT)/hw/rv_plic.cfg.hjson
 gen_idma_hw:
 	make -C $(IDMA_ROOT) idma_hw_all
 
+CHS_SW_LD_DIR = $(CHIM_ROOT)/sw/link
+
 .PHONY: chs-hw-init
-chs-hw-init: update_plic gen_idma_hw
-	make -B chs-hw-all CHS_XLEN=$(CHS_XLEN)
+chs-hw-init: update_plic gen_idma_hw $(CHIM_SW_LIB)
+	make -B chs-hw-all CHS_XLEN=$(CHS_XLEN) CHS_SW_LD_DIR=$(CHS_SW_LD_DIR)
 
 .PHONY: snitch-hw-init
 snitch-hw-init:
@@ -73,8 +76,11 @@ chim-nonfree-init:
 
 -include $(CHIM_ROOT)/bender.mk
 
-# Include subdir Makefiles
+# Necessary to build libchimera.a for bootrom.elf
+# TODO: Here the make chim-sw cannot work properly FIND SOLUTION !!!!!
 -include $(CHIM_ROOT)/sw/sw.mk
+
+# Include subdir Makefiles
 -include $(CHIM_ROOT)/utils/utils.mk
 # Include target makefiles
 -include $(CHIM_ROOT)/target/sim/sim.mk

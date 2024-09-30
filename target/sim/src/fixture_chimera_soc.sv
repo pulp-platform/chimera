@@ -13,15 +13,17 @@ module fixture_chimera_soc #(
 );
 
   `include "cheshire/typedef.svh"
+  `include "chimera/typedef.svh"
 
   import cheshire_pkg::*;
   import tb_cheshire_pkg::*;
   import chimera_pkg::*;
 
-  localparam cheshire_cfg_t DutCfg = ChimeraCfg[SelectedCfg];
+  localparam chimera_cfg_t DutCfg = ChimeraCfg[SelectedCfg];
+  localparam cheshire_cfg_t ChsCfg = DutCfg.ChsCfg;
 
-  `CHESHIRE_TYPEDEF_ALL(, DutCfg)
-
+  `CHESHIRE_TYPEDEF_ALL(, ChsCfg)
+  `CHIMERA_TYPEDEF_ALL(, DutCfg)
 
   ///////////
   //  DUT  //
@@ -121,7 +123,7 @@ module fixture_chimera_soc #(
   ///////////
 
   vip_chimera_soc #(
-    .DutCfg           (DutCfg),
+    .DutCfg           (ChsCfg),
     .axi_ext_mst_req_t(axi_mst_req_t),
     .axi_ext_mst_rsp_t(axi_mst_rsp_t)
   ) vip (
