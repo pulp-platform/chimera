@@ -6,15 +6,20 @@ package:
   name: chimera
   authors:
     - "Moritz Scherer <scheremo@iis.ee.ethz.ch>"
+    - "Lorenzo Leone <lleone@iis.ee.ethz.ch>"
 
 dependencies:
   register_interface:       { git: "https://github.com/pulp-platform/register_interface.git", version: 0.4.3  }
   axi:                      { git: "https://github.com/pulp-platform/axi.git",                version: 0.39.2 }
-  cheshire:                 { git: "https://github.com/pulp-platform/cheshire.git",           rev: f28e91b4d2172c3c98ec8672a9c9225c0b45363c}
+  cheshire:                 { git: "https://github.com/pulp-platform/cheshire.git",           rev: f9b9a1066143b8319c427bd790ab4729321b9f20}
   snitch_cluster:           { git: "https://github.com/pulp-platform/snitch_cluster.git",     rev: c12ce9b2af1ac8edf3d4feb18939e1ad20c42225}
   common_cells:             { git: "https://github.com/pulp-platform/common_cells.git",       version: 1.31.1}
   idma:                     { git: "https://github.com/pulp-platform/iDMA.git",               rev: 9edf489f57389dce5e71252c79e337f527d3aded}
+  memory_island:            { git: "https://github.com/pulp-platform/memory_island.git",          rev: 64828cb7a9ccc1f1656ec92d06129072f445c319 } # main branch
   apb:                      { git: "https://github.com/pulp-platform/apb.git",                version: 0.2.4          }
+
+export_include_dirs:
+  - hw/include
 
 workspace:
   package_links:
@@ -30,6 +35,7 @@ sources:
   - hw/chimera_cluster_adapter.sv
   - hw/chimera_cluster.sv
   - hw/chimera_clu_domain.sv
+  - hw/chimera_memisland_domain.sv
   - hw/chimera_top_wrapper.sv
 
   - target: any(simulation, test)

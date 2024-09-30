@@ -9,7 +9,7 @@ module chimera_cluster
   import chimera_pkg::*;
   import cheshire_pkg::*;
 #(
-  parameter cheshire_cfg_t Cfg = '0,
+  parameter chimera_cfg_t Cfg = '0,
 
   parameter int unsigned NrCores           = 9,
   parameter type         narrow_in_req_t   = logic,
@@ -19,36 +19,35 @@ module chimera_cluster
   parameter type         wide_out_req_t    = logic,
   parameter type         wide_out_resp_t   = logic
 ) (
-
-  input  logic                                 soc_clk_i,
-  input  logic                                 clu_clk_i,
-  input  logic                                 rst_ni,
-  input  logic                                 widemem_bypass_i,
+  input  logic                                        soc_clk_i,
+  input  logic                                        clu_clk_i,
+  input  logic                                        rst_ni,
+  input  logic                                        widemem_bypass_i,
   //-----------------------------
   // Interrupt ports
   //-----------------------------
-  input  logic             [      NrCores-1:0] debug_req_i,
-  input  logic             [      NrCores-1:0] meip_i,
-  input  logic             [      NrCores-1:0] mtip_i,
-  input  logic             [      NrCores-1:0] msip_i,
+  input  logic             [             NrCores-1:0] debug_req_i,
+  input  logic             [             NrCores-1:0] meip_i,
+  input  logic             [             NrCores-1:0] mtip_i,
+  input  logic             [             NrCores-1:0] msip_i,
   //-----------------------------
   // Cluster base addressing
   //-----------------------------
-  input  logic             [              9:0] hart_base_id_i,
-  input  logic             [Cfg.AddrWidth-1:0] cluster_base_addr_i,
-  input  logic             [             31:0] boot_addr_i,
+  input  logic             [                     9:0] hart_base_id_i,
+  input  logic             [Cfg.ChsCfg.AddrWidth-1:0] cluster_base_addr_i,
+  input  logic             [                    31:0] boot_addr_i,
   //-----------------------------
   // Narrow AXI ports
   //-----------------------------
-  input  narrow_in_req_t                       narrow_in_req_i,
-  output narrow_in_resp_t                      narrow_in_resp_o,
-  output narrow_out_req_t  [              1:0] narrow_out_req_o,
-  input  narrow_out_resp_t [              1:0] narrow_out_resp_i,
+  input  narrow_in_req_t                              narrow_in_req_i,
+  output narrow_in_resp_t                             narrow_in_resp_o,
+  output narrow_out_req_t  [                     1:0] narrow_out_req_o,
+  input  narrow_out_resp_t [                     1:0] narrow_out_resp_i,
   //-----------------------------
   //Wide AXI ports
   //-----------------------------
-  output wide_out_req_t                        wide_out_req_o,
-  input  wide_out_resp_t                       wide_out_resp_i
+  output wide_out_req_t                               wide_out_req_o,
+  input  wide_out_resp_t                              wide_out_resp_i
 );
 
   `include "axi/typedef.svh"
@@ -56,16 +55,16 @@ module chimera_cluster
   localparam int WideDataWidth = $bits(wide_out_req_o.w.data);
 
   localparam int WideMasterIdWidth = $bits(wide_out_req_o.aw.id);
-  localparam int WideSlaveIdWidth = WideMasterIdWidth + $clog2(Cfg.AxiExtNumWideMst) - 1;
+  localparam int WideSlaveIdWidth = WideMasterIdWidth + $clog2(Cfg.ChsCfg.AxiExtNumWideMst) - 1;
 
   localparam int NarrowSlaveIdWidth = $bits(narrow_in_req_i.aw.id);
   localparam int NarrowMasterIdWidth = $bits(narrow_out_req_o[0].aw.id);
 
-  typedef logic [Cfg.AddrWidth-1:0] axi_addr_t;
-  typedef logic [Cfg.AxiUserWidth-1:0] axi_user_t;
+  typedef logic [Cfg.ChsCfg.AddrWidth-1:0] axi_addr_t;
+  typedef logic [Cfg.ChsCfg.AxiUserWidth-1:0] axi_user_t;
 
-  typedef logic [Cfg.AxiDataWidth-1:0] axi_soc_data_narrow_t;
-  typedef logic [Cfg.AxiDataWidth/8-1:0] axi_soc_strb_narrow_t;
+  typedef logic [Cfg.ChsCfg.AxiDataWidth-1:0] axi_soc_data_narrow_t;
+  typedef logic [Cfg.ChsCfg.AxiDataWidth/8-1:0] axi_soc_strb_narrow_t;
 
   typedef logic [ClusterDataWidth-1:0] axi_cluster_data_narrow_t;
   typedef logic [ClusterDataWidth/8-1:0] axi_cluster_strb_narrow_t;
@@ -119,7 +118,7 @@ module chimera_cluster
   axi_cluster_out_wide_resp_t               clu_axi_wide_mst_resp;
 
 
-  if (ClusterDataWidth != Cfg.AxiDataWidth) begin : gen_narrow_adapter
+  if (ClusterDataWidth != Cfg.ChsCfg.AxiDataWidth) begin : gen_narrow_adapter
 
     narrow_adapter #(
       .narrow_in_req_t  (axi_soc_out_narrow_req_t),
@@ -221,13 +220,13 @@ module chimera_cluster
   localparam int unsigned NumIntOutstandingMem[NrCores] = '{NrCores{32'h4}};
 
   snitch_cluster #(
-    .PhysicalAddrWidth(Cfg.AddrWidth),
+    .PhysicalAddrWidth(Cfg.ChsCfg.AddrWidth),
     .NarrowDataWidth  (ClusterDataWidth),            // SCHEREMO: Convolve needs this...
     .WideDataWidth    (WideDataWidth),
     .NarrowIdWidthIn  (ClusterNarrowAxiMstIdWidth),
     .WideIdWidthIn    (WideMasterIdWidth),
-    .NarrowUserWidth  (Cfg.AxiUserWidth),
-    .WideUserWidth    (Cfg.AxiUserWidth),
+    .NarrowUserWidth  (Cfg.ChsCfg.AxiUserWidth),
+    .WideUserWidth    (Cfg.ChsCfg.AxiUserWidth),
 
     .BootAddr(SnitchBootROMRegionStart),
 

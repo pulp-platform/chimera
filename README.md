@@ -35,16 +35,26 @@ bender checkout
 
 make chs-hw-init
 make snitch-hw-init
-make chs-sim-all
 ```
 
-To build files for modelsim:
+To regenerate software tests and libraries:
+
+`make chim-sw`
+
+This step must be executed before building the hardware to ensure the correct generation of the bootrom.
+
+To build the host device bootrom:
+
+`make chim-bootrom-init`
+
+To build Chehsire simulation files for ModelSim:
+
+`make chs-sim-all`
+
+To build Chimera simulation files for ModelSim:
 
 `make chim-sim`
 
-To regenerate software tests:
-
-`make chim-sw`
 
 ## Making Register modifications
 

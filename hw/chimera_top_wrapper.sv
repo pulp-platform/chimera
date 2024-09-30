@@ -67,10 +67,14 @@ module chimera_top_wrapper
   `include "common_cells/registers.svh"
   `include "common_cells/assertions.svh"
   `include "cheshire/typedef.svh"
+  `include "chimera/typedef.svh"
 
   // Cheshire config
-  localparam cheshire_cfg_t Cfg = ChimeraCfg[SelectedCfg];
-  `CHESHIRE_TYPEDEF_ALL(, Cfg)
+  localparam chimera_cfg_t Cfg = ChimeraCfg[SelectedCfg];
+  localparam cheshire_cfg_t ChsCfg = Cfg.ChsCfg;
+
+  `CHESHIRE_TYPEDEF_ALL(, ChsCfg)
+  `CHIMERA_TYPEDEF_ALL(, Cfg)
 
   localparam type axi_wide_mst_req_t = mem_isl_wide_axi_mst_req_t;
   localparam type axi_wide_mst_rsp_t = mem_isl_wide_axi_mst_rsp_t;
@@ -80,74 +84,80 @@ module chimera_top_wrapper
   chimera_reg2hw_t reg2hw;
 
   // External AXI crossbar ports
-  axi_mst_req_t [iomsb(Cfg.AxiExtNumMst):0] axi_mst_req;
-  axi_mst_rsp_t [iomsb(Cfg.AxiExtNumMst):0] axi_mst_rsp;
-  axi_wide_mst_req_t [iomsb(Cfg.AxiExtNumWideMst):0] axi_wide_mst_req;
-  axi_wide_mst_rsp_t [iomsb(Cfg.AxiExtNumWideMst):0] axi_wide_mst_rsp;
-  axi_slv_req_t [iomsb(Cfg.AxiExtNumSlv):0] axi_slv_req;
-  axi_slv_rsp_t [iomsb(Cfg.AxiExtNumSlv):0] axi_slv_rsp;
+  axi_mst_req_t [iomsb(ChsCfg.AxiExtNumMst):0] axi_mst_req;
+  axi_mst_rsp_t [iomsb(ChsCfg.AxiExtNumMst):0] axi_mst_rsp;
+  axi_wide_mst_req_t [iomsb(ChsCfg.AxiExtNumWideMst):0] axi_wide_mst_req;
+  axi_wide_mst_rsp_t [iomsb(ChsCfg.AxiExtNumWideMst):0] axi_wide_mst_rsp;
+  axi_slv_req_t [iomsb(ChsCfg.AxiExtNumSlv):0] axi_slv_req;
+  axi_slv_rsp_t [iomsb(ChsCfg.AxiExtNumSlv):0] axi_slv_rsp;
 
   // External reg demux slaves
-  reg_req_t [iomsb(Cfg.RegExtNumSlv):0] reg_slv_req;
-  reg_rsp_t [iomsb(Cfg.RegExtNumSlv):0] reg_slv_rsp;
+  reg_req_t [iomsb(ChsCfg.RegExtNumSlv):0] reg_slv_req;
+  reg_rsp_t [iomsb(ChsCfg.RegExtNumSlv):0] reg_slv_rsp;
 
   // Interrupts from and to clusters
-  logic [iomsb(Cfg.NumExtInIntrs):0] intr_ext_in;
-  logic [iomsb(Cfg.NumExtOutIntrTgts):0][iomsb(Cfg.NumExtOutIntrs):0] intr_ext_out;
+  logic [iomsb(ChsCfg.NumExtInIntrs):0] intr_ext_in;
+  logic [iomsb(ChsCfg.NumExtOutIntrTgts):0][iomsb(ChsCfg.NumExtOutIntrs):0] intr_ext_out;
 
   // Interrupt requests to cluster cores
-  logic [iomsb(NumIrqCtxts*Cfg.NumExtIrqHarts):0] xeip_ext;
-  logic [iomsb(Cfg.NumExtIrqHarts):0] mtip_ext;
-  logic [iomsb(Cfg.NumExtIrqHarts):0] msip_ext;
+  logic [iomsb(NumIrqCtxts*ChsCfg.NumExtIrqHarts):0] xeip_ext;
+  logic [iomsb(ChsCfg.NumExtIrqHarts):0] mtip_ext;
+  logic [iomsb(ChsCfg.NumExtIrqHarts):0] msip_ext;
 
   // Debug interface to cluster cores
   logic dbg_active;
-  logic [iomsb(Cfg.NumExtDbgHarts):0] dbg_ext_req;
-  logic [iomsb(Cfg.NumExtDbgHarts):0] dbg_ext_unavail;
+  logic [iomsb(ChsCfg.NumExtDbgHarts):0] dbg_ext_req;
+  logic [iomsb(ChsCfg.NumExtDbgHarts):0] dbg_ext_unavail;
+
+  // ---------------------------------------
+  // |         Cheshire SoC                |
+  // ---------------------------------------
 
   cheshire_soc #(
-    .Cfg                   (Cfg),
-    .ExtHartinfo           ('0),
-    .axi_ext_llc_req_t     (axi_mst_req_t),
-    .axi_ext_llc_rsp_t     (axi_mst_rsp_t),
-    .axi_ext_mst_req_t     (axi_mst_req_t),
-    .axi_ext_mst_rsp_t     (axi_mst_rsp_t),
-    .axi_ext_wide_mst_req_t(axi_wide_mst_req_t),
-    .axi_ext_wide_mst_rsp_t(axi_wide_mst_rsp_t),
-    .axi_ext_slv_req_t     (axi_slv_req_t),
-    .axi_ext_slv_rsp_t     (axi_slv_rsp_t),
-    .reg_ext_req_t         (reg_req_t),
-    .reg_ext_rsp_t         (reg_rsp_t)
+    .Cfg              (ChsCfg),
+    .ExtHartinfo      ('0),
+    .axi_ext_llc_req_t(axi_mst_req_t),
+    .axi_ext_llc_rsp_t(axi_mst_rsp_t),
+    .axi_ext_mst_req_t(axi_mst_req_t),
+    .axi_ext_mst_rsp_t(axi_mst_rsp_t),
+    // lleone: TODO: remove from here
+    // .axi_ext_wide_mst_req_t(axi_wide_mst_req_t),
+    // .axi_ext_wide_mst_rsp_t(axi_wide_mst_rsp_t),
+    .axi_ext_slv_req_t(axi_slv_req_t),
+    .axi_ext_slv_rsp_t(axi_slv_rsp_t),
+    .reg_ext_req_t    (reg_req_t),
+    .reg_ext_rsp_t    (reg_rsp_t)
   ) i_cheshire (
-    .clk_i                 (soc_clk_i),
+    .clk_i            (soc_clk_i),
     .rst_ni,
     .test_mode_i,
     .boot_mode_i,
     .rtc_i,
     // External AXI LLC (DRAM) port
-    .axi_llc_mst_req_o     (),
-    .axi_llc_mst_rsp_i     ('0),
+    .axi_llc_mst_req_o(),
+    .axi_llc_mst_rsp_i('0),
     // External AXI crossbar ports
-    .axi_ext_mst_req_i     (axi_mst_req),
-    .axi_ext_mst_rsp_o     (axi_mst_rsp),
-    .axi_ext_wide_mst_req_i(axi_wide_mst_req),
-    .axi_ext_wide_mst_rsp_o(axi_wide_mst_rsp),
-    .axi_ext_slv_req_o     (axi_slv_req),
-    .axi_ext_slv_rsp_i     (axi_slv_rsp),
+    .axi_ext_mst_req_i(axi_mst_req),
+    .axi_ext_mst_rsp_o(axi_mst_rsp),
+    // lleone: TOOD: delet wide ports
+    // .axi_ext_wide_mst_req_i(axi_wide_mst_req),
+    // .axi_ext_wide_mst_rsp_o(axi_wide_mst_rsp),
+    .axi_ext_slv_req_o(axi_slv_req),
+    .axi_ext_slv_rsp_i(axi_slv_rsp),
     // External reg demux slaves
-    .reg_ext_slv_req_o     (reg_slv_req),
-    .reg_ext_slv_rsp_i     (reg_slv_rsp),
+    .reg_ext_slv_req_o(reg_slv_req),
+    .reg_ext_slv_rsp_i(reg_slv_rsp),
     // Interrupts from and to external targets
-    .intr_ext_i            (intr_ext_in),
-    .intr_ext_o            (intr_ext_out),
+    .intr_ext_i       (intr_ext_in),
+    .intr_ext_o       (intr_ext_out),
     // Interrupt requests to external harts
-    .xeip_ext_o            (xeip_ext),
-    .mtip_ext_o            (mtip_ext),
-    .msip_ext_o            (msip_ext),
+    .xeip_ext_o       (xeip_ext),
+    .mtip_ext_o       (mtip_ext),
+    .msip_ext_o       (msip_ext),
     // Debug interface to external harts
-    .dbg_active_o          (dbg_active),
-    .dbg_ext_req_o         (dbg_ext_req),
-    .dbg_ext_unavail_i     (dbg_ext_unavail),
+    .dbg_active_o     (dbg_active),
+    .dbg_ext_req_o    (dbg_ext_req),
+    .dbg_ext_unavail_i(dbg_ext_unavail),
     // JTAG interface
     .jtag_tck_i,
     .jtag_trst_ni,
@@ -185,24 +195,24 @@ module chimera_top_wrapper
     .gpio_o,
     .gpio_en_o,
     // Serial link interface
-    .slink_rcv_clk_i       ('0),
-    .slink_rcv_clk_o       (),
-    .slink_i               ('0),
-    .slink_o               (),
+    .slink_rcv_clk_i  ('0),
+    .slink_rcv_clk_o  (),
+    .slink_i          ('0),
+    .slink_o          (),
     // VGA interface
-    .vga_hsync_o           (),
-    .vga_vsync_o           (),
-    .vga_red_o             (),
-    .vga_green_o           (),
-    .vga_blue_o            (),
-    .usb_clk_i             ('0),
-    .usb_rst_ni            ('1),
-    .usb_dm_i              ('0),
-    .usb_dm_o              (),
-    .usb_dm_oe_o           (),
-    .usb_dp_i              ('0),
-    .usb_dp_o              (),
-    .usb_dp_oe_o           ()
+    .vga_hsync_o      (),
+    .vga_vsync_o      (),
+    .vga_red_o        (),
+    .vga_green_o      (),
+    .vga_blue_o       (),
+    .usb_clk_i        ('0),
+    .usb_rst_ni       ('1),
+    .usb_dm_i         ('0),
+    .usb_dm_o         (),
+    .usb_dm_oe_o      (),
+    .usb_dp_i         ('0),
+    .usb_dp_o         (),
+    .usb_dp_oe_o      ()
   );
 
 
@@ -310,6 +320,9 @@ module chimera_top_wrapper
     );
   end
 
+  // ---------------------------------------
+  // |        Clusters Domain              |
+  // ---------------------------------------
   chimera_clu_domain #(
     .Cfg              (Cfg),
     .narrow_in_req_t  (axi_slv_req_t),
@@ -327,14 +340,34 @@ module chimera_top_wrapper
     .xeip_i           (xeip_ext),
     .mtip_i           (mtip_ext),
     .msip_i           (msip_ext),
-    .narrow_in_req_i  (axi_slv_req),
-    .narrow_in_resp_o (axi_slv_rsp),
+    .narrow_in_req_i  (axi_slv_req[ExtClustersBaseIdx+:ExtClusters]),
+    .narrow_in_resp_o (axi_slv_rsp[ExtClustersBaseIdx+:ExtClusters]),
     .narrow_out_req_o (axi_mst_req),
     .narrow_out_resp_i(axi_mst_rsp),
     .wide_out_req_o   (axi_wide_mst_req),
     .wide_out_resp_i  (axi_wide_mst_rsp),
     .isolate_i        (pmu_iso_en_clusters_i),
     .isolate_o        (pmu_iso_ack_clusters_o)
+  );
+
+  // ---------------------------------------
+  // |          Memory Island              |
+  // ---------------------------------------
+
+  chimera_memisland_domain #(
+    .Cfg             (Cfg),
+    .NumWideMst      (Cfg.ChsCfg.AxiExtNumWideMst),
+    .axi_narrow_req_t(axi_slv_req_t),
+    .axi_narrow_rsp_t(axi_slv_rsp_t),
+    .axi_wide_req_t  (axi_wide_mst_req_t),
+    .axi_wide_rsp_t  (axi_wide_mst_rsp_t)
+  ) i_memisland_domain (
+    .clk_i           (soc_clk_i),
+    .rst_ni,
+    .axi_narrow_req_i(axi_slv_req[MemIslandIdx]),
+    .axi_narrow_rsp_o(axi_slv_rsp[MemIslandIdx]),
+    .axi_wide_req_i  (axi_wide_mst_req),
+    .axi_wide_rsp_o  (axi_wide_mst_rsp)
   );
 
 endmodule
