@@ -10,15 +10,16 @@ package chimera_pkg;
 
   `include "apb/typedef.svh"
 
-  // ACCEL CFG
-  localparam int ExtClusters = 5;
-  localparam int ExtClustersBaseIdx = 0;
-
-  // Bit vector types for parameters.
-  //We limit range to keep parameters sane.
+  // Bit vector types for parameters (we limit range to keep parameters sane)
   typedef bit [7:0] byte_bt;
   typedef bit [63:0] doub_bt;
   typedef bit [15:0] shrt_bt;
+
+  ///////////////////////////
+  // Cluster domain config //
+  ///////////////////////////
+
+  localparam int ExtClusters = 5;
 
   typedef struct packed {
     logic [iomsb(ExtClusters):0]   hasWideMasterPort;
@@ -38,7 +39,14 @@ package chimera_pkg;
     return sum;
   endfunction
 
-  // Configuration struct for Chimer: it includes the Cheshire Cfg
+  // Total number of cores in the cluster domain
+  localparam int ExtCores = _sumVector(ChimeraClusterCfg.NrCores, ExtClusters);
+
+  ////////////////
+  // SoC Config //
+  ////////////////
+
+  // Configuration struct for Chimera: it includes the Cheshire Cfg
   typedef struct packed {
     cheshire_cfg_t ChsCfg;
     doub_bt        MemIslRegionStart;
@@ -51,35 +59,58 @@ package chimera_pkg;
     shrt_bt        MemIslWordsPerBank;
   } chimera_cfg_t;
 
-  localparam int ExtCores = _sumVector(ChimeraClusterCfg.NrCores, ExtClusters);
-
-  // SoC Config
   localparam bit SnitchBootROM = 1;
   localparam bit TopLevelCfgRegs = 1;
   localparam bit ExtCfgRegs = 1;
+
+  // Isolate Clusters from SoC
+  localparam int unsigned IsolateClusters = 0;
+
+  ////////////////////////
+  // Register interface //
+  ////////////////////////
 
   // SCHEREMO: Shared Snitch bootrom, one clock gate per cluster, External regs (PADs, FLLs etc...)
   localparam int ExtRegNum = SnitchBootROM + TopLevelCfgRegs + ExtCfgRegs;
   localparam int ClusterDataWidth = 64;
 
-  localparam int SnitchBootROMIdx = 0;
+  localparam byte_bt SnitchBootROMIdx = 8'h0;
   localparam doub_bt SnitchBootROMRegionStart = 64'h3000_0000;
   localparam doub_bt SnitchBootROMRegionEnd = 64'h3000_1000;
 
-  localparam int TopLevelCfgRegsIdx = 1;
+  localparam byte_bt TopLevelCfgRegsIdx = 8'h1;
   localparam doub_bt TopLevelCfgRegsRegionStart = 64'h3000_1000;
   localparam doub_bt TopLevelCfgRegsRegionEnd = 64'h3000_2000;
 
   // External configuration registers: PADs, FLLs, PMU Controller
-  localparam int ExtCfgRegsIdx = 2;
+  localparam byte_bt ExtCfgRegsIdx = 8'h2;
   localparam doub_bt ExtCfgRegsRegionStart = 64'h3000_2000;
   localparam doub_bt ExtCfgRegsRegionEnd = 64'h3000_5000;
 
-  // Parameters for Memory Island
-  localparam int MemIslandIdx = ExtClustersBaseIdx + ExtClusters;
+  ////////////////////////
+  // External AXI ports //
+  ////////////////////////
 
+  // Cluster domain
+  localparam byte_bt [iomsb(ExtClusters):0] ClusterIdx = {8'h4, 8'h3, 8'h2, 8'h1, 8'h0};
+  localparam doub_bt [iomsb(
+ExtClusters
+):0] ClusterRegionStart = {
+    64'h4080_0000, 64'h4060_0000, 64'h4040_0000, 64'h4020_0000, 64'h4000_0000
+  };
+  localparam doub_bt [iomsb(
+ExtClusters
+):0] ClusterRegionEnd = {
+    64'h40A0_0000, 64'h4080_0000, 64'h4060_0000, 64'h4040_0000, 64'h4020_0000
+  };
+
+  localparam aw_bt ClusterNarrowAxiMstIdWidth = 1;
+
+  // Memory Island
+  localparam byte_bt MemIslandIdx = ClusterIdx[ExtClusters-1] + 1;
   localparam doub_bt MemIslRegionStart = 64'h4800_0000;
   localparam doub_bt MemIslRegionEnd = 64'h4804_0000;
+
   localparam aw_bt MemIslAxiMstIdWidth = 1;
   localparam byte_bt MemIslNarrowToWideFactor = 4;
   localparam byte_bt MemIslNarrowPorts = 1;
@@ -87,10 +118,10 @@ package chimera_pkg;
   localparam byte_bt MemIslNumWideBanks = 2;
   localparam shrt_bt MemIslWordsPerBank = 1024;
 
-  localparam aw_bt ClusterNarrowAxiMstIdWidth = 1;
 
-  // Isolate Clusters from SoC
-  localparam int unsigned IsolateClusters = 0;
+  //////////////////
+  // Generate cfg //
+  //////////////////
 
   function automatic chimera_cfg_t gen_chimera_cfg();
     localparam int AddrWidth = DefaultCfg.AddrWidth;
@@ -123,18 +154,14 @@ package chimera_pkg;
     cfg.AxiExtNumSlv = ExtClusters + MemoryIsland;
     cfg.AxiExtNumRules = ExtClusters + MemoryIsland;
 
-    cfg.AxiExtRegionIdx = {8'h5, 8'h4, 8'h3, 8'h2, 8'h1, 8'h0};
-    cfg.AxiExtRegionStart = {
-      MemIslRegionStart, 64'h4080_0000, 64'h4060_0000, 64'h4040_0000, 64'h4020_0000, 64'h4000_0000
-    };
-    cfg.AxiExtRegionEnd = {
-      MemIslRegionEnd, 64'h40A0_0000, 64'h4080_0000, 64'h4060_0000, 64'h4040_0000, 64'h4020_0000
-    };
+    cfg.AxiExtRegionIdx = {MemIslandIdx, ClusterIdx};
+    cfg.AxiExtRegionStart = {MemIslRegionStart, ClusterRegionStart};
+    cfg.AxiExtRegionEnd = {MemIslRegionEnd, ClusterRegionEnd};
 
     // REG CFG
     cfg.RegExtNumSlv = ExtRegNum;
     cfg.RegExtNumRules = ExtRegNum;
-    cfg.RegExtRegionIdx = {8'h3, 8'h2, 8'h1, 8'h0};  // SnitchBootROM
+    cfg.RegExtRegionIdx = {ExtCfgRegsIdx, TopLevelCfgRegsIdx, SnitchBootROMIdx};
     cfg.RegExtRegionStart = {
       ExtCfgRegsRegionStart, TopLevelCfgRegsRegionStart, SnitchBootROMRegionStart
     };
@@ -165,7 +192,6 @@ package chimera_pkg;
 
   localparam chimera_cfg_t [NumCfgs-1:0] ChimeraCfg = {gen_chimera_cfg()};
 
-  // To move into cheshire TYPEDEF
   localparam int unsigned RegDataWidth = 32;
   localparam type addr_t = logic [ChimeraCfg[0].ChsCfg.AddrWidth-1:0];
   localparam type data_t = logic [RegDataWidth-1:0];
