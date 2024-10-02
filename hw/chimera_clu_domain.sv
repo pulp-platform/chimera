@@ -27,6 +27,7 @@ module chimera_clu_domain
   input  logic                                                              soc_clk_i,
   input  logic             [                               ExtClusters-1:0] clu_clk_i,
   input  logic             [                               ExtClusters-1:0] rst_sync_ni,
+  input  logic                                                              rst_ni,
   input  logic             [                               ExtClusters-1:0] widemem_bypass_i,
   //-----------------------------
   // Interrupt ports
@@ -91,7 +92,7 @@ module chimera_clu_domain
         .axi_resp_t          (narrow_in_resp_t)
       ) i_iso_narrow_in_cluster (
         .clk_i     (soc_clk_i),
-        .rst_ni    (rst_sync_ni[extClusterIdx]),
+        .rst_ni,
         .slv_req_i (narrow_in_req_i[extClusterIdx]),
         .slv_resp_o(narrow_in_resp_o[extClusterIdx]),
         .mst_req_o (narrow_in_isolated_req[extClusterIdx]),
@@ -119,7 +120,7 @@ module chimera_clu_domain
           .axi_resp_t          (narrow_out_resp_t)
         ) i_iso_narrow_out_cluster (
           .clk_i     (soc_clk_i),
-          .rst_ni    (rst_sync_ni[extClusterIdx]),
+          .rst_ni,
           .slv_req_i (narrow_out_isolated_req[narrowOutIdx]),
           .slv_resp_o(narrow_out_isolated_resp[narrowOutIdx]),
           .mst_req_o (narrow_out_req_o[narrowOutIdx]),
@@ -142,7 +143,7 @@ module chimera_clu_domain
         .axi_resp_t          (wide_out_resp_t)
       ) i_iso_wide_cluster (
         .clk_i     (soc_clk_i),
-        .rst_ni    (rst_sync_ni[extClusterIdx]),
+        .rst_ni,
         .slv_req_i (wide_out_isolated_req[extClusterIdx]),
         .slv_resp_o(wide_out_isolated_resp[extClusterIdx]),
         .mst_req_o (wide_out_req_o[extClusterIdx]),
@@ -195,13 +196,13 @@ module chimera_clu_domain
       .cluster_base_addr_i(Cfg.ChsCfg.AxiExtRegionStart[extClusterIdx][Cfg.ChsCfg.AddrWidth-1:0]),
       .boot_addr_i        (SnitchBootROMRegionStart[31:0]),
 
-      .narrow_in_req_i  (narrow_in_isolated_req[extClusterIdx]),
-      .narrow_in_resp_o (narrow_in_isolated_resp[extClusterIdx]),
-      .narrow_out_req_o (narrow_out_isolated_req[2*extClusterIdx+:2]),
-      .narrow_out_resp_i(narrow_out_isolated_resp[2*extClusterIdx+:2]),
+      .narrow_in_req_i      (narrow_in_isolated_req[extClusterIdx]),
+      .narrow_in_resp_flat_o(narrow_in_isolated_resp[extClusterIdx]),
+      .narrow_out_req_flat_o(narrow_out_isolated_req[2*extClusterIdx+:2]),
+      .narrow_out_resp_i    (narrow_out_isolated_resp[2*extClusterIdx+:2]),
 
-      .wide_out_req_o (wide_out_isolated_req[extClusterIdx]),
-      .wide_out_resp_i(wide_out_isolated_resp[extClusterIdx])
+      .wide_out_req_flat_o(wide_out_isolated_req[extClusterIdx]),
+      .wide_out_resp_i    (wide_out_isolated_resp[extClusterIdx])
     );
 
   end : gen_clusters

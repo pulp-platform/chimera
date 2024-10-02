@@ -17,48 +17,72 @@ module chimera_cluster
   parameter type         narrow_out_req_t  = logic,
   parameter type         narrow_out_resp_t = logic,
   parameter type         wide_out_req_t    = logic,
-  parameter type         wide_out_resp_t   = logic
+  parameter type         wide_out_resp_t   = logic,
+
+  // !! DO NOT OVERWRITE THESE PARAMETERS
+  // These parameters are used to provide a flattened interface for the AXI ports (see comments below).
+  parameter type narrow_in_resp_flat_t = logic [$bits(narrow_in_resp_t)-1:0],
+  parameter type narrow_out_req_flat_t = logic [$bits(narrow_out_req_t)-1:0],
+  parameter type wide_out_req_flat_t   = logic [  $bits(wide_out_req_t)-1:0]
 ) (
-  input  logic                                        soc_clk_i,
-  input  logic                                        clu_clk_i,
-  input  logic                                        rst_ni,
-  input  logic                                        widemem_bypass_i,
+  input  logic                                            soc_clk_i,
+  input  logic                                            clu_clk_i,
+  input  logic                                            rst_ni,
+  input  logic                                            widemem_bypass_i,
   //-----------------------------
   // Interrupt ports
   //-----------------------------
-  input  logic             [             NrCores-1:0] debug_req_i,
-  input  logic             [             NrCores-1:0] meip_i,
-  input  logic             [             NrCores-1:0] mtip_i,
-  input  logic             [             NrCores-1:0] msip_i,
+  input  logic                 [             NrCores-1:0] debug_req_i,
+  input  logic                 [             NrCores-1:0] meip_i,
+  input  logic                 [             NrCores-1:0] mtip_i,
+  input  logic                 [             NrCores-1:0] msip_i,
   //-----------------------------
   // Cluster base addressing
   //-----------------------------
-  input  logic             [                     9:0] hart_base_id_i,
-  input  logic             [Cfg.ChsCfg.AddrWidth-1:0] cluster_base_addr_i,
-  input  logic             [                    31:0] boot_addr_i,
+  input  logic                 [                     9:0] hart_base_id_i,
+  input  logic                 [Cfg.ChsCfg.AddrWidth-1:0] cluster_base_addr_i,
+  input  logic                 [                    31:0] boot_addr_i,
   //-----------------------------
   // Narrow AXI ports
   //-----------------------------
-  input  narrow_in_req_t                              narrow_in_req_i,
-  output narrow_in_resp_t                             narrow_in_resp_o,
-  output narrow_out_req_t  [                     1:0] narrow_out_req_o,
-  input  narrow_out_resp_t [                     1:0] narrow_out_resp_i,
+  input  narrow_in_req_t                                  narrow_in_req_i,
+  output narrow_in_resp_flat_t                            narrow_in_resp_flat_o,
+  output narrow_out_req_flat_t [                     1:0] narrow_out_req_flat_o,
+  input  narrow_out_resp_t     [                     1:0] narrow_out_resp_i,
   //-----------------------------
   //Wide AXI ports
   //-----------------------------
-  output wide_out_req_t                               wide_out_req_o,
-  input  wide_out_resp_t                              wide_out_resp_i
+  output wide_out_req_flat_t                              wide_out_req_flat_o,
+  input  wide_out_resp_t                                  wide_out_resp_i
 );
 
   `include "axi/typedef.svh"
 
-  localparam int WideDataWidth = $bits(wide_out_req_o.w.data);
+  /* ------------------------------------------------------------------------------- */
+  /*           Flattened interface signals for UPF structure workaround              */
+  /* ------------------------------------------------------------------------------- */
+  //
+  // The UPF standard supported by QuestaSim cannot apply isolation strategies to
+  // ports with "complex" types, such as AXI ports, which are structures.
+  // To address this issue, at the interface of each power domain, signals are flattened
+  // (e.g., narrow_in_resp_flat_o) and then internally reassigned to new structured signals
+  // (e.g., narrow_in_resp_s), which can be propagated to downstream modules.
+  //
+  narrow_out_req_t [1:0] narrow_out_req_s;
+  narrow_in_resp_t       narrow_in_resp_s;
+  wide_out_req_t         wide_out_req_s;
 
-  localparam int WideMasterIdWidth = $bits(wide_out_req_o.aw.id);
+  assign narrow_out_req_flat_o = narrow_out_req_s;
+  assign narrow_in_resp_flat_o = narrow_in_resp_s;
+  assign wide_out_req_flat_o   = wide_out_req_s;
+
+  localparam int WideDataWidth = $bits(wide_out_req_s.w.data);
+
+  localparam int WideMasterIdWidth = $bits(wide_out_req_s.aw.id);
   localparam int WideSlaveIdWidth = WideMasterIdWidth + $clog2(Cfg.ChsCfg.AxiExtNumWideMst) - 1;
 
   localparam int NarrowSlaveIdWidth = $bits(narrow_in_req_i.aw.id);
-  localparam int NarrowMasterIdWidth = $bits(narrow_out_req_o[0].aw.id);
+  localparam int NarrowMasterIdWidth = $bits(narrow_out_req_s[0].aw.id);
 
   typedef logic [Cfg.ChsCfg.AddrWidth-1:0] axi_addr_t;
   typedef logic [Cfg.ChsCfg.AxiUserWidth-1:0] axi_user_t;
@@ -140,8 +164,8 @@ module chimera_cluster
 
       // SoC side narrow.
       .narrow_in_req_i  (narrow_in_req_i),
-      .narrow_in_resp_o (narrow_in_resp_o),
-      .narrow_out_req_o (narrow_out_req_o),
+      .narrow_in_resp_o (narrow_in_resp_s),
+      .narrow_out_req_o (narrow_out_req_s),
       .narrow_out_resp_i(narrow_out_resp_i),
 
       // Cluster side narrow
@@ -155,8 +179,8 @@ module chimera_cluster
   end else begin : gen_skip_narrow_adapter  // if (ClusterDataWidth != Cfg.AxiDataWidth)
 
     assign clu_axi_narrow_slv_req = narrow_in_req_i;
-    assign narrow_in_resp_o       = clu_axi_narrow_slv_rsp;
-    assign narrow_out_req_o       = clu_axi_narrow_mst_req;
+    assign narrow_in_resp_s       = clu_axi_narrow_slv_rsp;
+    assign narrow_out_req_s       = clu_axi_narrow_mst_req;
     assign clu_axi_narrow_mst_rsp = narrow_out_resp_i;
 
   end
@@ -196,7 +220,7 @@ module chimera_cluster
     .clu_narrow_out_req_i (clu_axi_adapter_mst_req),
     .clu_narrow_out_resp_o(clu_axi_adapter_mst_resp),
 
-    .wide_out_req_o     (wide_out_req_o),
+    .wide_out_req_o     (wide_out_req_s),
     .wide_out_resp_i    (wide_out_resp_i),
     .clu_wide_out_req_i (clu_axi_wide_mst_req),
     .clu_wide_out_resp_o(clu_axi_wide_mst_resp),

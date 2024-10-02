@@ -15,12 +15,13 @@ module chimera_memisland_domain
   parameter type          axi_wide_req_t   = logic,
   parameter type          axi_wide_rsp_t   = logic
 ) (
-  input  logic                             clk_i,
-  input  logic                             rst_ni,
-  input  axi_narrow_req_t                  axi_narrow_req_i,
-  output axi_narrow_rsp_t                  axi_narrow_rsp_o,
-  input  axi_wide_req_t   [NumWideMst-1:0] axi_wide_req_i,
-  output axi_wide_rsp_t   [NumWideMst-1:0] axi_wide_rsp_o
+  input  logic                                         clk_i,
+  input  logic                                         rst_ni,
+  input  logic            [Cfg.MemIslNumWideBanks-1:0] rst_sync_ni,
+  input  axi_narrow_req_t                              axi_narrow_req_i,
+  output axi_narrow_rsp_t                              axi_narrow_rsp_o,
+  input  axi_wide_req_t   [            NumWideMst-1:0] axi_wide_req_i,
+  output axi_wide_rsp_t   [            NumWideMst-1:0] axi_wide_rsp_o
 );
 
   // Define needed parameters
@@ -74,6 +75,7 @@ module chimera_memisland_domain
   ) i_memory_island (
     .clk_i           (clk_i),
     .rst_ni,
+    .rst_sync_ni     (rst_sync_ni),
     .axi_narrow_req_i(axi_memory_island_amo_req),
     .axi_narrow_rsp_o(axi_memory_island_amo_rsp),
     // SCHEREMO: TODO: Demux wide accesses to go over narrow ports iff address not in memory island range
