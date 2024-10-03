@@ -76,7 +76,7 @@ module chimera_clu_domain
 
   for (genvar extClusterIdx = 0; extClusterIdx < ExtClusters; extClusterIdx++) begin : gen_clusters
 
-    if (IsolateClusters == 1) begin : gen_cluster_iso
+    if (Cfg.IsolateClusters == 1) begin : gen_cluster_iso
       // Add AXI isolation at the Narrow Input Interface
       axi_isolate #(
         .NumPending          (Cfg.ChsCfg.AxiMaxSlvTrans),

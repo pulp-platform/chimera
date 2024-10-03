@@ -9,7 +9,7 @@ module chimera_top_wrapper
   import chimera_pkg::*;
   import chimera_reg_pkg::*;
 #(
-  parameter int unsigned SelectedCfg = 0
+  parameter chimera_cfg_t Cfg = '0
 ) (
   input  logic                        soc_clk_i,
   input  logic                        clu_clk_i,
@@ -70,7 +70,6 @@ module chimera_top_wrapper
   `include "chimera/typedef.svh"
 
   // Cheshire config
-  localparam chimera_cfg_t Cfg = ChimeraCfg[SelectedCfg];
   localparam cheshire_cfg_t ChsCfg = Cfg.ChsCfg;
 
   `CHESHIRE_TYPEDEF_ALL(, ChsCfg)
@@ -340,8 +339,8 @@ module chimera_top_wrapper
     .xeip_i           (xeip_ext),
     .mtip_i           (mtip_ext),
     .msip_i           (msip_ext),
-    .narrow_in_req_i  (axi_slv_req[ExtClustersBaseIdx+:ExtClusters]),
-    .narrow_in_resp_o (axi_slv_rsp[ExtClustersBaseIdx+:ExtClusters]),
+    .narrow_in_req_i  (axi_slv_req[ClusterIdx[0]+:ExtClusters]),
+    .narrow_in_resp_o (axi_slv_rsp[ClusterIdx[0]+:ExtClusters]),
     .narrow_out_req_o (axi_mst_req),
     .narrow_out_resp_i(axi_mst_rsp),
     .wide_out_req_o   (axi_wide_mst_req),
