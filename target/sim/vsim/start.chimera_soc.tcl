@@ -16,7 +16,7 @@ if {![info exists VOPTARGS]} {
 }
 
 set flags "-permissive -suppress 3009 -suppress 8386 -error 7 "
-if {[info exists SELCFG]} { append flags "-GSelectedCfg=${SELCFG} " }
+if {[info exists SELCFG]} { append flags "-gSelectedCfg=${SELCFG} " }
 
 set pargs ""
 if {[info exists BOOTMODE]} { append pargs "+BOOTMODE=${BOOTMODE} " }

@@ -19,7 +19,7 @@ module fixture_chimera_soc #(
   import tb_cheshire_pkg::*;
   import chimera_pkg::*;
 
-  localparam chimera_cfg_t DutCfg = ChimeraCfg[1];
+  localparam chimera_cfg_t DutCfg = ChimeraCfg[SelectedCfg];
   localparam cheshire_cfg_t ChsCfg = DutCfg.ChsCfg;
 
   `CHESHIRE_TYPEDEF_ALL(, ChsCfg)
@@ -61,7 +61,7 @@ module fixture_chimera_soc #(
   logic [          3:0] spih_sd_en;
 
   chimera_top_wrapper #(
-    .Cfg(DutCfg)
+    .SelectedCfg(SelectedCfg)
   ) dut (
     .soc_clk_i                (soc_clk),
     .clu_clk_i                (clu_clk),
