@@ -9,7 +9,7 @@ module chimera_top_wrapper
   import chimera_pkg::*;
   import chimera_reg_pkg::*;
 #(
-  parameter chimera_cfg_t Cfg = '0
+  parameter int unsigned SelectedCfg = 0
 ) (
   input  logic                        soc_clk_i,
   input  logic                        clu_clk_i,
@@ -70,6 +70,7 @@ module chimera_top_wrapper
   `include "chimera/typedef.svh"
 
   // Cheshire config
+  localparam chimera_cfg_t Cfg = ChimeraCfg[SelectedCfg];
   localparam cheshire_cfg_t ChsCfg = Cfg.ChsCfg;
 
   `CHESHIRE_TYPEDEF_ALL(, ChsCfg)
