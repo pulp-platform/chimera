@@ -186,18 +186,22 @@ ExtClusters
     return chimera_cfg;
   endfunction : gen_chimera_cfg
 
-  function automatic chimera_cfg_t gen_chimera_cfg_UPF;
+  function automatic chimera_cfg_t gen_chimera_cfg_isolate();
     chimera_cfg_t chimera_cfg;
     chimera_cfg                 = gen_chimera_cfg();
     // Override the isolation params
     chimera_cfg.IsolateClusters = 1;
 
     return chimera_cfg;
-  endfunction : gen_chimera_cfg_UPF
+  endfunction : gen_chimera_cfg_isolate
 
-  localparam int NumCfgs = 2;
+  localparam int unsigned NumCfgs = 2;
 
-  localparam chimera_cfg_t [NumCfgs-1:0] ChimeraCfg = {gen_chimera_cfg(), gen_chimera_cfg_UPF};
+  localparam chimera_cfg_t [NumCfgs-1:0] ChimeraCfg = {
+    gen_chimera_cfg_isolate(),  // 1: Configuration with Isolation for Power Managemenet
+    gen_chimera_cfg()  // 0: Default configuration
+  };
+
 
   localparam int unsigned RegDataWidth = 32;
   localparam type addr_t = logic [ChimeraCfg[0].ChsCfg.AddrWidth-1:0];
