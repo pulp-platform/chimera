@@ -3,6 +3,8 @@
 // SPDX-License-Identifier: SHL-0.51
 //
 // Moritz Scherer <scheremo@iis.ee.ethz.ch>
+// Lorenzo Leone <lleone@iis.ee.ethz.ch>
+
 
 module chimera_top_wrapper
   import cheshire_pkg::*;
