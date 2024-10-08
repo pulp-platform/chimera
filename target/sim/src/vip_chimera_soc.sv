@@ -215,7 +215,7 @@ module vip_chimera_soc
     jtag_idcode_t   idcode;
     dm::dmcontrol_t dmcontrol = '{dmactive: 1, default: '0};
     // Check ID code
-    repeat (100) @(posedge jtag_tck);
+    repeat (10000) @(posedge jtag_tck);
     jtag_dbg.get_idcode(idcode);
     if (idcode != DutCfg.DbgIdCode)
       $fatal(1, "[JTAG] Unexpected ID code: expected 0x%h, got 0x%h!", DutCfg.DbgIdCode, idcode);
