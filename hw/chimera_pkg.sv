@@ -130,7 +130,7 @@ ExtClusters
   //TODO(smazzola): Correct size of HyperRAM?
   localparam doub_bt HyperbusRegionEnd = HyperbusRegionStart + 64'h0800_0000;
 
-  localparam int unsigned LogDepth   = 3;
+  localparam int unsigned LogDepth = 3;
   localparam int unsigned SyncStages = 3;
 
   // -------------------
@@ -179,9 +179,14 @@ ExtClusters
     cfg.RegExtNumRules = ExtRegNum;
     cfg.RegExtRegionIdx = {HyperCfgRegsIdx, ExtCfgRegsIdx, TopLevelCfgRegsIdx, SnitchBootROMIdx};
     cfg.RegExtRegionStart = {
-      HyperCfgRegsRegionStart, ExtCfgRegsRegionStart, TopLevelCfgRegsRegionStart, SnitchBootROMRegionStart
+      HyperCfgRegsRegionStart,
+      ExtCfgRegsRegionStart,
+      TopLevelCfgRegsRegionStart,
+      SnitchBootROMRegionStart
     };
-    cfg.RegExtRegionEnd = {HyperCfgRegsRegionEnd, ExtCfgRegsRegionEnd, TopLevelCfgRegsRegionEnd, SnitchBootROMRegionEnd};
+    cfg.RegExtRegionEnd = {
+      HyperCfgRegsRegionEnd, ExtCfgRegsRegionEnd, TopLevelCfgRegsRegionEnd, SnitchBootROMRegionEnd
+    };
 
     // ACCEL HART/IRQ CFG
     cfg.NumExtIrqHarts = ExtCores;

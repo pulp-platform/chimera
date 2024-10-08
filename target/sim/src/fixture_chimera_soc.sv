@@ -83,8 +83,8 @@ module fixture_chimera_soc #(
 
   chimera_top_wrapper #(
     .SelectedCfg(SelectedCfg),
-    .HypNumPhys  ( HypNumPhys   ),
-    .HypNumChips ( HypNumChips  )
+    .HypNumPhys (HypNumPhys),
+    .HypNumChips(HypNumChips)
   ) dut (
     .soc_clk_i                (soc_clk),
     .clu_clk_i                (clu_clk),

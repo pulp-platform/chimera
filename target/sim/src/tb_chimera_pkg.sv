@@ -39,7 +39,7 @@ package tb_chimera_pkg;
   };
 
   // HyperBus
-  localparam int HypNumPhys  = 2;
+  localparam int HypNumPhys = 2;
   localparam int HypNumChips = 2;
 
 endpackage
