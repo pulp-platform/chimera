@@ -3,6 +3,7 @@
 // SPDX-License-Identifier: SHL-0.51
 //
 // Moritz Scherer <scheremo@iis.ee.ethz.ch>
+// Lorenzo Leone <lleone@iis.ee.ethz.ch>
 
 `define NRCORES(extClusterIdx) ChimeraClusterCfg.NrCores[extClusterIdx]
 `define PREVNRCORES(extClusterIdx) \
@@ -57,7 +58,7 @@ module chimera_clu_domain
   localparam int unsigned AxiWideDataWidth = Cfg.ChsCfg.AxiDataWidth * Cfg.MemIslNarrowToWideFactor;
   localparam int unsigned AxiWideSlvIdWidth = Cfg.MemIslAxiMstIdWidth + $clog2(Cfg.MemIslWidePorts);
   localparam int unsigned AxiSlvIdWidth = Cfg.ChsCfg.AxiMstIdWidth + $clog2(
-      cheshire_pkg::gen_axi_in(Cfg).num_in
+      cheshire_pkg::gen_axi_in(Cfg.ChsCfg).num_in
   );
 
   // Isolated AXI signals

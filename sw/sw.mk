@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 # Moritz Scherer <scheremo@iis.ee.ethz.ch>
+# Lorenzo Leone <lleone@iis.ee.ethz.ch>
+
 
 ifndef chim_sw_mk
 chim_sw_mk=1
