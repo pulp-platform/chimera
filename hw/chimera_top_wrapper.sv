@@ -344,7 +344,7 @@ module chimera_top_wrapper
     .msip_i           (msip_ext),
     .narrow_in_req_i  (axi_slv_req[ClusterIdx[0]+:ExtClusters]),
     .narrow_in_resp_o (axi_slv_rsp[ClusterIdx[0]+:ExtClusters]),
-    .narrow_out_req_o (axi_mst_req,)
+    .narrow_out_req_o (axi_mst_req),
     .narrow_out_resp_i(axi_mst_rsp),
     .wide_out_req_o   (axi_wide_mst_req),
     .wide_out_resp_i  (axi_wide_mst_rsp),
