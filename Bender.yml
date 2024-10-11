@@ -17,9 +17,9 @@ dependencies:
   idma:                     { git: "https://github.com/pulp-platform/iDMA.git",               rev: 9edf489f57389dce5e71252c79e337f527d3aded}
   memory_island:            { git: "https://github.com/pulp-platform/memory_island.git",          rev: 64828cb7a9ccc1f1656ec92d06129072f445c319 } # main branch
   apb:                      { git: "https://github.com/pulp-platform/apb.git",                version: 0.2.4          }
-  TUEDCIM:                  { git: "git@gitlab.tue.nl:es/convolve-private/tuedcim.git",           rev: 23082024}
+  TUEDCIM:                  { git: "git@gitlab.tue.nl:es/convolve-private/tuedcim.git",           rev: 10102024}
   TUEMEGA:                  { git: "git@gitlab.tue.nl:es/convolve-private/tuemega.git",           rev: 27082024}
-  TUDDCIM:                  { git: "git@gitlab.tue.nl:es/convolve-private/tuddcim.git",           rev: 23082024}
+  TUDDCIM:                  { git: "git@gitlab.tue.nl:es/convolve-private/tuddcim.git",           rev: 11102024-2}
   KULCLUSTER:               { git: "git@gitlab.tue.nl:es/convolve-private/kulcluster.git",        rev: 27082024}
   ETHCluster:               { git: "git@gitlab.tue.nl:es/convolve-private/ethcluster.git",        rev: 8ab985c}
 

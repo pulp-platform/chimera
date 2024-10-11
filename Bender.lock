@@ -44,8 +44,8 @@ packages:
     - common_cells
     - common_verification
   axi_rt:
-    revision: d5f857e74d0a5db4e4a2cc3652ca4f40f29a1484
-    version: 0.0.0-alpha.8
+    revision: 641ea950e24722af747033f2ab85f0e48ea8d7f8
+    version: 0.0.0-alpha.9
     source:
       Git: https://github.com/pulp-platform/axi_rt.git
     dependencies:
@@ -281,13 +281,13 @@ packages:
     dependencies:
     - common_verification
   tuddcim:
-    revision: 71b72931af97ed5625970b9a3ce96e5b880a20aa
+    revision: 65a21c4039c4df80207cf7f43ad3943f8eb96b9b
     version: null
     source:
       Git: git@gitlab.tue.nl:es/convolve-private/tuddcim.git
     dependencies: []
   tuedcim:
-    revision: 794c5c0df785bc71ac50be89b6b9e23c1342a3ae
+    revision: 8b3ec32ffe3487a59b45fa49391e8a36196a64c9
     version: null
     source:
       Git: git@gitlab.tue.nl:es/convolve-private/tuedcim.git
