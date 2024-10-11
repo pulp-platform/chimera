@@ -26,7 +26,7 @@ module chimera_clu_domain
 ) (
   input  logic                                                              soc_clk_i,
   input  logic             [                               ExtClusters-1:0] clu_clk_i,
-  input  logic             [                               ExtClusters-1:0] rst_sync_ni,
+  input  logic                                                              rst_ni,
   input  logic             [                               ExtClusters-1:0] widemem_bypass_i,
   //-----------------------------
   // Interrupt ports
@@ -75,7 +75,7 @@ module chimera_clu_domain
     .mtip_i             (mtip_i[`PREVNRCORES(TUEDCIMIDX)+:`NRCORES(TUEDCIMIDX)]),
     .msip_i             (msip_i[`PREVNRCORES(TUEDCIMIDX)+:`NRCORES(TUEDCIMIDX)]),
     .hart_base_id_i     (10'(`PREVNRCORES(TUEDCIMIDX) + 1)),
-    .cluster_base_addr_i(Cfg.AxiExtRegionStart[TUEDCIMIDX][Cfg.AddrWidth-1:0]),
+    .cluster_base_addr_i(Cfg.ChsCfg.AxiExtRegionStart[TUEDCIMIDX][Cfg.ChsCfg.AddrWidth-1:0]),
     .boot_addr_i        (SnitchBootROMRegionStart[31:0]),
 
     .narrow_in_req_i  (narrow_in_req_i[TUEDCIMIDX]),
@@ -107,7 +107,7 @@ module chimera_clu_domain
     .mtip_i             (mtip_i[`PREVNRCORES(TUEDCIMIDX)+:`NRCORES(TUEDCIMIDX)]),
     .msip_i             (msip_i[`PREVNRCORES(TUEDCIMIDX)+:`NRCORES(TUEDCIMIDX)]),
     .hart_base_id_i     (10'(`PREVNRCORES(TUEDCIMIDX) + 1)),
-    .cluster_base_addr_i(Cfg.AxiExtRegionStart[TUEDCIMIDX][Cfg.AddrWidth-1:0]),
+    .cluster_base_addr_i(Cfg.ChsCfg.AxiExtRegionStart[TUEDCIMIDX][Cfg.ChsCfg.AddrWidth-1:0]),
     .boot_addr_i        (SnitchBootROMRegionStart[31:0]),
 
     .narrow_in_req_i  (narrow_in_req_i[TUEDCIMIDX]),
@@ -140,7 +140,7 @@ module chimera_clu_domain
     .mtip_i             (mtip_i[`PREVNRCORES(TUEMEGAIDX)+:`NRCORES(TUEMEGAIDX)]),
     .msip_i             (msip_i[`PREVNRCORES(TUEMEGAIDX)+:`NRCORES(TUEMEGAIDX)]),
     .hart_base_id_i     (10'(`PREVNRCORES(TUEMEGAIDX) + 1)),
-    .cluster_base_addr_i(Cfg.AxiExtRegionStart[TUEMEGAIDX][Cfg.AddrWidth-1:0]),
+    .cluster_base_addr_i(Cfg.ChsCfg.AxiExtRegionStart[TUEMEGAIDX][Cfg.ChsCfg.AddrWidth-1:0]),
     .boot_addr_i        (SnitchBootROMRegionStart[31:0]),
 
     .narrow_in_req_i  (narrow_in_req_i[TUEMEGAIDX]),
@@ -172,7 +172,7 @@ module chimera_clu_domain
     .mtip_i             (mtip_i[`PREVNRCORES(TUEMEGAIDX)+:`NRCORES(TUEMEGAIDX)]),
     .msip_i             (msip_i[`PREVNRCORES(TUEMEGAIDX)+:`NRCORES(TUEMEGAIDX)]),
     .hart_base_id_i     (10'(`PREVNRCORES(TUEMEGAIDX) + 1)),
-    .cluster_base_addr_i(Cfg.AxiExtRegionStart[TUEMEGAIDX][Cfg.AddrWidth-1:0]),
+    .cluster_base_addr_i(Cfg.ChsCfg.AxiExtRegionStart[TUEMEGAIDX][Cfg.ChsCfg.AddrWidth-1:0]),
     .boot_addr_i        (SnitchBootROMRegionStart[31:0]),
 
     .narrow_in_req_i  (narrow_in_req_i[TUEMEGAIDX]),
@@ -207,7 +207,7 @@ module chimera_clu_domain
     .mtip_i             (mtip_i[`PREVNRCORES(TUDDCIMIDX)+:`NRCORES(TUDDCIMIDX)]),
     .msip_i             (msip_i[`PREVNRCORES(TUDDCIMIDX)+:`NRCORES(TUDDCIMIDX)]),
     .hart_base_id_i     (10'(`PREVNRCORES(TUDDCIMIDX) + 1)),
-    .cluster_base_addr_i(Cfg.AxiExtRegionStart[TUDDCIMIDX][Cfg.AddrWidth-1:0]),
+    .cluster_base_addr_i(Cfg.ChsCfg.AxiExtRegionStart[TUDDCIMIDX][Cfg.ChsCfg.AddrWidth-1:0]),
     .boot_addr_i        (SnitchBootROMRegionStart[31:0]),
 
     .narrow_in_req_i  (narrow_in_req_i[TUDDCIMIDX]),
@@ -239,7 +239,7 @@ module chimera_clu_domain
     .mtip_i             (mtip_i[`PREVNRCORES(TUDDCIMIDX)+:`NRCORES(TUDDCIMIDX)]),
     .msip_i             (msip_i[`PREVNRCORES(TUDDCIMIDX)+:`NRCORES(TUDDCIMIDX)]),
     .hart_base_id_i     (10'(`PREVNRCORES(TUDDCIMIDX) + 1)),
-    .cluster_base_addr_i(Cfg.AxiExtRegionStart[TUDDCIMIDX][Cfg.AddrWidth-1:0]),
+    .cluster_base_addr_i(Cfg.ChsCfg.AxiExtRegionStart[TUDDCIMIDX][Cfg.ChsCfg.AddrWidth-1:0]),
     .boot_addr_i        (SnitchBootROMRegionStart[31:0]),
 
     .narrow_in_req_i  (narrow_in_req_i[TUDDCIMIDX]),
@@ -274,7 +274,7 @@ module chimera_clu_domain
     .mtip_i             (mtip_i[`PREVNRCORES(KULCLUSTERIDX)+:`NRCORES(KULCLUSTERIDX)]),
     .msip_i             (msip_i[`PREVNRCORES(KULCLUSTERIDX)+:`NRCORES(KULCLUSTERIDX)]),
     .hart_base_id_i     (10'(`PREVNRCORES(KULCLUSTERIDX) + 1)),
-    .cluster_base_addr_i(Cfg.AxiExtRegionStart[KULCLUSTERIDX][Cfg.AddrWidth-1:0]),
+    .cluster_base_addr_i(Cfg.ChsCfg.AxiExtRegionStart[KULCLUSTERIDX][Cfg.ChsCfg.AddrWidth-1:0]),
     .boot_addr_i        (SnitchBootROMRegionStart[31:0]),
 
     .narrow_in_req_i  (narrow_in_req_i[KULCLUSTERIDX]),
@@ -306,7 +306,7 @@ module chimera_clu_domain
     .mtip_i             (mtip_i[`PREVNRCORES(KULCLUSTERIDX)+:`NRCORES(KULCLUSTERIDX)]),
     .msip_i             (msip_i[`PREVNRCORES(KULCLUSTERIDX)+:`NRCORES(KULCLUSTERIDX)]),
     .hart_base_id_i     (10'(`PREVNRCORES(KULCLUSTERIDX) + 1)),
-    .cluster_base_addr_i(Cfg.AxiExtRegionStart[KULCLUSTERIDX][Cfg.AddrWidth-1:0]),
+    .cluster_base_addr_i(Cfg.ChsCfg.AxiExtRegionStart[KULCLUSTERIDX][Cfg.ChsCfg.AddrWidth-1:0]),
     .boot_addr_i        (SnitchBootROMRegionStart[31:0]),
 
     .narrow_in_req_i  (narrow_in_req_i[KULCLUSTERIDX]),
@@ -341,7 +341,7 @@ module chimera_clu_domain
     .mtip_i             (mtip_i[`PREVNRCORES(ETHCLUSTERIDX)+:`NRCORES(ETHCLUSTERIDX)]),
     .msip_i             (msip_i[`PREVNRCORES(ETHCLUSTERIDX)+:`NRCORES(ETHCLUSTERIDX)]),
     .hart_base_id_i     (10'(`PREVNRCORES(ETHCLUSTERIDX) + 1)),
-    .cluster_base_addr_i(Cfg.AxiExtRegionStart[ETHCLUSTERIDX][Cfg.AddrWidth-1:0]),
+    .cluster_base_addr_i(Cfg.ChsCfg.AxiExtRegionStart[ETHCLUSTERIDX][Cfg.ChsCfg.AddrWidth-1:0]),
     .boot_addr_i        (SnitchBootROMRegionStart[31:0]),
 
     .narrow_in_req_i  (narrow_in_req_i[ETHCLUSTERIDX]),
@@ -373,7 +373,7 @@ module chimera_clu_domain
     .mtip_i             (mtip_i[`PREVNRCORES(ETHCLUSTERIDX)+:`NRCORES(ETHCLUSTERIDX)]),
     .msip_i             (msip_i[`PREVNRCORES(ETHCLUSTERIDX)+:`NRCORES(ETHCLUSTERIDX)]),
     .hart_base_id_i     (10'(`PREVNRCORES(ETHCLUSTERIDX) + 1)),
-    .cluster_base_addr_i(Cfg.AxiExtRegionStart[ETHCLUSTERIDX][Cfg.AddrWidth-1:0]),
+    .cluster_base_addr_i(Cfg.ChsCfg.AxiExtRegionStart[ETHCLUSTERIDX][Cfg.ChsCfg.AddrWidth-1:0]),
     .boot_addr_i        (SnitchBootROMRegionStart[31:0]),
 
     .narrow_in_req_i  (narrow_in_req_i[ETHCLUSTERIDX]),

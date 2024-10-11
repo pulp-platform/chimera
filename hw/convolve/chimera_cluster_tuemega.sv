@@ -8,7 +8,7 @@ module chimera_cluster_tuemega
   import chimera_pkg::*;
   import cheshire_pkg::*;
 #(
-  parameter cheshire_cfg_t Cfg = '0,
+  parameter chimera_cfg_t Cfg = '0,
 
   parameter int unsigned NrCores           = 2,
   parameter type         narrow_in_req_t   = logic,
@@ -34,7 +34,7 @@ module chimera_cluster_tuemega
   // Cluster base addressing
   //-----------------------------
   input  logic             [              9:0] hart_base_id_i,
-  input  logic             [Cfg.AddrWidth-1:0] cluster_base_addr_i,
+  input  logic             [Cfg.ChsCfg.AddrWidth-1:0] cluster_base_addr_i,
   input  logic             [             31:0] boot_addr_i,
   //-----------------------------
   // Narrow AXI ports
@@ -55,16 +55,16 @@ module chimera_cluster_tuemega
   localparam int WideDataWidth = $bits(wide_out_req_o.w.data);
 
   localparam int WideMasterIdWidth = $bits(wide_out_req_o.aw.id);
-  localparam int WideSlaveIdWidth = WideMasterIdWidth + $clog2(Cfg.AxiExtNumWideMst) - 1;
+  localparam int WideSlaveIdWidth = WideMasterIdWidth + $clog2(Cfg.ChsCfg.AxiExtNumWideMst) - 1;
 
   localparam int NarrowSlaveIdWidth = $bits(narrow_in_req_i.aw.id);
   localparam int NarrowMasterIdWidth = $bits(narrow_out_req_o[0].aw.id);
 
-  typedef logic [Cfg.AddrWidth-1:0] axi_addr_t;
-  typedef logic [Cfg.AxiUserWidth-1:0] axi_user_t;
+  typedef logic [Cfg.ChsCfg.AddrWidth-1:0] axi_addr_t;
+  typedef logic [Cfg.ChsCfg.AxiUserWidth-1:0] axi_user_t;
 
-  typedef logic [Cfg.AxiDataWidth-1:0] axi_soc_data_narrow_t;
-  typedef logic [Cfg.AxiDataWidth/8-1:0] axi_soc_strb_narrow_t;
+  typedef logic [Cfg.ChsCfg.AxiDataWidth-1:0] axi_soc_data_narrow_t;
+  typedef logic [Cfg.ChsCfg.AxiDataWidth/8-1:0] axi_soc_strb_narrow_t;
 
   typedef logic [ClusterDataWidth-1:0] axi_cluster_data_narrow_t;
   typedef logic [ClusterDataWidth/8-1:0] axi_cluster_strb_narrow_t;
@@ -117,7 +117,7 @@ module chimera_cluster_tuemega
   axi_cluster_out_wide_req_t                clu_axi_wide_mst_req;
   axi_cluster_out_wide_resp_t               clu_axi_wide_mst_resp;
 
-  if (ClusterDataWidth != Cfg.AxiDataWidth) begin : gen_narrow_adapter
+  if (ClusterDataWidth != Cfg.ChsCfg.AxiDataWidth) begin : gen_narrow_adapter
 
     narrow_adapter #(
       .narrow_in_req_t  (axi_soc_out_narrow_req_t),

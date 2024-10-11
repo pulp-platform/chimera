@@ -110,15 +110,13 @@ ExtClusters
     64'h40A0_0000, 64'h4080_0000, 64'h4060_0000, 64'h4040_0000, 64'h4020_0000
   };
 
-  localparam aw_bt ClusterNarrowAxiMstIdWidth = 1;
-
   // Parameters for Memory Island
   localparam int MemIslandIdx = ClusterIdx[ExtClusters-1] + 1;
   localparam doub_bt MemIslRegionStart = 64'h4800_0000;
   localparam doub_bt MemIslRegionEnd = 64'h4804_0000;
 
   localparam aw_bt MemIslAxiMstIdWidth = 1;
-  localparam byte_bt MemIslNarrowToWideFactor = 4;
+  localparam byte_bt MemIslNarrowToWideFactor = 16;
   localparam byte_bt MemIslNarrowPorts = 1;
   localparam byte_bt MemIslWidePorts = $countones(ChimeraClusterCfg.hasWideMasterPort);
   localparam byte_bt MemIslNumWideBanks = 2;
@@ -153,9 +151,6 @@ ExtClusters
     cfg.AxiUserWidth = 2;
     cfg.AddrWidth = 48;
     cfg.LlcOutRegionEnd = 'hFFFF_FFFF;
-
-    cfg.MemIslWidePorts = $countones(ChimeraClusterCfg.hasWideMasterPort);
-    cfg.MemIslNarrowToWideFactor = 16;
 
     cfg.AxiExtNumWideMst = $countones(ChimeraClusterCfg.hasWideMasterPort);
 

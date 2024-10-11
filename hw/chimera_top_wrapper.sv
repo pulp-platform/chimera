@@ -336,7 +336,7 @@ module chimera_top_wrapper
   ) i_cluster_domain (
     .soc_clk_i        (soc_clk_i),
     .clu_clk_i        (clu_clk_gated),
-    .rst_sync_ni      (pmu_rst_clusters_ni),
+    .rst_ni           (rst_ni),
     .widemem_bypass_i (wide_mem_bypass_mode),
     .debug_req_i      (dbg_ext_req),
     .xeip_i           (xeip_ext),
@@ -344,7 +344,7 @@ module chimera_top_wrapper
     .msip_i           (msip_ext),
     .narrow_in_req_i  (axi_slv_req[ClusterIdx[0]+:ExtClusters]),
     .narrow_in_resp_o (axi_slv_rsp[ClusterIdx[0]+:ExtClusters]),
-    .narrow_out_req_o (axi_mst_req),
+    .narrow_out_req_o (axi_mst_req,)
     .narrow_out_resp_i(axi_mst_rsp),
     .wide_out_req_o   (axi_wide_mst_req),
     .wide_out_resp_i  (axi_wide_mst_rsp),
