@@ -293,7 +293,7 @@ packages:
       Git: git@gitlab.tue.nl:es/convolve-private/tuedcim.git
     dependencies: []
   tuemega:
-    revision: 3d6854563a8c194feee0825f3de498ed7dd3fc1a
+    revision: b0b1fd2ba0733edb1ecdf6bdb758c005ee385499
     version: null
     source:
       Git: git@gitlab.tue.nl:es/convolve-private/tuemega.git
