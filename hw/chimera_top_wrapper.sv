@@ -60,14 +60,10 @@ module chimera_top_wrapper
   output apb_req_t                           apb_req_o,
   // PMU  Clusters control signals
   input  logic      [       ExtClusters-1:0] pmu_rst_clusters_ni,
-  input  logic      [       ExtClusters-1:0] pmu_clkgate_en_clusters_i,   // TODO: lleone
   input  logic      [       ExtClusters-1:0] pmu_iso_en_clusters_i,
   output logic      [       ExtClusters-1:0] pmu_iso_ack_clusters_o,
   // PMU  Memory Island control signals
-  input  logic      [MemIslNumWideBanks-1:0] pmu_rst_memisland_ni,
-  input  logic      [MemIslNumWideBanks-1:0] pmu_clkgate_en_memisland_i,  // TODO: lleone
-  input  logic      [MemIslNumWideBanks-1:0] pmu_iso_en_memisland_i,
-  output logic      [MemIslNumWideBanks-1:0] pmu_iso_ack_memisland_o
+  input  logic      [MemIslNumWideBanks-1:0] pmu_rst_memisland_ni
 
 
 );
