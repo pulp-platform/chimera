@@ -19,7 +19,7 @@ dependencies:
   apb:                      { git: "https://github.com/pulp-platform/apb.git",                version: 0.2.4          }
   TUEDCIM:                  { git: "git@gitlab.tue.nl:es/convolve-private/tuedcim.git",           rev: 10102024}
   TUEMEGA:                  { git: "git@gitlab.tue.nl:es/convolve-private/tuemega.git",           rev: 27082024}
-  TUDDCIM:                  { git: "git@gitlab.tue.nl:es/convolve-private/tuddcim.git",           rev: 11102024-2}
+  TUDDCIM:                  { git: "git@gitlab.tue.nl:es/convolve-private/tuddcim.git",           rev: 11102024-3}
   KULCLUSTER:               { git: "git@gitlab.tue.nl:es/convolve-private/kulcluster.git",        rev: 27082024}
   ETHCluster:               { git: "git@gitlab.tue.nl:es/convolve-private/ethcluster.git",        rev: 8ab985c}
 
