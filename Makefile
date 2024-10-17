@@ -14,6 +14,7 @@ VERIBLE_VERILOG_FORMAT ?= $(CHIM_UTILS_DIR)/verible-verilog/verible-verilog-form
 CHS_ROOT    ?= $(shell $(BENDER) path cheshire)
 SNITCH_ROOT ?= $(shell $(BENDER) path snitch_cluster)
 IDMA_ROOT   ?= $(shell $(BENDER) path idma)
+HYPERB_ROOT ?= $(shell $(BENDER) path hyperbus)
 
 CHS_XLEN ?= 32
 
