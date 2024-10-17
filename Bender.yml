@@ -21,7 +21,7 @@ dependencies:
   TUEMEGA:                  { git: "git@gitlab.tue.nl:es/convolve-private/tuemega.git",           rev: 11102024}
   TUDDCIM:                  { git: "git@gitlab.tue.nl:es/convolve-private/tuddcim.git",           rev: 11102024-6}
   KULCLUSTER:               { git: "git@gitlab.tue.nl:es/convolve-private/kulcluster.git",        rev: 17102024}
-  ETHCluster:               { git: "git@gitlab.tue.nl:es/convolve-private/ethcluster.git",        rev: 17102024}
+  ETHCluster:               { git: "git@gitlab.tue.nl:es/convolve-private/ethcluster.git",        rev: 17102024-2}
 
 export_include_dirs:
   - hw/include
