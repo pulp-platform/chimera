@@ -59,8 +59,8 @@ packages:
     - common_cells
     - common_verification
   axi_rt:
-    revision: d5f857e74d0a5db4e4a2cc3652ca4f40f29a1484
-    version: 0.0.0-alpha.8
+    revision: 641ea950e24722af747033f2ab85f0e48ea8d7f8
+    version: 0.0.0-alpha.9
     source:
       Git: https://github.com/pulp-platform/axi_rt.git
     dependencies:
@@ -168,14 +168,6 @@ packages:
     source:
       Git: https://github.com/pulp-platform/common_verification.git
     dependencies: []
-  cv32e40p:
-    revision: 4c9a3ad07da429c7b9e7f325732e545a7dffecd6
-    version: null
-    source:
-      Git: https://github.com/pulp-platform/cv32e40p.git
-    dependencies:
-    - fpnew
-    - tech_cells_generic
   cva6:
     revision: 630bd959c9cc69a35d461a2abc205310d2edacf8
     version: null
@@ -209,13 +201,13 @@ packages:
     dependencies:
     - common_cells
   fpu_interco:
-    revision: 66b4084117546d5b748c30b5500769805f489d2f
+    revision: 4aec4b68424947b0c4cf25fd7c4b907cb9ec3dfa
     version: null
     source:
       Git: https://github.com/pulp-platform/fpu_interco.git
     dependencies:
-    - cv32e40p
     - fpnew
+    - riscv
   hci:
     revision: df0540ad43ae3b693c040587a50477558f183374
     version: null
@@ -266,7 +258,7 @@ packages:
       Git: https://github.com/pulp-platform/icache-intc.git
     dependencies: []
   idma:
-    revision: 9edf489f57389dce5e71252c79e337f527d3aded
+    revision: ab41a50b2e6dfbfbff9a20537030f6fcfb9cde15
     version: null
     source:
       Git: https://github.com/pulp-platform/iDMA.git
@@ -345,10 +337,10 @@ packages:
     dependencies:
     - axi_slice
   pulp_cluster:
-    revision: null
+    revision: 77d8e67b1527109b63110d7c386ec01293cac4e6
     version: null
     source:
-      Path: working_dir/pulp_cluster
+      Git: git@iis-git.ee.ethz.ch:pulpissimov2/pulp-cluster-pv2.git
     dependencies:
     - axi
     - axi2mem
@@ -368,7 +360,7 @@ packages:
     - obi
     - per2axi
     - register_interface
-    - riscv-nn
+    - riscv
     - scm
     - tech_cells_generic
     - timer_unit
@@ -382,6 +374,14 @@ packages:
     - axi
     - common_cells
     - common_verification
+  riscv:
+    revision: 53b053cd0be8dae25caa24bd57824e81cf87ba21
+    version: null
+    source:
+      Git: git@iis-git.ee.ethz.ch:pulpissimov2/riscv-nn.git
+    dependencies:
+    - fpnew
+    - tech_cells_generic
   riscv-dbg:
     revision: 358f90110220adf7a083f8b65d157e836d706236
     version: 0.8.1
@@ -389,14 +389,6 @@ packages:
       Git: https://github.com/pulp-platform/riscv-dbg.git
     dependencies:
     - common_cells
-    - tech_cells_generic
-  riscv-nn:
-    revision: d0eefce98e259ad678d4863e2a8d8adc1fb4c4ea
-    version: null
-    source:
-      Git: git@iis-git.ee.ethz.ch:pulpissimov2/riscv-nn.git
-    dependencies:
-    - fpnew
     - tech_cells_generic
   scm:
     revision: 998466d2a3c2d7d572e43d2666d93c4f767d8d60

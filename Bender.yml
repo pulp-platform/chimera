@@ -18,7 +18,7 @@ dependencies:
   idma:                     { git: "https://github.com/pulp-platform/iDMA.git",               rev: 9edf489f57389dce5e71252c79e337f527d3aded}
   memory_island:            { git: "https://github.com/pulp-platform/memory_island.git",          rev: 64828cb7a9ccc1f1656ec92d06129072f445c319 } # main branch
   apb:                      { git: "https://github.com/pulp-platform/apb.git",                version: 0.2.4          }
-  pulp_cluster:             { git: "git@iis-git.ee.ethz.ch:pulpissimov2/pulp-cluster-pv2.git", rev: 6db090848be7b94f69a20eb39533ec1b24c0d5e1 }
+  pulp_cluster:             { git: "git@iis-git.ee.ethz.ch:pulpissimov2/pulp-cluster-pv2.git", rev: 77d8e67b1527109b63110d7c386ec01293cac4e6 } # branch smazzola/chimera
 
 export_include_dirs:
   - hw/include
@@ -39,6 +39,10 @@ sources:
   - hw/chimera_clu_domain.sv
   - hw/chimera_memisland_domain.sv
   - hw/chimera_top_wrapper.sv
+
+  - target: pulp_cluster
+    files:
+      - hw/include/pulp_interfaces.sv
 
   - target: any(simulation, test)
     files:
