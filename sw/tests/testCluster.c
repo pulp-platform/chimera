@@ -26,11 +26,15 @@ int main() {
     clusterMemPtr = (volatile int32_t *)CLUSTERMEMORYSTART;
     for (int i = 0; i < NUMCLUSTERS; i++) {
         result = *(clusterMemPtr);
-        ret += (result == TESTVAL);
+        if (result == TESTVAL) {
+            ret += 1;
+        } else {
+            ret += 1 << (NUMCLUSTERS + i);
+        }
         clusterMemPtr += CLUSTERDISTANCE / 4;
     }
 
-    if (ret == NUMCLUSTERS) {
+    if ((ret & ((1 << NUMCLUSTERS) - 1)) == NUMCLUSTERS) {
         return 0;
     }
 
