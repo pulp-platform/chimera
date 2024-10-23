@@ -150,7 +150,7 @@ packages:
     - fpnew
     - tech_cells_generic
   ethcluster:
-    revision: 8ab985c7965ec0c3c4dd7e99227439d23804a157
+    revision: 49adaab00aa652adf8601e296b13dedc3f3b6197
     version: null
     source:
       Git: git@gitlab.tue.nl:es/convolve-private/ethcluster.git
@@ -202,7 +202,7 @@ packages:
     - common_cells
     - register_interface
   kulcluster:
-    revision: e348b6275c79e1b20510f2ee6d497a49fb2699b6
+    revision: 6da824eb38f6db629cdbca0d7727fec8be545d6b
     version: null
     source:
       Git: git@gitlab.tue.nl:es/convolve-private/kulcluster.git
