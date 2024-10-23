@@ -61,18 +61,15 @@ package chimera_pkg;
     int unsigned   IsolateClusters;
   } chimera_cfg_t;
 
-  // SoC Config
+  // -------------------------------
+  // | External Register Interface |
+  // -------------------------------
   localparam bit SnitchBootROM = 1;
   localparam bit TopLevelCfgRegs = 1;
   localparam bit ExtCfgRegs = 1;
 
-  // -------------------------------
-  // | External Register Interface |
-  // -------------------------------
-
   // SCHEREMO: Shared Snitch bootrom, one clock gate per cluster, External regs (PADs, FLLs etc...)
   localparam int ExtRegNum = SnitchBootROM + TopLevelCfgRegs + ExtCfgRegs;
-  localparam int ClusterDataWidth = 64;
 
   localparam byte_bt SnitchBootROMIdx = 8'h0;
   localparam doub_bt SnitchBootROMRegionStart = 64'h3000_0000;
@@ -104,7 +101,8 @@ ExtClusters
     64'h40A0_0000, 64'h4080_0000, 64'h4060_0000, 64'h4040_0000, 64'h4020_0000
   };
 
-  localparam aw_bt ClusterNarrowAxiMstIdWidth = 1;
+  localparam int ClusterDataWidth = 64;
+  localparam aw_bt ClusterNarrowAxiMstIdWidth = 2;
 
   // Parameters for Memory Island
   localparam int MemIslandIdx = ClusterIdx[ExtClusters-1] + 1;
