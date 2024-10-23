@@ -315,7 +315,7 @@ module chimera_cluster
   ////////////////////////////////////////////////////////////////////////
 
   pulp_cluster  #(
-    .NB_CORES                     ( 8                ),              // snitch_cluster had 9 because 1 was DMA
+    .NB_CORES                     ( 8                ),
     .HWPE_WIDTH_FAC               ( 9                        ),     // ???
     .NB_DMA_PORTS                 ( 2                 ),             // ???
     .N_HWPE                       ( 1                        ),      // ???
@@ -346,11 +346,11 @@ module chimera_cluster
     .AXI_ID_OUT_WIDTH             ( ClusterNarrowIdWidthOut                    ),
     .AXI_DMA_ID_OUT_WIDTH         ( WideMasterIdWidth                    ),
     .LOG_DEPTH                    ( LOG_DEPTH ),
-    .DATA_WIDTH                   ( 32                       ),   // ???
-    .ADDR_WIDTH                   ( 32                       ),
-    .LOG_CLUSTER                  ( 3                        ),
-    .PE_ROUTING_LSB               ( 10                       ),
-    .EVNT_WIDTH                   ( 8                        ),
+    .DATA_WIDTH                   ( 32 ), // ???
+    .ADDR_WIDTH                   ( 32 ),  // ???
+    .LOG_CLUSTER                  ( 3                        ), // ???
+    .PE_ROUTING_LSB               ( 10                       ), // ???
+    .EVNT_WIDTH                   ( 8                        ), // ???
     .IDMA                         ( 1'b1                     ),
     .DMA_USE_HWPE_PORT            ( 1'b1                     )
   ) cluster_i (
@@ -358,24 +358,24 @@ module chimera_cluster
       .rst_ni                      ( rst_ni                               ),
       .ref_clk_i                   ( clu_clk_i                                ),
 
-      .pmu_mem_pwdn_i              ( 1'b0                                 ),
+      .pmu_mem_pwdn_i              ( 1'b0                                 ), // ???
 
-      .base_addr_i                 ( '0                                   ),
+      .base_addr_i                 ( '0                                   ), // ???
 
-      .dma_pe_evt_ack_i            ( '1                                   ),
-      .dma_pe_evt_valid_o          (                                      ),
+      .dma_pe_evt_ack_i            ( '1                                   ), // ???
+      .dma_pe_evt_valid_o          (                                      ), // ???
 
-      .dma_pe_irq_ack_i            ( 1'b1                                 ),
-      .dma_pe_irq_valid_o          (                                      ),
+      .dma_pe_irq_ack_i            ( 1'b1                                 ), // ???
+      .dma_pe_irq_valid_o          (                                      ), // ???
 
-      .dbg_irq_valid_i             ( '0                                   ),
+      .dbg_irq_valid_i             ( '0                                   ), // ???
 
-      .pf_evt_ack_i                ( 1'b1                                 ),
-      .pf_evt_valid_o              (                                      ),
+      .pf_evt_ack_i                ( 1'b1                                 ), // ???
+      .pf_evt_valid_o              (                                      ), // ???
 
-      .async_cluster_events_wptr_i ( '0                                   ),
-      .async_cluster_events_rptr_o (                                      ),
-      .async_cluster_events_data_i ( '0                                   ),
+      .async_cluster_events_wptr_i ( '0                                   ), // ???
+      .async_cluster_events_rptr_o (                                      ), // ???
+      .async_cluster_events_data_i ( '0                                   ), // ???
 
       .en_sa_boot_i                ( s_cluster_en_sa_boot                 ), // ??? fix or disconnect
       .test_mode_i                 ( 1'b0                                 ), // ??? fix or disconnect
