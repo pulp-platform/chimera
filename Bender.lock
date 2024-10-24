@@ -15,8 +15,8 @@ packages:
     - apb
     - register_interface
   axi:
-    revision: 587355b77b8ce94dcd600efbd5d5bd118ff913a7
-    version: 0.39.4
+    revision: 9402c8a9ce0a7b5253c3c29e788612d771e8b5d6
+    version: 0.39.3
     source:
       Git: https://github.com/pulp-platform/axi.git
     dependencies:
@@ -44,8 +44,8 @@ packages:
     - common_cells
     - common_verification
   axi_rt:
-    revision: d5f857e74d0a5db4e4a2cc3652ca4f40f29a1484
-    version: 0.0.0-alpha.8
+    revision: 641ea950e24722af747033f2ab85f0e48ea8d7f8
+    version: 0.0.0-alpha.9
     source:
       Git: https://github.com/pulp-platform/axi_rt.git
     dependencies:
@@ -69,7 +69,7 @@ packages:
     - common_cells
     - register_interface
   cheshire:
-    revision: f9b9a1066143b8319c427bd790ab4729321b9f20
+    revision: 586cb0225be5c57f5ffcf67bd490763efd9b4d24
     version: null
     source:
       Git: https://github.com/pulp-platform/cheshire.git
@@ -186,10 +186,10 @@ packages:
     - common_cells
     - register_interface
   memory_island:
-    revision: 64828cb7a9ccc1f1656ec92d06129072f445c319
+    revision: 68c31664bfdba02b74bbaf73889fb306e99fe30b
     version: null
     source:
-      Git: https://github.com/pulp-platform/memory_island.git
+      Git: https://github.com/Lore0599/memory_island
     dependencies:
     - axi
     - cluster_interconnect
