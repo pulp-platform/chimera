@@ -257,7 +257,7 @@ module chimera_cluster_adapter #(
     .AxiMstPortMaxTxnsPerId(16),                              // TODO: Tune this
 
     .AxiAddrWidth(AddrWidth),
-    .AxiDataWidth(WideDataWidth),
+    .AxiDataWidth(NarrowDataWidth),
     .AxiUserWidth(UserWidth),
 
     .slv_req_t (narrow_in_req_t),
