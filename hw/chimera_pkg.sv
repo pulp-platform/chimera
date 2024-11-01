@@ -130,6 +130,9 @@ ExtClusters
   //TODO(smazzola): Correct size of HyperRAM?
   localparam doub_bt HyperbusRegionEnd = HyperbusRegionStart + 64'h1000_0000;
 
+  localparam int unsigned HypNumPhys  = 1;
+  localparam int unsigned HypNumChips = 2;
+
   localparam int unsigned LogDepth = 3;
   localparam int unsigned SyncStages = 3;
 

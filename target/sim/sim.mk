@@ -24,11 +24,9 @@ $(CHIM_SIM_DIR)/models/s27ks0641/s27ks0641.sv:
 # Defines for hyperram model preload at time 0
 HYP_USER_PRELOAD      ?= 0
 HYP0_PRELOAD_MEM_FILE ?= ""
-HYP1_PRELOAD_MEM_FILE ?= ""
 
 CHIM_VLOG_ARGS += +define+HYP_USER_PRELOAD="$(HYP_USER_PRELOAD)"
 CHIM_VLOG_ARGS += +define+HYP0_PRELOAD_MEM_FILE=\"$(HYP0_PRELOAD_MEM_FILE)\"
-CHIM_VLOG_ARGS += +define+HYP1_PRELOAD_MEM_FILE=\"$(HYP1_PRELOAD_MEM_FILE)\"
 # this path should be kept relative to the vsim directory to avoid CI issues:
 # an absolute path produce inter-CI-runner file accesses
 CHIM_VLOG_ARGS += +define+PATH_TO_HYP_SDF=\"../models/s27ks0641/s27ks0641.sdf\"

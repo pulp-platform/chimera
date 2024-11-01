@@ -82,9 +82,7 @@ module fixture_chimera_soc #(
   wire  [HypNumPhys-1:0][            7:0] pad_hyper_dq;
 
   chimera_top_wrapper #(
-    .SelectedCfg(SelectedCfg),
-    .HypNumPhys (HypNumPhys),
-    .HypNumChips(HypNumChips)
+    .SelectedCfg(SelectedCfg)
   ) dut (
     .soc_clk_i                (soc_clk),
     .clu_clk_i                (clu_clk),
@@ -163,7 +161,6 @@ module fixture_chimera_soc #(
     // Mem files for hyperram model. The argument is considered only if HypUserPreload==1 in the
     // memory model.
     .Hyp0UserPreloadMemFile(`HYP0_PRELOAD_MEM_FILE),
-    .Hyp1UserPreloadMemFile(`HYP1_PRELOAD_MEM_FILE),
     .axi_ext_mst_req_t     (axi_mst_req_t),
     .axi_ext_mst_rsp_t     (axi_mst_rsp_t)
   ) vip (

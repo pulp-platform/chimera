@@ -11,11 +11,11 @@
 
 module vip_chimera_soc
   import cheshire_pkg::*;
+  import chimera_pkg::HypNumPhys;
+  import chimera_pkg::HypNumChips;
 #(
   // DUT (must be set)
   parameter cheshire_cfg_t DutCfg      = '0,
-  parameter int unsigned   HypNumPhys  = 2,
-  parameter int unsigned   HypNumChips = 2,
 
   parameter type         axi_ext_mst_req_t      = logic,
   parameter type         axi_ext_mst_rsp_t      = logic,
@@ -43,7 +43,6 @@ module vip_chimera_soc
   // HyperRAM (hardcoded to HypNumPhys = 2)
   parameter int unsigned HypUserPreload         = 0,
   parameter string       Hyp0UserPreloadMemFile = "",
-  parameter string       Hyp1UserPreloadMemFile = "",
   // Derived Parameters;  *do not override*
   parameter int unsigned AxiStrbWidth           = DutCfg.AxiDataWidth / 8,
   parameter int unsigned AxiStrbBits            = $clog2(DutCfg.AxiDataWidth / 8)
@@ -572,8 +571,7 @@ module vip_chimera_soc
   //////////////
 
   localparam string HypUserPreloadMemFiles[HypNumPhys] = '{
-      Hyp0UserPreloadMemFile,
-      Hyp1UserPreloadMemFile
+      Hyp0UserPreloadMemFile
   };
 
   for (genvar i = 0; i < HypNumPhys; i++) begin : hyperrams
@@ -621,7 +619,7 @@ endmodule
 module vip_cheshire_soc_tristate
   import cheshire_pkg::*;
 #(
-  parameter int unsigned HypNumPhys  = 2,
+  parameter int unsigned HypNumPhys  = 1,
   parameter int unsigned HypNumChips = 2
 ) (
   // I2C pad IO

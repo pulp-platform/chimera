@@ -11,9 +11,7 @@ module chimera_top_wrapper
   import chimera_pkg::*;
   import chimera_reg_pkg::*;
 #(
-  parameter int unsigned SelectedCfg = 0,
-  parameter int unsigned HypNumPhys  = 2,
-  parameter int unsigned HypNumChips = 2
+  parameter int unsigned SelectedCfg = 0
 ) (
   input  logic                                         soc_clk_i,
   input  logic                                         clu_clk_i,
