@@ -128,7 +128,7 @@ ExtClusters
   localparam byte_bt HyperbusIdx = MemIslandIdx + 1;
   localparam doub_bt HyperbusRegionStart = 64'h5000_0000;
   //TODO(smazzola): Correct size of HyperRAM?
-  localparam doub_bt HyperbusRegionEnd = HyperbusRegionStart + 64'h0800_0000;
+  localparam doub_bt HyperbusRegionEnd = HyperbusRegionStart + 64'h1000_0000;
 
   localparam int unsigned LogDepth = 3;
   localparam int unsigned SyncStages = 3;

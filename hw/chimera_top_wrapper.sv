@@ -497,7 +497,7 @@ module chimera_top_wrapper
     .RxFifoLogDepth  (32'd2),
     .TxFifoLogDepth  (32'd2),
     .RstChipBase     (ChsCfg.LlcOutRegionStart),
-    .RstChipSpace    (HypNumPhys * HypNumChips * 'h800_0000),
+    .RstChipSpace    (HyperbusRegionEnd - HyperbusRegionStart),
     .PhyStartupCycles(300 * 200),
     .AxiLogDepth     (LogDepth),
     .AxiSlaveArWidth (ChimeraAxiSlvArWidth),
