@@ -4,6 +4,7 @@ transcript
 .venv
 cheshire
 idma
+hyperbus
 
 # EMACS
 
@@ -31,6 +32,7 @@ utils/verible-verilog
 
 # SIM
 
+target/sim/models
 target/sim/vsim/work
 target/sim/vsim/transcript
 target/sim/vsim/*.do

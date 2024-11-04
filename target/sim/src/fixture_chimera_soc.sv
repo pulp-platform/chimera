@@ -18,6 +18,7 @@ module fixture_chimera_soc #(
   import cheshire_pkg::*;
   import tb_cheshire_pkg::*;
   import chimera_pkg::*;
+  import tb_chimera_pkg::*;
 
   localparam chimera_cfg_t DutCfg = ChimeraCfg[SelectedCfg];
   localparam cheshire_cfg_t ChsCfg = DutCfg.ChsCfg;
@@ -29,36 +30,56 @@ module fixture_chimera_soc #(
   //  DUT  //
   ///////////
 
-  logic                 soc_clk;
-  logic                 clu_clk;
-  logic                 rst_n;
-  logic                 test_mode;
-  logic [          1:0] boot_mode;
-  logic                 rtc;
+  logic                                   soc_clk;
+  logic                                   clu_clk;
+  logic                                   rst_n;
+  logic                                   test_mode;
+  logic [           1:0]                  boot_mode;
+  logic                                   rtc;
 
-  logic                 jtag_tck;
-  logic                 jtag_trst_n;
-  logic                 jtag_tms;
-  logic                 jtag_tdi;
-  logic                 jtag_tdo;
+  logic                                   jtag_tck;
+  logic                                   jtag_trst_n;
+  logic                                   jtag_tms;
+  logic                                   jtag_tdi;
+  logic                                   jtag_tdo;
 
-  logic                 uart_tx;
-  logic                 uart_rx;
+  logic                                   uart_tx;
+  logic                                   uart_rx;
 
-  logic                 i2c_sda_o;
-  logic                 i2c_sda_i;
-  logic                 i2c_sda_en;
-  logic                 i2c_scl_o;
-  logic                 i2c_scl_i;
-  logic                 i2c_scl_en;
+  logic                                   i2c_sda_o;
+  logic                                   i2c_sda_i;
+  logic                                   i2c_sda_en;
+  logic                                   i2c_scl_o;
+  logic                                   i2c_scl_i;
+  logic                                   i2c_scl_en;
 
-  logic                 spih_sck_o;
-  logic                 spih_sck_en;
-  logic [SpihNumCs-1:0] spih_csb_o;
-  logic [SpihNumCs-1:0] spih_csb_en;
-  logic [          3:0] spih_sd_o;
-  logic [          3:0] spih_sd_i;
-  logic [          3:0] spih_sd_en;
+  logic                                   spih_sck_o;
+  logic                                   spih_sck_en;
+  logic [ SpihNumCs-1:0]                  spih_csb_o;
+  logic [ SpihNumCs-1:0]                  spih_csb_en;
+  logic [           3:0]                  spih_sd_o;
+  logic [           3:0]                  spih_sd_i;
+  logic [           3:0]                  spih_sd_en;
+
+  logic [HypNumPhys-1:0][HypNumChips-1:0] hyper_cs_no;
+  logic [HypNumPhys-1:0]                  hyper_ck_i;
+  logic [HypNumPhys-1:0]                  hyper_ck_o;
+  logic [HypNumPhys-1:0]                  hyper_ck_ni;
+  logic [HypNumPhys-1:0]                  hyper_ck_no;
+  logic [HypNumPhys-1:0]                  hyper_rwds_o;
+  logic [HypNumPhys-1:0]                  hyper_rwds_i;
+  logic [HypNumPhys-1:0]                  hyper_rwds_oe_o;
+  logic [HypNumPhys-1:0][            7:0] hyper_dq_i;
+  logic [HypNumPhys-1:0][            7:0] hyper_dq_o;
+  logic [HypNumPhys-1:0]                  hyper_dq_oe_o;
+  logic [HypNumPhys-1:0]                  hyper_reset_no;
+
+  wire  [HypNumPhys-1:0][HypNumChips-1:0] pad_hyper_csn;
+  wire  [HypNumPhys-1:0]                  pad_hyper_ck;
+  wire  [HypNumPhys-1:0]                  pad_hyper_ckn;
+  wire  [HypNumPhys-1:0]                  pad_hyper_rwds;
+  wire  [HypNumPhys-1:0]                  pad_hyper_resetn;
+  wire  [HypNumPhys-1:0][            7:0] pad_hyper_dq;
 
   chimera_top_wrapper #(
     .SelectedCfg(SelectedCfg)
@@ -99,6 +120,16 @@ module fixture_chimera_soc #(
     .gpio_i                   ('0),
     .gpio_o                   (),
     .gpio_en_o                (),
+    .hyper_cs_no              (hyper_cs_no),
+    .hyper_ck_o               (hyper_ck_o),
+    .hyper_ck_no              (hyper_ck_no),
+    .hyper_rwds_o             (hyper_rwds_o),
+    .hyper_rwds_i             (hyper_rwds_i),
+    .hyper_rwds_oe_o          (hyper_rwds_oe_o),
+    .hyper_dq_i               (hyper_dq_i),
+    .hyper_dq_o               (hyper_dq_o),
+    .hyper_dq_oe_o            (hyper_dq_oe_o),
+    .hyper_reset_no           (hyper_reset_no),
     .pmu_rst_clusters_ni      ({ExtClusters{rst_n}}),
     .pmu_clkgate_en_clusters_i(),
     .pmu_iso_en_clusters_i    ('0),                    // Never Isolate
@@ -123,9 +154,15 @@ module fixture_chimera_soc #(
   ///////////
 
   vip_chimera_soc #(
-    .DutCfg           (ChsCfg),
-    .axi_ext_mst_req_t(axi_mst_req_t),
-    .axi_ext_mst_rsp_t(axi_mst_rsp_t)
+    .DutCfg                (ChsCfg),
+    // Determine whether we preload the hyperram model or not User preload. If 0, the memory model
+    // is not preloaded at time 0.
+    .HypUserPreload        (`HYP_USER_PRELOAD),
+    // Mem files for hyperram model. The argument is considered only if HypUserPreload==1 in the
+    // memory model.
+    .Hyp0UserPreloadMemFile(`HYP0_PRELOAD_MEM_FILE),
+    .axi_ext_mst_req_t     (axi_mst_req_t),
+    .axi_ext_mst_rsp_t     (axi_mst_rsp_t)
   ) vip (
     .*
   );

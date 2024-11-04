@@ -4,7 +4,7 @@
 //
 // Moritz Scherer <scheremo@iis.ee.ethz.ch>
 // Lorenzo Leone <lleone@iis.ee.ethz.ch>
-
+// Arpan Prasad <prasadar@iis.ee.ethz.ch>
 
 module chimera_top_wrapper
   import cheshire_pkg::*;
@@ -13,56 +13,67 @@ module chimera_top_wrapper
 #(
   parameter int unsigned SelectedCfg = 0
 ) (
-  input  logic                        soc_clk_i,
-  input  logic                        clu_clk_i,
-  input  logic                        rst_ni,
-  input  logic                        test_mode_i,
-  input  logic      [            1:0] boot_mode_i,
-  input  logic                        rtc_i,
+  input  logic                                         soc_clk_i,
+  input  logic                                         clu_clk_i,
+  input  logic                                         rst_ni,
+  input  logic                                         test_mode_i,
+  input  logic      [            1:0]                  boot_mode_i,
+  input  logic                                         rtc_i,
   // JTAG interface
-  input  logic                        jtag_tck_i,
-  input  logic                        jtag_trst_ni,
-  input  logic                        jtag_tms_i,
-  input  logic                        jtag_tdi_i,
-  output logic                        jtag_tdo_o,
-  output logic                        jtag_tdo_oe_o,
+  input  logic                                         jtag_tck_i,
+  input  logic                                         jtag_trst_ni,
+  input  logic                                         jtag_tms_i,
+  input  logic                                         jtag_tdi_i,
+  output logic                                         jtag_tdo_o,
+  output logic                                         jtag_tdo_oe_o,
   // UART interface
-  output logic                        uart_tx_o,
-  input  logic                        uart_rx_i,
+  output logic                                         uart_tx_o,
+  input  logic                                         uart_rx_i,
   // UART modem flow control
-  output logic                        uart_rts_no,
-  output logic                        uart_dtr_no,
-  input  logic                        uart_cts_ni,
-  input  logic                        uart_dsr_ni,
-  input  logic                        uart_dcd_ni,
-  input  logic                        uart_rin_ni,
+  output logic                                         uart_rts_no,
+  output logic                                         uart_dtr_no,
+  input  logic                                         uart_cts_ni,
+  input  logic                                         uart_dsr_ni,
+  input  logic                                         uart_dcd_ni,
+  input  logic                                         uart_rin_ni,
   // I2C interface
-  output logic                        i2c_sda_o,
-  input  logic                        i2c_sda_i,
-  output logic                        i2c_sda_en_o,
-  output logic                        i2c_scl_o,
-  input  logic                        i2c_scl_i,
-  output logic                        i2c_scl_en_o,
+  output logic                                         i2c_sda_o,
+  input  logic                                         i2c_sda_i,
+  output logic                                         i2c_sda_en_o,
+  output logic                                         i2c_scl_o,
+  input  logic                                         i2c_scl_i,
+  output logic                                         i2c_scl_en_o,
   // SPI host interface
-  output logic                        spih_sck_o,
-  output logic                        spih_sck_en_o,
-  output logic      [  SpihNumCs-1:0] spih_csb_o,
-  output logic      [  SpihNumCs-1:0] spih_csb_en_o,
-  output logic      [            3:0] spih_sd_o,
-  output logic      [            3:0] spih_sd_en_o,
-  input  logic      [            3:0] spih_sd_i,
+  output logic                                         spih_sck_o,
+  output logic                                         spih_sck_en_o,
+  output logic      [  SpihNumCs-1:0]                  spih_csb_o,
+  output logic      [  SpihNumCs-1:0]                  spih_csb_en_o,
+  output logic      [            3:0]                  spih_sd_o,
+  output logic      [            3:0]                  spih_sd_en_o,
+  input  logic      [            3:0]                  spih_sd_i,
   // GPIO interface
-  input  logic      [           31:0] gpio_i,
-  output logic      [           31:0] gpio_o,
-  output logic      [           31:0] gpio_en_o,
+  input  logic      [           31:0]                  gpio_i,
+  output logic      [           31:0]                  gpio_o,
+  output logic      [           31:0]                  gpio_en_o,
+  // Hyperbus interface
+  output logic      [ HypNumPhys-1:0][HypNumChips-1:0] hyper_cs_no,
+  output logic      [ HypNumPhys-1:0]                  hyper_ck_o,
+  output logic      [ HypNumPhys-1:0]                  hyper_ck_no,
+  output logic      [ HypNumPhys-1:0]                  hyper_rwds_o,
+  input  logic      [ HypNumPhys-1:0]                  hyper_rwds_i,
+  output logic      [ HypNumPhys-1:0]                  hyper_rwds_oe_o,
+  input  logic      [ HypNumPhys-1:0][            7:0] hyper_dq_i,
+  output logic      [ HypNumPhys-1:0][            7:0] hyper_dq_o,
+  output logic      [ HypNumPhys-1:0]                  hyper_dq_oe_o,
+  output logic      [ HypNumPhys-1:0]                  hyper_reset_no,
   // APB interface
-  input  apb_resp_t                   apb_rsp_i,
-  output apb_req_t                    apb_req_o,
+  input  apb_resp_t                                    apb_rsp_i,
+  output apb_req_t                                     apb_req_o,
   // PMU  Clusters control signals
-  input  logic      [ExtClusters-1:0] pmu_rst_clusters_ni,
-  input  logic      [ExtClusters-1:0] pmu_clkgate_en_clusters_i,  // TODO: lleone
-  input  logic      [ExtClusters-1:0] pmu_iso_en_clusters_i,
-  output logic      [ExtClusters-1:0] pmu_iso_ack_clusters_o
+  input  logic      [ExtClusters-1:0]                  pmu_rst_clusters_ni,
+  input  logic      [ExtClusters-1:0]                  pmu_clkgate_en_clusters_i,  // TODO: lleone
+  input  logic      [ExtClusters-1:0]                  pmu_iso_en_clusters_i,
+  output logic      [ExtClusters-1:0]                  pmu_iso_ack_clusters_o
 
 );
 
@@ -352,13 +363,17 @@ module chimera_top_wrapper
     .isolate_o        (pmu_iso_ack_clusters_o)
   );
 
+  // Generate indices and get maps for all ports
+  localparam axi_in_t AxiIn = gen_axi_in(ChsCfg);
+  localparam axi_out_t AxiOut = gen_axi_out(ChsCfg);
+
   // ---------------------------------------
   // |          Memory Island              |
   // ---------------------------------------
 
   chimera_memisland_domain #(
     .Cfg             (Cfg),
-    .NumWideMst      (Cfg.ChsCfg.AxiExtNumWideMst),
+    .NumWideMst      (ChsCfg.AxiExtNumWideMst),
     .axi_narrow_req_t(axi_slv_req_t),
     .axi_narrow_rsp_t(axi_slv_rsp_t),
     .axi_wide_req_t  (axi_wide_mst_req_t),
@@ -372,4 +387,160 @@ module chimera_top_wrapper
     .axi_wide_rsp_o  (axi_wide_mst_rsp)
   );
 
+  localparam int unsigned AxiSlvIdWidth = ChsCfg.AxiMstIdWidth + $clog2(AxiIn.num_in);
+
+  // Slave CDC parameters
+  localparam int unsigned ChimeraAxiSlvAwWidth = (2 ** LogDepth) * axi_pkg::aw_width(
+      ChsCfg.AddrWidth, AxiSlvIdWidth, ChsCfg.AxiUserWidth
+  );
+  localparam int unsigned ChimeraAxiSlvWWidth = (2 ** LogDepth) * axi_pkg::w_width(
+      ChsCfg.AxiDataWidth, ChsCfg.AxiUserWidth
+  );
+  localparam int unsigned ChimeraAxiSlvBWidth = (2 ** LogDepth) * axi_pkg::b_width(
+      AxiSlvIdWidth, ChsCfg.AxiUserWidth
+  );
+  localparam int unsigned ChimeraAxiSlvArWidth = (2 ** LogDepth) * axi_pkg::ar_width(
+      ChsCfg.AddrWidth, AxiSlvIdWidth, ChsCfg.AxiUserWidth
+  );
+  localparam int unsigned ChimeraAxiSlvRWidth = (2 ** LogDepth) * axi_pkg::r_width(
+      ChsCfg.AxiDataWidth, AxiSlvIdWidth, ChsCfg.AxiUserWidth
+  );
+
+  // Master CDC parameters
+  localparam int unsigned ChimeraAxiMstAwWidth = (2 ** LogDepth) * axi_pkg::aw_width(
+      ChsCfg.AddrWidth, ChsCfg.AxiMstIdWidth, ChsCfg.AxiUserWidth
+  );
+  localparam int unsigned ChimeraAxiMstWWidth = (2 ** LogDepth) * axi_pkg::w_width(
+      ChsCfg.AxiDataWidth, ChsCfg.AxiUserWidth
+  );
+  localparam int unsigned ChimeraAxiMstBWidth = (2 ** LogDepth) * axi_pkg::b_width(
+      ChsCfg.AxiMstIdWidth, ChsCfg.AxiUserWidth
+  );
+  localparam int unsigned ChimeraAxiMstArWidth = (2 ** LogDepth) * axi_pkg::ar_width(
+      ChsCfg.AddrWidth, ChsCfg.AxiMstIdWidth, ChsCfg.AxiUserWidth
+  );
+  localparam int unsigned ChimeraAxiMstRWidth = (2 ** LogDepth) * axi_pkg::r_width(
+      ChsCfg.AxiDataWidth, ChsCfg.AxiMstIdWidth, ChsCfg.AxiUserWidth
+  );
+
+  logic [ChimeraAxiSlvArWidth-1:0] hyper_ar_data;
+  logic [              LogDepth:0] hyper_ar_wptr;
+  logic [              LogDepth:0] hyper_ar_rptr;
+  logic [ChimeraAxiSlvAwWidth-1:0] hyper_aw_data;
+  logic [              LogDepth:0] hyper_aw_wptr;
+  logic [              LogDepth:0] hyper_aw_rptr;
+  logic [ ChimeraAxiSlvBWidth-1:0] hyper_b_data;
+  logic [              LogDepth:0] hyper_b_wptr;
+  logic [              LogDepth:0] hyper_b_rptr;
+  logic [ ChimeraAxiSlvRWidth-1:0] hyper_r_data;
+  logic [              LogDepth:0] hyper_r_wptr;
+  logic [              LogDepth:0] hyper_r_rptr;
+  logic [ ChimeraAxiSlvWWidth-1:0] hyper_w_data;
+  logic [              LogDepth:0] hyper_w_wptr;
+  logic [              LogDepth:0] hyper_w_rptr;
+
+  axi_cdc_src #(
+    .LogDepth  (LogDepth),
+    .SyncStages(SyncStages),
+    .aw_chan_t (axi_slv_aw_chan_t),
+    .w_chan_t  (axi_slv_w_chan_t),
+    .b_chan_t  (axi_slv_b_chan_t),
+    .ar_chan_t (axi_slv_ar_chan_t),
+    .r_chan_t  (axi_slv_r_chan_t),
+    .axi_req_t (axi_slv_req_t),
+    .axi_resp_t(axi_slv_rsp_t)
+  ) hyperbus_slv_cdc_src (
+    // synchronous slave port
+    .src_clk_i                  (soc_clk_i),
+    .src_rst_ni                 (rst_ni),
+    .src_req_i                  (axi_slv_req[HyperbusIdx]),
+    .src_resp_o                 (axi_slv_rsp[HyperbusIdx]),
+    // asynchronous master port
+    .async_data_master_aw_data_o(hyper_aw_data),
+    .async_data_master_aw_wptr_o(hyper_aw_wptr),
+    .async_data_master_aw_rptr_i(hyper_aw_rptr),
+    .async_data_master_w_data_o (hyper_w_data),
+    .async_data_master_w_wptr_o (hyper_w_wptr),
+    .async_data_master_w_rptr_i (hyper_w_rptr),
+    .async_data_master_b_data_i (hyper_b_data),
+    .async_data_master_b_wptr_i (hyper_b_wptr),
+    .async_data_master_b_rptr_o (hyper_b_rptr),
+    .async_data_master_ar_data_o(hyper_ar_data),
+    .async_data_master_ar_wptr_o(hyper_ar_wptr),
+    .async_data_master_ar_rptr_i(hyper_ar_rptr),
+    .async_data_master_r_data_i (hyper_r_data),
+    .async_data_master_r_wptr_i (hyper_r_wptr),
+    .async_data_master_r_rptr_o (hyper_r_rptr)
+  );
+
+  hyperbus_wrap #(
+    .NumChips        (HypNumChips),
+    .NumPhys         (HypNumPhys),
+    .IsClockODelayed (1'b0),
+    .AxiAddrWidth    (ChsCfg.AddrWidth),
+    .AxiDataWidth    (ChsCfg.AxiDataWidth),
+    .AxiIdWidth      (AxiSlvIdWidth),
+    .AxiUserWidth    (ChsCfg.AxiUserWidth),
+    .axi_req_t       (axi_slv_req_t),
+    .axi_rsp_t       (axi_slv_rsp_t),
+    .axi_w_chan_t    (axi_slv_w_chan_t),
+    .axi_b_chan_t    (axi_slv_b_chan_t),
+    .axi_ar_chan_t   (axi_slv_ar_chan_t),
+    .axi_r_chan_t    (axi_slv_r_chan_t),
+    .axi_aw_chan_t   (axi_slv_aw_chan_t),
+    .RegAddrWidth    (ChsCfg.AddrWidth),
+    .RegDataWidth    (ChsCfg.AxiDataWidth),
+    .reg_req_t       (reg_req_t),
+    .reg_rsp_t       (reg_rsp_t),
+    .RxFifoLogDepth  (32'd2),
+    .TxFifoLogDepth  (32'd2),
+    .RstChipBase     (ChsCfg.LlcOutRegionStart),
+    .RstChipSpace    (HyperbusRegionEnd - HyperbusRegionStart),
+    .PhyStartupCycles(300 * 200),
+    .AxiLogDepth     (LogDepth),
+    .AxiSlaveArWidth (ChimeraAxiSlvArWidth),
+    .AxiSlaveAwWidth (ChimeraAxiSlvAwWidth),
+    .AxiSlaveBWidth  (ChimeraAxiSlvBWidth),
+    .AxiSlaveRWidth  (ChimeraAxiSlvRWidth),
+    .AxiSlaveWWidth  (ChimeraAxiSlvWWidth),
+    .AxiMaxTrans     (ChsCfg.AxiMaxSlvTrans),
+    .CdcSyncStages   (SyncStages)
+  ) i_hyperbus_wrap (
+    .clk_i              (soc_clk_i),
+    .rst_ni             (rst_ni),
+    .test_mode_i        (test_mode_i),
+    .axi_slave_ar_data_i(hyper_ar_data),
+    .axi_slave_ar_wptr_i(hyper_ar_wptr),
+    .axi_slave_ar_rptr_o(hyper_ar_rptr),
+    .axi_slave_aw_data_i(hyper_aw_data),
+    .axi_slave_aw_wptr_i(hyper_aw_wptr),
+    .axi_slave_aw_rptr_o(hyper_aw_rptr),
+    .axi_slave_b_data_o (hyper_b_data),
+    .axi_slave_b_wptr_o (hyper_b_wptr),
+    .axi_slave_b_rptr_i (hyper_b_rptr),
+    .axi_slave_r_data_o (hyper_r_data),
+    .axi_slave_r_wptr_o (hyper_r_wptr),
+    .axi_slave_r_rptr_i (hyper_r_rptr),
+    .axi_slave_w_data_i (hyper_w_data),
+    .axi_slave_w_wptr_i (hyper_w_wptr),
+    .axi_slave_w_rptr_o (hyper_w_rptr),
+    .rbus_req_addr_i    (reg_slv_req[HyperCfgRegsIdx].addr),
+    .rbus_req_write_i   (reg_slv_req[HyperCfgRegsIdx].write),
+    .rbus_req_wdata_i   (reg_slv_req[HyperCfgRegsIdx].wdata),
+    .rbus_req_wstrb_i   (reg_slv_req[HyperCfgRegsIdx].wstrb),
+    .rbus_req_valid_i   (reg_slv_req[HyperCfgRegsIdx].valid),
+    .rbus_rsp_rdata_o   (reg_slv_rsp[HyperCfgRegsIdx].rdata),
+    .rbus_rsp_ready_o   (reg_slv_rsp[HyperCfgRegsIdx].ready),
+    .rbus_rsp_error_o   (reg_slv_rsp[HyperCfgRegsIdx].error),
+    .hyper_cs_no,
+    .hyper_ck_o,
+    .hyper_ck_no,
+    .hyper_rwds_o,
+    .hyper_rwds_i,
+    .hyper_rwds_oe_o,
+    .hyper_dq_i,
+    .hyper_dq_o,
+    .hyper_dq_oe_o,
+    .hyper_reset_no
+  );
 endmodule

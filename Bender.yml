@@ -17,6 +17,8 @@ dependencies:
   idma:                     { git: "https://github.com/pulp-platform/iDMA.git",               rev: 9edf489f57389dce5e71252c79e337f527d3aded}
   memory_island:            { git: "https://github.com/pulp-platform/memory_island.git",          rev: 64828cb7a9ccc1f1656ec92d06129072f445c319 } # main branch
   apb:                      { git: "https://github.com/pulp-platform/apb.git",                version: 0.2.4          }
+  hyperbus:                 { git: "https://github.com/pulp-platform/hyperbus.git",           rev: f039e601c8b6590181734e6d26ff8b77aa380412 } # branch: chi/add_fsm_with_Tcsh
+  tech_cells_generic:       { git: "https://github.com/pulp-platform/tech_cells_generic.git", version: 0.2.12 }
 
 export_include_dirs:
   - hw/include
@@ -25,6 +27,7 @@ workspace:
   package_links:
     cheshire: cheshire
     idma: idma
+    hyperbus: hyperbus
 
 sources:
   - hw/chimera_pkg.sv
@@ -36,14 +39,16 @@ sources:
   - hw/chimera_cluster.sv
   - hw/chimera_clu_domain.sv
   - hw/chimera_memisland_domain.sv
+  - hw/hyperbus_wrap.sv
   - hw/chimera_top_wrapper.sv
 
   - target: any(simulation, test)
     files:
+      - target/sim/models/s27ks0641/s27ks0641.v
+      - target/sim/src/tb_chimera_pkg.sv
       - target/sim/src/vip_chimera_soc.sv
       - target/sim/src/fixture_chimera_soc.sv
       - target/sim/src/tb_chimera_soc.sv
-      - target/sim/src/tb_chimera_pkg.sv
 
 vendor_package:
   - name: reggen

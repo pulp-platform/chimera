@@ -65,13 +65,14 @@ package chimera_pkg;
   localparam bit SnitchBootROM = 1;
   localparam bit TopLevelCfgRegs = 1;
   localparam bit ExtCfgRegs = 1;
+  localparam bit HyperCfgRegs = 1;
 
   // -------------------------------
   // | External Register Interface |
   // -------------------------------
 
   // SCHEREMO: Shared Snitch bootrom, one clock gate per cluster, External regs (PADs, FLLs etc...)
-  localparam int ExtRegNum = SnitchBootROM + TopLevelCfgRegs + ExtCfgRegs;
+  localparam int ExtRegNum = SnitchBootROM + TopLevelCfgRegs + ExtCfgRegs + HyperCfgRegs;
   localparam int ClusterDataWidth = 64;
 
   localparam byte_bt SnitchBootROMIdx = 8'h0;
@@ -86,6 +87,11 @@ package chimera_pkg;
   localparam byte_bt ExtCfgRegsIdx = 8'h2;
   localparam doub_bt ExtCfgRegsRegionStart = 64'h3000_2000;
   localparam doub_bt ExtCfgRegsRegionEnd = 64'h3000_5000;
+
+  // Hyperbus configuration registers: HyperBus
+  localparam byte_bt HyperCfgRegsIdx = 8'h3;
+  localparam doub_bt HyperCfgRegsRegionStart = 64'h3000_5000;
+  localparam doub_bt HyperCfgRegsRegionEnd = 64'h3000_6000;
 
   // --------------------------
   // |   External AXI ports   |
@@ -106,8 +112,8 @@ ExtClusters
 
   localparam aw_bt ClusterNarrowAxiMstIdWidth = 1;
 
-  // Parameters for Memory Island
-  localparam int MemIslandIdx = ClusterIdx[ExtClusters-1] + 1;
+  // Memory Island
+  localparam byte_bt MemIslandIdx = ClusterIdx[ExtClusters-1] + 1;
   localparam doub_bt MemIslRegionStart = 64'h4800_0000;
   localparam doub_bt MemIslRegionEnd = 64'h4804_0000;
 
@@ -118,6 +124,18 @@ ExtClusters
   localparam byte_bt MemIslNumWideBanks = 2;
   localparam shrt_bt MemIslWordsPerBank = 1024;
 
+  // Hyperbus
+  localparam byte_bt HyperbusIdx = MemIslandIdx + 1;
+  localparam doub_bt HyperbusRegionStart = 64'h5000_0000;
+  //TODO(smazzola): Correct size of HyperRAM?
+  localparam doub_bt HyperbusRegionEnd = HyperbusRegionStart + 64'h1000_0000;
+
+  localparam int unsigned HypNumPhys = 1;
+  localparam int unsigned HypNumChips = 2;
+
+  localparam int unsigned LogDepth = 3;
+  localparam int unsigned SyncStages = 3;
+
   // -------------------
   // |   Generate Cfg   |
   // --------------------
@@ -125,6 +143,7 @@ ExtClusters
   function automatic chimera_cfg_t gen_chimera_cfg();
     localparam int AddrWidth = DefaultCfg.AddrWidth;
     localparam int MemoryIsland = 1;
+    localparam int Hyperbus = 1;
 
     chimera_cfg_t  chimera_cfg;
     cheshire_cfg_t cfg = DefaultCfg;
@@ -133,6 +152,7 @@ ExtClusters
 
     // Set all Chimera addresses as uncached
     cfg.Cva6ExtCieLength = 'h0;
+    cfg.Cva6ExtCieOnTop = 1;
 
     cfg.Vga = 0;
     cfg.SerialLink = 0;
@@ -150,21 +170,26 @@ ExtClusters
 
     // SCHEREMO: Two ports for each cluster: one to convert stray wides, one for the original narrow
     cfg.AxiExtNumMst = ExtClusters + $countones(ChimeraClusterCfg.hasWideMasterPort);
-    cfg.AxiExtNumSlv = ExtClusters + MemoryIsland;
-    cfg.AxiExtNumRules = ExtClusters + MemoryIsland;
+    cfg.AxiExtNumSlv = ExtClusters + MemoryIsland + Hyperbus;
+    cfg.AxiExtNumRules = ExtClusters + MemoryIsland + Hyperbus;
 
-    cfg.AxiExtRegionIdx = {MemIslandIdx, ClusterIdx};
-    cfg.AxiExtRegionStart = {MemIslRegionStart, ClusterRegionStart};
-    cfg.AxiExtRegionEnd = {MemIslRegionEnd, ClusterRegionEnd};
+    cfg.AxiExtRegionIdx = {HyperbusIdx, MemIslandIdx, ClusterIdx};
+    cfg.AxiExtRegionStart = {HyperbusRegionStart, MemIslRegionStart, ClusterRegionStart};
+    cfg.AxiExtRegionEnd = {HyperbusRegionEnd, MemIslRegionEnd, ClusterRegionEnd};
 
     // REG CFG
     cfg.RegExtNumSlv = ExtRegNum;
     cfg.RegExtNumRules = ExtRegNum;
-    cfg.RegExtRegionIdx = {ExtCfgRegsIdx, TopLevelCfgRegsIdx, SnitchBootROMIdx};
+    cfg.RegExtRegionIdx = {HyperCfgRegsIdx, ExtCfgRegsIdx, TopLevelCfgRegsIdx, SnitchBootROMIdx};
     cfg.RegExtRegionStart = {
-      ExtCfgRegsRegionStart, TopLevelCfgRegsRegionStart, SnitchBootROMRegionStart
+      HyperCfgRegsRegionStart,
+      ExtCfgRegsRegionStart,
+      TopLevelCfgRegsRegionStart,
+      SnitchBootROMRegionStart
     };
-    cfg.RegExtRegionEnd = {ExtCfgRegsRegionEnd, TopLevelCfgRegsRegionEnd, SnitchBootROMRegionEnd};
+    cfg.RegExtRegionEnd = {
+      HyperCfgRegsRegionEnd, ExtCfgRegsRegionEnd, TopLevelCfgRegsRegionEnd, SnitchBootROMRegionEnd
+    };
 
     // ACCEL HART/IRQ CFG
     cfg.NumExtIrqHarts = ExtCores;
