@@ -15,7 +15,7 @@ module vip_chimera_soc
   import chimera_pkg::HypNumChips;
 #(
   // DUT (must be set)
-  parameter cheshire_cfg_t DutCfg      = '0,
+  parameter cheshire_cfg_t DutCfg = '0,
 
   parameter type         axi_ext_mst_req_t      = logic,
   parameter type         axi_ext_mst_rsp_t      = logic,
@@ -570,9 +570,7 @@ module vip_chimera_soc
   // Hyperbus //
   //////////////
 
-  localparam string HypUserPreloadMemFiles[HypNumPhys] = '{
-      Hyp0UserPreloadMemFile
-  };
+  localparam string HypUserPreloadMemFiles[HypNumPhys] = '{Hyp0UserPreloadMemFile};
 
   for (genvar i = 0; i < HypNumPhys; i++) begin : hyperrams
     for (genvar j = 0; j < HypNumChips; j++) begin : chips
