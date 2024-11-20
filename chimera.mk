@@ -10,6 +10,7 @@ CLINTCORES = 46
 PLICCORES = 92
 PLIC_NUM_INTRS = 92
 
+
 .PHONY: update_plic
 update_plic: $(CHS_ROOT)/hw/rv_plic.cfg.hjson
 	sed -i 's/src: .*/src: $(PLIC_NUM_INTRS),/' $<
@@ -78,10 +79,22 @@ chim-nonfree-init:
 -include $(CHIM_ROOT)/bender.mk
 
 # Necessary to build libchimera.a for bootrom.elf
-# TODO: Here the make chim-sw cannot work properly FIND SOLUTION !!!!!
 -include $(CHIM_ROOT)/sw/sw.mk
 
 # Include subdir Makefiles
 -include $(CHIM_ROOT)/utils/utils.mk
 # Include target makefiles
 -include $(CHIM_ROOT)/target/sim/sim.mk
+
+#################################
+# Phonies for the entire system #
+#################################
+
+CHIM_ALL += chs-hw-init snitch-hw-init chim-sw chim-bootrom-init chs-sim-all chim-sim
+CHIM_CLEAN += chim-sw-clean chim-sim-clean
+
+.PHONY: chim-all
+chim-all: $(CHIM_ALL)
+
+.PHONY: chim-clean
+chim-clean: $(CHIM_CLEAN)
