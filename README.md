@@ -28,11 +28,21 @@ are not empty.
 
 
 To install the required python packages into your environment and setup dependencies, you can run
-```
+``` shell
 pip install -r requirements.txt
 
 bender checkout
 
+```
+If you have all needed dependencies and you want to build the entire Chimera SoC, both RTL and SW, just run
+
+``` shell
+make chim-all
+```
+If you want to build the system step by step, all the necessary make targets are listed below:
+
+To build Cheshire and Snitch run
+``` shell
 make chs-hw-init
 make snitch-hw-init
 ```
