@@ -6,9 +6,9 @@
 # Lorenzo Leone <lleone@iis.ee.ethz.ch>
 
 
-CLINTCORES = 19
-PLICCORES = 38
-PLIC_NUM_INTRS = 38
+CLINTCORES = 18
+PLICCORES = 36
+PLIC_NUM_INTRS = 36
 
 
 .PHONY: update_plic

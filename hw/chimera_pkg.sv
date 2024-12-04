@@ -36,7 +36,7 @@ package chimera_pkg;
 
   localparam cluster_config_t ChimeraClusterCfg = '{
       hasWideMasterPort: {1'b1, 1'b1, 1'b1, 1'b1, 1'b1},
-      NrCores: {8'h9, 8'h3, 8'h2, 8'h2, 8'h2}
+      NrCores: {8'h9, 8'h2, 8'h2, 8'h2, 8'h2}
   };
 
   function automatic int _sumVector(byte_bt [iomsb(ExtClusters):0] vector, int vectorLen);
