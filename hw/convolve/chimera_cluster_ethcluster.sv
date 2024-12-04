@@ -216,6 +216,7 @@ module chimera_cluster_ethcluster
 
     .hart_base_id_i     (hart_base_id_i),
     .cluster_base_addr_i(cluster_base_addr_i),
+    .boot_addr_i        ({16'h0, boot_addr_i}),
 
     .narrow_in_req_i  (clu_axi_adapter_slv_req),
     .narrow_in_resp_o (clu_axi_adapter_slv_resp),
