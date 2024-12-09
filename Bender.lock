@@ -202,7 +202,7 @@ packages:
     - common_cells
     - register_interface
   kulcluster:
-    revision: 5f39d7e8952ac85d47d383b0fcc2992decebff0e
+    revision: 2fc9c58b8462903e6439ba4875fdd162c4e067c2
     version: null
     source:
       Git: git@gitlab.tue.nl:es/convolve-private/kulcluster.git
