@@ -184,9 +184,11 @@ void xdma_wait(unsigned int task_id) {
 extern unsigned int __global_pointer$;
 
 int kul_cluster_xdma_test() {
-    // wake up the dma core
-    volatile uint32_t *interruptTarget = ((uint32_t *)CLINT_CTRL_BASE) + 6 + 1;
-    *interruptTarget = 1;
+    // wake up the dma core, not work...
+    // if (snrt_cluster_core_idx() == 0) {
+    // volatile uint32_t *interruptTarget = ((uint32_t *)CLINT_CTRL_BASE) + 6 + 1;
+    // *interruptTarget = 1;
+    // }
 
     // !!! set the stack pointer and global pointer !!!
     // set it to the end of the KUL cluster TCDM (size = 128KB) address - 4

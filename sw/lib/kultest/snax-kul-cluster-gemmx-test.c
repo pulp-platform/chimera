@@ -310,10 +310,11 @@ uint32_t check_gemmx_result_D32(int32_t* output, int32_t* output_golden,
 extern uint32_t __global_pointer$;
 
 int kul_cluster_gemmx_test() {
-    // wake up the dma core
-    volatile uint32_t *interruptTarget = ((uint32_t *)CLINT_CTRL_BASE) + 6 + 1;
-    *interruptTarget = 1;
-
+    // wake up the dma core, not work...
+    // if (snrt_cluster_core_idx() == 0) {
+    // volatile uint32_t *interruptTarget = ((uint32_t *)CLINT_CTRL_BASE) + 6 + 1;
+    // *interruptTarget = 1;
+    // }
     // !!! set the stack pointer and global pointer !!!
     // set it to the end of the KUL cluster TCDM (size = 128KB) address - 4
     uint32_t stack_start = snrt_cluster_base_addrl() + 128 * 1024 - 4;
