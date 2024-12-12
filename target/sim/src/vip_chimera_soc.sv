@@ -310,6 +310,34 @@ module vip_chimera_soc
     jtag_elf_preload(binary, entry);
   endtask
 
+  // Halt the core
+  task automatic jtag_halt_hart();
+    dm::dmstatus_t status;
+    // Halt hart 0
+    jtag_write(dm::DMControl, dm::dmcontrol_t'{haltreq: 1, dmactive: 1, default: '0});
+    do jtag_dbg.read_dmi_exp_backoff(dm::DMStatus, status); while (~status.allhalted);
+    repeat (2) @(posedge jtag_tck);
+    $display("[JTAG] Halted hart 0");
+  endtask
+
+  // Unhalt the core
+  task automatic jtag_resume_hart();
+    doub_bt entry;
+    repeat (2) @(posedge jtag_tck);
+    void'(get_entry(entry));
+    // Repoint execution
+    jtag_write(dm::Data1, entry[63:32]);
+    jtag_write(dm::Data0, entry[31:0]);
+    if (riscv::XLEN == 64) begin
+      jtag_write(dm::Command, 32'h0033_07b1, 0, 1);
+    end else begin
+      jtag_write(dm::Command, 32'h0023_07b1, 0, 1);
+    end
+    // Resume hart 0
+    jtag_write(dm::DMControl, dm::dmcontrol_t'{resumereq: 1, dmactive: 1, default: '0});
+    $display("[JTAG] Resumed hart 0 from 0x%h", entry);
+  endtask
+
   // Run a binary
   task automatic jtag_elf_run(input string binary);
     doub_bt entry;
