@@ -33,11 +33,11 @@ module tb_chimera_soc
 
   // Load a binary
   task automatic force_write(doub_bt addr, doub_bt data);
-    static doub_bt write_address;
+    static doub_bt write_addr;
     static doub_bt write_data;
-    write_address = addr;
-    write_data    = data;
-    force fix.dut.i_memisland_domain.i_memory_island.i_memory_island.narrow_addr_i[1] = write_address;
+    write_addr = addr;
+    write_data = data;
+    force fix.dut.i_memisland_domain.i_memory_island.i_memory_island.narrow_addr_i[1] = write_addr;
     force fix.dut.i_memisland_domain.i_memory_island.i_memory_island.narrow_req_i[1] = 1'b1;
     force fix.dut.i_memisland_domain.i_memory_island.i_memory_island.narrow_we_i[1] = 1'b1;
     force fix.dut.i_memisland_domain.i_memory_island.i_memory_island.narrow_wdata_i[1] = write_data;
@@ -115,11 +115,11 @@ module tb_chimera_soc
           // Initialize JTAG 
           fix.vip.jtag_init();
           // Halt the core
-          fix.vip.jtag_elf_halt();
+          fix.vip.jtag_halt_hart();
           // Preload the binary through FAST PRELOAD
           fast_elf_preload(preload_elf);
           // Unhalt the core
-          fix.vip.jtag_elf_unhalt();
+          fix.vip.jtag_resume_hart();
           // Wait for the end of computation
           fix.vip.jtag_wait_for_eoc(exit_code);
         end

@@ -311,7 +311,7 @@ module vip_chimera_soc
   endtask
 
   // Halt the core
-  task automatic jtag_elf_halt();
+  task automatic jtag_halt_hart();
     dm::dmstatus_t status;
     // Halt hart 0
     jtag_write(dm::DMControl, dm::dmcontrol_t'{haltreq: 1, dmactive: 1, default: '0});
@@ -321,7 +321,7 @@ module vip_chimera_soc
   endtask
 
   // Unhalt the core
-  task automatic jtag_elf_unhalt();
+  task automatic jtag_resume_hart();
     doub_bt entry;
     repeat (2) @(posedge jtag_tck);
     void'(get_entry(entry));
