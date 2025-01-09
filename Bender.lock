@@ -134,8 +134,8 @@ packages:
     - common_verification
     - tech_cells_generic
   common_verification:
-    revision: fa2630f61666f61d9d78451c4d8b4d1ea403944e
-    version: 0.2.4
+    revision: fb1885f48ea46164a10568aeff51884389f67ae3
+    version: 0.2.5
     source:
       Git: https://github.com/pulp-platform/common_verification.git
     dependencies: []
@@ -297,7 +297,7 @@ packages:
       Git: git@gitlab.tue.nl:es/convolve-private/tuddcim.git
     dependencies: []
   tuedcim:
-    revision: c7acd066b7e5ed60277078c6ce8c0b31f665e486
+    revision: 659a159183bde3c477c6e156891eb6e21abe5aca
     version: null
     source:
       Git: git@gitlab.tue.nl:es/convolve-private/tuedcim.git
