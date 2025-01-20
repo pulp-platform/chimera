@@ -150,7 +150,7 @@ packages:
     - fpnew
     - tech_cells_generic
   ethcluster:
-    revision: 8bc8ce1e3c63f4120c7055710f9769a9642c64a7
+    revision: 0284701febb87be4e8bf15159bf1a52a157580fe
     version: null
     source:
       Git: git@gitlab.tue.nl:es/convolve-private/ethcluster.git
