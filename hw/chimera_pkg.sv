@@ -96,15 +96,11 @@ package chimera_pkg;
 
   // Cluster domain
   localparam byte_bt [iomsb(ExtClusters):0] ClusterIdx = {8'h4, 8'h3, 8'h2, 8'h1, 8'h0};
-  localparam doub_bt [iomsb(
-ExtClusters
-):0] ClusterRegionStart = {
-    64'h4080_0000, 64'h4060_0000, 64'h4040_0000, 64'h4020_0000, 64'h4000_0000
+  localparam doub_bt [iomsb(ExtClusters):0] ClusterRegionStart = {
+    64'h4100_0000, 64'h40C0_0000, 64'h4080_0000, 64'h4040_0000, 64'h4000_0000
   };
-  localparam doub_bt [iomsb(
-ExtClusters
-):0] ClusterRegionEnd = {
-    64'h40A0_0000, 64'h4080_0000, 64'h4060_0000, 64'h4040_0000, 64'h4020_0000
+  localparam doub_bt [iomsb(ExtClusters):0] ClusterRegionEnd = {
+    64'h4140_0000, 64'h4100_0000, 64'h40C0_0000, 64'h4080_0000, 64'h4040_0000
   };
 
   localparam int ClusterDataWidth = 64;
