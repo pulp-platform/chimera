@@ -25,8 +25,9 @@ $(CHIM_SIM_DIR)/models/s27ks0641/s27ks0641.sv:
 HYP_USER_PRELOAD      ?= 0
 HYP0_PRELOAD_MEM_FILE ?= ""
 
-
+# vsim compilation arguments (options, macros)
 CHIM_VLOG_ARGS += -suppress 2583 -suppress 13314
+CHIM_VLOG_ARGS += \"+incdir+$(CHIM_ROOT)/hw/include\"
 CHIM_VLOG_ARGS += +define+HYP_USER_PRELOAD="$(HYP_USER_PRELOAD)"
 CHIM_VLOG_ARGS += +define+HYP0_PRELOAD_MEM_FILE=\"$(HYP0_PRELOAD_MEM_FILE)\"
 # this path should be kept relative to the vsim directory to avoid CI issues:
@@ -35,7 +36,7 @@ CHIM_VLOG_ARGS += +define+PATH_TO_HYP_SDF=\"../models/s27ks0641/s27ks0641.sdf\"
 
 # Generate vsim compilation script
 $(CHIM_SIM_DIR)/vsim/compile.tcl: chs-hw-init snitch-hw-init
-	@bender script vsim $(SIM_TARGS) --vlog-arg="$(CHIM_VLOG_ARGS)" > $@
+	bender script vsim $(SIM_TARGS) --vlog-arg="$(CHIM_VLOG_ARGS)" > $@
 	echo 'vlog "$(realpath $(CHS_ROOT))/target/sim/src/elfloader.cpp" -ccflags "-std=c++11"' >> $@
 
 # Clean

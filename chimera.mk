@@ -30,6 +30,11 @@ chs-hw-init: update_plic gen_idma_hw $(CHIM_SW_LIB)
 snitch-hw-init:
 	make -C $(SNITCH_ROOT)/target/snitch_cluster bin/snitch_cluster.vsim
 
+.PHONY: pulp-sw-init
+pulp-sw-init:
+	make -C $(PULP_ROOT) pulp-runtime
+	make -C $(PULP_ROOT) regression-tests
+
 .PHONY: $(CHIM_SW_DIR)/include/regs/soc_ctrl.h
 $(CHIM_SW_DIR)/include/regs/soc_ctrl.h: $(CHIM_ROOT)/hw/regs/chimera_regs.hjson
 	python $(CHIM_ROOT)/utils/reggen/regtool.py -D $<  > $@
@@ -90,7 +95,7 @@ chim-nonfree-init:
 # Phonies for the entire system #
 #################################
 
-CHIM_ALL += chs-hw-init snitch-hw-init chim-sw chim-bootrom-init chs-sim-all chim-sim
+CHIM_ALL += chs-hw-init snitch-hw-init pulp-sw-init chim-sw chim-bootrom-init chs-sim-all chim-sim
 CHIM_CLEAN += chim-sw-clean chim-sim-clean
 
 .PHONY: chim-all
