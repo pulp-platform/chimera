@@ -12,6 +12,7 @@ module chimera_cluster
   parameter chimera_cfg_t Cfg = '0,
 
   parameter int unsigned NrCores           = 9,
+  parameter int unsigned ClusterId         = 0,
   parameter type         narrow_in_req_t   = logic,
   parameter type         narrow_in_resp_t  = logic,
   parameter type         narrow_out_req_t  = logic,
@@ -167,6 +168,9 @@ module chimera_cluster
   ////////////////////////////////////////////////////////////////////////
   // Complement chimera_cluster_adapter with CDC slice for PULP cluster //
   ////////////////////////////////////////////////////////////////////////
+
+  localparam int LOG_DEPTH = 3;
+
   `include "axi/assign.svh"
   `include "axi/typedef.svh"
   //TODO(smazzola): move all of this in a customized cluster adapter for PULP Cluster
@@ -183,7 +187,7 @@ module chimera_cluster
     .AXI_DATA_WIDTH ( ClusterDataWidth ),
     .AXI_ID_WIDTH   ( ClusterNarrowIdWidthIn ),
     .AXI_USER_WIDTH ( Cfg.ChsCfg.AxiUserWidth ),
-    .LOG_DEPTH      ( 3 )
+    .LOG_DEPTH      ( LOG_DEPTH )
   ) async_soc_to_cluster_axi_bus();
 
   axi_cdc_src_intf   #(
@@ -191,7 +195,7 @@ module chimera_cluster
     .AXI_DATA_WIDTH ( ClusterDataWidth ),
     .AXI_ID_WIDTH   ( ClusterNarrowIdWidthIn ),
     .AXI_USER_WIDTH ( Cfg.ChsCfg.AxiUserWidth ),
-    .LOG_DEPTH      ( 3 )
+    .LOG_DEPTH      ( LOG_DEPTH )
   ) soc_to_cluster_src_cdc_fifo_i  (
       .src_clk_i  ( soc_clk_i                    ),
       .src_rst_ni ( rst_ni                       ),
@@ -214,7 +218,7 @@ module chimera_cluster
     .AXI_DATA_WIDTH ( ClusterDataWidth ),
     .AXI_ID_WIDTH   ( ClusterNarrowIdWidthOut ),
     .AXI_USER_WIDTH ( Cfg.ChsCfg.AxiUserWidth ),
-    .LOG_DEPTH      ( 3 )
+    .LOG_DEPTH      ( LOG_DEPTH )
   ) async_cluster_to_soc_axi_bus();
 
   axi_cdc_dst_intf   #(
@@ -222,7 +226,7 @@ module chimera_cluster
     .AXI_DATA_WIDTH ( ClusterDataWidth ),
     .AXI_ID_WIDTH   ( ClusterNarrowIdWidthOut ),
     .AXI_USER_WIDTH ( Cfg.ChsCfg.AxiUserWidth ),
-    .LOG_DEPTH      ( 3 )
+    .LOG_DEPTH      ( LOG_DEPTH )
     ) cluster_to_soc_dst_cdc_fifo_i (
       .dst_clk_i  ( soc_clk_i                    ),
       .dst_rst_ni ( rst_ni                       ),
@@ -245,7 +249,7 @@ module chimera_cluster
     .AXI_DATA_WIDTH ( WideDataWidth ),
     .AXI_ID_WIDTH   ( WideMasterIdWidth ),
     .AXI_USER_WIDTH ( Cfg.ChsCfg.AxiUserWidth ),
-    .LOG_DEPTH      ( 3 )
+    .LOG_DEPTH      ( LOG_DEPTH )
   ) async_dma_axi_bus();
 
   axi_cdc_dst_intf  #(
@@ -253,7 +257,7 @@ module chimera_cluster
     .AXI_DATA_WIDTH ( WideDataWidth ),
     .AXI_ID_WIDTH   ( WideMasterIdWidth ),
     .AXI_USER_WIDTH ( Cfg.ChsCfg.AxiUserWidth ),
-    .LOG_DEPTH      ( 3 )
+    .LOG_DEPTH      ( LOG_DEPTH )
   ) dma_dst_cdc_fifo_i (
       .dst_clk_i  ( soc_clk_i         ),
       .dst_rst_ni ( rst_ni            ),
@@ -309,40 +313,27 @@ module chimera_cluster
     .wide_mem_bypass_mode_i(widemem_bypass_i)
   );
 
-  typedef struct packed {
-    logic [2:0] ema;
-    logic [1:0] emaw;
-    logic [0:0] emas;
-  } sram_cfg_t;
-
-  typedef struct packed {
-    sram_cfg_t icache_tag;
-    sram_cfg_t icache_data;
-    sram_cfg_t tcdm;
-  } sram_cfgs_t;
-
-  localparam int unsigned NumIntOutstandingLoads[NrCores] = '{NrCores{32'h1}};
-  localparam int unsigned NumIntOutstandingMem[NrCores] = '{NrCores{32'h4}};
+  ////////////////////////////////////////////////////////////////////////
 
   pulp_cluster  #(
-    .NB_CORES                     ( 8                ),              // snitch_cluster had 9 because 1 was DMA
-    .HWPE_WIDTH_FAC                ( 9                        ),     // ???
-    .NB_DMA_PORTS                 ( 2                 ),             // ???
-    .N_HWPE                       ( 1                        ),      // ???
-    .TCDM_SIZE                    ( 128*1024                 ),      // ???
-    .NB_TCDM_BANKS                ( 16                       ),      // ???
-    .SET_ASSOCIATIVE              ( 4                        ),      // ???
-    .CACHE_LINE                   ( 1                        ),      // ???
-    .CACHE_SIZE                   ( 4096                     ),      // ???
-    .ICACHE_DATA_WIDTH            ( 128                      ),      // ???
-    .L0_BUFFER_FEATURE            ( "DISABLED"               ),      // ???
-    .MULTICAST_FEATURE            ( "DISABLED"               ),      // ???
-    .SHARED_ICACHE                ( "ENABLED"                ),      // ???
-    .DIRECT_MAPPED_FEATURE        ( "DISABLED"               ),      // ???
-    .L2_SIZE                      ( 32'h10000                ),      // ???
-    .ROM_BOOT_ADDR                ( 32'h1A000000             ),      // ??? substitute with correct ones
-    .BOOT_ADDR                    ( 32'h1c008080             ),      // ??? substitute with correct ones
-    .INSTR_RDATA_WIDTH            ( 32                       ),      // ???
+    .NB_CORES                     ( 8                ),
+    .HWPE_WIDTH_FAC               ( 9                        ),
+    .NB_DMA_PORTS                 ( 2                 ),
+    .N_HWPE                       ( 1                        ),
+    .TCDM_SIZE                    ( 128*1024                 ),
+    .NB_TCDM_BANKS                ( 16                       ),
+    .SET_ASSOCIATIVE              ( 4                        ),
+    .CACHE_LINE                   ( 1                        ),
+    .CACHE_SIZE                   ( 4096                     ),
+    .ICACHE_DATA_WIDTH            ( 128                      ),
+    .L0_BUFFER_FEATURE            ( "DISABLED"               ),
+    .MULTICAST_FEATURE            ( "DISABLED"               ),
+    .SHARED_ICACHE                ( "ENABLED"                ),
+    .DIRECT_MAPPED_FEATURE        ( "DISABLED"               ),
+    .L2_SIZE                      ( MemIslRegionEnd - MemIslRegionStart ),
+    .ROM_BOOT_ADDR                ( 32'hAAAAAAAA ), //TODO: WIP to test offload
+    .BOOT_ADDR                    ( 32'hAAAAAAAA ), //TODO: WIP to test offload
+    .INSTR_RDATA_WIDTH            ( 32                       ),
     .CLUST_FPU                    ( 1               ),
     .CLUST_FP_DIVSQRT             ( 1        ),
     .CLUST_SHARED_FP              ( 2         ),
@@ -355,12 +346,12 @@ module chimera_cluster
     .AXI_ID_IN_WIDTH              ( ClusterNarrowIdWidthIn                  ),
     .AXI_ID_OUT_WIDTH             ( ClusterNarrowIdWidthOut                    ),
     .AXI_DMA_ID_OUT_WIDTH         ( WideMasterIdWidth                    ),
-    .LOG_DEPTH                    ( 3                        ),
-    .DATA_WIDTH                   ( 32                       ),   // ???
-    .ADDR_WIDTH                   ( 32                       ),
-    .LOG_CLUSTER                  ( 3                        ),
-    .PE_ROUTING_LSB               ( 10                       ),
-    .EVNT_WIDTH                   ( 8                        ),
+    .LOG_DEPTH                    ( LOG_DEPTH ),
+    .DATA_WIDTH                   ( 32 ), // ???
+    .ADDR_WIDTH                   ( 32 ),  // ???
+    .LOG_CLUSTER                  ( 3                        ), // ???
+    .PE_ROUTING_LSB               ( 10                       ), // ???
+    .EVNT_WIDTH                   ( 8                        ), // ???
     .IDMA                         ( 1'b1                     ),
     .DMA_USE_HWPE_PORT            ( 1'b1                     )
   ) cluster_i (
@@ -368,31 +359,31 @@ module chimera_cluster
       .rst_ni                      ( rst_ni                               ),
       .ref_clk_i                   ( clu_clk_i                                ),
 
-      .pmu_mem_pwdn_i              ( 1'b0                                 ),
+      .pmu_mem_pwdn_i              ( 1'b0                                 ), // ???
 
-      .base_addr_i                 ( '0                                   ),
+      .base_addr_i                 ( '0                                   ), // ???
 
-      .dma_pe_evt_ack_i            ( '1                                   ),
-      .dma_pe_evt_valid_o          (                                      ),
+      .dma_pe_evt_ack_i            ( '1                                   ), // ???
+      .dma_pe_evt_valid_o          (                                      ), // ???
 
-      .dma_pe_irq_ack_i            ( 1'b1                                 ),
-      .dma_pe_irq_valid_o          (                                      ),
+      .dma_pe_irq_ack_i            ( 1'b1                                 ), // ???
+      .dma_pe_irq_valid_o          (                                      ), // ???
 
-      .dbg_irq_valid_i             ( '0                                   ),
+      .dbg_irq_valid_i             ( '0                                   ), // ???
 
-      .pf_evt_ack_i                ( 1'b1                                 ),
-      .pf_evt_valid_o              (                                      ),
+      .pf_evt_ack_i                ( 1'b1                                 ), // ???
+      .pf_evt_valid_o              (                                      ), // ???
 
-      .async_cluster_events_wptr_i ( '0                                   ),
-      .async_cluster_events_rptr_o (                                      ),
-      .async_cluster_events_data_i ( '0                                   ),
+      .async_cluster_events_wptr_i ( '0                                   ), // ???
+      .async_cluster_events_rptr_o (                                      ), // ???
+      .async_cluster_events_data_i ( '0                                   ), // ???
 
-      .en_sa_boot_i                ( s_cluster_en_sa_boot                 ), // ??? fix or disconnect
-      .test_mode_i                 ( 1'b0                                 ), // ??? fix or disconnect
-      .fetch_en_i                  ( s_cluster_fetch_en                   ), // ??? fix or disconnect
-      .eoc_o                       ( s_cluster_eoc                        ), // ??? fix or disconnect
-      .busy_o                      ( s_cluster_busy                       ), // ??? fix or disconnect
-      .cluster_id_i                ( 6'b000000                            ), // ??? fix or disconnect
+      .en_sa_boot_i                ( 1'b0                                 ), //TODO: WIP to test offload
+      .test_mode_i                 ( 1'b0                                 ),
+      .fetch_en_i                  ( 1'b0                                 ), //TODO: WIP to test offload
+      .eoc_o                       (                                      ), //TODO: WIP to test offload
+      .busy_o                      (                                      ), //TODO: WIP to test offload
+      .cluster_id_i                ( ClusterId                            ),
 
       .async_data_master_aw_wptr_o ( async_cluster_to_soc_axi_bus.aw_wptr ),
       .async_data_master_aw_rptr_i ( async_cluster_to_soc_axi_bus.aw_rptr ),

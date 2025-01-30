@@ -30,7 +30,7 @@ package chimera_pkg;
 
   localparam cluster_config_t ChimeraClusterCfg = '{
       hasWideMasterPort: {1'b1, 1'b1, 1'b1, 1'b1, 1'b1},
-      NrCores: {8'h9, 8'h9, 8'h9, 8'h9, 8'h9}
+      NrCores: {8'h8, 8'h8, 8'h8, 8'h8, 8'h8}
   };
 
   function automatic int _sumVector(byte_bt [iomsb(ExtClusters):0] vector, int vectorLen);
@@ -61,19 +61,16 @@ package chimera_pkg;
     int unsigned   IsolateClusters;
   } chimera_cfg_t;
 
-  // SoC Config
+  // -------------------------------
+  // | External Register Interface |
+  // -------------------------------
   localparam bit SnitchBootROM = 1;
   localparam bit TopLevelCfgRegs = 1;
   localparam bit ExtCfgRegs = 1;
   localparam bit HyperCfgRegs = 1;
 
-  // -------------------------------
-  // | External Register Interface |
-  // -------------------------------
-
   // SCHEREMO: Shared Snitch bootrom, one clock gate per cluster, External regs (PADs, FLLs etc...)
   localparam int ExtRegNum = SnitchBootROM + TopLevelCfgRegs + ExtCfgRegs + HyperCfgRegs;
-  localparam int ClusterDataWidth = 64;
 
   localparam byte_bt SnitchBootROMIdx = 8'h0;
   localparam doub_bt SnitchBootROMRegionStart = 64'h3000_0000;
@@ -110,6 +107,7 @@ ExtClusters
     64'h40A0_0000, 64'h4080_0000, 64'h4060_0000, 64'h4040_0000, 64'h4020_0000
   };
 
+  localparam int ClusterDataWidth = 64;
   localparam aw_bt ClusterNarrowAxiMstIdWidth = 2;
 
   // Memory Island

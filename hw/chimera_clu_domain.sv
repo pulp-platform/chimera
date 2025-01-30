@@ -176,6 +176,7 @@ module chimera_clu_domain
     chimera_cluster #(
       .Cfg              (Cfg),
       .NrCores          (`NRCORES(extClusterIdx)),
+      .ClusterId        (extClusterIdx),
       .narrow_in_req_t  (narrow_in_req_t),
       .narrow_in_resp_t (narrow_in_resp_t),
       .narrow_out_req_t (narrow_out_req_t),
