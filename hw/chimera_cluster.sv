@@ -60,6 +60,9 @@ module chimera_cluster
   localparam int NarrowSlaveIdWidth = $bits(narrow_in_req_i.aw.id);
   localparam int NarrowMasterIdWidth = $bits(narrow_out_req_o[0].aw.id);
 
+  localparam int ClusterNarrowIdWidthIn = ClusterNarrowAxiMstIdWidth;
+  localparam int ClusterNarrowIdWidthOut = ClusterNarrowAxiMstIdWidth + 2;
+
   typedef logic [Cfg.ChsCfg.AddrWidth-1:0] axi_addr_t;
   typedef logic [Cfg.ChsCfg.AxiUserWidth-1:0] axi_user_t;
 
@@ -72,8 +75,8 @@ module chimera_cluster
   typedef logic [WideDataWidth-1:0] axi_cluster_data_wide_t;
   typedef logic [WideDataWidth/8-1:0] axi_cluster_strb_wide_t;
 
-  typedef logic [ClusterNarrowAxiMstIdWidth-1:0] axi_cluster_mst_id_width_narrow_t;
-  typedef logic [ClusterNarrowAxiMstIdWidth-1+2:0] axi_cluster_slv_id_width_narrow_t;
+  typedef logic [ClusterNarrowIdWidthIn-1:0] axi_cluster_slv_id_width_narrow_t;
+  typedef logic [ClusterNarrowIdWidthOut-1:0] axi_cluster_mst_id_width_narrow_t;
 
   typedef logic [NarrowMasterIdWidth-1:0] axi_soc_mst_id_width_narrow_t;
   typedef logic [NarrowSlaveIdWidth-1:0] axi_soc_slv_id_width_narrow_t;
@@ -91,9 +94,9 @@ module chimera_cluster
   `AXI_TYPEDEF_ALL(axi_soc_in_narrow, axi_addr_t, axi_soc_mst_id_width_narrow_t,
                    axi_soc_data_narrow_t, axi_soc_strb_narrow_t, axi_user_t)
 
-  `AXI_TYPEDEF_ALL(axi_cluster_out_narrow, axi_addr_t, axi_cluster_slv_id_width_narrow_t,
+  `AXI_TYPEDEF_ALL(axi_cluster_out_narrow, axi_addr_t, axi_cluster_mst_id_width_narrow_t,
                    axi_cluster_data_narrow_t, axi_cluster_strb_narrow_t, axi_user_t)
-  `AXI_TYPEDEF_ALL(axi_cluster_in_narrow, axi_addr_t, axi_cluster_mst_id_width_narrow_t,
+  `AXI_TYPEDEF_ALL(axi_cluster_in_narrow, axi_addr_t, axi_cluster_slv_id_width_narrow_t,
                    axi_cluster_data_narrow_t, axi_cluster_strb_narrow_t, axi_user_t)
 
   `AXI_TYPEDEF_ALL(axi_cluster_out_narrow_socIW, axi_addr_t, axi_soc_mst_id_width_narrow_t,
@@ -172,13 +175,13 @@ module chimera_cluster
   AXI_BUS #(
     .AXI_ADDR_WIDTH ( Cfg.ChsCfg.AddrWidth ),
     .AXI_DATA_WIDTH ( ClusterDataWidth ),
-    .AXI_ID_WIDTH   ( ClusterNarrowAxiMstIdWidth ),
+    .AXI_ID_WIDTH   ( ClusterNarrowIdWidthIn ),
     .AXI_USER_WIDTH ( Cfg.ChsCfg.AxiUserWidth )
   ) soc_to_cluster_axi_bus();
   AXI_BUS_ASYNC_GRAY #(
     .AXI_ADDR_WIDTH ( Cfg.ChsCfg.AddrWidth ),
     .AXI_DATA_WIDTH ( ClusterDataWidth ),
-    .AXI_ID_WIDTH   ( ClusterNarrowAxiMstIdWidth ),
+    .AXI_ID_WIDTH   ( ClusterNarrowIdWidthIn ),
     .AXI_USER_WIDTH ( Cfg.ChsCfg.AxiUserWidth ),
     .LOG_DEPTH      ( 3 )
   ) async_soc_to_cluster_axi_bus();
@@ -186,7 +189,7 @@ module chimera_cluster
   axi_cdc_src_intf   #(
     .AXI_ADDR_WIDTH ( Cfg.ChsCfg.AddrWidth ),
     .AXI_DATA_WIDTH ( ClusterDataWidth ),
-    .AXI_ID_WIDTH   ( ClusterNarrowAxiMstIdWidth ),
+    .AXI_ID_WIDTH   ( ClusterNarrowIdWidthIn ),
     .AXI_USER_WIDTH ( Cfg.ChsCfg.AxiUserWidth ),
     .LOG_DEPTH      ( 3 )
   ) soc_to_cluster_src_cdc_fifo_i  (
@@ -203,13 +206,13 @@ module chimera_cluster
   AXI_BUS #(
     .AXI_ADDR_WIDTH ( Cfg.ChsCfg.AddrWidth ),
     .AXI_DATA_WIDTH ( ClusterDataWidth ),
-    .AXI_ID_WIDTH   ( ClusterNarrowAxiMstIdWidth ),
+    .AXI_ID_WIDTH   ( ClusterNarrowIdWidthOut ),
     .AXI_USER_WIDTH ( Cfg.ChsCfg.AxiUserWidth )
   ) cluster_to_soc_axi_bus();
   AXI_BUS_ASYNC_GRAY #(
     .AXI_ADDR_WIDTH ( Cfg.ChsCfg.AddrWidth ),
     .AXI_DATA_WIDTH ( ClusterDataWidth ),
-    .AXI_ID_WIDTH   ( ClusterNarrowAxiMstIdWidth ),
+    .AXI_ID_WIDTH   ( ClusterNarrowIdWidthOut ),
     .AXI_USER_WIDTH ( Cfg.ChsCfg.AxiUserWidth ),
     .LOG_DEPTH      ( 3 )
   ) async_cluster_to_soc_axi_bus();
@@ -217,7 +220,7 @@ module chimera_cluster
   axi_cdc_dst_intf   #(
     .AXI_ADDR_WIDTH ( Cfg.ChsCfg.AddrWidth ),
     .AXI_DATA_WIDTH ( ClusterDataWidth ),
-    .AXI_ID_WIDTH   ( ClusterNarrowAxiMstIdWidth ),
+    .AXI_ID_WIDTH   ( ClusterNarrowIdWidthOut ),
     .AXI_USER_WIDTH ( Cfg.ChsCfg.AxiUserWidth ),
     .LOG_DEPTH      ( 3 )
     ) cluster_to_soc_dst_cdc_fifo_i (
@@ -349,8 +352,8 @@ module chimera_cluster
     .AXI_DATA_C2S_WIDTH           ( ClusterDataWidth                    ),
     .AXI_DMA_DATA_C2S_WIDTH       ( WideDataWidth                 ),
     .AXI_USER_WIDTH               ( Cfg.ChsCfg.AxiUserWidth),
-    .AXI_ID_IN_WIDTH              ( ClusterNarrowAxiMstIdWidth                  ),
-    .AXI_ID_OUT_WIDTH             ( ClusterNarrowAxiMstIdWidth                    ),
+    .AXI_ID_IN_WIDTH              ( ClusterNarrowIdWidthIn                  ),
+    .AXI_ID_OUT_WIDTH             ( ClusterNarrowIdWidthOut                    ),
     .AXI_DMA_ID_OUT_WIDTH         ( WideMasterIdWidth                    ),
     .LOG_DEPTH                    ( 3                        ),
     .DATA_WIDTH                   ( 32                       ),   // ???

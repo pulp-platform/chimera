@@ -110,7 +110,7 @@ ExtClusters
     64'h40A0_0000, 64'h4080_0000, 64'h4060_0000, 64'h4040_0000, 64'h4020_0000
   };
 
-  localparam aw_bt ClusterNarrowAxiMstIdWidth = 1;
+  localparam aw_bt ClusterNarrowAxiMstIdWidth = 2;
 
   // Memory Island
   localparam byte_bt MemIslandIdx = ClusterIdx[ExtClusters-1] + 1;
