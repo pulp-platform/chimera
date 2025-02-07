@@ -33,7 +33,7 @@ int32_t testReturn() {
 
 int main() {
     volatile uint8_t *clockGatingRegPtr = (volatile uint8_t *)SOC_CTRL_BASE;
-    setAllClusterClockGating(clockGatingRegPtr, 1);
+    setAllClusterClockGating(clockGatingRegPtr, 0);
     setupInterruptHandler(clusterTrapHandler);
     offloadToCluster(testReturn, 0);
     uint32_t retVal = waitForCluster(0);
