@@ -375,6 +375,7 @@ module vip_chimera_soc
   localparam byte_bt UartDebugAck = 'h06;
   localparam byte_bt UartDebugEot = 'h04;
   localparam byte_bt UartDebugEoc = 'h14;
+  localparam byte_bt UartWriteBack[5:0] = "UartWB";
 
   byte_bt uart_boot_byte;
   logic   uart_boot_ena;
@@ -440,7 +441,9 @@ module vip_chimera_soc
   // TODO: we should be able to support CR properly, but buffers are hard to deal with...
   initial begin
     static byte_bt uart_read_buf[$];
+    static byte_bt uart_fifo[$];
     byte_bt        bite;
+    static string uart_writeback_msg = "WB OK";
     wait_for_reset();
     forever begin
       uart_read_byte(bite);
@@ -455,6 +458,14 @@ module vip_chimera_soc
       end else begin
         uart_read_buf.push_back(bite);
         $display("Read Byte: %s", bite);
+        // VIVIANEP: Store all bytes in a FIFO to be read by the testbench
+        uart_fifo.push_back(bite);
+        if (uart_fifo == UartWriteBack) begin
+          for (int i = 0; i < uart_writeback_msg.len(); i++) begin
+            uart_write_byte(uart_writeback_msg[i]);
+          end
+          $display("[UART] %s", {>>8{uart_writeback_msg}});
+        end
       end
     end
   end
