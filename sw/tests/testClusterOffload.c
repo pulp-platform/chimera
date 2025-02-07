@@ -32,8 +32,12 @@ int32_t testReturn() {
 
 int main() {
     setupInterruptHandler(clusterTrapHandler);
-    offloadToCluster(testReturn, 0);
-    uint32_t retVal = waitForCluster(0);
+
+    uint32_t retVal = 0;
+    for (int i = 0; i < _chimera_numClusters; i++) {
+        offloadToCluster(testReturn, i);
+        retVal |= waitForCluster(i);
+    }
 
     return (retVal != (TESTVAL | 0x000000001));
 }
