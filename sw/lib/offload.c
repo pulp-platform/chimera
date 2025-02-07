@@ -3,10 +3,13 @@
 // SPDX-License-Identifier: Apache-2.0
 //
 // Moritz Scherer <scheremo@iis.ee.ethz.ch>
+// Viviane Potocnik <vivianep@iis.ee.ethz.ch>
 
 #include "regs/soc_ctrl.h"
 #include "soc_addr_map.h"
+#include <stdbool.h>
 #include <stdint.h>
+#include <stdio.h>
 
 void setupInterruptHandler(void *handler) {
     volatile void **snitchTrapHandlerAddr =
@@ -39,6 +42,36 @@ void waitClusterBusy(uint8_t clusterId) {
     }
 
     return;
+}
+
+/* Set Clock Gating on specified cluster */
+void setClusterClockGating(volatile uint8_t *regPtr, uint8_t clusterId, bool enable) {
+
+    if (regPtr == NULL) return;
+
+    if (clusterId == 0) {
+        *(regPtr + CHIMERA_CLUSTER_0_CLK_GATE_EN_REG_OFFSET) = enable;
+    } else if (clusterId == 1) {
+        *(regPtr + CHIMERA_CLUSTER_1_CLK_GATE_EN_REG_OFFSET) = enable;
+    } else if (clusterId == 2) {
+        *(regPtr + CHIMERA_CLUSTER_2_CLK_GATE_EN_REG_OFFSET) = enable;
+    } else if (clusterId == 3) {
+        *(regPtr + CHIMERA_CLUSTER_3_CLK_GATE_EN_REG_OFFSET) = enable;
+    } else if (clusterId == 4) {
+        *(regPtr + CHIMERA_CLUSTER_4_CLK_GATE_EN_REG_OFFSET) = enable;
+    }
+}
+
+/* Set Clock Gating on all clusters */
+void setAllClusterClockGating(volatile uint8_t *regPtr, bool enable) {
+
+    if (regPtr == NULL) return;
+
+    *(regPtr + CHIMERA_CLUSTER_0_CLK_GATE_EN_REG_OFFSET) = enable;
+    *(regPtr + CHIMERA_CLUSTER_1_CLK_GATE_EN_REG_OFFSET) = enable;
+    *(regPtr + CHIMERA_CLUSTER_2_CLK_GATE_EN_REG_OFFSET) = enable;
+    *(regPtr + CHIMERA_CLUSTER_3_CLK_GATE_EN_REG_OFFSET) = enable;
+    *(regPtr + CHIMERA_CLUSTER_4_CLK_GATE_EN_REG_OFFSET) = enable;
 }
 
 /* Offloads a void function pointer to the specified cluster's core 0 */

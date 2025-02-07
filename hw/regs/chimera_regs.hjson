@@ -98,7 +98,7 @@
 	    desc: "Enable clock gate for cluster 0",
 	    swaccess: "rw",
 	    hwaccess: "hro",
-	    resval: "0",
+	    resval: "1",
 	    hwqe: "0",
 	    fields: [
 		{ bits: "0:0" }
@@ -110,7 +110,7 @@
 	    desc: "Enable clock gate for cluster 1",
 	    swaccess: "rw",
 	    hwaccess: "hro",
-	    resval: "0",
+	    resval: "1",
 	    hwqe: "0",
 	    fields: [
 		{ bits: "0:0" }
@@ -122,7 +122,7 @@
 	    desc: "Enable clock gate for cluster 2",
 	    swaccess: "rw",
 	    hwaccess: "hro",
-	    resval: "0",
+	    resval: "1",
 	    hwqe: "0",
 	    fields: [
 		{ bits: "0:0" }
@@ -134,7 +134,7 @@
 	    desc: "Enable clock gate for cluster 3",
 	    swaccess: "rw",
 	    hwaccess: "hro",
-	    resval: "0",
+	    resval: "1",
 	    hwqe: "0",
 	    fields: [
 		{ bits: "0:0" }
@@ -146,7 +146,7 @@
 	    desc: "Enable clock gate for cluster 4",
 	    swaccess: "rw",
 	    hwaccess: "hro",
-	    resval: "0",
+	    resval: "1",
 	    hwqe: "0",
 	    fields: [
 		{ bits: "0:0" }
