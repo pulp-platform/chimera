@@ -36,7 +36,7 @@ target/sim/models
 target/sim/vsim/work
 target/sim/vsim/transcript
 target/sim/vsim/*.do
-target/sim/vsim/trace*
+target/sim/vsim/*trace*
 modelsim.ini
 compile.tcl
 logs
