@@ -3,6 +3,7 @@
 // SPDX-License-Identifier: Apache-2.0
 //
 // Lorenzo Leone <lleone@iis.ee.ethz.ch>
+// Viviane Potocnik <vivianep@iis.ee.ethz.ch>
 
 // Test to check if clusters can access the memory island both using
 // the wide interconnect and the narrow AXI.
@@ -58,6 +59,9 @@ int32_t __attribute__((aligned(32))) testMemWide() {
 }
 
 int main() {
+    volatile uint8_t *clockGatingRegPtr = (volatile uint8_t *)SOC_CTRL_BASE;
+    setAllClusterClockGating(clockGatingRegPtr, 0);
+
     volatile int32_t *regPtr = 0;
 
     uint32_t retVal = 0;
