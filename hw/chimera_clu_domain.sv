@@ -26,8 +26,9 @@ module chimera_clu_domain
 ) (
   input  logic                                                              soc_clk_i,
   input  logic             [                               ExtClusters-1:0] clu_clk_i,
-  input  logic                                                              rst_ni,
+  input  logic             [                               ExtClusters-1:0] rst_ni,
   input  logic             [                               ExtClusters-1:0] widemem_bypass_i,
+  input  logic             [                                          31:0] boot_addr_i,
   //-----------------------------
   // Interrupt ports
   //-----------------------------
@@ -68,7 +69,7 @@ module chimera_clu_domain
   ) i_chimera_cluster_tuedcim (
     .soc_clk_i          (soc_clk_i),
     .clu_clk_i          (clu_clk_i[TUEDCIMIDX]),
-    .rst_ni,
+    .rst_ni             (rst_ni[TUEDCIMIDX]),
     .widemem_bypass_i   (widemem_bypass_i[TUEDCIMIDX]),
     .debug_req_i        (debug_req_i[`PREVNRCORES(TUEDCIMIDX)+:`NRCORES(TUEDCIMIDX)]),
     .meip_i             (xeip_i[`PREVNRCORES(TUEDCIMIDX)+:`NRCORES(TUEDCIMIDX)]),
@@ -76,7 +77,7 @@ module chimera_clu_domain
     .msip_i             (msip_i[`PREVNRCORES(TUEDCIMIDX)+:`NRCORES(TUEDCIMIDX)]),
     .hart_base_id_i     (10'(`PREVNRCORES(TUEDCIMIDX) + 1)),
     .cluster_base_addr_i(Cfg.ChsCfg.AxiExtRegionStart[TUEDCIMIDX][Cfg.ChsCfg.AddrWidth-1:0]),
-    .boot_addr_i        (SnitchBootROMRegionStart[31:0]),
+    .boot_addr_i        (boot_addr_i),
 
     .narrow_in_req_i  (narrow_in_req_i[TUEDCIMIDX]),
     .narrow_in_resp_o (narrow_in_resp_o[TUEDCIMIDX]),
@@ -100,7 +101,7 @@ module chimera_clu_domain
   ) i_chimera_cluster_0 (
     .soc_clk_i          (soc_clk_i),
     .clu_clk_i          (clu_clk_i[TUEDCIMIDX]),
-    .rst_ni,
+    .rst_ni             (rst_ni[TUEDCIMIDX]),
     .widemem_bypass_i   (widemem_bypass_i[TUEDCIMIDX]),
     .debug_req_i        (debug_req_i[`PREVNRCORES(TUEDCIMIDX)+:`NRCORES(TUEDCIMIDX)]),
     .meip_i             (xeip_i[`PREVNRCORES(TUEDCIMIDX)+:`NRCORES(TUEDCIMIDX)]),
@@ -108,7 +109,7 @@ module chimera_clu_domain
     .msip_i             (msip_i[`PREVNRCORES(TUEDCIMIDX)+:`NRCORES(TUEDCIMIDX)]),
     .hart_base_id_i     (10'(`PREVNRCORES(TUEDCIMIDX) + 1)),
     .cluster_base_addr_i(Cfg.ChsCfg.AxiExtRegionStart[TUEDCIMIDX][Cfg.ChsCfg.AddrWidth-1:0]),
-    .boot_addr_i        (SnitchBootROMRegionStart[31:0]),
+    .boot_addr_i        (boot_addr_i),
 
     .narrow_in_req_i  (narrow_in_req_i[TUEDCIMIDX]),
     .narrow_in_resp_o (narrow_in_resp_o[TUEDCIMIDX]),
@@ -133,7 +134,7 @@ module chimera_clu_domain
   ) i_chimera_cluster_tuemega (
     .soc_clk_i          (soc_clk_i),
     .clu_clk_i          (clu_clk_i[TUEMEGAIDX]),
-    .rst_ni,
+    .rst_ni             (rst_ni[TUEMEGAIDX]),
     .widemem_bypass_i   (widemem_bypass_i[TUEMEGAIDX]),
     .debug_req_i        (debug_req_i[`PREVNRCORES(TUEMEGAIDX)+:`NRCORES(TUEMEGAIDX)]),
     .meip_i             (xeip_i[`PREVNRCORES(TUEMEGAIDX)+:`NRCORES(TUEMEGAIDX)]),
@@ -141,7 +142,7 @@ module chimera_clu_domain
     .msip_i             (msip_i[`PREVNRCORES(TUEMEGAIDX)+:`NRCORES(TUEMEGAIDX)]),
     .hart_base_id_i     (10'(`PREVNRCORES(TUEMEGAIDX) + 1)),
     .cluster_base_addr_i(Cfg.ChsCfg.AxiExtRegionStart[TUEMEGAIDX][Cfg.ChsCfg.AddrWidth-1:0]),
-    .boot_addr_i        (SnitchBootROMRegionStart[31:0]),
+    .boot_addr_i        (boot_addr_i),
 
     .narrow_in_req_i  (narrow_in_req_i[TUEMEGAIDX]),
     .narrow_in_resp_o (narrow_in_resp_o[TUEMEGAIDX]),
@@ -165,7 +166,7 @@ module chimera_clu_domain
   ) i_chimera_cluster_1 (
     .soc_clk_i          (soc_clk_i),
     .clu_clk_i          (clu_clk_i[TUEMEGAIDX]),
-    .rst_ni,
+    .rst_ni             (rst_ni[TUEMEGAIDX]),
     .widemem_bypass_i   (widemem_bypass_i[TUEMEGAIDX]),
     .debug_req_i        (debug_req_i[`PREVNRCORES(TUEMEGAIDX)+:`NRCORES(TUEMEGAIDX)]),
     .meip_i             (xeip_i[`PREVNRCORES(TUEMEGAIDX)+:`NRCORES(TUEMEGAIDX)]),
@@ -173,7 +174,7 @@ module chimera_clu_domain
     .msip_i             (msip_i[`PREVNRCORES(TUEMEGAIDX)+:`NRCORES(TUEMEGAIDX)]),
     .hart_base_id_i     (10'(`PREVNRCORES(TUEMEGAIDX) + 1)),
     .cluster_base_addr_i(Cfg.ChsCfg.AxiExtRegionStart[TUEMEGAIDX][Cfg.ChsCfg.AddrWidth-1:0]),
-    .boot_addr_i        (SnitchBootROMRegionStart[31:0]),
+    .boot_addr_i        (boot_addr_i),
 
     .narrow_in_req_i  (narrow_in_req_i[TUEMEGAIDX]),
     .narrow_in_resp_o (narrow_in_resp_o[TUEMEGAIDX]),
@@ -200,7 +201,7 @@ module chimera_clu_domain
   ) i_chimera_cluster_tuddcim (
     .soc_clk_i          (soc_clk_i),
     .clu_clk_i          (clu_clk_i[TUDDCIMIDX]),
-    .rst_ni,
+    .rst_ni             (rst_ni[TUDDCIMIDX]),
     .widemem_bypass_i   (widemem_bypass_i[TUDDCIMIDX]),
     .debug_req_i        (debug_req_i[`PREVNRCORES(TUDDCIMIDX)+:`NRCORES(TUDDCIMIDX)]),
     .meip_i             (xeip_i[`PREVNRCORES(TUDDCIMIDX)+:`NRCORES(TUDDCIMIDX)]),
@@ -208,7 +209,7 @@ module chimera_clu_domain
     .msip_i             (msip_i[`PREVNRCORES(TUDDCIMIDX)+:`NRCORES(TUDDCIMIDX)]),
     .hart_base_id_i     (10'(`PREVNRCORES(TUDDCIMIDX) + 1)),
     .cluster_base_addr_i(Cfg.ChsCfg.AxiExtRegionStart[TUDDCIMIDX][Cfg.ChsCfg.AddrWidth-1:0]),
-    .boot_addr_i        (SnitchBootROMRegionStart[31:0]),
+    .boot_addr_i        (boot_addr_i),
 
     .narrow_in_req_i  (narrow_in_req_i[TUDDCIMIDX]),
     .narrow_in_resp_o (narrow_in_resp_o[TUDDCIMIDX]),
@@ -232,7 +233,7 @@ module chimera_clu_domain
   ) i_chimera_cluster_2 (
     .soc_clk_i          (soc_clk_i),
     .clu_clk_i          (clu_clk_i[TUDDCIMIDX]),
-    .rst_ni,
+    .rst_ni             (rst_ni[TUDDCIMIDX]),
     .widemem_bypass_i   (widemem_bypass_i[TUDDCIMIDX]),
     .debug_req_i        (debug_req_i[`PREVNRCORES(TUDDCIMIDX)+:`NRCORES(TUDDCIMIDX)]),
     .meip_i             (xeip_i[`PREVNRCORES(TUDDCIMIDX)+:`NRCORES(TUDDCIMIDX)]),
@@ -240,7 +241,7 @@ module chimera_clu_domain
     .msip_i             (msip_i[`PREVNRCORES(TUDDCIMIDX)+:`NRCORES(TUDDCIMIDX)]),
     .hart_base_id_i     (10'(`PREVNRCORES(TUDDCIMIDX) + 1)),
     .cluster_base_addr_i(Cfg.ChsCfg.AxiExtRegionStart[TUDDCIMIDX][Cfg.ChsCfg.AddrWidth-1:0]),
-    .boot_addr_i        (SnitchBootROMRegionStart[31:0]),
+    .boot_addr_i        (boot_addr_i),
 
     .narrow_in_req_i  (narrow_in_req_i[TUDDCIMIDX]),
     .narrow_in_resp_o (narrow_in_resp_o[TUDDCIMIDX]),
@@ -267,7 +268,7 @@ module chimera_clu_domain
   ) i_chimera_cluster_kulcluster (
     .soc_clk_i          (soc_clk_i),
     .clu_clk_i          (clu_clk_i[KULCLUSTERIDX]),
-    .rst_ni,
+    .rst_ni             (rst_ni[KULCLUSTERIDX]),
     .widemem_bypass_i   (widemem_bypass_i[KULCLUSTERIDX]),
     .debug_req_i        (debug_req_i[`PREVNRCORES(KULCLUSTERIDX)+:`NRCORES(KULCLUSTERIDX)]),
     .meip_i             (xeip_i[`PREVNRCORES(KULCLUSTERIDX)+:`NRCORES(KULCLUSTERIDX)]),
@@ -275,7 +276,7 @@ module chimera_clu_domain
     .msip_i             (msip_i[`PREVNRCORES(KULCLUSTERIDX)+:`NRCORES(KULCLUSTERIDX)]),
     .hart_base_id_i     (10'(`PREVNRCORES(KULCLUSTERIDX) + 1)),
     .cluster_base_addr_i(Cfg.ChsCfg.AxiExtRegionStart[KULCLUSTERIDX][Cfg.ChsCfg.AddrWidth-1:0]),
-    .boot_addr_i        (SnitchBootROMRegionStart[31:0]),
+    .boot_addr_i        (boot_addr_i),
 
     .narrow_in_req_i  (narrow_in_req_i[KULCLUSTERIDX]),
     .narrow_in_resp_o (narrow_in_resp_o[KULCLUSTERIDX]),
@@ -299,7 +300,7 @@ module chimera_clu_domain
   ) i_chimera_cluster_3 (
     .soc_clk_i          (soc_clk_i),
     .clu_clk_i          (clu_clk_i[KULCLUSTERIDX]),
-    .rst_ni,
+    .rst_ni             (rst_ni[KULCLUSTERIDX]),
     .widemem_bypass_i   (widemem_bypass_i[KULCLUSTERIDX]),
     .debug_req_i        (debug_req_i[`PREVNRCORES(KULCLUSTERIDX)+:`NRCORES(KULCLUSTERIDX)]),
     .meip_i             (xeip_i[`PREVNRCORES(KULCLUSTERIDX)+:`NRCORES(KULCLUSTERIDX)]),
@@ -307,7 +308,7 @@ module chimera_clu_domain
     .msip_i             (msip_i[`PREVNRCORES(KULCLUSTERIDX)+:`NRCORES(KULCLUSTERIDX)]),
     .hart_base_id_i     (10'(`PREVNRCORES(KULCLUSTERIDX) + 1)),
     .cluster_base_addr_i(Cfg.ChsCfg.AxiExtRegionStart[KULCLUSTERIDX][Cfg.ChsCfg.AddrWidth-1:0]),
-    .boot_addr_i        (SnitchBootROMRegionStart[31:0]),
+    .boot_addr_i        (boot_addr_i),
 
     .narrow_in_req_i  (narrow_in_req_i[KULCLUSTERIDX]),
     .narrow_in_resp_o (narrow_in_resp_o[KULCLUSTERIDX]),
@@ -334,7 +335,7 @@ module chimera_clu_domain
   ) i_chimera_cluster_ethcluster (
     .soc_clk_i          (soc_clk_i),
     .clu_clk_i          (clu_clk_i[ETHCLUSTERIDX]),
-    .rst_ni,
+    .rst_ni             (rst_ni[ETHCLUSTERIDX]),
     .widemem_bypass_i   (widemem_bypass_i[ETHCLUSTERIDX]),
     .debug_req_i        (debug_req_i[`PREVNRCORES(ETHCLUSTERIDX)+:`NRCORES(ETHCLUSTERIDX)]),
     .meip_i             (xeip_i[`PREVNRCORES(ETHCLUSTERIDX)+:`NRCORES(ETHCLUSTERIDX)]),
@@ -342,7 +343,7 @@ module chimera_clu_domain
     .msip_i             (msip_i[`PREVNRCORES(ETHCLUSTERIDX)+:`NRCORES(ETHCLUSTERIDX)]),
     .hart_base_id_i     (10'(`PREVNRCORES(ETHCLUSTERIDX) + 1)),
     .cluster_base_addr_i(Cfg.ChsCfg.AxiExtRegionStart[ETHCLUSTERIDX][Cfg.ChsCfg.AddrWidth-1:0]),
-    .boot_addr_i        (SnitchBootROMRegionStart[31:0]),
+    .boot_addr_i        (boot_addr_i),
 
     .narrow_in_req_i  (narrow_in_req_i[ETHCLUSTERIDX]),
     .narrow_in_resp_o (narrow_in_resp_o[ETHCLUSTERIDX]),
@@ -366,7 +367,7 @@ module chimera_clu_domain
   ) i_chimera_cluster_4 (
     .soc_clk_i          (soc_clk_i),
     .clu_clk_i          (clu_clk_i[ETHCLUSTERIDX]),
-    .rst_ni,
+    .rst_ni             (rst_ni[ETHCLUSTERIDX]),
     .widemem_bypass_i   (widemem_bypass_i[ETHCLUSTERIDX]),
     .debug_req_i        (debug_req_i[`PREVNRCORES(ETHCLUSTERIDX)+:`NRCORES(ETHCLUSTERIDX)]),
     .meip_i             (xeip_i[`PREVNRCORES(ETHCLUSTERIDX)+:`NRCORES(ETHCLUSTERIDX)]),
@@ -374,7 +375,7 @@ module chimera_clu_domain
     .msip_i             (msip_i[`PREVNRCORES(ETHCLUSTERIDX)+:`NRCORES(ETHCLUSTERIDX)]),
     .hart_base_id_i     (10'(`PREVNRCORES(ETHCLUSTERIDX) + 1)),
     .cluster_base_addr_i(Cfg.ChsCfg.AxiExtRegionStart[ETHCLUSTERIDX][Cfg.ChsCfg.AddrWidth-1:0]),
-    .boot_addr_i        (SnitchBootROMRegionStart[31:0]),
+    .boot_addr_i        (boot_addr_i),
 
     .narrow_in_req_i  (narrow_in_req_i[ETHCLUSTERIDX]),
     .narrow_in_resp_o (narrow_in_resp_o[ETHCLUSTERIDX]),

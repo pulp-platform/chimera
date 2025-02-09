@@ -119,7 +119,7 @@ module vip_chimera_soc
     .RstClkCycles(RstCycles)
   ) i_clk_rst_sys (
     .clk_o (soc_clk),
-    .rst_no(rst_n)
+    .rst_no()
   );
 
   clk_rst_gen #(
@@ -129,6 +129,17 @@ module vip_chimera_soc
     .clk_o (rtc),
     .rst_no()
   );
+
+  initial begin
+    rst_n = 0;
+    #(RstCycles * ClkPeriodSys);
+    rst_n = 1;
+    #(RstCycles * ClkPeriodSys);
+    rst_n = 0;
+    // Keep negative pulse active enough to avoid hyperbus timing violations (x50 empirical)
+    #(RstCycles * ClkPeriodSys * 25);
+    rst_n = 1;
+  end
 
   initial begin
     test_mode = '0;

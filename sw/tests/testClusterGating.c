@@ -11,11 +11,12 @@
 #include <stdint.h>
 
 int main() {
-    volatile uint8_t *clockGatingRegPtr = (volatile uint8_t *)SOC_CTRL_BASE;
+    volatile uint8_t *regPtr = (volatile uint8_t *)SOC_CTRL_BASE;
 
-    setClusterClockGating(clockGatingRegPtr, 0, 1);
-    setClusterClockGating(clockGatingRegPtr, 3, 1);
-    setClusterClockGating(clockGatingRegPtr, 4, 1);
+    setAllClusterReset(regPtr, 0);
+    setClusterClockGating(regPtr, 0, 1);
+    setClusterClockGating(regPtr, 3, 1);
+    setClusterClockGating(regPtr, 4, 1);
 
     while (1) {
     }

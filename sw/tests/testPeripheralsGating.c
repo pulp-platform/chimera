@@ -19,6 +19,8 @@
 
 int main() {
     volatile uint8_t *clockGatingRegPtr = (volatile uint8_t *)SOC_CTRL_BASE;
+    volatile uint8_t *resetRegPtr = (volatile uint8_t *)SOC_CTRL_BASE;
+    setAllClusterReset(resetRegPtr, 0);
     setAllClusterClockGating(clockGatingRegPtr, 0);
 
     volatile uint32_t *regPtr = 0;
