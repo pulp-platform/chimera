@@ -3,6 +3,7 @@
 // SPDX-License-Identifier: Apache-2.0
 //
 // Moritz Scherer <scheremo@iis.ee.ethz.ch>
+// Viviane Potocnik <vivianep@iis.ee.ethz.ch>
 
 // Simple offload test. Set the trap handler first, offload a function, retrieve
 // return value from cluster. Does not currently take care of stack
@@ -31,6 +32,8 @@ int32_t testReturn() {
 }
 
 int main() {
+    volatile uint8_t *clockGatingRegPtr = (volatile uint8_t *)SOC_CTRL_BASE;
+    setAllClusterClockGating(clockGatingRegPtr, 0);
     setupInterruptHandler(clusterTrapHandler);
 
     uint32_t retVal = 0;

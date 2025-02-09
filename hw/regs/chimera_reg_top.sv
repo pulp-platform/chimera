@@ -10,58 +10,58 @@
 module chimera_reg_top #(
   parameter type reg_req_t = logic,
   parameter type reg_rsp_t = logic,
-  parameter int AW = 7
+  parameter int  AW        = 7
 ) (
-  input logic clk_i,
-  input logic rst_ni,
-  input  reg_req_t reg_req_i,
-  output reg_rsp_t reg_rsp_o,
+  input  logic                             clk_i,
+  input  logic                             rst_ni,
+  input  reg_req_t                         reg_req_i,
+  output reg_rsp_t                         reg_rsp_o,
   // To HW
-  output chimera_reg_pkg::chimera_reg2hw_t reg2hw, // Write
+  output chimera_reg_pkg::chimera_reg2hw_t reg2hw,     // Write
 
 
   // Config
-  input devmode_i // If 1, explicit error return for unmapped register access
+  input devmode_i  // If 1, explicit error return for unmapped register access
 );
 
-  import chimera_reg_pkg::* ;
+  import chimera_reg_pkg::*;
 
   localparam int DW = 32;
-  localparam int DBW = DW/8;                    // Byte Width
+  localparam int DBW = DW / 8;  // Byte Width
 
   // register signals
-  logic           reg_we;
-  logic           reg_re;
-  logic [BlockAw-1:0]  reg_addr;
-  logic [DW-1:0]  reg_wdata;
-  logic [DBW-1:0] reg_be;
-  logic [DW-1:0]  reg_rdata;
-  logic           reg_error;
+  logic               reg_we;
+  logic               reg_re;
+  logic [BlockAw-1:0] reg_addr;
+  logic [     DW-1:0] reg_wdata;
+  logic [    DBW-1:0] reg_be;
+  logic [     DW-1:0] reg_rdata;
+  logic               reg_error;
 
-  logic          addrmiss, wr_err;
+  logic addrmiss, wr_err;
 
-  logic [DW-1:0] reg_rdata_next;
+  logic     [DW-1:0] reg_rdata_next;
 
   // Below register interface can be changed
-  reg_req_t  reg_intf_req;
-  reg_rsp_t  reg_intf_rsp;
+  reg_req_t          reg_intf_req;
+  reg_rsp_t          reg_intf_rsp;
 
 
-  assign reg_intf_req = reg_req_i;
-  assign reg_rsp_o = reg_intf_rsp;
+  assign reg_intf_req       = reg_req_i;
+  assign reg_rsp_o          = reg_intf_rsp;
 
 
-  assign reg_we = reg_intf_req.valid & reg_intf_req.write;
-  assign reg_re = reg_intf_req.valid & ~reg_intf_req.write;
-  assign reg_addr = reg_intf_req.addr[BlockAw-1:0];
-  assign reg_wdata = reg_intf_req.wdata;
-  assign reg_be = reg_intf_req.wstrb;
+  assign reg_we             = reg_intf_req.valid & reg_intf_req.write;
+  assign reg_re             = reg_intf_req.valid & ~reg_intf_req.write;
+  assign reg_addr           = reg_intf_req.addr[BlockAw-1:0];
+  assign reg_wdata          = reg_intf_req.wdata;
+  assign reg_be             = reg_intf_req.wstrb;
   assign reg_intf_rsp.rdata = reg_rdata;
   assign reg_intf_rsp.error = reg_error;
   assign reg_intf_rsp.ready = 1'b1;
 
-  assign reg_rdata = reg_rdata_next ;
-  assign reg_error = (devmode_i & addrmiss) | wr_err;
+  assign reg_rdata          = reg_rdata_next;
+  assign reg_error          = (devmode_i & addrmiss) | wr_err;
 
 
   // Define SW related signals
@@ -69,70 +69,70 @@ module chimera_reg_top #(
   //        or <reg>_{wd|we|qs} if field == 1 or 0
   logic [31:0] snitch_boot_addr_qs;
   logic [31:0] snitch_boot_addr_wd;
-  logic snitch_boot_addr_we;
+  logic        snitch_boot_addr_we;
   logic [31:0] snitch_intr_handler_addr_qs;
   logic [31:0] snitch_intr_handler_addr_wd;
-  logic snitch_intr_handler_addr_we;
+  logic        snitch_intr_handler_addr_we;
   logic [31:0] snitch_cluster_0_return_qs;
   logic [31:0] snitch_cluster_0_return_wd;
-  logic snitch_cluster_0_return_we;
+  logic        snitch_cluster_0_return_we;
   logic [31:0] snitch_cluster_1_return_qs;
   logic [31:0] snitch_cluster_1_return_wd;
-  logic snitch_cluster_1_return_we;
+  logic        snitch_cluster_1_return_we;
   logic [31:0] snitch_cluster_2_return_qs;
   logic [31:0] snitch_cluster_2_return_wd;
-  logic snitch_cluster_2_return_we;
+  logic        snitch_cluster_2_return_we;
   logic [31:0] snitch_cluster_3_return_qs;
   logic [31:0] snitch_cluster_3_return_wd;
-  logic snitch_cluster_3_return_we;
+  logic        snitch_cluster_3_return_we;
   logic [31:0] snitch_cluster_4_return_qs;
   logic [31:0] snitch_cluster_4_return_wd;
-  logic snitch_cluster_4_return_we;
-  logic cluster_0_clk_gate_en_qs;
-  logic cluster_0_clk_gate_en_wd;
-  logic cluster_0_clk_gate_en_we;
-  logic cluster_1_clk_gate_en_qs;
-  logic cluster_1_clk_gate_en_wd;
-  logic cluster_1_clk_gate_en_we;
-  logic cluster_2_clk_gate_en_qs;
-  logic cluster_2_clk_gate_en_wd;
-  logic cluster_2_clk_gate_en_we;
-  logic cluster_3_clk_gate_en_qs;
-  logic cluster_3_clk_gate_en_wd;
-  logic cluster_3_clk_gate_en_we;
-  logic cluster_4_clk_gate_en_qs;
-  logic cluster_4_clk_gate_en_wd;
-  logic cluster_4_clk_gate_en_we;
-  logic wide_mem_cluster_0_bypass_qs;
-  logic wide_mem_cluster_0_bypass_wd;
-  logic wide_mem_cluster_0_bypass_we;
-  logic wide_mem_cluster_1_bypass_qs;
-  logic wide_mem_cluster_1_bypass_wd;
-  logic wide_mem_cluster_1_bypass_we;
-  logic wide_mem_cluster_2_bypass_qs;
-  logic wide_mem_cluster_2_bypass_wd;
-  logic wide_mem_cluster_2_bypass_we;
-  logic wide_mem_cluster_3_bypass_qs;
-  logic wide_mem_cluster_3_bypass_wd;
-  logic wide_mem_cluster_3_bypass_we;
-  logic wide_mem_cluster_4_bypass_qs;
-  logic wide_mem_cluster_4_bypass_wd;
-  logic wide_mem_cluster_4_bypass_we;
-  logic cluster_0_busy_qs;
-  logic cluster_0_busy_wd;
-  logic cluster_0_busy_we;
-  logic cluster_1_busy_qs;
-  logic cluster_1_busy_wd;
-  logic cluster_1_busy_we;
-  logic cluster_2_busy_qs;
-  logic cluster_2_busy_wd;
-  logic cluster_2_busy_we;
-  logic cluster_3_busy_qs;
-  logic cluster_3_busy_wd;
-  logic cluster_3_busy_we;
-  logic cluster_4_busy_qs;
-  logic cluster_4_busy_wd;
-  logic cluster_4_busy_we;
+  logic        snitch_cluster_4_return_we;
+  logic        cluster_0_clk_gate_en_qs;
+  logic        cluster_0_clk_gate_en_wd;
+  logic        cluster_0_clk_gate_en_we;
+  logic        cluster_1_clk_gate_en_qs;
+  logic        cluster_1_clk_gate_en_wd;
+  logic        cluster_1_clk_gate_en_we;
+  logic        cluster_2_clk_gate_en_qs;
+  logic        cluster_2_clk_gate_en_wd;
+  logic        cluster_2_clk_gate_en_we;
+  logic        cluster_3_clk_gate_en_qs;
+  logic        cluster_3_clk_gate_en_wd;
+  logic        cluster_3_clk_gate_en_we;
+  logic        cluster_4_clk_gate_en_qs;
+  logic        cluster_4_clk_gate_en_wd;
+  logic        cluster_4_clk_gate_en_we;
+  logic        wide_mem_cluster_0_bypass_qs;
+  logic        wide_mem_cluster_0_bypass_wd;
+  logic        wide_mem_cluster_0_bypass_we;
+  logic        wide_mem_cluster_1_bypass_qs;
+  logic        wide_mem_cluster_1_bypass_wd;
+  logic        wide_mem_cluster_1_bypass_we;
+  logic        wide_mem_cluster_2_bypass_qs;
+  logic        wide_mem_cluster_2_bypass_wd;
+  logic        wide_mem_cluster_2_bypass_we;
+  logic        wide_mem_cluster_3_bypass_qs;
+  logic        wide_mem_cluster_3_bypass_wd;
+  logic        wide_mem_cluster_3_bypass_we;
+  logic        wide_mem_cluster_4_bypass_qs;
+  logic        wide_mem_cluster_4_bypass_wd;
+  logic        wide_mem_cluster_4_bypass_we;
+  logic        cluster_0_busy_qs;
+  logic        cluster_0_busy_wd;
+  logic        cluster_0_busy_we;
+  logic        cluster_1_busy_qs;
+  logic        cluster_1_busy_wd;
+  logic        cluster_1_busy_we;
+  logic        cluster_2_busy_qs;
+  logic        cluster_2_busy_wd;
+  logic        cluster_2_busy_we;
+  logic        cluster_3_busy_qs;
+  logic        cluster_3_busy_wd;
+  logic        cluster_3_busy_we;
+  logic        cluster_4_busy_qs;
+  logic        cluster_4_busy_wd;
+  logic        cluster_4_busy_we;
 
   // Register instances
   // R[snitch_boot_addr]: V(False)
@@ -142,23 +142,23 @@ module chimera_reg_top #(
     .SWACCESS("RW"),
     .RESVAL  (32'hbadcab1e)
   ) u_snitch_boot_addr (
-    .clk_i   (clk_i    ),
-    .rst_ni  (rst_ni  ),
+    .clk_i (clk_i),
+    .rst_ni(rst_ni),
 
     // from register interface
-    .we     (snitch_boot_addr_we),
-    .wd     (snitch_boot_addr_wd),
+    .we(snitch_boot_addr_we),
+    .wd(snitch_boot_addr_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de(1'b0),
+    .d ('0),
 
     // to internal hardware
-    .qe     (),
-    .q      (reg2hw.snitch_boot_addr.q ),
+    .qe(),
+    .q (reg2hw.snitch_boot_addr.q),
 
     // to register interface (read)
-    .qs     (snitch_boot_addr_qs)
+    .qs(snitch_boot_addr_qs)
   );
 
 
@@ -169,23 +169,23 @@ module chimera_reg_top #(
     .SWACCESS("RW"),
     .RESVAL  (32'hbadcab1e)
   ) u_snitch_intr_handler_addr (
-    .clk_i   (clk_i    ),
-    .rst_ni  (rst_ni  ),
+    .clk_i (clk_i),
+    .rst_ni(rst_ni),
 
     // from register interface
-    .we     (snitch_intr_handler_addr_we),
-    .wd     (snitch_intr_handler_addr_wd),
+    .we(snitch_intr_handler_addr_we),
+    .wd(snitch_intr_handler_addr_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de(1'b0),
+    .d ('0),
 
     // to internal hardware
-    .qe     (),
-    .q      (reg2hw.snitch_intr_handler_addr.q ),
+    .qe(),
+    .q (reg2hw.snitch_intr_handler_addr.q),
 
     // to register interface (read)
-    .qs     (snitch_intr_handler_addr_qs)
+    .qs(snitch_intr_handler_addr_qs)
   );
 
 
@@ -196,23 +196,23 @@ module chimera_reg_top #(
     .SWACCESS("RW"),
     .RESVAL  (32'h0)
   ) u_snitch_cluster_0_return (
-    .clk_i   (clk_i    ),
-    .rst_ni  (rst_ni  ),
+    .clk_i (clk_i),
+    .rst_ni(rst_ni),
 
     // from register interface
-    .we     (snitch_cluster_0_return_we),
-    .wd     (snitch_cluster_0_return_wd),
+    .we(snitch_cluster_0_return_we),
+    .wd(snitch_cluster_0_return_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de(1'b0),
+    .d ('0),
 
     // to internal hardware
-    .qe     (),
-    .q      (reg2hw.snitch_cluster_0_return.q ),
+    .qe(),
+    .q (reg2hw.snitch_cluster_0_return.q),
 
     // to register interface (read)
-    .qs     (snitch_cluster_0_return_qs)
+    .qs(snitch_cluster_0_return_qs)
   );
 
 
@@ -223,23 +223,23 @@ module chimera_reg_top #(
     .SWACCESS("RW"),
     .RESVAL  (32'h0)
   ) u_snitch_cluster_1_return (
-    .clk_i   (clk_i    ),
-    .rst_ni  (rst_ni  ),
+    .clk_i (clk_i),
+    .rst_ni(rst_ni),
 
     // from register interface
-    .we     (snitch_cluster_1_return_we),
-    .wd     (snitch_cluster_1_return_wd),
+    .we(snitch_cluster_1_return_we),
+    .wd(snitch_cluster_1_return_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de(1'b0),
+    .d ('0),
 
     // to internal hardware
-    .qe     (),
-    .q      (reg2hw.snitch_cluster_1_return.q ),
+    .qe(),
+    .q (reg2hw.snitch_cluster_1_return.q),
 
     // to register interface (read)
-    .qs     (snitch_cluster_1_return_qs)
+    .qs(snitch_cluster_1_return_qs)
   );
 
 
@@ -250,23 +250,23 @@ module chimera_reg_top #(
     .SWACCESS("RW"),
     .RESVAL  (32'h0)
   ) u_snitch_cluster_2_return (
-    .clk_i   (clk_i    ),
-    .rst_ni  (rst_ni  ),
+    .clk_i (clk_i),
+    .rst_ni(rst_ni),
 
     // from register interface
-    .we     (snitch_cluster_2_return_we),
-    .wd     (snitch_cluster_2_return_wd),
+    .we(snitch_cluster_2_return_we),
+    .wd(snitch_cluster_2_return_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de(1'b0),
+    .d ('0),
 
     // to internal hardware
-    .qe     (),
-    .q      (reg2hw.snitch_cluster_2_return.q ),
+    .qe(),
+    .q (reg2hw.snitch_cluster_2_return.q),
 
     // to register interface (read)
-    .qs     (snitch_cluster_2_return_qs)
+    .qs(snitch_cluster_2_return_qs)
   );
 
 
@@ -277,23 +277,23 @@ module chimera_reg_top #(
     .SWACCESS("RW"),
     .RESVAL  (32'h0)
   ) u_snitch_cluster_3_return (
-    .clk_i   (clk_i    ),
-    .rst_ni  (rst_ni  ),
+    .clk_i (clk_i),
+    .rst_ni(rst_ni),
 
     // from register interface
-    .we     (snitch_cluster_3_return_we),
-    .wd     (snitch_cluster_3_return_wd),
+    .we(snitch_cluster_3_return_we),
+    .wd(snitch_cluster_3_return_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de(1'b0),
+    .d ('0),
 
     // to internal hardware
-    .qe     (),
-    .q      (reg2hw.snitch_cluster_3_return.q ),
+    .qe(),
+    .q (reg2hw.snitch_cluster_3_return.q),
 
     // to register interface (read)
-    .qs     (snitch_cluster_3_return_qs)
+    .qs(snitch_cluster_3_return_qs)
   );
 
 
@@ -304,23 +304,23 @@ module chimera_reg_top #(
     .SWACCESS("RW"),
     .RESVAL  (32'h0)
   ) u_snitch_cluster_4_return (
-    .clk_i   (clk_i    ),
-    .rst_ni  (rst_ni  ),
+    .clk_i (clk_i),
+    .rst_ni(rst_ni),
 
     // from register interface
-    .we     (snitch_cluster_4_return_we),
-    .wd     (snitch_cluster_4_return_wd),
+    .we(snitch_cluster_4_return_we),
+    .wd(snitch_cluster_4_return_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de(1'b0),
+    .d ('0),
 
     // to internal hardware
-    .qe     (),
-    .q      (reg2hw.snitch_cluster_4_return.q ),
+    .qe(),
+    .q (reg2hw.snitch_cluster_4_return.q),
 
     // to register interface (read)
-    .qs     (snitch_cluster_4_return_qs)
+    .qs(snitch_cluster_4_return_qs)
   );
 
 
@@ -329,25 +329,25 @@ module chimera_reg_top #(
   prim_subreg #(
     .DW      (1),
     .SWACCESS("RW"),
-    .RESVAL  (1'h0)
+    .RESVAL  (1'h1)
   ) u_cluster_0_clk_gate_en (
-    .clk_i   (clk_i    ),
-    .rst_ni  (rst_ni  ),
+    .clk_i (clk_i),
+    .rst_ni(rst_ni),
 
     // from register interface
-    .we     (cluster_0_clk_gate_en_we),
-    .wd     (cluster_0_clk_gate_en_wd),
+    .we(cluster_0_clk_gate_en_we),
+    .wd(cluster_0_clk_gate_en_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de(1'b0),
+    .d ('0),
 
     // to internal hardware
-    .qe     (),
-    .q      (reg2hw.cluster_0_clk_gate_en.q ),
+    .qe(),
+    .q (reg2hw.cluster_0_clk_gate_en.q),
 
     // to register interface (read)
-    .qs     (cluster_0_clk_gate_en_qs)
+    .qs(cluster_0_clk_gate_en_qs)
   );
 
 
@@ -356,25 +356,25 @@ module chimera_reg_top #(
   prim_subreg #(
     .DW      (1),
     .SWACCESS("RW"),
-    .RESVAL  (1'h0)
+    .RESVAL  (1'h1)
   ) u_cluster_1_clk_gate_en (
-    .clk_i   (clk_i    ),
-    .rst_ni  (rst_ni  ),
+    .clk_i (clk_i),
+    .rst_ni(rst_ni),
 
     // from register interface
-    .we     (cluster_1_clk_gate_en_we),
-    .wd     (cluster_1_clk_gate_en_wd),
+    .we(cluster_1_clk_gate_en_we),
+    .wd(cluster_1_clk_gate_en_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de(1'b0),
+    .d ('0),
 
     // to internal hardware
-    .qe     (),
-    .q      (reg2hw.cluster_1_clk_gate_en.q ),
+    .qe(),
+    .q (reg2hw.cluster_1_clk_gate_en.q),
 
     // to register interface (read)
-    .qs     (cluster_1_clk_gate_en_qs)
+    .qs(cluster_1_clk_gate_en_qs)
   );
 
 
@@ -383,25 +383,25 @@ module chimera_reg_top #(
   prim_subreg #(
     .DW      (1),
     .SWACCESS("RW"),
-    .RESVAL  (1'h0)
+    .RESVAL  (1'h1)
   ) u_cluster_2_clk_gate_en (
-    .clk_i   (clk_i    ),
-    .rst_ni  (rst_ni  ),
+    .clk_i (clk_i),
+    .rst_ni(rst_ni),
 
     // from register interface
-    .we     (cluster_2_clk_gate_en_we),
-    .wd     (cluster_2_clk_gate_en_wd),
+    .we(cluster_2_clk_gate_en_we),
+    .wd(cluster_2_clk_gate_en_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de(1'b0),
+    .d ('0),
 
     // to internal hardware
-    .qe     (),
-    .q      (reg2hw.cluster_2_clk_gate_en.q ),
+    .qe(),
+    .q (reg2hw.cluster_2_clk_gate_en.q),
 
     // to register interface (read)
-    .qs     (cluster_2_clk_gate_en_qs)
+    .qs(cluster_2_clk_gate_en_qs)
   );
 
 
@@ -410,25 +410,25 @@ module chimera_reg_top #(
   prim_subreg #(
     .DW      (1),
     .SWACCESS("RW"),
-    .RESVAL  (1'h0)
+    .RESVAL  (1'h1)
   ) u_cluster_3_clk_gate_en (
-    .clk_i   (clk_i    ),
-    .rst_ni  (rst_ni  ),
+    .clk_i (clk_i),
+    .rst_ni(rst_ni),
 
     // from register interface
-    .we     (cluster_3_clk_gate_en_we),
-    .wd     (cluster_3_clk_gate_en_wd),
+    .we(cluster_3_clk_gate_en_we),
+    .wd(cluster_3_clk_gate_en_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de(1'b0),
+    .d ('0),
 
     // to internal hardware
-    .qe     (),
-    .q      (reg2hw.cluster_3_clk_gate_en.q ),
+    .qe(),
+    .q (reg2hw.cluster_3_clk_gate_en.q),
 
     // to register interface (read)
-    .qs     (cluster_3_clk_gate_en_qs)
+    .qs(cluster_3_clk_gate_en_qs)
   );
 
 
@@ -437,25 +437,25 @@ module chimera_reg_top #(
   prim_subreg #(
     .DW      (1),
     .SWACCESS("RW"),
-    .RESVAL  (1'h0)
+    .RESVAL  (1'h1)
   ) u_cluster_4_clk_gate_en (
-    .clk_i   (clk_i    ),
-    .rst_ni  (rst_ni  ),
+    .clk_i (clk_i),
+    .rst_ni(rst_ni),
 
     // from register interface
-    .we     (cluster_4_clk_gate_en_we),
-    .wd     (cluster_4_clk_gate_en_wd),
+    .we(cluster_4_clk_gate_en_we),
+    .wd(cluster_4_clk_gate_en_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de(1'b0),
+    .d ('0),
 
     // to internal hardware
-    .qe     (),
-    .q      (reg2hw.cluster_4_clk_gate_en.q ),
+    .qe(),
+    .q (reg2hw.cluster_4_clk_gate_en.q),
 
     // to register interface (read)
-    .qs     (cluster_4_clk_gate_en_qs)
+    .qs(cluster_4_clk_gate_en_qs)
   );
 
 
@@ -466,23 +466,23 @@ module chimera_reg_top #(
     .SWACCESS("RW"),
     .RESVAL  (1'h0)
   ) u_wide_mem_cluster_0_bypass (
-    .clk_i   (clk_i    ),
-    .rst_ni  (rst_ni  ),
+    .clk_i (clk_i),
+    .rst_ni(rst_ni),
 
     // from register interface
-    .we     (wide_mem_cluster_0_bypass_we),
-    .wd     (wide_mem_cluster_0_bypass_wd),
+    .we(wide_mem_cluster_0_bypass_we),
+    .wd(wide_mem_cluster_0_bypass_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de(1'b0),
+    .d ('0),
 
     // to internal hardware
-    .qe     (),
-    .q      (reg2hw.wide_mem_cluster_0_bypass.q ),
+    .qe(),
+    .q (reg2hw.wide_mem_cluster_0_bypass.q),
 
     // to register interface (read)
-    .qs     (wide_mem_cluster_0_bypass_qs)
+    .qs(wide_mem_cluster_0_bypass_qs)
   );
 
 
@@ -493,23 +493,23 @@ module chimera_reg_top #(
     .SWACCESS("RW"),
     .RESVAL  (1'h0)
   ) u_wide_mem_cluster_1_bypass (
-    .clk_i   (clk_i    ),
-    .rst_ni  (rst_ni  ),
+    .clk_i (clk_i),
+    .rst_ni(rst_ni),
 
     // from register interface
-    .we     (wide_mem_cluster_1_bypass_we),
-    .wd     (wide_mem_cluster_1_bypass_wd),
+    .we(wide_mem_cluster_1_bypass_we),
+    .wd(wide_mem_cluster_1_bypass_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de(1'b0),
+    .d ('0),
 
     // to internal hardware
-    .qe     (),
-    .q      (reg2hw.wide_mem_cluster_1_bypass.q ),
+    .qe(),
+    .q (reg2hw.wide_mem_cluster_1_bypass.q),
 
     // to register interface (read)
-    .qs     (wide_mem_cluster_1_bypass_qs)
+    .qs(wide_mem_cluster_1_bypass_qs)
   );
 
 
@@ -520,23 +520,23 @@ module chimera_reg_top #(
     .SWACCESS("RW"),
     .RESVAL  (1'h0)
   ) u_wide_mem_cluster_2_bypass (
-    .clk_i   (clk_i    ),
-    .rst_ni  (rst_ni  ),
+    .clk_i (clk_i),
+    .rst_ni(rst_ni),
 
     // from register interface
-    .we     (wide_mem_cluster_2_bypass_we),
-    .wd     (wide_mem_cluster_2_bypass_wd),
+    .we(wide_mem_cluster_2_bypass_we),
+    .wd(wide_mem_cluster_2_bypass_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de(1'b0),
+    .d ('0),
 
     // to internal hardware
-    .qe     (),
-    .q      (reg2hw.wide_mem_cluster_2_bypass.q ),
+    .qe(),
+    .q (reg2hw.wide_mem_cluster_2_bypass.q),
 
     // to register interface (read)
-    .qs     (wide_mem_cluster_2_bypass_qs)
+    .qs(wide_mem_cluster_2_bypass_qs)
   );
 
 
@@ -547,23 +547,23 @@ module chimera_reg_top #(
     .SWACCESS("RW"),
     .RESVAL  (1'h0)
   ) u_wide_mem_cluster_3_bypass (
-    .clk_i   (clk_i    ),
-    .rst_ni  (rst_ni  ),
+    .clk_i (clk_i),
+    .rst_ni(rst_ni),
 
     // from register interface
-    .we     (wide_mem_cluster_3_bypass_we),
-    .wd     (wide_mem_cluster_3_bypass_wd),
+    .we(wide_mem_cluster_3_bypass_we),
+    .wd(wide_mem_cluster_3_bypass_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de(1'b0),
+    .d ('0),
 
     // to internal hardware
-    .qe     (),
-    .q      (reg2hw.wide_mem_cluster_3_bypass.q ),
+    .qe(),
+    .q (reg2hw.wide_mem_cluster_3_bypass.q),
 
     // to register interface (read)
-    .qs     (wide_mem_cluster_3_bypass_qs)
+    .qs(wide_mem_cluster_3_bypass_qs)
   );
 
 
@@ -574,23 +574,23 @@ module chimera_reg_top #(
     .SWACCESS("RW"),
     .RESVAL  (1'h0)
   ) u_wide_mem_cluster_4_bypass (
-    .clk_i   (clk_i    ),
-    .rst_ni  (rst_ni  ),
+    .clk_i (clk_i),
+    .rst_ni(rst_ni),
 
     // from register interface
-    .we     (wide_mem_cluster_4_bypass_we),
-    .wd     (wide_mem_cluster_4_bypass_wd),
+    .we(wide_mem_cluster_4_bypass_we),
+    .wd(wide_mem_cluster_4_bypass_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de(1'b0),
+    .d ('0),
 
     // to internal hardware
-    .qe     (),
-    .q      (reg2hw.wide_mem_cluster_4_bypass.q ),
+    .qe(),
+    .q (reg2hw.wide_mem_cluster_4_bypass.q),
 
     // to register interface (read)
-    .qs     (wide_mem_cluster_4_bypass_qs)
+    .qs(wide_mem_cluster_4_bypass_qs)
   );
 
 
@@ -601,23 +601,23 @@ module chimera_reg_top #(
     .SWACCESS("RW"),
     .RESVAL  (1'h1)
   ) u_cluster_0_busy (
-    .clk_i   (clk_i    ),
-    .rst_ni  (rst_ni  ),
+    .clk_i (clk_i),
+    .rst_ni(rst_ni),
 
     // from register interface
-    .we     (cluster_0_busy_we),
-    .wd     (cluster_0_busy_wd),
+    .we(cluster_0_busy_we),
+    .wd(cluster_0_busy_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de(1'b0),
+    .d ('0),
 
     // to internal hardware
-    .qe     (),
-    .q      (reg2hw.cluster_0_busy.q ),
+    .qe(),
+    .q (reg2hw.cluster_0_busy.q),
 
     // to register interface (read)
-    .qs     (cluster_0_busy_qs)
+    .qs(cluster_0_busy_qs)
   );
 
 
@@ -628,23 +628,23 @@ module chimera_reg_top #(
     .SWACCESS("RW"),
     .RESVAL  (1'h1)
   ) u_cluster_1_busy (
-    .clk_i   (clk_i    ),
-    .rst_ni  (rst_ni  ),
+    .clk_i (clk_i),
+    .rst_ni(rst_ni),
 
     // from register interface
-    .we     (cluster_1_busy_we),
-    .wd     (cluster_1_busy_wd),
+    .we(cluster_1_busy_we),
+    .wd(cluster_1_busy_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de(1'b0),
+    .d ('0),
 
     // to internal hardware
-    .qe     (),
-    .q      (reg2hw.cluster_1_busy.q ),
+    .qe(),
+    .q (reg2hw.cluster_1_busy.q),
 
     // to register interface (read)
-    .qs     (cluster_1_busy_qs)
+    .qs(cluster_1_busy_qs)
   );
 
 
@@ -655,23 +655,23 @@ module chimera_reg_top #(
     .SWACCESS("RW"),
     .RESVAL  (1'h1)
   ) u_cluster_2_busy (
-    .clk_i   (clk_i    ),
-    .rst_ni  (rst_ni  ),
+    .clk_i (clk_i),
+    .rst_ni(rst_ni),
 
     // from register interface
-    .we     (cluster_2_busy_we),
-    .wd     (cluster_2_busy_wd),
+    .we(cluster_2_busy_we),
+    .wd(cluster_2_busy_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de(1'b0),
+    .d ('0),
 
     // to internal hardware
-    .qe     (),
-    .q      (reg2hw.cluster_2_busy.q ),
+    .qe(),
+    .q (reg2hw.cluster_2_busy.q),
 
     // to register interface (read)
-    .qs     (cluster_2_busy_qs)
+    .qs(cluster_2_busy_qs)
   );
 
 
@@ -682,23 +682,23 @@ module chimera_reg_top #(
     .SWACCESS("RW"),
     .RESVAL  (1'h1)
   ) u_cluster_3_busy (
-    .clk_i   (clk_i    ),
-    .rst_ni  (rst_ni  ),
+    .clk_i (clk_i),
+    .rst_ni(rst_ni),
 
     // from register interface
-    .we     (cluster_3_busy_we),
-    .wd     (cluster_3_busy_wd),
+    .we(cluster_3_busy_we),
+    .wd(cluster_3_busy_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de(1'b0),
+    .d ('0),
 
     // to internal hardware
-    .qe     (),
-    .q      (reg2hw.cluster_3_busy.q ),
+    .qe(),
+    .q (reg2hw.cluster_3_busy.q),
 
     // to register interface (read)
-    .qs     (cluster_3_busy_qs)
+    .qs(cluster_3_busy_qs)
   );
 
 
@@ -709,23 +709,23 @@ module chimera_reg_top #(
     .SWACCESS("RW"),
     .RESVAL  (1'h1)
   ) u_cluster_4_busy (
-    .clk_i   (clk_i    ),
-    .rst_ni  (rst_ni  ),
+    .clk_i (clk_i),
+    .rst_ni(rst_ni),
 
     // from register interface
-    .we     (cluster_4_busy_we),
-    .wd     (cluster_4_busy_wd),
+    .we(cluster_4_busy_we),
+    .wd(cluster_4_busy_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de(1'b0),
+    .d ('0),
 
     // to internal hardware
-    .qe     (),
-    .q      (reg2hw.cluster_4_busy.q ),
+    .qe(),
+    .q (reg2hw.cluster_4_busy.q),
 
     // to register interface (read)
-    .qs     (cluster_4_busy_qs)
+    .qs(cluster_4_busy_qs)
   );
 
 
@@ -733,17 +733,17 @@ module chimera_reg_top #(
 
   logic [21:0] addr_hit;
   always_comb begin
-    addr_hit = '0;
-    addr_hit[ 0] = (reg_addr == CHIMERA_SNITCH_BOOT_ADDR_OFFSET);
-    addr_hit[ 1] = (reg_addr == CHIMERA_SNITCH_INTR_HANDLER_ADDR_OFFSET);
-    addr_hit[ 2] = (reg_addr == CHIMERA_SNITCH_CLUSTER_0_RETURN_OFFSET);
-    addr_hit[ 3] = (reg_addr == CHIMERA_SNITCH_CLUSTER_1_RETURN_OFFSET);
-    addr_hit[ 4] = (reg_addr == CHIMERA_SNITCH_CLUSTER_2_RETURN_OFFSET);
-    addr_hit[ 5] = (reg_addr == CHIMERA_SNITCH_CLUSTER_3_RETURN_OFFSET);
-    addr_hit[ 6] = (reg_addr == CHIMERA_SNITCH_CLUSTER_4_RETURN_OFFSET);
-    addr_hit[ 7] = (reg_addr == CHIMERA_CLUSTER_0_CLK_GATE_EN_OFFSET);
-    addr_hit[ 8] = (reg_addr == CHIMERA_CLUSTER_1_CLK_GATE_EN_OFFSET);
-    addr_hit[ 9] = (reg_addr == CHIMERA_CLUSTER_2_CLK_GATE_EN_OFFSET);
+    addr_hit     = '0;
+    addr_hit[0]  = (reg_addr == CHIMERA_SNITCH_BOOT_ADDR_OFFSET);
+    addr_hit[1]  = (reg_addr == CHIMERA_SNITCH_INTR_HANDLER_ADDR_OFFSET);
+    addr_hit[2]  = (reg_addr == CHIMERA_SNITCH_CLUSTER_0_RETURN_OFFSET);
+    addr_hit[3]  = (reg_addr == CHIMERA_SNITCH_CLUSTER_1_RETURN_OFFSET);
+    addr_hit[4]  = (reg_addr == CHIMERA_SNITCH_CLUSTER_2_RETURN_OFFSET);
+    addr_hit[5]  = (reg_addr == CHIMERA_SNITCH_CLUSTER_3_RETURN_OFFSET);
+    addr_hit[6]  = (reg_addr == CHIMERA_SNITCH_CLUSTER_4_RETURN_OFFSET);
+    addr_hit[7]  = (reg_addr == CHIMERA_CLUSTER_0_CLK_GATE_EN_OFFSET);
+    addr_hit[8]  = (reg_addr == CHIMERA_CLUSTER_1_CLK_GATE_EN_OFFSET);
+    addr_hit[9]  = (reg_addr == CHIMERA_CLUSTER_2_CLK_GATE_EN_OFFSET);
     addr_hit[10] = (reg_addr == CHIMERA_CLUSTER_3_CLK_GATE_EN_OFFSET);
     addr_hit[11] = (reg_addr == CHIMERA_CLUSTER_4_CLK_GATE_EN_OFFSET);
     addr_hit[12] = (reg_addr == CHIMERA_WIDE_MEM_CLUSTER_0_BYPASS_OFFSET);
@@ -758,7 +758,7 @@ module chimera_reg_top #(
     addr_hit[21] = (reg_addr == CHIMERA_CLUSTER_4_BUSY_OFFSET);
   end
 
-  assign addrmiss = (reg_re || reg_we) ? ~|addr_hit : 1'b0 ;
+  assign addrmiss = (reg_re || reg_we) ? ~|addr_hit : 1'b0;
 
   // Check sub-word write is permitted
   always_comb begin
@@ -787,41 +787,41 @@ module chimera_reg_top #(
                (addr_hit[21] & (|(CHIMERA_PERMIT[21] & ~reg_be)))));
   end
 
-  assign snitch_boot_addr_we = addr_hit[0] & reg_we & !reg_error;
-  assign snitch_boot_addr_wd = reg_wdata[31:0];
+  assign snitch_boot_addr_we          = addr_hit[0] & reg_we & !reg_error;
+  assign snitch_boot_addr_wd          = reg_wdata[31:0];
 
-  assign snitch_intr_handler_addr_we = addr_hit[1] & reg_we & !reg_error;
-  assign snitch_intr_handler_addr_wd = reg_wdata[31:0];
+  assign snitch_intr_handler_addr_we  = addr_hit[1] & reg_we & !reg_error;
+  assign snitch_intr_handler_addr_wd  = reg_wdata[31:0];
 
-  assign snitch_cluster_0_return_we = addr_hit[2] & reg_we & !reg_error;
-  assign snitch_cluster_0_return_wd = reg_wdata[31:0];
+  assign snitch_cluster_0_return_we   = addr_hit[2] & reg_we & !reg_error;
+  assign snitch_cluster_0_return_wd   = reg_wdata[31:0];
 
-  assign snitch_cluster_1_return_we = addr_hit[3] & reg_we & !reg_error;
-  assign snitch_cluster_1_return_wd = reg_wdata[31:0];
+  assign snitch_cluster_1_return_we   = addr_hit[3] & reg_we & !reg_error;
+  assign snitch_cluster_1_return_wd   = reg_wdata[31:0];
 
-  assign snitch_cluster_2_return_we = addr_hit[4] & reg_we & !reg_error;
-  assign snitch_cluster_2_return_wd = reg_wdata[31:0];
+  assign snitch_cluster_2_return_we   = addr_hit[4] & reg_we & !reg_error;
+  assign snitch_cluster_2_return_wd   = reg_wdata[31:0];
 
-  assign snitch_cluster_3_return_we = addr_hit[5] & reg_we & !reg_error;
-  assign snitch_cluster_3_return_wd = reg_wdata[31:0];
+  assign snitch_cluster_3_return_we   = addr_hit[5] & reg_we & !reg_error;
+  assign snitch_cluster_3_return_wd   = reg_wdata[31:0];
 
-  assign snitch_cluster_4_return_we = addr_hit[6] & reg_we & !reg_error;
-  assign snitch_cluster_4_return_wd = reg_wdata[31:0];
+  assign snitch_cluster_4_return_we   = addr_hit[6] & reg_we & !reg_error;
+  assign snitch_cluster_4_return_wd   = reg_wdata[31:0];
 
-  assign cluster_0_clk_gate_en_we = addr_hit[7] & reg_we & !reg_error;
-  assign cluster_0_clk_gate_en_wd = reg_wdata[0];
+  assign cluster_0_clk_gate_en_we     = addr_hit[7] & reg_we & !reg_error;
+  assign cluster_0_clk_gate_en_wd     = reg_wdata[0];
 
-  assign cluster_1_clk_gate_en_we = addr_hit[8] & reg_we & !reg_error;
-  assign cluster_1_clk_gate_en_wd = reg_wdata[0];
+  assign cluster_1_clk_gate_en_we     = addr_hit[8] & reg_we & !reg_error;
+  assign cluster_1_clk_gate_en_wd     = reg_wdata[0];
 
-  assign cluster_2_clk_gate_en_we = addr_hit[9] & reg_we & !reg_error;
-  assign cluster_2_clk_gate_en_wd = reg_wdata[0];
+  assign cluster_2_clk_gate_en_we     = addr_hit[9] & reg_we & !reg_error;
+  assign cluster_2_clk_gate_en_wd     = reg_wdata[0];
 
-  assign cluster_3_clk_gate_en_we = addr_hit[10] & reg_we & !reg_error;
-  assign cluster_3_clk_gate_en_wd = reg_wdata[0];
+  assign cluster_3_clk_gate_en_we     = addr_hit[10] & reg_we & !reg_error;
+  assign cluster_3_clk_gate_en_wd     = reg_wdata[0];
 
-  assign cluster_4_clk_gate_en_we = addr_hit[11] & reg_we & !reg_error;
-  assign cluster_4_clk_gate_en_wd = reg_wdata[0];
+  assign cluster_4_clk_gate_en_we     = addr_hit[11] & reg_we & !reg_error;
+  assign cluster_4_clk_gate_en_wd     = reg_wdata[0];
 
   assign wide_mem_cluster_0_bypass_we = addr_hit[12] & reg_we & !reg_error;
   assign wide_mem_cluster_0_bypass_wd = reg_wdata[0];
@@ -838,20 +838,20 @@ module chimera_reg_top #(
   assign wide_mem_cluster_4_bypass_we = addr_hit[16] & reg_we & !reg_error;
   assign wide_mem_cluster_4_bypass_wd = reg_wdata[0];
 
-  assign cluster_0_busy_we = addr_hit[17] & reg_we & !reg_error;
-  assign cluster_0_busy_wd = reg_wdata[0];
+  assign cluster_0_busy_we            = addr_hit[17] & reg_we & !reg_error;
+  assign cluster_0_busy_wd            = reg_wdata[0];
 
-  assign cluster_1_busy_we = addr_hit[18] & reg_we & !reg_error;
-  assign cluster_1_busy_wd = reg_wdata[0];
+  assign cluster_1_busy_we            = addr_hit[18] & reg_we & !reg_error;
+  assign cluster_1_busy_wd            = reg_wdata[0];
 
-  assign cluster_2_busy_we = addr_hit[19] & reg_we & !reg_error;
-  assign cluster_2_busy_wd = reg_wdata[0];
+  assign cluster_2_busy_we            = addr_hit[19] & reg_we & !reg_error;
+  assign cluster_2_busy_wd            = reg_wdata[0];
 
-  assign cluster_3_busy_we = addr_hit[20] & reg_we & !reg_error;
-  assign cluster_3_busy_wd = reg_wdata[0];
+  assign cluster_3_busy_we            = addr_hit[20] & reg_we & !reg_error;
+  assign cluster_3_busy_wd            = reg_wdata[0];
 
-  assign cluster_4_busy_we = addr_hit[21] & reg_we & !reg_error;
-  assign cluster_4_busy_wd = reg_wdata[0];
+  assign cluster_4_busy_we            = addr_hit[21] & reg_we & !reg_error;
+  assign cluster_4_busy_wd            = reg_wdata[0];
 
   // Read data return
   always_comb begin
@@ -958,30 +958,29 @@ module chimera_reg_top #(
   logic unused_wdata;
   logic unused_be;
   assign unused_wdata = ^reg_wdata;
-  assign unused_be = ^reg_be;
+  assign unused_be    = ^reg_be;
 
   // Assertions for Register Interface
   `ASSERT(en2addrHit, (reg_we || reg_re) |-> $onehot0(addr_hit))
 
 endmodule
 
-module chimera_reg_top_intf
-#(
-  parameter int AW = 7,
+module chimera_reg_top_intf #(
+  parameter  int AW = 7,
   localparam int DW = 32
 ) (
   input logic clk_i,
   input logic rst_ni,
-  REG_BUS.in  regbus_slave,
+  REG_BUS.in regbus_slave,
   // To HW
-  output chimera_reg_pkg::chimera_reg2hw_t reg2hw, // Write
+  output chimera_reg_pkg::chimera_reg2hw_t reg2hw,  // Write
   // Config
-  input devmode_i // If 1, explicit error return for unmapped register access
+  input devmode_i  // If 1, explicit error return for unmapped register access
 );
- localparam int unsigned STRB_WIDTH = DW/8;
+  localparam int unsigned STRB_WIDTH = DW / 8;
 
-`include "register_interface/typedef.svh"
-`include "register_interface/assign.svh"
+  `include "register_interface/typedef.svh"
+  `include "register_interface/assign.svh"
 
   // Define structs for reg_bus
   typedef logic [AW-1:0] addr_t;
@@ -991,26 +990,26 @@ module chimera_reg_top_intf
 
   reg_bus_req_t s_reg_req;
   reg_bus_rsp_t s_reg_rsp;
-  
+
   // Assign SV interface to structs
   `REG_BUS_ASSIGN_TO_REQ(s_reg_req, regbus_slave)
   `REG_BUS_ASSIGN_FROM_RSP(regbus_slave, s_reg_rsp)
 
-  
+
 
   chimera_reg_top #(
     .reg_req_t(reg_bus_req_t),
     .reg_rsp_t(reg_bus_rsp_t),
-    .AW(AW)
+    .AW       (AW)
   ) i_regs (
     .clk_i,
     .rst_ni,
     .reg_req_i(s_reg_req),
     .reg_rsp_o(s_reg_rsp),
-    .reg2hw, // Write
+    .reg2hw,  // Write
     .devmode_i
   );
-  
+
 endmodule
 
 
