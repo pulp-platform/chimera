@@ -15,8 +15,10 @@
 #define TESTVAL 0x00E0D0C0
 
 int main() {
-    volatile uint8_t *clockGatingRegPtr = (volatile uint8_t *)SOC_CTRL_BASE;
-    setAllClusterClockGating(clockGatingRegPtr, 0);
+    volatile uint8_t *regPtr = (volatile uint8_t *)SOC_CTRL_BASE;
+
+    setAllClusterReset(regPtr, 0);
+    setAllClusterClockGating(regPtr, 0);
 
     volatile int32_t *clusterMemPtr = (volatile int32_t *)CLUSTERMEMORYSTART;
     volatile int32_t result;

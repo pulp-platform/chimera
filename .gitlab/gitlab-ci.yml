@@ -7,7 +7,7 @@
 # We initialize the nonfree repo, then spawn a sub-pipeline from it
 
 variables:
-  VSIM_TESTS: '["testCluster", "testClusterOffload", "testMemBypass", "testPeripheralsGating", "testHyperbusAddr"]'
+  VSIM_TESTS: '["testCluster", "testClusterOffload", "testMemBypass", "testPeripheralsGating", "testHyperbusAddr", "testCfgBootAddr"]'
 
 stages:
   - nonfree

@@ -333,6 +333,15 @@ module chimera_top_wrapper
     );
   end
 
+  logic [ExtClusters-1:0] cluster_rst_n;
+  assign cluster_rst_n = {
+    ~reg2hw.reset_cluster_4.q,
+    ~reg2hw.reset_cluster_3.q,
+    ~reg2hw.reset_cluster_2.q,
+    ~reg2hw.reset_cluster_1.q,
+    ~reg2hw.reset_cluster_0.q
+  };
+
   // ---------------------------------------
   // |        Clusters Domain              |
   // ---------------------------------------
@@ -347,8 +356,9 @@ module chimera_top_wrapper
   ) i_cluster_domain (
     .soc_clk_i        (soc_clk_i),
     .clu_clk_i        (clu_clk_gated),
-    .rst_ni           (rst_ni),
+    .rst_ni           (cluster_rst_n),
     .widemem_bypass_i (wide_mem_bypass_mode),
+    .boot_addr_i      (reg2hw.snitch_configurable_boot_addr.q),
     .debug_req_i      (dbg_ext_req),
     .xeip_i           (xeip_ext),
     .mtip_i           (mtip_ext),

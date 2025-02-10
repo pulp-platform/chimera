@@ -32,14 +32,17 @@ int32_t testReturn() {
 }
 
 int main() {
-    volatile uint8_t *clockGatingRegPtr = (volatile uint8_t *)SOC_CTRL_BASE;
-    setAllClusterClockGating(clockGatingRegPtr, 0);
+    volatile uint8_t *regPtr = (volatile uint8_t *)SOC_CTRL_BASE;
     setupInterruptHandler(clusterTrapHandler);
 
     uint32_t retVal = 0;
     for (int i = 0; i < _chimera_numClusters; i++) {
+        setClusterReset(regPtr, i, 0);
+        setClusterClockGating(regPtr, i, 0);
         offloadToCluster(testReturn, i);
         retVal |= waitForCluster(i);
+        setClusterClockGating(regPtr, i, 1);
+        setClusterReset(regPtr, i, 0);
     }
 
     return (retVal != (TESTVAL | 0x000000001));
