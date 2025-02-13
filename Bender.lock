@@ -291,13 +291,13 @@ packages:
     dependencies:
     - common_verification
   tuddcim:
-    revision: d906e47c3d625d034a52eb77872e6b07b759e194
+    revision: 7ab10c606959bea77fafb4bc8344f7cb675ceaa2
     version: null
     source:
       Git: git@gitlab.tue.nl:es/convolve-private/tuddcim.git
     dependencies: []
   tuedcim:
-    revision: 78f6a855ab51f836b9ed26369377992a6b2dbf3e
+    revision: 766d88880924111b6478274179d65ce14ea1a813
     version: null
     source:
       Git: git@gitlab.tue.nl:es/convolve-private/tuedcim.git
