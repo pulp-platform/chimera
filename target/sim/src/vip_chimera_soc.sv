@@ -608,6 +608,7 @@ module vip_chimera_soc
     end
   end
 
+`ifndef POST_SYNTH
   for (genvar p = 0; p < HypNumPhys; p++) begin : sdf_annotation
     for (genvar l = 0; l < HypNumChips; l++) begin : sdf_annotation
       initial begin
@@ -621,7 +622,7 @@ module vip_chimera_soc
       end
     end
   end
-
+`endif
 endmodule
 
 // Map pad IO to tristate wires to adapt from SoC IO (not needed for chip instances).
