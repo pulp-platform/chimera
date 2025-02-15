@@ -25,7 +25,7 @@ if {[info exists BINARY]}   { append pargs "+BINARY=${BINARY} " }
 if {[info exists IMAGE]}    { append pargs "+IMAGE=${IMAGE} " }
 
 if {[catch {
-    eval "vsim -c ${TESTBENCH} -t 1ps -vopt -voptargs=\"${VOPTARGS}\"" ${pargs} ${flags}
+    eval "vsim -c ${TESTBENCH} -t 1ps -vopt -voptargs=\"${VOPTARGS}\"" ${pargs} ${flags} "-do \"log -r /*;\""
 }]} {return 1}
 
 set StdArithNoWarnings 1

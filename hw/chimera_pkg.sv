@@ -128,7 +128,7 @@ ExtClusters
   localparam byte_bt MemIslNarrowPorts = 1;
   localparam byte_bt MemIslWidePorts = $countones(ChimeraClusterCfg.hasWideMasterPort);
   localparam byte_bt MemIslNumWideBanks = 2;
-  localparam shrt_bt MemIslWordsPerBank = 1024;
+  localparam shrt_bt MemIslWordsPerBank = 2048;
 
   // Hyperbus
   localparam byte_bt HyperbusIdx = MemIslandIdx + 1;
