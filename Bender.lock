@@ -297,7 +297,7 @@ packages:
       Git: git@gitlab.tue.nl:es/convolve-private/tuddcim.git
     dependencies: []
   tuedcim:
-    revision: ba47c6055cfdc9326141dc134d842d8cc66f3a5d
+    revision: 81b02629cf50ffcd0d0aebf0a488cabc99dc64fe
     version: null
     source:
       Git: git@gitlab.tue.nl:es/convolve-private/tuedcim.git
