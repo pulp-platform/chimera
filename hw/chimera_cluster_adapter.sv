@@ -30,7 +30,9 @@ module chimera_cluster_adapter #(
 
 ) (
   input  logic                       soc_clk_i,
+  `ifndef TARGET_PULP_CLUSTER
   input  logic                       clu_clk_i,
+  `endif
   input  logic                       rst_ni,
   // From SOC
   input  narrow_in_req_t             narrow_in_req_i,
@@ -265,7 +267,11 @@ module chimera_cluster_adapter #(
     .mst_req_t (clu_narrow_in_req_t),
     .mst_resp_t(clu_narrow_in_resp_t)
   ) i_narrow_slv_to_narrow_mst_iw_converter (
+    `ifndef TARGET_PULP_CLUSTER
     .clk_i     (clu_clk_i),
+    `else
+    .clk_i     (soc_clk_i),
+    `endif
     .rst_ni    (rst_ni),
     .slv_req_i (axi_to_cluster_narrow_req),
     .slv_resp_o(axi_to_cluster_narrow_resp),
@@ -294,7 +300,11 @@ module chimera_cluster_adapter #(
     .mst_req_t   (narrow_out_req_t),
     .mst_resp_t  (narrow_out_resp_t)
   ) narrow_mst_iw_converter (
+    `ifndef TARGET_PULP_CLUSTER
     .clk_i     (clu_clk_i),
+    `else
+    .clk_i     (soc_clk_i),
+    `endif
     .rst_ni    (rst_ni),
     .slv_req_i (axi_from_cluster_narrow_iwc_req),
     .slv_resp_o(axi_from_cluster_narrow_iwc_resp),
@@ -322,7 +332,11 @@ module chimera_cluster_adapter #(
     .mst_req_t   (wide_out_req_t),
     .mst_resp_t  (wide_out_resp_t)
   ) wide_mst_iw_converter (
+    `ifndef TARGET_PULP_CLUSTER
     .clk_i     (clu_clk_i),
+    `else
+    .clk_i     (soc_clk_i),
+    `endif
     .rst_ni    (rst_ni),
     .slv_req_i (axi_from_cluster_wide_iwc_req),
     .slv_resp_o(axi_from_cluster_wide_iwc_resp),
@@ -332,6 +346,7 @@ module chimera_cluster_adapter #(
 
   // AXI Narrow CDC from SoC to Cluster
 
+  `ifndef TARGET_PULP_CLUSTER
   axi_cdc #(
     .aw_chan_t (axi_narrow_soc_in_aw_chan_t),
     .w_chan_t  (axi_narrow_soc_in_w_chan_t),
@@ -351,9 +366,14 @@ module chimera_cluster_adapter #(
     .dst_req_o (axi_to_cluster_narrow_req),
     .dst_resp_i(axi_to_cluster_narrow_resp)
   );
+  `else
+  assign axi_to_cluster_narrow_req = narrow_in_req_i;
+  assign narrow_in_resp_o = axi_to_cluster_narrow_resp;
+  `endif
 
   // AXI Narrow CDC from Cluster to SoC
 
+  `ifndef TARGET_PULP_CLUSTER
   axi_cdc #(
     .aw_chan_t (axi_narrow_soc_out_aw_chan_t),
     .w_chan_t  (axi_narrow_soc_out_w_chan_t),
@@ -373,9 +393,14 @@ module chimera_cluster_adapter #(
     .dst_req_o (narrow_out_req_o[0]),
     .dst_resp_i(narrow_out_resp_i[0])
   );
+  `else
+  assign narrow_out_req_o[0] = axi_from_cluster_narrow_req;
+  assign axi_from_cluster_narrow_resp = narrow_out_resp_i[0];
+  `endif
 
   // AXI Wide CDC from Cluster to SoC
 
+  `ifndef TARGET_PULP_CLUSTER
   axi_cdc #(
     .aw_chan_t (axi_wide_clu_out_aw_chan_t),
     .w_chan_t  (axi_wide_clu_out_w_chan_t),
@@ -395,6 +420,10 @@ module chimera_cluster_adapter #(
     .dst_req_o (axi_from_cluster_wide_premux_req),
     .dst_resp_i(axi_from_cluster_wide_premux_resp)
   );
+  `else
+  assign axi_from_cluster_wide_premux_req = axi_from_cluster_wide_req;
+  assign axi_from_cluster_wide_resp = axi_from_cluster_wide_premux_resp;
+  `endif
 
   // Validate parameters
 `ifndef VERILATOR
@@ -402,14 +431,16 @@ module chimera_cluster_adapter #(
 
   write_wide_bypass :
   assert property (
-     @(posedge clu_clk_i) ((axi_from_cluster_wide_premux_req.aw_valid & wide_mem_bypass_mode_i) |->
+    @(posedge `ifndef TARGET_PULP_CLUSTER clu_clk_i `else soc_clk_i `endif)
+      ((axi_from_cluster_wide_premux_req.aw_valid & wide_mem_bypass_mode_i) |->
           (axi_from_cluster_wide_to_narrow_req.aw_valid &
            ~axi_from_cluster_wide_memisl_req.aw_valid)))
   else $fatal(1, "Bypass Mode ON, but write request routed toward the Wide interconnect");
 
   read_wide_bypass :
   assert property (
-     @(posedge clu_clk_i) ((axi_from_cluster_wide_premux_req.ar_valid & wide_mem_bypass_mode_i) |->
+    @(posedge `ifndef TARGET_PULP_CLUSTER clu_clk_i `else soc_clk_i `endif)
+      ((axi_from_cluster_wide_premux_req.ar_valid & wide_mem_bypass_mode_i) |->
         (axi_from_cluster_wide_to_narrow_req.ar_valid &
          ~axi_from_cluster_wide_memisl_req.ar_valid)))
   else $fatal(1, "Bypass Mode ON, but read request routed toward the Wide interocnnect");

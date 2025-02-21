@@ -8,8 +8,10 @@
 package chimera_pkg;
 
   import cheshire_pkg::*;
+  import pulp_cluster_package::*;
 
   `include "apb/typedef.svh"
+  `include "pulp_soc_defines.sv"
 
   // Bit vector types for parameters.
   //We limit range to keep parameters sane.
@@ -30,7 +32,7 @@ package chimera_pkg;
 
   localparam cluster_config_t ChimeraClusterCfg = '{
       hasWideMasterPort: {1'b1, 1'b1, 1'b1, 1'b1, 1'b1},
-      NrCores: {8'h9, 8'h9, 8'h9, 8'h9, 8'h9}
+      NrCores: {8'h8, 8'h8, 8'h8, 8'h8, 8'h8}
   };
 
   function automatic int _sumVector(byte_bt [iomsb(ExtClusters):0] vector, int vectorLen);
@@ -50,6 +52,7 @@ package chimera_pkg;
   // Configuration struct for Chimer: it includes the Cheshire Cfg
   typedef struct packed {
     cheshire_cfg_t ChsCfg;
+    pulp_cluster_cfg_t [iomsb(ExtClusters):0] PulpCluCfgs;
     doub_bt        MemIslRegionStart;
     doub_bt        MemIslRegionEnd;
     aw_bt          MemIslAxiMstIdWidth;
@@ -61,19 +64,16 @@ package chimera_pkg;
     int unsigned   IsolateClusters;
   } chimera_cfg_t;
 
-  // SoC Config
+  // -------------------------------
+  // | External Register Interface |
+  // -------------------------------
   localparam bit SnitchBootROM = 1;
   localparam bit TopLevelCfgRegs = 1;
   localparam bit ExtCfgRegs = 1;
   localparam bit HyperCfgRegs = 1;
 
-  // -------------------------------
-  // | External Register Interface |
-  // -------------------------------
-
   // SCHEREMO: Shared Snitch bootrom, one clock gate per cluster, External regs (PADs, FLLs etc...)
   localparam int ExtRegNum = SnitchBootROM + TopLevelCfgRegs + ExtCfgRegs + HyperCfgRegs;
-  localparam int ClusterDataWidth = 64;
 
   localparam byte_bt SnitchBootROMIdx = 8'h0;
   localparam doub_bt SnitchBootROMRegionStart = 64'h3000_0000;
@@ -99,18 +99,15 @@ package chimera_pkg;
 
   // Cluster domain
   localparam byte_bt [iomsb(ExtClusters):0] ClusterIdx = {8'h4, 8'h3, 8'h2, 8'h1, 8'h0};
-  localparam doub_bt [iomsb(
-ExtClusters
-):0] ClusterRegionStart = {
-    64'h4080_0000, 64'h4060_0000, 64'h4040_0000, 64'h4020_0000, 64'h4000_0000
+  localparam doub_bt [iomsb(ExtClusters):0] ClusterRegionStart = {
+    64'h4100_0000, 64'h40C0_0000, 64'h4080_0000, 64'h4040_0000, 64'h4000_0000
   };
-  localparam doub_bt [iomsb(
-ExtClusters
-):0] ClusterRegionEnd = {
-    64'h40A0_0000, 64'h4080_0000, 64'h4060_0000, 64'h4040_0000, 64'h4020_0000
+  localparam doub_bt [iomsb(ExtClusters):0] ClusterRegionEnd = {
+    64'h4140_0000, 64'h4100_0000, 64'h40C0_0000, 64'h4080_0000, 64'h4040_0000
   };
 
   localparam aw_bt ClusterNarrowAxiMstIdWidth = 1;
+  localparam int ClusterDataWidth = 64;
 
   // Memory Island
   localparam byte_bt MemIslandIdx = ClusterIdx[ExtClusters-1] + 1;
@@ -147,6 +144,7 @@ ExtClusters
 
     chimera_cfg_t  chimera_cfg;
     cheshire_cfg_t cfg = DefaultCfg;
+    pulp_cluster_cfg_t [iomsb(ExtClusters):0] pulp_clu_cfgs;
 
     // Global CFG
 
@@ -196,8 +194,58 @@ ExtClusters
     cfg.NumExtDbgHarts = ExtCores;
     cfg.NumExtOutIntrTgts = ExtCores;
 
+    // Fill up PULP Cluster config
+    `ifdef TARGET_PULP_CLUSTER
+    // Assign default PULP Cluster config
+    for (int i = 0; i < ExtClusters; i++) begin
+      pulp_clu_cfgs[i] = PulpClusterDefaultCfg;
+    end
+    // PULP Cluster configuration (common to all clusters)
+    for (int i = 0; i < ExtClusters; i++) begin
+      pulp_clu_cfgs[i].CoreType = RI5CY;
+      pulp_clu_cfgs[i].NumCores = `NB_CORES;
+      pulp_clu_cfgs[i].DmaNumPlugs = `NB_DMAS;
+      pulp_clu_cfgs[i].DmaUseHwpePort = 1;
+      pulp_clu_cfgs[i].NumMstPeriphs = `NB_MPERIPHS;
+      pulp_clu_cfgs[i].NumSlvPeriphs = `NB_SPERIPHS;
+      pulp_clu_cfgs[i].UseHci = 1;
+      pulp_clu_cfgs[i].TcdmSize = 128*1024;
+      pulp_clu_cfgs[i].TcdmNumBank = 16;
+      pulp_clu_cfgs[i].HwpePresent = 1;
+      pulp_clu_cfgs[i].HwpeCfg = '{NumHwpes: 1, HwpeList: {NEUREKA}};
+      pulp_clu_cfgs[i].HwpeNumPorts = 9;
+      pulp_clu_cfgs[i].EnableECC = 0;
+      pulp_clu_cfgs[i].ECCInterco = 0;
+      pulp_clu_cfgs[i].L2Size = MemIslRegionEnd - MemIslRegionStart;
+      pulp_clu_cfgs[i].DmBaseAddr = '0; //TODO: Fix
+      pulp_clu_cfgs[i].BootRomBaseAddr = '0; //TODO: Fix
+      pulp_clu_cfgs[i].BootAddr = '0; //TODO: Fix
+      pulp_clu_cfgs[i].EnablePrivateFpu = 1;
+      pulp_clu_cfgs[i].EnablePrivateFpDivSqrt = 0;
+      pulp_clu_cfgs[i].EnableSharedFpu = 0;
+      pulp_clu_cfgs[i].EnableSharedFpDivSqrt = 0;
+      pulp_clu_cfgs[i].NumSharedFpu = 0;
+      pulp_clu_cfgs[i].EnableTnnExtension = 1;
+      pulp_clu_cfgs[i].EnableTnnUnsigned = 1;
+      pulp_clu_cfgs[i].AxiIdOutWideWidth = MemIslAxiMstIdWidth;
+      pulp_clu_cfgs[i].AxiAddrWidth = cfg.AddrWidth;
+      pulp_clu_cfgs[i].AxiDataInWidth = ClusterDataWidth;
+      pulp_clu_cfgs[i].AxiDataOutWidth = ClusterDataWidth;
+      pulp_clu_cfgs[i].AxiDataOutWideWidth = cfg.AxiDataWidth *
+                                            MemIslNarrowToWideFactor;
+      pulp_clu_cfgs[i].AxiUserWidth = cfg.AxiUserWidth;
+      pulp_clu_cfgs[i].AxiCdcLogDepth = 3;
+      pulp_clu_cfgs[i].ClusterBaseAddr = ClusterRegionStart[0];
+    end
+    `else
+    for (int i = 0; i < ExtClusters; i++) begin
+      pulp_clu_cfgs[i] = '0;
+    end
+    `endif
+
     chimera_cfg = '{
         ChsCfg                    : cfg,
+        PulpCluCfgs               : pulp_clu_cfgs,
         MemIslRegionStart         : MemIslRegionStart,
         MemIslRegionEnd           : MemIslRegionEnd,
         MemIslAxiMstIdWidth       : MemIslAxiMstIdWidth,
