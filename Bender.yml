@@ -34,7 +34,9 @@ sources:
   - hw/chimera_pkg.sv
   - hw/regs/chimera_reg_pkg.sv
   - hw/regs/chimera_reg_top.sv
-  - hw/bootrom/snitch/snitch_bootrom.sv
+  - target: snitch_cluster
+    files:
+      - hw/bootrom/snitch/snitch_bootrom.sv
   - hw/narrow_adapter.sv
   - hw/chimera_cluster_adapter.sv
   - hw/chimera_cluster.sv
