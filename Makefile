@@ -10,10 +10,20 @@ CHIM_ROOT ?= $(shell pwd)
 BENDER                 ?= bender -d $(CHIM_ROOT)
 VERIBLE_VERILOG_FORMAT ?= $(CHIM_UTILS_DIR)/verible-verilog/verible-verilog-format
 
+# Set dependency paths only if dependencies have already been cloned
+# This avoids running `bender checkout` at every make command
+ifeq ($(shell test -d $(CHIM_ROOT)/.bender || echo 1),)
 CHS_ROOT    ?= $(shell $(BENDER) path cheshire)
 SNITCH_ROOT ?= $(shell $(BENDER) path snitch_cluster)
 IDMA_ROOT   ?= $(shell $(BENDER) path idma)
 HYPERB_ROOT ?= $(shell $(BENDER) path hyperbus)
+endif
+
+# Fall back to safe defaults if dependencies are not cloned yet
+CHS_ROOT    ?= .
+SNITCH_ROOT ?= .
+IDMA_ROOT   ?= .
+HYPERB_ROOT ?= .
 
 CHS_XLEN ?= 32
 
