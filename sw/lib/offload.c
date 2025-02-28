@@ -118,8 +118,12 @@ void offloadToCluster(void *function, uint8_t clusterId) {
         hartId += _chimera_numCores[i];
     }
 
-    volatile uint32_t *interruptTarget = ((uint32_t *)CLINT_CTRL_BASE) + hartId;
     waitClusterBusy(clusterId);
+
+    volatile uint32_t *interruptTarget = ((uint32_t *)CLINT_CTRL_BASE) + hartId;
+
+    *interruptTarget = 1;
+    interruptTarget = ((uint32_t *)CLINT_CTRL_BASE) + hartId + 1;
     *interruptTarget = 1;
 }
 
