@@ -4,7 +4,7 @@
 // Copyright 2024 ETH Zurich and University of Bologna.
 
 // Licensing information found in source file:
-//
+// 
 // SPDX-License-Identifier: SHL-0.51
 
 #ifndef _CHIMERA_REG_DEFS_
@@ -22,20 +22,20 @@ extern "C" {
 // Set interrupt handler address for all snitch cores
 #define CHIMERA_SNITCH_INTR_HANDLER_ADDR_REG_OFFSET 0x4
 
-// Register to store return value of Snitch cluster 0
-#define CHIMERA_SNITCH_CLUSTER_0_RETURN_REG_OFFSET 0x8
+// Register to store return value of cluster 0
+#define CHIMERA_CLUSTER_0_RETURN_REG_OFFSET 0x8
 
-// Register to store return value of Snitch cluster 1
-#define CHIMERA_SNITCH_CLUSTER_1_RETURN_REG_OFFSET 0xc
+// Register to store return value of cluster 1
+#define CHIMERA_CLUSTER_1_RETURN_REG_OFFSET 0xc
 
-// Register to store return value of Snitch cluster 2
-#define CHIMERA_SNITCH_CLUSTER_2_RETURN_REG_OFFSET 0x10
+// Register to store return value of cluster 2
+#define CHIMERA_CLUSTER_2_RETURN_REG_OFFSET 0x10
 
-// Register to store return value of Snitch cluster 3
-#define CHIMERA_SNITCH_CLUSTER_3_RETURN_REG_OFFSET 0x14
+// Register to store return value of cluster 3
+#define CHIMERA_CLUSTER_3_RETURN_REG_OFFSET 0x14
 
-// Register to store return value of Snitch cluster 4
-#define CHIMERA_SNITCH_CLUSTER_4_RETURN_REG_OFFSET 0x18
+// Register to store return value of cluster 4
+#define CHIMERA_CLUSTER_4_RETURN_REG_OFFSET 0x18
 
 // Enable clock gate for cluster 0
 #define CHIMERA_CLUSTER_0_CLK_GATE_EN_REG_OFFSET 0x1c
@@ -98,7 +98,7 @@ extern "C" {
 #define CHIMERA_CLUSTER_4_BUSY_CLUSTER_4_BUSY_BIT 0
 
 #ifdef __cplusplus
-} // extern "C"
+}  // extern "C"
 #endif
-#endif // _CHIMERA_REG_DEFS_
-       // End generated register defines for chimera
+#endif  // _CHIMERA_REG_DEFS_
+// End generated register defines for chimera

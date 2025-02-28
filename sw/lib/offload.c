@@ -65,19 +65,19 @@ uint32_t waitForCluster(uint8_t clusterId) {
     volatile int32_t *snitchReturnAddr;
     if (clusterId == 0) {
         snitchReturnAddr =
-            (volatile int32_t *)(SOC_CTRL_BASE + CHIMERA_SNITCH_CLUSTER_0_RETURN_REG_OFFSET);
+            (volatile int32_t *)(SOC_CTRL_BASE + CHIMERA_CLUSTER_0_RETURN_REG_OFFSET);
     } else if (clusterId == 1) {
         snitchReturnAddr =
-            (volatile int32_t *)(SOC_CTRL_BASE + CHIMERA_SNITCH_CLUSTER_1_RETURN_REG_OFFSET);
+            (volatile int32_t *)(SOC_CTRL_BASE + CHIMERA_CLUSTER_1_RETURN_REG_OFFSET);
     } else if (clusterId == 2) {
         snitchReturnAddr =
-            (volatile int32_t *)(SOC_CTRL_BASE + CHIMERA_SNITCH_CLUSTER_2_RETURN_REG_OFFSET);
+            (volatile int32_t *)(SOC_CTRL_BASE + CHIMERA_CLUSTER_2_RETURN_REG_OFFSET);
     } else if (clusterId == 3) {
         snitchReturnAddr =
-            (volatile int32_t *)(SOC_CTRL_BASE + CHIMERA_SNITCH_CLUSTER_3_RETURN_REG_OFFSET);
+            (volatile int32_t *)(SOC_CTRL_BASE + CHIMERA_CLUSTER_3_RETURN_REG_OFFSET);
     } else if (clusterId == 4) {
         snitchReturnAddr =
-            (volatile int32_t *)(SOC_CTRL_BASE + CHIMERA_SNITCH_CLUSTER_4_RETURN_REG_OFFSET);
+            (volatile int32_t *)(SOC_CTRL_BASE + CHIMERA_CLUSTER_4_RETURN_REG_OFFSET);
     }
 
     while (*snitchReturnAddr == 0) {

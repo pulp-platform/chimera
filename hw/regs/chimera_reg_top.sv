@@ -73,21 +73,21 @@ module chimera_reg_top #(
   logic [31:0] snitch_intr_handler_addr_qs;
   logic [31:0] snitch_intr_handler_addr_wd;
   logic snitch_intr_handler_addr_we;
-  logic [31:0] snitch_cluster_0_return_qs;
-  logic [31:0] snitch_cluster_0_return_wd;
-  logic snitch_cluster_0_return_we;
-  logic [31:0] snitch_cluster_1_return_qs;
-  logic [31:0] snitch_cluster_1_return_wd;
-  logic snitch_cluster_1_return_we;
-  logic [31:0] snitch_cluster_2_return_qs;
-  logic [31:0] snitch_cluster_2_return_wd;
-  logic snitch_cluster_2_return_we;
-  logic [31:0] snitch_cluster_3_return_qs;
-  logic [31:0] snitch_cluster_3_return_wd;
-  logic snitch_cluster_3_return_we;
-  logic [31:0] snitch_cluster_4_return_qs;
-  logic [31:0] snitch_cluster_4_return_wd;
-  logic snitch_cluster_4_return_we;
+  logic [31:0] cluster_0_return_qs;
+  logic [31:0] cluster_0_return_wd;
+  logic cluster_0_return_we;
+  logic [31:0] cluster_1_return_qs;
+  logic [31:0] cluster_1_return_wd;
+  logic cluster_1_return_we;
+  logic [31:0] cluster_2_return_qs;
+  logic [31:0] cluster_2_return_wd;
+  logic cluster_2_return_we;
+  logic [31:0] cluster_3_return_qs;
+  logic [31:0] cluster_3_return_wd;
+  logic cluster_3_return_we;
+  logic [31:0] cluster_4_return_qs;
+  logic [31:0] cluster_4_return_wd;
+  logic cluster_4_return_we;
   logic cluster_0_clk_gate_en_qs;
   logic cluster_0_clk_gate_en_wd;
   logic cluster_0_clk_gate_en_we;
@@ -189,19 +189,19 @@ module chimera_reg_top #(
   );
 
 
-  // R[snitch_cluster_0_return]: V(False)
+  // R[cluster_0_return]: V(False)
 
   prim_subreg #(
     .DW      (32),
     .SWACCESS("RW"),
     .RESVAL  (32'h0)
-  ) u_snitch_cluster_0_return (
+  ) u_cluster_0_return (
     .clk_i   (clk_i    ),
     .rst_ni  (rst_ni  ),
 
     // from register interface
-    .we     (snitch_cluster_0_return_we),
-    .wd     (snitch_cluster_0_return_wd),
+    .we     (cluster_0_return_we),
+    .wd     (cluster_0_return_wd),
 
     // from internal hardware
     .de     (1'b0),
@@ -209,26 +209,26 @@ module chimera_reg_top #(
 
     // to internal hardware
     .qe     (),
-    .q      (reg2hw.snitch_cluster_0_return.q ),
+    .q      (reg2hw.cluster_0_return.q ),
 
     // to register interface (read)
-    .qs     (snitch_cluster_0_return_qs)
+    .qs     (cluster_0_return_qs)
   );
 
 
-  // R[snitch_cluster_1_return]: V(False)
+  // R[cluster_1_return]: V(False)
 
   prim_subreg #(
     .DW      (32),
     .SWACCESS("RW"),
     .RESVAL  (32'h0)
-  ) u_snitch_cluster_1_return (
+  ) u_cluster_1_return (
     .clk_i   (clk_i    ),
     .rst_ni  (rst_ni  ),
 
     // from register interface
-    .we     (snitch_cluster_1_return_we),
-    .wd     (snitch_cluster_1_return_wd),
+    .we     (cluster_1_return_we),
+    .wd     (cluster_1_return_wd),
 
     // from internal hardware
     .de     (1'b0),
@@ -236,26 +236,26 @@ module chimera_reg_top #(
 
     // to internal hardware
     .qe     (),
-    .q      (reg2hw.snitch_cluster_1_return.q ),
+    .q      (reg2hw.cluster_1_return.q ),
 
     // to register interface (read)
-    .qs     (snitch_cluster_1_return_qs)
+    .qs     (cluster_1_return_qs)
   );
 
 
-  // R[snitch_cluster_2_return]: V(False)
+  // R[cluster_2_return]: V(False)
 
   prim_subreg #(
     .DW      (32),
     .SWACCESS("RW"),
     .RESVAL  (32'h0)
-  ) u_snitch_cluster_2_return (
+  ) u_cluster_2_return (
     .clk_i   (clk_i    ),
     .rst_ni  (rst_ni  ),
 
     // from register interface
-    .we     (snitch_cluster_2_return_we),
-    .wd     (snitch_cluster_2_return_wd),
+    .we     (cluster_2_return_we),
+    .wd     (cluster_2_return_wd),
 
     // from internal hardware
     .de     (1'b0),
@@ -263,26 +263,26 @@ module chimera_reg_top #(
 
     // to internal hardware
     .qe     (),
-    .q      (reg2hw.snitch_cluster_2_return.q ),
+    .q      (reg2hw.cluster_2_return.q ),
 
     // to register interface (read)
-    .qs     (snitch_cluster_2_return_qs)
+    .qs     (cluster_2_return_qs)
   );
 
 
-  // R[snitch_cluster_3_return]: V(False)
+  // R[cluster_3_return]: V(False)
 
   prim_subreg #(
     .DW      (32),
     .SWACCESS("RW"),
     .RESVAL  (32'h0)
-  ) u_snitch_cluster_3_return (
+  ) u_cluster_3_return (
     .clk_i   (clk_i    ),
     .rst_ni  (rst_ni  ),
 
     // from register interface
-    .we     (snitch_cluster_3_return_we),
-    .wd     (snitch_cluster_3_return_wd),
+    .we     (cluster_3_return_we),
+    .wd     (cluster_3_return_wd),
 
     // from internal hardware
     .de     (1'b0),
@@ -290,26 +290,26 @@ module chimera_reg_top #(
 
     // to internal hardware
     .qe     (),
-    .q      (reg2hw.snitch_cluster_3_return.q ),
+    .q      (reg2hw.cluster_3_return.q ),
 
     // to register interface (read)
-    .qs     (snitch_cluster_3_return_qs)
+    .qs     (cluster_3_return_qs)
   );
 
 
-  // R[snitch_cluster_4_return]: V(False)
+  // R[cluster_4_return]: V(False)
 
   prim_subreg #(
     .DW      (32),
     .SWACCESS("RW"),
     .RESVAL  (32'h0)
-  ) u_snitch_cluster_4_return (
+  ) u_cluster_4_return (
     .clk_i   (clk_i    ),
     .rst_ni  (rst_ni  ),
 
     // from register interface
-    .we     (snitch_cluster_4_return_we),
-    .wd     (snitch_cluster_4_return_wd),
+    .we     (cluster_4_return_we),
+    .wd     (cluster_4_return_wd),
 
     // from internal hardware
     .de     (1'b0),
@@ -317,10 +317,10 @@ module chimera_reg_top #(
 
     // to internal hardware
     .qe     (),
-    .q      (reg2hw.snitch_cluster_4_return.q ),
+    .q      (reg2hw.cluster_4_return.q ),
 
     // to register interface (read)
-    .qs     (snitch_cluster_4_return_qs)
+    .qs     (cluster_4_return_qs)
   );
 
 
@@ -736,11 +736,11 @@ module chimera_reg_top #(
     addr_hit = '0;
     addr_hit[ 0] = (reg_addr == CHIMERA_SNITCH_BOOT_ADDR_OFFSET);
     addr_hit[ 1] = (reg_addr == CHIMERA_SNITCH_INTR_HANDLER_ADDR_OFFSET);
-    addr_hit[ 2] = (reg_addr == CHIMERA_SNITCH_CLUSTER_0_RETURN_OFFSET);
-    addr_hit[ 3] = (reg_addr == CHIMERA_SNITCH_CLUSTER_1_RETURN_OFFSET);
-    addr_hit[ 4] = (reg_addr == CHIMERA_SNITCH_CLUSTER_2_RETURN_OFFSET);
-    addr_hit[ 5] = (reg_addr == CHIMERA_SNITCH_CLUSTER_3_RETURN_OFFSET);
-    addr_hit[ 6] = (reg_addr == CHIMERA_SNITCH_CLUSTER_4_RETURN_OFFSET);
+    addr_hit[ 2] = (reg_addr == CHIMERA_CLUSTER_0_RETURN_OFFSET);
+    addr_hit[ 3] = (reg_addr == CHIMERA_CLUSTER_1_RETURN_OFFSET);
+    addr_hit[ 4] = (reg_addr == CHIMERA_CLUSTER_2_RETURN_OFFSET);
+    addr_hit[ 5] = (reg_addr == CHIMERA_CLUSTER_3_RETURN_OFFSET);
+    addr_hit[ 6] = (reg_addr == CHIMERA_CLUSTER_4_RETURN_OFFSET);
     addr_hit[ 7] = (reg_addr == CHIMERA_CLUSTER_0_CLK_GATE_EN_OFFSET);
     addr_hit[ 8] = (reg_addr == CHIMERA_CLUSTER_1_CLK_GATE_EN_OFFSET);
     addr_hit[ 9] = (reg_addr == CHIMERA_CLUSTER_2_CLK_GATE_EN_OFFSET);
@@ -793,20 +793,20 @@ module chimera_reg_top #(
   assign snitch_intr_handler_addr_we = addr_hit[1] & reg_we & !reg_error;
   assign snitch_intr_handler_addr_wd = reg_wdata[31:0];
 
-  assign snitch_cluster_0_return_we = addr_hit[2] & reg_we & !reg_error;
-  assign snitch_cluster_0_return_wd = reg_wdata[31:0];
+  assign cluster_0_return_we = addr_hit[2] & reg_we & !reg_error;
+  assign cluster_0_return_wd = reg_wdata[31:0];
 
-  assign snitch_cluster_1_return_we = addr_hit[3] & reg_we & !reg_error;
-  assign snitch_cluster_1_return_wd = reg_wdata[31:0];
+  assign cluster_1_return_we = addr_hit[3] & reg_we & !reg_error;
+  assign cluster_1_return_wd = reg_wdata[31:0];
 
-  assign snitch_cluster_2_return_we = addr_hit[4] & reg_we & !reg_error;
-  assign snitch_cluster_2_return_wd = reg_wdata[31:0];
+  assign cluster_2_return_we = addr_hit[4] & reg_we & !reg_error;
+  assign cluster_2_return_wd = reg_wdata[31:0];
 
-  assign snitch_cluster_3_return_we = addr_hit[5] & reg_we & !reg_error;
-  assign snitch_cluster_3_return_wd = reg_wdata[31:0];
+  assign cluster_3_return_we = addr_hit[5] & reg_we & !reg_error;
+  assign cluster_3_return_wd = reg_wdata[31:0];
 
-  assign snitch_cluster_4_return_we = addr_hit[6] & reg_we & !reg_error;
-  assign snitch_cluster_4_return_wd = reg_wdata[31:0];
+  assign cluster_4_return_we = addr_hit[6] & reg_we & !reg_error;
+  assign cluster_4_return_wd = reg_wdata[31:0];
 
   assign cluster_0_clk_gate_en_we = addr_hit[7] & reg_we & !reg_error;
   assign cluster_0_clk_gate_en_wd = reg_wdata[0];
@@ -866,23 +866,23 @@ module chimera_reg_top #(
       end
 
       addr_hit[2]: begin
-        reg_rdata_next[31:0] = snitch_cluster_0_return_qs;
+        reg_rdata_next[31:0] = cluster_0_return_qs;
       end
 
       addr_hit[3]: begin
-        reg_rdata_next[31:0] = snitch_cluster_1_return_qs;
+        reg_rdata_next[31:0] = cluster_1_return_qs;
       end
 
       addr_hit[4]: begin
-        reg_rdata_next[31:0] = snitch_cluster_2_return_qs;
+        reg_rdata_next[31:0] = cluster_2_return_qs;
       end
 
       addr_hit[5]: begin
-        reg_rdata_next[31:0] = snitch_cluster_3_return_qs;
+        reg_rdata_next[31:0] = cluster_3_return_qs;
       end
 
       addr_hit[6]: begin
-        reg_rdata_next[31:0] = snitch_cluster_4_return_qs;
+        reg_rdata_next[31:0] = cluster_4_return_qs;
       end
 
       addr_hit[7]: begin

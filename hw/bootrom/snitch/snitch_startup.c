@@ -40,23 +40,23 @@ void cluster_return(uint32_t ret) {
     switch (hartId) {
 
     case 1:
-        *((volatile uint32_t *)(SOC_CTRL_BASE + CHIMERA_SNITCH_CLUSTER_0_RETURN_REG_OFFSET)) =
+        *((volatile uint32_t *)(SOC_CTRL_BASE + CHIMERA_CLUSTER_0_RETURN_REG_OFFSET)) =
             retVal;
         break;
     case 1 + CLUSTER_0_NUMCORES:
-        *((volatile uint32_t *)(SOC_CTRL_BASE + CHIMERA_SNITCH_CLUSTER_1_RETURN_REG_OFFSET)) =
+        *((volatile uint32_t *)(SOC_CTRL_BASE + CHIMERA_CLUSTER_1_RETURN_REG_OFFSET)) =
             retVal;
         break;
     case 1 + CLUSTER_0_NUMCORES + CLUSTER_1_NUMCORES:
-        *((volatile uint32_t *)(SOC_CTRL_BASE + CHIMERA_SNITCH_CLUSTER_2_RETURN_REG_OFFSET)) =
+        *((volatile uint32_t *)(SOC_CTRL_BASE + CHIMERA_CLUSTER_2_RETURN_REG_OFFSET)) =
             retVal;
         break;
     case 1 + CLUSTER_0_NUMCORES + CLUSTER_1_NUMCORES + CLUSTER_2_NUMCORES:
-        *((volatile uint32_t *)(SOC_CTRL_BASE + CHIMERA_SNITCH_CLUSTER_3_RETURN_REG_OFFSET)) =
+        *((volatile uint32_t *)(SOC_CTRL_BASE + CHIMERA_CLUSTER_3_RETURN_REG_OFFSET)) =
             retVal;
         break;
     case 1 + CLUSTER_0_NUMCORES + CLUSTER_1_NUMCORES + CLUSTER_2_NUMCORES + CLUSTER_3_NUMCORES:
-        *((volatile uint32_t *)(SOC_CTRL_BASE + CHIMERA_SNITCH_CLUSTER_4_RETURN_REG_OFFSET)) =
+        *((volatile uint32_t *)(SOC_CTRL_BASE + CHIMERA_CLUSTER_4_RETURN_REG_OFFSET)) =
             retVal;
         break;
     }
