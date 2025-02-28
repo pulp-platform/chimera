@@ -27,7 +27,6 @@ workspace:
   package_links:
     cheshire: cheshire
     idma: idma
-    hyperbus: hyperbus
 
 sources:
   - hw/chimera_pkg.sv

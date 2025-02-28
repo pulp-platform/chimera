@@ -17,7 +17,7 @@ FORMAT_VERILOG_SRC = $(wildcard \
 )
 
 # Checks if verible-verilog-format is installed, otherwise it looks for a Makefile target in our flow to install it
-format-verilog: $(shell if ! `which $(VERIBLE_VERILOG_FORMAT)`; then echo $(VERIBLE_VERILOG_FORMAT); fi)
+format-verilog: $(shell if ! `which $(VERIBLE_VERILOG_FORMAT) 2> /dev/null`; then echo $(VERIBLE_VERILOG_FORMAT); fi)
 	$(VERIBLE_VERILOG_FORMAT) --flagfile .verilog_format --inplace --verbose $(FORMAT_VERILOG_SRC)
 
 # Download verible-verilog-format
