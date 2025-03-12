@@ -75,7 +75,7 @@ module chimera_cluster
   typedef logic [WideDataWidth/8-1:0] axi_cluster_strb_wide_t;
 
   typedef logic [ClusterNarrowAxiMstIdWidth-1:0] axi_cluster_mst_id_width_narrow_t;
-  typedef logic [ClusterNarrowAxiMstIdWidth-1+2:0] axi_cluster_slv_id_width_narrow_t;
+  typedef logic [ClusterNarrowAxiSlvIdWidth-1:0] axi_cluster_slv_id_width_narrow_t;
 
   typedef logic [NarrowMasterIdWidth-1:0] axi_soc_mst_id_width_narrow_t;
   typedef logic [NarrowSlaveIdWidth-1:0] axi_soc_slv_id_width_narrow_t;

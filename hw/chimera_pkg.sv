@@ -110,7 +110,8 @@ package chimera_pkg;
     64'h4140_0000, 64'h4100_0000, 64'h40C0_0000, 64'h4080_0000, 64'h4040_0000
   };
 
-  localparam aw_bt ClusterNarrowAxiMstIdWidth = 1;
+  localparam aw_bt ClusterNarrowAxiMstIdWidth = `ifdef TARGET_PULP_CLUSTER pulp_cluster_package::AxiSubordinateIdwidth `else 1 `endif;
+  localparam aw_bt ClusterNarrowAxiSlvIdWidth = `ifdef TARGET_PULP_CLUSTER pulp_cluster_package::AxiManagerIdwidth `else ClusterNarrowAxiMstIdWidth + 2 `endif;
   localparam int ClusterDataWidth = 64;
 
   // Memory Island
@@ -237,6 +238,8 @@ package chimera_pkg;
       pulp_clu_cfgs[i].NumSharedFpu = 0;
       pulp_clu_cfgs[i].EnableTnnExtension = 1;
       pulp_clu_cfgs[i].EnableTnnUnsigned = 1;
+      pulp_clu_cfgs[i].AxiIdInWidth = pulp_cluster_package::AxiSubordinateIdwidth;
+      pulp_clu_cfgs[i].AxiIdOutWidth = pulp_cluster_package::AxiManagerIdwidth;
       pulp_clu_cfgs[i].AxiIdOutWideWidth = MemIslAxiMstIdWidth;
       pulp_clu_cfgs[i].AxiAddrWidth = cfg.AddrWidth;
       pulp_clu_cfgs[i].AxiDataInWidth = ClusterDataWidth;
