@@ -15,6 +15,7 @@ VERIBLE_VERILOG_FORMAT ?= $(CHIM_UTILS_DIR)/verible-verilog/verible-verilog-form
 ifeq ($(shell test -d $(CHIM_ROOT)/.bender || echo 1),)
 CHS_ROOT    ?= $(shell $(BENDER) path cheshire)
 SNITCH_ROOT ?= $(shell $(BENDER) path snitch_cluster)
+PULP_ROOT   ?= $(shell $(BENDER) path pulp_cluster)
 IDMA_ROOT   ?= $(shell $(BENDER) path idma)
 HYPERB_ROOT ?= $(shell $(BENDER) path hyperbus)
 endif
@@ -22,6 +23,7 @@ endif
 # Fall back to safe defaults if dependencies are not cloned yet
 CHS_ROOT    ?= .
 SNITCH_ROOT ?= .
+PULP_ROOT   ?= .
 IDMA_ROOT   ?= .
 HYPERB_ROOT ?= .
 

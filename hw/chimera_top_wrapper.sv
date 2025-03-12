@@ -261,7 +261,7 @@ module chimera_top_wrapper
 
 
   // SNITCH BOOTROM
-
+  `ifdef TARGET_SNITCH_CLUSTER
   logic [31:0] snitch_bootrom_addr;
   logic [31:0] snitch_bootrom_data, snitch_bootrom_data_q;
   logic snitch_bootrom_req, snitch_bootrom_req_q;
@@ -304,6 +304,7 @@ module chimera_top_wrapper
     .addr_i(snitch_bootrom_addr),
     .data_o(snitch_bootrom_data)
   );
+  `endif
 
   logic [ExtClusters-1:0] wide_mem_bypass_mode;
   assign wide_mem_bypass_mode = {

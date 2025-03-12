@@ -1,0 +1,7 @@
+# Related to issue https://github.com/pulp-platform/bender/issues/182
+overrides:
+  # Should use the one from `pulp_cluster` dependency, supporting TNN ISA extension
+  riscv: { git: "git@iis-git.ee.ethz.ch:pulpissimov2/riscv-nn.git", rev: "53b053cd0be8dae25caa24bd57824e81cf87ba21" }
+  # Override with the correct remote where `pulp-v0.1.3` can be found;
+  # note that the name is `cvfpu` but we want to override `fpnew` which has the issue with remotes
+  fpnew: { git: "https://github.com/pulp-platform/cvfpu.git",       rev: "pulp-v0.1.3" }

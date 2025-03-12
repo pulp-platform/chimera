@@ -173,9 +173,17 @@ module chimera_clu_domain
 
     end : gen_no_cluster_iso
 
+    logic [31:0] boot_addr_clu =
+      `ifdef TARGET_SNITCH_CLUSTER
+          SnitchBootROMRegionStart[31:0]
+      `else
+          'b0
+      `endif;
+
     chimera_cluster #(
       .Cfg              (Cfg),
       .NrCores          (`NRCORES(extClusterIdx)),
+      .ClusterId        (extClusterIdx),
       .narrow_in_req_t  (narrow_in_req_t),
       .narrow_in_resp_t (narrow_in_resp_t),
       .narrow_out_req_t (narrow_out_req_t),
@@ -193,7 +201,7 @@ module chimera_clu_domain
       .msip_i             (msip_i[`PREVNRCORES(extClusterIdx)+:`NRCORES(extClusterIdx)]),
       .hart_base_id_i     (10'(`PREVNRCORES(extClusterIdx) + 1)),
       .cluster_base_addr_i(Cfg.ChsCfg.AxiExtRegionStart[extClusterIdx][Cfg.ChsCfg.AddrWidth-1:0]),
-      .boot_addr_i        (SnitchBootROMRegionStart[31:0]),
+      .boot_addr_i        (boot_addr_clu),
 
       .narrow_in_req_i  (narrow_in_isolated_req[extClusterIdx]),
       .narrow_in_resp_o (narrow_in_isolated_resp[extClusterIdx]),

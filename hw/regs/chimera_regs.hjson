@@ -34,8 +34,8 @@
 	    ],
 	}
 	{
-	    name: "SNITCH_CLUSTER_0_RETURN",
-	    desc: "Register to store return value of Snitch cluster 0",
+	    name: "CLUSTER_0_RETURN",
+	    desc: "Register to store return value of cluster 0",
 	    swaccess: "rw",
 	    hwaccess: "hro",
 	    resval: "0",
@@ -46,8 +46,8 @@
 	}
 
 	{
-	    name: "SNITCH_CLUSTER_1_RETURN",
-	    desc: "Register to store return value of Snitch cluster 1",
+	    name: "CLUSTER_1_RETURN",
+	    desc: "Register to store return value of cluster 1",
 	    swaccess: "rw",
 	    hwaccess: "hro",
 	    resval: "0",
@@ -58,8 +58,8 @@
 	}
 
 	{
-	    name: "SNITCH_CLUSTER_2_RETURN",
-	    desc: "Register to store return value of Snitch cluster 2",
+	    name: "CLUSTER_2_RETURN",
+	    desc: "Register to store return value of cluster 2",
 	    swaccess: "rw",
 	    hwaccess: "hro",
 	    resval: "0",
@@ -70,8 +70,8 @@
 	}
 
 	{
-	    name: "SNITCH_CLUSTER_3_RETURN",
-	    desc: "Register to store return value of Snitch cluster 3",
+	    name: "CLUSTER_3_RETURN",
+	    desc: "Register to store return value of cluster 3",
 	    swaccess: "rw",
 	    hwaccess: "hro",
 	    resval: "0",
@@ -82,8 +82,8 @@
 	}
 
 	{
-	    name: "SNITCH_CLUSTER_4_RETURN",
-	    desc: "Register to store return value of Snitch cluster 4",
+	    name: "CLUSTER_4_RETURN",
+	    desc: "Register to store return value of cluster 4",
 	    swaccess: "rw",
 	    hwaccess: "hro",
 	    resval: "0",
