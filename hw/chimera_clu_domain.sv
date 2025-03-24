@@ -26,8 +26,9 @@ module chimera_clu_domain
 ) (
   input  logic                                                              soc_clk_i,
   input  logic             [                               ExtClusters-1:0] clu_clk_i,
-  input  logic             [                               ExtClusters-1:0] rst_sync_ni,
+  input  logic             [                               ExtClusters-1:0] rst_ni,
   input  logic             [                               ExtClusters-1:0] widemem_bypass_i,
+  input  logic             [                                          31:0] boot_addr_i,
   //-----------------------------
   // Interrupt ports
   //-----------------------------
@@ -91,7 +92,7 @@ module chimera_clu_domain
         .axi_resp_t          (narrow_in_resp_t)
       ) i_iso_narrow_in_cluster (
         .clk_i     (soc_clk_i),
-        .rst_ni    (rst_sync_ni[extClusterIdx]),
+        .rst_ni    (rst_ni[extClusterIdx]),
         .slv_req_i (narrow_in_req_i[extClusterIdx]),
         .slv_resp_o(narrow_in_resp_o[extClusterIdx]),
         .mst_req_o (narrow_in_isolated_req[extClusterIdx]),
@@ -119,7 +120,7 @@ module chimera_clu_domain
           .axi_resp_t          (narrow_out_resp_t)
         ) i_iso_narrow_out_cluster (
           .clk_i     (soc_clk_i),
-          .rst_ni    (rst_sync_ni[extClusterIdx]),
+          .rst_ni    (rst_ni[extClusterIdx]),
           .slv_req_i (narrow_out_isolated_req[narrowOutIdx]),
           .slv_resp_o(narrow_out_isolated_resp[narrowOutIdx]),
           .mst_req_o (narrow_out_req_o[narrowOutIdx]),
@@ -142,7 +143,7 @@ module chimera_clu_domain
         .axi_resp_t          (wide_out_resp_t)
       ) i_iso_wide_cluster (
         .clk_i     (soc_clk_i),
-        .rst_ni    (rst_sync_ni[extClusterIdx]),
+        .rst_ni    (rst_ni[extClusterIdx]),
         .slv_req_i (wide_out_isolated_req[extClusterIdx]),
         .slv_resp_o(wide_out_isolated_resp[extClusterIdx]),
         .mst_req_o (wide_out_req_o[extClusterIdx]),
@@ -185,7 +186,7 @@ module chimera_clu_domain
     ) i_chimera_cluster (
       .soc_clk_i          (soc_clk_i),
       .clu_clk_i          (clu_clk_i[extClusterIdx]),
-      .rst_ni             (rst_sync_ni[extClusterIdx]),
+      .rst_ni             (rst_ni[extClusterIdx]),
       .widemem_bypass_i   (widemem_bypass_i[extClusterIdx]),
       .debug_req_i        (debug_req_i[`PREVNRCORES(extClusterIdx)+:`NRCORES(extClusterIdx)]),
       .meip_i             (xeip_i[`PREVNRCORES(extClusterIdx)+:`NRCORES(extClusterIdx)]),
@@ -193,7 +194,7 @@ module chimera_clu_domain
       .msip_i             (msip_i[`PREVNRCORES(extClusterIdx)+:`NRCORES(extClusterIdx)]),
       .hart_base_id_i     (10'(`PREVNRCORES(extClusterIdx) + 1)),
       .cluster_base_addr_i(Cfg.ChsCfg.AxiExtRegionStart[extClusterIdx][Cfg.ChsCfg.AddrWidth-1:0]),
-      .boot_addr_i        (SnitchBootROMRegionStart[31:0]),
+      .boot_addr_i        (boot_addr_i),
 
       .narrow_in_req_i  (narrow_in_isolated_req[extClusterIdx]),
       .narrow_in_resp_o (narrow_in_isolated_resp[extClusterIdx]),

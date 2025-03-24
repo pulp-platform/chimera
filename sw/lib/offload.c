@@ -4,6 +4,7 @@
 //
 // Moritz Scherer <scheremo@iis.ee.ethz.ch>
 // Viviane Potocnik <vivianep@iis.ee.ethz.ch>
+// Lorenzo Leone <lleone@iis.ee.ethz.ch>
 
 #include "regs/soc_ctrl.h"
 #include "soc_addr_map.h"
@@ -72,6 +73,36 @@ void setAllClusterClockGating(volatile uint8_t *regPtr, bool enable) {
     *(regPtr + CHIMERA_CLUSTER_2_CLK_GATE_EN_REG_OFFSET) = enable;
     *(regPtr + CHIMERA_CLUSTER_3_CLK_GATE_EN_REG_OFFSET) = enable;
     *(regPtr + CHIMERA_CLUSTER_4_CLK_GATE_EN_REG_OFFSET) = enable;
+}
+
+/* Set Soft Reset on specified cluster */
+void setClusterReset(volatile uint8_t *regPtr, uint8_t clusterId, bool enable) {
+
+    if (regPtr == NULL) return;
+
+    if (clusterId == 0) {
+        *(regPtr + CHIMERA_RESET_CLUSTER_0_REG_OFFSET) = enable;
+    } else if (clusterId == 1) {
+        *(regPtr + CHIMERA_RESET_CLUSTER_1_REG_OFFSET) = enable;
+    } else if (clusterId == 2) {
+        *(regPtr + CHIMERA_RESET_CLUSTER_2_REG_OFFSET) = enable;
+    } else if (clusterId == 3) {
+        *(regPtr + CHIMERA_RESET_CLUSTER_3_REG_OFFSET) = enable;
+    } else if (clusterId == 4) {
+        *(regPtr + CHIMERA_RESET_CLUSTER_4_REG_OFFSET) = enable;
+    }
+}
+
+/* Set Soft Reset on all clusters */
+void setAllClusterReset(volatile uint8_t *regPtr, bool enable) {
+
+    if (regPtr == NULL) return;
+
+    *(regPtr + CHIMERA_RESET_CLUSTER_0_REG_OFFSET) = enable;
+    *(regPtr + CHIMERA_RESET_CLUSTER_1_REG_OFFSET) = enable;
+    *(regPtr + CHIMERA_RESET_CLUSTER_2_REG_OFFSET) = enable;
+    *(regPtr + CHIMERA_RESET_CLUSTER_3_REG_OFFSET) = enable;
+    *(regPtr + CHIMERA_RESET_CLUSTER_4_REG_OFFSET) = enable;
 }
 
 /* Offloads a void function pointer to the specified cluster's core 0 */
