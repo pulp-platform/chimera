@@ -18,9 +18,11 @@ chim-sim: chim-hyperram-model $(CHIM_SIM_DIR)/vsim/compile.tcl
 .PHONY: chim-hyperram-model
 chim-hyperram-model: $(CHIM_SIM_DIR)/models/s27ks0641/s27ks0641.sv
 $(CHIM_SIM_DIR)/models/s27ks0641/s27ks0641.sv:
-	make -C $(HYPERB_ROOT) models/s27ks0641
+	# make -C $(HYPERB_ROOT) models/s27ks0641
 	mkdir -p $(dir $@)
-	cp -r $(HYPERB_ROOT)/models/s27ks0641 $(CHIM_SIM_DIR)/models
+#TODO: This is an hotfix, change when https://github.com/pulp-platform/hyperbus/issues/22 is solved
+	cp -r /usr/scratch/simba/lleone/InvecasHyper/models/s27ks0641 $(CHIM_SIM_DIR)/models
+
 # Defines for hyperram model preload at time 0
 HYP_USER_PRELOAD      ?= 0
 HYP0_PRELOAD_MEM_FILE ?= ""
