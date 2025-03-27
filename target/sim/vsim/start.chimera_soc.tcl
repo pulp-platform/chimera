@@ -15,6 +15,13 @@ if {![info exists VOPTARGS]} {
     set VOPTARGS "+acc"
 }
 
+if {![info exists DEBUG] || ($DEBUG == 0)} {
+    set debug ""
+} else {
+    set debug "-do \"log -r /*;\""
+}
+
+
 set flags "-permissive -suppress 3009 -suppress 8386 -error 7 "
 if {[info exists SELCFG]} { append flags "-gSelectedCfg=${SELCFG} " }
 
@@ -25,7 +32,7 @@ if {[info exists BINARY]}   { append pargs "+BINARY=${BINARY} " }
 if {[info exists IMAGE]}    { append pargs "+IMAGE=${IMAGE} " }
 
 if {[catch {
-    eval "vsim -c ${TESTBENCH} -t 1ps -vopt -voptargs=\"${VOPTARGS}\"" ${pargs} ${flags} "-do \"log -r /*;\""
+    eval "vsim -c ${TESTBENCH} -t 1ps -vopt -voptargs=\"${VOPTARGS}\"" ${pargs} ${flags} ${debug}
 }]} {return 1}
 
 set StdArithNoWarnings 1

@@ -89,6 +89,9 @@ source compile.tcl
 source start.chimera_soc.tcl
 ```
 
+By default the signals are not loaded into QuestaSim.
+To load all the signals `set DEBUG 1` before running `start.chimera_soc.tcl`.
+
 ## CXX Formatting
 
 To format all files within the `sw` directory, run
