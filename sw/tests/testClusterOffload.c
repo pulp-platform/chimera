@@ -3,6 +3,7 @@
 // SPDX-License-Identifier: Apache-2.0
 //
 // Moritz Scherer <scheremo@iis.ee.ethz.ch>
+// Viviane Potocnik <vivianep@iis.ee.ethz.ch>
 
 // Simple offload test. Set the trap handler first, offload a function, retrieve
 // return value from cluster. Does not currently take care of stack
@@ -31,9 +32,18 @@ int32_t testReturn() {
 }
 
 int main() {
+    volatile uint8_t *regPtr = (volatile uint8_t *)SOC_CTRL_BASE;
     setupInterruptHandler(clusterTrapHandler);
-    offloadToCluster(testReturn, 0);
-    uint32_t retVal = waitForCluster(0);
+
+    uint32_t retVal = 0;
+    for (int i = 0; i < _chimera_numClusters; i++) {
+        setClusterReset(regPtr, i, 0);
+        setClusterClockGating(regPtr, i, 0);
+        offloadToCluster(testReturn, i);
+        retVal |= waitForCluster(i);
+        setClusterClockGating(regPtr, i, 1);
+        setClusterReset(regPtr, i, 0);
+    }
 
     return (retVal != (TESTVAL | 0x000000001));
 }

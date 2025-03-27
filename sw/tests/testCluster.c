@@ -3,6 +3,7 @@
 // SPDX-License-Identifier: Apache-2.0
 //
 // Moritz Scherer <scheremo@iis.ee.ethz.ch>
+// Viviane Potocnik <vivianep@iis.ee.ethz.ch>
 
 #include <soc_addr_map.h>
 #include <stdint.h>
@@ -14,6 +15,11 @@
 #define TESTVAL 0x00E0D0C0
 
 int main() {
+    volatile uint8_t *regPtr = (volatile uint8_t *)SOC_CTRL_BASE;
+
+    setAllClusterReset(regPtr, 0);
+    setAllClusterClockGating(regPtr, 0);
+
     volatile int32_t *clusterMemPtr = (volatile int32_t *)CLUSTERMEMORYSTART;
     volatile int32_t result;
 
@@ -26,11 +32,15 @@ int main() {
     clusterMemPtr = (volatile int32_t *)CLUSTERMEMORYSTART;
     for (int i = 0; i < NUMCLUSTERS; i++) {
         result = *(clusterMemPtr);
-        ret += (result == TESTVAL);
+        if (result == TESTVAL) {
+            ret += 1;
+        } else {
+            ret += 1 << (NUMCLUSTERS + i);
+        }
         clusterMemPtr += CLUSTERDISTANCE / 4;
     }
 
-    if (ret == NUMCLUSTERS) {
+    if ((ret & ((1 << NUMCLUSTERS) - 1)) == NUMCLUSTERS) {
         return 0;
     }
 

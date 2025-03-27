@@ -3,17 +3,20 @@
 // SPDX-License-Identifier: Apache-2.0
 //
 // Moritz Scherer <scheremo@iis.ee.ethz.ch>
+// Viviane Potocnik <vivianep@iis.ee.ethz.ch>
 
 #include "regs/soc_ctrl.h"
 #include "soc_addr_map.h"
+#include "offload.h"
 #include <stdint.h>
 
 int main() {
     volatile uint8_t *regPtr = (volatile uint8_t *)SOC_CTRL_BASE;
 
-    *(regPtr + CHIMERA_CLUSTER_0_CLK_GATE_EN_REG_OFFSET) = 1;
-    *(regPtr + CHIMERA_CLUSTER_3_CLK_GATE_EN_REG_OFFSET) = 1;
-    *(regPtr + CHIMERA_CLUSTER_4_CLK_GATE_EN_REG_OFFSET) = 1;
+    setAllClusterReset(regPtr, 0);
+    setClusterClockGating(regPtr, 0, 1);
+    setClusterClockGating(regPtr, 3, 1);
+    setClusterClockGating(regPtr, 4, 1);
 
     while (1) {
     }
