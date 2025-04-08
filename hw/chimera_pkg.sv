@@ -17,6 +17,8 @@ package chimera_pkg;
   typedef bit [63:0] doub_bt;
   typedef bit [15:0] shrt_bt;
 
+  typedef enum logic [0:0] {SNITCH} cluster_type_e;
+
   // --------------------------
   // | Cluster domain config  |
   // --------------------------
@@ -24,13 +26,20 @@ package chimera_pkg;
   localparam int ExtClusters = 5;
 
   typedef struct packed {
-    logic [iomsb(ExtClusters):0]   hasWideMasterPort;
-    byte_bt [iomsb(ExtClusters):0] NrCores;
+    logic [iomsb(ExtClusters):0]          hasWideMasterPort;
+    byte_bt [iomsb(ExtClusters):0]        NrCores;
+    cluster_type_e [iomsb(ExtClusters):0] ClusterType;
   } cluster_config_t;
+
+  // For each instantiated cluster you need to specify three parameters:
+  //  - If the cluster has direct wide access to the memory island
+  //  - How many cores are include in the cluster
+  //  - What type of cluster must be instantiated. Make sure the type exists
 
   localparam cluster_config_t ChimeraClusterCfg = '{
       hasWideMasterPort: {1'b1, 1'b1, 1'b1, 1'b1, 1'b1},
-      NrCores: {8'h9, 8'h9, 8'h9, 8'h9, 8'h9}
+      NrCores: {8'h9, 8'h9, 8'h9, 8'h9, 8'h9},
+      ClusterType: {SNITCH, SNITCH, SNITCH, SNITCH, SNITCH}
   };
 
   function automatic int _sumVector(byte_bt [iomsb(ExtClusters):0] vector, int vectorLen);
