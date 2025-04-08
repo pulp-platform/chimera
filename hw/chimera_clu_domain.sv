@@ -205,10 +205,6 @@ module chimera_clu_domain
         .wide_out_req_o (wide_out_isolated_req[extClusterIdx]),
         .wide_out_resp_i(wide_out_isolated_resp[extClusterIdx])
       );
-    end else begin : gen_cluster_type_error
-      $error(
-          "The cluster instance %s is not supported", ChimeraClusterCfg.ClusterType[extClusterIdx]
-      );
     end
 
   end : gen_clusters
