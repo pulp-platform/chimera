@@ -32,3 +32,34 @@ CHIM_SW_DIR ?= $(CHIM_ROOT)/sw
 
 -include $(CHS_ROOT)/cheshire.mk
 -include $(CHIM_ROOT)/chimera.mk
+
+#################
+# Documentation #
+#################
+
+.PHONY: help
+
+Black=\033[0m
+Green=\033[1;32m
+help:
+	@echo -e "Makefile ${Green}targets${Black} for chimera"
+	@echo -e "Use 'make <target>' where <target> is one of:"
+	@echo -e ""
+	@echo -e "${Green}help           	     ${Black}Show an overview of all Makefile targets."
+	@echo -e ""
+	@echo -e "General targets:"
+	@echo -e "${Green}chim-all             ${Black}Generate entire chimera infrastructure."
+	@echo -e "${Green}chim-clean           ${Black}Clean entire chimera infrastructure."
+	@echo -e ""
+	@echo -e "Source generation targets:"
+	@echo -e "${Green}chim-sim             ${Black}Generate Chimera simulation files"
+	@echo -e "${Green}chim-bootrom-init    ${Black}Generate SoC bootrom"
+	@echo -e "${Green}regenerate_soc_regs  ${Black}Generate SoC configuration registers"
+	@echo -e "${Green}snitch-hw-init       ${Black}Generate Snitch RTL"
+	@echo -e "${Green}snitch_bootrom       ${Black}Generate Snitch bootrom"
+	@echo -e "${Green}chs-hw-init          ${Black}Generate Cheshire RTL"
+	@echo -e "${Green}chs-sim-all          ${Black}Generate Cheshire simulation files"
+	@echo -e ""
+	@echo -e "Software:"
+	@echo -e "${Green}chim-sw             ${Black}Compile all software tests"
+	@echo -e ""
