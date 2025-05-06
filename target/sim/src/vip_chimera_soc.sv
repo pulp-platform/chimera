@@ -375,7 +375,6 @@ module vip_chimera_soc
   localparam byte_bt UartDebugAck = 'h06;
   localparam byte_bt UartDebugEot = 'h04;
   localparam byte_bt UartDebugEoc = 'h14;
-  localparam byte_bt UartWriteBack[5:0] = "UartWB";
 
   byte_bt uart_boot_byte;
   logic   uart_boot_ena;
