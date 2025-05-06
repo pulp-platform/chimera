@@ -440,10 +440,20 @@ module vip_chimera_soc
   // Continually read characters and print lines
   // TODO: we should be able to support CR properly, but buffers are hard to deal with...
   initial begin
-    static byte_bt uart_read_buf[$];
-    static byte_bt uart_fifo[$];
-    byte_bt        bite;
-    static string uart_writeback_msg = "WB OK";
+    static byte_bt        uart_read_buf[$];
+    static byte_bt        uart_fifo[$];
+    byte_bt               bite;
+
+    // Two-byte command table
+    typedef struct {
+      byte_bt pattern[2];
+      string  response;
+    } uart_cmd_t;
+
+    static uart_cmd_t cmd_list[$] = '{
+      '{ pattern:{"W","B"}, response:"WB OK" }
+    };
+
     wait_for_reset();
     forever begin
       uart_read_byte(bite);
@@ -458,17 +468,29 @@ module vip_chimera_soc
       end else begin
         uart_read_buf.push_back(bite);
         $display("Read Byte: %s", bite);
-        // VIVIANEP: Store all bytes in a FIFO to be read by the testbench
+
+        // VIVIANEP: Evaluate UART command
         uart_fifo.push_back(bite);
-        if (uart_fifo == UartWriteBack) begin
-          for (int i = 0; i < uart_writeback_msg.len(); i++) begin
-            uart_write_byte(uart_writeback_msg[i]);
+        while (uart_fifo.size() >= 2) begin
+          byte_bt a;
+          byte_bt b;
+          a = uart_fifo.pop_front();
+          b = uart_fifo.pop_front();
+
+          foreach (cmd_list[i]) begin
+            if (a == cmd_list[i].pattern[0] && b == cmd_list[i].pattern[1]) begin
+              // Send response
+              foreach (cmd_list[i].response[j]) begin
+                uart_write_byte(cmd_list[i].response[j]);
+              end
+              $display("[UART] %s", cmd_list[i].response);
+            end
           end
-          $display("[UART] %s", {>>8{uart_writeback_msg}});
         end
       end
     end
   end
+
 
   // A length of zero indcates a write (write lengths are inferred from their queue)
   task automatic uart_debug_rw(doub_bt addr, doub_bt len_or_w, ref byte_bt data[$]);
