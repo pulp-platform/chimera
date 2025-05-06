@@ -439,9 +439,9 @@ module vip_chimera_soc
   // Continually read characters and print lines
   // TODO: we should be able to support CR properly, but buffers are hard to deal with...
   initial begin
-    static byte_bt        uart_read_buf[$];
-    static byte_bt        uart_fifo[$];
-    byte_bt               bite;
+    static byte_bt uart_read_buf[$];
+    static byte_bt uart_fifo    [$];
+    byte_bt        bite;
 
     // Two-byte command table
     typedef struct {
@@ -449,9 +449,7 @@ module vip_chimera_soc
       string  response;
     } uart_cmd_t;
 
-    static uart_cmd_t cmd_list[$] = '{
-      '{ pattern:{"W","B"}, response:"WB OK" }
-    };
+    static uart_cmd_t cmd_list[$] = '{'{pattern: {"W", "B"}, response: "WB OK"}};
 
     wait_for_reset();
     forever begin
