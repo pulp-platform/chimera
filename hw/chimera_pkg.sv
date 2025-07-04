@@ -17,20 +17,30 @@ package chimera_pkg;
   typedef bit [63:0] doub_bt;
   typedef bit [15:0] shrt_bt;
 
+  typedef enum logic [0:0] {SNITCH} cluster_type_e;
+
   // --------------------------
   // | Cluster domain config  |
   // --------------------------
 
   localparam int ExtClusters = 5;
 
+  // List of supported clusters type
   typedef struct packed {
-    logic [iomsb(ExtClusters):0]   hasWideMasterPort;
-    byte_bt [iomsb(ExtClusters):0] NrCores;
+    logic [iomsb(ExtClusters):0]          hasWideMasterPort;
+    byte_bt [iomsb(ExtClusters):0]        NrCores;
+    cluster_type_e [iomsb(ExtClusters):0] ClusterType;
   } cluster_config_t;
+
+  // For each instantiated cluster, you need to specify three parameters:
+  //  - Whether the cluster has direct wide access to the memory island
+  //  - The number of cores included in the cluster
+  //  - The type of cluster to instantiate (make sure the type is defined)
 
   localparam cluster_config_t ChimeraClusterCfg = '{
       hasWideMasterPort: {1'b1, 1'b1, 1'b1, 1'b1, 1'b1},
-      NrCores: {8'h9, 8'h9, 8'h9, 8'h9, 8'h9}
+      NrCores: {8'h9, 8'h9, 8'h9, 8'h9, 8'h9},
+      ClusterType: {SNITCH, SNITCH, SNITCH, SNITCH, SNITCH}
   };
 
   function automatic int _sumVector(byte_bt [iomsb(ExtClusters):0] vector, int vectorLen);
@@ -47,7 +57,7 @@ package chimera_pkg;
   // |       Soc config       |
   // --------------------------
 
-  // Configuration struct for Chimer: it includes the Cheshire Cfg
+  // Configuration struct for Chimera: it includes the Cheshire Cfg
   typedef struct packed {
     cheshire_cfg_t ChsCfg;
     doub_bt        MemIslRegionStart;
