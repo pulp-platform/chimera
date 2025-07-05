@@ -31,8 +31,8 @@ workspace:
 sources:
   # Level 0
   - hw/chimera_pkg.sv
-  - hw/regs/chimera_reg_pkg.sv
-  - hw/regs/chimera_reg_top.sv
+  - hw/rdl/chimera_reg_pkg.sv
+  - hw/rdl/chimera_reg_top.sv
   - hw/bootrom/snitch/snitch_bootrom.sv
   - hw/narrow_adapter.sv
   - hw/chimera_cluster_adapter.sv

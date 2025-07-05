@@ -5,3 +5,4 @@ mako
 jsonref
 jsonschema
 flatdict
+peakrdl

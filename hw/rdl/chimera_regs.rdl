@@ -1,0 +1,134 @@
+// Copyright 2025 ETH Zurich and University of Bologna.
+// Licensed under the Apache License, Version 2.0, see LICENSE for details.
+// SPDX-License-Identifier: Apache-2.0
+
+// Author: Moritz Scherer <scheremo@iis.ee.ethz.ch>
+// Author: Lorenzo Leone <lleone@iis.ee.ethz.ch>
+
+`ifndef CHIMERA_RDL
+`define CHIMERA_RDL
+
+addrmap chimera_regs #(
+    longint unsigned NumClusters = 1 // Number of cores
+) {
+  name = "chimera_regs";
+  desc = "Chimera SoC control registers";
+
+  reg snitch_boot_addr {
+    name = "SNITCH_BOOT_ADDR";
+    desc = "Set boot address for all snitch cores";
+    field {
+      name = "SNITCH_BOOT_ADDR";
+      desc = "Boot address for all snitch cores";
+      reset = 0xBADCAB1E;
+      hw   = r;
+      sw   = rw;
+    } SNITCH_BOOT_ADDR[31:0];
+  };
+
+  reg snitch_configurable_boot_addr {
+    name = "SNITCH_CONFIGURABLE_BOOT_ADDR";
+    desc = "Define the address of the Boot executed by each Snitch core";
+    field {
+      name = "SNITCH_CONFIGURABLE_BOOT_ADDR";
+      desc = "Configurable Boot Address for Snitch cores";
+      reset = 0x30000000;
+      sw   = rw;
+      hw   = r;
+    } SNITCH_CONFIGURABLE_BOOT_ADDR[31:0];
+  };
+
+  reg snitch_intr_handler_addr {
+    name = "SNITCH_INTR_HANDLER_ADDR";
+    desc = "Set the address of the interrupt handler for all snitch cores";
+    field {
+      name = "SNITCH_INTR_HANDLER_ADDR";
+      desc = "Snitch core interrupt handler address";
+      reset = 0xBADCAB1E;
+      sw   = rw;
+      hw   = r;
+    } SNITCH_INTR_HANDLER_ADDR[31:0];
+  };
+
+  reg snitch_cluster_return {
+    name = "SNITCH_CLUSTER_RETURN";
+    desc = "Register to store Snitch cluster return value";
+    field {
+      name = "SNITCH_CLUSTER_RETURN";
+      desc = "Snitch cluster return register";
+      reset = 0x0;
+      sw   = rw;
+      hw   = r;
+    } SNITCH_CLUSTER_RETURN[31:0];
+  };
+
+
+  reg reset_cluster {
+    name = "RESET_CLUSTER";
+    desc = "Soft reset for cluster 0. Active High";
+    regwidth = 32;
+    field {
+      name = "RESET_CLUSTER";
+      desc = "Soft reset for cluster 0. Active High";
+      reset = 0x1;
+      sw   = rw;
+      hw   = r;
+    } RESET_CLUSTER[0:0];
+  };
+
+  reg cluster_clk_gate_en {
+    name = "CLUSTER_CLK_GATE_EN";
+    desc = "Enable clock gate for cluster";
+    regwidth = 32;
+    field {
+      name = "CLUSTER_CLK_GATE_EN";
+      desc = "Enable clock gate for cluster";
+      reset = 0x1;
+      sw   = rw;
+      hw   = r;
+    } CLUSTER_CLK_GATE_EN[0:0];
+  };
+
+
+  reg wide_mem_cluster_bypass {
+    name = "WIDE_MEM_CLUSTER_BYPASS";
+    desc = "Bypass cluster to mem wide access. If enabled, wide transactions from clusters to memory island, will be serialized through the narrow interconnect.";
+    regwidth = 32;
+    field {
+      name = "WIDE_MEM_CLUSTER_BYPASS";
+      desc = "Bypass cluster to mem wide";
+      reset = 0x0;
+      sw   = rw;
+      hw   = r;
+    } WIDE_MEM_CLUSTER_BYPASS[0:0];
+  };
+
+  reg cluster_busy {
+    name = "CLUSTER_BUSY";
+    desc = "Flag register to identify when the cluster is busy. Read value to knwo when the host can offload.";
+    regwidth = 32;
+    field {
+      name = "CLUSTER_BUSY";
+      desc = "Clustr busy status register";
+      reset = 0x0;
+      sw   = rw;
+      hw   = r;
+    } CLUSTER_BUSY[0:0];
+  };
+
+  // Instantiate control registers
+  // TODO (lleone): Check the correctness of addresses and offsets
+  snitch_boot_addr snitch_boot_addr @0x0;
+  snitch_configurable_boot_addr snitch_configurable_boot_addr;
+  snitch_intr_handler_addr snitch_intr_handler_addr;
+
+  // Snitch clusters registers
+  snitch_cluster_return    snitch_cluster_return[NumClusters];
+  reset_cluster            reset_cluster [NumClusters];
+  cluster_clk_gate_en      cluster_clk_gate_en[NumClusters];
+  wide_mem_cluster_bypass  wide_mem_cluster_bypass [NumClusters];
+  cluster_busy             cluster_busy [NumClusters];
+};
+
+
+`endif // CHIMERA_RDL

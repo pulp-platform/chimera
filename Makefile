@@ -9,6 +9,7 @@ CHIM_ROOT ?= $(shell pwd)
 # Tooling
 BENDER                 ?= bender -d $(CHIM_ROOT)
 VERIBLE_VERILOG_FORMAT ?= $(CHIM_UTILS_DIR)/verible-verilog/verible-verilog-format
+PEAKRDL 							 ?= peakrdl
 
 # Set dependency paths only if dependencies have already been cloned
 # This avoids running `bender checkout` at every make command
