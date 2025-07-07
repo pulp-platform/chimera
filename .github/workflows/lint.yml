@@ -15,7 +15,7 @@ jobs:
     steps:
     -
       name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     -
       name: Check license
       uses: pulp-platform/pulp-actions/lint-license@v2
@@ -35,7 +35,7 @@ jobs:
     steps:
     -
       name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     -
       name: Run Verible
       uses: chipsalliance/verible-linter-action@main
@@ -45,11 +45,12 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         fail_on_error: true
         reviewdog_reporter: github-check
+        exclude_paths: hw/rdl
 
   lint-sv-format:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
       - name: Run Verible formatter action
@@ -68,7 +69,7 @@ jobs:
     steps:
     -
       name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     -
       name: Run Clang-format
       uses: DoozyX/clang-format-lint-action@v0.14

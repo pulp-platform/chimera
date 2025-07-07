@@ -327,13 +327,15 @@ module chimera_top_wrapper
   for (
       genvar extClusterIdx = 0; extClusterIdx < ExtClusters; extClusterIdx++
   ) begin : gen_wide_mem_bypass
-    assign wide_mem_bypass_mode[extClusterIdx] = reg2hw.wide_mem_cluster_bypass[extClusterIdx].WIDE_MEM_CLUSTER_BYPASS.value;
+    assign wide_mem_bypass_mode[extClusterIdx] =
+           reg2hw.wide_mem_cluster_bypass[extClusterIdx].WIDE_MEM_CLUSTER_BYPASS.value;
   end
 
   logic [ExtClusters-1:0] cluster_clock_gate_en;
   logic [ExtClusters-1:0] clu_clk_gated;
   for (genvar extClusterIdx = 0; extClusterIdx < ExtClusters; extClusterIdx++) begin : gen_clk_gates
-    assign cluster_clock_gate_en[extClusterIdx] = reg2hw.cluster_clk_gate_en[extClusterIdx].CLUSTER_CLK_GATE_EN.value;
+    assign cluster_clock_gate_en[extClusterIdx] =
+           reg2hw.cluster_clk_gate_en[extClusterIdx].CLUSTER_CLK_GATE_EN.value;
 
     tc_clk_gating i_cluster_clk_gate (
       .clk_i    (clu_clk_i),
@@ -346,7 +348,8 @@ module chimera_top_wrapper
   logic [ExtClusters-1:0] cluster_rst_n;
   logic [ExtClusters-1:0] cluster_soft_rst_n;
   for (genvar extClusterIdx = 0; extClusterIdx < ExtClusters; extClusterIdx++) begin : gen_soft_rst
-    assign cluster_soft_rst_n[extClusterIdx] = ~reg2hw.reset_cluster[extClusterIdx].RESET_CLUSTER.value;
+    assign cluster_soft_rst_n[extClusterIdx] =
+           ~reg2hw.reset_cluster[extClusterIdx].RESET_CLUSTER.value;
   end
 
   // The Rst used for each cluster is the AND gate among all different source of rst in the system that are:
