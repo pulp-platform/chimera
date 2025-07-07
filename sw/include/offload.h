@@ -13,10 +13,11 @@
 #include <stdint.h>
 
 void setupInterruptHandler(void *handler);
-void setClusterClockGating(uint8_t *regPtr, uint8_t clusterId, bool enable);
-void setAllClusterClockGating(uint8_t *regPtr, bool enable);
-void setClusterReset(uint8_t *regPtr, uint8_t clusterId, bool enable);
-void setAllClusterReset(uint8_t *regPtr, bool enable);
+void setClusterClockGating(uint8_t clusterId, bool enable);
+void setAllClusterClockGating(volatile uint8_t numRegs, bool enable);
+void setClusterReset(uint8_t clusterId, bool enable);
+void setAllClusterReset(volatile uint8_t numRegs, bool enable);
+void setAllRegs(volatile uint32_t *regPtr, uint8_t numRegs, bool enable);
 void offloadToCluster(void *function, uint8_t hartId);
 void waitClusterBusy(uint8_t clusterId);
 uint32_t waitForCluster(uint8_t clusterId);

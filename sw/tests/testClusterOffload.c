@@ -3,6 +3,7 @@
 // SPDX-License-Identifier: Apache-2.0
 //
 // Moritz Scherer <scheremo@iis.ee.ethz.ch>
+// Lorenzo Leone <lleone@iis.ee.ethz.ch>
 // Viviane Potocnik <vivianep@iis.ee.ethz.ch>
 
 // Simple offload test. Set the trap handler first, offload a function, retrieve
@@ -11,7 +12,6 @@
 
 #include "offload.h"
 #include "soc_addr_map.h"
-#include <regs/soc_ctrl.h>
 #include <stdint.h>
 
 #define TESTVAL 0x050CCE55
@@ -32,17 +32,17 @@ int32_t testReturn() {
 }
 
 int main() {
-    volatile uint8_t *regPtr = (volatile uint8_t *)SOC_CTRL_BASE;
+
     setupInterruptHandler(clusterTrapHandler);
 
     uint32_t retVal = 0;
     for (int i = 0; i < _chimera_numClusters; i++) {
-        setClusterReset(regPtr, i, 0);
-        setClusterClockGating(regPtr, i, 0);
+        setClusterReset(i, 0);
+        setClusterClockGating(i, 0);
         offloadToCluster(testReturn, i);
         retVal |= waitForCluster(i);
-        setClusterClockGating(regPtr, i, 1);
-        setClusterReset(regPtr, i, 0);
+        setClusterClockGating(i, 1);
+        setClusterReset(i, 0);
     }
 
     return (retVal != (TESTVAL | 0x000000001));

@@ -6,33 +6,22 @@
 // Viviane Potocnik <vivianep@iis.ee.ethz.ch>
 // Lorenzo Leone <lleone@iis.ee.ethz.ch>
 
-#include "regs/soc_ctrl.h"
 #include "soc_addr_map.h"
+#include <chimera_addrmap.h>
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
 
 void setupInterruptHandler(void *handler) {
     volatile void **snitchTrapHandlerAddr =
-        (volatile void **)(SOC_CTRL_BASE + CHIMERA_SNITCH_INTR_HANDLER_ADDR_REG_OFFSET);
+        (volatile void **)(&chimera_addrmap.host.chimera_regs.snitch_intr_handler_addr);
 
     *snitchTrapHandlerAddr = handler;
 }
 
 void waitClusterBusy(uint8_t clusterId) {
     volatile int32_t *busy_ptr;
-
-    if (clusterId == 0) {
-        busy_ptr = (volatile int32_t *)(SOC_CTRL_BASE + CHIMERA_CLUSTER_0_BUSY_REG_OFFSET);
-    } else if (clusterId == 1) {
-        busy_ptr = (volatile int32_t *)(SOC_CTRL_BASE + CHIMERA_CLUSTER_1_BUSY_REG_OFFSET);
-    } else if (clusterId == 2) {
-        busy_ptr = (volatile int32_t *)(SOC_CTRL_BASE + CHIMERA_CLUSTER_2_BUSY_REG_OFFSET);
-    } else if (clusterId == 3) {
-        busy_ptr = (volatile int32_t *)(SOC_CTRL_BASE + CHIMERA_CLUSTER_3_BUSY_REG_OFFSET);
-    } else if (clusterId == 4) {
-        busy_ptr = (volatile int32_t *)(SOC_CTRL_BASE + CHIMERA_CLUSTER_4_BUSY_REG_OFFSET);
-    }
+    busy_ptr = (volatile int32_t *)(&chimera_addrmap.host.chimera_regs.cluster_busy[clusterId]);
 
     while (*busy_ptr == 1) {
     }
@@ -46,70 +35,60 @@ void waitClusterBusy(uint8_t clusterId) {
 }
 
 /* Set Clock Gating on specified cluster */
-void setClusterClockGating(volatile uint8_t *regPtr, uint8_t clusterId, bool enable) {
+void setClusterClockGating(uint8_t clusterId, bool enable) {
+    volatile uint32_t *regPtr =
+        (volatile uint32_t *)chimera_addrmap.host.chimera_regs.cluster_clk_gate_en;
 
-    if (regPtr == NULL) return;
-
-    if (clusterId == 0) {
-        *(regPtr + CHIMERA_CLUSTER_0_CLK_GATE_EN_REG_OFFSET) = enable;
-    } else if (clusterId == 1) {
-        *(regPtr + CHIMERA_CLUSTER_1_CLK_GATE_EN_REG_OFFSET) = enable;
-    } else if (clusterId == 2) {
-        *(regPtr + CHIMERA_CLUSTER_2_CLK_GATE_EN_REG_OFFSET) = enable;
-    } else if (clusterId == 3) {
-        *(regPtr + CHIMERA_CLUSTER_3_CLK_GATE_EN_REG_OFFSET) = enable;
-    } else if (clusterId == 4) {
-        *(regPtr + CHIMERA_CLUSTER_4_CLK_GATE_EN_REG_OFFSET) = enable;
-    }
+    setReg(regPtr, clusterId, enable);
 }
 
 /* Set Clock Gating on all clusters */
-void setAllClusterClockGating(volatile uint8_t *regPtr, bool enable) {
+void setAllClusterClockGating(volatile uint8_t numRegs, bool enable) {
+    volatile uint32_t *regPtr =
+        (volatile uint32_t *)chimera_addrmap.host.chimera_regs.cluster_clk_gate_en;
 
-    if (regPtr == NULL) return;
-
-    *(regPtr + CHIMERA_CLUSTER_0_CLK_GATE_EN_REG_OFFSET) = enable;
-    *(regPtr + CHIMERA_CLUSTER_1_CLK_GATE_EN_REG_OFFSET) = enable;
-    *(regPtr + CHIMERA_CLUSTER_2_CLK_GATE_EN_REG_OFFSET) = enable;
-    *(regPtr + CHIMERA_CLUSTER_3_CLK_GATE_EN_REG_OFFSET) = enable;
-    *(regPtr + CHIMERA_CLUSTER_4_CLK_GATE_EN_REG_OFFSET) = enable;
+    setAllRegs(regPtr, numRegs, enable);
 }
 
 /* Set Soft Reset on specified cluster */
-void setClusterReset(volatile uint8_t *regPtr, uint8_t clusterId, bool enable) {
+void setClusterReset(uint8_t clusterId, bool enable) {
+    volatile uint32_t *regPtr =
+        (volatile uint32_t *)chimera_addrmap.host.chimera_regs.reset_cluster;
 
-    if (regPtr == NULL) return;
-
-    if (clusterId == 0) {
-        *(regPtr + CHIMERA_RESET_CLUSTER_0_REG_OFFSET) = enable;
-    } else if (clusterId == 1) {
-        *(regPtr + CHIMERA_RESET_CLUSTER_1_REG_OFFSET) = enable;
-    } else if (clusterId == 2) {
-        *(regPtr + CHIMERA_RESET_CLUSTER_2_REG_OFFSET) = enable;
-    } else if (clusterId == 3) {
-        *(regPtr + CHIMERA_RESET_CLUSTER_3_REG_OFFSET) = enable;
-    } else if (clusterId == 4) {
-        *(regPtr + CHIMERA_RESET_CLUSTER_4_REG_OFFSET) = enable;
-    }
+    setReg(regPtr, clusterId, enable);
 }
 
 /* Set Soft Reset on all clusters */
-void setAllClusterReset(volatile uint8_t *regPtr, bool enable) {
+void setAllClusterReset(volatile uint8_t numRegs, bool enable) {
+    volatile uint32_t *regPtr =
+        (volatile uint32_t *)chimera_addrmap.host.chimera_regs.reset_cluster;
+
+    setAllRegs(regPtr, numRegs, enable);
+}
+
+/* Set Bit on specified register  */
+void setReg(volatile uint32_t *regPtr, uint8_t regIdx, bool enable) {
 
     if (regPtr == NULL) return;
 
-    *(regPtr + CHIMERA_RESET_CLUSTER_0_REG_OFFSET) = enable;
-    *(regPtr + CHIMERA_RESET_CLUSTER_1_REG_OFFSET) = enable;
-    *(regPtr + CHIMERA_RESET_CLUSTER_2_REG_OFFSET) = enable;
-    *(regPtr + CHIMERA_RESET_CLUSTER_3_REG_OFFSET) = enable;
-    *(regPtr + CHIMERA_RESET_CLUSTER_4_REG_OFFSET) = enable;
+    regPtr[regIdx] = enable;
+}
+
+/* Set Bit on all registers  */
+void setAllRegs(volatile uint32_t *regPtr, uint8_t numRegs, bool enable) {
+
+    if (regPtr == NULL) return;
+
+    for (int i = 0; i < numRegs; i++) {
+        regPtr[i] = enable;
+    }
 }
 
 /* Offloads a void function pointer to the specified cluster's core 0 */
 void offloadToCluster(void *function, uint8_t clusterId) {
 
     volatile void **snitchBootAddr =
-        (volatile void **)(SOC_CTRL_BASE + CHIMERA_SNITCH_BOOT_ADDR_REG_OFFSET);
+        (volatile void **)(&chimera_addrmap.host.chimera_regs.snitch_boot_addr);
 
     *snitchBootAddr = function;
 
@@ -127,22 +106,8 @@ void offloadToCluster(void *function, uint8_t clusterId) {
  * returns the return value */
 uint32_t waitForCluster(uint8_t clusterId) {
     volatile int32_t *snitchReturnAddr;
-    if (clusterId == 0) {
-        snitchReturnAddr =
-            (volatile int32_t *)(SOC_CTRL_BASE + CHIMERA_SNITCH_CLUSTER_0_RETURN_REG_OFFSET);
-    } else if (clusterId == 1) {
-        snitchReturnAddr =
-            (volatile int32_t *)(SOC_CTRL_BASE + CHIMERA_SNITCH_CLUSTER_1_RETURN_REG_OFFSET);
-    } else if (clusterId == 2) {
-        snitchReturnAddr =
-            (volatile int32_t *)(SOC_CTRL_BASE + CHIMERA_SNITCH_CLUSTER_2_RETURN_REG_OFFSET);
-    } else if (clusterId == 3) {
-        snitchReturnAddr =
-            (volatile int32_t *)(SOC_CTRL_BASE + CHIMERA_SNITCH_CLUSTER_3_RETURN_REG_OFFSET);
-    } else if (clusterId == 4) {
-        snitchReturnAddr =
-            (volatile int32_t *)(SOC_CTRL_BASE + CHIMERA_SNITCH_CLUSTER_4_RETURN_REG_OFFSET);
-    }
+    snitchReturnAddr =
+        (volatile int32_t *)(&chimera_addrmap.host.chimera_regs.snitch_cluster_return[clusterId]);
 
     while (*snitchReturnAddr == 0) {
     }

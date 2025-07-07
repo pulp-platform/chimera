@@ -5,18 +5,20 @@
 // Moritz Scherer <scheremo@iis.ee.ethz.ch>
 // Viviane Potocnik <vivianep@iis.ee.ethz.ch>
 
-#include "regs/soc_ctrl.h"
 #include "soc_addr_map.h"
 #include "offload.h"
 #include <stdint.h>
 
-int main() {
-    volatile uint8_t *regPtr = (volatile uint8_t *)SOC_CTRL_BASE;
+#define NUMCLUSTERS 5
 
-    setAllClusterReset(regPtr, 0);
-    setClusterClockGating(regPtr, 0, 1);
-    setClusterClockGating(regPtr, 3, 1);
-    setClusterClockGating(regPtr, 4, 1);
+int main() {
+
+    setAllClusterReset(NUMCLUSTERS, 0);
+    setAllClusterClockGating(NUMCLUSTERS, 0);
+
+    setClusterClockGating(0, 1);
+    setClusterClockGating(3, 1);
+    setClusterClockGating(4, 1);
 
     while (1) {
     }

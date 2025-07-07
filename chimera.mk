@@ -56,6 +56,14 @@ $(CHIM_ROOT)/hw/bootrom/snitch/snitch_bootrom.bin: $(CHIM_ROOT)/hw/bootrom/snitc
 $(CHIM_ROOT)/hw/bootrom/snitch/snitch_bootrom.sv: $(CHIM_ROOT)/hw/bootrom/snitch/snitch_bootrom.bin $(CHS_ROOT)/util/gen_bootrom.py
 	$(CHS_ROOT)/util/gen_bootrom.py --sv-module snitch_bootrom $< > $@
 
+#############
+# SystemRDL #
+#############
+CHIM_RDL_ALL += $(CHIM_ROOT)/hw/rdl/chimera.rdl
+CHIM_RDL_ALL += $(CHIM_ROOT)/hw/rdl/snitch_cluster.rdl
+CHIM_RDL_ALL += $(CHIM_ROOT)/hw/rdl/cheshire_host.rdl
+CHIM_RDL_ALL += $(CHIM_ROOT)/hw/rdl/chimera_regs.rdl
+
 .PHONY: regenerate_soc_regs
 regenerate_soc_regs: $(CHIM_ROOT)/hw/rdl/chimera_reg_top.sv $(CHIM_ROOT)/hw/rdl/chimera_reg_pkg.sv
 $(CHIM_ROOT)/hw/rdl/chimera_reg_top.sv $(CHIM_ROOT)/hw/rdl/chimera_reg_pkg.sv: $(CHIM_ROOT)/hw/rdl/chimera_regs.rdl

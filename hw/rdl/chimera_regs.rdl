@@ -9,7 +9,7 @@
 `define CHIMERA_RDL
 
 addrmap chimera_regs #(
-    longint unsigned NumClusters = 1 // Number of cores
+    longint unsigned NumClusters = 1 // Number of clusters
 ) {
   name = "chimera_regs";
   desc = "Chimera SoC control registers";

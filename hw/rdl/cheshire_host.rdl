@@ -1,0 +1,21 @@
+// Copyright 2025 ETH Zurich and University of Bologna.
+// Solderpad Hardware License, Version 0.51, see LICENSE for details.
+// SPDX-License-Identifier: SHL-0.51
+
+`ifndef __CHESHIRE_HOST_RDL__
+`define __CHESHIRE_HOST_RDL__
+
+`include "chimera_regs.rdl"
+
+addrmap cheshire_host #(
+  longint unsigned NumClusters = 1 // Number of Clusters
+) {
+
+  chimera_regs #(.NumClusters (NumClusters)) chimera_regs @0x1000;
+
+  // TODO: Map the Hyperbus
+  // TODO: Map external reg for chip levelk (FLL, etc...)
+
+};
+
+`endif // __CHESHIRE_HOST_RDL__
