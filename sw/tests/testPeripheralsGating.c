@@ -16,12 +16,12 @@
 #include "soc_addr_map.h"
 
 #define CHESHIRE_REGS_BASE 0x03000000
+#define NUMCLUSTERS 5
 
 int main() {
-    volatile uint8_t *clockGatingRegPtr = (volatile uint8_t *)SOC_CTRL_BASE;
-    volatile uint8_t *resetRegPtr = (volatile uint8_t *)SOC_CTRL_BASE;
-    setAllClusterReset(resetRegPtr, 0);
-    setAllClusterClockGating(clockGatingRegPtr, 0);
+
+    setAllClusterReset(NUMCLUSTERS, 0);
+    setAllClusterClockGating(NUMCLUSTERS, 0);
 
     volatile uint32_t *regPtr = 0;
     uint8_t expVal;

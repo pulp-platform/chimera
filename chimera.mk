@@ -5,7 +5,7 @@
 # Moritz Scherer <scheremo@iis.ee.ethz.ch>
 # Lorenzo Leone <lleone@iis.ee.ethz.ch>
 
-
+NUMCLUSTERS ?= 5
 CLINTCORES = 46
 PLICCORES = 92
 PLIC_NUM_INTRS = 92
@@ -56,12 +56,19 @@ $(CHIM_ROOT)/hw/bootrom/snitch/snitch_bootrom.bin: $(CHIM_ROOT)/hw/bootrom/snitc
 $(CHIM_ROOT)/hw/bootrom/snitch/snitch_bootrom.sv: $(CHIM_ROOT)/hw/bootrom/snitch/snitch_bootrom.bin $(CHS_ROOT)/util/gen_bootrom.py
 	$(CHS_ROOT)/util/gen_bootrom.py --sv-module snitch_bootrom $< > $@
 
-.PHONY: regenerate_soc_regs
-regenerate_soc_regs: $(CHIM_ROOT)/hw/regs/chimera_reg_pkg.sv $(CHIM_ROOT)/hw/regs/chimera_reg_top.sv $(CHIM_SW_DIR)/include/regs/soc_ctrl.h $(CHIM_HW_DIR)/regs/pcr.md
+#############
+# SystemRDL #
+#############
+CHIM_RDL_ALL += $(CHIM_ROOT)/hw/rdl/chimera.rdl
+CHIM_RDL_ALL += $(CHIM_ROOT)/hw/rdl/snitch_cluster.rdl
+CHIM_RDL_ALL += $(CHIM_ROOT)/hw/rdl/cheshire_host.rdl
+CHIM_RDL_ALL += $(CHIM_ROOT)/hw/rdl/chimera_regs.rdl
 
-.PHONY: $(CHIM_ROOT)/hw/regs/chimera_reg_pkg.sv hw/regs/chimera_reg_top.sv
-$(CHIM_ROOT)/hw/regs/chimera_reg_pkg.sv $(CHIM_ROOT)/hw/regs/chimera_reg_top.sv: $(CHIM_ROOT)/hw/regs/chimera_regs.hjson
-	python $(CHIM_ROOT)/utils/reggen/regtool.py -r $< --outdir $(dir $@)
+.PHONY: regenerate_soc_regs
+regenerate_soc_regs: $(CHIM_ROOT)/hw/rdl/chimera_reg_top.sv $(CHIM_ROOT)/hw/rdl/chimera_reg_pkg.sv
+$(CHIM_ROOT)/hw/rdl/chimera_reg_top.sv $(CHIM_ROOT)/hw/rdl/chimera_reg_pkg.sv: $(CHIM_ROOT)/hw/rdl/chimera_regs.rdl
+	$(PEAKRDL) regblock $< -o $(CHIM_ROOT)/hw/rdl --cpuif apb4-flat --default-reset arst_n --module-name chimera_reg_top --package-name chimera_reg_pkg -P NumClusters=$(NUMCLUSTERS)
+	@sed -i '1i// Copyright 2025 ETH Zurich and University of Bologna.\n// Licensed under the Apache License, Version 2 0, see LICENSE for details.\n// SPDX-License-Identifier: Apache-2.0\n' $(CHIM_ROOT)/hw/rdl/chimera_reg*.sv
 
 
 # Nonfree components

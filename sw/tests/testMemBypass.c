@@ -12,11 +12,10 @@
 //   - Access the memory island both settin/disabling the bypass mode
 
 #include <stdint.h>
-#include "regs/soc_ctrl.h"
 #include "offload.h"
+#include <chimera_addrmap.h>
 #include "soc_addr_map.h"
 
-// #define TOPLEVELREGION 0x30001000
 #define NUMCLUSTERS 5
 #define TESTNARROW 0x050CCE55
 #define TESTWIDE 0x060CCE55
@@ -32,20 +31,10 @@ void clusterTrapHandler() {
     return;
 }
 
-int32_t returnPtr(uint32_t ClstIdx) {
-    int32_t regPtr;
+int32_t *returnPtr(uint32_t clusterIdx) {
+    int32_t *regPtr;
+    regPtr = (int32_t *)&chimera_addrmap.host.chimera_regs.wide_mem_cluster_bypass[clusterIdx];
 
-    if (ClstIdx == 0) {
-        regPtr = (SOC_CTRL_BASE + CHIMERA_WIDE_MEM_CLUSTER_0_BYPASS_REG_OFFSET);
-    } else if (ClstIdx == 1) {
-        regPtr = (SOC_CTRL_BASE + CHIMERA_WIDE_MEM_CLUSTER_1_BYPASS_REG_OFFSET);
-    } else if (ClstIdx == 2) {
-        regPtr = (SOC_CTRL_BASE + CHIMERA_WIDE_MEM_CLUSTER_2_BYPASS_REG_OFFSET);
-    } else if (ClstIdx == 3) {
-        regPtr = (SOC_CTRL_BASE + CHIMERA_WIDE_MEM_CLUSTER_3_BYPASS_REG_OFFSET);
-    } else if (ClstIdx == 4) {
-        regPtr = (SOC_CTRL_BASE + CHIMERA_WIDE_MEM_CLUSTER_4_BYPASS_REG_OFFSET);
-    }
     return regPtr;
 }
 
@@ -59,19 +48,18 @@ int32_t __attribute__((aligned(32))) testMemWide() {
 }
 
 int main() {
-    volatile uint8_t *clockGatingRegPtr = (volatile uint8_t *)SOC_CTRL_BASE;
-    volatile uint8_t *resetRegPtr = (volatile uint8_t *)SOC_CTRL_BASE;
-    setAllClusterReset(resetRegPtr, 0);
-    setAllClusterClockGating(clockGatingRegPtr, 0);
+
+    setAllClusterReset(NUMCLUSTERS, 0);
+    setAllClusterClockGating(NUMCLUSTERS, 0);
 
     volatile int32_t *regPtr = 0;
 
     uint32_t retVal = 0;
 
     // Tes for each cluster
-    for (int ClstIdx = 0; ClstIdx < NUMCLUSTERS; ClstIdx++) {
+    for (int clusterIdx = 0; clusterIdx < NUMCLUSTERS; clusterIdx++) {
 
-        regPtr = (volatile int32_t *)returnPtr(ClstIdx);
+        regPtr = (volatile int32_t *)returnPtr(clusterIdx);
 
         /* TEST RESET VALUE */
         if (*regPtr != 0) {

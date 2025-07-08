@@ -11,6 +11,16 @@ chim_sw_mk=1
 
 CHS_SW_INCLUDES += -I$(CHIM_SW_DIR)/include
 
+#############
+# SystemRDL #
+#############
+
+$(CHIM_SW_DIR)/include/chimera_addrmap.h: $(CHIM_RDL_ALL)
+	$(PEAKRDL) c-header $< $(PEAKRDL_INCLUDES) $(PEAKRDL_DEFINES) -o $@ -i -b ltoh -P NumClusters=$(NUMCLUSTERS)
+	@sed -i '1i// Copyright 2025 ETH Zurich and University of Bologna.\n// Licensed under the Apache License, Version 2 0, see LICENSE for details.\n// SPDX-License-Identifier: Apache-2.0\n' $@
+
+.PHONY: chimera-addrmap
+chimera-addrmap: $(CHIM_SW_DIR)/include/chimera_addrmap.h
 
 # SCHEREMO: use im for platform-level SW, as the smallest common denominator between CVA6 and the Snitch cluster.
 # CVA6's bootrom however needs imc, so override that for this specific case.

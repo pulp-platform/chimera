@@ -1,0 +1,16 @@
+// Copyright 2025 ETH Zurich and University of Bologna.
+// Solderpad Hardware License, Version 0.51, see LICENSE for details.
+// SPDX-License-Identifier: SHL-0.51
+
+`include "cheshire_host.rdl"
+`include "snitch_cluster.rdl"
+
+addrmap chimera_addrmap #(
+  longint unsigned NumClusters = 1 // Number of Clusters
+){
+
+  cheshire_host #(.NumClusters (NumClusters)) host @0x30000000;
+  snitch_cluster snitch_cluster[NumClusters] @0x40000000 += 0x200000;
+  external mem { mementries = 0x40000; memwidth = 8; } l2_mem_island @0x48000000;
+
+};

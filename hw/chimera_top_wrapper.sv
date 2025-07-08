@@ -94,7 +94,9 @@ module chimera_top_wrapper
   localparam type axi_wide_slv_req_t = mem_isl_wide_axi_slv_req_t;
   localparam type axi_wide_slv_rsp_t = mem_isl_wide_axi_slv_rsp_t;
 
-  chimera_reg2hw_t reg2hw;
+  chimera_regs__out_t reg2hw;
+  apb_resp_t apb_reg_soc_rsp;
+  apb_req_t apb_reg_soc_req;
 
   // External AXI crossbar ports
   axi_mst_req_t [iomsb(ChsCfg.AxiExtNumMst):0] axi_mst_req;
@@ -235,7 +237,7 @@ module chimera_top_wrapper
     .reg_rsp_t(reg_rsp_t),
     .apb_req_t(apb_req_t),
     .apb_rsp_t(apb_resp_t)
-  ) i_ext_reg_to_apb (
+  ) i_soc_reg_to_apb (
     .clk_i    (soc_clk_i),
     .rst_ni   (rst_ni),
     .reg_req_i(reg_slv_req[ExtCfgRegsIdx]),
@@ -244,19 +246,35 @@ module chimera_top_wrapper
     .apb_rsp_i(apb_rsp_i)
   );
 
-
   // TOP-LEVEL REG
-
-  chimera_reg_top #(
+  reg_to_apb #(
     .reg_req_t(reg_req_t),
-    .reg_rsp_t(reg_rsp_t)
-  ) i_reg_top (
+    .reg_rsp_t(reg_rsp_t),
+    .apb_req_t(apb_req_t),
+    .apb_rsp_t(apb_resp_t)
+  ) i_ext_reg_to_apb (
     .clk_i    (soc_clk_i),
-    .rst_ni,
+    .rst_ni   (rst_ni),
     .reg_req_i(reg_slv_req[TopLevelCfgRegsIdx]),
     .reg_rsp_o(reg_slv_rsp[TopLevelCfgRegsIdx]),
-    .reg2hw   (reg2hw),
-    .devmode_i('1)
+    .apb_req_o(apb_reg_soc_req),
+    .apb_rsp_i(apb_reg_soc_rsp)
+  );
+
+  chimera_reg_top i_reg_top (
+    .clk          (soc_clk_i),
+    .arst_n       (rst_ni),
+    .s_apb_psel   (apb_reg_soc_req.psel),
+    .s_apb_penable(apb_reg_soc_req.penable),
+    .s_apb_pwrite (apb_reg_soc_req.pwrite),
+    .s_apb_pprot  (apb_reg_soc_req.pprot),
+    .s_apb_paddr  (apb_reg_soc_req.paddr[CHIMERA_REG_TOP_MIN_ADDR_WIDTH-1:0]),
+    .s_apb_pwdata (apb_reg_soc_req.pwdata),
+    .s_apb_pstrb  (apb_reg_soc_req.pstrb),
+    .s_apb_pready (apb_reg_soc_rsp.pready),
+    .s_apb_prdata (apb_reg_soc_rsp.prdata),
+    .s_apb_pslverr(apb_reg_soc_rsp.pslverr),
+    .hwif_out     (reg2hw)
   );
 
 
@@ -306,25 +324,19 @@ module chimera_top_wrapper
   );
 
   logic [ExtClusters-1:0] wide_mem_bypass_mode;
-  assign wide_mem_bypass_mode = {
-    reg2hw.wide_mem_cluster_4_bypass.q,
-    reg2hw.wide_mem_cluster_3_bypass.q,
-    reg2hw.wide_mem_cluster_2_bypass.q,
-    reg2hw.wide_mem_cluster_1_bypass.q,
-    reg2hw.wide_mem_cluster_0_bypass.q
-  };
+  for (
+      genvar extClusterIdx = 0; extClusterIdx < ExtClusters; extClusterIdx++
+  ) begin : gen_wide_mem_bypass
+    assign wide_mem_bypass_mode[extClusterIdx] =
+           reg2hw.wide_mem_cluster_bypass[extClusterIdx].WIDE_MEM_CLUSTER_BYPASS.value;
+  end
 
   logic [ExtClusters-1:0] cluster_clock_gate_en;
   logic [ExtClusters-1:0] clu_clk_gated;
-  assign cluster_clock_gate_en = {
-    reg2hw.cluster_4_clk_gate_en,
-    reg2hw.cluster_3_clk_gate_en,
-    reg2hw.cluster_2_clk_gate_en,
-    reg2hw.cluster_1_clk_gate_en,
-    reg2hw.cluster_0_clk_gate_en
-  };
-
   for (genvar extClusterIdx = 0; extClusterIdx < ExtClusters; extClusterIdx++) begin : gen_clk_gates
+    assign cluster_clock_gate_en[extClusterIdx] =
+           reg2hw.cluster_clk_gate_en[extClusterIdx].CLUSTER_CLK_GATE_EN.value;
+
     tc_clk_gating i_cluster_clk_gate (
       .clk_i    (clu_clk_i),
       .en_i     (~cluster_clock_gate_en[extClusterIdx]),
@@ -335,13 +347,10 @@ module chimera_top_wrapper
 
   logic [ExtClusters-1:0] cluster_rst_n;
   logic [ExtClusters-1:0] cluster_soft_rst_n;
-  assign cluster_soft_rst_n = {
-    ~reg2hw.reset_cluster_4.q,
-    ~reg2hw.reset_cluster_3.q,
-    ~reg2hw.reset_cluster_2.q,
-    ~reg2hw.reset_cluster_1.q,
-    ~reg2hw.reset_cluster_0.q
-  };
+  for (genvar extClusterIdx = 0; extClusterIdx < ExtClusters; extClusterIdx++) begin : gen_soft_rst
+    assign cluster_soft_rst_n[extClusterIdx] =
+           ~reg2hw.reset_cluster[extClusterIdx].RESET_CLUSTER.value;
+  end
 
   // The Rst used for each cluster is the AND gate among all different source of rst in the system that are:
   // - rst_ni: Global asynchronous reset coming from the PAD
@@ -366,7 +375,7 @@ module chimera_top_wrapper
     .clu_clk_i        (clu_clk_gated),
     .rst_ni           (cluster_rst_n),
     .widemem_bypass_i (wide_mem_bypass_mode),
-    .boot_addr_i      (reg2hw.snitch_configurable_boot_addr.q),
+    .boot_addr_i      (reg2hw.snitch_configurable_boot_addr.SNITCH_CONFIGURABLE_BOOT_ADDR.value),
     .debug_req_i      (dbg_ext_req),
     .xeip_i           (xeip_ext),
     .mtip_i           (mtip_ext),

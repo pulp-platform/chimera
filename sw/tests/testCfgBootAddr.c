@@ -5,36 +5,38 @@
 // Lorenzo Leone <lleoen@iis.ee.ethz.ch>
 
 #include <soc_addr_map.h>
-#include "regs/soc_ctrl.h"
+#include <chimera_addrmap.h>
+#include "offload.h"
 #include <stdint.h>
 #include <stdbool.h>
 
-#define TESTVAL 0x00E0D0C0
+#define TESTVAL 0x00E0D0FF
 #define RSTVAL 0x30000000
+#define NUMCLUSTERS 5
 
 int main() {
-    volatile uint32_t *regPtr = (volatile uint32_t *)SOC_CTRL_BASE;
     uint32_t regVal = 0;
-    uint32_t regOffset = CHIMERA_SNITCH_CONFIGURABLE_BOOT_ADDR_REG_OFFSET / 4;
+    volatile uint32_t *cfgBootAddr =
+        (volatile uint32_t *)&chimera_addrmap.host.chimera_regs.snitch_configurable_boot_addr;
 
     // Check if configurable boot address reset value is the expected one: 0x30000000
-    regVal = *(regPtr + regOffset);
+    regVal = *(cfgBootAddr);
     if (regVal != RSTVAL) {
         return 1;
     }
 
     // Write a TESTVAL and check the write was succesfull
-    *(regPtr + regOffset) = TESTVAL;
-    regVal = *(regPtr + regOffset);
+    *(cfgBootAddr) = TESTVAL;
+    regVal = *(cfgBootAddr);
     if (regVal != TESTVAL) {
         return 2;
     }
 
     // Write the original value again and disable cluster clock gating to check correct boot
     // wait 100 cycles to see boot access from, the waveforms.
-    *(regPtr + regOffset) = RSTVAL;
-    setAllClusterReset(regPtr, 0);
-    setAllClusterClockGating(regPtr, 0);
+    *(cfgBootAddr) = RSTVAL;
+    setAllClusterReset(NUMCLUSTERS, 0);
+    setAllClusterClockGating(NUMCLUSTERS, 0);
 
     for (int i = 0; i < 100; i++) {
         // NOP

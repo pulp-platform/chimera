@@ -9,6 +9,7 @@ CHIM_ROOT ?= $(shell pwd)
 # Tooling
 BENDER                 ?= bender -d $(CHIM_ROOT)
 VERIBLE_VERILOG_FORMAT ?= $(CHIM_UTILS_DIR)/verible-verilog/verible-verilog-format
+PEAKRDL                ?= peakrdl
 
 # Set dependency paths only if dependencies have already been cloned
 # This avoids running `bender checkout` at every make command
@@ -62,4 +63,5 @@ help:
 	@echo -e ""
 	@echo -e "Software:"
 	@echo -e "${Green}chim-sw             ${Black}Compile all software tests"
+	@echo -e "${Green}chimera-addrmap     ${Black}Regenerate c-header for SoC address map"
 	@echo -e ""
