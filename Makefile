@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 # Moritz Scherer <scheremo@iis.ee.ethz.ch>
+# Lorenzo Leone <lleone@iis.ee.ethz.ch>
+
 
 CHIM_ROOT ?= $(shell pwd)
 
@@ -25,6 +27,10 @@ SNITCH_ROOT ?= .
 IDMA_ROOT   ?= .
 HYPERB_ROOT ?= .
 
+# Bender prerequisites
+BENDER_YML = $(CHIM_ROOT)/Bender.yml
+BENDER_LOCK = $(CHIM_ROOT)/Bender.lock
+
 CHS_XLEN ?= 32
 
 CHIM_HW_DIR ?= $(CHIM_ROOT)/hw
@@ -32,6 +38,25 @@ CHIM_SW_DIR ?= $(CHIM_ROOT)/sw
 
 -include $(CHS_ROOT)/cheshire.mk
 -include $(CHIM_ROOT)/chimera.mk
+
+########
+# MISC #
+########
+BASE_PYTHON ?= python
+PIP_CACHE_DIR ?= $(CHIM_ROOT)/.cache/pip
+
+.PHONY: dvt-flist pythomn-venv python-venv-clean
+
+dvt_flist:
+	mkdir -p .dvt
+	$(BENDER) script flist-plus $(COMMON_TARGS) $(SIM_TARGS) > .dvt/default.build
+
+python-venv: .venv
+.venv:
+	$(BASE_PYTHON) -m venv $@
+	. $@/bin/activate && \
+	python -m pip install --upgrade pip setuptools && \
+	python -m pip install --cache-dir $(PIP_CACHE_DIR) -r requirements.txt
 
 #################
 # Documentation #
@@ -41,25 +66,13 @@ CHIM_SW_DIR ?= $(CHIM_ROOT)/sw
 
 Black=\033[0m
 Green=\033[1;32m
-help:
+help: ## Show an overview of all Makefile targets.
 	@echo -e "Makefile ${Green}targets${Black} for chimera"
 	@echo -e "Use 'make <target>' where <target> is one of:"
 	@echo -e ""
-	@echo -e "${Green}help           	     ${Black}Show an overview of all Makefile targets."
-	@echo -e ""
-	@echo -e "General targets:"
-	@echo -e "${Green}chim-all             ${Black}Generate entire chimera infrastructure."
-	@echo -e "${Green}chim-clean           ${Black}Clean entire chimera infrastructure."
-	@echo -e ""
-	@echo -e "Source generation targets:"
-	@echo -e "${Green}chim-sim             ${Black}Generate Chimera simulation files"
-	@echo -e "${Green}chim-bootrom-init    ${Black}Generate SoC bootrom"
-	@echo -e "${Green}regenerate_soc_regs  ${Black}Generate SoC configuration registers"
-	@echo -e "${Green}snitch-hw-init       ${Black}Generate Snitch RTL"
-	@echo -e "${Green}snitch_bootrom       ${Black}Generate Snitch bootrom"
-	@echo -e "${Green}chs-hw-init          ${Black}Generate Cheshire RTL"
-	@echo -e "${Green}chs-sim-all          ${Black}Generate Cheshire simulation files"
-	@echo -e ""
-	@echo -e "Software:"
-	@echo -e "${Green}chim-sw             ${Black}Compile all software tests"
-	@echo -e ""
+	@awk -v green="$(Green)" -v black="$(Black)" ' \
+		BEGIN { FS = ":.*?## "; section = "" } \
+		/^##@/ { section = substr($$0, 5); printf "\033[1m%s:\033[0m\n", section; next } \
+		/^[a-zA-Z0-9._-]+:.*##/ { \
+			printf "  " green "%-20s" black " %s\n", $$1, $$2 \
+		}' $(MAKEFILE_LIST)

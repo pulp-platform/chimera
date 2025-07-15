@@ -53,10 +53,10 @@ endef
 
 $(foreach link,$(patsubst $(CHS_SW_LD_DIR)/%.ld,%,$(wildcard $(CHS_SW_LD_DIR)/*.ld)),$(eval $(call chim_sw_ld_elf_rule,$(link))))
 
-chim-sw: $(CHIM_SW_LIB) $(CHIM_SW_TESTS)
+chim-sw: $(CHIM_SW_LIB) $(CHIM_SW_TESTS) ## Compile all software tests
 
 .PHONY: chim-bootrom-init
-chim-bootrom-init: chs-hw-init chim-sw
+chim-bootrom-init: chs-hw-init chim-sw ## Generate SoC bootrom
 	make -B chs-bootrom-all CHS_XLEN=$(CHS_XLEN) CHS_SW_LD_DIR=$(CHS_SW_LD_DIR)
 
 

@@ -23,11 +23,11 @@ gen_idma_hw:
 CHS_SW_LD_DIR = $(CHIM_ROOT)/sw/link
 
 .PHONY: chs-hw-init
-chs-hw-init: update_plic gen_idma_hw $(CHIM_SW_LIB)
+chs-hw-init: update_plic gen_idma_hw $(CHIM_SW_LIB) ## Generate Cheshire RTL
 	make -B chs-hw-all CHS_XLEN=$(CHS_XLEN) CHS_SW_LD_DIR=$(CHS_SW_LD_DIR)
 
 .PHONY: snitch-hw-init
-snitch-hw-init:
+snitch-hw-init: ## Generate Snitch RTL
 	make -C $(SNITCH_ROOT)/target/snitch_cluster bin/snitch_cluster.vsim
 
 .PHONY: $(CHIM_SW_DIR)/include/regs/soc_ctrl.h
@@ -45,7 +45,7 @@ CHIM_BROM_FLAGS = $(CHS_SW_LDFLAGS) -Os -fno-zero-initialized-in-bss -flto -fwho
 
 CHIM_BOOTROM_ALL += $(CHIM_ROOT)/hw/bootrom/snitch/snitch_bootrom.sv $(CHIM_ROOT)/hw/bootrom/snitch/snitch_bootrom.dump
 
-snitch_bootrom: $(CHIM_BOOTROM_ALL)
+snitch_bootrom: $(CHIM_BOOTROM_ALL) ## Generate Snitch bootrom
 
 $(CHIM_ROOT)/hw/bootrom/snitch/snitch_bootrom.elf: $(CHIM_ROOT)/hw/bootrom/snitch/snitch_bootrom.ld $(CHIM_BROM_SRCS)
 	$(CHS_SW_CC) -I$(CHIM_SW_DIR)/include/regs $(CHS_SW_INCLUDES) -T$< $(CHIM_BROM_FLAGS) -o $@ $(CHIM_BROM_SRCS)
@@ -57,7 +57,7 @@ $(CHIM_ROOT)/hw/bootrom/snitch/snitch_bootrom.sv: $(CHIM_ROOT)/hw/bootrom/snitch
 	$(CHS_ROOT)/util/gen_bootrom.py --sv-module snitch_bootrom $< > $@
 
 .PHONY: regenerate_soc_regs
-regenerate_soc_regs: $(CHIM_ROOT)/hw/regs/chimera_reg_pkg.sv $(CHIM_ROOT)/hw/regs/chimera_reg_top.sv $(CHIM_SW_DIR)/include/regs/soc_ctrl.h $(CHIM_HW_DIR)/regs/pcr.md
+regenerate_soc_regs: $(CHIM_ROOT)/hw/regs/chimera_reg_pkg.sv $(CHIM_ROOT)/hw/regs/chimera_reg_top.sv $(CHIM_SW_DIR)/include/regs/soc_ctrl.h $(CHIM_HW_DIR)/regs/pcr.md ## Generate SoC configuration registers
 
 .PHONY: $(CHIM_ROOT)/hw/regs/chimera_reg_pkg.sv hw/regs/chimera_reg_top.sv
 $(CHIM_ROOT)/hw/regs/chimera_reg_pkg.sv $(CHIM_ROOT)/hw/regs/chimera_reg_top.sv: $(CHIM_ROOT)/hw/regs/chimera_regs.hjson
@@ -67,7 +67,7 @@ $(CHIM_ROOT)/hw/regs/chimera_reg_pkg.sv $(CHIM_ROOT)/hw/regs/chimera_reg_top.sv:
 # Nonfree components
 CHIM_NONFREE_REMOTE ?= git@iis-git.ee.ethz.ch:pulp-restricted/chimera-nonfree.git
 CHIM_NONFREE_DIR ?= $(CHIM_ROOT)/nonfree
-CHIM_NONFREE_COMMIT ?= deploy # to deploy `chimera-nonfree` repo changes, push to `deploy` tag
+CHIM_NONFREE_COMMIT ?= lleone/main-ci # to deploy `chimera-nonfree` repo changes, push to `deploy` tag
 
 .PHONY: chim-nonfree-init
 chim-nonfree-init:
@@ -84,17 +84,19 @@ chim-nonfree-init:
 # Include subdir Makefiles
 -include $(CHIM_ROOT)/utils/utils.mk
 # Include target makefiles
+TB_DUT = tb_chimera_soc
 -include $(CHIM_ROOT)/target/sim/sim.mk
 
 #################################
 # Phonies for the entire system #
 #################################
-
-CHIM_ALL += chs-hw-init snitch-hw-init chim-sw chim-bootrom-init chs-sim-all chim-sim
+CHIM_HW_ALL = chs-hw-init snitch-hw-init chim-bootrom-init chs-sim-all
+CHIM_SW_ALL = chim-sw
+CHIM_ALL += $(CHIM_HW_ALL) $(CHIM_SW_ALL) chim-sim
 CHIM_CLEAN += chim-sw-clean chim-sim-clean
 
 .PHONY: chim-all
-chim-all: $(CHIM_ALL)
+chim-all: $(CHIM_ALL) ## Generate full chimera infrastructure
 
 .PHONY: chim-clean
-chim-clean: $(CHIM_CLEAN)
+chim-clean: $(CHIM_CLEAN) ## Clean entire chimera infrastructure
