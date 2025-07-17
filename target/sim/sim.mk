@@ -14,6 +14,7 @@ VSIM_DIR 	?= $(CHIM_ROOT)/target/sim/vsim
 VSIM 			?= vsim
 VSIM_WORK ?= $(VSIM_DIR)/work
 
+CHIM_VLOG_ARGS += -work $(VSIM_WORK)
 CHIM_VLOG_ARGS += -timescale 1ns/1ps
 CHIM_VLOG_ARGS += -suppress 2741
 CHIM_VLOG_ARGS += -suppress 2583
@@ -22,9 +23,11 @@ CHIM_VLOG_ARGS += +define+HYP_USER_PRELOAD="$(HYP_USER_PRELOAD)"
 CHIM_VLOG_ARGS += +define+HYP0_PRELOAD_MEM_FILE=\"$(HYP0_PRELOAD_MEM_FILE)\"
 # this path should be kept relative to the vsim directory to avoid CI issues:
 # an absolute path produce inter-CI-runner file accesses
-CHIM_VLOG_ARGS += +define+PATH_TO_HYP_SDF=\"../models/s27ks0641/s27ks0641.sdf\"
+CHIM_VLOG_ARGS += +define+PATH_TO_HYP_SDF=\"./target/sim/models/s27ks0641/s27ks0641.sdf\"
 
 VSIM_FLAGS_GUI = -voptargs=+acc
+
+override VSIM_FLAGS += -work $(VSIM_WORK)
 
 # Set testbech parameters
 define add_vsim_flag
@@ -59,7 +62,7 @@ HYP0_PRELOAD_MEM_FILE ?= ""
 # Generate vsim compilation script
 $(CHIM_SIM_DIR)/vsim/compile.tcl: $(BENDER_YML) $(BENDER_LOCK)
 	@bender script vsim $(SIM_TARGS) --vlog-arg="$(CHIM_VLOG_ARGS)" > $@
-	echo 'vlog "$(realpath $(CHS_ROOT))/target/sim/src/elfloader.cpp" -ccflags "-std=c++11"' >> $@
+	echo 'vlog -work $(VSIM_WORK) "$(realpath $(CHS_ROOT))/target/sim/src/elfloader.cpp" -ccflags "-std=c++11"' >> $@
 
 # Compiler the design
 chim-compile: $(CHIM_SIM_DIR)/vsim/compile.tcl $(CHIM_HW_ALL)
