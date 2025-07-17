@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 # Moritz Scherer <scheremo@iis.ee.ethz.ch>
+# Lorenzo Leone  <lleone@iis.ee.ethz.ch>
 # Sergio Mazzola <smazzola@iis.ee.ethz.ch>
 
 ifndef chim_sim_mk
@@ -28,7 +29,7 @@ VSIM_FLAGS_GUI = -voptargs=+acc
 # Set testbech parameters
 define add_vsim_flag
 ifdef $(1)
-	VSIM_FLAGS += +$(1)=$$($(1))
+	override VSIM_FLAGS += +$(1)=$$($(1))
 endif
 endef
 

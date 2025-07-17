@@ -67,7 +67,7 @@ $(CHIM_ROOT)/hw/regs/chimera_reg_pkg.sv $(CHIM_ROOT)/hw/regs/chimera_reg_top.sv:
 # Nonfree components
 CHIM_NONFREE_REMOTE ?= git@iis-git.ee.ethz.ch:pulp-restricted/chimera-nonfree.git
 CHIM_NONFREE_DIR ?= $(CHIM_ROOT)/nonfree
-CHIM_NONFREE_COMMIT ?= deploy # to deploy `chimera-nonfree` repo changes, push to `deploy` tag
+CHIM_NONFREE_COMMIT ?= f77d6eab143717f3cd26d07be5bf1c2eea9f604b # to deploy `chimera-nonfree` repo changes, push to `deploy` tag
 
 .PHONY: chim-nonfree-init
 chim-nonfree-init:
