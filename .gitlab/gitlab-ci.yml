@@ -1,0 +1,38 @@
+# Copyright 2024 ETH Zurich and University of Bologna.
+# Licensed under the Apache License, Version 2.0, see LICENSE for details.
+# SPDX-License-Identifier: Apache-2.0
+
+# Author: Sergio Mazzola <smazzola@iis.ee.ethz.ch>
+
+# We initialize the nonfree repo, then spawn a sub-pipeline from it
+
+variables:
+  VSIM_TESTS: '["testCluster", "testClusterOffload", "testMemBypass", "testPeripheralsGating", "testHyperbusAddr", "testCfgBootAddr"]'
+
+stages:
+  - nonfree
+
+init:
+  stage: nonfree
+  script: make chim-nonfree-init
+  artifacts:
+    paths: [ nonfree/ci.yml ]
+
+process:
+    stage: nonfree
+    needs: [ init ]
+    script:
+      - envsubst '${VSIM_TESTS}' < nonfree/ci.yml > nonfree/processed_ci.yml
+    artifacts:
+      paths: [ nonfree/processed_ci.yml ]
+
+subpipe:
+  stage: nonfree
+  needs: [ process ]
+  trigger:
+    include:
+      - artifact: nonfree/processed_ci.yml
+        job: process
+    forward:
+      pipeline_variables: true
+    strategy: depend

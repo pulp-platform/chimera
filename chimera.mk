@@ -1,45 +1,33 @@
-# ----------------------------------------------------------------------
-#
-# File: chimera.mk
-#
-# Created: 26.06.2024        
-# 
-# Copyright (C) 2024, ETH Zurich and University of Bologna.
-#
-# Author: Moritz Scherer, ETH Zurich
-#
-# ----------------------------------------------------------------------
+# Copyright 2024 ETH Zurich and University of Bologna.
+# Licensed under the Apache License, Version 2.0, see LICENSE for details.
 # SPDX-License-Identifier: Apache-2.0
 #
-# Licensed under the Apache License, Version 2.0 (the License); you may
-# not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-# www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an AS IS BASIS, WITHOUT
-# WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
+# Moritz Scherer <scheremo@iis.ee.ethz.ch>
+# Lorenzo Leone <lleone@iis.ee.ethz.ch>
 
-# SCHEREMO: This is a test config; change to something reasonable!
 
-CLINTCORES = 46 
+CLINTCORES = 46
 PLICCORES = 92
 PLIC_NUM_INTRS = 92
+
 
 .PHONY: update_plic
 update_plic: $(CHS_ROOT)/hw/rv_plic.cfg.hjson
 	sed -i 's/src: .*/src: $(PLIC_NUM_INTRS),/' $<
 	sed -i 's/target: .*/target: $(PLICCORES),/' $<
 
+# SCHEREMO: Technically, there exists a __deploy__* tag for the idma with fixes, but we're checking out the base version
+gen_idma_hw:
+	make -C $(IDMA_ROOT) idma_hw_all
+
+CHS_SW_LD_DIR = $(CHIM_ROOT)/sw/link
+
 .PHONY: chs-hw-init
-chs-hw-init: update_plic
-	make -B chs-hw-all CHS_XLEN=$(CHS_XLEN)
+chs-hw-init: update_plic gen_idma_hw $(CHIM_SW_LIB) ## Generate Cheshire RTL
+	make -B chs-hw-all CHS_XLEN=$(CHS_XLEN) CHS_SW_LD_DIR=$(CHS_SW_LD_DIR)
 
 .PHONY: snitch-hw-init
-snitch-hw-init:
+snitch-hw-init: ## Generate Snitch RTL
 	make -C $(SNITCH_ROOT)/target/snitch_cluster bin/snitch_cluster.vsim
 
 .PHONY: $(CHIM_SW_DIR)/include/regs/soc_ctrl.h
@@ -57,7 +45,7 @@ CHIM_BROM_FLAGS = $(CHS_SW_LDFLAGS) -Os -fno-zero-initialized-in-bss -flto -fwho
 
 CHIM_BOOTROM_ALL += $(CHIM_ROOT)/hw/bootrom/snitch/snitch_bootrom.sv $(CHIM_ROOT)/hw/bootrom/snitch/snitch_bootrom.dump
 
-snitch_bootrom: $(CHIM_BOOTROM_ALL)
+snitch_bootrom: $(CHIM_BOOTROM_ALL) ## Generate Snitch bootrom
 
 $(CHIM_ROOT)/hw/bootrom/snitch/snitch_bootrom.elf: $(CHIM_ROOT)/hw/bootrom/snitch/snitch_bootrom.ld $(CHIM_BROM_SRCS)
 	$(CHS_SW_CC) -I$(CHIM_SW_DIR)/include/regs $(CHS_SW_INCLUDES) -T$< $(CHIM_BROM_FLAGS) -o $@ $(CHIM_BROM_SRCS)
@@ -69,13 +57,46 @@ $(CHIM_ROOT)/hw/bootrom/snitch/snitch_bootrom.sv: $(CHIM_ROOT)/hw/bootrom/snitch
 	$(CHS_ROOT)/util/gen_bootrom.py --sv-module snitch_bootrom $< > $@
 
 .PHONY: regenerate_soc_regs
-regenerate_soc_regs: $(CHIM_ROOT)/hw/regs/chimera_reg_pkg.sv $(CHIM_ROOT)/hw/regs/chimera_reg_top.sv $(CHIM_SW_DIR)/include/regs/soc_ctrl.h $(CHIM_HW_DIR)/regs/pcr.md
+regenerate_soc_regs: $(CHIM_ROOT)/hw/regs/chimera_reg_pkg.sv $(CHIM_ROOT)/hw/regs/chimera_reg_top.sv $(CHIM_SW_DIR)/include/regs/soc_ctrl.h $(CHIM_HW_DIR)/regs/pcr.md ## Generate SoC configuration registers
 
 .PHONY: $(CHIM_ROOT)/hw/regs/chimera_reg_pkg.sv hw/regs/chimera_reg_top.sv
 $(CHIM_ROOT)/hw/regs/chimera_reg_pkg.sv $(CHIM_ROOT)/hw/regs/chimera_reg_top.sv: $(CHIM_ROOT)/hw/regs/chimera_regs.hjson
 	python $(CHIM_ROOT)/utils/reggen/regtool.py -r $< --outdir $(dir $@)
 
+
+# Nonfree components
+CHIM_NONFREE_REMOTE ?= git@iis-git.ee.ethz.ch:pulp-restricted/chimera-nonfree.git
+CHIM_NONFREE_DIR ?= $(CHIM_ROOT)/nonfree
+CHIM_NONFREE_COMMIT ?= lleone/main-ci # to deploy `chimera-nonfree` repo changes, push to `deploy` tag
+
+.PHONY: chim-nonfree-init
+chim-nonfree-init:
+	git clone $(CHIM_NONFREE_REMOTE) $(CHIM_NONFREE_DIR)
+	cd $(CHIM_NONFREE_DIR) && git checkout $(CHIM_NONFREE_COMMIT)
+
+-include $(CHIM_NONFREE_DIR)/nonfree.mk
+
 -include $(CHIM_ROOT)/bender.mk
 
--include $(CHIM_ROOT)/sim.mk
+# Necessary to build libchimera.a for bootrom.elf
 -include $(CHIM_ROOT)/sw/sw.mk
+
+# Include subdir Makefiles
+-include $(CHIM_ROOT)/utils/utils.mk
+# Include target makefiles
+TB_DUT = tb_chimera_soc
+-include $(CHIM_ROOT)/target/sim/sim.mk
+
+#################################
+# Phonies for the entire system #
+#################################
+CHIM_HW_ALL = chs-hw-init snitch-hw-init chim-bootrom-init chs-sim-all
+CHIM_SW_ALL = chim-sw
+CHIM_ALL += $(CHIM_HW_ALL) $(CHIM_SW_ALL) chim-sim
+CHIM_CLEAN += chim-sw-clean chim-sim-clean
+
+.PHONY: chim-all
+chim-all: $(CHIM_ALL) ## Generate full chimera infrastructure
+
+.PHONY: chim-clean
+chim-clean: $(CHIM_CLEAN) ## Clean entire chimera infrastructure

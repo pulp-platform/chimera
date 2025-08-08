@@ -1,14 +1,21 @@
-# Copyright 2020 ETH Zurich and University of Bologna.
-# Solderpad Hardware License, Version 0.51, see LICENSE for details.
-# SPDX-License-Identifier: SHL-0.51
+// Copyright 2024 ETH Zurich and University of Bologna.
+// Solderpad Hardware License, Version 0.51, see LICENSE for details.
+// SPDX-License-Identifier: SHL-0.51
+//
+// Moritz Scherer <scheremo@iis.ee.ethz.ch>
 
 #include <soc_ctrl.h>
-	
+
 .global _start
 _start:
 
-	csrrc x0, mstatus, 10	
-	
+	csrrc x0, mstatus, 10
+	call cluster_startup
+	// Set trap vector
+	la t0, _trap_handler_initial
+	csrrw x0, mtvec, t0
+
+_rerun:
 	li x5, 0
 	li x6, 0
 	li x7, 0
@@ -36,35 +43,26 @@ _start:
 	li x29, 0
 	li x30, 0
 	li x31, 0
-	
-	call cluster_startup
 
-	// Set trap vector
-	la t0, _trap_handler_wrap
-	csrrw x0, mtvec, t0
-	
+	call clean_busy
 	wfi
-
+	call set_busy
+	
 run_from_reg:
 	la t0, __chim_regs // CHIMERA REGS Base Addr, 0x3000_1000
-	lw t0, 0(t0) // CHIMERA_SNITCH_BOOT_ADDR_REG_OFFSET
-	jalr t0
+	lw t0, CHIMERA_SNITCH_BOOT_ADDR_REG_OFFSET(t0) // CHIMERA_SNITCH_BOOT_ADDR_REG_OFFSET
+	jalr t0 // Register a0 will hold return value
 
-exit:
-	la t0, __chim_regs // CHIMERA REGS Base Addr
-	sw t0, 4(t0) // CHIMERA_SNITCH_CLUSTER_1_RETURN_REG_OFFSET  // SCHEREMO: TODO: Demultiplex different clusters
-	j _start
-	
-// This wraps the C trap handler to save the (integer-only) caller-save
-// registers and perform a proper machine-mode exception return.
+_return:
+	call cluster_return // By calling immediately after return, register contents in a0 are passed as the first argument
+
+_exit:
+	j _rerun
+
 .align 4
-_trap_handler_wrap:
-	lui t6,0x2040
-	li t5, 0
-	sw t5, 40(t6)
-    mret
+_trap_handler_initial:
+	la t0, __chim_regs // CHIMERA REGS Base Addr
+	lw t0, CHIMERA_SNITCH_INTR_HANDLER_ADDR_REG_OFFSET(t0)
+	jalr t0
+	mret
 
-.global trap_vector
-.weak trap_vector
-trap_vector:
-    ret

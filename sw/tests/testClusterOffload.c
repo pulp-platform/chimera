@@ -1,62 +1,49 @@
-/* =====================================================================
- * Title:        testClusterOffload.c
- * Description:  
- *
- * $Date:        28.06.2024        
- *
- * ===================================================================== */
-/*
- * Copyright (C) 2020 ETH Zurich and University of Bologna.
- *
- * Author: Moritz Scherer, ETH Zurich
- *
- * SPDX-License-Identifier: Apache-2.0
- *
- * Licensed under the Apache License, Version 2.0 (the License); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an AS IS BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2024 ETH Zurich and University of Bologna.
+// Licensed under the Apache License, Version 2.0, see LICENSE for details.
+// SPDX-License-Identifier: Apache-2.0
+//
+// Moritz Scherer <scheremo@iis.ee.ethz.ch>
+// Viviane Potocnik <vivianep@iis.ee.ethz.ch>
 
-#include <stdint.h>
+// Simple offload test. Set the trap handler first, offload a function, retrieve
+// return value from cluster. Does not currently take care of stack
+// initialization and bss initialization on cluster.
+
+#include "offload.h"
+#include "soc_addr_map.h"
 #include <regs/soc_ctrl.h>
+#include <stdint.h>
 
-#define SOC_CTRL_BASEADDR 0x30001000
-#define TESTVAL 0x50CCE55
-#define FAILVAL 0xBADCAB1E
+#define TESTVAL 0x050CCE55
 
-#define TARGETHARTID 1
-#define IRQID 1
+static uint32_t *clintPointer = (uint32_t *)CLINT_CTRL_BASE;
 
-#define CLINTADDR 0x02040000
-#define CLINTMSIP1OFFSET 0x28
+void clusterTrapHandler() {
+    uint8_t hartId;
+    asm("csrr %0, mhartid" : "=r"(hartId)::);
 
-static int32_t* clintPointer = (int32_t*) CLINTADDR;
-
-int32_t testReturn(int32_t hartid){
-  
-  return TESTVAL;
+    volatile uint32_t *interruptTarget = clintPointer + hartId;
+    *interruptTarget = 0;
+    return;
 }
 
-int main(){
-  
-  volatile int32_t* snitchBootAddr = (volatile int32_t*) (SOC_CTRL_BASEADDR + CHIMERA_SNITCH_BOOT_ADDR_REG_OFFSET);
-  volatile int32_t* snitchReturnAddr = (volatile int32_t*) (SOC_CTRL_BASEADDR + CHIMERA_SNITCH_CLUSTER_1_RETURN_REG_OFFSET);
-  
-  *snitchBootAddr = testReturn;
+int32_t testReturn() {
+    return TESTVAL;
+}
 
-  *(clintPointer + CLINTMSIP1OFFSET/4) = 1;
+int main() {
+    volatile uint8_t *regPtr = (volatile uint8_t *)SOC_CTRL_BASE;
+    setupInterruptHandler(clusterTrapHandler);
 
-  while(!*snitchReturnAddr){
-    
-  }
-    
-  return *snitchReturnAddr;
+    uint32_t retVal = 0;
+    for (int i = 0; i < _chimera_numClusters; i++) {
+        setClusterReset(regPtr, i, 0);
+        setClusterClockGating(regPtr, i, 0);
+        offloadToCluster(testReturn, i);
+        retVal |= waitForCluster(i);
+        setClusterClockGating(regPtr, i, 1);
+        setClusterReset(regPtr, i, 0);
+    }
+
+    return (retVal != (TESTVAL | 0x000000001));
 }

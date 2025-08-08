@@ -6,28 +6,55 @@ package:
   name: chimera
   authors:
     - "Moritz Scherer <scheremo@iis.ee.ethz.ch>"
+    - "Lorenzo Leone <lleone@iis.ee.ethz.ch>"
 
 dependencies:
   register_interface:       { git: "https://github.com/pulp-platform/register_interface.git", version: 0.4.3  }
   axi:                      { git: "https://github.com/pulp-platform/axi.git",                version: 0.39.2 }
-  cheshire:                 { git: "https://github.com/pulp-platform/cheshire.git",           rev: "scheremo/convolve"}
-  snitch_cluster:           { git: "https://github.com/pulp-platform/snitch_cluster.git",     rev: "main"}
+  cheshire:                 { git: "https://github.com/pulp-platform/cheshire.git",           rev: 586cb0225be5c57f5ffcf67bd490763efd9b4d24}
+  snitch_cluster:           { git: "https://github.com/pulp-platform/snitch_cluster.git",     rev: c12ce9b2af1ac8edf3d4feb18939e1ad20c42225}
   common_cells:             { git: "https://github.com/pulp-platform/common_cells.git",       version: 1.31.1}
+  idma:                     { git: "https://github.com/pulp-platform/iDMA.git",               rev: 9edf489f57389dce5e71252c79e337f527d3aded}
+  memory_island:            { git: "https://github.com/pulp-platform/memory_island.git",      rev: 64828cb7a9ccc1f1656ec92d06129072f445c319 } # main branch
+  apb:                      { git: "https://github.com/pulp-platform/apb.git",                version: 0.2.4          }
+  hyperbus:                 { git: "https://github.com/pulp-platform/hyperbus.git",           rev: aottaviano/nonfree } # TMP: to fix hyperbus model issue
+  tech_cells_generic:       { git: "https://github.com/pulp-platform/tech_cells_generic.git", version: 0.2.12 }
+
+export_include_dirs:
+  - hw/include
+
+workspace:
+  package_links:
+    cheshire: cheshire
+    idma: idma
 
 sources:
+  # Level 0
   - hw/chimera_pkg.sv
   - hw/regs/chimera_reg_pkg.sv
   - hw/regs/chimera_reg_top.sv
   - hw/bootrom/snitch/snitch_bootrom.sv
+  - hw/narrow_adapter.sv
   - hw/chimera_cluster_adapter.sv
+
+  # List of clusters
+  - hw/clusters/chimera_cluster.sv
+
+  # Top Level Domains
+  - hw/chimera_clu_domain.sv
+  - hw/chimera_memisland_domain.sv
+  - hw/hyperbus_wrap.sv
+
+  # Top Level
   - hw/chimera_top_wrapper.sv
 
   - target: any(simulation, test)
     files:
+      - target/sim/models/s27ks0641/s27ks0641.v
+      - target/sim/src/tb_chimera_pkg.sv
       - target/sim/src/vip_chimera_soc.sv
       - target/sim/src/fixture_chimera_soc.sv
       - target/sim/src/tb_chimera_soc.sv
-      - target/sim/src/tb_chimera_pkg.sv
 
 vendor_package:
   - name: reggen
