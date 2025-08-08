@@ -1,4 +1,4 @@
-<h1 align="center">Chimera: A Flexible Heterogeneous SoC Template</h1>
+<h1 align="center">Chimera: A Flexible Multi-Accelerator Framework for Heterogeneous SoC Integration</h1>
 
 <a href="https://pulp-platform.org">
 <img src="docs/img/pulp_logo_icon.svg" alt="Logo" width="100" align="right">
@@ -28,7 +28,7 @@ Unless specified otherwise in the respective file headers, all code in this repo
 
 ## 🚀 Getting started
 ### Environment setup for IIS-members
-For IIS members, set up the environment by sourcing the `iis-setup.sh` script:
+For IIS members, set up the environment by sourcing the `iis-env.sh` script:
 ```sh
 source iis-env.sh
 ```
