@@ -26,6 +26,10 @@ Unless specified otherwise in the respective file headers, all code in this repo
 - Register file code (e.g. [hw/regs/*.sv](hw/regs/)) is generated using a fork of lowRISC's [regtool](https://github.com/lowRISC/opentitan/blob/master/util/regtool.py) and is licensed under Apache 2.0 (see [LICENSE-APACHE](LICENSE-APACHE)).
 - All software sources are licensed under Apache 2.0.
 
+## 👥 Contributing
+
+If you would like to contribute to this project, please check our [contribution guidelines](CONTRIBUTING.md).
+
 ## 🚀 Getting started
 ### Environment setup for IIS-members
 For IIS members, set up the environment by sourcing the `iis-env.sh` script:
@@ -117,3 +121,5 @@ python scripts/run_clang_format.py -ir sw/ --clang-format-executable=/usr/pack/r
 python scripts/run_clang_format.py -ir hw/ --clang-format-executable=/usr/pack/riscv-1.0-kgf/pulp-llvm-0.12.0/bin/clang-format
 ```
 If you're not using the IIS setup, specify a valid `clang-format-12` binary instead.
+.
+
