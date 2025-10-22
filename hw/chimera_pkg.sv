@@ -128,11 +128,12 @@ ExtClusters
   localparam doub_bt MemIslRegionEnd = 64'h4804_0000;
 
   localparam aw_bt MemIslAxiMstIdWidth = 1;
-  localparam byte_bt MemIslNarrowToWideFactor = 4;
+  localparam byte_bt MemIslNarrowToWideFactor = 16;
   localparam byte_bt MemIslNarrowPorts = 1;
   localparam byte_bt MemIslWidePorts = $countones(ChimeraClusterCfg.hasWideMasterPort);
   localparam byte_bt MemIslNumWideBanks = 2;
   localparam shrt_bt MemIslWordsPerBank = 1024;
+  // Memory Island size = 16 * 2 * 1024 * 4 B = 128 KB
 
   // Hyperbus
   localparam byte_bt HyperbusIdx = MemIslandIdx + 1;
