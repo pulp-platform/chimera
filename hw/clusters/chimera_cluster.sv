@@ -180,7 +180,9 @@ module chimera_cluster
     .wide_out_resp_t(wide_out_resp_t),
 
     .clu_wide_out_req_t (axi_cluster_out_wide_req_t),
-    .clu_wide_out_resp_t(axi_cluster_out_wide_resp_t)
+    .clu_wide_out_resp_t(axi_cluster_out_wide_resp_t),
+    // Make sure the SoC and Clusters in the TB run at the same frequency if CDCs are disabled
+    .EnAxiCdc (1'b0)
 
   ) i_cluster_axi_adapter (
     .soc_clk_i(soc_clk_i),
