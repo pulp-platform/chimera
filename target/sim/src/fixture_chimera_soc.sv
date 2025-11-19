@@ -130,6 +130,8 @@ module fixture_chimera_soc #(
     .hyper_dq_o               (hyper_dq_o),
     .hyper_dq_oe_o            (hyper_dq_oe_o),
     .hyper_reset_no           (hyper_reset_no),
+    .apb_req_o                (),
+    .apb_rsp_i                ('0),
     .pmu_rst_clusters_ni      ({ExtClusters{rst_n}}),
     .pmu_clkgate_en_clusters_i(),
     .pmu_iso_en_clusters_i    ('0),                    // Never Isolate
