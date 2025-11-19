@@ -6,9 +6,9 @@
 # Lorenzo Leone <lleone@iis.ee.ethz.ch>
 
 
-CLINTCORES = 46
-PLICCORES = 92
-PLIC_NUM_INTRS = 92
+CLINTCORES = 46     # 1 + tot. #cores (e.g. 5 clusters * 9 cores + 1 = 46)
+PLICCORES = 92      # 2 + 2 * tot. #cores (e.g. 2 * 5 clusters * 9 cores + 2 = 92)
+PLIC_NUM_INTRS = 59 # 58 + ChsCfg.NumExtInIntrs + 1
 
 
 .PHONY: update_plic
@@ -28,7 +28,7 @@ chs-hw-init: update_plic gen_idma_hw $(CHIM_SW_LIB) ## Generate Cheshire RTL
 
 .PHONY: snitch-hw-init
 snitch-hw-init: ## Generate Snitch RTL
-	make -C $(SNITCH_ROOT)/target/snitch_cluster bin/snitch_cluster.vsim
+	make -C $(SNITCH_ROOT) vsim
 
 .PHONY: $(CHIM_SW_DIR)/include/regs/soc_ctrl.h
 $(CHIM_SW_DIR)/include/regs/soc_ctrl.h: $(CHIM_ROOT)/hw/regs/chimera_regs.hjson
