@@ -127,6 +127,8 @@ ExtClusters
   localparam doub_bt MemIslRegionStart = 64'h4800_0000;
   localparam doub_bt MemIslRegionEnd = 64'h4804_0000;
 
+  // Size of memory island: MemIslNumWideBanks * MemIslNarrowToWideFactor * MemIslWordsPerBank * <BytesPerWord>
+  // with BytesPerWord = cfg.AxiDataWidth / 8
   localparam aw_bt MemIslAxiMstIdWidth = 1;
   localparam byte_bt MemIslNarrowToWideFactor = 16;
   localparam byte_bt MemIslNarrowPorts = 1;
@@ -146,6 +148,12 @@ ExtClusters
 
   localparam int unsigned LogDepth = 3;
   localparam int unsigned SyncStages = 3;
+
+  // ------------
+  // |   TCDM   |
+  // ------------
+  localparam doub_bt TcdmSize = 128;
+  localparam aw_bt TcdmAddrWidth = $clog2(TcdmSize * 1024);
 
   // -------------------
   // |   Generate Cfg   |
@@ -174,7 +182,7 @@ ExtClusters
     // AXI CFG
     cfg.AxiMstIdWidth = 2;
     cfg.AxiDataWidth = 32;
-    cfg.AddrWidth = 32;
+    cfg.AddrWidth = 48;
     cfg.LlcOutRegionEnd = 'hFFFF_FFFF;
 
     cfg.AxiExtNumWideMst = $countones(ChimeraClusterCfg.hasWideMasterPort);
