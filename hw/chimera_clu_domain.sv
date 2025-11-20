@@ -25,8 +25,10 @@ module chimera_clu_domain
   parameter type          wide_out_resp_t   = logic
 ) (
   input  logic                                                              soc_clk_i,
-  input  logic             [                               ExtClusters-1:0] clu_clk_i,
+  input  logic                                                              clu_clk_i,
   input  logic             [                               ExtClusters-1:0] rst_ni,
+  // Signal to enable or disable the cluster clock signal
+  input  logic             [                               ExtClusters-1:0] clu_clk_en_i,
   input  logic             [                               ExtClusters-1:0] widemem_bypass_i,
   input  logic             [                                          31:0] boot_addr_i,
   //-----------------------------
@@ -186,8 +188,9 @@ module chimera_clu_domain
         .wide_out_resp_t  (wide_out_resp_t)
       ) i_chimera_cluster (
         .soc_clk_i(soc_clk_i),
-        .clu_clk_i(clu_clk_i[extClusterIdx]),
+        .clu_clk_i(clu_clk_i),
         .rst_ni(rst_ni[extClusterIdx]),
+        .clu_clk_en_i(clu_clk_en_i[extClusterIdx]),
         .widemem_bypass_i(widemem_bypass_i[extClusterIdx]),
         .debug_req_i(debug_req_i[`PREVNRCORES(extClusterIdx)+:`NRCORES(extClusterIdx)]),
         .meip_i(xeip_i[`PREVNRCORES(extClusterIdx)+:`NRCORES(extClusterIdx)]),

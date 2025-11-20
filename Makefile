@@ -9,7 +9,7 @@
 CHIM_ROOT ?= $(shell pwd)
 
 # Tooling
-BENDER                 ?= bender -d $(CHIM_ROOT)
+BENDER                 = bender-0.28.2	-d $(CHIM_ROOT)
 VERIBLE_VERILOG_FORMAT ?= $(CHIM_UTILS_DIR)/verible-verilog/verible-verilog-format
 
 # Set dependency paths only if dependencies have already been cloned
@@ -68,11 +68,11 @@ python-venv-clean: ## Clean Python virtual environment
 # Documentation #
 #################
 
-.PHONY: help
+.PHONY: help h
 
 Black=\033[0m
 Green=\033[1;32m
-help: ## Show an overview of all Makefile targets.
+help h: ## Show an overview of all Makefile targets.
 	@echo -e "Makefile ${Green}targets${Black} for chimera"
 	@echo -e "Use 'make <target>' where <target> is one of:"
 	@echo -e ""

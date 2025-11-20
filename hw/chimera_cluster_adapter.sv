@@ -14,6 +14,7 @@ module chimera_cluster_adapter #(
   // End address of Memory Island
   parameter int WidePassThroughRegionEnd   = '0,
   // Add AXI CDC between the cluster and SoC,
+  // When this parameter is disabled, you must ensure clu_clk_i = soc_clk_i
   parameter bit EnAxiCdc                   = 1'b0,
 
   parameter type narrow_in_req_t   = logic,
