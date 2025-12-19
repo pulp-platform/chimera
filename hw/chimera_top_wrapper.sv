@@ -488,7 +488,7 @@ module chimera_top_wrapper
   hyperbus_wrap #(
     .NumChips        (HypNumChips),
     .NumPhys         (HypNumPhys),
-    .IsClockODelayed (1'b0),
+    .IsClockODelayed (1'b1),
     .AxiAddrWidth    (ChsCfg.AddrWidth),
     .AxiDataWidth    (ChsCfg.AxiDataWidth),
     .AxiIdWidth      (AxiSlvIdWidth),
