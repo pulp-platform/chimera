@@ -244,6 +244,20 @@ module chimera_cluster
   typedef logic [TcdmAddrWidth-1:0] tcdm_addr_t;
   `TCDM_TYPEDEF_ALL(tcdm_dma, tcdm_addr_t, data_dma_t, strb_dma_t, logic)
 
+  function automatic snitch_pma_pkg::rule_t [snitch_pma_pkg::NrMaxRules-1:0] get_cached_regions();
+    automatic snitch_pma_pkg::rule_t [snitch_pma_pkg::NrMaxRules-1:0] cached_regions;
+    cached_regions = '{default: '0};
+    cached_regions[0] = '{base: HyperbusRegionStart, mask: 48'hffff_1000_0000}; // Hyperbus (256 MiB)
+    cached_regions[1] = '{base: MemIslRegionStart, mask: 48'hffff_fff8_0000}; // Memory Island ( 512 KiB)
+    return cached_regions;
+  endfunction
+
+  localparam snitch_pma_pkg::snitch_pma_t SnitchPMACfg = '{
+      NrCachedRegionRules: 2,
+      CachedRegion: get_cached_regions(),
+      default: 0
+  };
+
   snitch_cluster #(
     .PhysicalAddrWidth(Cfg.ChsCfg.AddrWidth),
     .NarrowDataWidth  (ClusterDataWidth),            // SCHEREMO: Convolve needs this...
@@ -253,8 +267,11 @@ module chimera_cluster
     .NarrowUserWidth  (Cfg.ChsCfg.AxiUserWidth),
     .WideUserWidth    (Cfg.ChsCfg.AxiUserWidth),
 
-    .BootAddr        (SnitchBootROMRegionStart),
-    .IntBootromEnable(0),
+    .AliasRegionEnable(1),
+    .AliasRegionBase  ('h1800_0000),
+    .SnitchPMACfg     (SnitchPMACfg),
+    .BootAddr         (SnitchBootROMRegionStart),
+    .IntBootromEnable (0),
 
     .NrHives          (1),
     .NrCores          (NrCores),
@@ -262,6 +279,7 @@ module chimera_cluster
     .ZeroMemorySize   (64),
     .ClusterPeriphSize(64),
     .NrBanks          (16),
+    // WIESEP: TCDM size = 16 * 1024 * 64 bit = 128 KiB
 
     .DMANumAxInFlight(3),
     .DMAReqFifoDepth (3),
