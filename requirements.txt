@@ -1,9 +1,0 @@
-hjson
-tabulate
-pyyaml
-mako
-jsonref
-jsonschema
-flatdict
-json5
-peakrdl-rawheader@git+https://github.com/colluca/PeakRDL-rawheader.git@7b8dbc9ad5854dc1cdaf36d4ea024c29ffb00a4c

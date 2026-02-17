@@ -14,7 +14,6 @@ export CXX=/usr/pack/gcc-11.2.0-af/linux-x64/bin/g++
 export CMAKE=cmake-3.28.3
 export SN_LLVM_BINROOT=/usr/scratch2/vulcano/colluca/tools/riscv32-snitch-llvm-almalinux8-15.0.0-snitch-0.2.0/bin
 export BENDER='bender-0.29.1'
-export SNRT_BENDER='bender-0.29.1'
 
 # Create the python venv
 if [ ! -d ".venv" ]; then
