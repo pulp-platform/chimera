@@ -13,7 +13,13 @@ export RISCV_GCC_BINROOT=/usr/pack/riscv-1.0-kgf/pulp-gcc-2.5.0/bin
 export CC=/usr/pack/gcc-11.2.0-af/linux-x64/bin/gcc
 export CXX=/usr/pack/gcc-11.2.0-af/linux-x64/bin/g++
 export CMAKE=cmake-3.28.3
+<<<<<<< HEAD
 export SN_LLVM_BINROOT=/usr/scratch2/vulcano/colluca/tools/riscv32-snitch-llvm-almalinux8-15.0.0-snitch-0.2.0/bin
+||||||| parent of 100d55f (Introduce pyproject)
+=======
+export BENDER='bender-0.28.1'
+export SNRT_BENDER='bender-0.28.1'
+>>>>>>> 100d55f (Introduce pyproject)
 
 # Create the python venv
 if [ ! -d ".venv" ]; then

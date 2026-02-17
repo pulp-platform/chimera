@@ -51,12 +51,14 @@ dvt_flist:
 	mkdir -p .dvt
 	$(BENDER) script flist-plus $(COMMON_TARGS) $(SIM_TARGS) > .dvt/default.build
 
-python-venv: .venv
+python-venv: .venv ## Create a Python virtual environment
 .venv:
 	$(BASE_PYTHON) -m venv $@
 	. $@/bin/activate && \
-	python -m pip install --upgrade pip setuptools && \
-	python -m pip install --cache-dir $(PIP_CACHE_DIR) -r requirements.txt
+	python -m pip install --cache-dir $(PIP_CACHE_DIR) .
+
+python-venv-clean: ## Clean Python virtual environment
+	rm -rf .venv
 
 #################
 # Documentation #

@@ -90,7 +90,7 @@ TB_DUT = tb_chimera_soc
 #################################
 # Phonies for the entire system #
 #################################
-CHIM_HW_ALL = chs-hw-init snitch-hw-init chim-bootrom-init chs-sim-all
+CHIM_HW_ALL = chs-hw-init chim-bootrom-init chs-sim-all
 CHIM_SW_ALL = chim-sw
 CHIM_ALL += $(CHIM_HW_ALL) $(CHIM_SW_ALL) chim-sim
 CHIM_CLEAN += chim-sw-clean chim-sim-clean

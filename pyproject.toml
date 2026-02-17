@@ -1,0 +1,30 @@
+# Copyright 2023 ETH Zurich and University of Bologna.
+# Licensed under the Apache License, Version 2.0, see LICENSE for details.
+# SPDX-License-Identifier: Apache-2.0
+
+[build-system]
+requires = ["setuptools<81", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "chimera"
+version = "0.0.0"
+description = "A Flexible Multi-Accelerator Framework for Heterogeneous SoC Integration"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{ name = "Lorenzo Leone", email = "lleone@iis.ee.ethz.ch" }]
+
+dependencies = [
+  "hjson",
+  "tabulate",
+  "pyyaml",
+  "mako",
+  "jsonref",
+  "jsonschema",
+  "flatdict",
+  "setuptools==65.5.1",
+]
+
+[tool.setuptools]
+packages = []
+include-package-data = false
