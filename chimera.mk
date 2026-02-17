@@ -30,10 +30,10 @@ chs-hw-init: update_plic gen_idma_hw $(CHIM_SW_LIB) ## Generate Cheshire RTL
 # Snitch Cluster #
 ##################
 
-include $(SN_ROOT)/make/common.mk
+-include $(SN_ROOT)/make/common.mk
 # Use the snitch toolchain to generate the cluster bootrom
-include $(SN_ROOT)/sw/toolchain.mk
-include $(SN_ROOT)/make/rtl.mk
+-include $(SN_ROOT)/sw/toolchain.mk
+-include $(SN_ROOT)/make/rtl.mk
 
 # .PHONY: snitch-hw-init
 .PHONY: sn-hw-clean sn-hw-all
