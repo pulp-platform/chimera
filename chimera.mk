@@ -26,9 +26,23 @@ CHS_SW_LD_DIR = $(CHIM_ROOT)/sw/link
 chs-hw-init: update_plic gen_idma_hw $(CHIM_SW_LIB) ## Generate Cheshire RTL
 	make -B chs-hw-all CHS_XLEN=$(CHS_XLEN) CHS_SW_LD_DIR=$(CHS_SW_LD_DIR)
 
-.PHONY: snitch-hw-init
-snitch-hw-init: ## Generate Snitch RTL
-	make -C $(SNITCH_ROOT) vsim
+##################
+# Snitch Cluster #
+##################
+
+include $(SN_ROOT)/make/common.mk
+# Use the snitch toolchain to generate the cluster bootrom
+include $(SN_ROOT)/sw/toolchain.mk
+include $(SN_ROOT)/make/rtl.mk
+
+# .PHONY: snitch-hw-init
+.PHONY: sn-hw-clean sn-hw-all
+
+sn-hw-all: sn-rtl ## Generate Snitch RTL
+sn-hw-clean: sn-clean-rtl  ## Clean Snitch RTL
+
+# snitch-hw-init: ## Generate Snitch RTL
+# 	make -C $(SN_ROOT) vsim
 
 .PHONY: $(CHIM_SW_DIR)/include/regs/soc_ctrl.h
 $(CHIM_SW_DIR)/include/regs/soc_ctrl.h: $(CHIM_ROOT)/hw/regs/chimera_regs.hjson
@@ -90,7 +104,7 @@ TB_DUT = tb_chimera_soc
 #################################
 # Phonies for the entire system #
 #################################
-CHIM_HW_ALL = chs-hw-init chim-bootrom-init chs-sim-all
+CHIM_HW_ALL = chs-hw-init sn-hw-all chim-bootrom-init chs-sim-all
 CHIM_SW_ALL = chim-sw
 CHIM_ALL += $(CHIM_HW_ALL) $(CHIM_SW_ALL) chim-sim
 CHIM_CLEAN += chim-sw-clean chim-sim-clean

@@ -3,12 +3,12 @@
 # SPDX-License-Identifier: Apache-2.0
 
 [build-system]
-requires = ["setuptools<81", "wheel"]
+requires = ["setuptools==68.0.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "chimera"
-version = "0.0.0"
+version = "1.0.0"
 description = "A Flexible Multi-Accelerator Framework for Heterogeneous SoC Integration"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -22,7 +22,7 @@ dependencies = [
   "jsonref",
   "jsonschema",
   "flatdict",
-  "setuptools==65.5.1",
+  "json5"
 ]
 
 [tool.setuptools]

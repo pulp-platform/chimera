@@ -16,16 +16,20 @@ VERIBLE_VERILOG_FORMAT ?= $(CHIM_UTILS_DIR)/verible-verilog/verible-verilog-form
 # This avoids running `bender checkout` at every make command
 ifeq ($(shell test -d $(CHIM_ROOT)/.bender || echo 1),)
 CHS_ROOT    ?= $(shell $(BENDER) path cheshire)
-SNITCH_ROOT ?= $(shell $(BENDER) path snitch_cluster)
+SN_ROOT 		?= $(shell $(BENDER) path snitch_cluster)
 IDMA_ROOT   ?= $(shell $(BENDER) path idma)
 HYPERB_ROOT ?= $(shell $(BENDER) path hyperbus)
 endif
 
 # Fall back to safe defaults if dependencies are not cloned yet
 CHS_ROOT    ?= .
-SNITCH_ROOT ?= .
+SN_ROOT ?= .
 IDMA_ROOT   ?= .
 HYPERB_ROOT ?= .
+
+# Use the default snitch cluster cfg. For the moment chimera
+# does not use the snitch_cluster_wrapper feature but we need to generate some files.
+SN_CFG = $(SN_ROOT)/cfg/default.json
 
 # Bender prerequisites
 BENDER_YML = $(CHIM_ROOT)/Bender.yml
