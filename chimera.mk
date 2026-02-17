@@ -41,9 +41,6 @@ chs-hw-init: update_plic gen_idma_hw $(CHIM_SW_LIB) ## Generate Cheshire RTL
 sn-hw-all: sn-rtl ## Generate Snitch RTL
 sn-hw-clean: sn-clean-rtl  ## Clean Snitch RTL
 
-# snitch-hw-init: ## Generate Snitch RTL
-# 	make -C $(SN_ROOT) vsim
-
 .PHONY: $(CHIM_SW_DIR)/include/regs/soc_ctrl.h
 $(CHIM_SW_DIR)/include/regs/soc_ctrl.h: $(CHIM_ROOT)/hw/regs/chimera_regs.hjson
 	python $(CHIM_ROOT)/utils/reggen/regtool.py -D $<  > $@
@@ -104,10 +101,11 @@ TB_DUT = tb_chimera_soc
 #################################
 # Phonies for the entire system #
 #################################
-CHIM_HW_ALL = chs-hw-init sn-hw-all chim-bootrom-init chs-sim-all
+CHIM_HW_ALL = chs-hw-init sn-hw-all chim-bootrom-init
 CHIM_SW_ALL = chim-sw
-CHIM_ALL += $(CHIM_HW_ALL) $(CHIM_SW_ALL) chim-sim
-CHIM_CLEAN += chim-sw-clean chim-sim-clean
+CHIM_SIM_ALL = chim-sim
+CHIM_ALL += $(CHIM_HW_ALL) $(CHIM_SW_ALL) $(CHIM_SIM_ALL)
+CHIM_CLEAN += chim-sw-clean chim-sim-clean sn-hw-clean
 
 .PHONY: chim-all
 chim-all: $(CHIM_ALL) ## Generate full chimera infrastructure

@@ -44,7 +44,7 @@ $(eval $(call add_vsim_flag,IMAGE))
 
 # Init vsim compilation
 .PHONY: chim-sim chim-compile chim-run chim-run-batch
-chim-sim: chim-hyperram-model chim-compile $(CHIM_ALL) ## Compile Chimera SoC
+chim-sim: chim-hyperram-model chs-sim-all chim-compile ## Compile Chimera SoC
 
 .PHONY: chim-hyperram-model ## Get HypperRAM VIP for simulation
 chim-hyperram-model: $(CHIM_SIM_DIR)/models/s27ks0641/s27ks0641.sv
