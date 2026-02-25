@@ -17,10 +17,10 @@ packages:
     - obi_peripherals
     - register_interface
   axi:
-    revision: f07498d53ecd5518b277c7d213ec3b71ca4df93c
-    version: 0.39.7
+    revision: 8e04779f341eb2c89412aae92223a292beef487e
+    version: null
     source:
-      Git: https://github.com/pulp-platform/axi.git
+      Git: https://github.com/colluca/axi
     dependencies:
     - common_cells
     - common_verification
@@ -111,8 +111,8 @@ packages:
     - common_cells
     - register_interface
   cluster_icache:
-    revision: 0e1fb6751d9684d968ba7fb40836e6118b448ecd
-    version: 0.1.1
+    revision: 64e21ae455bbdde850c4df13bef86ea55ac42537
+    version: 0.2.0
     source:
       Git: https://github.com/pulp-platform/cluster_icache.git
     dependencies:
@@ -177,8 +177,8 @@ packages:
     - register_interface
     - tech_cells_generic
   idma:
-    revision: 9edf489f57389dce5e71252c79e337f527d3aded
-    version: null
+    revision: 28a36e5e07705549e59fc33db96ab681bc1ca88e
+    version: 0.6.5
     source:
       Git: https://github.com/pulp-platform/iDMA.git
     dependencies:
@@ -234,8 +234,8 @@ packages:
     - register_interface
     - tech_cells_generic
   register_interface:
-    revision: 5daa85d164cf6b54ad061ea1e4c6f3624556e467
-    version: 0.4.5
+    revision: 8e8c209ea559d3b54f45cf30fcce95ce70ff5e49
+    version: 0.4.6
     source:
       Git: https://github.com/pulp-platform/register_interface.git
     dependencies:
@@ -268,18 +268,18 @@ packages:
     - common_cells
     - register_interface
   snitch_cluster:
-    revision: c12ce9b2af1ac8edf3d4feb18939e1ad20c42225
+    revision: 5b2fccd96c42812774c20ab2f9b811e164809789
     version: null
     source:
       Git: https://github.com/pulp-platform/snitch_cluster.git
     dependencies:
+    - apb
     - axi
     - axi_riscv_atomics
     - cluster_icache
     - common_cells
     - fpnew
     - idma
-    - register_interface
     - riscv-dbg
     - tech_cells_generic
   tech_cells_generic:

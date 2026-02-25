@@ -67,8 +67,8 @@ make chim-all
 ```
 Or for more selective builds:
 ```sh
-make chw-hw-init
-make snitch-hw-init
+make chs-hw-init
+make sn-hw-all
 make chim-sw
 make chim-bootrom-init
 ```

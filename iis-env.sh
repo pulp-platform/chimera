@@ -8,11 +8,12 @@ export VOPT="questa-2022.3 vopt"
 export VLIB="questa-2022.3 vlib"
 export BASE_PYTHON=/usr/local/anaconda3/bin/python3.11
 export CHS_SW_GCC_BINROOT=/usr/pack/riscv-1.0-kgf/riscv64-gcc-12.2.0/bin
-export LLVM_BINROOT=/usr/scratch2/vulcano/colluca/tools/riscv32-snitch-llvm-almalinux8-15.0.0-snitch-0.2.0/bin
 export RISCV_GCC_BINROOT=/usr/pack/riscv-1.0-kgf/pulp-gcc-2.5.0/bin
 export CC=/usr/pack/gcc-11.2.0-af/linux-x64/bin/gcc
 export CXX=/usr/pack/gcc-11.2.0-af/linux-x64/bin/g++
 export CMAKE=cmake-3.28.3
+export SN_LLVM_BINROOT=/usr/scratch2/vulcano/colluca/tools/riscv32-snitch-llvm-almalinux8-15.0.0-snitch-0.2.0/bin
+export BENDER='bender-0.29.1'
 
 # Create the python venv
 if [ ! -d ".venv" ]; then

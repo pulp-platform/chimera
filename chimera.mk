@@ -6,9 +6,9 @@
 # Lorenzo Leone <lleone@iis.ee.ethz.ch>
 
 
-CLINTCORES = 46
-PLICCORES = 92
-PLIC_NUM_INTRS = 92
+CLINTCORES = 46     # 1 + tot. #cores (e.g. 5 clusters * 9 cores + 1 = 46)
+PLICCORES = 92      # 2 + 2 * tot. #cores (e.g. 2 * 5 clusters * 9 cores + 2 = 92)
+PLIC_NUM_INTRS = 59 # 58 + ChsCfg.NumExtInIntrs + 1
 
 
 .PHONY: update_plic
@@ -26,9 +26,20 @@ CHS_SW_LD_DIR = $(CHIM_ROOT)/sw/link
 chs-hw-init: update_plic gen_idma_hw $(CHIM_SW_LIB) ## Generate Cheshire RTL
 	make -B chs-hw-all CHS_XLEN=$(CHS_XLEN) CHS_SW_LD_DIR=$(CHS_SW_LD_DIR)
 
-.PHONY: snitch-hw-init
-snitch-hw-init: ## Generate Snitch RTL
-	make -C $(SNITCH_ROOT)/target/snitch_cluster bin/snitch_cluster.vsim
+##################
+# Snitch Cluster #
+##################
+
+-include $(SN_ROOT)/make/common.mk
+# Use the snitch toolchain to generate the cluster bootrom
+-include $(SN_ROOT)/sw/toolchain.mk
+-include $(SN_ROOT)/make/rtl.mk
+
+# .PHONY: snitch-hw-init
+.PHONY: sn-hw-clean sn-hw-all
+
+sn-hw-all: sn-rtl ## Generate Snitch RTL
+sn-hw-clean: sn-clean-rtl  ## Clean Snitch RTL
 
 .PHONY: $(CHIM_SW_DIR)/include/regs/soc_ctrl.h
 $(CHIM_SW_DIR)/include/regs/soc_ctrl.h: $(CHIM_ROOT)/hw/regs/chimera_regs.hjson
@@ -90,10 +101,11 @@ TB_DUT = tb_chimera_soc
 #################################
 # Phonies for the entire system #
 #################################
-CHIM_HW_ALL = chs-hw-init snitch-hw-init chim-bootrom-init chs-sim-all
+CHIM_HW_ALL = chs-hw-init sn-hw-all chim-bootrom-init
 CHIM_SW_ALL = chim-sw
-CHIM_ALL += $(CHIM_HW_ALL) $(CHIM_SW_ALL) chim-sim
-CHIM_CLEAN += chim-sw-clean chim-sim-clean
+CHIM_SIM_ALL = chim-sim
+CHIM_ALL += $(CHIM_HW_ALL) $(CHIM_SW_ALL) $(CHIM_SIM_ALL)
+CHIM_CLEAN += chim-sw-clean chim-sim-clean sn-hw-clean
 
 .PHONY: chim-all
 chim-all: $(CHIM_ALL) ## Generate full chimera infrastructure
