@@ -174,13 +174,15 @@ ExtClusters
 
     cfg.Vga = 0;
     cfg.SerialLink = 0;
+    cfg.Clic = 1;
+    cfg.Usb = 0;
     // SCHEREMO: Fully remove LLC
     cfg.LlcNotBypass = 0;
     cfg.LlcOutConnect = 0;
 
     // AXI CFG
     cfg.AxiMstIdWidth = 2;
-    cfg.AxiDataWidth = 32;
+    cfg.AxiDataWidth = 64;
     cfg.AddrWidth = 48;
     cfg.LlcOutRegionEnd = 'hFFFF_FFFF;
 
