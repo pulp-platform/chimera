@@ -122,6 +122,10 @@ module chimera_top_wrapper
   logic [iomsb(ChsCfg.NumExtDbgHarts):0] dbg_ext_req;
   logic [iomsb(ChsCfg.NumExtDbgHarts):0] dbg_ext_unavail;
 
+  // Logic signals to APB dump mdoule
+  apb_req_t apb_to_dump_req;
+  apb_resp_t  apb_from_dump_rsp ;
+
   // ---------------------------------------
   // |         Cheshire SoC                |
   // ---------------------------------------
@@ -237,8 +241,18 @@ module chimera_top_wrapper
     .rst_ni   (rst_ni),
     .reg_req_i(reg_slv_req[ExtCfgRegsIdx]),
     .reg_rsp_o(reg_slv_rsp[ExtCfgRegsIdx]),
-    .apb_req_o(apb_req_o),
-    .apb_rsp_i(apb_rsp_i)
+    .apb_req_o(apb_to_dump_req),
+    .apb_rsp_i(apb_from_dump_rsp)
+  );
+
+  apb_dump_msg i_apb_dump_msg
+  (
+    .clk_i     (soc_clk_i),
+    .rst_ni    (rst_ni),
+    .apb_rsp_o (apb_from_dump_rsp),
+    .apb_req_i (apb_to_dump_req),
+    .apb_req_o (apb_req_o),
+    .apb_rsp_i (apb_rsp_i)
   );
 
 
