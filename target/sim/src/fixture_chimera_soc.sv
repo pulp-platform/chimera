@@ -22,6 +22,8 @@ module fixture_chimera_soc #(
 
   localparam chimera_cfg_t DutCfg = ChimeraCfg[SelectedCfg];
   localparam cheshire_cfg_t ChsCfg = DutCfg.ChsCfg;
+  localparam time ClkPeriodClu = 2ns;
+  localparam time ClkPeriodSys = 5ns;
 
   `CHESHIRE_TYPEDEF_ALL(, ChsCfg)
   `CHIMERA_TYPEDEF_ALL(, DutCfg)
@@ -157,6 +159,8 @@ module fixture_chimera_soc #(
 
   vip_chimera_soc #(
     .DutCfg                (ChsCfg),
+    .ClkPeriodClu          (ClkPeriodClu),
+    .ClkPeriodSys          (ClkPeriodSys),
     // Determine whether we preload the hyperram model or not User preload. If 0, the memory model
     // is not preloaded at time 0.
     .HypUserPreload        (`HYP_USER_PRELOAD),
@@ -168,5 +172,18 @@ module fixture_chimera_soc #(
   ) vip (
     .*
   );
+
+
+  //////////////////
+  //  CDCs check  //
+  /////////////////
+  initial begin
+    for (int extClusterIdx = 0; extClusterIdx < ExtClusters; extClusterIdx++) begin : gen_cdc_check
+      if (!ChimeraClusterCfg.EnAxiCdc[extClusterIdx] && (ClkPeriodClu != ClkPeriodSys)) begin
+        $fatal(1, "ClusterIdx:%d, EnAxiCDC = %d: Missing CDCs", extClusterIdx,
+               ChimeraClusterCfg.EnAxiCdc[extClusterIdx]);
+      end
+    end
+  end
 
 endmodule

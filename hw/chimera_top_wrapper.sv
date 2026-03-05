@@ -315,7 +315,7 @@ module chimera_top_wrapper
   // This is the enable clk gate, i.e.
   // - enable = 1 -> clock is gated (off)
   // - enable = 0 -> clock is running (on)
-  // It will be used to drive the actual clk eneable signal ine ach cluster.
+  // It will be used to drive the actual clk eneable signal in each cluster.
   // For this reason it's inverted when connected to the cluster.
   assign cluster_clock_gate_en = {
     reg2hw.cluster_4_clk_gate_en,
@@ -336,7 +336,6 @@ module chimera_top_wrapper
     ~reg2hw.reset_cluster_0.q
   };
 
-  // TODO: Double check that teh logic AND is sufficient!
   // The Rst used for each cluster is the AND gate among all different source of rst in the system that are:
   // - rst_ni: Global asynchronous reset coming from the PAD
   // - cluster_soft_rst_n: Software synchronous rst coming from the SoC configuration registers

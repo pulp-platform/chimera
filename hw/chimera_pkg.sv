@@ -30,6 +30,7 @@ package chimera_pkg;
     logic [iomsb(ExtClusters):0]          hasWideMasterPort;
     byte_bt [iomsb(ExtClusters):0]        NrCores;
     cluster_type_e [iomsb(ExtClusters):0] ClusterType;
+    logic [iomsb(ExtClusters):0]          EnAxiCdc;
   } cluster_config_t;
 
   // For each instantiated cluster, you need to specify three parameters:
@@ -40,7 +41,8 @@ package chimera_pkg;
   localparam cluster_config_t ChimeraClusterCfg = '{
       hasWideMasterPort: {1'b1, 1'b1, 1'b1, 1'b1, 1'b1},
       NrCores: {8'h9, 8'h9, 8'h9, 8'h9, 8'h9},
-      ClusterType: {SNITCH, SNITCH, SNITCH, SNITCH, SNITCH}
+      ClusterType: {SNITCH, SNITCH, SNITCH, SNITCH, SNITCH},
+      EnAxiCdc: {1'b1, 1'b1, 1'b1, 1'b1, 1'b1}
   };
 
   function automatic int _sumVector(byte_bt [iomsb(ExtClusters):0] vector, int vectorLen);

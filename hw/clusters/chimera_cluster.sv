@@ -17,7 +17,8 @@ module chimera_cluster
   parameter type         narrow_out_req_t  = logic,
   parameter type         narrow_out_resp_t = logic,
   parameter type         wide_out_req_t    = logic,
-  parameter type         wide_out_resp_t   = logic
+  parameter type         wide_out_resp_t   = logic,
+  parameter bit          EnAxiCdc          = 0
 ) (
   input  logic                                        soc_clk_i,
   input  logic                                        clu_clk_i,
@@ -120,13 +121,13 @@ module chimera_cluster
   axi_cluster_out_wide_resp_t               clu_axi_wide_mst_resp;
 
   // Cluster clk signal after the clk gating cell
-  logic clu_clk_gated;
+  logic                                     clu_clk_gated;
 
   tc_clk_gating i_cluster_clk_gate (
-      .clk_i    (clu_clk_i),
-      .en_i     (clu_clk_en_i),
-      .test_en_i(1'b0),
-      .clk_o    (clu_clk_gated)
+    .clk_i    (clu_clk_i),
+    .en_i     (clu_clk_en_i),
+    .test_en_i(1'b0),
+    .clk_o    (clu_clk_gated)
   );
 
   if (ClusterDataWidth != Cfg.ChsCfg.AxiDataWidth) begin : gen_narrow_adapter
@@ -192,7 +193,7 @@ module chimera_cluster
     .clu_wide_out_req_t (axi_cluster_out_wide_req_t),
     .clu_wide_out_resp_t(axi_cluster_out_wide_resp_t),
     // Make sure the SoC and Clusters run at the same frequency if CDCs are disabled
-    .EnAxiCdc (1'b0)
+    .EnAxiCdc           (EnAxiCdc)
 
   ) i_cluster_axi_adapter (
     .soc_clk_i(soc_clk_i),

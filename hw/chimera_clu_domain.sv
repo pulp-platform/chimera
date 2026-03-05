@@ -185,7 +185,8 @@ module chimera_clu_domain
         .narrow_out_req_t (narrow_out_req_t),
         .narrow_out_resp_t(narrow_out_resp_t),
         .wide_out_req_t   (wide_out_req_t),
-        .wide_out_resp_t  (wide_out_resp_t)
+        .wide_out_resp_t  (wide_out_resp_t),
+        .EnAxiCdc         (ChimeraClusterCfg.EnAxiCdc[extClusterIdx])
       ) i_chimera_cluster (
         .soc_clk_i(soc_clk_i),
         .clu_clk_i(clu_clk_i),

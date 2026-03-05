@@ -9,7 +9,7 @@
 CHIM_ROOT ?= $(shell pwd)
 
 # Tooling
-BENDER                 = bender-0.28.2	-d $(CHIM_ROOT)
+BENDER                 ?= bender -d $(CHIM_ROOT)
 VERIBLE_VERILOG_FORMAT ?= $(CHIM_UTILS_DIR)/verible-verilog/verible-verilog-format
 
 # Set dependency paths only if dependencies have already been cloned
