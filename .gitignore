@@ -5,6 +5,11 @@ transcript
 cheshire
 idma
 hyperbus
+snitch_cluster
+.cache
+deps/
+*.OLD
+*.egg-info/
 
 # EMACS
 
@@ -37,8 +42,12 @@ target/sim/vsim/work
 target/sim/vsim/transcript
 target/sim/vsim/*.do
 target/sim/vsim/trace*
+target/sim/vsim/dma_trace*
 modelsim.ini
 compile.tcl
 logs
 vsim.wlf
 *.transcript
+
+nonfree/
+working_dir/
