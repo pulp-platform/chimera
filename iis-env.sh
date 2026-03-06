@@ -3,12 +3,12 @@
 # Solderpad Hardware License, Version 0.51, see LICENSE for details.
 # SPDX-License-Identifier: SHL-0.51
 
-export BENDER='bender-0.29.1'
+export BENDER='bender-0.31.0'
 export VSIM="questa-2022.3 vsim"
 export VOPT="questa-2022.3 vopt"
 export VLIB="questa-2022.3 vlib"
 export BASE_PYTHON=/usr/local/anaconda3/bin/python3.11
-export CHS_SW_32_GCC_BINROOT=/usr/pack/riscv-1.0-kgf/default/bin
+export CHS_SW_32_GCC_BINROOT=/usr/pack/riscv-1.0-kgf/pulp-gcc-2.5.0/bin
 export RISCV_GCC_BINROOT=/usr/pack/riscv-1.0-kgf/pulp-gcc-2.5.0/bin
 export CC=/usr/pack/gcc-11.2.0-af/linux-x64/bin/gcc
 export CXX=/usr/pack/gcc-11.2.0-af/linux-x64/bin/g++
