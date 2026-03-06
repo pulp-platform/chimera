@@ -63,6 +63,7 @@ which riscv32-unknown-elf-gcc
 ### 🛠️ Build RTL
 If you have all needed dependencies and you want to build the full Chimera SoC, both RTL and SW, run:
 ``` sh
+bender checkout
 make chim-all
 ```
 Or for more selective builds:
