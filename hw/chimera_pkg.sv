@@ -134,7 +134,7 @@ ExtClusters
   // Size of memory island: MemIslNumWideBanks * MemIslNarrowToWideFactor * MemIslWordsPerBank * <BytesPerWord>
   // with BytesPerWord = cfg.AxiDataWidth / 8
   localparam aw_bt MemIslAxiMstIdWidth = 1;
-  localparam byte_bt MemIslNarrowToWideFactor = 16; // 32 bit (narrow) vs. 512 bit (wide)
+  localparam byte_bt MemIslNarrowToWideFactor = 16;  // 32 bit (narrow) vs. 512 bit (wide)
   localparam byte_bt MemIslNarrowPorts = 1;
   localparam byte_bt MemIslWidePorts = $countones(ChimeraClusterCfg.hasWideMasterPort);
   localparam byte_bt MemIslNumWideBanks = 2;

@@ -13,17 +13,17 @@
 module apb_dump_msg
   import chimera_pkg::*;
 #(
-  parameter logic [31:0] DumpAddr = 32'h30004ffc,
-  parameter int unsigned DataWidth = 32
+  parameter logic        [31:0] DumpAddr  = 32'h30004ffc,
+  parameter int unsigned        DataWidth = 32
 ) (
-  input   logic         clk_i,
-  input   logic         rst_ni,
+  input  logic      clk_i,
+  input  logic      rst_ni,
   // From Top
-  output  apb_resp_t    apb_rsp_o,
-  input   apb_req_t     apb_req_i,
+  output apb_resp_t apb_rsp_o,
+  input  apb_req_t  apb_req_i,
   // To Top
-  input  apb_resp_t     apb_rsp_i,
-  output apb_req_t      apb_req_o
+  input  apb_resp_t apb_rsp_i,
+  output apb_req_t  apb_req_o
 );
 
 `ifdef SYNTHESIS
@@ -36,14 +36,14 @@ module apb_dump_msg
   assign dump = apb_req_i.psel && apb_req_i.penable && apb_req_i.pwrite&&
                 (apb_req_i.paddr == DumpAddr);
 
-  always_comb begin: gen_dump
+  always_comb begin : gen_dump
     apb_req_o = apb_req_i;
     apb_rsp_o = apb_rsp_i;
     // Mask teh APB request if targetting the dump address
-    if (dump) begin: gen_mask_req
-      apb_req_o.psel = 1'b0;
+    if (dump) begin : gen_mask_req
+      apb_req_o.psel    = 1'b0;
       apb_req_o.penable = 1'b0;
-      apb_rsp_o.pready = 1'b1;
+      apb_rsp_o.pready  = 1'b1;
     end
   end
 
@@ -53,14 +53,14 @@ module apb_dump_msg
     if (!rst_ni) begin
       // no state
     end else if (dump) begin
-      for (int unsigned i = 0; i < DataWidth/8; i++) begin
+      for (int unsigned i = 0; i < DataWidth / 8; i++) begin
         // Use strobe if present; otherwise always print all bytes.
         if (apb_req_i.pstrb[i]) begin
           logic [7:0] ch;
-          ch = apb_req_i.pwdata[i*8 +: 8];
-          if (ch == 8'h0A) begin: gen_print_newline
+          ch = apb_req_i.pwdata[i*8+:8];
+          if (ch == 8'h0A) begin : gen_print_newline
             $display("");
-          end else begin: gen_print_char
+          end else begin : gen_print_char
             $write("%c", ch);
           end
         end
