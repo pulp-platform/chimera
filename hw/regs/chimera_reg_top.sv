@@ -1185,30 +1185,6 @@ module chimera_reg_top #(
     endcase
   end
 
-  // pragma translate_off
-  // Virtual printf: when software performs an illegal CSR write (addrmiss),
-  // stream the written byte(s) as characters. This makes writes to a dummy
-  // UART sink (e.g., 0x030010F0) appear on the simulator console.
-  always_ff @(posedge clk_i or negedge rst_ni) begin
-    if (!rst_ni) begin
-      // no state
-  end else if (reg_we && addrmiss) begin
-      for (int unsigned i = 0; i < DBW; i++) begin
-        if (reg_be[i]) begin
-          logic [7:0] ch;
-          ch = reg_wdata[i*8 +: 8];
-          // Print character; if newline, terminate line
-          if (ch == 8'h0A) begin
-            $display("");
-          end else begin
-            $write("%c", ch);
-          end
-        end
-      end
-    end
-  end
-  // pragma translate_on
-
   // Unused signal tieoff
 
   // wdata / byte enable are not always fully used

@@ -126,9 +126,10 @@ ExtClusters
 
   // Memory Island
   localparam byte_bt MemIslandIdx = ClusterIdx[ExtClusters-1] + 1;
-  localparam doub_bt MemIslRegionStart = 64'h4800_0000;
   // WIESEP: Address space 512 KiB
-  localparam doub_bt MemIslRegionEnd = MemIslRegionStart + 64'h8_0000;
+  localparam doub_bt MemIslRegionLength = 64'h8_0000;
+  localparam doub_bt MemIslRegionStart = 64'h4800_0000;
+  localparam doub_bt MemIslRegionEnd = MemIslRegionStart + MemIslRegionLength;
 
   // Size of memory island: MemIslNumWideBanks * MemIslNarrowToWideFactor * MemIslWordsPerBank * <BytesPerWord>
   // with BytesPerWord = cfg.AxiDataWidth / 8
@@ -142,9 +143,10 @@ ExtClusters
 
   // Hyperbus
   localparam byte_bt HyperbusIdx = MemIslandIdx + 1;
-  localparam doub_bt HyperbusRegionStart = 64'h8000_0000;
   // WIESEP: Address space 256 MiB
-  localparam doub_bt HyperbusRegionEnd = HyperbusRegionStart + 64'h1000_0000;
+  localparam doub_bt HyperbusRegionLength = 64'h1000_0000;
+  localparam doub_bt HyperbusRegionStart = 64'h8000_0000;
+  localparam doub_bt HyperbusRegionEnd = HyperbusRegionStart + HyperbusRegionLength;
 
   localparam int unsigned HypNumPhys = 1;
   localparam int unsigned HypNumChips = 2;
