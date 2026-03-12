@@ -16,11 +16,10 @@ default:
   before_script:
       # Install python virtual environment
     - source iis-env.sh
-      # Set up environment
-    - export PATH=$RISCV_GCC_BINROOT:$PATH
     - env
 
 stages:
+  - init
   - build
   - test
 
@@ -28,6 +27,25 @@ stages:
   artifacts:
     when: always
     expire_in: 1 week
+
+init-deps:
+  extends: .base
+  stage: init
+  script:
+    # Check out the biggest bender dependencies serially
+    # to avoid rate limiting issues
+    - bender path cheshire
+    - bender path cva6
+    - bender path axi
+    - bender path idma
+    - bender path snitch_cluster
+    - bender path memory_island
+    # Collect bender sourcess
+    - bender checkout
+    # bender checkout sometimes fails,
+  # due to rate limiting of github
+  retry: 1
+
 
 vsim-build:
   extends: .base
