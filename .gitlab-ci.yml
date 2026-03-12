@@ -10,7 +10,6 @@ variables:
   # Enable colors in CI terminal
   TERM: ansi
   FORCE_COLOR: 1
-  VSIM_TESTS: '["testCluster", "testClusterOffload", "testMemBypass", "testPeripheralsGating", "testHyperbusAddr", "testCfgBootAddr"]'
   BINARY_DIR: ./sw/tests
 
 default:
@@ -55,7 +54,13 @@ vsim-test:
   needs: [ vsim-build ]
   parallel:
     matrix:
-      - TESTNAME: ${VSIM_TESTS}
+      - TESTNAME:
+          - testCluster
+          - testClusterOffload
+          - testMemBypass
+          - testPeripheralsGating
+          - testHyperbusAddr
+          - testCfgBootAddr
   script:
     - make chim-run-batch BINARY=$BINARY_DIR/$TESTNAME.memisl.elf VSIM_FLAGS="-l $TESTNAME.transcript"
     - ./scripts/vsim_ret_error.sh $TESTNAME.transcript
