@@ -37,6 +37,8 @@ utils/verible-verilog
 
 # SIM
 
+*trace*.log
+*wave*.do
 target/sim/models
 target/sim/vsim/work
 target/sim/vsim/transcript
