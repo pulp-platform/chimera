@@ -13,6 +13,7 @@ CHIM_SIM_DIR ?= $(CHIM_ROOT)/target/sim
 VSIM_DIR 	?= $(CHIM_ROOT)/target/sim/vsim
 VSIM 			?= vsim
 VSIM_WORK ?= $(VSIM_DIR)/work
+CHIM_HYPERBUS_SDF_PATH ?= ./target/sim/models/s27ks0641/s27ks0641.sdf
 
 CHIM_VLOG_ARGS += -work $(VSIM_WORK)
 CHIM_VLOG_ARGS += -timescale 1ns/1ps
@@ -23,7 +24,9 @@ CHIM_VLOG_ARGS += +define+HYP_USER_PRELOAD="$(HYP_USER_PRELOAD)"
 CHIM_VLOG_ARGS += +define+HYP0_PRELOAD_MEM_FILE=\"$(HYP0_PRELOAD_MEM_FILE)\"
 # this path should be kept relative to the vsim directory to avoid CI issues:
 # an absolute path produce inter-CI-runner file accesses
-CHIM_VLOG_ARGS += +define+PATH_TO_HYP_SDF=\"./target/sim/models/s27ks0641/s27ks0641.sdf\"
+CHIM_VLOG_ARGS += +define+PATH_TO_HYP_SDF=\"$(CHIM_HYPERBUS_SDF_PATH)\"
+
+# CHIM_VLOG_ARGS += +define+PATH_TO_HYP_SDF=\"TEST\"
 
 VSIM_FLAGS_GUI = -voptargs=+acc
 
