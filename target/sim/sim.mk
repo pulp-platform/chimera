@@ -26,8 +26,6 @@ CHIM_VLOG_ARGS += +define+HYP0_PRELOAD_MEM_FILE=\"$(HYP0_PRELOAD_MEM_FILE)\"
 # an absolute path produce inter-CI-runner file accesses
 CHIM_VLOG_ARGS += +define+PATH_TO_HYP_SDF=\"$(CHIM_HYPERBUS_SDF_PATH)\"
 
-# CHIM_VLOG_ARGS += +define+PATH_TO_HYP_SDF=\"TEST\"
-
 VSIM_FLAGS_GUI = -voptargs=+acc
 
 override VSIM_FLAGS += -work $(VSIM_WORK)
