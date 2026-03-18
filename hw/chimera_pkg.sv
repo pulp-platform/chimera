@@ -176,7 +176,7 @@ ExtClusters
     cfg.Usb = 0;
     // LLC Config
     // 64 KiB (8 way-set associative, 128 lines, 64B line size)
-    cfg.LlcNotBypass      = 0;
+    cfg.LlcNotBypass      = 1;
     cfg.LlcOutConnect     = 1;
     cfg.LlcSetAssoc       = 8;
     cfg.LlcNumLines       = 128;
