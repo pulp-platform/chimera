@@ -10,14 +10,14 @@ package:
 
 dependencies:
   register_interface:       { git: "https://github.com/pulp-platform/register_interface.git", version: 0.4.7 }
-  axi:                      { git: "https://github.com/colluca/axi",                          rev: 0df61e9b7c3e7cd62bf8fb7388a3089908e71f89 } # multicast branch
-  cheshire:                 { git: "https://github.com/pulp-platform/cheshire.git",           rev: 4de73074ff29842916f31a0491635b8156f2e653 } # wiesep/chimera-pulp-v2.0.0 branch
-  snitch_cluster:           { git: "https://github.com/pulp-platform/snitch_cluster.git",     rev: 5b2fccd96c42812774c20ab2f9b811e164809789 } # main branch
+  axi:                      { git: "https://github.com/colluca/axi",                          rev: multicast }
+  cheshire:                 { git: "https://github.com/pulp-platform/cheshire.git",           rev: wiesep/chimera-main }
+  snitch_cluster:           { git: "https://github.com/pulp-platform/snitch_cluster.git",     rev: 5b2fccd96c42812774c20ab2f9b811e164809789 } # main branch from 22.09.25 commit "treewide: Bump AXI after rebase"
   common_cells:             { git: "https://github.com/pulp-platform/common_cells.git",       version: 1.39.0 }
   idma:                     { git: "https://github.com/pulp-platform/iDMA.git",               version: 0.6.5 }
-  memory_island:            { git: "https://github.com/pulp-platform/memory_island.git",      rev: d072ba0945adad5ccd0af2d4604abe57c1058252 } # main branch
+  memory_island:            { git: "https://github.com/pulp-platform/memory_island.git",      rev: main }
   apb:                      { git: "https://github.com/pulp-platform/apb.git",                version: 0.2.4 }
-  hyperbus:                 { git: "https://github.com/pulp-platform/hyperbus.git",           rev: 2a14bd8f9a985b488ee23d240764f52f129f7729 } # aottaviano/nonfree branch
+  hyperbus:                 { git: "https://github.com/pulp-platform/hyperbus.git",           version : 0.0.9 }
   tech_cells_generic:       { git: "https://github.com/pulp-platform/tech_cells_generic.git", version: 0.2.12 }
 
 export_include_dirs:

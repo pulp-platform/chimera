@@ -52,7 +52,7 @@ $(CHIM_HW_DIR)/regs/pcr.md: $(CHIM_ROOT)/hw/regs/chimera_regs.hjson
 
 .PHONY: snitch_bootrom
 CHIM_BROM_SRCS = $(wildcard $(CHIM_ROOT)/hw/bootrom/snitch/*.S $(CHIM_ROOT)/hw/bootrom/snitch/*.c) $(CHIM_SW_LIBS)
-CHIM_BROM_FLAGS = $(CHS_SW_LDFLAGS) -Os -fno-zero-initialized-in-bss -flto -fwhole-program -march=rv32im
+CHIM_BROM_FLAGS = $(CHS_SW_LDFLAGS) -Os -fno-zero-initialized-in-bss -flto -fwhole-program -march=rv32im_zicsr -mabi=ilp32
 
 CHIM_BOOTROM_ALL += $(CHIM_ROOT)/hw/bootrom/snitch/snitch_bootrom.sv $(CHIM_ROOT)/hw/bootrom/snitch/snitch_bootrom.dump
 
