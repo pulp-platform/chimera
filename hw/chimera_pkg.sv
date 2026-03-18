@@ -166,19 +166,25 @@ ExtClusters
     chimera_cfg_t  chimera_cfg;
     cheshire_cfg_t cfg = DefaultCfg;
 
+
+    // Configure Cached, In, Execute Regions
+    cfg.Cva6ExtCieBase = MemIslRegionStart;
+    cfg.Cva6ExtCieLength = MemIslRegionLength;
+
     // Global CFG
-
-    // Set all Chimera addresses as uncached
-    cfg.Cva6ExtCieLength = 'h0;
-    cfg.Cva6ExtCieOnTop = 1;
-
     cfg.Vga = 0;
     cfg.SerialLink = 0;
     cfg.Clic = 1;
     cfg.Usb = 0;
-    // SCHEREMO: Fully remove LLC
-    cfg.LlcNotBypass = 0;
-    cfg.LlcOutConnect = 0;
+    // LLC Config
+    // 64 KiB (8 way-set associative, 128 lines, 64B line size)
+    cfg.LlcNotBypass      = 0;
+    cfg.LlcOutConnect     = 0;
+    cfg.LlcSetAssoc       = 8;
+    cfg.LlcNumLines       = 128;
+    cfg.LlcNumBlocks      = 8;
+    cfg.LlcOutRegionStart = 64'h8000_0000;
+    cfg.LlcOutRegionEnd   = 64'h1_0000_0000;
 
     // AXI CFG
     cfg.AxiMstIdWidth = 2;

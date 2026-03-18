@@ -11,7 +11,7 @@ package:
 dependencies:
   register_interface:       { git: "https://github.com/pulp-platform/register_interface.git", version: 0.4.7 }
   axi:                      { git: "https://github.com/colluca/axi",                          rev: 0df61e9b7c3e7cd62bf8fb7388a3089908e71f89 } # multicast branch
-  cheshire:                 { git: "https://github.com/pulp-platform/cheshire.git",           rev: 7e5796c96f03819c8293ac4bb55cfcff481677f5 } # wiesep/chimera-pulp-v2.0.0 branch
+  cheshire:                 { git: "https://github.com/pulp-platform/cheshire.git",           rev: 4de73074ff29842916f31a0491635b8156f2e653 } # wiesep/chimera-pulp-v2.0.0 branch
   snitch_cluster:           { git: "https://github.com/pulp-platform/snitch_cluster.git",     rev: 5b2fccd96c42812774c20ab2f9b811e164809789 } # main branch
   common_cells:             { git: "https://github.com/pulp-platform/common_cells.git",       version: 1.39.0 }
   idma:                     { git: "https://github.com/pulp-platform/iDMA.git",               version: 0.6.5 }
