@@ -141,10 +141,8 @@ ExtClusters
   localparam shrt_bt MemIslWordsPerBank = 1024;
   // WIESEP: Memory Island size = 16 * 2 * 4096 * 32 bit = 512 KB
 
-  // Hyperbus
-  localparam byte_bt HyperbusIdx = MemIslandIdx + 1;
-  // WIESEP: Address space 256 MiB
-  localparam doub_bt HyperbusRegionLength = 64'h1000_0000;
+
+  localparam doub_bt HyperbusRegionLength = 64'h1_0000_0000;
   localparam doub_bt HyperbusRegionStart = 64'h8000_0000;
   localparam doub_bt HyperbusRegionEnd = HyperbusRegionStart + HyperbusRegionLength;
 
@@ -179,12 +177,12 @@ ExtClusters
     // LLC Config
     // 64 KiB (8 way-set associative, 128 lines, 64B line size)
     cfg.LlcNotBypass      = 0;
-    cfg.LlcOutConnect     = 0;
+    cfg.LlcOutConnect     = 1;
     cfg.LlcSetAssoc       = 8;
     cfg.LlcNumLines       = 128;
     cfg.LlcNumBlocks      = 8;
-    cfg.LlcOutRegionStart = 64'h8000_0000;
-    cfg.LlcOutRegionEnd   = 64'h1_0000_0000;
+    cfg.LlcOutRegionStart = HyperbusRegionStart;
+    cfg.LlcOutRegionEnd   = HyperbusRegionEnd;
 
     // AXI CFG
     cfg.AxiMstIdWidth = 2;
@@ -196,12 +194,12 @@ ExtClusters
 
     // SCHEREMO: Two ports for each cluster: one to convert stray wides, one for the original narrow
     cfg.AxiExtNumMst = ExtClusters + $countones(ChimeraClusterCfg.hasWideMasterPort);
-    cfg.AxiExtNumSlv = ExtClusters + MemoryIsland + Hyperbus;
-    cfg.AxiExtNumRules = ExtClusters + MemoryIsland + Hyperbus;
+    cfg.AxiExtNumSlv = ExtClusters + MemoryIsland;
+    cfg.AxiExtNumRules = ExtClusters + MemoryIsland;
 
-    cfg.AxiExtRegionIdx = {HyperbusIdx, MemIslandIdx, ClusterIdx};
-    cfg.AxiExtRegionStart = {HyperbusRegionStart, MemIslRegionStart, ClusterRegionStart};
-    cfg.AxiExtRegionEnd = {HyperbusRegionEnd, MemIslRegionEnd, ClusterRegionEnd};
+    cfg.AxiExtRegionIdx = {MemIslandIdx, ClusterIdx};
+    cfg.AxiExtRegionStart = {MemIslRegionStart, ClusterRegionStart};
+    cfg.AxiExtRegionEnd = {MemIslRegionEnd, ClusterRegionEnd};
 
     // REG CFG
     cfg.RegExtNumSlv = ExtRegNum;

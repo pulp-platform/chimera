@@ -26,8 +26,10 @@ int main() {
 
     // write
     *(hyperMemPtr) = TESTVAL;
+    asm volatile("fence" ::: "memory");
     // read
     result = *(hyperMemPtr);
+    asm volatile("fence" ::: "memory");
 
     // verify
     if (result == TESTVAL) {
