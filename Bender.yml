@@ -11,7 +11,7 @@ package:
 dependencies:
   register_interface:       { git: "https://github.com/pulp-platform/register_interface.git", version: 0.4.3  }
   axi:                      { git: https://github.com/colluca/axi,                            rev: multicast }
-  cheshire:                 { git: "https://github.com/pulp-platform/cheshire.git",           rev: 586cb0225be5c57f5ffcf67bd490763efd9b4d24}
+  cheshire:                 { git: "https://github.com/pulp-platform/cheshire.git",           rev: 1b6ba6294a5925a5dc199b4f98704adb76648ed1}
   snitch_cluster:           { git: "https://github.com/pulp-platform/snitch_cluster.git",     rev: 5b2fccd96c42812774c20ab2f9b811e164809789}
   common_cells:             { git: "https://github.com/pulp-platform/common_cells.git",       version: 1.31.1}
   idma:                     { git: "https://github.com/pulp-platform/iDMA.git",               version: 0.6.5 }
