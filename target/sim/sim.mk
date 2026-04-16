@@ -13,6 +13,7 @@ CHIM_SIM_DIR ?= $(CHIM_ROOT)/target/sim
 VSIM_DIR 	?= $(CHIM_ROOT)/target/sim/vsim
 VSIM 			?= vsim
 VSIM_WORK ?= $(VSIM_DIR)/work
+CHIM_HYPERBUS_SDF_PATH ?= ./target/sim/models/s27ks0641/s27ks0641.sdf
 
 CHIM_VLOG_ARGS += -work $(VSIM_WORK)
 CHIM_VLOG_ARGS += -timescale 1ns/1ps
@@ -23,7 +24,7 @@ CHIM_VLOG_ARGS += +define+HYP_USER_PRELOAD="$(HYP_USER_PRELOAD)"
 CHIM_VLOG_ARGS += +define+HYP0_PRELOAD_MEM_FILE=\"$(HYP0_PRELOAD_MEM_FILE)\"
 # this path should be kept relative to the vsim directory to avoid CI issues:
 # an absolute path produce inter-CI-runner file accesses
-CHIM_VLOG_ARGS += +define+PATH_TO_HYP_SDF=\"./target/sim/models/s27ks0641/s27ks0641.sdf\"
+CHIM_VLOG_ARGS += +define+PATH_TO_HYP_SDF=\"$(CHIM_HYPERBUS_SDF_PATH)\"
 
 VSIM_FLAGS_GUI = -voptargs=+acc
 
@@ -44,10 +45,9 @@ $(eval $(call add_vsim_flag,IMAGE))
 
 # Init vsim compilation
 .PHONY: chim-sim chim-compile chim-run chim-run-batch
-chim-sim: chim-hyperram-model chim-compile $(CHIM_ALL) ## Compile Chimera SoC
+chim-sim: chim-hyperram-model chs-sim-all chim-compile ## Compile Chimera SoC
 
-# Get HyperRAM verification IP (VIP) for simulation
-.PHONY: chim-hyperram-model
+.PHONY: chim-hyperram-model ## Get HypperRAM VIP for simulation
 chim-hyperram-model: $(CHIM_SIM_DIR)/models/s27ks0641/s27ks0641.sv
 $(CHIM_SIM_DIR)/models/s27ks0641/s27ks0641.sv:
 	make -C $(HYPERB_ROOT) models/s27ks0641
@@ -61,7 +61,7 @@ HYP0_PRELOAD_MEM_FILE ?= ""
 
 # Generate vsim compilation script
 $(CHIM_SIM_DIR)/vsim/compile.tcl: $(BENDER_YML) $(BENDER_LOCK)
-	@bender script vsim $(SIM_TARGS) --vlog-arg="$(CHIM_VLOG_ARGS)" > $@
+	$(BENDER) script vsim $(SIM_TARGS) --vlog-arg="$(CHIM_VLOG_ARGS)" > $@
 	echo 'vlog -work $(VSIM_WORK) "$(realpath $(CHS_ROOT))/target/sim/src/elfloader.cpp" -ccflags "-std=c++11"' >> $@
 
 # Compiler the design

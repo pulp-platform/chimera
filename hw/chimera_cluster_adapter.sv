@@ -13,6 +13,9 @@ module chimera_cluster_adapter #(
   parameter int WidePassThroughRegionStart = '0,
   // End address of Memory Island
   parameter int WidePassThroughRegionEnd   = '0,
+  // Add AXI CDC between the cluster and SoC,
+  // When this parameter is disabled, you must ensure clu_clk_i = soc_clk_i
+  parameter bit EnAxiCdc                   = 1'b0,
 
   parameter type narrow_in_req_t   = logic,
   parameter type narrow_in_resp_t  = logic,
@@ -330,71 +333,92 @@ module chimera_cluster_adapter #(
     .mst_resp_i(axi_from_cluster_wide_resp)
   );
 
-  // AXI Narrow CDC from SoC to Cluster
+  // Choose carefully if you need or not AXI CDC.
+  // If so, check the FIFO_DEPTH and SYNC_STAGES parameters in axi_cdc.
+  // They have to be set consciously not to limit the bandwidth.
+  if (EnAxiCdc) begin : gen_axi_cdcs
+    // AXI Narrow CDC from SoC to Cluster
+    axi_cdc #(
+      .aw_chan_t (axi_narrow_soc_in_aw_chan_t),
+      .w_chan_t  (axi_narrow_soc_in_w_chan_t),
+      .b_chan_t  (axi_narrow_soc_in_b_chan_t),
+      .ar_chan_t (axi_narrow_soc_in_ar_chan_t),
+      .r_chan_t  (axi_narrow_soc_in_r_chan_t),
+      .axi_req_t (narrow_in_req_t),
+      .axi_resp_t(narrow_in_resp_t),
+      .LogDepth  (3),
+      .SyncStages(2)
+    ) narrow_slv_cdc (
+      .src_clk_i (soc_clk_i),
+      .src_rst_ni(rst_ni),
+      .src_req_i (narrow_in_req_i),
+      .src_resp_o(narrow_in_resp_o),
 
-  axi_cdc #(
-    .aw_chan_t (axi_narrow_soc_in_aw_chan_t),
-    .w_chan_t  (axi_narrow_soc_in_w_chan_t),
-    .b_chan_t  (axi_narrow_soc_in_b_chan_t),
-    .ar_chan_t (axi_narrow_soc_in_ar_chan_t),
-    .r_chan_t  (axi_narrow_soc_in_r_chan_t),
-    .axi_req_t (narrow_in_req_t),
-    .axi_resp_t(narrow_in_resp_t)
-  ) narrow_slv_cdc (
-    .src_clk_i (soc_clk_i),
-    .src_rst_ni(rst_ni),
-    .src_req_i (narrow_in_req_i),
-    .src_resp_o(narrow_in_resp_o),
+      .dst_clk_i (clu_clk_i),
+      .dst_rst_ni(rst_ni),
+      .dst_req_o (axi_to_cluster_narrow_req),
+      .dst_resp_i(axi_to_cluster_narrow_resp)
+    );
 
-    .dst_clk_i (clu_clk_i),
-    .dst_rst_ni(rst_ni),
-    .dst_req_o (axi_to_cluster_narrow_req),
-    .dst_resp_i(axi_to_cluster_narrow_resp)
-  );
+    // AXI Narrow CDC from Cluster to SoC
 
-  // AXI Narrow CDC from Cluster to SoC
+    axi_cdc #(
+      .aw_chan_t (axi_narrow_soc_out_aw_chan_t),
+      .w_chan_t  (axi_narrow_soc_out_w_chan_t),
+      .b_chan_t  (axi_narrow_soc_out_b_chan_t),
+      .ar_chan_t (axi_narrow_soc_out_ar_chan_t),
+      .r_chan_t  (axi_narrow_soc_out_r_chan_t),
+      .axi_req_t (narrow_out_req_t),
+      .axi_resp_t(narrow_out_resp_t),
+      .LogDepth  (3),
+      .SyncStages(2)
+    ) narrow_mst_cdc (
+      .src_clk_i (clu_clk_i),
+      .src_rst_ni(rst_ni),
+      .src_req_i (axi_from_cluster_narrow_req),
+      .src_resp_o(axi_from_cluster_narrow_resp),
 
-  axi_cdc #(
-    .aw_chan_t (axi_narrow_soc_out_aw_chan_t),
-    .w_chan_t  (axi_narrow_soc_out_w_chan_t),
-    .b_chan_t  (axi_narrow_soc_out_b_chan_t),
-    .ar_chan_t (axi_narrow_soc_out_ar_chan_t),
-    .r_chan_t  (axi_narrow_soc_out_r_chan_t),
-    .axi_req_t (narrow_out_req_t),
-    .axi_resp_t(narrow_out_resp_t)
-  ) narrow_mst_cdc (
-    .src_clk_i (clu_clk_i),
-    .src_rst_ni(rst_ni),
-    .src_req_i (axi_from_cluster_narrow_req),
-    .src_resp_o(axi_from_cluster_narrow_resp),
+      .dst_clk_i (soc_clk_i),
+      .dst_rst_ni(rst_ni),
+      .dst_req_o (narrow_out_req_o[0]),
+      .dst_resp_i(narrow_out_resp_i[0])
+    );
 
-    .dst_clk_i (soc_clk_i),
-    .dst_rst_ni(rst_ni),
-    .dst_req_o (narrow_out_req_o[0]),
-    .dst_resp_i(narrow_out_resp_i[0])
-  );
+    // AXI Wide CDC from Cluster to SoC
 
-  // AXI Wide CDC from Cluster to SoC
+    axi_cdc #(
+      .aw_chan_t (axi_wide_clu_out_aw_chan_t),
+      .w_chan_t  (axi_wide_clu_out_w_chan_t),
+      .b_chan_t  (axi_wide_clu_out_b_chan_t),
+      .ar_chan_t (axi_wide_clu_out_ar_chan_t),
+      .r_chan_t  (axi_wide_clu_out_r_chan_t),
+      .axi_req_t (wide_out_req_t),
+      .axi_resp_t(wide_out_resp_t),
+      .LogDepth  (3),
+      .SyncStages(2)
+    ) wide_mst_cdc (
+      .src_clk_i (clu_clk_i),
+      .src_rst_ni(rst_ni),
+      .src_req_i (axi_from_cluster_wide_req),
+      .src_resp_o(axi_from_cluster_wide_resp),
 
-  axi_cdc #(
-    .aw_chan_t (axi_wide_clu_out_aw_chan_t),
-    .w_chan_t  (axi_wide_clu_out_w_chan_t),
-    .b_chan_t  (axi_wide_clu_out_b_chan_t),
-    .ar_chan_t (axi_wide_clu_out_ar_chan_t),
-    .r_chan_t  (axi_wide_clu_out_r_chan_t),
-    .axi_req_t (wide_out_req_t),
-    .axi_resp_t(wide_out_resp_t)
-  ) wide_mst_cdc (
-    .src_clk_i (clu_clk_i),
-    .src_rst_ni(rst_ni),
-    .src_req_i (axi_from_cluster_wide_req),
-    .src_resp_o(axi_from_cluster_wide_resp),
+      .dst_clk_i (soc_clk_i),
+      .dst_rst_ni(rst_ni),
+      .dst_req_o (axi_from_cluster_wide_premux_req),
+      .dst_resp_i(axi_from_cluster_wide_premux_resp)
+    );
 
-    .dst_clk_i (soc_clk_i),
-    .dst_rst_ni(rst_ni),
-    .dst_req_o (axi_from_cluster_wide_premux_req),
-    .dst_resp_i(axi_from_cluster_wide_premux_resp)
-  );
+  end else begin : gen_no_axi_cdcs
+    // Direct connections if no CDC is needed
+    assign narrow_in_resp_o                 = axi_to_cluster_narrow_resp;
+    assign axi_to_cluster_narrow_req        = narrow_in_req_i;
+
+    assign narrow_out_req_o[0]              = axi_from_cluster_narrow_req;
+    assign axi_from_cluster_narrow_resp     = narrow_out_resp_i[0];
+
+    assign axi_from_cluster_wide_premux_req = axi_from_cluster_wide_req;
+    assign axi_from_cluster_wide_resp       = axi_from_cluster_wide_premux_resp;
+  end
 
   // Validate parameters
 `ifndef VERILATOR

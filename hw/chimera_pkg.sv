@@ -30,6 +30,7 @@ package chimera_pkg;
     logic [iomsb(ExtClusters):0]          hasWideMasterPort;
     byte_bt [iomsb(ExtClusters):0]        NrCores;
     cluster_type_e [iomsb(ExtClusters):0] ClusterType;
+    logic [iomsb(ExtClusters):0]          EnAxiCdc;
   } cluster_config_t;
 
   // For each instantiated cluster, you need to specify three parameters:
@@ -40,7 +41,8 @@ package chimera_pkg;
   localparam cluster_config_t ChimeraClusterCfg = '{
       hasWideMasterPort: {1'b1, 1'b1, 1'b1, 1'b1, 1'b1},
       NrCores: {8'h9, 8'h9, 8'h9, 8'h9, 8'h9},
-      ClusterType: {SNITCH, SNITCH, SNITCH, SNITCH, SNITCH}
+      ClusterType: {SNITCH, SNITCH, SNITCH, SNITCH, SNITCH},
+      EnAxiCdc: {1'b1, 1'b1, 1'b1, 1'b1, 1'b1}
   };
 
   function automatic int _sumVector(byte_bt [iomsb(ExtClusters):0] vector, int vectorLen);
@@ -124,21 +126,27 @@ ExtClusters
 
   // Memory Island
   localparam byte_bt MemIslandIdx = ClusterIdx[ExtClusters-1] + 1;
+  // WIESEP: Address space 512 KiB
+  localparam doub_bt MemIslRegionLength = 64'h8_0000;
   localparam doub_bt MemIslRegionStart = 64'h4800_0000;
-  localparam doub_bt MemIslRegionEnd = 64'h4804_0000;
+  localparam doub_bt MemIslRegionEnd = MemIslRegionStart + MemIslRegionLength;
 
+  // Size of memory island: MemIslNumWideBanks * MemIslNarrowToWideFactor * MemIslWordsPerBank * <BytesPerWord>
+  // with BytesPerWord = cfg.AxiDataWidth / 8
   localparam aw_bt MemIslAxiMstIdWidth = 1;
-  localparam byte_bt MemIslNarrowToWideFactor = 4;
+  localparam byte_bt MemIslNarrowToWideFactor = 16;  // 32 bit (narrow) vs. 512 bit (wide)
   localparam byte_bt MemIslNarrowPorts = 1;
   localparam byte_bt MemIslWidePorts = $countones(ChimeraClusterCfg.hasWideMasterPort);
   localparam byte_bt MemIslNumWideBanks = 2;
   localparam shrt_bt MemIslWordsPerBank = 1024;
+  // WIESEP: Memory Island size = 16 * 2 * 4096 * 32 bit = 512 KB
 
   // Hyperbus
   localparam byte_bt HyperbusIdx = MemIslandIdx + 1;
-  localparam doub_bt HyperbusRegionStart = 64'h5000_0000;
-  //TODO(smazzola): Correct size of HyperRAM?
-  localparam doub_bt HyperbusRegionEnd = HyperbusRegionStart + 64'h1000_0000;
+  // WIESEP: Address space 256 MiB
+  localparam doub_bt HyperbusRegionLength = 64'h1000_0000;
+  localparam doub_bt HyperbusRegionStart = 64'h8000_0000;
+  localparam doub_bt HyperbusRegionEnd = HyperbusRegionStart + HyperbusRegionLength;
 
   localparam int unsigned HypNumPhys = 1;
   localparam int unsigned HypNumChips = 2;
@@ -173,7 +181,7 @@ ExtClusters
     // AXI CFG
     cfg.AxiMstIdWidth = 2;
     cfg.AxiDataWidth = 32;
-    cfg.AddrWidth = 32;
+    cfg.AddrWidth = 48;
     cfg.LlcOutRegionEnd = 'hFFFF_FFFF;
 
     cfg.AxiExtNumWideMst = $countones(ChimeraClusterCfg.hasWideMasterPort);

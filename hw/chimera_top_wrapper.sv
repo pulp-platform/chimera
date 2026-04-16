@@ -122,6 +122,10 @@ module chimera_top_wrapper
   logic [iomsb(ChsCfg.NumExtDbgHarts):0] dbg_ext_req;
   logic [iomsb(ChsCfg.NumExtDbgHarts):0] dbg_ext_unavail;
 
+  // Logic signals to APB dump mdoule
+  apb_req_t apb_to_dump_req;
+  apb_resp_t apb_from_dump_rsp;
+
   // ---------------------------------------
   // |         Cheshire SoC                |
   // ---------------------------------------
@@ -133,9 +137,6 @@ module chimera_top_wrapper
     .axi_ext_llc_rsp_t(axi_mst_rsp_t),
     .axi_ext_mst_req_t(axi_mst_req_t),
     .axi_ext_mst_rsp_t(axi_mst_rsp_t),
-    // lleone: TODO: remove from here
-    // .axi_ext_wide_mst_req_t(axi_wide_mst_req_t),
-    // .axi_ext_wide_mst_rsp_t(axi_wide_mst_rsp_t),
     .axi_ext_slv_req_t(axi_slv_req_t),
     .axi_ext_slv_rsp_t(axi_slv_rsp_t),
     .reg_ext_req_t    (reg_req_t),
@@ -240,6 +241,15 @@ module chimera_top_wrapper
     .rst_ni   (rst_ni),
     .reg_req_i(reg_slv_req[ExtCfgRegsIdx]),
     .reg_rsp_o(reg_slv_rsp[ExtCfgRegsIdx]),
+    .apb_req_o(apb_to_dump_req),
+    .apb_rsp_i(apb_from_dump_rsp)
+  );
+
+  apb_dump_msg i_apb_dump_msg (
+    .clk_i    (soc_clk_i),
+    .rst_ni   (rst_ni),
+    .apb_rsp_o(apb_from_dump_rsp),
+    .apb_req_i(apb_to_dump_req),
     .apb_req_o(apb_req_o),
     .apb_rsp_i(apb_rsp_i)
   );
@@ -315,7 +325,11 @@ module chimera_top_wrapper
   };
 
   logic [ExtClusters-1:0] cluster_clock_gate_en;
-  logic [ExtClusters-1:0] clu_clk_gated;
+  // This is the enable clk gate, i.e.
+  // - enable = 1 -> clock is gated (off)
+  // - enable = 0 -> clock is running (on)
+  // It will be used to drive the actual clk eneable signal in each cluster.
+  // For this reason it's inverted when connected to the cluster.
   assign cluster_clock_gate_en = {
     reg2hw.cluster_4_clk_gate_en,
     reg2hw.cluster_3_clk_gate_en,
@@ -324,14 +338,6 @@ module chimera_top_wrapper
     reg2hw.cluster_0_clk_gate_en
   };
 
-  for (genvar extClusterIdx = 0; extClusterIdx < ExtClusters; extClusterIdx++) begin : gen_clk_gates
-    tc_clk_gating i_cluster_clk_gate (
-      .clk_i    (clu_clk_i),
-      .en_i     (~cluster_clock_gate_en[extClusterIdx]),
-      .test_en_i(1'b0),
-      .clk_o    (clu_clk_gated[extClusterIdx])
-    );
-  end
 
   logic [ExtClusters-1:0] cluster_rst_n;
   logic [ExtClusters-1:0] cluster_soft_rst_n;
@@ -363,8 +369,9 @@ module chimera_top_wrapper
     .wide_out_resp_t  (axi_wide_mst_rsp_t)
   ) i_cluster_domain (
     .soc_clk_i        (soc_clk_i),
-    .clu_clk_i        (clu_clk_gated),
+    .clu_clk_i        (clu_clk_i),
     .rst_ni           (cluster_rst_n),
+    .clu_clk_en_i     (~cluster_clock_gate_en),
     .widemem_bypass_i (wide_mem_bypass_mode),
     .boot_addr_i      (reg2hw.snitch_configurable_boot_addr.q),
     .debug_req_i      (dbg_ext_req),

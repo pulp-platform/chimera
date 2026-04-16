@@ -16,16 +16,20 @@ VERIBLE_VERILOG_FORMAT ?= $(CHIM_UTILS_DIR)/verible-verilog/verible-verilog-form
 # This avoids running `bender checkout` at every make command
 ifeq ($(shell test -d $(CHIM_ROOT)/.bender || echo 1),)
 CHS_ROOT    ?= $(shell $(BENDER) path cheshire)
-SNITCH_ROOT ?= $(shell $(BENDER) path snitch_cluster)
+SN_ROOT 		?= $(shell $(BENDER) path snitch_cluster)
 IDMA_ROOT   ?= $(shell $(BENDER) path idma)
 HYPERB_ROOT ?= $(shell $(BENDER) path hyperbus)
 endif
 
 # Fall back to safe defaults if dependencies are not cloned yet
 CHS_ROOT    ?= .
-SNITCH_ROOT ?= .
+SN_ROOT ?= .
 IDMA_ROOT   ?= .
 HYPERB_ROOT ?= .
+
+# Use the default snitch cluster cfg. For the moment chimera
+# does not use the snitch_cluster_wrapper feature but we need to generate some files.
+SN_CFG = $(SN_ROOT)/cfg/default.json
 
 # Bender prerequisites
 BENDER_YML = $(CHIM_ROOT)/Bender.yml
@@ -51,22 +55,24 @@ dvt_flist:
 	mkdir -p .dvt
 	$(BENDER) script flist-plus $(COMMON_TARGS) $(SIM_TARGS) > .dvt/default.build
 
-python-venv: .venv
+python-venv: .venv ## Create a Python virtual environment
 .venv:
 	$(BASE_PYTHON) -m venv $@
 	. $@/bin/activate && \
-	python -m pip install --upgrade pip setuptools && \
-	python -m pip install --cache-dir $(PIP_CACHE_DIR) -r requirements.txt
+	python -m pip install --cache-dir $(PIP_CACHE_DIR) .
+
+python-venv-clean: ## Clean Python virtual environment
+	rm -rf .venv
 
 #################
 # Documentation #
 #################
 
-.PHONY: help
+.PHONY: help h
 
 Black=\033[0m
 Green=\033[1;32m
-help: ## Show an overview of all Makefile targets.
+help h: ## Show an overview of all Makefile targets.
 	@echo -e "Makefile ${Green}targets${Black} for chimera"
 	@echo -e "Use 'make <target>' where <target> is one of:"
 	@echo -e ""
