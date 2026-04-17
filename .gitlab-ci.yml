@@ -40,6 +40,9 @@ init-deps:
     - bender path idma
     - bender path snitch_cluster
     - bender path memory_island
+    # Pre-init cheshire's large submodules serially to avoid rate limiting
+    - git -C "$(bender path cheshire)" submodule update --init sw/deps/cva6-sdk
+    - git -C "$(bender path cheshire)" submodule update --init sw/deps/printf
     # Collect bender sourcess
     - bender checkout
     # bender checkout sometimes fails,
