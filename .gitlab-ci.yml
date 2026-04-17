@@ -67,11 +67,12 @@ vsim-build:
   extends:
     - .base
     - .cache-deps
+    - init-deps
   stage: build
   needs:
     - init-deps
   script:
-    - ls -ld .bender idma cheshire || true
+    - bender checkout
     # Build hardware
     - make chs-hw-init
     - make sn-hw-all
