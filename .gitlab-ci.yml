@@ -71,6 +71,7 @@ vsim-build:
   needs:
     - init-deps
   script:
+    - ls -ld .bender idma cheshire || true
     # Build hardware
     - make chs-hw-init
     - make sn-hw-all
