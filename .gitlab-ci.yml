@@ -50,9 +50,8 @@ init-deps:
 vsim-build:
   extends: .base
   stage: build
+  needs: [init-deps]
   script:
-    # Checkout dependencies
-    - bender checkout
     # Build hardware
     - make chs-hw-init
     - make sn-hw-all
