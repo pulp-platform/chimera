@@ -10,7 +10,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - `hw`: Add configurable CDC cut removal between SoC and clusters. Clock gating pushed into cluster domain.
 - `hw`: Add `apb_dump_msg` module for APB-based fast printf support in simulation.
-- `hw`: Add simulation waveform scripts (`waves.tcl`, `run.tcl`).
 - `ci`: Add GitLab CI configuration for open repository with bender dependency stage.
 - `sw`: Add `pyproject.toml`, replace `requirements.txt` with proper Python packaging.
 

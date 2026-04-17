@@ -28,6 +28,16 @@ stages:
     when: always
     expire_in: 1 week
 
+# Pull the cached bender checkout
+.cache-deps:
+  cache: &global_cache
+    key:
+      files:
+        - Bender.lock
+    paths:
+      - .bender
+    policy: pull
+
 init-deps:
   extends: .base
   stage: init
@@ -40,18 +50,28 @@ init-deps:
     - bender path idma
     - bender path snitch_cluster
     - bender path memory_island
+    # Pre-init cheshire's large submodules serially to avoid rate limiting
+    - git -C "$(bender path cheshire)" submodule update --init sw/deps/cva6-sdk
+    - git -C "$(bender path cheshire)" submodule update --init sw/deps/printf
     # Collect bender sourcess
     - bender checkout
     # bender checkout sometimes fails,
-  # due to rate limiting of github
+  cache:
+    <<: *global_cache
+    policy: pull-push
+    # due to rate limiting of github
   retry: 1
 
 
 vsim-build:
-  extends: .base
+  extends:
+    - .base
+    - .cache-deps
+    - init-deps
   stage: build
+  needs:
+    - init-deps
   script:
-    # Checkout dependencies
     - bender checkout
     # Build hardware
     - make chs-hw-init
@@ -67,7 +87,9 @@ vsim-build:
     expire_in: 3 days
 
 vsim-test:
-  extends: .base
+  extends:
+    - .base
+    - .cache-deps
   stage: test
   needs: [ vsim-build ]
   parallel:
