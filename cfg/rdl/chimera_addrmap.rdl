@@ -1,0 +1,50 @@
+// Copyright 2024 ETH Zurich and University of Bologna.
+// Solderpad Hardware License, Version 0.51, see LICENSE for details.
+// SPDX-License-Identifier: SHL-0.51
+//
+// Chimera global SoC address map, in SystemRDL. Single source of truth for the
+// region layout previously duplicated by hand across hw/chimera_pkg.sv and
+// sw/include/soc_addr_map.h. Render with peakrdl (see rdl.mk):
+//   - Markdown address-map table (docs)
+//   - C / SV headers of region base addresses
+//
+// The per-cluster window instantiates the snitch_cluster address map shipped by
+// the snitch_cluster dependency (hw/generated/snitch_cluster.rdl), so the SoC map
+// contains the real cluster internals (TCDM, bootrom, peripheral regs, zeromem)
+// rather than an opaque block. peakrdl resolves it via the -I dirs in rdl.mk.
+
+`include "snitch_cluster.rdl"
+`include "chimera_soc_regs.rdl"
+
+addrmap chimera_addrmap #(
+    longint unsigned NrClusters    = 5,
+    longint unsigned ClusterStride = 0x200000    // 2 MiB per cluster window
+) {
+    name = "Chimera SoC Address Map";
+    desc = "Top-level physical address map of the Chimera SoC (host regs, Snitch
+            clusters, memory island and HyperBus).";
+
+    // --- Peripheral / config region (0x3000_0000 .. 0x3000_6000) ---
+    external mem { mementries = 0x400;  memwidth = 32;
+        desc = "Snitch cluster bootrom (4 KiB)"; } snitch_bootrom @ 0x30000000;
+
+    external chimera_soc_regs #(.NrClusters(NrClusters)) soc_ctrl @ 0x30001000;
+
+    external mem { mementries = 0xC00;  memwidth = 32;
+        desc = "External config regs (PADs / FLLs / PMU via APB, 12 KiB)"; } ext_cfg_regs @ 0x30002000;
+
+    external mem { mementries = 0x400;  memwidth = 32;
+        desc = "HyperBus configuration registers (4 KiB)"; } hyperbus_cfg @ 0x30005000;
+
+    // --- Snitch clusters: NrClusters windows of ClusterStride each ---
+    // Real per-cluster map from the snitch_cluster dependency.
+    snitch_cluster cluster[NrClusters] @ 0x40000000 += ClusterStride;
+
+    // --- Shared memory island (512 KiB) ---
+    external mem { mementries = 0x20000; memwidth = 32;
+        desc = "Shared multi-banked memory island (512 KiB)"; } mem_island @ 0x48000000;
+
+    // --- Off-chip HyperRAM (4 GiB window) ---
+    external mem { mementries = 0x40000000; memwidth = 32;
+        desc = "Off-chip HyperRAM via HyperBus (4 GiB window)"; } hyperram @ 0x80000000;
+};

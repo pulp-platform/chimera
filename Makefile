@@ -42,6 +42,7 @@ CHIM_SW_DIR ?= $(CHIM_ROOT)/sw
 
 -include $(CHS_ROOT)/cheshire.mk
 -include $(CHIM_ROOT)/chimera.mk
+-include $(CHIM_ROOT)/rdl.mk
 
 ########
 # MISC #
