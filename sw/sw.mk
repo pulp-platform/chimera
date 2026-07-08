@@ -103,8 +103,7 @@ chim-test-configure: ## Configure chimera-sdk for RTL-sim testing (registers cte
 # exercises freshly-compiled ELFs (correct per-target ISA/ABI from the SDK).
 chim-test: chim-test-configure chim-sw-build ## Build + run the SoC test suite (pytest); VERBOSE=1 for live output
 	$(PYTEST) $(CHIM_ROOT)/test \
-		--build-dir $(CHIM_SDK_BUILD_DIR) \
-		--junitxml=$(CHIM_ROOT)/chim-test-report.xml $(CHIM_TEST_FLAGS)
+		--build-dir $(CHIM_SDK_BUILD_DIR) $(CHIM_TEST_FLAGS)
 
 chim-test-ctest: ## Run the SoC test suite directly via ctest (no pytest)
 	ctest --test-dir $(CHIM_SDK_BUILD_DIR) --output-on-failure $(CTEST_EXTRA)
