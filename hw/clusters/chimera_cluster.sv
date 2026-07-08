@@ -8,6 +8,7 @@
 module chimera_cluster
   import chimera_pkg::*;
   import cheshire_pkg::*;
+  import snitch_cluster_pkg::*;
 #(
   parameter chimera_cfg_t Cfg = '0,
 

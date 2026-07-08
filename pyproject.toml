@@ -24,7 +24,8 @@ dependencies = [
   "flatdict",
   "json5",
   "peakrdl",
-  "peakrdl-rawheader",
+  # The version of the snitch cluster relies on the rawheader 0.1
+  "peakrdl-rawheader==0.1.3",
   "peakrdl-markdown",
   # Provides pkg_resources, needed by the lowRISC reggen regtool.py used for
   # iDMA/Cheshire RTL generation. A pip venv bundled it implicitly; uv does not.
