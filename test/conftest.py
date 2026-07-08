@@ -28,7 +28,7 @@ DEFAULT_BUILD_DIR = CHIM_ROOT / "sw" / "deps" / "chimera-sdk" / "build"
 # Some cluster tests are legitimately slow in RTL simulation (a single global
 # timeout can't fit both a ~30s host test and a multi-minute cluster test).
 SIM_TIMEOUT_OVERRIDES = {
-    "test_snitchCluster_snrt": 1200,  # host-forwarded syscall printf: ~14 min in RTL
+    "test_snitchCluster_snrt": 3000,  # host-forwarded syscall printf: slowest test in RTL
     "test_snitchCluster_matmul": 900,  # compute kernel
     "test_snitchCluster_offloadAll_unified": 900,  # offloading all clusters, ~10 min in RTL
 }
