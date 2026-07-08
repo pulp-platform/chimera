@@ -23,7 +23,7 @@ gen_idma_hw:
 CHS_SW_LD_DIR = $(CHIM_ROOT)/sw/link
 
 .PHONY: chs-hw-init
-chs-hw-init: update_plic gen_idma_hw $(CHIM_SW_LIB) ## Generate Cheshire RTL
+chs-hw-init: update_plic gen_idma_hw ## Generate Cheshire RTL
 	make -B chs-hw-all CHS_XLEN=$(CHS_XLEN) CHS_SW_LD_DIR=$(CHS_SW_LD_DIR)
 
 ##################
@@ -51,7 +51,7 @@ $(CHIM_HW_DIR)/regs/pcr.md: $(CHIM_ROOT)/hw/regs/chimera_regs.hjson
 
 
 .PHONY: snitch_bootrom
-CHIM_BROM_SRCS = $(wildcard $(CHIM_ROOT)/hw/bootrom/snitch/*.S $(CHIM_ROOT)/hw/bootrom/snitch/*.c) $(CHIM_SW_LIBS)
+CHIM_BROM_SRCS = $(wildcard $(CHIM_ROOT)/hw/bootrom/snitch/*.S $(CHIM_ROOT)/hw/bootrom/snitch/*.c)
 CHIM_BROM_FLAGS = $(CHS_SW_LDFLAGS) -Os -fno-zero-initialized-in-bss -flto -fwhole-program -march=rv32im_zicsr -mabi=ilp32
 
 CHIM_BOOTROM_ALL += $(CHIM_ROOT)/hw/bootrom/snitch/snitch_bootrom.sv $(CHIM_ROOT)/hw/bootrom/snitch/snitch_bootrom.dump
@@ -78,7 +78,7 @@ $(CHIM_ROOT)/hw/regs/chimera_reg_pkg.sv $(CHIM_ROOT)/hw/regs/chimera_reg_top.sv:
 
 -include $(CHIM_ROOT)/bender.mk
 
-# Necessary to build libchimera.a for bootrom.elf
+# Provides the Snitch bootrom include paths + flags (sw/include, march/ABI)
 -include $(CHIM_ROOT)/sw/sw.mk
 
 # Include subdir Makefiles

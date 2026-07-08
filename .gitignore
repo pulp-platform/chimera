@@ -7,7 +7,9 @@ idma
 hyperbus
 snitch_cluster
 .cache
-deps/
+# Bender checks its dependencies out into the repo-root deps/ only; anchor so it
+# does not also ignore committed paths like sw/deps/chimera-sdk (the SDK submodule).
+/deps/
 *.OLD
 *.egg-info/
 *compile.log
@@ -42,6 +44,7 @@ utils/verible-verilog
 *wave*.do
 target/sim/models
 target/sim/vsim/work
+target/sim/vsim/runs
 target/sim/vsim/transcript
 target/sim/vsim/*.do
 target/sim/vsim/trace*
@@ -54,3 +57,19 @@ vsim.wlf
 
 nonfree/
 working_dir/
+
+# GENERATED (SystemRDL / peakrdl)
+
+.generated/
+docs/addressmap.md
+
+# TEST / PROFILING ARTIFACTS
+
+chim-test-report.xml
+gmon.out
+
+# CONTAINERS
+
+# Auto-pulled toolchain images (see scripts/sdk_container.sh); never commit them.
+*.sif
+.cache/containers/

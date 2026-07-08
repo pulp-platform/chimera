@@ -46,20 +46,19 @@ CHIM_SW_DIR ?= $(CHIM_ROOT)/sw
 ########
 # MISC #
 ########
-BASE_PYTHON ?= python
-PIP_CACHE_DIR ?= $(CHIM_ROOT)/.cache/pip
+UV ?= uv
+# Keep the uv cache on the (writable, large) repo scratch, not $HOME (small IIS quota).
+export UV_CACHE_DIR ?= $(CHIM_ROOT)/.cache/uv
 
-.PHONY: dvt-flist pythomn-venv python-venv-clean
+.PHONY: dvt-flist python-venv python-venv-clean
 
 dvt_flist:
 	mkdir -p .dvt
 	$(BENDER) script flist-plus $(COMMON_TARGS) $(SIM_TARGS) > .dvt/default.build
 
-python-venv: .venv ## Create a Python virtual environment
+python-venv: .venv ## Create the Python virtual environment (uv)
 .venv:
-	$(BASE_PYTHON) -m venv $@
-	. $@/bin/activate && \
-	python -m pip install --cache-dir $(PIP_CACHE_DIR) .
+	$(UV) sync
 
 python-venv-clean: ## Clean Python virtual environment
 	rm -rf .venv

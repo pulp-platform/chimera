@@ -16,10 +16,10 @@ export CXX=/usr/pack/gcc-11.2.0-af/linux-x64/bin/g++
 export CMAKE=cmake-3.28.3
 export SN_LLVM_BINROOT=/usr/scratch2/vulcano/colluca/tools/riscv32-snitch-llvm-almalinux8-15.0.0-snitch-0.2.0/bin
 
-# Create the python venv
-if [ ! -d ".venv" ]; then
-  make python-venv
-fi
+# Python environment via uv. Keep the uv cache on the (writable, large) repo
+# scratch rather than $HOME (small IIS quota).
+export UV_CACHE_DIR="${UV_CACHE_DIR:-$(pwd)/.cache/uv}"
+uv sync --locked
 
 # Activate the python venv only if not already active
 if [ -z "$VIRTUAL_ENV" ] || [ "$VIRTUAL_ENV" != "$(realpath .venv)" ]; then

@@ -1,0 +1,13 @@
+{
+    "configurations": [
+        {
+            "name": "chimera-sdk",
+            "compileCommands": "${workspaceFolder}/sw/deps/chimera-sdk/build/compile_commands.json",
+            "compilerPath": "/usr/pack/llvm-17.0.6-af/bin/clang",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "linux-clang-x64"
+        }
+    ],
+    "version": 4
+}
