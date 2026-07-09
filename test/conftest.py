@@ -78,6 +78,15 @@ def _discover_ctest_tests(build_dir: str):
         return []
 
 
+def _test_markers(name):
+    """host/cluster marks so `pytest -m host` / `pytest -m cluster` select subsets."""
+    if "snitchCluster" in name:
+        return [pytest.mark.cluster]
+    if "host" in name:
+        return [pytest.mark.host]
+    return []
+
+
 def pytest_generate_tests(metafunc):
     """Parametrize `soc_test` over the ctest cases discovered in the build dir."""
     if "soc_test" not in metafunc.fixturenames:
@@ -89,4 +98,5 @@ def pytest_generate_tests(metafunc):
             f"No ctest cases in {build_dir}. Build the SDK with TEST_MODE=simulation "
             f"first (make chim-sdk-test-configure)."
         )
-    metafunc.parametrize("soc_test", tests, ids=tests)
+    params = [pytest.param(t, marks=_test_markers(t)) for t in tests]
+    metafunc.parametrize("soc_test", params, ids=tests)

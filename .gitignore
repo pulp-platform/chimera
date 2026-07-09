@@ -57,6 +57,7 @@ vsim.wlf
 
 nonfree/
 working_dir/
+build/
 
 # GENERATED (SystemRDL / peakrdl)
 

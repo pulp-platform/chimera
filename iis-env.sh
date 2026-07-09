@@ -16,6 +16,10 @@ export CXX=/usr/pack/gcc-11.2.0-af/linux-x64/bin/g++
 export CMAKE=cmake-3.28.3
 export SN_LLVM_BINROOT=/usr/scratch2/vulcano/colluca/tools/riscv32-snitch-llvm-almalinux8-15.0.0-snitch-0.2.0/bin
 
+# One-command bootstrap: fetch HW dependencies (fast no-op if already checked
+# out) so a fresh clone is buildable after a single `source iis-env.sh`.
+$BENDER checkout
+
 # Python environment via uv. Keep the uv cache on the (writable, large) repo
 # scratch rather than $HOME (small IIS quota).
 export UV_CACHE_DIR="${UV_CACHE_DIR:-$(pwd)/.cache/uv}"
