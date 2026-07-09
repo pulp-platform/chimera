@@ -73,3 +73,6 @@ gmon.out
 # Auto-pulled toolchain images (see scripts/sdk_container.sh); never commit them.
 *.sif
 .cache/containers/
+
+# Claude
+.claude/
