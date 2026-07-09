@@ -368,7 +368,7 @@ module vip_chimera_soc
 
   // Wait for termination signal and get return code
   task automatic jtag_wait_for_eoc(output word_bt exit_code);
-    jtag_poll_bit0(AmRegs + cheshire_reg_pkg::CHESHIRE_SCRATCH_2_OFFSET, exit_code, 4000);
+    jtag_poll_bit0(cheshire_addrmap_pkg::REGS_SCRATCH_BASE_ADDR(2), exit_code, 4000);
     exit_code >>= 1;
     if (exit_code) $error("[JTAG] FAILED: return code %0d", exit_code);
     else $display("[JTAG] SUCCESS");

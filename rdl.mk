@@ -23,11 +23,14 @@ NUMCLUSTERS  ?= 5
 # includes snitch_cluster_peripheral_reg.rdl). Resolve those include dirs from
 # the dependency checkout via `bender path` (Gwaihir-style), so peakrdl finds
 # them in place without copying anything.
-SN_ROOT := $(shell cd $(CHIM_ROOT) && bender path snitch_cluster 2>/dev/null | tail -n1)
 PEAKRDL_INCLUDES  = -I $(RDL_DIR)
 ifneq ($(SN_ROOT),)
 PEAKRDL_INCLUDES += -I $(SN_ROOT)/hw/generated
 PEAKRDL_INCLUDES += -I $(SN_ROOT)/hw/snitch_cluster/src/snitch_cluster_peripheral
+endif
+
+ifneq ($(CHS_ROOT),)
+PEAKRDL_INCLUDES += $(CHS_PEAKRDL_INCLUDES)
 endif
 
 .PHONY: rdl rdl-markdown rdl-c-header rdl-raw-header rdl-regblock rdl-clean

@@ -19,11 +19,11 @@ module apb_dump_msg
   input  logic      clk_i,
   input  logic      rst_ni,
   // From Top
-  output apb_resp_t apb_rsp_o,
-  input  apb_req_t  apb_req_i,
+  output apb_soc_resp_t apb_rsp_o,
+  input  apb_soc_req_t  apb_req_i,
   // To Top
-  input  apb_resp_t apb_rsp_i,
-  output apb_req_t  apb_req_o
+  input  apb_soc_resp_t apb_rsp_i,
+  output apb_soc_req_t  apb_req_o
 );
 
 `ifdef SYNTHESIS

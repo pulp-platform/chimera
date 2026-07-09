@@ -15,14 +15,18 @@
 
 `include "snitch_cluster.rdl"
 `include "chimera_soc_regs.rdl"
+`include "cheshire.rdl"
 
 addrmap chimera_addrmap #(
     longint unsigned NrClusters    = 5,
-    longint unsigned ClusterStride = 0x200000    // 2 MiB per cluster window
+    longint unsigned ClusterStride = 0x200000,    // 2 MiB per cluster window
+    longint unsigned SlinkNumLanes = 4
 ) {
     name = "Chimera SoC Address Map";
     desc = "Top-level physical address map of the Chimera SoC (host regs, Snitch
             clusters, memory island and HyperBus).";
+
+    cheshire #(.SlinkNumLanes (SlinkNumLanes)) cheshire @0x0000_0000;
 
     // --- Peripheral / config region (0x3000_0000 .. 0x3000_6000) ---
     external mem { mementries = 0x400;  memwidth = 32;

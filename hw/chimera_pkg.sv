@@ -258,6 +258,6 @@ ExtClusters
   localparam type data_t = logic [RegDataWidth-1:0];
   localparam type strb_t = logic [RegDataWidth/8-1:0];
 
-  `APB_TYPEDEF_ALL(apb, addr_t, data_t, strb_t)
+  `APB_TYPEDEF_ALL(apb_soc, addr_t, data_t, strb_t)
 
 endpackage

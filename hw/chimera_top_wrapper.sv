@@ -67,8 +67,8 @@ module chimera_top_wrapper
   output logic      [ HypNumPhys-1:0]                  hyper_dq_oe_o,
   output logic      [ HypNumPhys-1:0]                  hyper_reset_no,
   // APB interface
-  input  apb_resp_t                                    apb_rsp_i,
-  output apb_req_t                                     apb_req_o,
+  input  apb_soc_resp_t                                    apb_rsp_i,
+  output apb_soc_req_t                                     apb_req_o,
   // PMU  Clusters control signals
   input  logic      [ExtClusters-1:0]                  pmu_rst_clusters_ni,
   input  logic      [ExtClusters-1:0]                  pmu_clkgate_en_clusters_i,  // TODO: lleone
@@ -125,8 +125,8 @@ module chimera_top_wrapper
   logic [iomsb(ChsCfg.NumExtDbgHarts):0] dbg_ext_unavail;
 
   // Logic signals to APB dump mdoule
-  apb_req_t apb_to_dump_req;
-  apb_resp_t apb_from_dump_rsp;
+  apb_soc_req_t apb_to_dump_req;
+  apb_soc_resp_t apb_from_dump_rsp;
 
   // ---------------------------------------
   // |         Cheshire SoC                |
@@ -260,8 +260,8 @@ module chimera_top_wrapper
   // TOP-LEVEL REG
 
   // Convert the register bus to APB4 for the peakrdl-generated register block.
-  apb_req_t  soc_reg_apb_req;
-  apb_resp_t soc_reg_apb_rsp;
+  apb_soc_req_t  soc_reg_apb_req;
+  apb_soc_resp_t soc_reg_apb_rsp;
   reg_to_apb #(
     .reg_req_t(reg_req_t),
     .reg_rsp_t(reg_rsp_t),

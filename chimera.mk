@@ -21,6 +21,13 @@ gen_idma_hw:
 	make -C $(IDMA_ROOT) idma_hw_all
 
 CHS_SW_LD_DIR = $(CHIM_ROOT)/sw/link
+CHS_SW_ADDRS_LDH = $(CHS_SW_LD_DIR)/chimera_addrs.ldh
+
+$(CHS_SW_LD_DIR)/chimera_addrs.ldh: $(CHIM_ROOT)/cfg/rdl/chimera_addrmap.rdl $(CHS_SLINK_DIR)/.generated
+	$(PEAKRDL) raw-header $< --format ldh $(PEAKRDL_INCLUDES) $(CHS_PEAKRDL_PARAMS) --no-prefix --license_str $$'Copyright 2025 ETH Zurich and University of Bologna.\nLicensed under the Apache License, Version 2.0, see LICENSE for details.\nSPDX-License-Identifier: Apache-2.0' -o $@
+
+$(CHS_ROOT)/hw/bootrom/cheshire_bootrom.elf: $(CHS_SW_LD_DIR)/cheshire_bootrom.ld $(CHS_BROM_SRCS) $(CHS_SW_ADDRS_LDH)
+	$(CHS_SW_CC) $(CHS_SW_INCLUDES) -T$< $(CHS_BROM_FLAGS) -o $@ $(CHS_BROM_SRCS)
 
 .PHONY: chs-hw-init
 chs-hw-init: update_plic gen_idma_hw ## Generate Cheshire RTL

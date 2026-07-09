@@ -56,7 +56,7 @@ requires-dist = [
     { name = "mako" },
     { name = "peakrdl" },
     { name = "peakrdl-markdown" },
-    { name = "peakrdl-rawheader", specifier = "==0.1.3" },
+    { name = "peakrdl-rawheader" },
     { name = "pyyaml" },
     { name = "setuptools", specifier = "<81" },
     { name = "tabulate" },

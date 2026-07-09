@@ -11,8 +11,8 @@
 
 ENTRY(_start)
 
-/* Memory regions and peripheral base addresses are auto-generated from chimera_addrmap.rdl */
-INCLUDE chimera_addrs.ldh
+/* Memory regions and peripheral base addresses are auto-generated from cheshire.rdl */
+INCLUDE cheshire_addrs.ldh
 
 SECTIONS {
   /* Keep binaries lean */

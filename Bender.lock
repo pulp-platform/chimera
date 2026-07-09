@@ -71,7 +71,7 @@ packages:
     - common_cells
     - register_interface
   cheshire:
-    revision: b34d22838ed54b8f4f941f4eabb6a15ca29192a0
+    revision: 70a7c236e4d1c8a0584bfc5b15e4bdb931329a46
     version: null
     source:
       Git: https://github.com/pulp-platform/cheshire.git
@@ -153,8 +153,8 @@ packages:
     - fpnew
     - tech_cells_generic
   dram_rtl_sim:
-    revision: 2cac4a9e12a60537567276b539ab6c919c87b5dc
-    version: 0.1.1
+    revision: a764d5200a19cdd72a5237cbfb16985515a3058d
+    version: 0.1.2
     source:
       Git: https://github.com/pulp-platform/dram_rtl_sim.git
     dependencies:
@@ -267,14 +267,15 @@ packages:
     dependencies:
     - tech_cells_generic
   serial_link:
-    revision: c55df03a1da06b00e567cf968b1b1a5f40c9f802
-    version: 1.1.2
+    revision: d4e513aebd368d77808c5e6629a1e2729c16eba0
+    version: 2.0.0
     source:
       Git: https://github.com/pulp-platform/serial_link.git
     dependencies:
+    - apb
     - axi
+    - axi_stream
     - common_cells
-    - register_interface
   snitch_cluster:
     revision: 5b2fccd96c42812774c20ab2f9b811e164809789
     version: null
