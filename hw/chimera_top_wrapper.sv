@@ -94,7 +94,7 @@ module chimera_top_wrapper
   localparam type axi_wide_slv_req_t = mem_isl_wide_axi_slv_req_t;
   localparam type axi_wide_slv_rsp_t = mem_isl_wide_axi_slv_rsp_t;
 
-  chimera_reg2hw_t reg2hw;
+  chimera_reg_pkg::chimera_soc_regs__out_t chimera_hwif_out;
 
   // External AXI crossbar ports
   axi_mst_req_t [iomsb(ChsCfg.AxiExtNumMst):0] axi_mst_req;
@@ -259,16 +259,37 @@ module chimera_top_wrapper
 
   // TOP-LEVEL REG
 
-  chimera_reg_top #(
+  // Convert the register bus to APB4 for the peakrdl-generated register block.
+  apb_req_t  soc_reg_apb_req;
+  apb_resp_t soc_reg_apb_rsp;
+  reg_to_apb #(
     .reg_req_t(reg_req_t),
-    .reg_rsp_t(reg_rsp_t)
-  ) i_reg_top (
+    .reg_rsp_t(reg_rsp_t),
+    .apb_req_t(apb_req_t),
+    .apb_rsp_t(apb_resp_t)
+  ) i_soc_reg_to_apb (
     .clk_i    (soc_clk_i),
-    .rst_ni,
+    .rst_ni   (rst_ni),
     .reg_req_i(reg_slv_req[TopLevelCfgRegsIdx]),
     .reg_rsp_o(reg_slv_rsp[TopLevelCfgRegsIdx]),
-    .reg2hw   (reg2hw),
-    .devmode_i('1)
+    .apb_req_o(soc_reg_apb_req),
+    .apb_rsp_i(soc_reg_apb_rsp)
+  );
+
+  chimera_reg_top i_reg_top (
+    .clk          (soc_clk_i),
+    .arst_n       (rst_ni),
+    .s_apb_psel   (soc_reg_apb_req.psel),
+    .s_apb_penable(soc_reg_apb_req.penable),
+    .s_apb_pwrite (soc_reg_apb_req.pwrite),
+    .s_apb_pprot  (soc_reg_apb_req.pprot),
+    .s_apb_paddr  (soc_reg_apb_req.paddr[6:0]),
+    .s_apb_pwdata (soc_reg_apb_req.pwdata),
+    .s_apb_pstrb  (soc_reg_apb_req.pstrb),
+    .s_apb_pready (soc_reg_apb_rsp.pready),
+    .s_apb_prdata (soc_reg_apb_rsp.prdata),
+    .s_apb_pslverr(soc_reg_apb_rsp.pslverr),
+    .hwif_out     (chimera_hwif_out)
   );
 
 
@@ -319,11 +340,11 @@ module chimera_top_wrapper
 
   logic [ExtClusters-1:0] wide_mem_bypass_mode;
   assign wide_mem_bypass_mode = {
-    reg2hw.wide_mem_cluster_4_bypass.q,
-    reg2hw.wide_mem_cluster_3_bypass.q,
-    reg2hw.wide_mem_cluster_2_bypass.q,
-    reg2hw.wide_mem_cluster_1_bypass.q,
-    reg2hw.wide_mem_cluster_0_bypass.q
+    chimera_hwif_out.wide_mem_cluster_bypass[4].value.value,
+    chimera_hwif_out.wide_mem_cluster_bypass[3].value.value,
+    chimera_hwif_out.wide_mem_cluster_bypass[2].value.value,
+    chimera_hwif_out.wide_mem_cluster_bypass[1].value.value,
+    chimera_hwif_out.wide_mem_cluster_bypass[0].value.value
   };
 
   logic [ExtClusters-1:0] cluster_clock_gate_en;
@@ -333,22 +354,22 @@ module chimera_top_wrapper
   // It will be used to drive the actual clk eneable signal in each cluster.
   // For this reason it's inverted when connected to the cluster.
   assign cluster_clock_gate_en = {
-    reg2hw.cluster_4_clk_gate_en,
-    reg2hw.cluster_3_clk_gate_en,
-    reg2hw.cluster_2_clk_gate_en,
-    reg2hw.cluster_1_clk_gate_en,
-    reg2hw.cluster_0_clk_gate_en
+    chimera_hwif_out.cluster_clk_gate_en[4].value.value,
+    chimera_hwif_out.cluster_clk_gate_en[3].value.value,
+    chimera_hwif_out.cluster_clk_gate_en[2].value.value,
+    chimera_hwif_out.cluster_clk_gate_en[1].value.value,
+    chimera_hwif_out.cluster_clk_gate_en[0].value.value
   };
 
 
   logic [ExtClusters-1:0] cluster_rst_n;
   logic [ExtClusters-1:0] cluster_soft_rst_n;
   assign cluster_soft_rst_n = {
-    ~reg2hw.reset_cluster_4.q,
-    ~reg2hw.reset_cluster_3.q,
-    ~reg2hw.reset_cluster_2.q,
-    ~reg2hw.reset_cluster_1.q,
-    ~reg2hw.reset_cluster_0.q
+    ~chimera_hwif_out.reset_cluster[4].value.value,
+    ~chimera_hwif_out.reset_cluster[3].value.value,
+    ~chimera_hwif_out.reset_cluster[2].value.value,
+    ~chimera_hwif_out.reset_cluster[1].value.value,
+    ~chimera_hwif_out.reset_cluster[0].value.value
   };
 
   // The Rst used for each cluster is the AND gate among all different source of rst in the system that are:
@@ -375,7 +396,7 @@ module chimera_top_wrapper
     .rst_ni           (cluster_rst_n),
     .clu_clk_en_i     (~cluster_clock_gate_en),
     .widemem_bypass_i (wide_mem_bypass_mode),
-    .boot_addr_i      (reg2hw.snitch_configurable_boot_addr.q),
+    .boot_addr_i      (chimera_hwif_out.snitch_configurable_boot_addr.value.value),
     .debug_req_i      (dbg_ext_req),
     .xeip_i           (xeip_ext),
     .mtip_i           (mtip_ext),

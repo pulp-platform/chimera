@@ -41,13 +41,10 @@ chs-hw-init: update_plic gen_idma_hw ## Generate Cheshire RTL
 sn-hw-all: sn-rtl ## Generate Snitch RTL
 sn-hw-clean: sn-clean-rtl  ## Clean Snitch RTL
 
-.PHONY: $(CHIM_SW_DIR)/include/regs/soc_ctrl.h
-$(CHIM_SW_DIR)/include/regs/soc_ctrl.h: $(CHIM_ROOT)/hw/regs/chimera_regs.hjson
-	python $(CHIM_ROOT)/utils/reggen/regtool.py -D $<  > $@
-
-.PHONY: $(CHIM_SW_DIR)/hw/regs/pcr.md
-$(CHIM_HW_DIR)/regs/pcr.md: $(CHIM_ROOT)/hw/regs/chimera_regs.hjson
-	python $(CHIM_ROOT)/utils/reggen/regtool.py -d $<  > $@
+# NOTE: the SoC-control register block now comes from SystemRDL (cfg/rdl) via
+# peakrdl (see rdl.mk `regenerate_soc_regs`); the lowRISC reggen flow
+# (chimera_regs.hjson + utils/reggen) was retired. The bootrom's committed
+# sw/include/regs/soc_ctrl.h stays until the bootrom->SDK/RDL header migration.
 
 
 .PHONY: snitch_bootrom
@@ -68,11 +65,7 @@ $(CHIM_ROOT)/hw/bootrom/snitch/snitch_bootrom.sv: $(CHIM_ROOT)/hw/bootrom/snitch
 	$(CHS_ROOT)/util/gen_bootrom.py --sv-module snitch_bootrom $< > $@
 
 .PHONY: regenerate_soc_regs
-regenerate_soc_regs: $(CHIM_ROOT)/hw/regs/chimera_reg_pkg.sv $(CHIM_ROOT)/hw/regs/chimera_reg_top.sv $(CHIM_SW_DIR)/include/regs/soc_ctrl.h $(CHIM_HW_DIR)/regs/pcr.md ## Generate SoC configuration registers
-
-.PHONY: $(CHIM_ROOT)/hw/regs/chimera_reg_pkg.sv hw/regs/chimera_reg_top.sv
-$(CHIM_ROOT)/hw/regs/chimera_reg_pkg.sv $(CHIM_ROOT)/hw/regs/chimera_reg_top.sv: $(CHIM_ROOT)/hw/regs/chimera_regs.hjson
-	python $(CHIM_ROOT)/utils/reggen/regtool.py -r $< --outdir $(dir $@)
+regenerate_soc_regs: rdl-regblock ## Regenerate the SoC-control register block from SystemRDL (cfg/rdl)
 
 -include $(CHIM_NONFREE_DIR)/nonfree.mk
 

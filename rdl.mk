@@ -45,9 +45,12 @@ rdl-raw-header: | $(RDL_GEN_DIR) ## Generate SV + C address-map base-address hea
 	$(PEAKRDL) raw-header $(RDL_TOP) $(PEAKRDL_INCLUDES) --format svh -o $(RDL_GEN_DIR)/chimera_addrmap.svh
 	$(PEAKRDL) raw-header $(RDL_TOP) $(PEAKRDL_INCLUDES) --format c   -o $(RDL_GEN_DIR)/chimera_addrmap_raw.h
 
-rdl-regblock: | $(RDL_GEN_DIR) ## Generate the SoC-control SV register block (chimera_reg_pkg/top)
-	$(PEAKRDL) regblock $(RDL_REGS) -o $(RDL_GEN_DIR) --cpuif apb4-flat --default-reset arst_n \
+RDL_REG_OUT ?= $(CHIM_ROOT)/hw/regs
+rdl-regblock: ## Generate the SoC-control SV register block into hw/regs (replaces reggen)
+	$(PEAKRDL) regblock $(RDL_REGS) -o $(RDL_REG_OUT) --cpuif apb4-flat --default-reset arst_n \
 		--module-name chimera_reg_top --package-name chimera_reg_pkg -P NrClusters=$(NUMCLUSTERS)
+	@for f in $(RDL_REG_OUT)/chimera_reg_pkg.sv $(RDL_REG_OUT)/chimera_reg_top.sv; do \
+		sed -i '1i// Copyright 2024 ETH Zurich and University of Bologna.\n// Licensed under the Apache License, Version 2.0, see LICENSE for details.\n// SPDX-License-Identifier: Apache-2.0\n' $$f; done
 
 rdl: rdl-markdown rdl-c-header rdl-raw-header ## Generate the memory-map artifacts
 
