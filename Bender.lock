@@ -17,7 +17,7 @@ packages:
     - obi_peripherals
     - register_interface
   axi:
-    revision: 8e04779f341eb2c89412aae92223a292beef487e
+    revision: bd1abffc0812f8170902e5fb93142c7785c0b8c1
     version: null
     source:
       Git: https://github.com/colluca/axi
@@ -37,8 +37,8 @@ packages:
     - register_interface
     - tech_cells_generic
   axi_riscv_atomics:
-    revision: 0ac3a78fe342c5a5b9b10bff49d58897f773059e
-    version: 0.8.2
+    revision: 97a1dd2ac643c276880420a0cf8eea697f228aa9
+    version: 0.8.3
     source:
       Git: https://github.com/pulp-platform/axi_riscv_atomics.git
     dependencies:
@@ -71,7 +71,7 @@ packages:
     - common_cells
     - register_interface
   cheshire:
-    revision: 1b6ba6294a5925a5dc199b4f98704adb76648ed1
+    revision: b34d22838ed54b8f4f941f4eabb6a15ca29192a0
     version: null
     source:
       Git: https://github.com/pulp-platform/cheshire.git
@@ -87,6 +87,7 @@ packages:
     - common_cells
     - common_verification
     - cva6
+    - dram_rtl_sim
     - idma
     - irq_router
     - opentitan_peripherals
@@ -95,8 +96,8 @@ packages:
     - serial_link
     - unbent
   clic:
-    revision: 8ed76ffc779a435d0ed034f3068e4c3334fe2ecf
-    version: 2.0.0
+    revision: 6515a71eb4ae3b143ab912d265e79832b3179a76
+    version: 3.0.0
     source:
       Git: https://github.com/pulp-platform/clic.git
     dependencies:
@@ -128,8 +129,8 @@ packages:
     dependencies:
     - common_cells
   common_cells:
-    revision: 9afda9abb565971649c2aa0985639c096f351171
-    version: 1.38.0
+    revision: ca9d577f2fbc45ec557ab4e0905bbfc154441540
+    version: null
     source:
       Git: https://github.com/pulp-platform/common_cells.git
     dependencies:
@@ -142,17 +143,24 @@ packages:
       Git: https://github.com/pulp-platform/common_verification.git
     dependencies: []
   cva6:
-    revision: 630bd959c9cc69a35d461a2abc205310d2edacf8
+    revision: 4c02b24fe7c04690f626776a92274da24f80d1da
     version: null
     source:
-      Git: https://github.com/Scheremo/cva6.git
+      Git: https://github.com/pulp-platform/cva6.git
     dependencies:
     - axi
     - common_cells
     - fpnew
     - tech_cells_generic
+  dram_rtl_sim:
+    revision: 2cac4a9e12a60537567276b539ab6c919c87b5dc
+    version: 0.1.1
+    source:
+      Git: https://github.com/pulp-platform/dram_rtl_sim.git
+    dependencies:
+    - axi
   fpnew:
-    revision: a8e0cba6dd50f357ece73c2c955d96efc3c6c315
+    revision: e5aa6a01b5bbe1675c3aa8872e1203413ded83d1
     version: null
     source:
       Git: https://github.com/pulp-platform/cvfpu.git
@@ -167,8 +175,8 @@ packages:
     dependencies:
     - common_cells
   hyperbus:
-    revision: 841deb9d821b63bf05a1c85d3a4746352a8bcae2
-    version: null
+    revision: 2a14bd8f9a985b488ee23d240764f52f129f7729
+    version: 0.0.9
     source:
       Git: https://github.com/pulp-platform/hyperbus.git
     dependencies:
@@ -198,7 +206,7 @@ packages:
     - common_cells
     - register_interface
   memory_island:
-    revision: 64828cb7a9ccc1f1656ec92d06129072f445c319
+    revision: d072ba0945adad5ccd0af2d4604abe57c1058252
     version: null
     source:
       Git: https://github.com/pulp-platform/memory_island.git
@@ -234,8 +242,8 @@ packages:
     - register_interface
     - tech_cells_generic
   register_interface:
-    revision: 8e8c209ea559d3b54f45cf30fcce95ce70ff5e49
-    version: 0.4.6
+    revision: d6e1d4cdaab7870f4faf3f88a1c788eaf5ac129d
+    version: 0.4.7
     source:
       Git: https://github.com/pulp-platform/register_interface.git
     dependencies:
@@ -252,8 +260,8 @@ packages:
     - common_cells
     - tech_cells_generic
   scm:
-    revision: 472f99affe44ff7b282b519c047a3cfeb35b16c6
-    version: 1.2.0
+    revision: 1976c7efb4979271eee2abe262fde0f9a20e2557
+    version: 1.2.1
     source:
       Git: https://github.com/pulp-platform/scm.git
     dependencies:

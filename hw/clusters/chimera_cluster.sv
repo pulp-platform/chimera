@@ -8,6 +8,7 @@
 module chimera_cluster
   import chimera_pkg::*;
   import cheshire_pkg::*;
+  import snitch_cluster_pkg::*;
 #(
   parameter chimera_cfg_t Cfg = '0,
 
@@ -230,10 +231,6 @@ module chimera_cluster
     sram_cfg_t tcdm;
   } sram_cfgs_t;
 
-  localparam int unsigned NumIntOutstandingLoads[NrCores] = '{NrCores{32'h1}};
-  localparam int unsigned NumIntOutstandingMem[NrCores] = '{NrCores{32'h4}};
-
-
   // ----------------
   // |   TCDM INTF   |
   // ----------------
@@ -258,6 +255,22 @@ module chimera_cluster
       default: 0
   };
 
+
+  // Per-core FP-subsystem sizing. Compute cores are 0..NrCores-2; the DMA core
+  // is the last one (index NrCores-1), which gets a reduced sequencer/SSR. Values
+  // mirror the generated snitch_cluster_wrapper.
+  localparam int unsigned NumIntOutstandingLoads [NrCores] = '{default: 4};
+  localparam int unsigned NumIntOutstandingMem   [NrCores] = '{default: 4};
+  localparam int unsigned NumFPOutstandingLoads  [NrCores] = '{default: 4};
+  localparam int unsigned NumFPOutstandingMem    [NrCores] = '{default: 4};
+  localparam int unsigned NumDTLBEntries         [NrCores] = '{default: 1};
+  localparam int unsigned NumITLBEntries         [NrCores] = '{default: 1};
+  localparam int unsigned NumSequencerInstr      [NrCores] = '{NrCores - 1: 16, default: 32};
+  localparam int unsigned NumSequencerLoops      [NrCores] = '{NrCores - 1: 1, default: 2};
+  localparam int unsigned NumSsrs                [NrCores] = '{NrCores - 1: 1, default: 3};
+  localparam int unsigned SsrMuxRespDepth        [NrCores] = '{default: 4};
+
+
   snitch_cluster #(
     .PhysicalAddrWidth(Cfg.ChsCfg.AddrWidth),
     .NarrowDataWidth  (ClusterDataWidth),            // SCHEREMO: Convolve needs this...
@@ -266,6 +279,7 @@ module chimera_cluster
     .WideIdWidthIn    (WideMasterIdWidth),
     .NarrowUserWidth  (Cfg.ChsCfg.AxiUserWidth),
     .WideUserWidth    (Cfg.ChsCfg.AxiUserWidth),
+    .AtomicIdWidth    (snitch_cluster_pkg::AtomicIdWidth),
 
     .AliasRegionEnable(1),
     .AliasRegionBase  ('h1800_0000),
@@ -280,23 +294,85 @@ module chimera_cluster
     .ClusterPeriphSize(64),
     .NrBanks          (16),
     // WIESEP: TCDM size = 16 * 1024 * 64 bit = 128 KiB
+    .NrHyperBanks     (1),
 
-    .DMANumAxInFlight(3),
-    .DMAReqFifoDepth (3),
+    .DMANumAxInFlight   (3),
+    .DMAReqFifoDepth    (3),
+    .DMANumChannels     (1),
+    .NumExpWideTcdmPorts(1),
+    .EnableDMAMulticast (1),
 
     .ICacheLineWidth('{256}),
     .ICacheLineCount('{16}),
     .ICacheWays     ('{2}),
 
     .VMSupport(0),
-    .Xdma     ({1'b1, {(NrCores - 1) {1'b0}}}),
+    .RVE     ({NrCores {1'b0}}),
+    .RVF     ({NrCores {1'b1}}),
+    .RVD     ({NrCores {1'b1}}),
+    // Div/sqrt is not built into FPUImplementation (matches the generated wrapper).
+    .XDivSqrt({NrCores {1'b0}}),
+    .XF16    ({1'b0, {(NrCores - 1) {1'b1}}}),
+    .XF16ALT ({1'b0, {(NrCores - 1) {1'b1}}}),
+    .XF8     ({1'b0, {(NrCores - 1) {1'b1}}}),
+    .XF8ALT  ({1'b0, {(NrCores - 1) {1'b1}}}),
+    .XFVEC   ({1'b0, {(NrCores - 1) {1'b1}}}),
+    .XFDOTP  ({1'b0, {(NrCores - 1) {1'b1}}}),
+    .Xdma    ({1'b1, {(NrCores - 1) {1'b0}}}),
+    .Xssr    ({1'b0, {(NrCores - 1) {1'b1}}}),
+    .Xfrep   ({1'b0, {(NrCores - 1) {1'b1}}}),
+    .Xcopift ({NrCores {1'b1}}),
 
+    .FPUImplementation(snitch_cluster_pkg::FPUImplementation),
+
+    // FP subsystem sizing — required so the enabled FPU/SSR/FREP have non-zero
+    // resources (the snitch_cluster defaults are 0, which breaks FP offloads).
     .NumIntOutstandingLoads(NumIntOutstandingLoads),
     .NumIntOutstandingMem  (NumIntOutstandingMem),
-    .RegisterOffloadReq    (1),
-    .RegisterOffloadRsp    (1),
-    .RegisterCoreReq       (1),
-    .RegisterCoreRsp       (1),
+    .NumFPOutstandingLoads (NumFPOutstandingLoads),
+    .NumFPOutstandingMem   (NumFPOutstandingMem),
+    .NumDTLBEntries        (NumDTLBEntries),
+    .NumITLBEntries        (NumITLBEntries),
+
+    .NumSsrsMax     (3),
+    .NumSsrs        (NumSsrs),
+    .SsrMuxRespDepth(SsrMuxRespDepth),
+    .SsrRegs        (snitch_cluster_pkg::SsrRegs),
+    .SsrCfgs        (snitch_cluster_pkg::SsrCfgs),
+
+    .NumSequencerInstr(NumSequencerInstr),
+    .NumSequencerLoops(NumSequencerLoops),
+    .Hive             (snitch_cluster_pkg::Hive),
+
+    .Topology         (snitch_pkg::LogarithmicInterconnect),
+    .Radix            (2),
+    .NumSwitchNets    (4),
+    .SwitchLfsrArbiter(0),
+
+    .RegisterOffloadReq(1),
+    .RegisterOffloadRsp(1),
+    .RegisterCoreReq   (1),
+    .RegisterCoreRsp   (1),
+    .RegisterTCDMCuts  (0),
+    .RegisterExtWide   ('0),
+    .RegisterExtNarrow ('0),
+    .RegisterExpNarrow (0),
+    .RegisterFPUReq    (1),
+    .RegisterFPUIn     (0),
+    .RegisterFPUOut    (0),
+    .RegisterSequencer (0),
+    .IsoCrossing       (0),
+
+    .NarrowXbarLatency(axi_pkg::CUT_ALL_PORTS),
+    .WideXbarLatency  (axi_pkg::CUT_ALL_PORTS),
+    .WideMaxMstTrans  (32),
+    .WideMaxSlvTrans  (32),
+    .NarrowMaxMstTrans(4),
+    .NarrowMaxSlvTrans(4),
+
+    .CaqDepth    (8),
+    .CaqTagWidth (16),
+    .DebugSupport(0),
 
     .narrow_in_req_t (axi_cluster_in_narrow_req_t),
     .narrow_in_resp_t(axi_cluster_in_narrow_resp_t),
@@ -311,10 +387,7 @@ module chimera_cluster
     .tcdm_dma_rsp_t   (tcdm_dma_rsp_t),
 
     .sram_cfg_t (sram_cfg_t),
-    .sram_cfgs_t(sram_cfgs_t),
-
-    .RegisterExtWide  ('0),
-    .RegisterExtNarrow('0)
+    .sram_cfgs_t(sram_cfgs_t)
   ) i_test_cluster (
 
     .clk_i          (clu_clk_gated),

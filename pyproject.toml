@@ -24,8 +24,26 @@ dependencies = [
   "flatdict",
   "json5",
   "peakrdl",
-  "peakrdl-rawheader",
+  # The version of the snitch cluster relies on the rawheader 0.1
+  "peakrdl-rawheader==0.1.3",
   "peakrdl-markdown",
+  # Provides pkg_resources, needed by the lowRISC reggen regtool.py used for
+  # iDMA/Cheshire RTL generation. A pip venv bundled it implicitly; uv does not.
+  # Pin <81: setuptools >=81 removed pkg_resources.
+  "setuptools<81",
+]
+
+[dependency-groups]
+# SoC test framework (pytest front-end wrapping ctest) + tooling. Installed by
+# default with `uv sync` (the `dev` group).
+dev = ["pytest", "pytest-html", "pytest-xdist"]
+
+[tool.pytest.ini_options]
+testpaths = ["test"]
+addopts = "-ra"
+markers = [
+  "host: host-only tests (no cluster offload)",
+  "cluster: tests that offload to a Snitch cluster",
 ]
 
 [tool.setuptools]

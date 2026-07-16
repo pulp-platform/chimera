@@ -1,0 +1,4 @@
+[submodule "sw/deps/chimera-sdk"]
+	path = sw/deps/chimera-sdk
+	url = https://github.com/Xeratec/chimera-sdk.git
+	branch = dev/multi-binary
