@@ -6,7 +6,7 @@
 /* Christopher Reinwardt <creinwar@student.ethz.ch> */
 /* Paul Scheffler <paulsc@iis.ee.ethz.ch> */
 
-INCLUDE common_cheshire.ldh
+INCLUDE cheshire_common.ldh
 
 SECTIONS {
   __stack_pointer$  = __stack_start - 8;

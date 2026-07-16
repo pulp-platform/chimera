@@ -13,12 +13,12 @@ chim_sw_mk=1
 
 # The SoC software is built by the chimera-sdk submodule with its own CMake flow
 # inside the toolchain container (LLVM 18.1.4-pulp + picolibc). The remaining
-# bootrom bits below only serve the Snitch bootrom (hw/bootrom/snitch), which
-# includes sw/include/{regs/soc_ctrl.h,soc_addr_map.h} and links against sw/link
-# via Cheshire; both retire with the bootrom-to-SDK migration (see TODO.md).
+# bootrom bits below only serve the Snitch bootrom (hw/bootrom/snitch), which now
+# includes the SystemRDL-generated headers from .generated directly (the
+# hand-maintained sw/include/{regs/soc_ctrl.h,soc_addr_map.h} were removed; the
+# -I.generated is added in chimera.mk).
 
-# --- Snitch bootrom include path + flags ---
-CHS_SW_INCLUDES += -I$(CHIM_SW_DIR)/include
+# --- Snitch bootrom flags ---
 # SCHEREMO: use im as the smallest common denominator between CVA6 and the Snitch
 # cluster; CVA6's bootrom needs imc, so override for that case.
 CHS_SW_FLAGS   += -falign-functions=64 -march=rv64gc_zifencei -mabi=lp64d

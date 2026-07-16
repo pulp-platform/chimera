@@ -50,8 +50,9 @@ sn-hw-clean: sn-clean-rtl  ## Clean Snitch RTL
 
 # NOTE: the SoC-control register block now comes from SystemRDL (cfg/rdl) via
 # peakrdl (see rdl.mk `regenerate_soc_regs`); the lowRISC reggen flow
-# (chimera_regs.hjson + utils/reggen) was retired. The bootrom's committed
-# sw/include/regs/soc_ctrl.h stays until the bootrom->SDK/RDL header migration.
+# (chimera_regs.hjson + utils/reggen) was retired. The Snitch bootrom sources
+# now include the generated headers from .generated directly; the hand-kept
+# sw/include/{regs/soc_ctrl.h,soc_addr_map.h,offload.h} were removed.
 
 
 .PHONY: snitch_bootrom
@@ -62,8 +63,12 @@ CHIM_BOOTROM_ALL += $(CHIM_ROOT)/hw/bootrom/snitch/snitch_bootrom.sv $(CHIM_ROOT
 
 snitch_bootrom: $(CHIM_BOOTROM_ALL) ## Generate Snitch bootrom
 
-$(CHIM_ROOT)/hw/bootrom/snitch/snitch_bootrom.elf: $(CHIM_ROOT)/hw/bootrom/snitch/snitch_bootrom.ld $(CHIM_BROM_SRCS)
-	$(CHS_SW_CC) -I$(CHIM_SW_DIR)/include/regs $(CHS_SW_INCLUDES) -T$< $(CHIM_BROM_FLAGS) -o $@ $(CHIM_BROM_SRCS)
+# The bootrom sources include the SystemRDL-generated headers directly
+# (.generated/{chimera_addrmap_raw,snitch_cluster_addrmap,snitch_cluster_cfg}.h),
+# so add -I$(RDL_GEN_DIR) and ensure they are generated first (rdl-raw-header +
+# rdl-sw-headers). The old hand-maintained sw/include headers were removed.
+$(CHIM_ROOT)/hw/bootrom/snitch/snitch_bootrom.elf: $(CHIM_ROOT)/hw/bootrom/snitch/snitch_bootrom.ld $(CHIM_BROM_SRCS) | rdl-raw-header rdl-sw-headers
+	$(CHS_SW_CC) -I$(RDL_GEN_DIR) $(CHS_SW_INCLUDES) -T$< $(CHIM_BROM_FLAGS) -o $@ $(CHIM_BROM_SRCS)
 
 $(CHIM_ROOT)/hw/bootrom/snitch/snitch_bootrom.bin: $(CHIM_ROOT)/hw/bootrom/snitch/snitch_bootrom.elf
 	$(CHS_SW_OBJCOPY) -O binary $< $@
@@ -78,7 +83,7 @@ regenerate_soc_regs: rdl-regblock ## Regenerate the SoC-control register block f
 
 -include $(CHIM_ROOT)/bender.mk
 
-# Provides the Snitch bootrom include paths + flags (sw/include, march/ABI)
+# Provides the Snitch bootrom compile flags (march/ABI)
 -include $(CHIM_ROOT)/sw/sw.mk
 
 # Include subdir Makefiles

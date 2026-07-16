@@ -33,7 +33,7 @@ ifneq ($(CHS_ROOT),)
 PEAKRDL_INCLUDES += $(CHS_PEAKRDL_INCLUDES)
 endif
 
-.PHONY: rdl rdl-markdown rdl-c-header rdl-raw-header rdl-regblock rdl-clean
+.PHONY: rdl rdl-markdown rdl-c-header rdl-raw-header rdl-sw-headers rdl-regblock rdl-clean
 
 $(RDL_GEN_DIR):
 	mkdir -p $@
@@ -41,7 +41,7 @@ $(RDL_GEN_DIR):
 rdl-markdown: | $(RDL_GEN_DIR) ## Generate the global address-map Markdown (docs/addressmap.md)
 	$(PEAKRDL) markdown $(RDL_TOP) $(PEAKRDL_INCLUDES) -o $(DOCS_ADDRMAP)
 
-rdl-c-header: | $(RDL_GEN_DIR) ## Generate the SoC address-map + register C header
+rdl-c-header: | $(RDL_GEN_DIR) ## Generate the SoC address-map register C header
 	$(PEAKRDL) c-header $(RDL_TOP) $(PEAKRDL_INCLUDES) -o $(RDL_GEN_DIR)/chimera_addrmap.h
 
 rdl-raw-header: | $(RDL_GEN_DIR) ## Generate SV + C address-map base-address headers
@@ -55,7 +55,23 @@ rdl-regblock: ## Generate the SoC-control SV register block into hw/regs (replac
 	@for f in $(RDL_REG_OUT)/chimera_reg_pkg.sv $(RDL_REG_OUT)/chimera_reg_top.sv; do \
 		sed -i '1i// Copyright 2024 ETH Zurich and University of Bologna.\n// Licensed under the Apache License, Version 2.0, see LICENSE for details.\n// SPDX-License-Identifier: Apache-2.0\n' $$f; done
 
-rdl: rdl-markdown rdl-c-header rdl-raw-header ## Generate the memory-map artifacts
+# Snitch cluster SW headers needed by the Snitch bootrom: the cluster config
+# (CFG_CLUSTER_NR_CORES / SNRT_CLUSTER_NUM) and the cluster-local address map.
+# Rendered by the vendored snitch-sdk clustergen from chimera's cluster config
+# (5 clusters, host hart 0; see cfg/snitch_cluster.hjson).
+RDL_PYTHON    ?= $(dir $(PEAKRDL))python
+SN_SDK_DIR    ?= $(CHIM_SDK_DIR)/devices/snitch_cluster/third_party/snitch-sdk
+SN_SDK_DEV    ?= $(SN_SDK_DIR)/devices/snitch_cluster
+SN_CLUSTER_CFG?= $(CHIM_ROOT)/cfg/snitch_cluster.hjson
+SN_CLUSTERGEN ?= $(SN_SDK_DIR)/scripts/clustergen.py
+
+rdl-sw-headers: | $(RDL_GEN_DIR) ## Generate the Snitch cluster SW headers (cfg + addrmap)
+	$(RDL_PYTHON) $(SN_CLUSTERGEN) --clustercfg $(SN_CLUSTER_CFG) \
+		--template $(SN_SDK_DEV)/templates/snitch_cluster_cfg.h.tpl     --outdir $(RDL_GEN_DIR)
+	$(RDL_PYTHON) $(SN_CLUSTERGEN) --clustercfg $(SN_CLUSTER_CFG) \
+		--template $(SN_SDK_DEV)/templates/snitch_cluster_addrmap.h.tpl --outdir $(RDL_GEN_DIR)
+
+rdl: rdl-markdown rdl-c-header rdl-raw-header rdl-sw-headers ## Generate the memory-map artifacts
 
 rdl-clean: ## Remove generated SystemRDL artifacts
 	rm -rf $(RDL_GEN_DIR) $(DOCS_ADDRMAP)
