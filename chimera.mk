@@ -74,7 +74,7 @@ $(CHIM_ROOT)/hw/bootrom/snitch/snitch_bootrom.bin: $(CHIM_ROOT)/hw/bootrom/snitc
 	$(CHS_SW_OBJCOPY) -O binary $< $@
 
 $(CHIM_ROOT)/hw/bootrom/snitch/snitch_bootrom.sv: $(CHIM_ROOT)/hw/bootrom/snitch/snitch_bootrom.bin $(CHS_ROOT)/util/gen_bootrom.py
-	$(CHS_ROOT)/util/gen_bootrom.py --sv-module snitch_bootrom $< > $@
+	$(CHS_ROOT)/util/gen_bootrom.py --sv-module chimera_snitch_bootrom $< > $@
 
 .PHONY: regenerate_soc_regs
 regenerate_soc_regs: rdl-regblock ## Regenerate the SoC-control register block from SystemRDL (cfg/rdl)

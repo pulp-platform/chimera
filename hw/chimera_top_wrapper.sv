@@ -327,7 +327,7 @@ module chimera_top_wrapper
     .rerror_i (snitch_bootrom_we_q)
   );
 
-  snitch_bootrom #(
+  chimera_snitch_bootrom #(
     .AddrWidth(32),
     .DataWidth(32)
   ) i_snitch_bootrom (

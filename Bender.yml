@@ -24,9 +24,6 @@ export_include_dirs:
   - hw/include
 
 sources:
-  - override_files: true
-    files:
-      - patch/vip_snitch_cluster.sv
 
   # Level 0
   - hw/chimera_pkg.sv

@@ -27,9 +27,11 @@ SN_ROOT ?= .
 IDMA_ROOT   ?= .
 HYPERB_ROOT ?= .
 
-# Use the default snitch cluster cfg. For the moment chimera
-# does not use the snitch_cluster_wrapper feature but we need to generate some files.
-SN_CFG = $(SN_ROOT)/cfg/default.json
+# Chimera's Snitch-cluster HW config (cfg/chimera.json) reproduces the parameters
+# currently hand-coded in hw/clusters/chimera_cluster.sv. It drives generation of
+# snitch_cluster_pkg.sv + snitch_cluster_wrapper.sv (`make sn-hw-all`), so the
+# cluster config lives in one place instead of being duplicated in RTL.
+SN_CFG = $(CHIM_ROOT)/cfg/chimera.json
 
 # Bender prerequisites
 BENDER_YML = $(CHIM_ROOT)/Bender.yml
