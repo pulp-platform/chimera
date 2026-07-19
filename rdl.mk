@@ -28,11 +28,13 @@ NUMCLUSTERS  ?= 5
 
 # --- Snitch cluster SW headers (vendored snitch-sdk clustergen) --------------
 # The Snitch bootrom needs the cluster config (CFG_CLUSTER_NR_CORES /
-# SNRT_CLUSTER_NUM) and the cluster-local address map, rendered from chimera's
-# cluster config (5 clusters, host hart 0; see cfg/snitch_cluster.hjson).
+# SNRT_CLUSTER_NUM) and the cluster-local address map. These are rendered from
+# the SAME single source of truth as the RTL wrapper (cfg/chimera.json, i.e.
+# SN_CFG); that file carries the extra `nr_clusters` / `icache.sets` fields the
+# SW clustergen needs, so no separate SW cluster config is required.
 SN_SDK_DIR    ?= $(CHIM_SDK_DIR)/devices/snitch_cluster/third_party/snitch-sdk
 SN_SDK_DEV    ?= $(SN_SDK_DIR)/devices/snitch_cluster
-SN_CLUSTER_CFG?= $(CHIM_ROOT)/cfg/snitch_cluster.hjson
+SN_CLUSTER_CFG?= $(CHIM_ROOT)/cfg/chimera.json
 SN_CLUSTERGEN ?= $(SN_SDK_DIR)/scripts/clustergen.py
 
 # The top address map includes the real per-cluster map shipped by the

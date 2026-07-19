@@ -2,12 +2,21 @@
 // Licensed under the Apache License, Version 2.0, see LICENSE for details.
 // SPDX-License-Identifier: Apache-2.0
 
-// Chimera Snitch-cluster HW configuration. Derived from the snitch_cluster
-// default.json; the overrides below reproduce the parameters currently hand-coded
-// in hw/clusters/chimera_cluster.sv so the generated snitch_cluster_wrapper.sv is
-// a drop-in replacement (no hardware change). Note: the HW clustergen parser does
-// not accept underscore-separated hex, so addresses are written without '_'.
+// Chimera Snitch-cluster configuration -- the single source of truth for the
+// cluster, consumed by BOTH generators:
+//   * the HW RTL clustergen (SN_CFG)        -> snitch_cluster_wrapper.sv / _pkg.sv
+//   * the snitch-sdk SW clustergen (SN_CLUSTER_CFG) -> snitch_cluster_{cfg,addrmap}.h
+// The overrides below reproduce the parameters previously hand-coded in
+// hw/clusters/chimera_cluster.sv, so the generated wrapper is a drop-in
+// replacement (no hardware change).
+//
+// A few fields exist purely so the SW clustergen accepts this file too:
+//   - top-level `nr_clusters`
+//   - `icache.sets` (the SW schema's name for what the HW schema calls `ways`)
+// Note: the HW clustergen parser does not accept underscore-separated hex, so
+// addresses are written without '_'.
 {
+    nr_clusters: 5,                      // SW clustergen: total number of clusters
     cluster: {
         cluster_base_addr: 0x40000000,   // chimera: cluster 0 @ 0x4000_0000
         cluster_base_offset: 0x200000,   // chimera: 2 MiB stride between clusters
@@ -72,7 +81,8 @@
             {
                 icache: {
                     size: 1, // total instruction cache size in kByte (chimera: LineCount 16)
-                    ways: 2, // number of ways
+                    ways: 2, // number of ways (HW clustergen)
+                    sets: 2, // SW clustergen alias for `ways` (same value)
                     cacheline: 256 // word size in bits (chimera: ICacheLineWidth 256)
                 },
                 cores: [
