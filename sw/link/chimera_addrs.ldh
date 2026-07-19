@@ -18,11 +18,6 @@ MEMORY
   cluster_tcdm_2 (rw) : ORIGIN = 0x40400000, LENGTH = 0x00020000
   cluster_tcdm_3 (rw) : ORIGIN = 0x40600000, LENGTH = 0x00020000
   cluster_tcdm_4 (rw) : ORIGIN = 0x40800000, LENGTH = 0x00020000
-  cluster_bootrom_0 (rw) : ORIGIN = 0x40020000, LENGTH = 0x00001000
-  cluster_bootrom_1 (rw) : ORIGIN = 0x40220000, LENGTH = 0x00001000
-  cluster_bootrom_2 (rw) : ORIGIN = 0x40420000, LENGTH = 0x00001000
-  cluster_bootrom_3 (rw) : ORIGIN = 0x40620000, LENGTH = 0x00001000
-  cluster_bootrom_4 (rw) : ORIGIN = 0x40820000, LENGTH = 0x00001000
   cluster_zeromem_0 (rw) : ORIGIN = 0x40030000, LENGTH = 0x00010000
   cluster_zeromem_1 (rw) : ORIGIN = 0x40230000, LENGTH = 0x00010000
   cluster_zeromem_2 (rw) : ORIGIN = 0x40430000, LENGTH = 0x00010000
@@ -128,25 +123,18 @@ PROVIDE(__cluster_tcdm_3_base_addr__ = 0x40600000);
 PROVIDE(__cluster_tcdm_4_base_addr__ = 0x40800000);
 PROVIDE(__cluster_tcdm_size__ = 0x00020000);
 
-PROVIDE(__cluster_bootrom_0_base_addr__ = 0x40020000);
-PROVIDE(__cluster_bootrom_1_base_addr__ = 0x40220000);
-PROVIDE(__cluster_bootrom_2_base_addr__ = 0x40420000);
-PROVIDE(__cluster_bootrom_3_base_addr__ = 0x40620000);
-PROVIDE(__cluster_bootrom_4_base_addr__ = 0x40820000);
-PROVIDE(__cluster_bootrom_size__ = 0x00001000);
-
-PROVIDE(__cluster_peripheral_reg_0_base_addr__ = 0x40021000);
-PROVIDE(__cluster_peripheral_reg_1_base_addr__ = 0x40221000);
-PROVIDE(__cluster_peripheral_reg_2_base_addr__ = 0x40421000);
-PROVIDE(__cluster_peripheral_reg_3_base_addr__ = 0x40621000);
-PROVIDE(__cluster_peripheral_reg_4_base_addr__ = 0x40821000);
+PROVIDE(__cluster_peripheral_reg_0_base_addr__ = 0x40020000);
+PROVIDE(__cluster_peripheral_reg_1_base_addr__ = 0x40220000);
+PROVIDE(__cluster_peripheral_reg_2_base_addr__ = 0x40420000);
+PROVIDE(__cluster_peripheral_reg_3_base_addr__ = 0x40620000);
+PROVIDE(__cluster_peripheral_reg_4_base_addr__ = 0x40820000);
 PROVIDE(__cluster_peripheral_reg_size__ = 0x000001C0);
 
-PROVIDE(__cluster_peripheral_reg_perf_regs_0_base_addr__ = 0x40021000);
-PROVIDE(__cluster_peripheral_reg_perf_regs_1_base_addr__ = 0x40221000);
-PROVIDE(__cluster_peripheral_reg_perf_regs_2_base_addr__ = 0x40421000);
-PROVIDE(__cluster_peripheral_reg_perf_regs_3_base_addr__ = 0x40621000);
-PROVIDE(__cluster_peripheral_reg_perf_regs_4_base_addr__ = 0x40821000);
+PROVIDE(__cluster_peripheral_reg_perf_regs_0_base_addr__ = 0x40020000);
+PROVIDE(__cluster_peripheral_reg_perf_regs_1_base_addr__ = 0x40220000);
+PROVIDE(__cluster_peripheral_reg_perf_regs_2_base_addr__ = 0x40420000);
+PROVIDE(__cluster_peripheral_reg_perf_regs_3_base_addr__ = 0x40620000);
+PROVIDE(__cluster_peripheral_reg_perf_regs_4_base_addr__ = 0x40820000);
 PROVIDE(__cluster_peripheral_reg_perf_regs_size__ = 0x00000180);
 
 PROVIDE(__cluster_zeromem_0_base_addr__ = 0x40030000);
@@ -352,99 +340,99 @@ PROVIDE(__soc_ctrl_cluster_busy_4_base_addr__ = 0x3000106C);
 PROVIDE(__soc_ctrl_cluster_busy_num__ = 0x00000005);
 PROVIDE(__soc_ctrl_cluster_busy_stride__ = 0x00000004);
 
-PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_en_0_base_addr__ = 0x40021000);
-PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_en_1_base_addr__ = 0x40021008);
-PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_en_2_base_addr__ = 0x40021010);
-PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_en_3_base_addr__ = 0x40021018);
-PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_en_4_base_addr__ = 0x40021020);
-PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_en_5_base_addr__ = 0x40021028);
-PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_en_6_base_addr__ = 0x40021030);
-PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_en_7_base_addr__ = 0x40021038);
-PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_en_8_base_addr__ = 0x40021040);
-PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_en_9_base_addr__ = 0x40021048);
-PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_en_10_base_addr__ = 0x40021050);
-PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_en_11_base_addr__ = 0x40021058);
-PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_en_12_base_addr__ = 0x40021060);
-PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_en_13_base_addr__ = 0x40021068);
-PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_en_14_base_addr__ = 0x40021070);
-PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_en_15_base_addr__ = 0x40021078);
+PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_en_0_base_addr__ = 0x40020000);
+PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_en_1_base_addr__ = 0x40020008);
+PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_en_2_base_addr__ = 0x40020010);
+PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_en_3_base_addr__ = 0x40020018);
+PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_en_4_base_addr__ = 0x40020020);
+PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_en_5_base_addr__ = 0x40020028);
+PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_en_6_base_addr__ = 0x40020030);
+PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_en_7_base_addr__ = 0x40020038);
+PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_en_8_base_addr__ = 0x40020040);
+PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_en_9_base_addr__ = 0x40020048);
+PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_en_10_base_addr__ = 0x40020050);
+PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_en_11_base_addr__ = 0x40020058);
+PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_en_12_base_addr__ = 0x40020060);
+PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_en_13_base_addr__ = 0x40020068);
+PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_en_14_base_addr__ = 0x40020070);
+PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_en_15_base_addr__ = 0x40020078);
 PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_en_num__ = 0x00000010);
 PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_en_stride__ = 0x00000008);
 
-PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_sel_0_base_addr__ = 0x40021080);
-PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_sel_1_base_addr__ = 0x40021088);
-PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_sel_2_base_addr__ = 0x40021090);
-PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_sel_3_base_addr__ = 0x40021098);
-PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_sel_4_base_addr__ = 0x400210A0);
-PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_sel_5_base_addr__ = 0x400210A8);
-PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_sel_6_base_addr__ = 0x400210B0);
-PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_sel_7_base_addr__ = 0x400210B8);
-PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_sel_8_base_addr__ = 0x400210C0);
-PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_sel_9_base_addr__ = 0x400210C8);
-PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_sel_10_base_addr__ = 0x400210D0);
-PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_sel_11_base_addr__ = 0x400210D8);
-PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_sel_12_base_addr__ = 0x400210E0);
-PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_sel_13_base_addr__ = 0x400210E8);
-PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_sel_14_base_addr__ = 0x400210F0);
-PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_sel_15_base_addr__ = 0x400210F8);
+PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_sel_0_base_addr__ = 0x40020080);
+PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_sel_1_base_addr__ = 0x40020088);
+PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_sel_2_base_addr__ = 0x40020090);
+PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_sel_3_base_addr__ = 0x40020098);
+PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_sel_4_base_addr__ = 0x400200A0);
+PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_sel_5_base_addr__ = 0x400200A8);
+PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_sel_6_base_addr__ = 0x400200B0);
+PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_sel_7_base_addr__ = 0x400200B8);
+PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_sel_8_base_addr__ = 0x400200C0);
+PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_sel_9_base_addr__ = 0x400200C8);
+PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_sel_10_base_addr__ = 0x400200D0);
+PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_sel_11_base_addr__ = 0x400200D8);
+PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_sel_12_base_addr__ = 0x400200E0);
+PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_sel_13_base_addr__ = 0x400200E8);
+PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_sel_14_base_addr__ = 0x400200F0);
+PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_sel_15_base_addr__ = 0x400200F8);
 PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_sel_num__ = 0x00000010);
 PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_sel_stride__ = 0x00000008);
 
-PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_0_base_addr__ = 0x40021100);
-PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_1_base_addr__ = 0x40021108);
-PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_2_base_addr__ = 0x40021110);
-PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_3_base_addr__ = 0x40021118);
-PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_4_base_addr__ = 0x40021120);
-PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_5_base_addr__ = 0x40021128);
-PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_6_base_addr__ = 0x40021130);
-PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_7_base_addr__ = 0x40021138);
-PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_8_base_addr__ = 0x40021140);
-PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_9_base_addr__ = 0x40021148);
-PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_10_base_addr__ = 0x40021150);
-PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_11_base_addr__ = 0x40021158);
-PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_12_base_addr__ = 0x40021160);
-PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_13_base_addr__ = 0x40021168);
-PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_14_base_addr__ = 0x40021170);
-PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_15_base_addr__ = 0x40021178);
+PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_0_base_addr__ = 0x40020100);
+PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_1_base_addr__ = 0x40020108);
+PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_2_base_addr__ = 0x40020110);
+PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_3_base_addr__ = 0x40020118);
+PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_4_base_addr__ = 0x40020120);
+PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_5_base_addr__ = 0x40020128);
+PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_6_base_addr__ = 0x40020130);
+PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_7_base_addr__ = 0x40020138);
+PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_8_base_addr__ = 0x40020140);
+PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_9_base_addr__ = 0x40020148);
+PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_10_base_addr__ = 0x40020150);
+PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_11_base_addr__ = 0x40020158);
+PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_12_base_addr__ = 0x40020160);
+PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_13_base_addr__ = 0x40020168);
+PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_14_base_addr__ = 0x40020170);
+PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_15_base_addr__ = 0x40020178);
 PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_num__ = 0x00000010);
 PROVIDE(__cluster_peripheral_reg_perf_regs_perf_cnt_stride__ = 0x00000008);
 
-PROVIDE(__cluster_peripheral_reg_scratch_0_base_addr__ = 0x40021180);
-PROVIDE(__cluster_peripheral_reg_scratch_1_base_addr__ = 0x40021188);
-PROVIDE(__cluster_peripheral_reg_scratch_2_base_addr__ = 0x40021190);
-PROVIDE(__cluster_peripheral_reg_scratch_3_base_addr__ = 0x40021198);
+PROVIDE(__cluster_peripheral_reg_scratch_0_base_addr__ = 0x40020180);
+PROVIDE(__cluster_peripheral_reg_scratch_1_base_addr__ = 0x40020188);
+PROVIDE(__cluster_peripheral_reg_scratch_2_base_addr__ = 0x40020190);
+PROVIDE(__cluster_peripheral_reg_scratch_3_base_addr__ = 0x40020198);
 PROVIDE(__cluster_peripheral_reg_scratch_num__ = 0x00000004);
 PROVIDE(__cluster_peripheral_reg_scratch_stride__ = 0x00000008);
 
-PROVIDE(__cluster_peripheral_reg_cl_clint_set_0_base_addr__ = 0x400211A0);
-PROVIDE(__cluster_peripheral_reg_cl_clint_set_1_base_addr__ = 0x402211A0);
-PROVIDE(__cluster_peripheral_reg_cl_clint_set_2_base_addr__ = 0x404211A0);
-PROVIDE(__cluster_peripheral_reg_cl_clint_set_3_base_addr__ = 0x406211A0);
-PROVIDE(__cluster_peripheral_reg_cl_clint_set_4_base_addr__ = 0x408211A0);
+PROVIDE(__cluster_peripheral_reg_cl_clint_set_0_base_addr__ = 0x400201A0);
+PROVIDE(__cluster_peripheral_reg_cl_clint_set_1_base_addr__ = 0x402201A0);
+PROVIDE(__cluster_peripheral_reg_cl_clint_set_2_base_addr__ = 0x404201A0);
+PROVIDE(__cluster_peripheral_reg_cl_clint_set_3_base_addr__ = 0x406201A0);
+PROVIDE(__cluster_peripheral_reg_cl_clint_set_4_base_addr__ = 0x408201A0);
 PROVIDE(__cluster_peripheral_reg_cl_clint_set_num__ = 0x00000005);
 PROVIDE(__cluster_peripheral_reg_cl_clint_set_stride__ = 0x00200000);
 
-PROVIDE(__cluster_peripheral_reg_cl_clint_clear_0_base_addr__ = 0x400211A8);
-PROVIDE(__cluster_peripheral_reg_cl_clint_clear_1_base_addr__ = 0x402211A8);
-PROVIDE(__cluster_peripheral_reg_cl_clint_clear_2_base_addr__ = 0x404211A8);
-PROVIDE(__cluster_peripheral_reg_cl_clint_clear_3_base_addr__ = 0x406211A8);
-PROVIDE(__cluster_peripheral_reg_cl_clint_clear_4_base_addr__ = 0x408211A8);
+PROVIDE(__cluster_peripheral_reg_cl_clint_clear_0_base_addr__ = 0x400201A8);
+PROVIDE(__cluster_peripheral_reg_cl_clint_clear_1_base_addr__ = 0x402201A8);
+PROVIDE(__cluster_peripheral_reg_cl_clint_clear_2_base_addr__ = 0x404201A8);
+PROVIDE(__cluster_peripheral_reg_cl_clint_clear_3_base_addr__ = 0x406201A8);
+PROVIDE(__cluster_peripheral_reg_cl_clint_clear_4_base_addr__ = 0x408201A8);
 PROVIDE(__cluster_peripheral_reg_cl_clint_clear_num__ = 0x00000005);
 PROVIDE(__cluster_peripheral_reg_cl_clint_clear_stride__ = 0x00200000);
 
-PROVIDE(__cluster_peripheral_reg_icache_prefetch_enable_0_base_addr__ = 0x400211B0);
-PROVIDE(__cluster_peripheral_reg_icache_prefetch_enable_1_base_addr__ = 0x402211B0);
-PROVIDE(__cluster_peripheral_reg_icache_prefetch_enable_2_base_addr__ = 0x404211B0);
-PROVIDE(__cluster_peripheral_reg_icache_prefetch_enable_3_base_addr__ = 0x406211B0);
-PROVIDE(__cluster_peripheral_reg_icache_prefetch_enable_4_base_addr__ = 0x408211B0);
+PROVIDE(__cluster_peripheral_reg_icache_prefetch_enable_0_base_addr__ = 0x400201B0);
+PROVIDE(__cluster_peripheral_reg_icache_prefetch_enable_1_base_addr__ = 0x402201B0);
+PROVIDE(__cluster_peripheral_reg_icache_prefetch_enable_2_base_addr__ = 0x404201B0);
+PROVIDE(__cluster_peripheral_reg_icache_prefetch_enable_3_base_addr__ = 0x406201B0);
+PROVIDE(__cluster_peripheral_reg_icache_prefetch_enable_4_base_addr__ = 0x408201B0);
 PROVIDE(__cluster_peripheral_reg_icache_prefetch_enable_num__ = 0x00000005);
 PROVIDE(__cluster_peripheral_reg_icache_prefetch_enable_stride__ = 0x00200000);
 
-PROVIDE(__cluster_peripheral_reg_unused_0_base_addr__ = 0x400211B8);
-PROVIDE(__cluster_peripheral_reg_unused_1_base_addr__ = 0x402211B8);
-PROVIDE(__cluster_peripheral_reg_unused_2_base_addr__ = 0x404211B8);
-PROVIDE(__cluster_peripheral_reg_unused_3_base_addr__ = 0x406211B8);
-PROVIDE(__cluster_peripheral_reg_unused_4_base_addr__ = 0x408211B8);
+PROVIDE(__cluster_peripheral_reg_unused_0_base_addr__ = 0x400201B8);
+PROVIDE(__cluster_peripheral_reg_unused_1_base_addr__ = 0x402201B8);
+PROVIDE(__cluster_peripheral_reg_unused_2_base_addr__ = 0x404201B8);
+PROVIDE(__cluster_peripheral_reg_unused_3_base_addr__ = 0x406201B8);
+PROVIDE(__cluster_peripheral_reg_unused_4_base_addr__ = 0x408201B8);
 PROVIDE(__cluster_peripheral_reg_unused_num__ = 0x00000005);
 PROVIDE(__cluster_peripheral_reg_unused_stride__ = 0x00200000);
 
