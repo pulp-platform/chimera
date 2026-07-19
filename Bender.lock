@@ -71,7 +71,7 @@ packages:
     - common_cells
     - register_interface
   cheshire:
-    revision: 70a7c236e4d1c8a0584bfc5b15e4bdb931329a46
+    revision: ad168f88f9d99e973d9ee147453ff911d4c79d6d
     version: null
     source:
       Git: https://github.com/pulp-platform/cheshire.git
@@ -277,10 +277,10 @@ packages:
     - axi_stream
     - common_cells
   snitch_cluster:
-    revision: 5b2fccd96c42812774c20ab2f9b811e164809789
+    revision: c9cc25849984bf4589698d950e9f79a0631792b9
     version: null
     source:
-      Git: https://github.com/pulp-platform/snitch_cluster.git
+      Git: https://github.com/xeratec/snitch_cluster.git
     dependencies:
     - apb
     - axi
