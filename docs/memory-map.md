@@ -2,7 +2,7 @@
 
 Chimera's SoC memory map and control registers are described **once** in SystemRDL under
 `cfg/rdl/`, and all downstream artifacts are generated with [`peakrdl`](https://peakrdl.readthedocs.io)
-(`make rdl`). This replaces the previous hand-maintained duplication across
+(`make chim-rdl`). This replaces the previous hand-maintained duplication across
 `hw/chimera_pkg.sv` localparams, `sw/include/soc_addr_map.h`, and the lowRISC-reggen
 register block (`hw/regs/chimera_regs.hjson`).
 
@@ -15,13 +15,13 @@ register block (`hw/regs/chimera_regs.hjson`).
   (bootrom, external cfg regs, HyperBus cfg, the `NrClusters` cluster windows, the memory
   island, and off-chip HyperRAM).
 
-## Generation (`make rdl`)
+## Generation (`make chim-rdl`)
 
 | Target | Output | Tool |
 |--------|--------|------|
-| `rdl-markdown` | `docs/addressmap.md` (generated, gitignored) | `peakrdl markdown` |
-| `rdl-c-header` | `.generated/chimera_soc_regs.h` | `peakrdl c-header` |
-| `rdl-raw-header` | `.generated/chimera_addrmap.{svh,h}` (region base addrs/sizes) | `peakrdl raw-header` |
+| `chim-rdl-markdown` | `docs/addressmap.md` (generated, gitignored) | `peakrdl markdown` |
+| `chim-rdl-c-header` | `.generated/chimera_soc_regs.h` | `peakrdl c-header` |
+| `chim-rdl-raw-header` | `.generated/chimera_addrmap.{svh,h}` (region base addrs/sizes) | `peakrdl raw-header` |
 | `rdl` | all of the above | |
 
 All generated output lands in `.generated/` (gitignored); nothing generated is committed.

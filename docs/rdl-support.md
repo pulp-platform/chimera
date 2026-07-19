@@ -7,7 +7,7 @@ SPDX-License-Identifier: SHL-0.51
 # SystemRDL support across Chimera and its dependencies
 
 Chimera's global memory map and SoC-control registers are described in **SystemRDL**
-(`cfg/rdl/*.rdl`) and rendered with **peakrdl** (`make rdl` / `make rdl-regblock`, see
+(`cfg/rdl/*.rdl`) and rendered with **peakrdl** (`make chim-rdl` / `make chim-rdl-regblock`, see
 `rdl.mk`). The top address map (`cfg/rdl/chimera_addrmap.rdl`) is *hierarchical*: where a
 dependency ships its own RDL, we `` `include `` it and instantiate it, so the generated map
 (`docs/addressmap.md`, `.generated/chimera_addrmap.*`) contains that block's real internals
@@ -67,4 +67,4 @@ placeholder for blocks that *do* have registers but ship them via reggen (cheshi
   base address.
 - Add the dependency's RDL directory to `PEAKRDL_INCLUDES` in `rdl.mk` via
   `-I $(shell bender path <dep>)/<rdl-dir>` (and any nested include dir the RDL references).
-- `make rdl` regenerates `docs/addressmap.md` + the headers with the new block folded in.
+- `make chim-rdl` regenerates `docs/addressmap.md` + the headers with the new block folded in.

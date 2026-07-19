@@ -65,9 +65,9 @@ snitch_bootrom: $(CHIM_BOOTROM_ALL) ## Generate Snitch bootrom
 
 # The bootrom sources include the SystemRDL-generated headers directly
 # (.generated/{chimera_addrmap_raw,snitch_cluster_addrmap,snitch_cluster_cfg}.h),
-# so add -I$(RDL_GEN_DIR) and ensure they are generated first (rdl-raw-header +
-# rdl-sw-headers). The old hand-maintained sw/include headers were removed.
-$(CHIM_ROOT)/hw/bootrom/snitch/snitch_bootrom.elf: $(CHIM_ROOT)/hw/bootrom/snitch/snitch_bootrom.ld $(CHIM_BROM_SRCS) | rdl-raw-header rdl-sw-headers
+# so add -I$(RDL_GEN_DIR) and ensure they are generated first (chim-rdl-raw-header
+# + chim-rdl-sw-headers). The old hand-maintained sw/include headers were removed.
+$(CHIM_ROOT)/hw/bootrom/snitch/snitch_bootrom.elf: $(CHIM_ROOT)/hw/bootrom/snitch/snitch_bootrom.ld $(CHIM_BROM_SRCS) | chim-rdl-raw-header chim-rdl-sw-headers
 	$(CHS_SW_CC) -I$(RDL_GEN_DIR) $(CHS_SW_INCLUDES) -T$< $(CHIM_BROM_FLAGS) -o $@ $(CHIM_BROM_SRCS)
 
 $(CHIM_ROOT)/hw/bootrom/snitch/snitch_bootrom.bin: $(CHIM_ROOT)/hw/bootrom/snitch/snitch_bootrom.elf
@@ -77,7 +77,7 @@ $(CHIM_ROOT)/hw/bootrom/snitch/snitch_bootrom.sv: $(CHIM_ROOT)/hw/bootrom/snitch
 	$(CHS_ROOT)/util/gen_bootrom.py --sv-module chimera_snitch_bootrom $< > $@
 
 .PHONY: regenerate_soc_regs
-regenerate_soc_regs: rdl-regblock ## Regenerate the SoC-control register block from SystemRDL (cfg/rdl)
+regenerate_soc_regs: chim-rdl-regblock ## Regenerate the SoC-control register block from SystemRDL (cfg/rdl)
 
 -include $(CHIM_NONFREE_DIR)/nonfree.mk
 
@@ -96,10 +96,10 @@ TB_DUT = tb_chimera_soc
 # Phonies for the entire system #
 #################################
 CHIM_HW_ALL = chs-hw-init sn-hw-all chim-bootrom-init
-CHIM_SW_ALL = chim-sw
+CHIM_SW_ALL = chim-rdl chim-sw
 CHIM_SIM_ALL = chim-sim
 CHIM_ALL += $(CHIM_HW_ALL) $(CHIM_SW_ALL) $(CHIM_SIM_ALL)
-CHIM_CLEAN += chim-sw-clean chim-sim-clean sn-hw-clean
+CHIM_CLEAN += chim-rdl-clean chim-sw-clean chim-sim-clean sn-hw-clean
 
 .PHONY: chim-all
 chim-all: $(CHIM_ALL) ## Generate full chimera infrastructure
