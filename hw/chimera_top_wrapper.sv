@@ -67,8 +67,8 @@ module chimera_top_wrapper
   output logic      [ HypNumPhys-1:0]                  hyper_dq_oe_o,
   output logic      [ HypNumPhys-1:0]                  hyper_reset_no,
   // APB interface
-  input  apb_resp_t                                    apb_rsp_i,
-  output apb_req_t                                     apb_req_o,
+  input  apb_soc_resp_t                                    apb_rsp_i,
+  output apb_soc_req_t                                     apb_req_o,
   // PMU  Clusters control signals
   input  logic      [ExtClusters-1:0]                  pmu_rst_clusters_ni,
   input  logic      [ExtClusters-1:0]                  pmu_clkgate_en_clusters_i,  // TODO: lleone
@@ -94,11 +94,13 @@ module chimera_top_wrapper
   localparam type axi_wide_slv_req_t = mem_isl_wide_axi_slv_req_t;
   localparam type axi_wide_slv_rsp_t = mem_isl_wide_axi_slv_rsp_t;
 
-  chimera_reg2hw_t reg2hw;
+  chimera_reg_pkg::chimera_soc_regs__out_t chimera_hwif_out;
 
   // External AXI crossbar ports
   axi_mst_req_t [iomsb(ChsCfg.AxiExtNumMst):0] axi_mst_req;
   axi_mst_rsp_t [iomsb(ChsCfg.AxiExtNumMst):0] axi_mst_rsp;
+  axi_llc_req_t axi_llc_req;
+  axi_llc_rsp_t axi_llc_rsp;
   axi_wide_mst_req_t [iomsb(ChsCfg.AxiExtNumWideMst):0] axi_wide_mst_req;
   axi_wide_mst_rsp_t [iomsb(ChsCfg.AxiExtNumWideMst):0] axi_wide_mst_rsp;
   axi_slv_req_t [iomsb(ChsCfg.AxiExtNumSlv):0] axi_slv_req;
@@ -123,8 +125,8 @@ module chimera_top_wrapper
   logic [iomsb(ChsCfg.NumExtDbgHarts):0] dbg_ext_unavail;
 
   // Logic signals to APB dump mdoule
-  apb_req_t apb_to_dump_req;
-  apb_resp_t apb_from_dump_rsp;
+  apb_soc_req_t apb_to_dump_req;
+  apb_soc_resp_t apb_from_dump_rsp;
 
   // ---------------------------------------
   // |         Cheshire SoC                |
@@ -133,8 +135,8 @@ module chimera_top_wrapper
   cheshire_soc #(
     .Cfg              (ChsCfg),
     .ExtHartinfo      ('0),
-    .axi_ext_llc_req_t(axi_mst_req_t),
-    .axi_ext_llc_rsp_t(axi_mst_rsp_t),
+    .axi_ext_llc_req_t(axi_llc_req_t),
+    .axi_ext_llc_rsp_t(axi_llc_rsp_t),
     .axi_ext_mst_req_t(axi_mst_req_t),
     .axi_ext_mst_rsp_t(axi_mst_rsp_t),
     .axi_ext_slv_req_t(axi_slv_req_t),
@@ -148,8 +150,8 @@ module chimera_top_wrapper
     .boot_mode_i,
     .rtc_i,
     // External AXI LLC (DRAM) port
-    .axi_llc_mst_req_o(),
-    .axi_llc_mst_rsp_i('0),
+    .axi_llc_mst_req_o(axi_llc_req),
+    .axi_llc_mst_rsp_i(axi_llc_rsp),
     // External AXI crossbar ports
     .axi_ext_mst_req_i(axi_mst_req),
     .axi_ext_mst_rsp_o(axi_mst_rsp),
@@ -257,16 +259,37 @@ module chimera_top_wrapper
 
   // TOP-LEVEL REG
 
-  chimera_reg_top #(
+  // Convert the register bus to APB4 for the peakrdl-generated register block.
+  apb_soc_req_t  soc_reg_apb_req;
+  apb_soc_resp_t soc_reg_apb_rsp;
+  reg_to_apb #(
     .reg_req_t(reg_req_t),
-    .reg_rsp_t(reg_rsp_t)
-  ) i_reg_top (
+    .reg_rsp_t(reg_rsp_t),
+    .apb_req_t(apb_req_t),
+    .apb_rsp_t(apb_resp_t)
+  ) i_soc_reg_to_apb (
     .clk_i    (soc_clk_i),
-    .rst_ni,
+    .rst_ni   (rst_ni),
     .reg_req_i(reg_slv_req[TopLevelCfgRegsIdx]),
     .reg_rsp_o(reg_slv_rsp[TopLevelCfgRegsIdx]),
-    .reg2hw   (reg2hw),
-    .devmode_i('1)
+    .apb_req_o(soc_reg_apb_req),
+    .apb_rsp_i(soc_reg_apb_rsp)
+  );
+
+  chimera_reg_top i_reg_top (
+    .clk          (soc_clk_i),
+    .arst_n       (rst_ni),
+    .s_apb_psel   (soc_reg_apb_req.psel),
+    .s_apb_penable(soc_reg_apb_req.penable),
+    .s_apb_pwrite (soc_reg_apb_req.pwrite),
+    .s_apb_pprot  (soc_reg_apb_req.pprot),
+    .s_apb_paddr  (soc_reg_apb_req.paddr[6:0]),
+    .s_apb_pwdata (soc_reg_apb_req.pwdata),
+    .s_apb_pstrb  (soc_reg_apb_req.pstrb),
+    .s_apb_pready (soc_reg_apb_rsp.pready),
+    .s_apb_prdata (soc_reg_apb_rsp.prdata),
+    .s_apb_pslverr(soc_reg_apb_rsp.pslverr),
+    .hwif_out     (chimera_hwif_out)
   );
 
 
@@ -304,7 +327,7 @@ module chimera_top_wrapper
     .rerror_i (snitch_bootrom_we_q)
   );
 
-  snitch_bootrom #(
+  chimera_snitch_bootrom #(
     .AddrWidth(32),
     .DataWidth(32)
   ) i_snitch_bootrom (
@@ -317,11 +340,11 @@ module chimera_top_wrapper
 
   logic [ExtClusters-1:0] wide_mem_bypass_mode;
   assign wide_mem_bypass_mode = {
-    reg2hw.wide_mem_cluster_4_bypass.q,
-    reg2hw.wide_mem_cluster_3_bypass.q,
-    reg2hw.wide_mem_cluster_2_bypass.q,
-    reg2hw.wide_mem_cluster_1_bypass.q,
-    reg2hw.wide_mem_cluster_0_bypass.q
+    chimera_hwif_out.wide_mem_cluster_bypass[4].value.value,
+    chimera_hwif_out.wide_mem_cluster_bypass[3].value.value,
+    chimera_hwif_out.wide_mem_cluster_bypass[2].value.value,
+    chimera_hwif_out.wide_mem_cluster_bypass[1].value.value,
+    chimera_hwif_out.wide_mem_cluster_bypass[0].value.value
   };
 
   logic [ExtClusters-1:0] cluster_clock_gate_en;
@@ -331,22 +354,22 @@ module chimera_top_wrapper
   // It will be used to drive the actual clk eneable signal in each cluster.
   // For this reason it's inverted when connected to the cluster.
   assign cluster_clock_gate_en = {
-    reg2hw.cluster_4_clk_gate_en,
-    reg2hw.cluster_3_clk_gate_en,
-    reg2hw.cluster_2_clk_gate_en,
-    reg2hw.cluster_1_clk_gate_en,
-    reg2hw.cluster_0_clk_gate_en
+    chimera_hwif_out.cluster_clk_gate_en[4].value.value,
+    chimera_hwif_out.cluster_clk_gate_en[3].value.value,
+    chimera_hwif_out.cluster_clk_gate_en[2].value.value,
+    chimera_hwif_out.cluster_clk_gate_en[1].value.value,
+    chimera_hwif_out.cluster_clk_gate_en[0].value.value
   };
 
 
   logic [ExtClusters-1:0] cluster_rst_n;
   logic [ExtClusters-1:0] cluster_soft_rst_n;
   assign cluster_soft_rst_n = {
-    ~reg2hw.reset_cluster_4.q,
-    ~reg2hw.reset_cluster_3.q,
-    ~reg2hw.reset_cluster_2.q,
-    ~reg2hw.reset_cluster_1.q,
-    ~reg2hw.reset_cluster_0.q
+    ~chimera_hwif_out.reset_cluster[4].value.value,
+    ~chimera_hwif_out.reset_cluster[3].value.value,
+    ~chimera_hwif_out.reset_cluster[2].value.value,
+    ~chimera_hwif_out.reset_cluster[1].value.value,
+    ~chimera_hwif_out.reset_cluster[0].value.value
   };
 
   // The Rst used for each cluster is the AND gate among all different source of rst in the system that are:
@@ -373,7 +396,7 @@ module chimera_top_wrapper
     .rst_ni           (cluster_rst_n),
     .clu_clk_en_i     (~cluster_clock_gate_en),
     .widemem_bypass_i (wide_mem_bypass_mode),
-    .boot_addr_i      (reg2hw.snitch_configurable_boot_addr.q),
+    .boot_addr_i      (chimera_hwif_out.snitch_configurable_boot_addr.value.value),
     .debug_req_i      (dbg_ext_req),
     .xeip_i           (xeip_ext),
     .mtip_i           (mtip_ext),
@@ -412,9 +435,9 @@ module chimera_top_wrapper
     .axi_wide_rsp_o  (axi_wide_mst_rsp)
   );
 
-  localparam int unsigned AxiSlvIdWidth = ChsCfg.AxiMstIdWidth + $clog2(AxiIn.num_in);
 
   // Slave CDC parameters
+  localparam int unsigned AxiSlvIdWidth = ChsCfg.AxiMstIdWidth + $clog2(AxiIn.num_in);
   localparam int unsigned ChimeraAxiSlvAwWidth = (2 ** LogDepth) * axi_pkg::aw_width(
       ChsCfg.AddrWidth, AxiSlvIdWidth, ChsCfg.AxiUserWidth
   );
@@ -448,38 +471,61 @@ module chimera_top_wrapper
       ChsCfg.AxiDataWidth, ChsCfg.AxiMstIdWidth, ChsCfg.AxiUserWidth
   );
 
-  logic [ChimeraAxiSlvArWidth-1:0] hyper_ar_data;
+  // LLC CDC parameters
+  localparam int unsigned ChimeraAxiLlcIdWidth = ChsCfg.AxiMstIdWidth   +
+                                     $clog2(AxiIn.num_in)+
+                                     ChsCfg.LlcNotBypass    ;
+  localparam int unsigned ChimeraAxiLlcArWidth = (2**LogDepth)*
+                                      axi_pkg::ar_width(ChsCfg.AddrWidth   ,
+                                                        ChimeraAxiLlcIdWidth      ,
+                                                        ChsCfg.AxiUserWidth);
+  localparam int unsigned ChimeraAxiLlcAwWidth = (2**LogDepth)*
+                                        axi_pkg::aw_width(ChsCfg.AddrWidth  ,
+                                                        ChimeraAxiLlcIdWidth      ,
+                                                        ChsCfg.AxiUserWidth);
+  localparam int unsigned ChimeraAxiLlcBWidth  = (2**LogDepth)*
+                                        axi_pkg::b_width(ChimeraAxiLlcIdWidth     ,
+                                                        ChsCfg.AxiUserWidth);
+  localparam int unsigned ChimeraAxiLlcRWidth  = (2**LogDepth)*
+                                        axi_pkg::r_width(ChsCfg.AxiDataWidth,
+                                                        ChimeraAxiLlcIdWidth      ,
+                                                        ChsCfg.AxiUserWidth);
+  localparam int unsigned ChimeraAxiLlcWWidth  = (2**LogDepth)*
+                                        axi_pkg::w_width(ChsCfg.AxiDataWidth,
+                                                        ChsCfg.AxiUserWidth );
+
+  logic [ChimeraAxiLlcArWidth-1:0] hyper_ar_data;
   logic [              LogDepth:0] hyper_ar_wptr;
   logic [              LogDepth:0] hyper_ar_rptr;
-  logic [ChimeraAxiSlvAwWidth-1:0] hyper_aw_data;
+  logic [ChimeraAxiLlcAwWidth-1:0] hyper_aw_data;
   logic [              LogDepth:0] hyper_aw_wptr;
   logic [              LogDepth:0] hyper_aw_rptr;
-  logic [ ChimeraAxiSlvBWidth-1:0] hyper_b_data;
+  logic [ ChimeraAxiLlcBWidth-1:0] hyper_b_data;
   logic [              LogDepth:0] hyper_b_wptr;
   logic [              LogDepth:0] hyper_b_rptr;
-  logic [ ChimeraAxiSlvRWidth-1:0] hyper_r_data;
+  logic [ ChimeraAxiLlcRWidth-1:0] hyper_r_data;
   logic [              LogDepth:0] hyper_r_wptr;
   logic [              LogDepth:0] hyper_r_rptr;
-  logic [ ChimeraAxiSlvWWidth-1:0] hyper_w_data;
+  logic [ ChimeraAxiLlcWWidth-1:0] hyper_w_data;
   logic [              LogDepth:0] hyper_w_wptr;
   logic [              LogDepth:0] hyper_w_rptr;
 
   axi_cdc_src #(
     .LogDepth  (LogDepth),
     .SyncStages(SyncStages),
-    .aw_chan_t (axi_slv_aw_chan_t),
-    .w_chan_t  (axi_slv_w_chan_t),
-    .b_chan_t  (axi_slv_b_chan_t),
-    .ar_chan_t (axi_slv_ar_chan_t),
-    .r_chan_t  (axi_slv_r_chan_t),
-    .axi_req_t (axi_slv_req_t),
-    .axi_resp_t(axi_slv_rsp_t)
+    .aw_chan_t (axi_llc_aw_chan_t),
+    .w_chan_t  (axi_llc_w_chan_t),
+    .b_chan_t  (axi_llc_b_chan_t),
+    .ar_chan_t (axi_llc_ar_chan_t),
+    .r_chan_t  (axi_llc_r_chan_t),
+    .axi_req_t (axi_llc_req_t),
+    .axi_resp_t(axi_llc_rsp_t)
   ) hyperbus_slv_cdc_src (
     // synchronous slave port
     .src_clk_i                  (soc_clk_i),
     .src_rst_ni                 (rst_ni),
-    .src_req_i                  (axi_slv_req[HyperbusIdx]),
-    .src_resp_o                 (axi_slv_rsp[HyperbusIdx]),
+    .src_req_i                  (axi_llc_req),
+    .src_resp_o                 (axi_llc_rsp),
     // asynchronous master port
     .async_data_master_aw_data_o(hyper_aw_data),
     .async_data_master_aw_wptr_o(hyper_aw_wptr),
@@ -504,30 +550,30 @@ module chimera_top_wrapper
     .IsClockODelayed (1'b0),
     .AxiAddrWidth    (ChsCfg.AddrWidth),
     .AxiDataWidth    (ChsCfg.AxiDataWidth),
-    .AxiIdWidth      (AxiSlvIdWidth),
+    .AxiIdWidth      (ChimeraAxiLlcIdWidth),
     .AxiUserWidth    (ChsCfg.AxiUserWidth),
-    .axi_req_t       (axi_slv_req_t),
-    .axi_rsp_t       (axi_slv_rsp_t),
-    .axi_w_chan_t    (axi_slv_w_chan_t),
-    .axi_b_chan_t    (axi_slv_b_chan_t),
-    .axi_ar_chan_t   (axi_slv_ar_chan_t),
-    .axi_r_chan_t    (axi_slv_r_chan_t),
-    .axi_aw_chan_t   (axi_slv_aw_chan_t),
+    .axi_req_t       (axi_llc_req_t),
+    .axi_rsp_t       (axi_llc_rsp_t),
+    .axi_w_chan_t    (axi_llc_w_chan_t),
+    .axi_b_chan_t    (axi_llc_b_chan_t),
+    .axi_ar_chan_t   (axi_llc_ar_chan_t),
+    .axi_r_chan_t    (axi_llc_r_chan_t),
+    .axi_aw_chan_t   (axi_llc_aw_chan_t),
     .RegAddrWidth    (ChsCfg.AddrWidth),
-    .RegDataWidth    (ChsCfg.AxiDataWidth),
+    .RegDataWidth    (RegDataWidth),
     .reg_req_t       (reg_req_t),
     .reg_rsp_t       (reg_rsp_t),
     .RxFifoLogDepth  (32'd2),
     .TxFifoLogDepth  (32'd2),
-    .RstChipBase     (ChsCfg.LlcOutRegionStart),
-    .RstChipSpace    (HyperbusRegionEnd - HyperbusRegionStart),
+    .RstChipBase     (HyperbusRegionStart),
+    .RstChipSpace    (HypNumPhys * HypNumChips * 'h800_0000),
     .PhyStartupCycles(300 * 200),
     .AxiLogDepth     (LogDepth),
-    .AxiSlaveArWidth (ChimeraAxiSlvArWidth),
-    .AxiSlaveAwWidth (ChimeraAxiSlvAwWidth),
-    .AxiSlaveBWidth  (ChimeraAxiSlvBWidth),
-    .AxiSlaveRWidth  (ChimeraAxiSlvRWidth),
-    .AxiSlaveWWidth  (ChimeraAxiSlvWWidth),
+    .AxiSlaveArWidth (ChimeraAxiLlcArWidth),
+    .AxiSlaveAwWidth (ChimeraAxiLlcAwWidth),
+    .AxiSlaveBWidth  (ChimeraAxiLlcBWidth),
+    .AxiSlaveRWidth  (ChimeraAxiLlcRWidth),
+    .AxiSlaveWWidth  (ChimeraAxiLlcWWidth),
     .AxiMaxTrans     (ChsCfg.AxiMaxSlvTrans),
     .CdcSyncStages   (SyncStages)
   ) i_hyperbus_wrap (

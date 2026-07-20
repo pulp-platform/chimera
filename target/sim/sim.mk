@@ -13,6 +13,10 @@ CHIM_SIM_DIR ?= $(CHIM_ROOT)/target/sim
 VSIM_DIR 	?= $(CHIM_ROOT)/target/sim/vsim
 VSIM 			?= vsim
 VSIM_WORK ?= $(VSIM_DIR)/work
+# Directory the simulation runs in; all per-run artifacts (trace_hart_*, dma_trace_*,
+# transcript, modelsim.ini) are written to the cwd, so isolate them here. Defaults to
+# the repo root (unchanged behaviour); sim_runner.sh overrides it per test.
+RUN_DIR   ?= $(CHIM_ROOT)
 CHIM_HYPERBUS_SDF_PATH ?= ./target/sim/models/s27ks0641/s27ks0641.sdf
 
 CHIM_VLOG_ARGS += -work $(VSIM_WORK)
@@ -28,7 +32,15 @@ CHIM_VLOG_ARGS += +define+PATH_TO_HYP_SDF=\"$(CHIM_HYPERBUS_SDF_PATH)\"
 
 VSIM_FLAGS_GUI = -voptargs=+acc
 
-override VSIM_FLAGS += -work $(VSIM_WORK)
+# Pre-optimized design for PARALLEL-safe batch runs. `vsim <tb>` re-optimizes on
+# every invocation and takes an *exclusive* lock on the work library, so parallel
+# runs serialize on work/_lock (and time out). Optimizing once into a snapshot lets
+# many `vsim <snapshot>` open it read-only concurrently.
+VOPT         ?= vopt
+CHIM_OPT_TOP ?= $(TB_DUT)_opt
+VOPT_ARGS    += -work $(VSIM_WORK) -modelsimini $(CHIM_ROOT)/modelsim.ini
+
+override VSIM_FLAGS += -work $(VSIM_WORK) -suppress 8386
 
 # Set testbech parameters
 define add_vsim_flag
@@ -44,11 +56,11 @@ $(eval $(call add_vsim_flag,PRELMODE))
 $(eval $(call add_vsim_flag,IMAGE))
 
 # Init vsim compilation
-.PHONY: chim-sim chim-compile chim-run chim-run-batch
-chim-sim: chim-hyperram-model chs-sim-all chim-compile ## Compile Chimera SoC
+.PHONY: chim-sim chim-compile chim-opt chim-run chim-run-batch
+chim-sim: chim-hyperram-model chs-sim-all chim-compile chim-opt ## Compile Chimera SoC
 
-.PHONY: chim-hyperram-model ## Get HypperRAM VIP for simulation
-chim-hyperram-model: $(CHIM_SIM_DIR)/models/s27ks0641/s27ks0641.sv
+.PHONY: chim-hyperram-model
+chim-hyperram-model: $(CHIM_SIM_DIR)/models/s27ks0641/s27ks0641.sv ## Get HypperRAM VIP for simulation
 $(CHIM_SIM_DIR)/models/s27ks0641/s27ks0641.sv:
 	make -C $(HYPERB_ROOT) models/s27ks0641
 	mkdir -p $(dir $@)
@@ -68,13 +80,19 @@ $(CHIM_SIM_DIR)/vsim/compile.tcl: $(BENDER_YML) $(BENDER_LOCK)
 chim-compile: $(CHIM_SIM_DIR)/vsim/compile.tcl $(CHIM_HW_ALL)
 	$(VSIM) -c $(VSIM_FLAGS) -do "source $<; quit"
 
+# Optimize once into a read-only snapshot so batch runs can execute in parallel.
+chim-opt: ## Optimize the compiled design into a parallel-safe snapshot ($(CHIM_OPT_TOP))
+	$(VOPT) $(VOPT_ARGS) $(TB_DUT) -o $(CHIM_OPT_TOP)
+
 # Run simulation with GUI
 chim-run: ## Run simulation with GUI
-	$(VSIM) $(VSIM_FLAGS) $(VSIM_FLAGS_GUI) $(TB_DUT) -do "log -r /*"
+	mkdir -p $(RUN_DIR)
+	cd $(RUN_DIR) && $(VSIM) $(VSIM_FLAGS) $(VSIM_FLAGS_GUI) -modelsimini $(CHIM_ROOT)/modelsim.ini $(TB_DUT) -do "log -r /*"
 
 # Run simulation in batch mode
-chim-run-batch: ## Run simulation in command line mode
-	$(VSIM) -c $(VSIM_FLAGS) $(TB_DUT) -do "run -all; quit"
+chim-run-batch: ## Run simulation in command line mode (read-only opt snapshot; parallel-safe)
+	mkdir -p $(RUN_DIR)
+	cd $(RUN_DIR) && $(VSIM) -c $(VSIM_FLAGS) -modelsimini $(CHIM_ROOT)/modelsim.ini $(CHIM_OPT_TOP) -do "run -all; quit"
 
 
 # Clean

@@ -1,0 +1,3 @@
+overrides:
+  common_cells:             { git: "https://github.com/pulp-platform/common_cells.git",       rev: ca9d577f2fbc45ec557ab4e0905bbfc154441540 } # snitch branch from 15.12.25 commit "Add iomsb function used in most other PULP repos"
+  axi:                      { git: "https://github.com/colluca/axi",                          rev: bd1abffc0812f8170902e5fb93142c7785c0b8c1 } #  idma:                     { git: "https://github.com/pulp-platform/iDMA.git",               rev: 28a36e5e07705549e59fc33db96ab681bc1ca88e}

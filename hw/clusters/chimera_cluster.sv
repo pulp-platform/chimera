@@ -8,6 +8,7 @@
 module chimera_cluster
   import chimera_pkg::*;
   import cheshire_pkg::*;
+  import snitch_cluster_pkg::*;
 #(
   parameter chimera_cfg_t Cfg = '0,
 
@@ -230,10 +231,6 @@ module chimera_cluster
     sram_cfg_t tcdm;
   } sram_cfgs_t;
 
-  localparam int unsigned NumIntOutstandingLoads[NrCores] = '{NrCores{32'h1}};
-  localparam int unsigned NumIntOutstandingMem[NrCores] = '{NrCores{32'h4}};
-
-
   // ----------------
   // |   TCDM INTF   |
   // ----------------
@@ -258,63 +255,34 @@ module chimera_cluster
       default: 0
   };
 
-  snitch_cluster #(
+
+  snitch_cluster_wrapper #(
+    // Widths, AXI/SRAM struct types and the PMA config are driven from the
+    // Chimera/Cheshire integration; everything else (NrCores, TCDM, ICache, FP
+    // config, sequencer/SSR sizing, register stages, ...) is baked into the
+    // generated wrapper from cfg/chimera.json (see SN_CFG in the Makefile).
     .PhysicalAddrWidth(Cfg.ChsCfg.AddrWidth),
-    .NarrowDataWidth  (ClusterDataWidth),            // SCHEREMO: Convolve needs this...
+    .NarrowDataWidth  (ClusterDataWidth),
     .WideDataWidth    (WideDataWidth),
     .NarrowIdWidthIn  (ClusterNarrowAxiMstIdWidth),
     .WideIdWidthIn    (WideMasterIdWidth),
     .NarrowUserWidth  (Cfg.ChsCfg.AxiUserWidth),
     .WideUserWidth    (Cfg.ChsCfg.AxiUserWidth),
 
-    .AliasRegionEnable(1),
-    .AliasRegionBase  ('h1800_0000),
-    .SnitchPMACfg     (SnitchPMACfg),
-    .BootAddr         (SnitchBootROMRegionStart),
-    .IntBootromEnable (0),
-
-    .NrHives          (1),
-    .NrCores          (NrCores),
-    .TCDMDepth        (1024),
-    .ZeroMemorySize   (64),
-    .ClusterPeriphSize(64),
-    .NrBanks          (16),
-    // WIESEP: TCDM size = 16 * 1024 * 64 bit = 128 KiB
-
-    .DMANumAxInFlight(3),
-    .DMAReqFifoDepth (3),
-
-    .ICacheLineWidth('{256}),
-    .ICacheLineCount('{16}),
-    .ICacheWays     ('{2}),
-
-    .VMSupport(0),
-    .Xdma     ({1'b1, {(NrCores - 1) {1'b0}}}),
-
-    .NumIntOutstandingLoads(NumIntOutstandingLoads),
-    .NumIntOutstandingMem  (NumIntOutstandingMem),
-    .RegisterOffloadReq    (1),
-    .RegisterOffloadRsp    (1),
-    .RegisterCoreReq       (1),
-    .RegisterCoreRsp       (1),
-
-    .narrow_in_req_t (axi_cluster_in_narrow_req_t),
-    .narrow_in_resp_t(axi_cluster_in_narrow_resp_t),
-    .wide_in_req_t   (axi_cluster_in_wide_req_t),
-    .wide_in_resp_t  (axi_cluster_in_wide_resp_t),
-
+    .narrow_in_req_t  (axi_cluster_in_narrow_req_t),
+    .narrow_in_resp_t (axi_cluster_in_narrow_resp_t),
     .narrow_out_req_t (axi_cluster_out_narrow_req_t),
     .narrow_out_resp_t(axi_cluster_out_narrow_resp_t),
     .wide_out_req_t   (axi_cluster_out_wide_req_t),
     .wide_out_resp_t  (axi_cluster_out_wide_resp_t),
+    .wide_in_req_t    (axi_cluster_in_wide_req_t),
+    .wide_in_resp_t   (axi_cluster_in_wide_resp_t),
     .tcdm_dma_req_t   (tcdm_dma_req_t),
     .tcdm_dma_rsp_t   (tcdm_dma_rsp_t),
+    .sram_cfg_t       (sram_cfg_t),
+    .sram_cfgs_t      (sram_cfgs_t),
 
-    .sram_cfg_t (sram_cfg_t),
-    .sram_cfgs_t(sram_cfgs_t),
-
-    .RegisterExtWide  ('0),
-    .RegisterExtNarrow('0)
+    .SnitchPMACfg     (SnitchPMACfg)
   ) i_test_cluster (
 
     .clk_i          (clu_clk_gated),

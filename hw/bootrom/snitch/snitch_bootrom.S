@@ -4,7 +4,15 @@
 //
 // Moritz Scherer <scheremo@iis.ee.ethz.ch>
 
-#include <soc_ctrl.h>
+// SoC-control register addresses from the SystemRDL single source of truth
+// (peakrdl raw-header -> .generated/chimera_addrmap_raw.h, `make rdl`), resolved
+// via -I .generated. Register offsets are (absolute addr - SoC-control base).
+#include "chimera_addrmap_raw.h"
+
+#define CHIMERA_SNITCH_BOOT_ADDR_REG_OFFSET \
+    (CHIMERA_ADDRMAP_SOC_CTRL_SNITCH_BOOT_ADDR_BASE_ADDR - CHIMERA_ADDRMAP_SOC_CTRL_BASE_ADDR)
+#define CHIMERA_SNITCH_INTR_HANDLER_ADDR_REG_OFFSET \
+    (CHIMERA_ADDRMAP_SOC_CTRL_SNITCH_INTR_HANDLER_ADDR_BASE_ADDR - CHIMERA_ADDRMAP_SOC_CTRL_BASE_ADDR)
 
 .global _start
 _start:

@@ -21,9 +21,16 @@ gen_idma_hw:
 	make -C $(IDMA_ROOT) idma_hw_all
 
 CHS_SW_LD_DIR = $(CHIM_ROOT)/sw/link
+CHS_SW_ADDRS_LDH = $(CHS_SW_LD_DIR)/chimera_addrs.ldh
+
+$(CHS_SW_LD_DIR)/chimera_addrs.ldh: $(CHIM_ROOT)/cfg/rdl/chimera_addrmap.rdl $(CHS_SLINK_DIR)/.generated
+	$(PEAKRDL) raw-header $< --format ldh $(PEAKRDL_INCLUDES) $(CHS_PEAKRDL_PARAMS) --no-prefix --license_str $$'Copyright 2025 ETH Zurich and University of Bologna.\nLicensed under the Apache License, Version 2.0, see LICENSE for details.\nSPDX-License-Identifier: Apache-2.0' -o $@
+
+$(CHS_ROOT)/hw/bootrom/cheshire_bootrom.elf: $(CHS_SW_LD_DIR)/cheshire_bootrom.ld $(CHS_BROM_SRCS) $(CHS_SW_ADDRS_LDH)
+	$(CHS_SW_CC) $(CHS_SW_INCLUDES) -T$< $(CHS_BROM_FLAGS) -o $@ $(CHS_BROM_SRCS)
 
 .PHONY: chs-hw-init
-chs-hw-init: update_plic gen_idma_hw $(CHIM_SW_LIB) ## Generate Cheshire RTL
+chs-hw-init: update_plic gen_idma_hw ## Generate Cheshire RTL
 	make -B chs-hw-all CHS_XLEN=$(CHS_XLEN) CHS_SW_LD_DIR=$(CHS_SW_LD_DIR)
 
 ##################
@@ -41,44 +48,42 @@ chs-hw-init: update_plic gen_idma_hw $(CHIM_SW_LIB) ## Generate Cheshire RTL
 sn-hw-all: sn-rtl ## Generate Snitch RTL
 sn-hw-clean: sn-clean-rtl  ## Clean Snitch RTL
 
-.PHONY: $(CHIM_SW_DIR)/include/regs/soc_ctrl.h
-$(CHIM_SW_DIR)/include/regs/soc_ctrl.h: $(CHIM_ROOT)/hw/regs/chimera_regs.hjson
-	python $(CHIM_ROOT)/utils/reggen/regtool.py -D $<  > $@
-
-.PHONY: $(CHIM_SW_DIR)/hw/regs/pcr.md
-$(CHIM_HW_DIR)/regs/pcr.md: $(CHIM_ROOT)/hw/regs/chimera_regs.hjson
-	python $(CHIM_ROOT)/utils/reggen/regtool.py -d $<  > $@
+# NOTE: the SoC-control register block now comes from SystemRDL (cfg/rdl) via
+# peakrdl (see rdl.mk `regenerate_soc_regs`); the lowRISC reggen flow
+# (chimera_regs.hjson + utils/reggen) was retired. The Snitch bootrom sources
+# now include the generated headers from .generated directly; the hand-kept
+# sw/include/{regs/soc_ctrl.h,soc_addr_map.h,offload.h} were removed.
 
 
 .PHONY: snitch_bootrom
-CHIM_BROM_SRCS = $(wildcard $(CHIM_ROOT)/hw/bootrom/snitch/*.S $(CHIM_ROOT)/hw/bootrom/snitch/*.c) $(CHIM_SW_LIBS)
-CHIM_BROM_FLAGS = $(CHS_SW_LDFLAGS) -Os -fno-zero-initialized-in-bss -flto -fwhole-program -march=rv32im
+CHIM_BROM_SRCS = $(wildcard $(CHIM_ROOT)/hw/bootrom/snitch/*.S $(CHIM_ROOT)/hw/bootrom/snitch/*.c)
+CHIM_BROM_FLAGS = $(CHS_SW_LDFLAGS) -Os -fno-zero-initialized-in-bss -flto -fwhole-program -march=rv32im_zicsr -mabi=ilp32
 
 CHIM_BOOTROM_ALL += $(CHIM_ROOT)/hw/bootrom/snitch/snitch_bootrom.sv $(CHIM_ROOT)/hw/bootrom/snitch/snitch_bootrom.dump
 
 snitch_bootrom: $(CHIM_BOOTROM_ALL) ## Generate Snitch bootrom
 
-$(CHIM_ROOT)/hw/bootrom/snitch/snitch_bootrom.elf: $(CHIM_ROOT)/hw/bootrom/snitch/snitch_bootrom.ld $(CHIM_BROM_SRCS)
-	$(CHS_SW_CC) -I$(CHIM_SW_DIR)/include/regs $(CHS_SW_INCLUDES) -T$< $(CHIM_BROM_FLAGS) -o $@ $(CHIM_BROM_SRCS)
+# The bootrom sources include the SystemRDL-generated headers directly
+# (.generated/{chimera_addrmap_raw,snitch_cluster_addrmap,snitch_cluster_cfg}.h),
+# so add -I$(RDL_GEN_DIR) and ensure they are generated first (chim-rdl-raw-header
+# + chim-rdl-sw-headers). The old hand-maintained sw/include headers were removed.
+$(CHIM_ROOT)/hw/bootrom/snitch/snitch_bootrom.elf: $(CHIM_ROOT)/hw/bootrom/snitch/snitch_bootrom.ld $(CHIM_BROM_SRCS) | chim-rdl-raw-header chim-rdl-sw-headers
+	$(CHS_SW_CC) -I$(RDL_GEN_DIR) $(CHS_SW_INCLUDES) -T$< $(CHIM_BROM_FLAGS) -o $@ $(CHIM_BROM_SRCS)
 
 $(CHIM_ROOT)/hw/bootrom/snitch/snitch_bootrom.bin: $(CHIM_ROOT)/hw/bootrom/snitch/snitch_bootrom.elf
 	$(CHS_SW_OBJCOPY) -O binary $< $@
 
 $(CHIM_ROOT)/hw/bootrom/snitch/snitch_bootrom.sv: $(CHIM_ROOT)/hw/bootrom/snitch/snitch_bootrom.bin $(CHS_ROOT)/util/gen_bootrom.py
-	$(CHS_ROOT)/util/gen_bootrom.py --sv-module snitch_bootrom $< > $@
+	$(CHS_ROOT)/util/gen_bootrom.py --sv-module chimera_snitch_bootrom $< > $@
 
 .PHONY: regenerate_soc_regs
-regenerate_soc_regs: $(CHIM_ROOT)/hw/regs/chimera_reg_pkg.sv $(CHIM_ROOT)/hw/regs/chimera_reg_top.sv $(CHIM_SW_DIR)/include/regs/soc_ctrl.h $(CHIM_HW_DIR)/regs/pcr.md ## Generate SoC configuration registers
-
-.PHONY: $(CHIM_ROOT)/hw/regs/chimera_reg_pkg.sv hw/regs/chimera_reg_top.sv
-$(CHIM_ROOT)/hw/regs/chimera_reg_pkg.sv $(CHIM_ROOT)/hw/regs/chimera_reg_top.sv: $(CHIM_ROOT)/hw/regs/chimera_regs.hjson
-	python $(CHIM_ROOT)/utils/reggen/regtool.py -r $< --outdir $(dir $@)
+regenerate_soc_regs: chim-rdl-regblock ## Regenerate the SoC-control register block from SystemRDL (cfg/rdl)
 
 -include $(CHIM_NONFREE_DIR)/nonfree.mk
 
 -include $(CHIM_ROOT)/bender.mk
 
-# Necessary to build libchimera.a for bootrom.elf
+# Provides the Snitch bootrom compile flags (march/ABI)
 -include $(CHIM_ROOT)/sw/sw.mk
 
 # Include subdir Makefiles
@@ -91,10 +96,10 @@ TB_DUT = tb_chimera_soc
 # Phonies for the entire system #
 #################################
 CHIM_HW_ALL = chs-hw-init sn-hw-all chim-bootrom-init
-CHIM_SW_ALL = chim-sw
+CHIM_SW_ALL = chim-rdl chim-sw
 CHIM_SIM_ALL = chim-sim
 CHIM_ALL += $(CHIM_HW_ALL) $(CHIM_SW_ALL) $(CHIM_SIM_ALL)
-CHIM_CLEAN += chim-sw-clean chim-sim-clean sn-hw-clean
+CHIM_CLEAN += chim-rdl-clean chim-sw-clean chim-sim-clean sn-hw-clean
 
 .PHONY: chim-all
 chim-all: $(CHIM_ALL) ## Generate full chimera infrastructure

@@ -1,0 +1,55 @@
+// Copyright 2024 ETH Zurich and University of Bologna.
+// Solderpad Hardware License, Version 0.51, see LICENSE for details.
+// SPDX-License-Identifier: SHL-0.51
+//
+// Chimera top-level SoC-control register block, in SystemRDL.
+// Single source of truth for the register layout previously kept in
+// hw/regs/chimera_regs.hjson (lowRISC reggen). peakrdl renders it to the SV
+// register block (regblock), the C header and the Markdown map (see rdl.mk).
+// Layout (32-bit regs) matches the legacy offsets 0x0-0x6c.
+
+`ifndef CHIMERA_SOC_REGS_RDL
+`define CHIMERA_SOC_REGS_RDL
+
+addrmap chimera_soc_regs #(
+    longint unsigned NrClusters = 5
+) {
+    name = "Chimera SoC Control Registers";
+    desc = "Top-level SoC-control registers: Snitch boot/interrupt addresses and
+            per-cluster reset, clock-gate, return, busy and wide-memory bypass.";
+
+    default regwidth = 32;
+    default sw = rw;
+    default hw = r;      // hwaccess "hro": hardware reads, software writes
+
+    reg { desc = "Boot address for all Snitch cores";
+          field { reset = 0xBADCAB1E; } value[31:0]; } snitch_boot_addr @ 0x0;
+
+    reg { desc = "Configurable boot address executed by each Snitch core";
+          field { reset = 0x30000000; } value[31:0]; } snitch_configurable_boot_addr @ 0x4;
+
+    reg { desc = "Interrupt handler address for all Snitch cores";
+          field { reset = 0xBADCAB1E; } value[31:0]; } snitch_intr_handler_addr @ 0x8;
+
+    reg snitch_cluster_return_t { desc = "Return value of a Snitch cluster";
+          field { reset = 0x0; } value[31:0]; };
+    snitch_cluster_return_t snitch_cluster_return[NrClusters] @ 0xc += 0x4;
+
+    reg reset_cluster_t { desc = "Soft reset for a cluster (active high)";
+          field { reset = 0x1; } value[0:0]; };
+    reset_cluster_t reset_cluster[NrClusters] @ 0x20 += 0x4;
+
+    reg cluster_clk_gate_en_t { desc = "Clock-gate enable for a cluster (disables the clock)";
+          field { reset = 0x1; } value[0:0]; };
+    cluster_clk_gate_en_t cluster_clk_gate_en[NrClusters] @ 0x34 += 0x4;
+
+    reg wide_mem_cluster_bypass_t { desc = "Bypass the cluster-to-memory wide connection";
+          field { reset = 0x0; } value[0:0]; };
+    wide_mem_cluster_bypass_t wide_mem_cluster_bypass[NrClusters] @ 0x48 += 0x4;
+
+    reg cluster_busy_t { desc = "Cluster busy status";
+          field { reset = 0x1; } value[0:0]; };
+    cluster_busy_t cluster_busy[NrClusters] @ 0x5c += 0x4;
+};
+
+`endif // CHIMERA_SOC_REGS_RDL

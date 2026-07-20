@@ -49,6 +49,10 @@ add wave -noupdate -expand -group {Global} {/tb_chimera_soc/fix/dut/uart_rx_i}
 
 add wave -noupdate -expand -group {CVA6} {/tb_chimera_soc/fix/dut/i_cheshire/gen_cva6_cores[0]/i_core_cva6/hart_id_i}
 add wave -noupdate -expand -group {CVA6} {/tb_chimera_soc/fix/dut/i_cheshire/gen_cva6_cores[0]/i_core_cva6/pc_commit}
+add wave -noupdate -expand -group {CVA6} {/tb_chimera_soc/fix/dut/i_cheshire/intr_routed}
+add wave -noupdate -expand -group {CVA6} {/tb_chimera_soc/fix/dut/i_cheshire/intr}
+add wave -noupdate -expand -group {CVA6} {/tb_chimera_soc/fix/dut/i_cheshire/msip}
+add wave -noupdate -expand -group {CVA6} {/tb_chimera_soc/fix/dut/i_cheshire/mtip}
 
 add wave -noupdate -expand -group {Cluster Register} {tb_chimera_soc/fix/dut/i_reg_top/reg2hw}
 

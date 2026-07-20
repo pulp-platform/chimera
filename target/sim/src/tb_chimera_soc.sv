@@ -41,7 +41,7 @@ module tb_chimera_soc
     force fix.dut.i_memisland_domain.i_memory_island.i_memory_island.narrow_req_i[1] = 1'b1;
     force fix.dut.i_memisland_domain.i_memory_island.i_memory_island.narrow_we_i[1] = 1'b1;
     force fix.dut.i_memisland_domain.i_memory_island.i_memory_island.narrow_wdata_i[1] = write_data;
-    force fix.dut.i_memisland_domain.i_memory_island.i_memory_island.narrow_strb_i[1] = 4'hf;
+    force fix.dut.i_memisland_domain.i_memory_island.i_memory_island.narrow_strb_i[1] = 8'hff;
     force fix.dut.i_memisland_domain.i_memory_island.i_memory_island.narrow_gnt_o[1] = 1'b0;
     force fix.dut.i_memisland_domain.i_memory_island.i_memory_island.narrow_rvalid_o[1] = 1'b0;
   endtask
@@ -58,18 +58,19 @@ module tb_chimera_soc
       $display("[FAST PRELOAD] Preloading section at 0x%h (%0d bytes)", sec_addr, sec_len);
       if (read_section(sec_addr, bf, sec_len))
         $fatal(1, "[FAST PRELOAD] Failed to read ELF section!");
-      @(posedge fix.vip.soc_clk);  // 
+      @(posedge fix.vip.soc_clk);  //
       for (longint i = 0; i <= sec_len; i += riscv::XLEN / 8) begin
         bit checkpoint = (i != 0 && i % 512 == 0);
-        if (checkpoint)
+        //if (checkpoint)
           $display(
-              "[FAST PRELOAD] - %0d/%0d bytes (%0d%%)",
+              "%0t ns [FAST PRELOAD] - %0d/%0d bytes (%0d%%)",
+              $time,
               i,
               sec_len,
               i * 100 / (sec_len > 1 ? sec_len - 1 : 1)
           );
         @(posedge fix.vip.soc_clk);
-        force_write((sec_addr + i), {bf[i+3], bf[i+2], bf[i+1], bf[i]});
+        force_write((sec_addr + i), {bf[i+7], bf[i+6], bf[i+5], bf[i+4], bf[i+3], bf[i+2], bf[i+1], bf[i]});
       end
     end
     @(posedge fix.vip.soc_clk);
@@ -112,7 +113,7 @@ module tb_chimera_soc
           fix.vip.uart_debug_elf_run_and_wait(preload_elf, exit_code);
         end
         3: begin  // FAST DEBUG
-          // Initialize JTAG 
+          // Initialize JTAG
           fix.vip.jtag_init();
           // Halt the core
           fix.vip.jtag_halt_hart();

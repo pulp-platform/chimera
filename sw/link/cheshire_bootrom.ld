@@ -5,17 +5,17 @@
 /* Nicole Narr <narrn@student.ethz.ch> */
 /* Christopher Reinwardt <creinwar@student.ethz.ch> */
 /* Paul Scheffler <paulsc@iis.ee.ethz.ch> */
-/* Lorenzo Leone <lleone@iis.ee.ethz.ch> */
 
-
-INCLUDE common.ldh
+INCLUDE cheshire_common.ldh
 
 SECTIONS {
+  __stack_pointer$  = __stack_start - 8;
+
   .text : {
     *(.text._start)
     *(.text)
     *(.text.*)
-  } > memisl
+  } > bootrom
 
   .misc : ALIGN(16) {
     *(.rodata)
@@ -26,7 +26,7 @@ SECTIONS {
     *(.srodata.*)
     *(.sdata)
     *(.sdata.*)
-  } > memisl
+  } > bootrom
 
   . = ALIGN(32);
   __bss_start = .;
@@ -35,12 +35,12 @@ SECTIONS {
     *(.bss.*)
     *(.sbss)
     *(.sbss.*)
-  } > memisl
+  } > bootrom
   . = ALIGN(32);
   __bss_end = .;
 
   .bulk : ALIGN(16) {
     *(.bulk)
     *(.bulk.*)
-  } > memisl
+  } > bootrom
 }

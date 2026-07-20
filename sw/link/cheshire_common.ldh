@@ -5,21 +5,14 @@
 /* Nicole Narr <narrn@student.ethz.ch> */
 /* Christopher Reinwardt <creinwar@student.ethz.ch> */
 /* Paul Scheffler <paulsc@iis.ee.ethz.ch> */
+/* Philip Wiese <wiesep@iis.ee.ethz.ch> */
 
 /* This header defines symbols and rules universal to bare-metal execution */
 
 ENTRY(_start)
 
-MEMORY {
-  bootrom (rx)  : ORIGIN = 0x02000000, LENGTH = 16K
-  /* We assume at least 64 KiB SPM, same minus stack for ROMs. */
-  /* If more SPM is available, CRT0 repoints the stack. */
-  extrom (rx)   : ORIGIN = 0x00000000, LENGTH = 48K
-  spm (rwx)     : ORIGIN = 0x10000000, LENGTH = 64K
-  memisl (rwx)    : ORIGIN = 0x48000000, LENGTH = 128K
-  /* We  assume at least 8 MiB of DRAM (minimum for Linux). */
-  dram (rwx)    : ORIGIN = 0x80000000, LENGTH = 8M
-}
+/* Memory regions and peripheral base addresses are auto-generated from cheshire.rdl */
+INCLUDE cheshire_addrs.ldh
 
 SECTIONS {
   /* Keep binaries lean */
@@ -29,6 +22,9 @@ SECTIONS {
   /* By default, keep the calling context (boot ROM) stack pointer */
   __global_pointer$ = ADDR(.misc) + SIZEOF(.misc) / 2;
   __stack_pointer$  = 0;
+
+  /* AXI-RT guard register (specific offset within AXI-RT region, not a named block) */
+  __axirtgrd_base_addr__ = 0x020C1ffc;
 
   /* Further addresses */
   __base_dma      = 0x01000000;
@@ -50,6 +46,5 @@ SECTIONS {
   __base_clic     = 0x08000000;
   __base_spm      = ORIGIN(spm);
   __base_dram     = ORIGIN(dram);
-  __base_memisl   = ORIGIN(memisl);
-  __stack_start   = ORIGIN(memisl) + LENGTH(memisl);
+  __stack_start   = ORIGIN(dram) + LENGTH(dram);
 }
