@@ -26,16 +26,19 @@ RDL_REG_OUT  ?= $(CHIM_ROOT)/hw/regs
 DOCS_ADDRMAP ?= $(CHIM_ROOT)/docs/addressmap.md
 NUMCLUSTERS  ?= 5
 
-# --- Snitch cluster SW headers (vendored snitch-sdk clustergen) --------------
+# --- Snitch cluster SW headers (RTL clustergen) ------------------------------
 # The Snitch bootrom needs the cluster config (CFG_CLUSTER_NR_CORES /
-# SNRT_CLUSTER_NUM) and the cluster-local address map. These are rendered from
-# the SAME single source of truth as the RTL wrapper (cfg/chimera.json, i.e.
-# SN_CFG); that file carries the extra `nr_clusters` / `icache.sets` fields the
-# SW clustergen needs, so no separate SW cluster config is required.
+# SNRT_CLUSTER_NUM) and the cluster-local address map. These come from the SAME
+# single source of truth as the RTL wrapper (cfg/chimera.json, i.e. SN_CFG) AND
+# the SAME generator: the RTL snitch_cluster clustergen ($(SN_ROOT)/util/
+# clustergen), not the snitch-sdk's separate copy -- so the SW headers can never
+# drift from the wrapper. Only the header .tpl files still come from the
+# snitch-sdk. PYTHONPATH lets the script `import cluster` from its own directory.
 SN_SDK_DIR    ?= $(CHIM_SDK_DIR)/devices/snitch_cluster/third_party/snitch-sdk
 SN_SDK_DEV    ?= $(SN_SDK_DIR)/devices/snitch_cluster
 SN_CLUSTER_CFG?= $(CHIM_ROOT)/cfg/chimera.json
-SN_CLUSTERGEN ?= $(SN_SDK_DIR)/scripts/clustergen.py
+SN_CLUSTERGEN ?= $(SN_ROOT)/util/clustergen/clustergen.py
+SN_CLUSTERGEN_CMD ?= PYTHONPATH=$(dir $(SN_CLUSTERGEN)) $(RDL_PYTHON) $(SN_CLUSTERGEN) -c $(SN_CLUSTER_CFG)
 
 # The top address map includes the real per-cluster map shipped by the
 # snitch_cluster dependency (hw/generated/snitch_cluster.rdl, which itself
@@ -74,10 +77,8 @@ chim-rdl-regblock: ## Generate the SoC-control SV register block into hw/regs (r
 		sed -i '1i// Copyright 2024 ETH Zurich and University of Bologna.\n// Licensed under the Apache License, Version 2.0, see LICENSE for details.\n// SPDX-License-Identifier: Apache-2.0\n' $$f; done
 
 chim-rdl-sw-headers: | $(RDL_GEN_DIR) ## Generate the Snitch cluster SW headers (cfg + addrmap)
-	$(RDL_PYTHON) $(SN_CLUSTERGEN) --clustercfg $(SN_CLUSTER_CFG) \
-		--template $(SN_SDK_DEV)/templates/snitch_cluster_cfg.h.tpl     --outdir $(RDL_GEN_DIR)
-	$(RDL_PYTHON) $(SN_CLUSTERGEN) --clustercfg $(SN_CLUSTER_CFG) \
-		--template $(SN_SDK_DEV)/templates/snitch_cluster_addrmap.h.tpl --outdir $(RDL_GEN_DIR)
+	$(SN_CLUSTERGEN_CMD) --template $(SN_SDK_DEV)/templates/snitch_cluster_cfg.h.tpl     -o $(RDL_GEN_DIR)/snitch_cluster_cfg.h
+	$(SN_CLUSTERGEN_CMD) --template $(SN_SDK_DEV)/templates/snitch_cluster_addrmap.h.tpl -o $(RDL_GEN_DIR)/snitch_cluster_addrmap.h
 
 chim-rdl: chim-rdl-markdown chim-rdl-c-header chim-rdl-raw-header chim-rdl-sw-headers ## Generate the memory-map artifacts
 
