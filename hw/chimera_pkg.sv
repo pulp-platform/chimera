@@ -148,6 +148,11 @@ ExtClusters
 
   localparam int unsigned HypNumPhys = 1;
   localparam int unsigned HypNumChips = 2;
+  // Per-chip HyperRAM device address space (128 MiB for the IS66WVH8M8ALL). Single
+  // source of truth for the hyperbus RstChipSpace parameter (see chimera_top_wrapper).
+  localparam doub_bt HyperRamChipSize = 64'h800_0000;
+  // Reset address space the hyperbus controller decodes: all PHYs x all chips.
+  localparam doub_bt HyperbusRstChipSpace = HypNumPhys * HypNumChips * HyperRamChipSize;
 
   localparam int unsigned LogDepth = 3;
   localparam int unsigned SyncStages = 3;
@@ -188,7 +193,6 @@ ExtClusters
     cfg.AxiMstIdWidth = 2;
     cfg.AxiDataWidth = 64;
     cfg.AddrWidth = 48;
-    cfg.LlcOutRegionEnd = 'hFFFF_FFFF;
 
     cfg.AxiExtNumWideMst = $countones(ChimeraClusterCfg.hasWideMasterPort);
 

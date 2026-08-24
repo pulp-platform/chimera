@@ -450,28 +450,16 @@ module chimera_top_wrapper
       ChsCfg.AxiDataWidth, ChsCfg.AxiMstIdWidth, ChsCfg.AxiUserWidth
   );
 
-  // LLC CDC parameters
-  localparam int unsigned ChimeraAxiLlcIdWidth = ChsCfg.AxiMstIdWidth   +
-                                     $clog2(AxiIn.num_in)+
-                                     ChsCfg.LlcNotBypass    ;
-  localparam int unsigned ChimeraAxiLlcArWidth = (2**LogDepth)*
-                                      axi_pkg::ar_width(ChsCfg.AddrWidth   ,
-                                                        ChimeraAxiLlcIdWidth      ,
-                                                        ChsCfg.AxiUserWidth);
-  localparam int unsigned ChimeraAxiLlcAwWidth = (2**LogDepth)*
-                                        axi_pkg::aw_width(ChsCfg.AddrWidth  ,
-                                                        ChimeraAxiLlcIdWidth      ,
-                                                        ChsCfg.AxiUserWidth);
-  localparam int unsigned ChimeraAxiLlcBWidth  = (2**LogDepth)*
-                                        axi_pkg::b_width(ChimeraAxiLlcIdWidth     ,
-                                                        ChsCfg.AxiUserWidth);
-  localparam int unsigned ChimeraAxiLlcRWidth  = (2**LogDepth)*
-                                        axi_pkg::r_width(ChsCfg.AxiDataWidth,
-                                                        ChimeraAxiLlcIdWidth      ,
-                                                        ChsCfg.AxiUserWidth);
-  localparam int unsigned ChimeraAxiLlcWWidth  = (2**LogDepth)*
-                                        axi_pkg::w_width(ChsCfg.AxiDataWidth,
-                                                        ChsCfg.AxiUserWidth );
+  // LLC CDC async-bus widths. The channel/ID widths are single-sourced from the
+  // `axi_llc_*` types emitted by `CHESHIRE_TYPEDEF_ALL` above (instead of
+  // recomputing them with axi_pkg::*_width). The `(2**LogDepth)` factor is the
+  // depth of the axi_cdc gray-coded FIFO exposed on the async data buses.
+  localparam int unsigned ChimeraAxiLlcIdWidth = $bits(axi_llc_id_t);
+  localparam int unsigned ChimeraAxiLlcArWidth = (2 ** LogDepth) * $bits(axi_llc_ar_chan_t);
+  localparam int unsigned ChimeraAxiLlcAwWidth = (2 ** LogDepth) * $bits(axi_llc_aw_chan_t);
+  localparam int unsigned ChimeraAxiLlcBWidth  = (2 ** LogDepth) * $bits(axi_llc_b_chan_t);
+  localparam int unsigned ChimeraAxiLlcRWidth  = (2 ** LogDepth) * $bits(axi_llc_r_chan_t);
+  localparam int unsigned ChimeraAxiLlcWWidth  = (2 ** LogDepth) * $bits(axi_llc_w_chan_t);
 
   logic [ChimeraAxiLlcArWidth-1:0] hyper_ar_data;
   logic [              LogDepth:0] hyper_ar_wptr;
@@ -545,7 +533,7 @@ module chimera_top_wrapper
     .RxFifoLogDepth  (32'd2),
     .TxFifoLogDepth  (32'd2),
     .RstChipBase     (HyperbusRegionStart),
-    .RstChipSpace    (HypNumPhys * HypNumChips * 'h800_0000),
+    .RstChipSpace    (HyperbusRstChipSpace),
     .PhyStartupCycles(300 * 200),
     .AxiLogDepth     (LogDepth),
     .AxiSlaveArWidth (ChimeraAxiLlcArWidth),

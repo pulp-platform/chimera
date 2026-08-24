@@ -14,9 +14,7 @@
 #define TESTVAL (uint32_t)0x1234ABCD
 
 int main() {
-    volatile uint8_t *regPtr = (volatile uint8_t *)SOC_CTRL_BASE;
-    // setAllClusterReset(regPtr, 0);
-    // setAllClusterClockGating(regPtr, 0);
+    // This test does not use any cluster, so it neither resets nor ungates them.
     volatile uint32_t *hyperCtrlPtr = (volatile uint32_t *)HYPERBUS_CFG_BASE;
     volatile uint32_t *hyperMemPtr = (volatile uint32_t *)HYPER_BASE;
     volatile uint32_t result;
