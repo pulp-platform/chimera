@@ -141,15 +141,18 @@ ExtClusters
   localparam shrt_bt MemIslWordsPerBank = 1024;
   // WIESEP: Memory Island size = 16 * 2 * 4096 * 32 bit = 512 KB
 
-  // Hyperbus
-  localparam byte_bt HyperbusIdx = MemIslandIdx + 1;
-  // WIESEP: Address space 256 MiB
-  localparam doub_bt HyperbusRegionLength = 64'h1000_0000;
+
+  localparam doub_bt HyperbusRegionLength = 64'h1_0000_0000;
   localparam doub_bt HyperbusRegionStart = 64'h8000_0000;
   localparam doub_bt HyperbusRegionEnd = HyperbusRegionStart + HyperbusRegionLength;
 
   localparam int unsigned HypNumPhys = 1;
   localparam int unsigned HypNumChips = 2;
+  // Per-chip HyperRAM device address space (128 MiB for the IS66WVH8M8ALL). Single
+  // source of truth for the hyperbus RstChipSpace parameter (see chimera_top_wrapper).
+  localparam doub_bt HyperRamChipSize = 64'h800_0000;
+  // Reset address space the hyperbus controller decodes: all PHYs x all chips.
+  localparam doub_bt HyperbusRstChipSpace = HypNumPhys * HypNumChips * HyperRamChipSize;
 
   localparam int unsigned LogDepth = 3;
   localparam int unsigned SyncStages = 3;
@@ -166,34 +169,41 @@ ExtClusters
     chimera_cfg_t  chimera_cfg;
     cheshire_cfg_t cfg = DefaultCfg;
 
+
+    // Configure Cached, In, Execute Regions
+    cfg.Cva6ExtCieBase = MemIslRegionStart;
+    cfg.Cva6ExtCieLength = MemIslRegionLength;
+
     // Global CFG
-
-    // Set all Chimera addresses as uncached
-    cfg.Cva6ExtCieLength = 'h0;
-    cfg.Cva6ExtCieOnTop = 1;
-
     cfg.Vga = 0;
     cfg.SerialLink = 0;
-    // SCHEREMO: Fully remove LLC
-    cfg.LlcNotBypass = 0;
-    cfg.LlcOutConnect = 0;
+    cfg.Clic = 1;
+    cfg.Usb = 0;
+    // LLC Config
+    // 64 KiB (8 way-set associative, 128 lines, 64B line size)
+    cfg.LlcNotBypass      = 1;
+    cfg.LlcOutConnect     = 1;
+    cfg.LlcSetAssoc       = 8;
+    cfg.LlcNumLines       = 128;
+    cfg.LlcNumBlocks      = 8;
+    cfg.LlcOutRegionStart = HyperbusRegionStart;
+    cfg.LlcOutRegionEnd   = HyperbusRegionEnd;
 
     // AXI CFG
     cfg.AxiMstIdWidth = 2;
-    cfg.AxiDataWidth = 32;
+    cfg.AxiDataWidth = 64;
     cfg.AddrWidth = 48;
-    cfg.LlcOutRegionEnd = 'hFFFF_FFFF;
 
     cfg.AxiExtNumWideMst = $countones(ChimeraClusterCfg.hasWideMasterPort);
 
     // SCHEREMO: Two ports for each cluster: one to convert stray wides, one for the original narrow
     cfg.AxiExtNumMst = ExtClusters + $countones(ChimeraClusterCfg.hasWideMasterPort);
-    cfg.AxiExtNumSlv = ExtClusters + MemoryIsland + Hyperbus;
-    cfg.AxiExtNumRules = ExtClusters + MemoryIsland + Hyperbus;
+    cfg.AxiExtNumSlv = ExtClusters + MemoryIsland;
+    cfg.AxiExtNumRules = ExtClusters + MemoryIsland;
 
-    cfg.AxiExtRegionIdx = {HyperbusIdx, MemIslandIdx, ClusterIdx};
-    cfg.AxiExtRegionStart = {HyperbusRegionStart, MemIslRegionStart, ClusterRegionStart};
-    cfg.AxiExtRegionEnd = {HyperbusRegionEnd, MemIslRegionEnd, ClusterRegionEnd};
+    cfg.AxiExtRegionIdx = {MemIslandIdx, ClusterIdx};
+    cfg.AxiExtRegionStart = {MemIslRegionStart, ClusterRegionStart};
+    cfg.AxiExtRegionEnd = {MemIslRegionEnd, ClusterRegionEnd};
 
     // REG CFG
     cfg.RegExtNumSlv = ExtRegNum;

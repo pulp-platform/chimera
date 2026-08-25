@@ -10,6 +10,7 @@ snitch_cluster
 deps/
 *.OLD
 *.egg-info/
+*compile.log
 
 # EMACS
 

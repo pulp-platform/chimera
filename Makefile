@@ -35,7 +35,7 @@ SN_CFG = $(SN_ROOT)/cfg/default.json
 BENDER_YML = $(CHIM_ROOT)/Bender.yml
 BENDER_LOCK = $(CHIM_ROOT)/Bender.lock
 
-CHS_XLEN ?= 32
+CHS_XLEN ?= 64
 
 CHIM_HW_DIR ?= $(CHIM_ROOT)/hw
 CHIM_SW_DIR ?= $(CHIM_ROOT)/sw

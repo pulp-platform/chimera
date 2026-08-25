@@ -14,8 +14,8 @@ CHS_SW_INCLUDES += -I$(CHIM_SW_DIR)/include
 
 # SCHEREMO: use im for platform-level SW, as the smallest common denominator between CVA6 and the Snitch cluster.
 # CVA6's bootrom however needs imc, so override that for this specific case.
-CHS_SW_FLAGS += -falign-functions=64 -march=rv32im
-CHS_BROM_FLAGS += -march=rv32imc
+CHS_SW_FLAGS += -falign-functions=64 -march=rv64gc_zifencei -mabi=lp64d
+CHS_BROM_FLAGS += -march=rv64gc_zifencei -mabi=lp64d
 
 CHS_SW_LDFLAGS += -L$(CHIM_SW_DIR)/lib
 

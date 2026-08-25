@@ -28,7 +28,7 @@ CHIM_VLOG_ARGS += +define+PATH_TO_HYP_SDF=\"$(CHIM_HYPERBUS_SDF_PATH)\"
 
 VSIM_FLAGS_GUI = -voptargs=+acc
 
-override VSIM_FLAGS += -work $(VSIM_WORK)
+override VSIM_FLAGS += -work $(VSIM_WORK) -suppress 8386
 
 # Set testbech parameters
 define add_vsim_flag
